@@ -1,0 +1,900 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9B2E51F7E3F83C04602FA8C4 /* libPods-Apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */; };
+		E338964220B401CA00DD51FE /* ZJNEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964120B401CA00DD51FE /* ZJNEmptyView.m */; };
+		E338964620B401EA00DD51FE /* ZJNHUDTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964420B401EA00DD51FE /* ZJNHUDTipsView.m */; };
+		E338964720B401EA00DD51FE /* ZJNHUDTipsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E338964520B401EA00DD51FE /* ZJNHUDTipsView.xib */; };
+		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
+		E33A8B4D20AE724D0067505E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B4C20AE724D0067505E /* AppDelegate.m */; };
+		E33A8B5520AE724F0067505E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E33A8B5420AE724F0067505E /* Assets.xcassets */; };
+		E33A8B5820AE724F0067505E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */; };
+		E33A8B5B20AE724F0067505E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B5A20AE724F0067505E /* main.m */; };
+		E33A8B7820AE75500067505E /* LXDScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B7020AE75500067505E /* LXDScanView.m */; };
+		E33A8B7920AE75500067505E /* LXDScanCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B7120AE75500067505E /* LXDScanCodeController.m */; };
+		E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B7720AE75500067505E /* ApexUIHelper.m */; };
+		E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B7E20AE75650067505E /* CYLTabBarButton.m */; };
+		E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B7F20AE75650067505E /* CYLTabbar.m */; };
+		E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B8320AE75650067505E /* CYLNavBaseController.m */; };
+		E33A8B8920AE75650067505E /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B8420AE75650067505E /* CYLTabBarController.m */; };
+		E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B8E20AE756E0067505E /* UIResponder+Router.m */; };
+		E33A8B9A20AE756E0067505E /* UINavigationController+ApexNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B8F20AE756E0067505E /* UINavigationController+ApexNavigationBar.m */; };
+		E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B9020AE756E0067505E /* UIViewController+NetLoadIndicator.m */; };
+		E33A8B9C20AE756E0067505E /* UIViewController+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B9120AE756E0067505E /* UIViewController+Toast.m */; };
+		E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B9220AE756E0067505E /* UIViewController+NetLoadingIndicator.m */; };
+		E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B9320AE756E0067505E /* UIView+TKFrame.m */; };
+		E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B9420AE756E0067505E /* UIColor+HYF.m */; };
+		E33A8BA420AE76860067505E /* CYLAppBaseFrameWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33A8BA320AE76850067505E /* CYLAppBaseFrameWork.framework */; };
+		E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BA620AE779B0067505E /* ApexDiscoverController.m */; };
+		E33A8BAA20AE77B10067505E /* ApexAssetController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BA920AE77B10067505E /* ApexAssetController.m */; };
+		E33A8BAD20AE77C70067505E /* ApexMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BAC20AE77C70067505E /* ApexMineController.m */; };
+		E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BB120AE795F0067505E /* ApexWalletInitController.m */; };
+		E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BB220AE795F0067505E /* ApexImportWalletController.m */; };
+		E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BB520AE795F0067505E /* ApexCreatWalletController.m */; };
+		E33A8BBE20AE7D9F0067505E /* ApexRPCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BBD20AE7D9F0067505E /* ApexRPCClient.m */; };
+		E33A8BC120B28CD90067505E /* Neomobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33A8BC020B28CD90067505E /* Neomobile.framework */; };
+		E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BC320B28F800067505E /* PDKeyChain.m */; };
+		E33A8BCB20B292B90067505E /* ApexWalletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BCA20B292B90067505E /* ApexWalletManager.m */; };
+		E33A8BCF20B29B840067505E /* ApexWalletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33A8BCC20B29B840067505E /* ApexWalletCell.xib */; };
+		E33A8BD020B29B840067505E /* ApexWalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BCE20B29B840067505E /* ApexWalletCell.m */; };
+		E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BD220B29D060067505E /* ApexAppConfig.m */; };
+		E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BD820B2ACEA0067505E /* ApexAccountStateModel.m */; };
+		E33A8BDC20B2B5950067505E /* ApexWalletDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BDB20B2B5950067505E /* ApexWalletDetailController.m */; };
+		E33A8BDF20B2BB340067505E /* UIView+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BDE20B2BB340067505E /* UIView+Common.m */; };
+		E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33A8BE020B2C3A50067505E /* ApexRequestMoenyController.xib */; };
+		E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BE220B2C3A50067505E /* ApexRequestMoenyController.m */; };
+		E33A8BE820B2C3B50067505E /* ApexSendMoneyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33A8BE520B2C3B50067505E /* ApexSendMoneyController.xib */; };
+		E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BE720B2C3B50067505E /* ApexSendMoneyController.m */; };
+		E33A8BEC20B3AD680067505E /* ApexMorePanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BEB20B3AD680067505E /* ApexMorePanelView.m */; };
+		E33A8BEF20B3C16C0067505E /* ApexTXIDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BEE20B3C16C0067505E /* ApexTXIDModel.m */; };
+		E33A8BF220B3F0350067505E /* ApexTXRecorderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BF120B3F0350067505E /* ApexTXRecorderModel.m */; };
+		E33A8BF620B3F4030067505E /* ApexTXRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33A8BF320B3F4030067505E /* ApexTXRecordCell.xib */; };
+		E33A8BF720B3F4030067505E /* ApexTXRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BF520B3F4030067505E /* ApexTXRecordCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.release.xcconfig"; sourceTree = "<group>"; };
+		8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.debug.xcconfig"; sourceTree = "<group>"; };
+		E338964020B401CA00DD51FE /* ZJNEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJNEmptyView.h; sourceTree = "<group>"; };
+		E338964120B401CA00DD51FE /* ZJNEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJNEmptyView.m; sourceTree = "<group>"; };
+		E338964320B401E900DD51FE /* ZJNHUDTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJNHUDTipsView.h; sourceTree = "<group>"; };
+		E338964420B401EA00DD51FE /* ZJNHUDTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJNHUDTipsView.m; sourceTree = "<group>"; };
+		E338964520B401EA00DD51FE /* ZJNHUDTipsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJNHUDTipsView.xib; sourceTree = "<group>"; };
+		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
+		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
+		E33A8B4820AE724D0067505E /* Apex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E33A8B4B20AE724D0067505E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E33A8B4C20AE724D0067505E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E33A8B5420AE724F0067505E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E33A8B5720AE724F0067505E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E33A8B5920AE724F0067505E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E33A8B5A20AE724F0067505E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E33A8B7020AE75500067505E /* LXDScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDScanView.m; sourceTree = "<group>"; };
+		E33A8B7120AE75500067505E /* LXDScanCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDScanCodeController.m; sourceTree = "<group>"; };
+		E33A8B7220AE75500067505E /* LXDScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDScanView.h; sourceTree = "<group>"; };
+		E33A8B7320AE75500067505E /* LXDScanCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDScanCodeController.h; sourceTree = "<group>"; };
+		E33A8B7420AE75500067505E /* ApexUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexUIHelper.h; sourceTree = "<group>"; };
+		E33A8B7620AE75500067505E /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		E33A8B7720AE75500067505E /* ApexUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexUIHelper.m; sourceTree = "<group>"; };
+		E33A8B7D20AE75650067505E /* CYLTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabbar.h; sourceTree = "<group>"; };
+		E33A8B7E20AE75650067505E /* CYLTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBarButton.m; sourceTree = "<group>"; };
+		E33A8B7F20AE75650067505E /* CYLTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabbar.m; sourceTree = "<group>"; };
+		E33A8B8020AE75650067505E /* CYLTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBarButton.h; sourceTree = "<group>"; };
+		E33A8B8220AE75650067505E /* CYLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBarController.h; sourceTree = "<group>"; };
+		E33A8B8320AE75650067505E /* CYLNavBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLNavBaseController.m; sourceTree = "<group>"; };
+		E33A8B8420AE75650067505E /* CYLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBarController.m; sourceTree = "<group>"; };
+		E33A8B8520AE75650067505E /* CYLNavBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLNavBaseController.h; sourceTree = "<group>"; };
+		E33A8B8B20AE756E0067505E /* UIColor+HYF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HYF.h"; sourceTree = "<group>"; };
+		E33A8B8C20AE756E0067505E /* UIView+TKFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TKFrame.h"; sourceTree = "<group>"; };
+		E33A8B8D20AE756E0067505E /* UIViewController+NetLoadingIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NetLoadingIndicator.h"; sourceTree = "<group>"; };
+		E33A8B8E20AE756E0067505E /* UIResponder+Router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Router.m"; sourceTree = "<group>"; };
+		E33A8B8F20AE756E0067505E /* UINavigationController+ApexNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ApexNavigationBar.m"; sourceTree = "<group>"; };
+		E33A8B9020AE756E0067505E /* UIViewController+NetLoadIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NetLoadIndicator.m"; sourceTree = "<group>"; };
+		E33A8B9120AE756E0067505E /* UIViewController+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Toast.m"; sourceTree = "<group>"; };
+		E33A8B9220AE756E0067505E /* UIViewController+NetLoadingIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NetLoadingIndicator.m"; sourceTree = "<group>"; };
+		E33A8B9320AE756E0067505E /* UIView+TKFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKFrame.m"; sourceTree = "<group>"; };
+		E33A8B9420AE756E0067505E /* UIColor+HYF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HYF.m"; sourceTree = "<group>"; };
+		E33A8B9520AE756E0067505E /* UINavigationController+ApexNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ApexNavigationBar.h"; sourceTree = "<group>"; };
+		E33A8B9620AE756E0067505E /* UIResponder+Router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Router.h"; sourceTree = "<group>"; };
+		E33A8B9720AE756E0067505E /* UIViewController+NetLoadIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NetLoadIndicator.h"; sourceTree = "<group>"; };
+		E33A8B9820AE756E0067505E /* UIViewController+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Toast.h"; sourceTree = "<group>"; };
+		E33A8BA220AE75980067505E /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		E33A8BA320AE76850067505E /* CYLAppBaseFrameWork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CYLAppBaseFrameWork.framework; sourceTree = "<group>"; };
+		E33A8BA520AE779B0067505E /* ApexDiscoverController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexDiscoverController.h; sourceTree = "<group>"; };
+		E33A8BA620AE779B0067505E /* ApexDiscoverController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexDiscoverController.m; sourceTree = "<group>"; };
+		E33A8BA820AE77B10067505E /* ApexAssetController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetController.h; sourceTree = "<group>"; };
+		E33A8BA920AE77B10067505E /* ApexAssetController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetController.m; sourceTree = "<group>"; };
+		E33A8BAB20AE77C70067505E /* ApexMineController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMineController.h; sourceTree = "<group>"; };
+		E33A8BAC20AE77C70067505E /* ApexMineController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMineController.m; sourceTree = "<group>"; };
+		E33A8BB120AE795F0067505E /* ApexWalletInitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexWalletInitController.m; sourceTree = "<group>"; };
+		E33A8BB220AE795F0067505E /* ApexImportWalletController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexImportWalletController.m; sourceTree = "<group>"; };
+		E33A8BB320AE795F0067505E /* ApexCreatWalletController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexCreatWalletController.h; sourceTree = "<group>"; };
+		E33A8BB420AE795F0067505E /* ApexWalletInitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexWalletInitController.h; sourceTree = "<group>"; };
+		E33A8BB520AE795F0067505E /* ApexCreatWalletController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexCreatWalletController.m; sourceTree = "<group>"; };
+		E33A8BB620AE795F0067505E /* ApexImportWalletController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexImportWalletController.h; sourceTree = "<group>"; };
+		E33A8BBC20AE7D9F0067505E /* ApexRPCClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexRPCClient.h; sourceTree = "<group>"; };
+		E33A8BBD20AE7D9F0067505E /* ApexRPCClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexRPCClient.m; sourceTree = "<group>"; };
+		E33A8BBF20AE7DF60067505E /* OtherMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherMacro.h; sourceTree = "<group>"; };
+		E33A8BC020B28CD90067505E /* Neomobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Neomobile.framework; sourceTree = "<group>"; };
+		E33A8BC320B28F800067505E /* PDKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKeyChain.m; sourceTree = "<group>"; };
+		E33A8BC420B28F800067505E /* PDKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKeyChain.h; sourceTree = "<group>"; };
+		E33A8BC920B292B90067505E /* ApexWalletManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletManager.h; sourceTree = "<group>"; };
+		E33A8BCA20B292B90067505E /* ApexWalletManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletManager.m; sourceTree = "<group>"; };
+		E33A8BCC20B29B840067505E /* ApexWalletCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexWalletCell.xib; sourceTree = "<group>"; };
+		E33A8BCD20B29B840067505E /* ApexWalletCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletCell.h; sourceTree = "<group>"; };
+		E33A8BCE20B29B840067505E /* ApexWalletCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletCell.m; sourceTree = "<group>"; };
+		E33A8BD120B29D060067505E /* ApexAppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAppConfig.h; sourceTree = "<group>"; };
+		E33A8BD220B29D060067505E /* ApexAppConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAppConfig.m; sourceTree = "<group>"; };
+		E33A8BD720B2ACEA0067505E /* ApexAccountStateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAccountStateModel.h; sourceTree = "<group>"; };
+		E33A8BD820B2ACEA0067505E /* ApexAccountStateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAccountStateModel.m; sourceTree = "<group>"; };
+		E33A8BDA20B2B5950067505E /* ApexWalletDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletDetailController.h; sourceTree = "<group>"; };
+		E33A8BDB20B2B5950067505E /* ApexWalletDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletDetailController.m; sourceTree = "<group>"; };
+		E33A8BDD20B2BB340067505E /* UIView+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Common.h"; sourceTree = "<group>"; };
+		E33A8BDE20B2BB340067505E /* UIView+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Common.m"; sourceTree = "<group>"; };
+		E33A8BE020B2C3A50067505E /* ApexRequestMoenyController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexRequestMoenyController.xib; sourceTree = "<group>"; };
+		E33A8BE120B2C3A50067505E /* ApexRequestMoenyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexRequestMoenyController.h; sourceTree = "<group>"; };
+		E33A8BE220B2C3A50067505E /* ApexRequestMoenyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexRequestMoenyController.m; sourceTree = "<group>"; };
+		E33A8BE520B2C3B50067505E /* ApexSendMoneyController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexSendMoneyController.xib; sourceTree = "<group>"; };
+		E33A8BE620B2C3B50067505E /* ApexSendMoneyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexSendMoneyController.h; sourceTree = "<group>"; };
+		E33A8BE720B2C3B50067505E /* ApexSendMoneyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexSendMoneyController.m; sourceTree = "<group>"; };
+		E33A8BEA20B3AD680067505E /* ApexMorePanelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMorePanelView.h; sourceTree = "<group>"; };
+		E33A8BEB20B3AD680067505E /* ApexMorePanelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMorePanelView.m; sourceTree = "<group>"; };
+		E33A8BED20B3C16C0067505E /* ApexTXIDModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTXIDModel.h; sourceTree = "<group>"; };
+		E33A8BEE20B3C16C0067505E /* ApexTXIDModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTXIDModel.m; sourceTree = "<group>"; };
+		E33A8BF020B3F0350067505E /* ApexTXRecorderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTXRecorderModel.h; sourceTree = "<group>"; };
+		E33A8BF120B3F0350067505E /* ApexTXRecorderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTXRecorderModel.m; sourceTree = "<group>"; };
+		E33A8BF320B3F4030067505E /* ApexTXRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTXRecordCell.xib; sourceTree = "<group>"; };
+		E33A8BF420B3F4030067505E /* ApexTXRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTXRecordCell.h; sourceTree = "<group>"; };
+		E33A8BF520B3F4030067505E /* ApexTXRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTXRecordCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E33A8B4520AE724D0067505E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B2E51F7E3F83C04602FA8C4 /* libPods-Apex.a in Frameworks */,
+				E33A8BC120B28CD90067505E /* Neomobile.framework in Frameworks */,
+				E33A8BA420AE76860067505E /* CYLAppBaseFrameWork.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		33554FE32BBC78449D127132 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A650F6290F0980BBC778DE8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */,
+				2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E338964820B401F200DD51FE /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				E338964020B401CA00DD51FE /* ZJNEmptyView.h */,
+				E338964120B401CA00DD51FE /* ZJNEmptyView.m */,
+				E338964320B401E900DD51FE /* ZJNHUDTipsView.h */,
+				E338964420B401EA00DD51FE /* ZJNHUDTipsView.m */,
+				E338964520B401EA00DD51FE /* ZJNHUDTipsView.xib */,
+			);
+			path = EmptyView;
+			sourceTree = "<group>";
+		};
+		E33A8B3F20AE724D0067505E = {
+			isa = PBXGroup;
+			children = (
+				E33A8B4A20AE724D0067505E /* Apex */,
+				E33A8B4920AE724D0067505E /* Products */,
+				9A650F6290F0980BBC778DE8 /* Pods */,
+				33554FE32BBC78449D127132 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E33A8B4920AE724D0067505E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8B4820AE724D0067505E /* Apex.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E33A8B4A20AE724D0067505E /* Apex */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8B4B20AE724D0067505E /* AppDelegate.h */,
+				E33A8B4C20AE724D0067505E /* AppDelegate.m */,
+				E33A8B6E20AE75500067505E /* Tools */,
+				E33A8B7B20AE75650067505E /* BaseController */,
+				E33A8B6520AE73F00067505E /* Discover */,
+				E33A8B6920AE73F00067505E /* Asset */,
+				E33A8B6120AE73F00067505E /* Mine */,
+				E33A8BAE20AE795F0067505E /* Wallet */,
+				E33A8B8A20AE756E0067505E /* Catagotries */,
+				E33A8BA320AE76850067505E /* CYLAppBaseFrameWork.framework */,
+				E33A8BC020B28CD90067505E /* Neomobile.framework */,
+				E33A8BA220AE75980067505E /* PrefixHeader.pch */,
+				E33A8B5420AE724F0067505E /* Assets.xcassets */,
+				E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */,
+				E33A8B5920AE724F0067505E /* Info.plist */,
+				E33A8B5A20AE724F0067505E /* main.m */,
+			);
+			path = Apex;
+			sourceTree = "<group>";
+		};
+		E33A8B6120AE73F00067505E /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8B6220AE73F00067505E /* View */,
+				E33A8B6320AE73F00067505E /* Controller */,
+				E33A8B6420AE73F00067505E /* Model */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		E33A8B6220AE73F00067505E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BF420B3F4030067505E /* ApexTXRecordCell.h */,
+				E33A8BF520B3F4030067505E /* ApexTXRecordCell.m */,
+				E33A8BF320B3F4030067505E /* ApexTXRecordCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E33A8B6320AE73F00067505E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BAB20AE77C70067505E /* ApexMineController.h */,
+				E33A8BAC20AE77C70067505E /* ApexMineController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E33A8B6420AE73F00067505E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E33A8B6520AE73F00067505E /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8B6620AE73F00067505E /* View */,
+				E33A8B6720AE73F00067505E /* Controller */,
+				E33A8B6820AE73F00067505E /* Model */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		E33A8B6620AE73F00067505E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E33A8B6720AE73F00067505E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BA520AE779B0067505E /* ApexDiscoverController.h */,
+				E33A8BA620AE779B0067505E /* ApexDiscoverController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E33A8B6820AE73F00067505E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E33A8B6920AE73F00067505E /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8B6A20AE73F00067505E /* View */,
+				E33A8B6B20AE73F00067505E /* Controller */,
+				E33A8B6C20AE73F00067505E /* Model */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		E33A8B6A20AE73F00067505E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BCC20B29B840067505E /* ApexWalletCell.xib */,
+				E33A8BCD20B29B840067505E /* ApexWalletCell.h */,
+				E33A8BCE20B29B840067505E /* ApexWalletCell.m */,
+				E33A8BEA20B3AD680067505E /* ApexMorePanelView.h */,
+				E33A8BEB20B3AD680067505E /* ApexMorePanelView.m */,
+				E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */,
+				E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E33A8B6B20AE73F00067505E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BA820AE77B10067505E /* ApexAssetController.h */,
+				E33A8BA920AE77B10067505E /* ApexAssetController.m */,
+				E33A8BDA20B2B5950067505E /* ApexWalletDetailController.h */,
+				E33A8BDB20B2B5950067505E /* ApexWalletDetailController.m */,
+				E33A8BE120B2C3A50067505E /* ApexRequestMoenyController.h */,
+				E33A8BE220B2C3A50067505E /* ApexRequestMoenyController.m */,
+				E33A8BE020B2C3A50067505E /* ApexRequestMoenyController.xib */,
+				E33A8BE620B2C3B50067505E /* ApexSendMoneyController.h */,
+				E33A8BE720B2C3B50067505E /* ApexSendMoneyController.m */,
+				E33A8BE520B2C3B50067505E /* ApexSendMoneyController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E33A8B6C20AE73F00067505E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BD720B2ACEA0067505E /* ApexAccountStateModel.h */,
+				E33A8BD820B2ACEA0067505E /* ApexAccountStateModel.m */,
+				E33A8BED20B3C16C0067505E /* ApexTXIDModel.h */,
+				E33A8BEE20B3C16C0067505E /* ApexTXIDModel.m */,
+				E33A8BF020B3F0350067505E /* ApexTXRecorderModel.h */,
+				E33A8BF120B3F0350067505E /* ApexTXRecorderModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E33A8B6E20AE75500067505E /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BC220B28F800067505E /* keyChain */,
+				E33A8BBB20AE7D830067505E /* NetWork */,
+				E33A8B6F20AE75500067505E /* ScanTool */,
+				E33A8B7520AE75500067505E /* FileManager */,
+				E338964820B401F200DD51FE /* EmptyView */,
+				E33A8B7620AE75500067505E /* Macro.h */,
+				E33A8BBF20AE7DF60067505E /* OtherMacro.h */,
+				E33A8B7420AE75500067505E /* ApexUIHelper.h */,
+				E33A8B7720AE75500067505E /* ApexUIHelper.m */,
+				E33A8BD120B29D060067505E /* ApexAppConfig.h */,
+				E33A8BD220B29D060067505E /* ApexAppConfig.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		E33A8B6F20AE75500067505E /* ScanTool */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8B7020AE75500067505E /* LXDScanView.m */,
+				E33A8B7120AE75500067505E /* LXDScanCodeController.m */,
+				E33A8B7220AE75500067505E /* LXDScanView.h */,
+				E33A8B7320AE75500067505E /* LXDScanCodeController.h */,
+			);
+			path = ScanTool;
+			sourceTree = "<group>";
+		};
+		E33A8B7520AE75500067505E /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FileManager;
+			sourceTree = "<group>";
+		};
+		E33A8B7B20AE75650067505E /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8B7C20AE75650067505E /* View */,
+				E33A8B8120AE75650067505E /* Controller */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
+		};
+		E33A8B7C20AE75650067505E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8B7D20AE75650067505E /* CYLTabbar.h */,
+				E33A8B7E20AE75650067505E /* CYLTabBarButton.m */,
+				E33A8B7F20AE75650067505E /* CYLTabbar.m */,
+				E33A8B8020AE75650067505E /* CYLTabBarButton.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E33A8B8120AE75650067505E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8B8220AE75650067505E /* CYLTabBarController.h */,
+				E33A8B8420AE75650067505E /* CYLTabBarController.m */,
+				E33A8B8520AE75650067505E /* CYLNavBaseController.h */,
+				E33A8B8320AE75650067505E /* CYLNavBaseController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E33A8B8A20AE756E0067505E /* Catagotries */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BDD20B2BB340067505E /* UIView+Common.h */,
+				E33A8BDE20B2BB340067505E /* UIView+Common.m */,
+				E33A8B8B20AE756E0067505E /* UIColor+HYF.h */,
+				E33A8B8C20AE756E0067505E /* UIView+TKFrame.h */,
+				E33A8B8D20AE756E0067505E /* UIViewController+NetLoadingIndicator.h */,
+				E33A8B8E20AE756E0067505E /* UIResponder+Router.m */,
+				E33A8B8F20AE756E0067505E /* UINavigationController+ApexNavigationBar.m */,
+				E33A8B9020AE756E0067505E /* UIViewController+NetLoadIndicator.m */,
+				E33A8B9120AE756E0067505E /* UIViewController+Toast.m */,
+				E33A8B9220AE756E0067505E /* UIViewController+NetLoadingIndicator.m */,
+				E33A8B9320AE756E0067505E /* UIView+TKFrame.m */,
+				E33A8B9420AE756E0067505E /* UIColor+HYF.m */,
+				E33A8B9520AE756E0067505E /* UINavigationController+ApexNavigationBar.h */,
+				E33A8B9620AE756E0067505E /* UIResponder+Router.h */,
+				E33A8B9720AE756E0067505E /* UIViewController+NetLoadIndicator.h */,
+				E33A8B9820AE756E0067505E /* UIViewController+Toast.h */,
+			);
+			path = Catagotries;
+			sourceTree = "<group>";
+		};
+		E33A8BAE20AE795F0067505E /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BAF20AE795F0067505E /* View */,
+				E33A8BB020AE795F0067505E /* Controller */,
+				E33A8BB720AE795F0067505E /* Model */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		E33A8BAF20AE795F0067505E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E33A8BB020AE795F0067505E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BB420AE795F0067505E /* ApexWalletInitController.h */,
+				E33A8BB120AE795F0067505E /* ApexWalletInitController.m */,
+				E33A8BB320AE795F0067505E /* ApexCreatWalletController.h */,
+				E33A8BB520AE795F0067505E /* ApexCreatWalletController.m */,
+				E33A8BB620AE795F0067505E /* ApexImportWalletController.h */,
+				E33A8BB220AE795F0067505E /* ApexImportWalletController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E33A8BB720AE795F0067505E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BC920B292B90067505E /* ApexWalletManager.h */,
+				E33A8BCA20B292B90067505E /* ApexWalletManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E33A8BBB20AE7D830067505E /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BBC20AE7D9F0067505E /* ApexRPCClient.h */,
+				E33A8BBD20AE7D9F0067505E /* ApexRPCClient.m */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		E33A8BC220B28F800067505E /* keyChain */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BC320B28F800067505E /* PDKeyChain.m */,
+				E33A8BC420B28F800067505E /* PDKeyChain.h */,
+			);
+			path = keyChain;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E33A8B4720AE724D0067505E /* Apex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E33A8B5E20AE724F0067505E /* Build configuration list for PBXNativeTarget "Apex" */;
+			buildPhases = (
+				4117416870383AA0428AB894 /* [CP] Check Pods Manifest.lock */,
+				E33A8B4420AE724D0067505E /* Sources */,
+				E33A8B4520AE724D0067505E /* Frameworks */,
+				E33A8B4620AE724D0067505E /* Resources */,
+				8D33199D11CDD69B2E79986E /* [CP] Embed Pods Frameworks */,
+				7A476BB6C7B7E65896F43680 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Apex;
+			productName = Apex;
+			productReference = E33A8B4820AE724D0067505E /* Apex.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E33A8B4020AE724D0067505E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Apex;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Chinapex;
+				TargetAttributes = {
+					E33A8B4720AE724D0067505E = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = E33A8B4320AE724D0067505E /* Build configuration list for PBXProject "Apex" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E33A8B3F20AE724D0067505E;
+			productRefGroup = E33A8B4920AE724D0067505E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E33A8B4720AE724D0067505E /* Apex */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E33A8B4620AE724D0067505E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E338964720B401EA00DD51FE /* ZJNHUDTipsView.xib in Resources */,
+				E33A8B5820AE724F0067505E /* LaunchScreen.storyboard in Resources */,
+				E33A8BE820B2C3B50067505E /* ApexSendMoneyController.xib in Resources */,
+				E33A8BCF20B29B840067505E /* ApexWalletCell.xib in Resources */,
+				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
+				E33A8BF620B3F4030067505E /* ApexTXRecordCell.xib in Resources */,
+				E33A8B5520AE724F0067505E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4117416870383AA0428AB894 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Apex-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A476BB6C7B7E65896F43680 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Apex/Pods-Apex-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Apex/Pods-Apex-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D33199D11CDD69B2E79986E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Apex/Pods-Apex-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E33A8B4420AE724D0067505E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E33A8BCB20B292B90067505E /* ApexWalletManager.m in Sources */,
+				E33A8BDF20B2BB340067505E /* UIView+Common.m in Sources */,
+				E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */,
+				E33A8BD020B29B840067505E /* ApexWalletCell.m in Sources */,
+				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
+				E33A8BBE20AE7D9F0067505E /* ApexRPCClient.m in Sources */,
+				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
+				E338964620B401EA00DD51FE /* ZJNHUDTipsView.m in Sources */,
+				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
+				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
+				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
+				E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */,
+				E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */,
+				E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */,
+				E33A8B5B20AE724F0067505E /* main.m in Sources */,
+				E33A8BEC20B3AD680067505E /* ApexMorePanelView.m in Sources */,
+				E33A8B9C20AE756E0067505E /* UIViewController+Toast.m in Sources */,
+				E33A8B7820AE75500067505E /* LXDScanView.m in Sources */,
+				E33A8BF220B3F0350067505E /* ApexTXRecorderModel.m in Sources */,
+				E33A8BF720B3F4030067505E /* ApexTXRecordCell.m in Sources */,
+				E33A8B9A20AE756E0067505E /* UINavigationController+ApexNavigationBar.m in Sources */,
+				E33A8BEF20B3C16C0067505E /* ApexTXIDModel.m in Sources */,
+				E33A8BDC20B2B5950067505E /* ApexWalletDetailController.m in Sources */,
+				E33A8BAD20AE77C70067505E /* ApexMineController.m in Sources */,
+				E33A8BAA20AE77B10067505E /* ApexAssetController.m in Sources */,
+				E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */,
+				E33A8B7920AE75500067505E /* LXDScanCodeController.m in Sources */,
+				E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */,
+				E338964220B401CA00DD51FE /* ZJNEmptyView.m in Sources */,
+				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
+				E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */,
+				E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */,
+				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,
+				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,
+				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
+				E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */,
+				E33A8B4D20AE724D0067505E /* AppDelegate.m in Sources */,
+				E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */,
+				E33A8B8920AE75650067505E /* CYLTabBarController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E33A8B5720AE724F0067505E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E33A8B5C20AE724F0067505E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E33A8B5D20AE724F0067505E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E33A8B5F20AE724F0067505E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WNNZLJCCS5;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Apex/Catagotries",
+					"$(PROJECT_DIR)/Apex",
+				);
+				GCC_PREFIX_HEADER = Apex/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFJSONRPCClient\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+				);
+				INFOPLIST_FILE = Apex/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E33A8B6020AE724F0067505E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WNNZLJCCS5;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Apex/Catagotries",
+					"$(PROJECT_DIR)/Apex",
+				);
+				GCC_PREFIX_HEADER = Apex/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFJSONRPCClient\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+				);
+				INFOPLIST_FILE = Apex/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E33A8B4320AE724D0067505E /* Build configuration list for PBXProject "Apex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E33A8B5C20AE724F0067505E /* Debug */,
+				E33A8B5D20AE724F0067505E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E33A8B5E20AE724F0067505E /* Build configuration list for PBXNativeTarget "Apex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E33A8B5F20AE724F0067505E /* Debug */,
+				E33A8B6020AE724F0067505E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E33A8B4020AE724D0067505E /* Project object */;
+}
