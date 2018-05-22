@@ -27,7 +27,21 @@
     [self addSubview:_emptyIV];
     
     _tipL = [[UILabel alloc] init];
+    _tipL.font = [UIFont systemFontOfSize:14];
+    _tipL.text = @"暂无数据";
+    _tipL.textColor = [ApexUIHelper grayColor];
+    [self addSubview:_tipL];
     
+    [self.emptyIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.height.mas_equalTo(55);
+    }];
+    
+    [self.tipL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(self.emptyIV.mas_bottom);
+    }];
 }
 
 #pragma mark - getter setter

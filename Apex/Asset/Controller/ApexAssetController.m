@@ -10,7 +10,6 @@
 #import "ApexWalletManager.h"
 #import "ApexWalletCell.h"
 #import "ApexWalletDetailController.h"
-#import "ApexMorePanelView.h"
 #import "ApexCreatWalletController.h"
 
 #define RouteNameEvent_SendMoney @"RouteNameEvent_SendMoney"
@@ -24,8 +23,6 @@
 @property (nonatomic, strong) NSArray *contentArr;
 @property (nonatomic, strong) UILabel *totalBalanceL;
 @property (nonatomic, strong) UILabel *unitL;
-@property (nonatomic, strong) UIButton *moreBtn;
-@property (nonatomic, strong) ApexMorePanelView *moreView;
 @end
 
 @implementation ApexAssetController
@@ -48,7 +45,6 @@
 - (void)setNav{
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     self.navigationItem.titleView = self.titleL;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
 }
 
 - (void)setUI{
@@ -56,7 +52,6 @@
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.totalBalanceL];
     [self.view addSubview:self.unitL];
-    [self.view addSubview:self.moreView];
     
     self.totalBalanceL.hidden = YES;
     self.unitL.hidden = YES;
@@ -88,12 +83,6 @@
     self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
         [self.collectionView reloadData];
     }];
-    
-    [self.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.top.equalTo(self.view);
-    }];
-    
-    self.moreView.transform = CGAffineTransformMakeTranslation(-kScreenW, 0);
 }
 
 - (void)getWalletLists{
@@ -137,19 +126,12 @@
     [self.navigationController pushViewController:dvc animated:YES];
 }
 
+
 #pragma mark - ------eventResponse------
 - (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
-   if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
-        _moreView.hidden = NO;
-        _moreView.transform = CGAffineTransformIdentity;
-    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewScan]){
-//        [self scanAction];
-    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewCreatWallet]){
-        ApexCreatWalletController *wvc = [[ApexCreatWalletController alloc] init];
-        wvc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:wvc animated:YES];
-    }
+
 }
+
 #pragma mark - ------getter & setter------
 - (UILabel *)titleL{
     if (!_titleL) {
@@ -205,26 +187,6 @@
         _unitL.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
     }
     return _unitL;
-}
-
-- (UIButton *)moreBtn{
-    if (!_moreBtn) {
-        _moreBtn = [[UIButton alloc] init];
-        _moreBtn.frame = CGRectMake(0, 0, 40, 40);
-        [_moreBtn setImage:[UIImage imageNamed:@"dots"] forState:UIControlStateNormal];
-        [[_moreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-            [self routeEventWithName:RouteNameEvent_ShowMorePanel userInfo:@{}];
-        }];
-    }
-    return _moreBtn;
-}
-
-- (ApexMorePanelView *)moreView{
-    if (!_moreView) {
-        _moreView = [[ApexMorePanelView alloc] init];
-        _moreView.hidden = YES;
-    }
-    return _moreView;
 }
 
 @end

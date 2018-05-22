@@ -314,6 +314,9 @@
         _privacyAgreeBtn = [[UIButton alloc] init];
         [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Group 3-1"] forState:UIControlStateNormal];
         [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Group 4"] forState:UIControlStateSelected];
+        [[_privacyAgreeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            _privacyAgreeBtn.selected = !_privacyAgreeBtn.selected;
+        }];
     }
     return _privacyAgreeBtn;
 }
