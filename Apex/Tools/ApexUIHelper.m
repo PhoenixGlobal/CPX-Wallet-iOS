@@ -39,7 +39,7 @@
 }
 
 + (UIColor *)subThemeColor{
-    return [UIColor colorWithHexString:@"ebb10f"];
+    return [UIColor colorWithHexString:@"4C8EFA"];
 }
 
 + (CGFloat)naviBarHeight{

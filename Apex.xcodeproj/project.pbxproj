@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9B2E51F7E3F83C04602FA8C4 /* libPods-Apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */; };
+		E3263EBF20B54A41001D3C19 /* ApexSwitchHeaderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EBE20B54A41001D3C19 /* ApexSwitchHeaderBar.m */; };
+		E3263EC220B55A63001D3C19 /* ApexTransactionRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EC120B55A63001D3C19 /* ApexTransactionRecordView.m */; };
+		E3263EC520B5639D001D3C19 /* ApexManageWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EC420B5639D001D3C19 /* ApexManageWalletView.m */; };
+		E3263EC920B567FC001D3C19 /* ApexWallerItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3263EC620B567FC001D3C19 /* ApexWallerItemCell.xib */; };
+		E3263ECA20B567FC001D3C19 /* ApexWallerItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EC820B567FC001D3C19 /* ApexWallerItemCell.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -61,6 +66,15 @@
 		2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.release.xcconfig"; sourceTree = "<group>"; };
 		8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.debug.xcconfig"; sourceTree = "<group>"; };
+		E3263EBD20B54A41001D3C19 /* ApexSwitchHeaderBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexSwitchHeaderBar.h; sourceTree = "<group>"; };
+		E3263EBE20B54A41001D3C19 /* ApexSwitchHeaderBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexSwitchHeaderBar.m; sourceTree = "<group>"; };
+		E3263EC020B55A63001D3C19 /* ApexTransactionRecordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransactionRecordView.h; sourceTree = "<group>"; };
+		E3263EC120B55A63001D3C19 /* ApexTransactionRecordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransactionRecordView.m; sourceTree = "<group>"; };
+		E3263EC320B5639D001D3C19 /* ApexManageWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexManageWalletView.h; sourceTree = "<group>"; };
+		E3263EC420B5639D001D3C19 /* ApexManageWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexManageWalletView.m; sourceTree = "<group>"; };
+		E3263EC620B567FC001D3C19 /* ApexWallerItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexWallerItemCell.xib; sourceTree = "<group>"; };
+		E3263EC720B567FC001D3C19 /* ApexWallerItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWallerItemCell.h; sourceTree = "<group>"; };
+		E3263EC820B567FC001D3C19 /* ApexWallerItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWallerItemCell.m; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -250,6 +264,15 @@
 				E33A8BF420B3F4030067505E /* ApexTXRecordCell.h */,
 				E33A8BF520B3F4030067505E /* ApexTXRecordCell.m */,
 				E33A8BF320B3F4030067505E /* ApexTXRecordCell.xib */,
+				E3263EBD20B54A41001D3C19 /* ApexSwitchHeaderBar.h */,
+				E3263EBE20B54A41001D3C19 /* ApexSwitchHeaderBar.m */,
+				E3263EC020B55A63001D3C19 /* ApexTransactionRecordView.h */,
+				E3263EC120B55A63001D3C19 /* ApexTransactionRecordView.m */,
+				E3263EC320B5639D001D3C19 /* ApexManageWalletView.h */,
+				E3263EC420B5639D001D3C19 /* ApexManageWalletView.m */,
+				E3263EC720B567FC001D3C19 /* ApexWallerItemCell.h */,
+				E3263EC820B567FC001D3C19 /* ApexWallerItemCell.m */,
+				E3263EC620B567FC001D3C19 /* ApexWallerItemCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -572,6 +595,7 @@
 				E33A8BCF20B29B840067505E /* ApexWalletCell.xib in Resources */,
 				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
 				E33A8BF620B3F4030067505E /* ApexTXRecordCell.xib in Resources */,
+				E3263EC920B567FC001D3C19 /* ApexWallerItemCell.xib in Resources */,
 				E33A8B5520AE724F0067505E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,16 +663,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3263ECA20B567FC001D3C19 /* ApexWallerItemCell.m in Sources */,
 				E33A8BCB20B292B90067505E /* ApexWalletManager.m in Sources */,
 				E33A8BDF20B2BB340067505E /* UIView+Common.m in Sources */,
 				E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */,
 				E33A8BD020B29B840067505E /* ApexWalletCell.m in Sources */,
 				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
 				E33A8BBE20AE7D9F0067505E /* ApexRPCClient.m in Sources */,
+				E3263EBF20B54A41001D3C19 /* ApexSwitchHeaderBar.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
+				E3263EC220B55A63001D3C19 /* ApexTransactionRecordView.m in Sources */,
 				E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */,
 				E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */,
 				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
@@ -669,6 +696,7 @@
 				E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */,
 				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
 				E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */,
+				E3263EC520B5639D001D3C19 /* ApexManageWalletView.m in Sources */,
 				E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */,
 				E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */,
 				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,

@@ -44,7 +44,7 @@
         self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
         self.accountModel.balances.count == 0 ? (self.balance.text = @"0") : (self.balance.text = self.accountModel.balances.firstObject.value);
         if (self.didFinishRequestBalanceSub) {
-            [self.didFinishRequestBalanceSub sendNext:@""];
+            [self.didFinishRequestBalanceSub sendNext:self.accountModel];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         self.balance.text = @"N/A";

@@ -7,12 +7,15 @@
 //
 
 #import "ApexMineController.h"
-#import "ApexTXRecordCell.h"
+#import "ApexTransactionRecordView.h"
+#import "ApexSwitchHeaderBar.h"
+#import "ApexManageWalletView.h"
 
-@interface ApexMineController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ApexMineController ()
 @property (nonatomic, strong) UIImageView *backIV;
-@property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *contentArr;
+@property (nonatomic, strong) ApexSwitchHeaderBar *swithBar;
+@property (nonatomic, strong) ApexTransactionRecordView *transactionView;
+@property (nonatomic, strong) ApexManageWalletView *manageView;
 @end
 
 @implementation ApexMineController
@@ -26,59 +29,64 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.contentArr = [TKFileManager loadDataWithFileName:TXRECORD_KEY];
-    [self.collectionView reloadData];
+    [self.transactionView reloadTransactionData];
 }
 
 #pragma mark - ------private------
 - (void)setUI{
     self.title = @"我的";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [ApexUIHelper grayColor240];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
-    
-    [self.collectionView registerNib:[UINib nibWithNibName:@"ApexTXRecordCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
-    
+
     [self.view addSubview:self.backIV];
-    [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.swithBar];
+    [self.view addSubview:self.transactionView];
+    [self.view addSubview:self.manageView];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
         make.height.mas_equalTo(scaleHeight667(192));
     }];
     
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.swithBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.backIV).offset(-10);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(-10);
+        make.height.mas_equalTo(40);
+    }];
+    
+    [self.transactionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.backIV.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    [self.manageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backIV.mas_bottom);
+        make.bottom.equalTo(self.view);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(-10);
     }];
 }
 
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.contentArr.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    ApexTXRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    NSInteger count = self.contentArr.count;
-    cell.model = self.contentArr[count - indexPath.row - 1];
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger count = self.contentArr.count;
-    ApexTXRecorderModel *model = self.contentArr[count - indexPath.row - 1];
-    UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
-    pasteBoard.string = model.txid;
-    [self showMessage:@"txid已复制到剪切板"];
-}
 
 #pragma mark - ------eventResponse------
+- (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
+    if ([eventName isEqualToString:RouteNameEvent_SwitchHeaderManageWallet]) {
+        self.manageView.hidden = NO;
+        self.transactionView.hidden = YES;
+        [self.manageView reloadWalletData];
+    }else if ([eventName isEqualToString:RouteNameEvent_SwitchHeaderTransactionRecord]){
+        self.manageView.hidden = YES;
+        self.transactionView.hidden = NO;
+        [self.transactionView reloadTransactionData];
+    }
+    
+}
+
 
 #pragma mark - ------getter & setter------
 - (UIImageView *)backIV{
@@ -89,18 +97,25 @@
     return _backIV;
 }
 
-- (UICollectionView *)collectionView{
-    if (!_collectionView) {
-        UICollectionViewFlowLayout *fl = [[UICollectionViewFlowLayout alloc] init];
-        fl.itemSize = CGSizeMake(scaleWidth375(350), scaleHeight667(165));
-        fl.minimumLineSpacing = 10;
-        fl.minimumInteritemSpacing = 10;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:fl];
-        _collectionView.backgroundColor = [ApexUIHelper grayColor240];
-        _collectionView.dataSource = self;
-        _collectionView.delegate = self;
-        _collectionView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
+- (ApexSwitchHeaderBar *)swithBar{
+    if (!_swithBar) {
+        _swithBar = [[ApexSwitchHeaderBar alloc] init];
     }
-    return _collectionView;
+    return _swithBar;
 }
+
+- (ApexTransactionRecordView *)transactionView{
+    if (!_transactionView) {
+        _transactionView = [[ApexTransactionRecordView alloc] init];
+    }
+    return _transactionView;
+}
+
+- (ApexManageWalletView *)manageView{
+    if (!_manageView) {
+        _manageView = [[ApexManageWalletView alloc] init];
+    }
+    return _manageView;
+}
+
 @end

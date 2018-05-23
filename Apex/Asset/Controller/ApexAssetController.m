@@ -121,7 +121,7 @@
     cell.walletNameStr = arr.lastObject;
     cell.addressStr = arr.firstObject;
     cell.didFinishRequestBalanceSub = [RACSubject subject];
-    [[cell.didFinishRequestBalanceSub takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id  _Nullable x) {
+    [[cell.didFinishRequestBalanceSub takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(ApexAccountStateModel *accountModel) {
         [self.collectionView.mj_header endRefreshing];
     }];
     return cell;
