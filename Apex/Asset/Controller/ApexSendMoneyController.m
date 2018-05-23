@@ -70,8 +70,13 @@
         return;
     }
     
+    NSString *txid = self.txidTF.text;
+    if ([txid hasPrefix:@"0x"]) {
+        txid = [txid substringFromIndex:2];
+    }
+    
     @weakify(self);
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"getrawtransaction" withParameters:@[self.txidTF.text,@1] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[ApexRPCClient shareRPCClient] invokeMethod:@"getrawtransaction" withParameters:@[txid,@1] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         @strongify(self);
         self.txidModel = [ApexTXIDModel yy_modelWithDictionary:responseObject];
         [self blockIndexSearch:self.txidModel.blockhash];

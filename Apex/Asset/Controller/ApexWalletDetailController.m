@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIButton *requestBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexMorePanelView *moreView;
+@property (nonatomic, strong) CYLEmptyView *emptyView;
 @end
 
 @implementation ApexWalletDetailController
@@ -51,6 +52,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"收款";
     
+    self.emptyView = [CYLEmptyView showEmptyViewOnView:self.view emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
+    self.emptyView.backgroundColor = [UIColor whiteColor];
+    
+    
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.balanceL];
     [self.view addSubview:self.unitL];
@@ -66,7 +71,7 @@
     
     [self.sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(35);
-        make.top.equalTo(self.backIV.mas_bottom).offset(10);
+        make.top.equalTo(self.backIV.mas_bottom).offset(20);
         make.width.mas_equalTo(scaleWidth375(150));
         make.height.mas_equalTo(scaleHeight667(40));
     }];
@@ -95,6 +100,13 @@
     
     [self.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.top.equalTo(self.view);
+    }];
+    
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.requestBtn.mas_bottom).offset(20);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(-10);
+        make.height.mas_equalTo(123);
     }];
     
     self.moreView.transform = CGAffineTransformMakeTranslation(-kScreenW, 0);

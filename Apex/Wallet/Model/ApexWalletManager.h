@@ -10,5 +10,6 @@
 #define walletsKey @"walletsKey"
 @interface ApexWalletManager : NSObject
 + (void)saveWallet:(NSString*)wallet;
-+ (id)getWalletsArr;
+
++ (id)getWalletsArr; /**< string : address/name */
 @end

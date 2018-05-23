@@ -8,10 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9B2E51F7E3F83C04602FA8C4 /* libPods-Apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */; };
-		E338964220B401CA00DD51FE /* ZJNEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964120B401CA00DD51FE /* ZJNEmptyView.m */; };
-		E338964620B401EA00DD51FE /* ZJNHUDTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964420B401EA00DD51FE /* ZJNHUDTipsView.m */; };
-		E338964720B401EA00DD51FE /* ZJNHUDTipsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E338964520B401EA00DD51FE /* ZJNHUDTipsView.xib */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
+		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
+		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
 		E33A8B4D20AE724D0067505E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B4C20AE724D0067505E /* AppDelegate.m */; };
 		E33A8B5520AE724F0067505E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E33A8B5420AE724F0067505E /* Assets.xcassets */; };
 		E33A8B5820AE724F0067505E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */; };
@@ -62,13 +61,12 @@
 		2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.release.xcconfig"; sourceTree = "<group>"; };
 		8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.debug.xcconfig"; sourceTree = "<group>"; };
-		E338964020B401CA00DD51FE /* ZJNEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJNEmptyView.h; sourceTree = "<group>"; };
-		E338964120B401CA00DD51FE /* ZJNEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJNEmptyView.m; sourceTree = "<group>"; };
-		E338964320B401E900DD51FE /* ZJNHUDTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJNHUDTipsView.h; sourceTree = "<group>"; };
-		E338964420B401EA00DD51FE /* ZJNHUDTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJNHUDTipsView.m; sourceTree = "<group>"; };
-		E338964520B401EA00DD51FE /* ZJNHUDTipsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJNHUDTipsView.xib; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
+		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
+		E338964D20B505EB00DD51FE /* CYLEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYLEmptyView.m; sourceTree = "<group>"; };
+		E338964F20B511B400DD51FE /* ApexSearchWalletToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexSearchWalletToolBar.h; sourceTree = "<group>"; };
+		E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexSearchWalletToolBar.m; sourceTree = "<group>"; };
 		E33A8B4820AE724D0067505E /* Apex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33A8B4B20AE724D0067505E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E33A8B4C20AE724D0067505E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -189,11 +187,8 @@
 		E338964820B401F200DD51FE /* EmptyView */ = {
 			isa = PBXGroup;
 			children = (
-				E338964020B401CA00DD51FE /* ZJNEmptyView.h */,
-				E338964120B401CA00DD51FE /* ZJNEmptyView.m */,
-				E338964320B401E900DD51FE /* ZJNHUDTipsView.h */,
-				E338964420B401EA00DD51FE /* ZJNHUDTipsView.m */,
-				E338964520B401EA00DD51FE /* ZJNHUDTipsView.xib */,
+				E338964C20B505EB00DD51FE /* CYLEmptyView.h */,
+				E338964D20B505EB00DD51FE /* CYLEmptyView.m */,
 			);
 			path = EmptyView;
 			sourceTree = "<group>";
@@ -328,6 +323,8 @@
 				E33A8BEB20B3AD680067505E /* ApexMorePanelView.m */,
 				E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */,
 				E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */,
+				E338964F20B511B400DD51FE /* ApexSearchWalletToolBar.h */,
+				E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -570,7 +567,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E338964720B401EA00DD51FE /* ZJNHUDTipsView.xib in Resources */,
 				E33A8B5820AE724F0067505E /* LaunchScreen.storyboard in Resources */,
 				E33A8BE820B2C3B50067505E /* ApexSendMoneyController.xib in Resources */,
 				E33A8BCF20B29B840067505E /* ApexWalletCell.xib in Resources */,
@@ -650,12 +646,12 @@
 				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
 				E33A8BBE20AE7D9F0067505E /* ApexRPCClient.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
-				E338964620B401EA00DD51FE /* ZJNHUDTipsView.m in Sources */,
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
 				E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */,
 				E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */,
+				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
 				E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */,
 				E33A8B5B20AE724F0067505E /* main.m in Sources */,
 				E33A8BEC20B3AD680067505E /* ApexMorePanelView.m in Sources */,
@@ -671,9 +667,9 @@
 				E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */,
 				E33A8B7920AE75500067505E /* LXDScanCodeController.m in Sources */,
 				E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */,
-				E338964220B401CA00DD51FE /* ZJNEmptyView.m in Sources */,
 				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
 				E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */,
+				E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */,
 				E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */,
 				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,
 				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,

@@ -11,6 +11,7 @@
 #import "ApexWalletCell.h"
 #import "ApexWalletDetailController.h"
 #import "ApexCreatWalletController.h"
+#import "ApexSearchWalletToolBar.h"
 
 #define RouteNameEvent_SendMoney @"RouteNameEvent_SendMoney"
 #define RouteNameEvent_RequestMoney @"RouteNameEvent_RequestMoney"
@@ -20,9 +21,10 @@
 @property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) UIImageView *backIV;
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *contentArr;
+@property (nonatomic, strong) NSMutableArray *contentArr;
 @property (nonatomic, strong) UILabel *totalBalanceL;
 @property (nonatomic, strong) UILabel *unitL;
+@property (nonatomic, strong) ApexSearchWalletToolBar *searchTooBar;
 @end
 
 @implementation ApexAssetController
@@ -33,6 +35,7 @@
 
     [self setUI];
     [self setNav];
+    [self handleEvent];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -53,6 +56,8 @@
     [self.view addSubview:self.totalBalanceL];
     [self.view addSubview:self.unitL];
     
+    [self.view addSubview:self.searchTooBar];
+    
     self.totalBalanceL.hidden = YES;
     self.unitL.hidden = YES;
     
@@ -60,7 +65,14 @@
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(NavBarHeight);
+        make.height.mas_equalTo(NavBarHeight + 60);
+    }];
+    
+    [self.searchTooBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.backIV).offset(-10);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(-10);
+        make.height.mas_equalTo(40);
     }];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -86,6 +98,7 @@
 }
 
 - (void)getWalletLists{
+    [self.searchTooBar clearEntrance];
     _contentArr = [ApexWalletManager getWalletsArr];
     [self.collectionView reloadData];
 }
@@ -130,6 +143,29 @@
 #pragma mark - ------eventResponse------
 - (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
 
+}
+
+- (void)handleEvent{
+    self.searchTooBar.textDidChangeSub = [RACSubject subject];
+    [[self.searchTooBar.textDidChangeSub takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSString *key) {
+        
+        if (key.length == 0) {
+            self.contentArr = [ApexWalletManager getWalletsArr];
+            [self.collectionView reloadData];
+            return;
+        }
+        
+        [self.contentArr removeAllObjects];
+        
+        for (NSString *name in [ApexWalletManager getWalletsArr]) {
+            NSArray *arr = [name componentsSeparatedByString:@"/"];
+            NSString *addressName = arr.lastObject;
+            if ([addressName hasPrefix:key]) {
+                [self.contentArr addObject:name];
+            }
+        }
+        [self.collectionView reloadData];
+    }];
 }
 
 #pragma mark - ------getter & setter------
@@ -187,6 +223,13 @@
         _unitL.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
     }
     return _unitL;
+}
+
+- (ApexSearchWalletToolBar *)searchTooBar{
+    if (!_searchTooBar) {
+        _searchTooBar = [[ApexSearchWalletToolBar alloc] init];
+    }
+    return _searchTooBar;
 }
 
 @end

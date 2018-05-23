@@ -47,7 +47,7 @@
     }];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.backIV.mas_bottom).offset(5);
+        make.top.equalTo(self.backIV.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
 }
@@ -65,7 +65,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ApexTXRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.model = self.contentArr[indexPath.row];
+    NSInteger count = self.contentArr.count;
+    cell.model = self.contentArr[count - indexPath.row - 1];
     return cell;
 }
 
