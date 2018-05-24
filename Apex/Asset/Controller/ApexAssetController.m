@@ -92,10 +92,11 @@
         make.left.equalTo(self.totalBalanceL.mas_right).offset(20);
     }];
     
-    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];
     }];
+    self.collectionView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 - (void)getWalletLists{

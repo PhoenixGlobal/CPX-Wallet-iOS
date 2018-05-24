@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define RouteNameEvent_ManageWalletTapDetail @"RouteNameEvent_ManageWalletTapDetail"
 @interface ApexManageWalletView : UIView
 - (void)reloadWalletData;
 @end

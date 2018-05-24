@@ -10,6 +10,7 @@
 #import "ApexTransactionRecordView.h"
 #import "ApexSwitchHeaderBar.h"
 #import "ApexManageWalletView.h"
+#import "ApexWalletManageDetailController.h"
 
 @interface ApexMineController ()
 @property (nonatomic, strong) UIImageView *backIV;
@@ -84,6 +85,14 @@
         self.manageView.hidden = YES;
         self.transactionView.hidden = NO;
         [self.transactionView reloadTransactionData];
+    }else if ([eventName isEqualToString:RouteNameEvent_ManageWalletTapDetail]){
+        NSString *str = userinfo[@"wallet"];
+        NSArray *arr = [str componentsSeparatedByString:@"/"];
+        ApexWalletManageDetailController *detailVC = [[ApexWalletManageDetailController alloc] init];
+        detailVC.walletNameStr = arr.lastObject;
+        detailVC.walletAddStr = arr.firstObject;
+        detailVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailVC animated:YES];
     }
     
 }

@@ -21,4 +21,7 @@
 #define commonScheme @"Apex://"
 #define KEYCHAIN_KEY(address) [NSString stringWithFormat:@"%@", address]
 #define TXRECORD_KEY @"TXRECORD_KEY"
+
+#define mnemonicEnglish @"en_US"
+#define mnemonicChianese @"zh_CN"
 #endif /* Macro_h */

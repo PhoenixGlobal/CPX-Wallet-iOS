@@ -76,7 +76,7 @@
     }
     
     @weakify(self);
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"getrawtransaction" withParameters:@[txid,@1] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ApexWalletManager getRawTransactionWithTxid:txid Success:^(AFHTTPRequestOperation *operation, id responseObject) {
         @strongify(self);
         self.txidModel = [ApexTXIDModel yy_modelWithDictionary:responseObject];
         [self blockIndexSearch:self.txidModel.blockhash];
@@ -126,7 +126,7 @@
 }
 
 - (void)broadCastTransaction:(NeomobileTx*)tx{
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"sendrawtransaction" withParameters:@[tx.data] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ApexWalletManager broadCastTransactionWithData:tx.data Success:^(AFHTTPRequestOperation *operation, id responseObject) {
         BOOL isSuccess = ((NSNumber*)responseObject).boolValue;
         if (isSuccess) {
             [self showMessage:@"广播交易成功"];

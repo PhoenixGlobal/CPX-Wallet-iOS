@@ -97,7 +97,7 @@
 - (UIButton *)cancleBtn{
     if (!_cancleBtn) {
         _cancleBtn = [[UIButton alloc] init];
-        [_cancleBtn setTitle:@"cancle" forState:UIControlStateNormal];
+        [_cancleBtn setTitle:@"Cancel" forState:UIControlStateNormal];
         [_cancleBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
         _cancleBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         @weakify(self);

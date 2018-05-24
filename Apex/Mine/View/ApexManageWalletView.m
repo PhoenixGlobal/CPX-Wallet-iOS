@@ -35,10 +35,11 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexWallerItemCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
-    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     }];
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 - (void)reloadWalletData{
@@ -67,6 +68,11 @@
 //    }];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self routeEventWithName:RouteNameEvent_ManageWalletTapDetail userInfo:@{@"wallet":_contentArr[indexPath.section]}];
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.1;

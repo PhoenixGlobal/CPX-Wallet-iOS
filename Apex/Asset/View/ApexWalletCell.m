@@ -32,17 +32,17 @@
 - (void)setAddressStr:(NSString *)addressStr{
     _addressStr = addressStr;
     self.address.text = addressStr;
-    self.balance.text = @"N/A";
+//    self.balance.text = @"0";
     [self requestBalance];
 }
 
 - (void)requestBalance{
     @weakify(self);
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"getaccountstate" withParameters:@[self.addressStr] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ApexWalletManager getAccountStateWithAddress:self.addressStr Success:^(AFHTTPRequestOperation *operation, id responseObject) {
         @strongify(self);
         self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
         //延时加载 避免一闪而过影响体验
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.accountModel.balances.count == 0 ? (self.balance.text = @"0") : (self.balance.text = self.accountModel.balances.firstObject.value);
         });
         if (self.didFinishRequestBalanceSub) {

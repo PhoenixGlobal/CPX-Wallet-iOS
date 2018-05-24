@@ -13,6 +13,25 @@
 		E3263EC520B5639D001D3C19 /* ApexManageWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EC420B5639D001D3C19 /* ApexManageWalletView.m */; };
 		E3263EC920B567FC001D3C19 /* ApexWallerItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3263EC620B567FC001D3C19 /* ApexWallerItemCell.xib */; };
 		E3263ECA20B567FC001D3C19 /* ApexWallerItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EC820B567FC001D3C19 /* ApexWallerItemCell.m */; };
+		E3263ED120B666CA001D3C19 /* ApexWalletManageDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3263ECE20B666CA001D3C19 /* ApexWalletManageDetailController.xib */; };
+		E3263ED220B666CA001D3C19 /* ApexWalletManageDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263ED020B666CA001D3C19 /* ApexWalletManageDetailController.m */; };
+		E3263ED520B6870C001D3C19 /* ApexPrepareBackUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263ED420B6870C001D3C19 /* ApexPrepareBackUpController.m */; };
+		E3263ED920B68CFB001D3C19 /* ApexBackUpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3263ED620B68CFB001D3C19 /* ApexBackUpController.xib */; };
+		E3263EDA20B68CFB001D3C19 /* ApexBackUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263ED820B68CFB001D3C19 /* ApexBackUpController.m */; };
+		E3263EE720B69BB6001D3C19 /* alert-round.png in Resources */ = {isa = PBXBuildFile; fileRef = E3263EDD20B69BB6001D3C19 /* alert-round.png */; };
+		E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = E3263EDE20B69BB6001D3C19 /* .gitkeep */; };
+		E3263EE920B69BB6001D3C19 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = E3263EDF20B69BB6001D3C19 /* heart.png */; };
+		E3263EEA20B69BB6001D3C19 /* close-round.png in Resources */ = {isa = PBXBuildFile; fileRef = E3263EE020B69BB6001D3C19 /* close-round.png */; };
+		E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */ = {isa = PBXBuildFile; fileRef = E3263EE120B69BB6001D3C19 /* checkmark-round.png */; };
+		E3263EEC20B69BB6001D3C19 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E3263EE220B69BB6001D3C19 /* star.png */; };
+		E3263EED20B69BB6001D3C19 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = E3263EE420B69BB6001D3C19 /* .gitkeep */; };
+		E3263EEE20B69BB6001D3C19 /* FCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EE620B69BB6001D3C19 /* FCAlertView.m */; };
+		E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EF020B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m */; };
+		E3263EF520B6ABF8001D3C19 /* ApexMnemonicConfirmController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3263EF220B6ABF8001D3C19 /* ApexMnemonicConfirmController.xib */; };
+		E3263EF620B6ABF8001D3C19 /* ApexMnemonicConfirmController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EF420B6ABF8001D3C19 /* ApexMnemonicConfirmController.m */; };
+		E3263EF920B6AF07001D3C19 /* ApexMnemonicFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EF820B6AF07001D3C19 /* ApexMnemonicFlowLayout.m */; };
+		E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EFB20B6AF93001D3C19 /* ApexMnemonicCell.m */; };
+		E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -75,6 +94,34 @@
 		E3263EC620B567FC001D3C19 /* ApexWallerItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexWallerItemCell.xib; sourceTree = "<group>"; };
 		E3263EC720B567FC001D3C19 /* ApexWallerItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWallerItemCell.h; sourceTree = "<group>"; };
 		E3263EC820B567FC001D3C19 /* ApexWallerItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWallerItemCell.m; sourceTree = "<group>"; };
+		E3263ECE20B666CA001D3C19 /* ApexWalletManageDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexWalletManageDetailController.xib; sourceTree = "<group>"; };
+		E3263ECF20B666CA001D3C19 /* ApexWalletManageDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletManageDetailController.h; sourceTree = "<group>"; };
+		E3263ED020B666CA001D3C19 /* ApexWalletManageDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletManageDetailController.m; sourceTree = "<group>"; };
+		E3263ED320B6870C001D3C19 /* ApexPrepareBackUpController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexPrepareBackUpController.h; sourceTree = "<group>"; };
+		E3263ED420B6870C001D3C19 /* ApexPrepareBackUpController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexPrepareBackUpController.m; sourceTree = "<group>"; };
+		E3263ED620B68CFB001D3C19 /* ApexBackUpController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexBackUpController.xib; sourceTree = "<group>"; };
+		E3263ED720B68CFB001D3C19 /* ApexBackUpController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBackUpController.h; sourceTree = "<group>"; };
+		E3263ED820B68CFB001D3C19 /* ApexBackUpController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBackUpController.m; sourceTree = "<group>"; };
+		E3263EDD20B69BB6001D3C19 /* alert-round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-round.png"; sourceTree = "<group>"; };
+		E3263EDE20B69BB6001D3C19 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		E3263EDF20B69BB6001D3C19 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
+		E3263EE020B69BB6001D3C19 /* close-round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-round.png"; sourceTree = "<group>"; };
+		E3263EE120B69BB6001D3C19 /* checkmark-round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-round.png"; sourceTree = "<group>"; };
+		E3263EE220B69BB6001D3C19 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		E3263EE420B69BB6001D3C19 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		E3263EE520B69BB6001D3C19 /* FCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAlertView.h; sourceTree = "<group>"; };
+		E3263EE620B69BB6001D3C19 /* FCAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAlertView.m; sourceTree = "<group>"; };
+		E3263EEF20B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexPassWordConfirmAlertView.h; sourceTree = "<group>"; };
+		E3263EF020B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexPassWordConfirmAlertView.m; sourceTree = "<group>"; };
+		E3263EF220B6ABF8001D3C19 /* ApexMnemonicConfirmController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexMnemonicConfirmController.xib; sourceTree = "<group>"; };
+		E3263EF320B6ABF8001D3C19 /* ApexMnemonicConfirmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMnemonicConfirmController.h; sourceTree = "<group>"; };
+		E3263EF420B6ABF8001D3C19 /* ApexMnemonicConfirmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMnemonicConfirmController.m; sourceTree = "<group>"; };
+		E3263EF720B6AF07001D3C19 /* ApexMnemonicFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMnemonicFlowLayout.h; sourceTree = "<group>"; };
+		E3263EF820B6AF07001D3C19 /* ApexMnemonicFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMnemonicFlowLayout.m; sourceTree = "<group>"; };
+		E3263EFA20B6AF93001D3C19 /* ApexMnemonicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMnemonicCell.h; sourceTree = "<group>"; };
+		E3263EFB20B6AF93001D3C19 /* ApexMnemonicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMnemonicCell.m; sourceTree = "<group>"; };
+		E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Spacing.m"; sourceTree = "<group>"; };
+		E3263EFE20B6BDB1001D3C19 /* UILabel+Spacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Spacing.h"; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -198,6 +245,38 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E3263EDB20B69BB6001D3C19 /* FCAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				E3263EDC20B69BB6001D3C19 /* Assets */,
+				E3263EE320B69BB6001D3C19 /* Classes */,
+			);
+			path = FCAlertView;
+			sourceTree = "<group>";
+		};
+		E3263EDC20B69BB6001D3C19 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				E3263EDD20B69BB6001D3C19 /* alert-round.png */,
+				E3263EDE20B69BB6001D3C19 /* .gitkeep */,
+				E3263EDF20B69BB6001D3C19 /* heart.png */,
+				E3263EE020B69BB6001D3C19 /* close-round.png */,
+				E3263EE120B69BB6001D3C19 /* checkmark-round.png */,
+				E3263EE220B69BB6001D3C19 /* star.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		E3263EE320B69BB6001D3C19 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E3263EE420B69BB6001D3C19 /* .gitkeep */,
+				E3263EE520B69BB6001D3C19 /* FCAlertView.h */,
+				E3263EE620B69BB6001D3C19 /* FCAlertView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		E338964820B401F200DD51FE /* EmptyView */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +352,8 @@
 				E3263EC720B567FC001D3C19 /* ApexWallerItemCell.h */,
 				E3263EC820B567FC001D3C19 /* ApexWallerItemCell.m */,
 				E3263EC620B567FC001D3C19 /* ApexWallerItemCell.xib */,
+				E3263EEF20B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.h */,
+				E3263EF020B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -282,6 +363,9 @@
 			children = (
 				E33A8BAB20AE77C70067505E /* ApexMineController.h */,
 				E33A8BAC20AE77C70067505E /* ApexMineController.m */,
+				E3263ECF20B666CA001D3C19 /* ApexWalletManageDetailController.h */,
+				E3263ED020B666CA001D3C19 /* ApexWalletManageDetailController.m */,
+				E3263ECE20B666CA001D3C19 /* ApexWalletManageDetailController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -385,6 +469,7 @@
 		E33A8B6E20AE75500067505E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				E3263EDB20B69BB6001D3C19 /* FCAlertView */,
 				E33A8BC220B28F800067505E /* keyChain */,
 				E33A8BBB20AE7D830067505E /* NetWork */,
 				E33A8B6F20AE75500067505E /* ScanTool */,
@@ -452,6 +537,8 @@
 		E33A8B8A20AE756E0067505E /* Catagotries */ = {
 			isa = PBXGroup;
 			children = (
+				E3263EFE20B6BDB1001D3C19 /* UILabel+Spacing.h */,
+				E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */,
 				E33A8BDD20B2BB340067505E /* UIView+Common.h */,
 				E33A8BDE20B2BB340067505E /* UIView+Common.m */,
 				E33A8B8B20AE756E0067505E /* UIColor+HYF.h */,
@@ -485,6 +572,10 @@
 		E33A8BAF20AE795F0067505E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3263EF720B6AF07001D3C19 /* ApexMnemonicFlowLayout.h */,
+				E3263EF820B6AF07001D3C19 /* ApexMnemonicFlowLayout.m */,
+				E3263EFA20B6AF93001D3C19 /* ApexMnemonicCell.h */,
+				E3263EFB20B6AF93001D3C19 /* ApexMnemonicCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -498,6 +589,14 @@
 				E33A8BB520AE795F0067505E /* ApexCreatWalletController.m */,
 				E33A8BB620AE795F0067505E /* ApexImportWalletController.h */,
 				E33A8BB220AE795F0067505E /* ApexImportWalletController.m */,
+				E3263ED320B6870C001D3C19 /* ApexPrepareBackUpController.h */,
+				E3263ED420B6870C001D3C19 /* ApexPrepareBackUpController.m */,
+				E3263ED720B68CFB001D3C19 /* ApexBackUpController.h */,
+				E3263ED820B68CFB001D3C19 /* ApexBackUpController.m */,
+				E3263ED620B68CFB001D3C19 /* ApexBackUpController.xib */,
+				E3263EF320B6ABF8001D3C19 /* ApexMnemonicConfirmController.h */,
+				E3263EF420B6ABF8001D3C19 /* ApexMnemonicConfirmController.m */,
+				E3263EF220B6ABF8001D3C19 /* ApexMnemonicConfirmController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -592,11 +691,21 @@
 			files = (
 				E33A8B5820AE724F0067505E /* LaunchScreen.storyboard in Resources */,
 				E33A8BE820B2C3B50067505E /* ApexSendMoneyController.xib in Resources */,
+				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
+				E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */,
 				E33A8BCF20B29B840067505E /* ApexWalletCell.xib in Resources */,
+				E3263EE920B69BB6001D3C19 /* heart.png in Resources */,
 				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
+				E3263ED920B68CFB001D3C19 /* ApexBackUpController.xib in Resources */,
+				E3263ED120B666CA001D3C19 /* ApexWalletManageDetailController.xib in Resources */,
 				E33A8BF620B3F4030067505E /* ApexTXRecordCell.xib in Resources */,
+				E3263EF520B6ABF8001D3C19 /* ApexMnemonicConfirmController.xib in Resources */,
 				E3263EC920B567FC001D3C19 /* ApexWallerItemCell.xib in Resources */,
+				E3263EEC20B69BB6001D3C19 /* star.png in Resources */,
+				E3263EEA20B69BB6001D3C19 /* close-round.png in Resources */,
 				E33A8B5520AE724F0067505E /* Assets.xcassets in Resources */,
+				E3263EE720B69BB6001D3C19 /* alert-round.png in Resources */,
+				E3263EED20B69BB6001D3C19 /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,28 +783,36 @@
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
+				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
 				E3263EC220B55A63001D3C19 /* ApexTransactionRecordView.m in Sources */,
 				E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */,
 				E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */,
+				E3263EDA20B68CFB001D3C19 /* ApexBackUpController.m in Sources */,
 				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
 				E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */,
 				E33A8B5B20AE724F0067505E /* main.m in Sources */,
 				E33A8BEC20B3AD680067505E /* ApexMorePanelView.m in Sources */,
 				E33A8B9C20AE756E0067505E /* UIViewController+Toast.m in Sources */,
 				E33A8B7820AE75500067505E /* LXDScanView.m in Sources */,
+				E3263EF920B6AF07001D3C19 /* ApexMnemonicFlowLayout.m in Sources */,
 				E33A8BF220B3F0350067505E /* ApexTXRecorderModel.m in Sources */,
 				E33A8BF720B3F4030067505E /* ApexTXRecordCell.m in Sources */,
+				E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */,
 				E33A8B9A20AE756E0067505E /* UINavigationController+ApexNavigationBar.m in Sources */,
 				E33A8BEF20B3C16C0067505E /* ApexTXIDModel.m in Sources */,
+				E3263EF620B6ABF8001D3C19 /* ApexMnemonicConfirmController.m in Sources */,
 				E33A8BDC20B2B5950067505E /* ApexWalletDetailController.m in Sources */,
 				E33A8BAD20AE77C70067505E /* ApexMineController.m in Sources */,
 				E33A8BAA20AE77B10067505E /* ApexAssetController.m in Sources */,
+				E3263ED220B666CA001D3C19 /* ApexWalletManageDetailController.m in Sources */,
+				E3263ED520B6870C001D3C19 /* ApexPrepareBackUpController.m in Sources */,
 				E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */,
 				E33A8B7920AE75500067505E /* LXDScanCodeController.m in Sources */,
 				E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */,
 				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
 				E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */,
+				E3263EEE20B69BB6001D3C19 /* FCAlertView.m in Sources */,
 				E3263EC520B5639D001D3C19 /* ApexManageWalletView.m in Sources */,
 				E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */,
 				E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */,
@@ -704,6 +821,7 @@
 				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
 				E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */,
 				E33A8B4D20AE724D0067505E /* AppDelegate.m in Sources */,
+				E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */,
 				E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */,
 				E33A8B8920AE75650067505E /* CYLTabBarController.m in Sources */,
 			);

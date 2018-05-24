@@ -33,5 +33,6 @@
 #import "PDKeyChain.h"
 #import "ApexRPCClient.h"
 #import "CYLEmptyView.h"
+#import "ApexWalletManager.h"
 #endif /* PrefixHeader_pch */
 
