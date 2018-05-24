@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 @property (nonatomic, strong) NSArray *contentArr;
+@property (nonatomic, strong) NSMutableArray *choosenArr;
 @property (weak, nonatomic) IBOutlet ApexMnemonicFlowLayout *flowLayout;
 
 @end
@@ -28,9 +29,19 @@
     [self prepareData];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.navigationController lt_setBackgroundColor:[UIColor colorWithRed255:70 green255:105 blue255:214 alpha:1]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+}
 
 #pragma mark - ------private------
 - (void)initUI{
+    self.title = @"备份钱包";
+    _choosenArr = [NSMutableArray array];
+    
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
@@ -49,6 +60,8 @@
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
     _textView.typingAttributes = attributes;
+    
+    self.confirmBtn.layer.cornerRadius = 6;
     
 }
 
@@ -85,12 +98,25 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     ApexMnemonicCell *cell = (ApexMnemonicCell*)[collectionView cellForItemAtIndexPath:indexPath];
     cell.choose = !cell.choose;
+    
+    if (cell.choose) {
+        [_choosenArr addObject:cell.mnemonicStr];
+    }else{
+        [_choosenArr removeObject:cell.mnemonicStr];
+    }
+    
+    self.textView.text = [_choosenArr componentsJoinedByString:@" "];
 }
 
-
-
 #pragma mark - ------eventResponse------
-
+- (IBAction)confirmAction:(id)sender {
+    if ([self.textView.text isEqualToString:self.mnemonic]) {
+        [self showMessage:@"备份成功"];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else{
+        [self showMessage:@"备份失败"];
+    }
+}
 #pragma mark - ------getter & setter------
 
 @end

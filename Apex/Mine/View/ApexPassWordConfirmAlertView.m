@@ -16,9 +16,8 @@
     customField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     customField.font = [UIFont systemFontOfSize:13];
     customField.borderStyle = UITextBorderStyleRoundedRect;
-    [customField becomeFirstResponder];
     __block NSString *password = nil;
-    [alert addTextFieldWithCustomTextField:customField andPlaceholder:@"Placeholder" andTextReturnBlock:^(NSString *text) {
+    [alert addTextFieldWithCustomTextField:customField andPlaceholder:@"Password" andTextReturnBlock:^(NSString *text) {
         password = text;
     }];
     [alert showAlertWithTitle:@"请输入密码" withSubtitle:subtitle withCustomImage:nil withDoneButtonTitle:@"确认" andButtons:@[@"取消"]];
