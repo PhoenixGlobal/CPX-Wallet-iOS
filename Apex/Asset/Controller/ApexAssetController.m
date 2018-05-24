@@ -94,6 +94,7 @@
     
     self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
         [self.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
     }];
 }
 
@@ -120,10 +121,10 @@
     NSArray *arr = [str componentsSeparatedByString:@"/"];
     cell.walletNameStr = arr.lastObject;
     cell.addressStr = arr.firstObject;
-    cell.didFinishRequestBalanceSub = [RACSubject subject];
-    [[cell.didFinishRequestBalanceSub takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(ApexAccountStateModel *accountModel) {
-        [self.collectionView.mj_header endRefreshing];
-    }];
+//    cell.didFinishRequestBalanceSub = [RACSubject subject];
+//    [[cell.didFinishRequestBalanceSub takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(ApexAccountStateModel *accountModel) {
+//        [self.collectionView.mj_header endRefreshing];
+//    }];
     return cell;
 }
 

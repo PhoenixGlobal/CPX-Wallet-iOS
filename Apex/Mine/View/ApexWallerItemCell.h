@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ApexAccountStateModel.h"
 
 @interface ApexWallerItemCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *walletNameL;
-@property (weak, nonatomic) IBOutlet UILabel *walletAddL;
-@property (weak, nonatomic) IBOutlet UILabel *valueL;
-
+@property (weak, nonatomic) NSString *walletNameStr;
+@property (weak, nonatomic) NSString *addressStr;
+@property (nonatomic, strong) RACSubject *didFinishRequestBalanceSub; /**< 请求完毕时 传出sccountmodel */
+- (ApexAccountStateModel*)getAccountInfo;
 @end

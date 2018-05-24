@@ -38,14 +38,14 @@
                             <constraint firstAttribute="width" constant="1" id="1lK-CP-ptE"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUR-Dl-MMZ">
-                        <rect key="frame" x="255" y="35" width="16" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUR-Dl-MMZ">
+                        <rect key="frame" x="255" y="35" width="41.5" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <color key="textColor" red="0.29803921568627451" green="0.55686274509803924" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iT-Z9-Ags">
-                        <rect key="frame" x="276.5" y="43" width="31.5" height="20.5"/>
+                        <rect key="frame" x="302" y="43" width="31.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.29803921570000003" green="0.5568627451" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>

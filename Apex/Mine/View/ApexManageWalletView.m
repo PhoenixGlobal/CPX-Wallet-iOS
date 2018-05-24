@@ -34,6 +34,11 @@
     }];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexWallerItemCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    
+    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+    }];
 }
 
 - (void)reloadWalletData{
@@ -52,7 +57,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexWallerItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
+    NSString *str = _contentArr[indexPath.section];
+    NSArray *arr = [str componentsSeparatedByString:@"/"];
+    cell.walletNameStr = arr.lastObject;
+    cell.addressStr = arr.firstObject;
+//    cell.didFinishRequestBalanceSub = [RACSubject subject];
+//    [[cell.didFinishRequestBalanceSub takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(ApexAccountStateModel *accountModel) {
+//
+//    }];
     return cell;
 }
 

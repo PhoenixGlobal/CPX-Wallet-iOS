@@ -30,6 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.transactionView reloadTransactionData];
+    [self.manageView reloadWalletData];
 }
 
 #pragma mark - ------private------
