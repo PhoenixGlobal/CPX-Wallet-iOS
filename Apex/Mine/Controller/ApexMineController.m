@@ -86,11 +86,9 @@
         self.transactionView.hidden = NO;
         [self.transactionView reloadTransactionData];
     }else if ([eventName isEqualToString:RouteNameEvent_ManageWalletTapDetail]){
-        NSString *str = userinfo[@"wallet"];
-        NSArray *arr = [str componentsSeparatedByString:@"/"];
+        ApexWalletModel *model = userinfo[@"wallet"];
         ApexWalletManageDetailController *detailVC = [[ApexWalletManageDetailController alloc] init];
-        detailVC.walletNameStr = arr.lastObject;
-        detailVC.walletAddStr = arr.firstObject;
+        detailVC.model = model;
         detailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detailVC animated:YES];
     }

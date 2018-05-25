@@ -32,6 +32,7 @@
 		E3263EF920B6AF07001D3C19 /* ApexMnemonicFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EF820B6AF07001D3C19 /* ApexMnemonicFlowLayout.m */; };
 		E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EFB20B6AF93001D3C19 /* ApexMnemonicCell.m */; };
 		E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */; };
+		E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -122,6 +123,8 @@
 		E3263EFB20B6AF93001D3C19 /* ApexMnemonicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMnemonicCell.m; sourceTree = "<group>"; };
 		E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Spacing.m"; sourceTree = "<group>"; };
 		E3263EFE20B6BDB1001D3C19 /* UILabel+Spacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Spacing.h"; sourceTree = "<group>"; };
+		E3263F0020B7BC84001D3C19 /* ApexWalletModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletModel.h; sourceTree = "<group>"; };
+		E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletModel.m; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -606,6 +609,8 @@
 			children = (
 				E33A8BC920B292B90067505E /* ApexWalletManager.h */,
 				E33A8BCA20B292B90067505E /* ApexWalletManager.m */,
+				E3263F0020B7BC84001D3C19 /* ApexWalletModel.h */,
+				E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -805,6 +810,7 @@
 				E33A8BDC20B2B5950067505E /* ApexWalletDetailController.m in Sources */,
 				E33A8BAD20AE77C70067505E /* ApexMineController.m in Sources */,
 				E33A8BAA20AE77B10067505E /* ApexAssetController.m in Sources */,
+				E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */,
 				E3263ED220B666CA001D3C19 /* ApexWalletManageDetailController.m in Sources */,
 				E3263ED520B6870C001D3C19 /* ApexPrepareBackUpController.m in Sources */,
 				E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */,

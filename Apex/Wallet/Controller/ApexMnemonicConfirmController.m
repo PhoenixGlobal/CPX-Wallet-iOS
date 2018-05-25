@@ -112,6 +112,10 @@
 - (IBAction)confirmAction:(id)sender {
     if ([self.textView.text isEqualToString:self.mnemonic]) {
         [self showMessage:@"备份成功"];
+        [ApexWalletManager setBackupFinished:self.address];
+        if (self.BackupCompleteBlock) {
+            self.BackupCompleteBlock();
+        }
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
         [self showMessage:@"备份失败"];

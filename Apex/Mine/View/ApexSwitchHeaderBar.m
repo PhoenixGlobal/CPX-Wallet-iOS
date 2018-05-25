@@ -52,14 +52,14 @@
     [self addSubview:_rightBtn];
     
     [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self).offset(5);
-        make.bottom.equalTo(self).offset(-5);
+        make.left.top.equalTo(self).offset(2);
+        make.bottom.equalTo(self).offset(-2);
         make.width.mas_equalTo(self.width/2.0 - 10);
     }];
     
     [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(5);
-        make.right.bottom.equalTo(self).offset(-5);
+        make.top.equalTo(self).offset(2);
+        make.right.bottom.equalTo(self).offset(-2);
         make.width.equalTo(self.leftBtn);
     }];
     

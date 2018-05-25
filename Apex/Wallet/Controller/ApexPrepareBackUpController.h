@@ -10,4 +10,5 @@
 
 @interface ApexPrepareBackUpController : UIViewController
 @property (nonatomic, strong) NSString *address;
+@property (nonatomic, copy) dispatch_block_t BackupCompleteBlock;
 @end

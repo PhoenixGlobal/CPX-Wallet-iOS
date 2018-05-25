@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexWalletManageDetailController : UIViewController
-@property (nonatomic, strong) NSString *walletNameStr;
-@property (nonatomic, strong) NSString *walletAddStr;
+@property (nonatomic, strong) ApexWalletModel *model;
 @end

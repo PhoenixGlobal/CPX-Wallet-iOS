@@ -10,6 +10,7 @@
 #import <JVFloatLabeledTextField.h>
 #import "ApexImportWalletController.h"
 #import "ApexWalletManager.h"
+#import "ApexPrepareBackUpController.h"
 
 #define RouteEventName_CallCreatWalletApi @"RouteEventName_CallCreatWalletApi"
 #define RouteNameEvent_GoToImportWallet @"RouteNameEvent_GoToImportWallet"
@@ -133,13 +134,21 @@
     
     if ([eventName isEqualToString:RouteEventName_CallCreatWalletApi]) {
         
-        [self creatWallet];
+        NeomobileWallet *wallet = [self creatWallet];
         
-        if (self.didFinishCreatSub) {
-            [self.didFinishCreatSub sendNext:@""];
-        }else{
-            [self.navigationController popToRootViewControllerAnimated:YES];
+        if (wallet == nil) {
+            return;
         }
+        ApexPrepareBackUpController *vc = [[ApexPrepareBackUpController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.address = wallet.address;
+        vc.BackupCompleteBlock = ^{
+            if (self.didFinishCreatSub) {
+                [self.didFinishCreatSub sendNext:@""];
+            }
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+
     }else if ([eventName isEqualToString:RouteNameEvent_GoToImportWallet]){
         [self showMessage:@"正在开发中..."];
 //        ApexImportWalletController *importVC = [[ApexImportWalletController alloc] init];
@@ -151,20 +160,20 @@
 }
 
 //创建钱包
-- (void)creatWallet{
+- (NeomobileWallet*)creatWallet{
     NSError *err = nil;
     NSError *keystoreErr = nil;
     
     NeomobileWallet *wallet = NeomobileNew(&err);
     if (err) {
         [self showMessage:[NSString stringWithFormat:@"钱包创建失败: %@",err]];
-        return;
+        return nil;
     }
     
     NSString *keystore = [wallet toKeyStore:self.passWordL.text error:&keystoreErr];
     if (keystoreErr) {
         [self showMessage:[NSString stringWithFormat:@"keystore创建失败: %@",keystoreErr]];
-        return;
+        return nil;
     }
     
     NSString *address = wallet.address;
@@ -172,6 +181,8 @@
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
     
     [ApexWalletManager saveWallet:[NSString stringWithFormat:@"%@/%@",address, self.walletNameL.text]];
+    
+    return wallet;
 }
 
 #pragma mark - public

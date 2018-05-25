@@ -118,10 +118,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ApexWalletCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    NSString *str = _contentArr[indexPath.row];
-    NSArray *arr = [str componentsSeparatedByString:@"/"];
-    cell.walletNameStr = arr.lastObject;
-    cell.addressStr = arr.firstObject;
+    ApexWalletModel *model = _contentArr[indexPath.row];
+    cell.walletNameStr = model.name;
+    cell.addressStr = model.address;
 //    cell.didFinishRequestBalanceSub = [RACSubject subject];
 //    [[cell.didFinishRequestBalanceSub takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(ApexAccountStateModel *accountModel) {
 //        [self.collectionView.mj_header endRefreshing];
@@ -132,10 +131,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     ApexWalletDetailController *dvc = [[ApexWalletDetailController alloc] init];
     ApexWalletCell *cell = (ApexWalletCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    NSString *str = _contentArr[indexPath.row];
-    NSArray *arr = [str componentsSeparatedByString:@"/"];
-    dvc.walletName = arr.lastObject;
-    dvc.walletAddress = arr.firstObject;
+    ApexWalletModel *model = _contentArr[indexPath.row];
+    dvc.walletName = model.name;
+    dvc.walletAddress = model.address;
     dvc.accountModel = [cell getAccountInfo];
     dvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:dvc animated:YES];
@@ -159,11 +157,10 @@
         
         [self.contentArr removeAllObjects];
         
-        for (NSString *name in [ApexWalletManager getWalletsArr]) {
-            NSArray *arr = [name componentsSeparatedByString:@"/"];
-            NSString *addressName = arr.lastObject;
-            if ([addressName hasPrefix:key]) {
-                [self.contentArr addObject:name];
+        for (ApexWalletModel *wallet in [ApexWalletManager getWalletsArr]) {
+            
+            if ([wallet.name containsString:key]) {
+                [self.contentArr addObject:wallet];
             }
         }
         [self.collectionView reloadData];

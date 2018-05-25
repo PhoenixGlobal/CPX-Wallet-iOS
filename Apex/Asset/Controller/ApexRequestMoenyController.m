@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *requestNumTF;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn;
+
 @end
 
 @implementation ApexRequestMoenyController
@@ -106,6 +107,12 @@
     UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
     pasteBoard.string = self.walletAddress;
     [self showMessage:@"钱包地址已复制到剪切板"];
+    
+    [_btn setTitle:@"已复制" forState:UIControlStateNormal];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.btn setTitle:@"复制收款地址" forState:UIControlStateNormal];
+        
+    });
 }
 
 #pragma mark - ------getter & setter------

@@ -22,6 +22,10 @@
     }];
     [alert showAlertWithTitle:@"请输入密码" withSubtitle:subtitle withCustomImage:nil withDoneButtonTitle:@"确认" andButtons:@[@"取消"]];
     
+    if (subtitle.length > 0) {
+        alert.doneButtonTitleColor = [UIColor redColor];
+    }
+    
     [alert doneActionBlock:^{
         NSString *keystore = [PDKeyChain load:KEYCHAIN_KEY(address)];
         NeomobileWallet *wallet = nil;

@@ -7,6 +7,7 @@
 //
 
 #import "ApexWalletManager.h"
+#import "ApexWalletModel.h"
 
 @implementation ApexWalletManager
 + (void)saveWallet:(NSString *)wallet{
@@ -14,8 +15,13 @@
     if (!arr) {
         arr = [NSMutableArray array];
     }
+    NSArray *array = [wallet componentsSeparatedByString:@"/"];
+    ApexWalletModel *model = [[ApexWalletModel alloc] init];
+    model.name = array.lastObject;
+    model.address = array.firstObject;
+    model.isBackUp = false;
     
-    [arr addObject:wallet];
+    [arr addObject:model];
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
 
@@ -32,10 +38,20 @@
     NSMutableArray *arr = [self getWalletsArr];
     NSMutableArray *temp = [NSMutableArray arrayWithArray:arr];
     
-    for (NSString *wallet in temp) {
-        if ([wallet containsString:address]) {
+    for (ApexWalletModel *wallet in temp) {
+        if ([wallet.address containsString:address]) {
             [arr removeObject:wallet];
             break;
+        }
+    }
+    [TKFileManager saveData:arr withFileName:walletsKey];
+}
+
++ (void)setBackupFinished:(NSString*)address{
+    NSArray *arr = [self getWalletsArr];
+    for (ApexWalletModel *model in arr) {
+        if ([model.address isEqualToString:address]) {
+            model.isBackUp = YES;
         }
     }
     [TKFileManager saveData:arr withFileName:walletsKey];

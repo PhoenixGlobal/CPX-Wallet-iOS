@@ -10,5 +10,7 @@
 
 @interface ApexMnemonicConfirmController : UIViewController
 @property (nonatomic, strong) NSString *mnemonic;
+@property (nonatomic, strong) NSString *address;
+@property (nonatomic, copy) dispatch_block_t BackupCompleteBlock;
 @end
 

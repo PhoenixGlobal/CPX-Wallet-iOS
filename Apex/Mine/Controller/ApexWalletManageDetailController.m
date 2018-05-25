@@ -31,6 +31,14 @@
     [self requestBalance];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (self.model.isBackUp) {
+        _mnemonicBackUpBtn.hidden = YES;
+    }else{
+        _mnemonicBackUpBtn.hidden = NO;
+    }
+}
 
 #pragma mark - ------private------
 - (void)initUI{
@@ -38,16 +46,16 @@
     self.mnemonicBackUpBtn.layer.cornerRadius = 6;
     self.deleteWalletBtn.layer.cornerRadius = 6;
     
-    self.title = self.walletNameStr;
-    self.walletNameTF.text = self.walletNameStr;
-    self.addressL.text = self.walletAddStr;
+    self.title = self.model.name;
+    self.walletNameTF.text = self.model.name;
+    self.addressL.text = self.model.address;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.saveBtn];
 }
 
 - (void)requestBalance{
     @weakify(self);
-    [ApexWalletManager getAccountStateWithAddress:self.walletAddStr Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ApexWalletManager getAccountStateWithAddress:self.model.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
         @strongify(self);
         ApexAccountStateModel *model = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
         model.balances.count == 0 ? (self.balanceL.text = @"0") : (self.balanceL.text = model.balances.firstObject.value);
@@ -69,7 +77,7 @@
             return;
         }
         
-        [ApexWalletManager changeWalletName:name forAddress:self.walletAddStr];
+        [ApexWalletManager changeWalletName:name forAddress:self.model.address];
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -79,14 +87,14 @@
     
     [[self.mnemonicBackUpBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         ApexPrepareBackUpController *vc = [[ApexPrepareBackUpController alloc] init];
-        vc.address = self.walletAddStr;
+        vc.address = self.model.address;
         [self.navigationController pushViewController:vc animated:YES];
     }];
 }
 
 - (void)showDeleteConfirmAlert{
-    [ApexPassWordConfirmAlertView showDeleteConfirmAlertAddress:self.walletAddStr subTitle:@"请慎重,此操作无法撤销" Success:^(NeomobileWallet *wallet) {
-        [ApexWalletManager deleteWalletForAddress:self.walletAddStr];
+    [ApexPassWordConfirmAlertView showDeleteConfirmAlertAddress:self.model.address subTitle:@"请慎重,此操作无法撤销" Success:^(NeomobileWallet *wallet) {
+        [ApexWalletManager deleteWalletForAddress:self.model.address];
         [self.navigationController popViewControllerAnimated:YES];
     } fail:^{
         [self showMessage:@"密码输入错误"];

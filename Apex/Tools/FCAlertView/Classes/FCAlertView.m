@@ -435,7 +435,10 @@
     descriptionLabelFrames = descriptionLabel.frame;
     
     // Setting Up Contents of AlertView
-    
+    alertViewFrame = CGRectMake(alertViewFrame.origin.x,
+                                alertViewFrame.origin.y - 30,
+                                alertViewFrame.size.width,
+                                alertViewFrame.size.height);
     alertViewContents = [[UIView alloc] initWithFrame:alertViewFrame];
     [self addSubview:alertViewContents];
     

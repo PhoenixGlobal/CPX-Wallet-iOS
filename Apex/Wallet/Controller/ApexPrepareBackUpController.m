@@ -83,6 +83,7 @@
             ApexBackUpController *vc = [[ApexBackUpController alloc] init];
             vc.address = self.address;
             vc.mnemonic = [wallet mnemonic:mnemonicEnglish error:&err];
+            vc.BackupCompleteBlock = self.BackupCompleteBlock;
             if (err) {
                 [self showMessage:@"助记词生成失败"];
                 return;
