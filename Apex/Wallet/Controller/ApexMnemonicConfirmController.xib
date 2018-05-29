@@ -42,18 +42,19 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="beI-FT-uND"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mbm-Hg-IUV">
-                    <rect key="frame" x="15" y="315.5" width="345" height="160"/>
+                    <rect key="frame" x="15" y="315.5" width="345" height="180"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="160" id="k4Z-Ov-aTA"/>
+                        <constraint firstAttribute="height" constant="180" id="k4Z-Ov-aTA"/>
                     </constraints>
                     <collectionViewLayout key="collectionViewLayout" id="Tci-x6-Tvi" customClass="ApexMnemonicFlowLayout"/>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOR-am-rfz">
-                    <rect key="frame" x="35" y="535.5" width="305" height="40"/>
+                    <rect key="frame" x="35" y="555.5" width="305" height="40"/>
                     <color key="backgroundColor" red="0.29803921570000003" green="0.5568627451" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="8R6-vY-UqJ"/>
@@ -78,6 +79,7 @@
                 <constraint firstItem="69i-Ul-eOG" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="7qv-iQ-suo"/>
                 <constraint firstItem="2JW-1l-KsQ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="KX7-IZ-9F8"/>
                 <constraint firstItem="mbm-Hg-IUV" firstAttribute="top" secondItem="2JW-1l-KsQ" secondAttribute="bottom" constant="50" id="OgR-ky-swL"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WOR-am-rfz" secondAttribute="bottom" constant="40" id="V4s-dm-vVi"/>
                 <constraint firstItem="Od5-zH-Zvn" firstAttribute="top" secondItem="69i-Ul-eOG" secondAttribute="bottom" constant="30" id="ZnZ-za-Nuu"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Od5-zH-Zvn" secondAttribute="trailing" constant="35" id="ZqF-Zm-3CE"/>
                 <constraint firstItem="69i-Ul-eOG" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="40" id="h69-M0-PiO"/>

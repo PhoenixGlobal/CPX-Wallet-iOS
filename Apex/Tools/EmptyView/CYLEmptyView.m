@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UILabel *messageL;
 @property (nonatomic, strong) UIButton *refereshBtn;
 @property (nonatomic, copy) dispatch_block_t refreshBlock;
+@property (nonatomic, assign) CGFloat yOffset;
 @end
 
 @implementation CYLEmptyView
@@ -20,21 +21,27 @@
 + (instancetype)showEmptyViewOnView:(UIView *)superView emptyType:(CYLEmptyViewType)type message:(NSString *)message refreshBlock:(dispatch_block_t)block{
     CYLEmptyView *emptyView = [[CYLEmptyView alloc] initWithFrame:superView.bounds];
     emptyView.backgroundColor = superView.backgroundColor;
-    
+    emptyView.yOffset = -superView.height/8.0;
     type == CYLEmptyViewType_EmptyData ? (emptyView.centerIv.image = [UIImage imageNamed:@"Page 12"]) : (emptyView.centerIv.image = [UIImage imageNamed:@"Page 12"]);
     type == CYLEmptyViewType_EmptyData ? (emptyView.refereshBtn.hidden = YES) : (emptyView.refereshBtn.hidden = NO);
     emptyView.messageL.text = message;
-    
+    [emptyView prepareUI];
     [superView addSubview:emptyView];
     
     return emptyView;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
-        [self prepareUI];
-    }
-    return self;
++ (instancetype)showEmptyViewOnView:(UIView *)superView y_offSet:(CGFloat)offsetY emptyType:(CYLEmptyViewType)type message:(NSString *)message refreshBlock:(dispatch_block_t)block{
+    CYLEmptyView *emptyView = [[CYLEmptyView alloc] initWithFrame:superView.bounds];
+    emptyView.backgroundColor = superView.backgroundColor;
+    emptyView.yOffset = offsetY;
+    type == CYLEmptyViewType_EmptyData ? (emptyView.centerIv.image = [UIImage imageNamed:@"Page 12"]) : (emptyView.centerIv.image = [UIImage imageNamed:@"Page 12"]);
+    type == CYLEmptyViewType_EmptyData ? (emptyView.refereshBtn.hidden = YES) : (emptyView.refereshBtn.hidden = NO);
+    emptyView.messageL.text = message;
+    [emptyView prepareUI];
+    [superView addSubview:emptyView];
+    
+    return emptyView;
 }
 
 #pragma mark - private
@@ -45,7 +52,7 @@
     
     [self.centerIv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.centerY.equalTo(self.mas_centerY);
+        make.centerY.equalTo(self.mas_centerY).offset(self.yOffset);
         make.width.height.mas_equalTo(scaleWidth375(44));
     }];
     

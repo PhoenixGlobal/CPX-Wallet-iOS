@@ -27,6 +27,7 @@
     }
     
     [alert doneActionBlock:^{
+        [customField resignFirstResponder];
         NSString *keystore = [PDKeyChain load:KEYCHAIN_KEY(address)];
         NeomobileWallet *wallet = nil;
         NSError *err = nil;

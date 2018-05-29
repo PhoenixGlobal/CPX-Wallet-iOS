@@ -24,14 +24,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     CYLTabBarController *tabbarVC = [[CYLTabBarController alloc] init];
     
-    NSNumber *boolNum = [TKFileManager ValueWithKey:isFirstOpenApp];
-    if (!boolNum) {
+    NSArray *arr = [ApexWalletManager getWalletsArr];
+    if (arr.count == 0) {
         ApexWalletInitController *walletVC = [[ApexWalletInitController alloc] init];
         walletVC.didFinishCreatSub = [RACSubject subject];
         [walletVC.didFinishCreatSub subscribeNext:^(id  _Nullable x) {
             tabbarVC.initSelectTabbarBtnIndex = 1;
             self.window.rootViewController = tabbarVC;
-            [TKFileManager saveValue:@(false) forKey:isFirstOpenApp];
         }];
         
         self.window.rootViewController = [[CYLNavBaseController alloc] initWithRootViewController:walletVC];

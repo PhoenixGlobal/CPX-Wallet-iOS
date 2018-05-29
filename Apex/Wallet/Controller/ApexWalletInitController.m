@@ -49,13 +49,13 @@
     [self.logoIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(scaleWidth375(174));
         make.centerX.equalTo(self.view.mas_centerX);
-        make.width.mas_equalTo(scaleWidth375(194));
-        make.height.mas_equalTo(scaleHeight667(45));
+        make.width.mas_equalTo(194);
+        make.height.mas_equalTo(45);
     }];
     
     [self.creatWalletBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.logoIV).offset(scaleHeight667(179));
+        make.top.equalTo(self.logoIV).offset(220);
         make.width.mas_equalTo(scaleWidth375(165));
         make.height.mas_equalTo(scaleHeight667(40));
     }];

@@ -45,7 +45,7 @@
 
 #pragma mark - ------private------
 - (void)setUI{
-    self.title = @"付款";
+    self.title = @"转账";
     self.walletNameL.text = self.walletName;
     self.fromAddressL.text = self.walletAddress;
     self.toAddressTF.text = self.toAddressIfHave;

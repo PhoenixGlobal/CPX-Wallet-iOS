@@ -7,7 +7,7 @@
 //
 
 #import "ApexCreatWalletController.h"
-#import <JVFloatLabeledTextField.h>
+#import "ApexAlertTextField.h"
 #import "ApexImportWalletController.h"
 #import "ApexWalletManager.h"
 #import "ApexPrepareBackUpController.h"
@@ -22,9 +22,9 @@
 @property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) UIButton *privacyAgreeBtn;
 @property (nonatomic, strong) UILabel *privacyAgreeLable;
-@property (nonatomic, strong) JVFloatLabeledTextField *walletNameL;
-@property (nonatomic, strong) JVFloatLabeledTextField *passWordL;
-@property (nonatomic, strong) JVFloatLabeledTextField *repeatPassWordL;
+@property (nonatomic, strong) ApexAlertTextField *walletNameL;
+@property (nonatomic, strong) ApexAlertTextField *passWordL;
+@property (nonatomic, strong) ApexAlertTextField *repeatPassWordL;
 @property (nonatomic, strong) UIButton *importBtn;
 @property (nonatomic, strong) UIButton *creatBtn;
 @property (nonatomic, strong) RACSignal *combineSignal;
@@ -99,7 +99,7 @@
     [self.privacyAgreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.walletNameL);
         make.top.equalTo(self.repeatPassWordL.mas_bottom).offset(30);
-        make.width.height.mas_equalTo(10);
+        make.width.height.mas_equalTo(20);
     }];
     
     [self.privacyAgreeLable  mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -192,13 +192,12 @@
 #pragma mark - getter & setter
 - (RACSignal *)combineSignal{
     if (!_combineSignal) {
-        _combineSignal = [RACSignal combineLatest:@[self.walletNameL.rac_textSignal, self.passWordL.rac_textSignal, self.repeatPassWordL.rac_textSignal] reduce:^id (NSString *walletName, NSString*passw, NSString*rePassw){
+        _combineSignal = [RACSignal combineLatest:@[self.walletNameL.rac_textSignal, self.passWordL.rac_textSignal, self.repeatPassWordL.rac_textSignal, RACObserve(self.privacyAgreeBtn, selected),RACObserve(self.walletNameL, isAlertShowing),RACObserve(self.passWordL, isAlertShowing),RACObserve(self.repeatPassWordL, isAlertShowing)] reduce:^id (NSString *walletName, NSString*passw, NSString*rePassw, NSNumber* selected,NSNumber* nameAlert,NSNumber* passAlert,NSNumber* repeatAlert){
             BOOL flag = false;
-            if (walletName.length != 0 && passw.length >= 6 && [rePassw isEqualToString:passw]) {
+            if (walletName.length != 0 && passw.length >= 6 && [rePassw isEqualToString:passw] && selected.boolValue && !nameAlert.boolValue && !passAlert.boolValue && !repeatAlert.boolValue) {
                 flag = true;
             }
             return @(flag);
-            
         }];
     }
     return _combineSignal;
@@ -235,9 +234,9 @@
     return _titleL;
 }
 
-- (JVFloatLabeledTextField *)walletNameL{
+- (ApexAlertTextField *)walletNameL{
     if (!_walletNameL) {
-        _walletNameL = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectZero];
+        _walletNameL = [[ApexAlertTextField alloc] initWithFrame:CGRectZero];
         _walletNameL.font = [UIFont systemFontOfSize:13];
         _walletNameL.floatingLabelYPadding = 5;
         // 浮动式标签的正常字体颜色
@@ -249,16 +248,23 @@
         // 设置占位符文字和浮动式标签的文字.
         [_walletNameL setPlaceholder:@"钱包名称"
                              floatingTitle:@"钱包名称"];
+        _walletNameL.alertString = @"请输入最多五个字符";
+        _walletNameL.alertShowConditionBlock = ^BOOL(NSString *text) {
+            if (text.length <= 5 && text.length > 0) {
+                return false;
+            }
+            return true;
+        };
         _walletNameL.clearButtonMode = UITextFieldViewModeWhileEditing;
         
-        [ApexUIHelper addLineInView:_walletNameL color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
+        
     }
     return _walletNameL;
 }
 
-- (JVFloatLabeledTextField *)passWordL{
+- (ApexAlertTextField *)passWordL{
     if (!_passWordL) {
-        _passWordL = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectZero];
+        _passWordL = [[ApexAlertTextField alloc] initWithFrame:CGRectZero];
         _passWordL.font = [UIFont systemFontOfSize:13];
         _passWordL.floatingLabelYPadding = 5;
         // 浮动式标签的正常字体颜色
@@ -272,15 +278,22 @@
                        floatingTitle:@"密码"];
         _passWordL.clearButtonMode = UITextFieldViewModeWhileEditing;
         
-        [ApexUIHelper addLineInView:_passWordL color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
+        _passWordL.alertString = @"不少于6个字符";
+        _passWordL.alertShowConditionBlock = ^BOOL(NSString *text) {
+            if (text.length<6) {
+                return true;
+            }
+            return false;
+        };
+        
         _passWordL.secureTextEntry = YES;
     }
     return _passWordL;
 }
 
-- (JVFloatLabeledTextField *)repeatPassWordL{
+- (ApexAlertTextField *)repeatPassWordL{
     if (!_repeatPassWordL) {
-        _repeatPassWordL = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectZero];
+        _repeatPassWordL = [[ApexAlertTextField alloc] initWithFrame:CGRectZero];
         _repeatPassWordL.font = [UIFont systemFontOfSize:13];
         _repeatPassWordL.floatingLabelYPadding = 5;
         // 浮动式标签的正常字体颜色
@@ -293,7 +306,18 @@
         [_repeatPassWordL setPlaceholder:@"重复密码(不少于6个字符)"
                      floatingTitle:@"重复密码"];
         _repeatPassWordL.clearButtonMode = UITextFieldViewModeWhileEditing;
-        [ApexUIHelper addLineInView:_repeatPassWordL color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
+        
+        @weakify(self);
+        _repeatPassWordL.alertString = @"输入密码不相符";
+        _repeatPassWordL.alertShowConditionBlock = ^BOOL(NSString *text) {
+            @strongify(self)
+            
+            if ([text isEqualToString:self.passWordL.text]) {
+                return false;
+            }
+            return true;
+        };
+        
         _repeatPassWordL.secureTextEntry = YES;
     }
     return _repeatPassWordL;
@@ -325,6 +349,7 @@
         _privacyAgreeBtn = [[UIButton alloc] init];
         [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Group 3-1"] forState:UIControlStateNormal];
         [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Group 4"] forState:UIControlStateSelected];
+        [_privacyAgreeBtn setEnlargeEdge:20];
         [[_privacyAgreeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             _privacyAgreeBtn.selected = !_privacyAgreeBtn.selected;
         }];

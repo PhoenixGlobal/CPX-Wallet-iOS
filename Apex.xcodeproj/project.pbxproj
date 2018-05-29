@@ -80,6 +80,11 @@
 		E33A8BF220B3F0350067505E /* ApexTXRecorderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BF120B3F0350067505E /* ApexTXRecorderModel.m */; };
 		E33A8BF620B3F4030067505E /* ApexTXRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33A8BF320B3F4030067505E /* ApexTXRecordCell.xib */; };
 		E33A8BF720B3F4030067505E /* ApexTXRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BF520B3F4030067505E /* ApexTXRecordCell.m */; };
+		E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */; };
+		E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */; };
+		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
+		E3CE668120BBF9A5002A1E07 /* MethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */; };
+		E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668420BCEB10002A1E07 /* ApexAlertTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,6 +220,16 @@
 		E33A8BF320B3F4030067505E /* ApexTXRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTXRecordCell.xib; sourceTree = "<group>"; };
 		E33A8BF420B3F4030067505E /* ApexTXRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTXRecordCell.h; sourceTree = "<group>"; };
 		E33A8BF520B3F4030067505E /* ApexTXRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTXRecordCell.m; sourceTree = "<group>"; };
+		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
+		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
+		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
+		E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeTouchArea.m"; sourceTree = "<group>"; };
+		E3CE667920BBF0D6002A1E07 /* ApexTempEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTempEmptyView.h; sourceTree = "<group>"; };
+		E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTempEmptyView.m; sourceTree = "<group>"; };
+		E3CE667F20BBF9A4002A1E07 /* MethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodSwizzling.h; sourceTree = "<group>"; };
+		E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzling.m; sourceTree = "<group>"; };
+		E3CE668320BCEB10002A1E07 /* ApexAlertTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAlertTextField.h; sourceTree = "<group>"; };
+		E3CE668420BCEB10002A1E07 /* ApexAlertTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAlertTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,6 +450,8 @@
 				E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */,
 				E338964F20B511B400DD51FE /* ApexSearchWalletToolBar.h */,
 				E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */,
+				E3CE667920BBF0D6002A1E07 /* ApexTempEmptyView.h */,
+				E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -472,6 +489,8 @@
 		E33A8B6E20AE75500067505E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				E3CE668220BCEAD6002A1E07 /* View */,
+				E3CE667220BBC8B3002A1E07 /* BlockChain */,
 				E3263EDB20B69BB6001D3C19 /* FCAlertView */,
 				E33A8BC220B28F800067505E /* keyChain */,
 				E33A8BBB20AE7D830067505E /* NetWork */,
@@ -484,6 +503,8 @@
 				E33A8B7720AE75500067505E /* ApexUIHelper.m */,
 				E33A8BD120B29D060067505E /* ApexAppConfig.h */,
 				E33A8BD220B29D060067505E /* ApexAppConfig.m */,
+				E3CE667F20BBF9A4002A1E07 /* MethodSwizzling.h */,
+				E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -558,6 +579,8 @@
 				E33A8B9620AE756E0067505E /* UIResponder+Router.h */,
 				E33A8B9720AE756E0067505E /* UIViewController+NetLoadIndicator.h */,
 				E33A8B9820AE756E0067505E /* UIViewController+Toast.h */,
+				E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */,
+				E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */,
 			);
 			path = Catagotries;
 			sourceTree = "<group>";
@@ -631,6 +654,24 @@
 				E33A8BC420B28F800067505E /* PDKeyChain.h */,
 			);
 			path = keyChain;
+			sourceTree = "<group>";
+		};
+		E3CE667220BBC8B3002A1E07 /* BlockChain */ = {
+			isa = PBXGroup;
+			children = (
+				E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */,
+				E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */,
+			);
+			path = BlockChain;
+			sourceTree = "<group>";
+		};
+		E3CE668220BCEAD6002A1E07 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3CE668320BCEB10002A1E07 /* ApexAlertTextField.h */,
+				E3CE668420BCEB10002A1E07 /* ApexAlertTextField.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -779,6 +820,7 @@
 			files = (
 				E3263ECA20B567FC001D3C19 /* ApexWallerItemCell.m in Sources */,
 				E33A8BCB20B292B90067505E /* ApexWalletManager.m in Sources */,
+				E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */,
 				E33A8BDF20B2BB340067505E /* UIView+Common.m in Sources */,
 				E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */,
 				E33A8BD020B29B840067505E /* ApexWalletCell.m in Sources */,
@@ -794,6 +836,7 @@
 				E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */,
 				E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */,
 				E3263EDA20B68CFB001D3C19 /* ApexBackUpController.m in Sources */,
+				E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */,
 				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
 				E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */,
 				E33A8B5B20AE724F0067505E /* main.m in Sources */,
@@ -803,7 +846,9 @@
 				E3263EF920B6AF07001D3C19 /* ApexMnemonicFlowLayout.m in Sources */,
 				E33A8BF220B3F0350067505E /* ApexTXRecorderModel.m in Sources */,
 				E33A8BF720B3F4030067505E /* ApexTXRecordCell.m in Sources */,
+				E3CE668120BBF9A5002A1E07 /* MethodSwizzling.m in Sources */,
 				E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */,
+				E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */,
 				E33A8B9A20AE756E0067505E /* UINavigationController+ApexNavigationBar.m in Sources */,
 				E33A8BEF20B3C16C0067505E /* ApexTXIDModel.m in Sources */,
 				E3263EF620B6ABF8001D3C19 /* ApexMnemonicConfirmController.m in Sources */,
@@ -816,6 +861,7 @@
 				E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */,
 				E33A8B7920AE75500067505E /* LXDScanCodeController.m in Sources */,
 				E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */,
+				E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */,
 				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
 				E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */,
 				E3263EEE20B69BB6001D3C19 /* FCAlertView.m in Sources */,

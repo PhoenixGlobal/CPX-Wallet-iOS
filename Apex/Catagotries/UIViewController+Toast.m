@@ -19,13 +19,13 @@ static const char* hudKey = "hudKey";
     [self.view addSubview:HUD];
     
     //设置对话框文字
-    HUD.detailsLabelText = message;
+    HUD.detailsLabel.text = message;
     HUD.mode = MBProgressHUDModeText;
     
     //显示对话框
-    [HUD show:YES];
+    [HUD showAnimated:YES];
     
-    [HUD hide:YES afterDelay:delay];
+    [HUD hideAnimated:YES afterDelay:delay];
 }
 
 - (void)showMessage:(NSString *)message
@@ -35,30 +35,30 @@ static const char* hudKey = "hudKey";
     [self.view addSubview:HUD];
     
     //设置对话框文字
-    HUD.detailsLabelText = message;
+    HUD.detailsLabel.text = message;
     HUD.mode = MBProgressHUDModeText;
     
     //显示对话框
-    [HUD show:YES];
+    [HUD showAnimated:YES];
     
-    [HUD hide:YES afterDelay:1];
+    [HUD hideAnimated:YES afterDelay:1];
 }
 
 - (void)showMessageOnWindow:(NSString *)message
 {
     //初始化进度框，置于当前的View当中
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:[UIApplication sharedApplication].keyWindow];
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow];
     [[UIApplication sharedApplication].keyWindow addSubview:HUD];
     
     //设置对话框文字
-    HUD.detailsLabelText = message;
+    HUD.detailsLabel.text = message;
     HUD.mode = MBProgressHUDModeText;
     
     //显示对话框
-    [HUD show:YES];
+    [HUD showAnimated:YES];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD hide:YES];
+        [HUD hideAnimated:YES];
         [HUD removeFromSuperview];
     });
 }

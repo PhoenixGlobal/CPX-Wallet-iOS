@@ -25,6 +25,7 @@
 #import "UIViewController+Toast.h"
 #import "UINavigationController+ApexNavigationBar.h"
 #import "UIView+Common.h"
+#import "UIButton+EnlargeTouchArea.h"
 
 /**< other */
 #import "ApexUIHelper.h"
@@ -35,5 +36,6 @@
 #import "CYLEmptyView.h"
 #import "ApexWalletManager.h"
 #import "ApexWalletModel.h"
+#import "ApexBlockChainManager.h"
 #endif /* PrefixHeader_pch */
 

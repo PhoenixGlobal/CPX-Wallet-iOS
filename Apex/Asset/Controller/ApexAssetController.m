@@ -12,6 +12,7 @@
 #import "ApexWalletDetailController.h"
 #import "ApexCreatWalletController.h"
 #import "ApexSearchWalletToolBar.h"
+#import "CYLEmptyView.h"
 
 #define RouteNameEvent_SendMoney @"RouteNameEvent_SendMoney"
 #define RouteNameEvent_RequestMoney @"RouteNameEvent_RequestMoney"
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) UILabel *totalBalanceL;
 @property (nonatomic, strong) UILabel *unitL;
 @property (nonatomic, strong) ApexSearchWalletToolBar *searchTooBar;
+@property (nonatomic, strong) CYLEmptyView *emptyV;
 @end
 
 @implementation ApexAssetController
@@ -146,12 +148,15 @@
 }
 
 - (void)handleEvent{
+    @weakify(self);
     self.searchTooBar.textDidChangeSub = [RACSubject subject];
     [[self.searchTooBar.textDidChangeSub takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSString *key) {
-        
+        @strongify(self);
         if (key.length == 0) {
             self.contentArr = [ApexWalletManager getWalletsArr];
+            [self.emptyV removeFromSuperview];
             [self.collectionView reloadData];
+            
             return;
         }
         
@@ -163,7 +168,14 @@
                 [self.contentArr addObject:wallet];
             }
         }
-        [self.collectionView reloadData];
+        
+        if (self.contentArr.count == 0) {
+           self.emptyV = [CYLEmptyView showEmptyViewOnView:self.collectionView emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
+        }else{
+            [self.emptyV removeFromSuperview];
+            [self.collectionView reloadData];
+        }
+        
     }];
 }
 

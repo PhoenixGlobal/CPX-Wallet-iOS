@@ -14,6 +14,7 @@
 #import "LXDScanCodeController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ApexCreatWalletController.h"
+#import "ApexTempEmptyView.h"
 
 #define RouteNameEvent_SendMoney @"RouteNameEvent_SendMoney"
 #define RouteNameEvent_RequestMoney @"RouteNameEvent_RequestMoney"
@@ -29,7 +30,6 @@
 @property (nonatomic, strong) UIButton *requestBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexMorePanelView *moreView;
-@property (nonatomic, strong) CYLEmptyView *emptyView;
 @end
 
 @implementation ApexWalletDetailController
@@ -49,12 +49,11 @@
 }
 
 - (void)setUI{
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [ApexUIHelper grayColor240];
     self.title = @"收款";
     
-    self.emptyView = [CYLEmptyView showEmptyViewOnView:self.view emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
-    self.emptyView.backgroundColor = [UIColor whiteColor];
-    
+    ApexTempEmptyView *ev = [[ApexTempEmptyView alloc] initWithFrame:CGRectZero];
+    ev.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.balanceL];
@@ -63,6 +62,7 @@
     [self.view addSubview:self.requestBtn];
     [self.view addSubview:self.sendBtn];
     [self.view addSubview:self.moreView];
+    [self.view addSubview:ev];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
@@ -102,11 +102,11 @@
         make.left.bottom.right.top.equalTo(self.view);
     }];
     
-    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.requestBtn.mas_bottom).offset(20);
-        make.left.equalTo(self.view).offset(10);
-        make.right.equalTo(self.view).offset(-10);
-        make.height.mas_equalTo(123);
+    [ev mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.requestBtn.mas_bottom).offset(30);
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+        make.height.mas_equalTo(127);
     }];
     
     self.moreView.transform = CGAffineTransformMakeTranslation(-kScreenW, 0);

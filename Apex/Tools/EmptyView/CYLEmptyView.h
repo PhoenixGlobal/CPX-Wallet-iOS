@@ -17,4 +17,6 @@ typedef NS_ENUM(NSInteger, CYLEmptyViewType) {
 
 + (instancetype)showEmptyViewOnView:(UIView*)superView emptyType:(CYLEmptyViewType)type message:(NSString*)message refreshBlock:(dispatch_block_t)block;
 
++ (instancetype)showEmptyViewOnView:(UIView*)superView y_offSet:(CGFloat)offsetY emptyType:(CYLEmptyViewType)type message:(NSString*)message refreshBlock:(dispatch_block_t)block;
+
 @end

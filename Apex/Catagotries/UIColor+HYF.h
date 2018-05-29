@@ -36,7 +36,6 @@
  */
 + (UIColor *)colorWithHexString:(NSString *)hexString;
 + (UIColor *)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha:(CGFloat)alpha;
-+ (UIColor*)testColor:(UIColor*)color;
 + (UIImage *)createImageWithColor:(UIColor *)color frame:(CGRect)rect;
 
 @end

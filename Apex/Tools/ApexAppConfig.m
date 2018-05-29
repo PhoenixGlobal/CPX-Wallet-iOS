@@ -12,6 +12,12 @@
 @implementation ApexAppConfig
 + (void) configAll{
     [self configKeyBoard];
+    
+    [self configBlockChainManager];
+}
+
++ (void)configBlockChainManager{
+    [[ApexBlockChainManager shareSharedManager] prepare];
 }
 
 + (void)configKeyBoard{
