@@ -55,6 +55,7 @@
     ApexTempEmptyView *ev = [[ApexTempEmptyView alloc] initWithFrame:CGRectZero];
     ev.backgroundColor = [UIColor whiteColor];
     
+    [self.view addSubview:ev];
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.balanceL];
     [self.view addSubview:self.unitL];
@@ -62,7 +63,6 @@
     [self.view addSubview:self.requestBtn];
     [self.view addSubview:self.sendBtn];
     [self.view addSubview:self.moreView];
-    [self.view addSubview:ev];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);

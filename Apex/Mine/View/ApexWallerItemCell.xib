@@ -51,10 +51,25 @@
                         <color key="textColor" red="0.29803921570000003" green="0.5568627451" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uG0-Nq-Aux">
+                        <rect key="frame" x="160" y="22.5" width="40" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="ANC-kN-9qD"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="aWF-VW-tnf"/>
+                            <constraint firstAttribute="height" constant="18" id="rmG-kc-uDR"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="swS-Ux-lU6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <state key="normal" title="请备份">
+                            <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Yo7-Mh-tL5" firstAttribute="leading" secondItem="5b0-Kf-52X" secondAttribute="trailing" constant="5" id="1wn-3C-dXw"/>
                     <constraint firstItem="ovP-pB-Alt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xeK-61-K8A" secondAttribute="trailing" constant="15" id="9Qa-gZ-e9D"/>
+                    <constraint firstItem="uG0-Nq-Aux" firstAttribute="centerY" secondItem="Ong-tz-Ipb" secondAttribute="centerY" id="BQo-jM-rD4"/>
+                    <constraint firstItem="ovP-pB-Alt" firstAttribute="leading" secondItem="uG0-Nq-Aux" secondAttribute="trailing" constant="18" id="IPZ-C5-ghD"/>
                     <constraint firstAttribute="bottom" secondItem="ovP-pB-Alt" secondAttribute="bottom" constant="10" id="NyM-17-lDh"/>
                     <constraint firstItem="ovP-pB-Alt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="W79-Mv-edx"/>
                     <constraint firstItem="Ong-tz-Ipb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Z3s-BR-Q1V"/>
@@ -70,6 +85,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="backupTipBtn" destination="uG0-Nq-Aux" id="rV9-En-2sT"/>
                 <outlet property="valueL" destination="5b0-Kf-52X" id="6JM-0Z-g5w"/>
                 <outlet property="walletAddL" destination="xeK-61-K8A" id="CRs-PK-rnI"/>
                 <outlet property="walletNameL" destination="Ong-tz-Ipb" id="bpO-G0-c9N"/>

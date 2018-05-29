@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *unit;
 @property (weak, nonatomic) IBOutlet UILabel *walletName;
 @property (weak, nonatomic) IBOutlet UILabel *address;
+
+
 @property (nonatomic, strong) ApexAccountStateModel *accountModel;
 @end
 

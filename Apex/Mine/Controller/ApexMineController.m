@@ -11,6 +11,7 @@
 #import "ApexSwitchHeaderBar.h"
 #import "ApexManageWalletView.h"
 #import "ApexWalletManageDetailController.h"
+#import "ApexTransactionDetailController.h"
 
 @interface ApexMineController ()
 @property (nonatomic, strong) UIImageView *backIV;
@@ -59,7 +60,9 @@
     
     [self.transactionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.backIV.mas_bottom);
-        make.left.right.bottom.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(-10);
     }];
     
     [self.manageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,6 +91,12 @@
     }else if ([eventName isEqualToString:RouteNameEvent_ManageWalletTapDetail]){
         ApexWalletModel *model = userinfo[@"wallet"];
         ApexWalletManageDetailController *detailVC = [[ApexWalletManageDetailController alloc] init];
+        detailVC.model = model;
+        detailVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }else if ([eventName isEqualToString:RouteNameEvent_TransactionRecordDetail]){
+        ApexWalletModel *model = userinfo[@"wallet"];
+        ApexTransactionDetailController *detailVC = [[ApexTransactionDetailController alloc] init];
         detailVC.model = model;
         detailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detailVC animated:YES];

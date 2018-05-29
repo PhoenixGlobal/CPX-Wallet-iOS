@@ -14,4 +14,5 @@
 @property (nonatomic, strong) NSString *toAddress;
 @property (nonatomic, strong) NSString *value;
 @property (nonatomic, strong) NSString *data;
+@property (nonatomic, strong) NSString *timeStamp;
 @end

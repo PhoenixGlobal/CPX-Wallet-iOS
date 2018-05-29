@@ -59,8 +59,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexWallerItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     ApexWalletModel *model = _contentArr[indexPath.section];
-    cell.walletNameStr = model.name;
-    cell.addressStr = model.address;
+    cell.model = model;
 //    cell.didFinishRequestBalanceSub = [RACSubject subject];
 //    [[cell.didFinishRequestBalanceSub takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(ApexAccountStateModel *accountModel) {
 //

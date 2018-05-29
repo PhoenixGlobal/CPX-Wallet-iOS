@@ -11,6 +11,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
 @property (weak, nonatomic) IBOutlet UILabel *walletAddL;
 @property (weak, nonatomic) IBOutlet UILabel *valueL;
+
 @property (nonatomic, strong) ApexAccountStateModel *accountModel;
 @end
 
@@ -20,23 +21,26 @@
     [super awakeFromNib];
     self.layer.cornerRadius = 6;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.backupTipBtn.layer.borderColor = [UIColor colorWithHexString:@"666666"].CGColor;
+    self.backupTipBtn.layer.borderWidth = 1.0/kScale;
+    self.backupTipBtn.layer.cornerRadius = 9;
 }
 
-- (void)setWalletNameStr:(NSString *)walletNameStr{
-    _walletNameStr = walletNameStr;
-    self.walletNameL.text = walletNameStr;
-}
-
-- (void)setAddressStr:(NSString *)addressStr{
-    _addressStr = addressStr;
-    self.walletAddL.text = addressStr;
+- (void)setModel:(ApexWalletModel *)model
+{
+    _model = model;
+    self.walletNameL.text = model.name;
+    
+    self.walletAddL.text = model.address;
     self.valueL.text = @"N/A";
     [self requestBalance];
+    
+    self.backupTipBtn.hidden = model.isBackUp;
 }
 
 - (void)requestBalance{
     @weakify(self);
-    [ApexWalletManager getAccountStateWithAddress:self.addressStr Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ApexWalletManager getAccountStateWithAddress:self.model.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
         @strongify(self);
         self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
         //延时加载

@@ -1373,6 +1373,10 @@
 }
 
 #pragma  mark - Showing and Hiding AlertView Animations
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wimplicit-retain-self"
+
+
 
 - (void) showAlertView {
     
@@ -1886,5 +1890,6 @@
     }
     
 }
+#pragma clang diagnostic pop
 
 @end

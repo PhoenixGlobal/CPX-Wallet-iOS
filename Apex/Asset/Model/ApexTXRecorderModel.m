@@ -22,6 +22,7 @@
         self.toAddress = [aDecoder decodeObjectForKey:@"toAddress"];
         self.value = [aDecoder decodeObjectForKey:@"value"];
         self.data = [aDecoder decodeObjectForKey:@"data"];
+        self.timeStamp = [aDecoder decodeObjectForKey:@"timeStamp"];
     }
     return self;
 }
@@ -32,5 +33,6 @@
     [aCoder encodeObject:self.toAddress forKey:@"toAddress"];
     [aCoder encodeObject:self.value forKey:@"value"];
     [aCoder encodeObject:self.data forKey:@"data"];
+    [aCoder encodeObject:self.timeStamp forKey:@"timeStamp"];
 }
 @end

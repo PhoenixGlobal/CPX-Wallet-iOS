@@ -85,6 +85,10 @@
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
 		E3CE668120BBF9A5002A1E07 /* MethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */; };
 		E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668420BCEB10002A1E07 /* ApexAlertTextField.m */; };
+		E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3CE668620BD34B7002A1E07 /* ApexTransactionDetailController.xib */; };
+		E3CE668A20BD34B7002A1E07 /* ApexTransactionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668820BD34B7002A1E07 /* ApexTransactionDetailController.m */; };
+		E3CE668D20BD38BC002A1E07 /* ApexTransferDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668C20BD38BC002A1E07 /* ApexTransferDetailHeader.m */; };
+		E3CE669020BD3B56002A1E07 /* ApexTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668F20BD3B56002A1E07 /* ApexTransferCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -230,6 +234,13 @@
 		E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzling.m; sourceTree = "<group>"; };
 		E3CE668320BCEB10002A1E07 /* ApexAlertTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAlertTextField.h; sourceTree = "<group>"; };
 		E3CE668420BCEB10002A1E07 /* ApexAlertTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAlertTextField.m; sourceTree = "<group>"; };
+		E3CE668620BD34B7002A1E07 /* ApexTransactionDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTransactionDetailController.xib; sourceTree = "<group>"; };
+		E3CE668720BD34B7002A1E07 /* ApexTransactionDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransactionDetailController.h; sourceTree = "<group>"; };
+		E3CE668820BD34B7002A1E07 /* ApexTransactionDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransactionDetailController.m; sourceTree = "<group>"; };
+		E3CE668B20BD38BC002A1E07 /* ApexTransferDetailHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferDetailHeader.h; sourceTree = "<group>"; };
+		E3CE668C20BD38BC002A1E07 /* ApexTransferDetailHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransferDetailHeader.m; sourceTree = "<group>"; };
+		E3CE668E20BD3B56002A1E07 /* ApexTransferCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferCell.h; sourceTree = "<group>"; };
+		E3CE668F20BD3B56002A1E07 /* ApexTransferCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransferCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +383,10 @@
 				E3263EC620B567FC001D3C19 /* ApexWallerItemCell.xib */,
 				E3263EEF20B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.h */,
 				E3263EF020B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m */,
+				E3CE668B20BD38BC002A1E07 /* ApexTransferDetailHeader.h */,
+				E3CE668C20BD38BC002A1E07 /* ApexTransferDetailHeader.m */,
+				E3CE668E20BD3B56002A1E07 /* ApexTransferCell.h */,
+				E3CE668F20BD3B56002A1E07 /* ApexTransferCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -384,6 +399,9 @@
 				E3263ECF20B666CA001D3C19 /* ApexWalletManageDetailController.h */,
 				E3263ED020B666CA001D3C19 /* ApexWalletManageDetailController.m */,
 				E3263ECE20B666CA001D3C19 /* ApexWalletManageDetailController.xib */,
+				E3CE668720BD34B7002A1E07 /* ApexTransactionDetailController.h */,
+				E3CE668820BD34B7002A1E07 /* ApexTransactionDetailController.m */,
+				E3CE668620BD34B7002A1E07 /* ApexTransactionDetailController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -740,6 +758,7 @@
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
 				E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */,
 				E33A8BCF20B29B840067505E /* ApexWalletCell.xib in Resources */,
+				E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */,
 				E3263EE920B69BB6001D3C19 /* heart.png in Resources */,
 				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
 				E3263ED920B68CFB001D3C19 /* ApexBackUpController.xib in Resources */,
@@ -827,6 +846,7 @@
 				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
 				E33A8BBE20AE7D9F0067505E /* ApexRPCClient.m in Sources */,
 				E3263EBF20B54A41001D3C19 /* ApexSwitchHeaderBar.m in Sources */,
+				E3CE669020BD3B56002A1E07 /* ApexTransferCell.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
@@ -857,6 +877,7 @@
 				E33A8BAA20AE77B10067505E /* ApexAssetController.m in Sources */,
 				E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */,
 				E3263ED220B666CA001D3C19 /* ApexWalletManageDetailController.m in Sources */,
+				E3CE668A20BD34B7002A1E07 /* ApexTransactionDetailController.m in Sources */,
 				E3263ED520B6870C001D3C19 /* ApexPrepareBackUpController.m in Sources */,
 				E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */,
 				E33A8B7920AE75500067505E /* LXDScanCodeController.m in Sources */,
@@ -869,6 +890,7 @@
 				E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */,
 				E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */,
 				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,
+				E3CE668D20BD38BC002A1E07 /* ApexTransferDetailHeader.m in Sources */,
 				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,
 				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
 				E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */,

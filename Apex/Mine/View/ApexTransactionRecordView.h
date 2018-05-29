@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define RouteNameEvent_TransactionRecordDetail @"RouteNameEvent_TransactionRecordDetail"
 @interface ApexTransactionRecordView : UIView
 
 - (void)reloadTransactionData;

@@ -136,6 +136,8 @@
             txRecordModel.toAddress = self.toAddressTF.text;
             txRecordModel.value = self.sendNumTF.text;
             txRecordModel.data = tx.data;
+            float timestamp = [NSDate dateWithTimeIntervalSince1970:0].timeIntervalSince1970;
+            txRecordModel.timeStamp = [NSString stringWithFormat:@"%f",timestamp];
             [self saveTX:txRecordModel];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
