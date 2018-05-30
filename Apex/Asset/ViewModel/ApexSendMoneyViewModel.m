@@ -11,6 +11,6 @@
 
 @implementation ApexSendMoneyViewModel
 - (void)getUtxoSuccess:(void (^)(CYLResponse *response))successBlock fail:(void (^)(NSError *error))failBlock{
-    [CYLNetWorkManager GET:@"/utxo" parameter:self.address success:successBlock fail:failBlock];
+    [CYLNetWorkManager GET:@"/utxos" parameter:@{@"address":self.address} success:successBlock fail:failBlock];
 }
 @end

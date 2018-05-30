@@ -8,14 +8,17 @@
 
 #import "ApexMnemonicFlowLayout.h"
 
+#define LineSpacing 5
+#define InteritemSpacing 5
+
 @implementation ApexMnemonicFlowLayout
 
 -(void)prepareLayout{
     [super prepareLayout];
     self.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.estimatedItemSize = CGSizeMake(70, 30);
-    self.minimumLineSpacing = 10;
-    self.minimumInteritemSpacing = 10;
+    self.minimumLineSpacing = LineSpacing;
+    self.minimumInteritemSpacing = InteritemSpacing;
 }
 
 /**
@@ -54,7 +57,7 @@
         if (currentAttribute.frame.origin.x != firstAttribute.frame.origin.x) {
             UICollectionViewLayoutAttributes *previousAttribute = attributes[i-1];
             CGRect frame = currentAttribute.frame;
-            frame.origin.x = CGRectGetMaxX(previousAttribute.frame)+ 10;
+            frame.origin.x = CGRectGetMaxX(previousAttribute.frame)+ InteritemSpacing;
             currentAttribute.frame = frame;
             
         }

@@ -37,7 +37,7 @@
 #pragma mark - ------private------
 - (void)initUI{
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"备份钱包";
+    self.title = @"创建钱包";
     
     [self.view addSubview:self.imageV];
     [self.view addSubview:self.tipL];

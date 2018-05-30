@@ -42,7 +42,7 @@
 - (UILabel *)toAddressL{
     if (!_toAddressL) {
         _toAddressL = [[UILabel alloc] init];
-        _toAddressL.text = @"钱包地址";
+        _toAddressL.text = @"转账地址";
         _toAddressL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
         _toAddressL.textColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1];
     }

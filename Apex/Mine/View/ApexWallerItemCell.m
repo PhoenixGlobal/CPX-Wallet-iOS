@@ -21,7 +21,9 @@
     [super awakeFromNib];
     self.layer.cornerRadius = 6;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.backupTipBtn.layer.borderColor = [UIColor colorWithHexString:@"666666"].CGColor;
+    
+    [self.backupTipBtn setTitleColor:[UIColor colorWithHexString:@"B3D38D"] forState:UIControlStateNormal];
+    self.backupTipBtn.layer.borderColor = [UIColor colorWithHexString:@"B3D38D"].CGColor;
     self.backupTipBtn.layer.borderWidth = 1.0/kScale;
     self.backupTipBtn.layer.cornerRadius = 9;
 }

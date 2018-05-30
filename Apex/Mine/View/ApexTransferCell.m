@@ -22,30 +22,55 @@
     [self addSubview:self.amountL];
     [self addSubview:self.timeStampL];
     
+    [self.amountL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.centerX.equalTo(self.mas_centerX);
+    }];
+    
     [self.toAddressL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
         make.left.equalTo(self).offset(scaleWidth375(25));
-        make.right.lessThanOrEqualTo(self.amountL.mas_left);
+        make.right.equalTo(self.amountL.mas_left).offset(-35);
     }];
     
-    [self.amountL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.mas_centerY);
-        make.left.equalTo(self.toAddressL.mas_right).offset(scaleWidth375(84));
-    }];
     
     [self.timeStampL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
-        make.right.equalTo(self).offset(scaleWidth375(50));
-        make.left.lessThanOrEqualTo(self.amountL.mas_right);
+        make.right.equalTo(self).offset(scaleWidth375(-50));
     }];
 }
 
+- (void)setModel:(ApexTXRecorderModel *)model{
+    _model = model;
+    _toAddressL.text = model.toAddress;
+    _amountL.text = model.value;
+    [self caculatePeriod];
+}
+
+- (void)caculatePeriod{
+    CGFloat timeStamp = self.model.timeStamp.floatValue;
+    CGFloat now = [[NSDate date] timeIntervalSince1970];
+    CGFloat period = now - timeStamp;
+    if (period <= 60) {
+        _timeStampL.text = [NSString stringWithFormat:@"%.0f秒前",period];
+    }
+    
+    if (period > 60 && period < 3600) {
+        _timeStampL.text = [NSString stringWithFormat:@"%.0f分钟前",period/60.0];
+    }
+    
+    if (period > 3600 && period < 86400) {
+        _timeStampL.text = [NSString stringWithFormat:@"%.0f小时前",period/3600.0];
+    }
+    
+}
 
 #pragma mark - setter getter
 - (UILabel *)toAddressL{
     if (!_toAddressL) {
         _toAddressL = [[UILabel alloc] init];
         _toAddressL.text = @"钱包地址";
+        _toAddressL.lineBreakMode = NSLineBreakByTruncatingMiddle;
         _toAddressL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
         _toAddressL.textColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1];
     }
@@ -65,7 +90,7 @@
 - (UILabel *)timeStampL{
     if (!_timeStampL) {
         _timeStampL = [[UILabel alloc] init];
-        _timeStampL.text = @"交易时间";
+        _timeStampL.text = @"0000";
         _timeStampL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
         _timeStampL.textColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1];
     }

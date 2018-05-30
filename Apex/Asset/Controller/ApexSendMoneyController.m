@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *fromAddressL;
 @property (weak, nonatomic) IBOutlet UITextField *sendNumTF;
 @property (weak, nonatomic) IBOutlet UITextField *toAddressTF;
-@property (weak, nonatomic) IBOutlet UITextField *txidTF;
 @property (weak, nonatomic) IBOutlet UITextField *passWordL;
 
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
@@ -51,7 +50,7 @@
     self.fromAddressL.text = self.walletAddress;
     self.toAddressTF.text = self.toAddressIfHave;
     [ApexUIHelper addLineInView:self.sendNumTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
-    [ApexUIHelper addLineInView:self.txidTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
+    
     [ApexUIHelper addLineInView:self.passWordL color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
     self.sendBtn.layer.cornerRadius = 6;
@@ -71,74 +70,39 @@
         return;
     }
     
-    NSString *txid = self.txidTF.text;
-    if ([txid hasPrefix:@"0x"]) {
-        txid = [txid substringFromIndex:2];
-    }
-    
+    @weakify(self);
     [self.viewModel getUtxoSuccess:^(CYLResponse *response) {
+        @strongify(self);
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+        NSArray *unspendArr = dict[@"result"];
+//        unspendArr = [self prepareUnspend:unspendArr];
+        NSData *data = [NSJSONSerialization dataWithJSONObject:unspendArr options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
-        NSString *unspend = response.returnObj[@"result"];
-        NSLog(@"%@",unspend);
-//        NeomobileTx *tx = [self.wallet createAssertTx:theVout.asset from:_wallet.address to:self.toAddressTF.text amount:_sendNumTF.text.doubleValue unspent:unspend error:&err];
-//        if (err) {
-//            [self showMessage:@"tx生成失败"];
-//        }else{
-//            [self broadCastTransaction:tx];
-//        }
+        NSError *err = nil;
+        NeomobileTx *tx = [self.wallet createAssertTx:neo_assetid from:self.wallet.address to:self.toAddressTF.text amount:self.sendNumTF.text.doubleValue unspent:unspendStr error:&err];
+        if (err) {
+            [self showMessage:@"tx生成失败"];
+        }else{
+            [self broadCastTransaction:tx];
+        }
         
     } fail:^(NSError *error) {
-        
+        [self showMessage:@"tx获取失败"];
     }];
-    
-//    @weakify(self);
-//    [ApexWalletManager getRawTransactionWithTxid:txid Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        @strongify(self);
-//        self.txidModel = [ApexTXIDModel yy_modelWithDictionary:responseObject];
-//        [self blockIndexSearch:self.txidModel.blockhash];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [self showMessage:[NSString stringWithFormat:@"获取utxo失败:%@",error]];
-//    }];
 }
 
-//- (void)blockIndexSearch:(NSString*)blockHash{
-//    [[ApexRPCClient shareRPCClient] invokeMethod:@"getblock" withParameters:@[blockHash,@1] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        self.confirmBlock = responseObject[@"index"];
-//        [self creatUTXO];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [self showMessage:[NSString stringWithFormat:@"获取blockIndex失败:%@",error]];
-//    }];
-//}
-//
-//- (void)creatUTXO{
-//
-//    VoutObject *theVout = nil;
-//    for (VoutObject *vout in self.txidModel.vout) {
-//        if (vout.value.doubleValue >= self.sendNumTF.text.doubleValue && [vout.address isEqualToString:self.fromAddressL.text]) {
-//            theVout = vout;
-//        }
+//- (NSArray*)prepareUnspend:(NSArray*)unspendArr{
+//    NSMutableArray *tempArr = [NSMutableArray array];
+//    for (NSDictionary *dic in unspendArr) {
+//        NSMutableDictionary *muDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+//        muDic[@"spentBlock"] = @(-1);
+//        muDic[@"spentTime"] = @"";
+//        NSNumber *creatTime = muDic[@"createTime"];
+//        muDic[@"createTime"] = @"2018-05-30T14:02:39Z";
+//        [tempArr addObject:muDic];
 //    }
-//
-//    if (!theVout) {
-//        [self showMessage:@"vout获取失败,或者您没有足够余额"];
-//        return;
-//    }
-//
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"yyyy-MM-dd/HH:mm:ss,"];
-//    NSString *createTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.txidModel.blocktime.integerValue]];
-//    createTime = [createTime stringByReplacingOccurrencesOfString:@"/" withString:@"T"];
-//    createTime = [createTime stringByReplacingOccurrencesOfString:@"," withString:@"Z"];
-//
-//    NSError *err = nil;
-//    NSString *unspend = [NSString stringWithFormat:@"[{\"txid\":\"%@\",\"block\": %@,\"vout\": {\"Address\": \"%@\",\"Asset\": \"%@\",\"Value\": \"%@\",\"N\": %@},\"spentBlock\": -1,\"spentTime\": \"\",\"createTime\": \"%@\",\"gas\": \"\"}]",self.txidModel.txid,self.confirmBlock.stringValue,theVout.address,theVout.asset,theVout.value,theVout.n,createTime];
-//    NSLog(@"%@",unspend);
-//    NeomobileTx *tx = [self.wallet createAssertTx:theVout.asset from:_wallet.address to:self.toAddressTF.text amount:_sendNumTF.text.doubleValue unspent:unspend error:&err];
-//    if (err) {
-//        [self showMessage:@"tx生成失败"];
-//    }else{
-//        [self broadCastTransaction:tx];
-//    }
+//    return tempArr;
 //}
 
 - (void)broadCastTransaction:(NeomobileTx*)tx{
@@ -152,7 +116,7 @@
             txRecordModel.toAddress = self.toAddressTF.text;
             txRecordModel.value = self.sendNumTF.text;
             txRecordModel.data = tx.data;
-            float timestamp = [NSDate dateWithTimeIntervalSince1970:0].timeIntervalSince1970;
+            float timestamp = [[NSDate date] timeIntervalSince1970];
             txRecordModel.timeStamp = [NSString stringWithFormat:@"%f",timestamp];
             [self saveTX:txRecordModel];
             [self.navigationController popToRootViewControllerAnimated:YES];

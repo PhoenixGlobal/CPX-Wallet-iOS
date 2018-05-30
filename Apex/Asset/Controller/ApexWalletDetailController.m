@@ -84,8 +84,8 @@
     [self.balanceL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(70);
         make.centerX.equalTo(self.view.mas_centerX);
-        make.width.mas_equalTo(scaleWidth375(50));
-        make.height.mas_equalTo(scaleHeight667(60));
+//        make.width.mas_equalTo(scaleWidth375(50));
+//        make.height.mas_equalTo(scaleHeight667(60));
     }];
     
     [self.unitL mas_makeConstraints:^(MASConstraintMaker *make) {

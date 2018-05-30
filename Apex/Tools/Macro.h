@@ -22,6 +22,11 @@
 #define KEYCHAIN_KEY(address) [NSString stringWithFormat:@"%@", address]
 #define TXRECORD_KEY @"TXRECORD_KEY"
 
+#define baseUrl @"http://40.125.171.0:8083"
+
+#define neo_assetid @"0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"
+#define neoGas_Assetid @"0x602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"
+
 #define mnemonicEnglish @"en_US"
 #define mnemonicChianese @"zh_CN"
 #endif /* Macro_h */

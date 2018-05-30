@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#define baseUrl @"http://40.125.171.0:20332"
+#define BlockChainBaseUrl @"http://40.125.171.0:20332"
 
 @class AFHTTPRequestOperation;
 @interface ApexRPCClient : NSObject
