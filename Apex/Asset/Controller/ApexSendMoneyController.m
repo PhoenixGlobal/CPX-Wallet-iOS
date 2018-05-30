@@ -10,8 +10,9 @@
 #import "ApexTXIDModel.h"
 #import "ApexTXRecorderModel.h"
 #import "ApexSendMoneyViewModel.h"
+#import "LXDScanCodeController.h"
 
-@interface ApexSendMoneyController ()
+@interface ApexSendMoneyController ()<LXDScanCodeControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
 @property (weak, nonatomic) IBOutlet UILabel *fromAddressL;
 @property (weak, nonatomic) IBOutlet UITextField *sendNumTF;
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passWordL;
 
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
+@property (nonatomic, strong) UIButton *scanBtn;
 
 @property (nonatomic, strong) ApexSendMoneyViewModel *viewModel;
 @property (nonatomic, strong) NSNumber *confirmBlock;
@@ -33,6 +35,8 @@
     [super viewDidLoad];
     
     [self setUI];
+    
+    [self handleEvent];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -49,6 +53,8 @@
     self.walletNameL.text = self.walletName;
     self.fromAddressL.text = self.walletAddress;
     self.toAddressTF.text = self.toAddressIfHave;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.scanBtn];
+    
     [ApexUIHelper addLineInView:self.sendNumTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
     [ApexUIHelper addLineInView:self.passWordL color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
@@ -75,7 +81,6 @@
         @strongify(self);
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
         NSArray *unspendArr = dict[@"result"];
-//        unspendArr = [self prepareUnspend:unspendArr];
         NSData *data = [NSJSONSerialization dataWithJSONObject:unspendArr options:NSJSONWritingPrettyPrinted error:nil];
         NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
@@ -91,19 +96,6 @@
         [self showMessage:@"tx获取失败"];
     }];
 }
-
-//- (NSArray*)prepareUnspend:(NSArray*)unspendArr{
-//    NSMutableArray *tempArr = [NSMutableArray array];
-//    for (NSDictionary *dic in unspendArr) {
-//        NSMutableDictionary *muDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-//        muDic[@"spentBlock"] = @(-1);
-//        muDic[@"spentTime"] = @"";
-//        NSNumber *creatTime = muDic[@"createTime"];
-//        muDic[@"createTime"] = @"2018-05-30T14:02:39Z";
-//        [tempArr addObject:muDic];
-//    }
-//    return tempArr;
-//}
 
 - (void)broadCastTransaction:(NeomobileTx*)tx{
     [ApexWalletManager broadCastTransactionWithData:tx.data Success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -142,8 +134,20 @@
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
+- (void)scanCodeController:(LXDScanCodeController *)scanCodeController codeInfo:(NSString *)codeInfo{
+
+    NSString *toaddress = codeInfo;
+    self.toAddressTF.text = toaddress;
+}
 
 #pragma mark - ------eventResponse------
+- (void)handleEvent{
+    [[self.scanBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        LXDScanCodeController *scanvc = [[LXDScanCodeController alloc] init];
+        scanvc.scanDelegate = self;
+        [self.navigationController pushViewController:scanvc animated:YES];
+    }];
+}
 
 - (IBAction)sendAction:(id)sender {
     [self utxoSearch];
@@ -155,5 +159,13 @@
         _viewModel.address = self.walletAddress;
     }
     return _viewModel;
+}
+
+- (UIButton *)scanBtn{
+    if (!_scanBtn) {
+        _scanBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        [_scanBtn setImage:[UIImage imageNamed:@"Group 3-3"] forState:UIControlStateNormal];
+    }
+    return _scanBtn;
 }
 @end

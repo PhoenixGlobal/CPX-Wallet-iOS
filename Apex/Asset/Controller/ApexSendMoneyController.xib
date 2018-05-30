@@ -58,23 +58,23 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PcI-AE-Hy2">
-                    <rect key="frame" x="10" y="203" width="355" height="1"/>
+                    <rect key="frame" x="10" y="217" width="355" height="1"/>
                     <color key="backgroundColor" red="0.87431185229999997" green="0.87431185229999997" blue="0.87431185229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="ePe-bN-Vvw"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ktC-Gs-G15">
-                    <rect key="frame" x="10" y="268" width="355" height="1"/>
+                    <rect key="frame" x="10" y="282" width="355" height="1"/>
                     <color key="backgroundColor" red="0.87431185229999997" green="0.87431185229999997" blue="0.87431185229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="RBf-BR-GW6"/>
                     </constraints>
                 </view>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" placeholder="交易金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etF-Lv-HfZ">
-                    <rect key="frame" x="72.5" y="229" width="230" height="25"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="交易金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etF-Lv-HfZ">
+                    <rect key="frame" x="72.5" y="243" width="230" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="25" id="kNf-f1-huT"/>
+                        <constraint firstAttribute="height" constant="30" id="kNf-f1-huT"/>
                         <constraint firstAttribute="width" constant="230" id="olQ-ru-xJM"/>
                     </constraints>
                     <nil key="textColor"/>
@@ -82,7 +82,7 @@
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7P1-rl-7hL">
-                    <rect key="frame" x="307.5" y="233.5" width="25" height="16"/>
+                    <rect key="frame" x="307.5" y="249.5" width="25" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -102,13 +102,16 @@
                     </connections>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入转账地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W34-dx-B05">
-                    <rect key="frame" x="15" y="177" width="345" height="16"/>
+                    <rect key="frame" x="15" y="177" width="345" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="XjC-LS-vIV"/>
+                    </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入钱包密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7tc-25-Rf2">
-                    <rect key="frame" x="15" y="321" width="345" height="30"/>
+                    <rect key="frame" x="15" y="335" width="345" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="P89-M1-3ku"/>
                     </constraints>
@@ -117,7 +120,7 @@
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="钱包密码:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZJ-fZ-S1s">
-                    <rect key="frame" x="15" y="284" width="78.5" height="22"/>
+                    <rect key="frame" x="15" y="298" width="78.5" height="22"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

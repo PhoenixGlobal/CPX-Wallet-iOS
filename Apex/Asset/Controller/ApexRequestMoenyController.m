@@ -39,7 +39,7 @@
     self.title = @"收款";
     self.addressL.text = self.walletAddress;
     self.walletNameL.text = self.walletName;
-    self.QRImageV.image = [self scanCodeGenerator:[NSString stringWithFormat:@"%@%@",commonScheme,self.walletAddress]];
+    self.QRImageV.image = [self scanCodeGenerator:[NSString stringWithFormat:@"%@",self.walletAddress]];
     
     [self.requestNumTF addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     

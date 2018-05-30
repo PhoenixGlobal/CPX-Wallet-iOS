@@ -73,7 +73,7 @@
         make.left.equalTo(self.view).offset(35);
         make.top.equalTo(self.backIV.mas_bottom).offset(20);
         make.width.mas_equalTo(scaleWidth375(150));
-        make.height.mas_equalTo(scaleHeight667(40));
+        make.height.mas_equalTo(40);
     }];
     
     [self.requestBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -119,15 +119,16 @@
 #pragma mark - ------delegate & datasource------
 - (void)scanCodeController:(LXDScanCodeController *)scanCodeController codeInfo:(NSString *)codeInfo{
     
-    if (![codeInfo containsString:commonScheme]) {
-        [self showMessage:@"未识别的二维码"];
-        return;
-    }
+//    if (![codeInfo containsString:commonScheme]) {
+//        [self showMessage:@"未识别的二维码"];
+//        return;
+//    }
+    NSString *toaddress = codeInfo;
     
     ApexSendMoneyController *svc = [[ApexSendMoneyController alloc] init];
     svc.walletAddress = self.walletAddress;
     svc.walletName = self.walletName;
-    svc.toAddressIfHave = [codeInfo stringByReplacingOccurrencesOfString:commonScheme withString:@""];
+    svc.toAddressIfHave = toaddress;
     [self.navigationController pushViewController:svc animated:YES];
 }
 
