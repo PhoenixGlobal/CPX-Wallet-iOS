@@ -17,6 +17,9 @@
 }
 
 - (void)initUI{
+    self.backgroundColor = [UIColor whiteColor];
+    [ApexUIHelper addLineInView:self color:UIColorHex(dddddd) edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
+    
     [self addSubview:self.toAddressL];
     [self addSubview:self.amountL];
     [self addSubview:self.timeStampL];

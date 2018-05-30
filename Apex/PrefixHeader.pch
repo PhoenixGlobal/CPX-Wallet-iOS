@@ -26,6 +26,7 @@
 #import "UINavigationController+ApexNavigationBar.h"
 #import "UIView+Common.h"
 #import "UIButton+EnlargeTouchArea.h"
+#import "DateTools.h"
 
 /**< other */
 #import "ApexUIHelper.h"

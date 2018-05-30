@@ -30,10 +30,15 @@
 singleM(SharedManager);
 
 - (void)prepare{
-    [self lookingForSeed];
+    NSTimer *timer = [NSTimer timerWithTimeInterval:5*60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+       [self lookingForSeed];
+    }];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    [timer fire];
 }
 
 - (void)lookingForSeed{
+    NSLog(@"seed");
     [self.neoScanManager GET:neoScanNodesUrl parameters:@"" success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [self getInfoFromChain:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

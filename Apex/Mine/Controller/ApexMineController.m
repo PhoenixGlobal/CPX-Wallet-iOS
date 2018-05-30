@@ -48,7 +48,7 @@
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(scaleHeight667(192));
+        make.height.mas_equalTo(NavBarHeight + 60);
     }];
     
     [self.swithBar mas_makeConstraints:^(MASConstraintMaker *make) {

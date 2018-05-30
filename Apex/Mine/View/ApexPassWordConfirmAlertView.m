@@ -16,6 +16,7 @@
     customField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     customField.font = [UIFont systemFontOfSize:13];
     customField.borderStyle = UITextBorderStyleRoundedRect;
+    customField.secureTextEntry = YES;
     __block NSString *password = nil;
     [alert addTextFieldWithCustomTextField:customField andPlaceholder:@"Password" andTextReturnBlock:^(NSString *text) {
         password = text;

@@ -80,6 +80,9 @@
 
 #pragma mark - action
 - (void)selectLeftBtn{
+    if (self.leftBtn.selected) {
+        return;
+    }
     self.leftBtn.backgroundColor = [UIColor whiteColor];
     self.rightBtn.backgroundColor = [ApexUIHelper subThemeColor];
     self.leftBtn.selected = YES;
@@ -89,6 +92,9 @@
 }
 
 - (void)selectRightBtn{
+    if (self.rightBtn.selected) {
+        return;
+    }
     self.rightBtn.backgroundColor = [UIColor whiteColor];
     self.leftBtn.backgroundColor = [ApexUIHelper subThemeColor];
     self.rightBtn.selected = YES;

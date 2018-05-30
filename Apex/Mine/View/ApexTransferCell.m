@@ -22,6 +22,8 @@
     [self addSubview:self.amountL];
     [self addSubview:self.timeStampL];
     
+     [ApexUIHelper addLineInView:self color:UIColorHex(dddddd) edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
+    
     [self.amountL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
         make.centerX.equalTo(self.mas_centerX);
@@ -59,8 +61,13 @@
         _timeStampL.text = [NSString stringWithFormat:@"%.0f分钟前",period/60.0];
     }
     
-    if (period > 3600 && period < 86400) {
+    if (period > 3600 && period <= 86400) {
         _timeStampL.text = [NSString stringWithFormat:@"%.0f小时前",period/3600.0];
+    }
+    
+    if (period > 86400) {
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+        _timeStampL.text = [NSString stringWithFormat:@"%ld年%ld月%ld日",(long)date.year,date.month,date.day];
     }
     
 }
