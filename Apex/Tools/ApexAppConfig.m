@@ -14,10 +14,16 @@
     [self configKeyBoard];
     
     [self configBlockChainManager];
+    
+    [self configNetWork];
 }
 
 + (void)configBlockChainManager{
     [[ApexBlockChainManager shareSharedManager] prepare];
+}
+
++ (void)configNetWork{
+    [[CYLNetWorkManager shareInstance] setBaseUrl:[NSURL URLWithString:baseUrl]];
 }
 
 + (void)configKeyBoard{

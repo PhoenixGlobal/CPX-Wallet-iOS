@@ -9,10 +9,13 @@
 #import "ApexMnemonicConfirmController.h"
 #import "ApexMnemonicCell.h"
 #import "ApexMnemonicFlowLayout.h"
+#import "ApexMnenonicShowView.h"
 
 @interface ApexMnemonicConfirmController ()<UICollectionViewDelegate, UICollectionViewDataSource>
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+//@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet ApexMnenonicShowView *showCollectionView;
+
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 @property (nonatomic, strong) NSArray *contentArr;
 @property (nonatomic, strong) NSMutableArray *choosenArr;
@@ -47,19 +50,10 @@
     
     [_collectionView registerClass:[ApexMnemonicCell class] forCellWithReuseIdentifier:@"cell"];
     
-    self.textView.layer.cornerRadius = 3;
-    self.textView.layer.shadowColor = [UIColor darkGrayColor].CGColor;
-    self.textView.layer.shadowOffset = CGSizeMake(0, 1);
-    self.textView.layer.shadowOpacity = 0.63;
-    self.textView.userInteractionEnabled = NO;
-    
-    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-    paragraphStyle.lineSpacing = 1.5;// 字体的行间距
-    NSDictionary *attributes = @{
-                                 NSFontAttributeName:[UIFont systemFontOfSize:17],
-                                 NSParagraphStyleAttributeName:paragraphStyle
-                                 };
-    _textView.typingAttributes = attributes;
+    self.showCollectionView.layer.cornerRadius = 3;
+    self.showCollectionView.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+    self.showCollectionView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.showCollectionView.layer.shadowOpacity = 0.63;
     
     self.confirmBtn.layer.cornerRadius = 6;
     
@@ -92,6 +86,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ApexMnemonicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     cell.mnemonicStr = self.contentArr[indexPath.row];
+    if ([self.choosenArr containsObject:cell.mnemonicStr]) {
+        cell.choose = YES;
+    }else{
+        cell.choose = NO;
+    }
     return cell;
 }
 
@@ -101,16 +100,18 @@
     
     if (cell.choose) {
         [_choosenArr addObject:cell.mnemonicStr];
+        [self.showCollectionView addNewWord:cell.mnemonicStr];
     }else{
         [_choosenArr removeObject:cell.mnemonicStr];
+        [self.showCollectionView deleteWord:cell.mnemonicStr];
     }
     
-    self.textView.text = [_choosenArr componentsJoinedByString:@" "];
 }
 
 #pragma mark - ------eventResponse------
 - (IBAction)confirmAction:(id)sender {
-    if ([self.textView.text isEqualToString:self.mnemonic]) {
+    NSString *mnemonic = [self.choosenArr componentsJoinedByString:@" "];
+    if ([mnemonic isEqualToString:self.mnemonic]) {
         [self showMessage:@"备份成功"];
         [ApexWalletManager setBackupFinished:self.address];
         if (self.BackupCompleteBlock) {
@@ -119,6 +120,14 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
         [self showMessage:@"备份失败"];
+    }
+}
+
+- (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
+    if ([eventName isEqualToString:RouteNameEvent_ShowViewDidDeselectWord]) {
+        NSString *mnemonic = userinfo[@"mnemonic"];
+        [self.choosenArr removeObject:mnemonic];
+        [self.collectionView reloadData];
     }
 }
 #pragma mark - ------getter & setter------

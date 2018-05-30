@@ -9,6 +9,7 @@
 #import "ApexSendMoneyController.h"
 #import "ApexTXIDModel.h"
 #import "ApexTXRecorderModel.h"
+#import "ApexSendMoneyViewModel.h"
 
 @interface ApexSendMoneyController ()
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
@@ -20,7 +21,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 
-
+@property (nonatomic, strong) ApexSendMoneyViewModel *viewModel;
 @property (nonatomic, strong) NSNumber *confirmBlock;
 @property (nonatomic, strong) ApexTXIDModel *txidModel;
 @property (nonatomic, strong) NeomobileWallet *wallet;
@@ -57,7 +58,7 @@
 }
 
 - (void)utxoSearch{
-    if (_txidTF.text.length == 0 || _passWordL.text.length == 0 || _toAddressTF.text.length == 0) {
+    if (_passWordL.text.length == 0 || _toAddressTF.text.length == 0) {
         [self showMessage:@"请填写完整信息"];
         return;
     }
@@ -75,55 +76,70 @@
         txid = [txid substringFromIndex:2];
     }
     
-    @weakify(self);
-    [ApexWalletManager getRawTransactionWithTxid:txid Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        @strongify(self);
-        self.txidModel = [ApexTXIDModel yy_modelWithDictionary:responseObject];
-        [self blockIndexSearch:self.txidModel.blockhash];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showMessage:[NSString stringWithFormat:@"获取utxo失败:%@",error]];
+    [self.viewModel getUtxoSuccess:^(CYLResponse *response) {
+        
+        NSString *unspend = response.returnObj[@"result"];
+        NSLog(@"%@",unspend);
+//        NeomobileTx *tx = [self.wallet createAssertTx:theVout.asset from:_wallet.address to:self.toAddressTF.text amount:_sendNumTF.text.doubleValue unspent:unspend error:&err];
+//        if (err) {
+//            [self showMessage:@"tx生成失败"];
+//        }else{
+//            [self broadCastTransaction:tx];
+//        }
+        
+    } fail:^(NSError *error) {
+        
     }];
+    
+//    @weakify(self);
+//    [ApexWalletManager getRawTransactionWithTxid:txid Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        @strongify(self);
+//        self.txidModel = [ApexTXIDModel yy_modelWithDictionary:responseObject];
+//        [self blockIndexSearch:self.txidModel.blockhash];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [self showMessage:[NSString stringWithFormat:@"获取utxo失败:%@",error]];
+//    }];
 }
 
-- (void)blockIndexSearch:(NSString*)blockHash{
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"getblock" withParameters:@[blockHash,@1] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        self.confirmBlock = responseObject[@"index"];
-        [self creatUTXO];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showMessage:[NSString stringWithFormat:@"获取blockIndex失败:%@",error]];
-    }];
-}
-
-- (void)creatUTXO{
-    
-    VoutObject *theVout = nil;
-    for (VoutObject *vout in self.txidModel.vout) {
-        if (vout.value.doubleValue >= self.sendNumTF.text.doubleValue && [vout.address isEqualToString:self.fromAddressL.text]) {
-            theVout = vout;
-        }
-    }
-    
-    if (!theVout) {
-        [self showMessage:@"vout获取失败,或者您没有足够余额"];
-        return;
-    }
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd/HH:mm:ss,"];
-    NSString *createTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.txidModel.blocktime.integerValue]];
-    createTime = [createTime stringByReplacingOccurrencesOfString:@"/" withString:@"T"];
-    createTime = [createTime stringByReplacingOccurrencesOfString:@"," withString:@"Z"];
-
-    NSError *err = nil;
-    NSString *unspend = [NSString stringWithFormat:@"[{\"txid\":\"%@\",\"block\": %@,\"vout\": {\"Address\": \"%@\",\"Asset\": \"%@\",\"Value\": \"%@\",\"N\": %@},\"spentBlock\": -1,\"spentTime\": \"\",\"createTime\": \"%@\",\"gas\": \"\"}]",self.txidModel.txid,self.confirmBlock.stringValue,theVout.address,theVout.asset,theVout.value,theVout.n,createTime];
-    NSLog(@"%@",unspend);
-    NeomobileTx *tx = [self.wallet createAssertTx:theVout.asset from:_wallet.address to:self.toAddressTF.text amount:_sendNumTF.text.doubleValue unspent:unspend error:&err];
-    if (err) {
-        [self showMessage:@"tx生成失败"];
-    }else{
-        [self broadCastTransaction:tx];
-    }
-}
+//- (void)blockIndexSearch:(NSString*)blockHash{
+//    [[ApexRPCClient shareRPCClient] invokeMethod:@"getblock" withParameters:@[blockHash,@1] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        self.confirmBlock = responseObject[@"index"];
+//        [self creatUTXO];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [self showMessage:[NSString stringWithFormat:@"获取blockIndex失败:%@",error]];
+//    }];
+//}
+//
+//- (void)creatUTXO{
+//
+//    VoutObject *theVout = nil;
+//    for (VoutObject *vout in self.txidModel.vout) {
+//        if (vout.value.doubleValue >= self.sendNumTF.text.doubleValue && [vout.address isEqualToString:self.fromAddressL.text]) {
+//            theVout = vout;
+//        }
+//    }
+//
+//    if (!theVout) {
+//        [self showMessage:@"vout获取失败,或者您没有足够余额"];
+//        return;
+//    }
+//
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy-MM-dd/HH:mm:ss,"];
+//    NSString *createTime = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.txidModel.blocktime.integerValue]];
+//    createTime = [createTime stringByReplacingOccurrencesOfString:@"/" withString:@"T"];
+//    createTime = [createTime stringByReplacingOccurrencesOfString:@"," withString:@"Z"];
+//
+//    NSError *err = nil;
+//    NSString *unspend = [NSString stringWithFormat:@"[{\"txid\":\"%@\",\"block\": %@,\"vout\": {\"Address\": \"%@\",\"Asset\": \"%@\",\"Value\": \"%@\",\"N\": %@},\"spentBlock\": -1,\"spentTime\": \"\",\"createTime\": \"%@\",\"gas\": \"\"}]",self.txidModel.txid,self.confirmBlock.stringValue,theVout.address,theVout.asset,theVout.value,theVout.n,createTime];
+//    NSLog(@"%@",unspend);
+//    NeomobileTx *tx = [self.wallet createAssertTx:theVout.asset from:_wallet.address to:self.toAddressTF.text amount:_sendNumTF.text.doubleValue unspent:unspend error:&err];
+//    if (err) {
+//        [self showMessage:@"tx生成失败"];
+//    }else{
+//        [self broadCastTransaction:tx];
+//    }
+//}
 
 - (void)broadCastTransaction:(NeomobileTx*)tx{
     [ApexWalletManager broadCastTransactionWithData:tx.data Success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -169,5 +185,11 @@
     [self utxoSearch];
 }
 #pragma mark - ------getter & setter------
-
+- (ApexSendMoneyViewModel *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [[ApexSendMoneyViewModel alloc] init];
+        _viewModel.address = self.walletAddress;
+    }
+    return _viewModel;
+}
 @end

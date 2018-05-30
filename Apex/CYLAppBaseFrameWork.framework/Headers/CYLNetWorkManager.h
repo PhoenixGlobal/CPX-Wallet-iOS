@@ -19,7 +19,6 @@ typedef NS_ENUM(NSInteger,CYLNetWorkStatus) {
     CYLNetWorkStatus_Celluler,
     CYLNetWorkStatus_Wifi
 };
-
 @interface CYLNetWorkManager : NSObject
 + (instancetype)shareInstance;
 - (void)setBaseUrl:(NSURL*)baseurl;
