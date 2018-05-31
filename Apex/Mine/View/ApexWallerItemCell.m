@@ -46,7 +46,7 @@
         @strongify(self);
         self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
         //延时加载
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.accountModel.balances.count == 0 ? (self.valueL.text = @"0") : (self.valueL.text = self.accountModel.balances.firstObject.value);
         });
         if (self.didFinishRequestBalanceSub) {

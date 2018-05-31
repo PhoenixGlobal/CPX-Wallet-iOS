@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEL-Ln-bbQ">
-                        <rect key="frame" x="10" y="20" width="46.5" height="23"/>
+                        <rect key="frame" x="15" y="20" width="46.5" height="23"/>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmA-y8-kXZ">
-                        <rect key="frame" x="10" y="53" width="33" height="16"/>
+                        <rect key="frame" x="15" y="53" width="33" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -56,16 +56,16 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="WPl-uK-b1j" secondAttribute="trailing" constant="120" id="2T8-BQ-CQS"/>
                 <constraint firstItem="WPl-uK-b1j" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="3aT-Ya-VjI"/>
-                <constraint firstItem="aEL-Ln-bbQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="DHP-I7-nfD"/>
+                <constraint firstItem="aEL-Ln-bbQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="DHP-I7-nfD"/>
                 <constraint firstItem="WPl-uK-b1j" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NmA-y8-kXZ" secondAttribute="trailing" constant="15" id="EGH-yj-L4z"/>
                 <constraint firstItem="vUR-Dl-MMZ" firstAttribute="leading" secondItem="WPl-uK-b1j" secondAttribute="trailing" constant="25" id="IaJ-85-wHx"/>
                 <constraint firstItem="4iT-Z9-Ags" firstAttribute="leading" secondItem="vUR-Dl-MMZ" secondAttribute="trailing" constant="5" id="OZI-5X-dsK"/>
                 <constraint firstAttribute="bottom" secondItem="WPl-uK-b1j" secondAttribute="bottom" constant="15" id="Xb7-Oq-vuE"/>
                 <constraint firstItem="4iT-Z9-Ags" firstAttribute="baseline" secondItem="vUR-Dl-MMZ" secondAttribute="baseline" id="Y1Q-MF-Y83"/>
                 <constraint firstItem="aEL-Ln-bbQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="bU6-sY-Bmk"/>
+                <constraint firstItem="NmA-y8-kXZ" firstAttribute="leading" secondItem="aEL-Ln-bbQ" secondAttribute="leading" id="bu5-yA-krZ"/>
                 <constraint firstItem="vUR-Dl-MMZ" firstAttribute="centerY" secondItem="SEy-5g-ep8" secondAttribute="centerY" id="fu9-eN-bg7"/>
                 <constraint firstItem="NmA-y8-kXZ" firstAttribute="top" secondItem="aEL-Ln-bbQ" secondAttribute="bottom" constant="10" id="gHJ-x5-61d"/>
-                <constraint firstItem="NmA-y8-kXZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="voP-jz-2Qj"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <connections>

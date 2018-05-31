@@ -50,7 +50,6 @@
 - (void)setNav{
     self.title = @"资产";
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
-//    self.navigationItem.titleView = self.titleL;
 }
 
 - (void)setUI{
@@ -132,14 +131,16 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    ApexWalletDetailController *dvc = [[ApexWalletDetailController alloc] init];
     ApexWalletCell *cell = (ApexWalletCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    ApexWalletModel *model = _contentArr[indexPath.row];
-    dvc.walletName = model.name;
-    dvc.walletAddress = model.address;
-    dvc.accountModel = [cell getAccountInfo];
-    dvc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:dvc animated:YES];
+    if (!cell.isShowSlide) {
+        ApexWalletDetailController *dvc = [[ApexWalletDetailController alloc] init];
+        ApexWalletModel *model = _contentArr[indexPath.row];
+        dvc.walletName = model.name;
+        dvc.walletAddress = model.address;
+        dvc.accountModel = [cell getAccountInfo];
+        dvc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:dvc animated:YES];
+    }
 }
 
 
