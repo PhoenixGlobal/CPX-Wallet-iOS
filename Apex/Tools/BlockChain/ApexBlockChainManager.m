@@ -9,6 +9,7 @@
 #import "ApexBlockChainManager.h"
 #import <AFNetworking.h>
 #define neoScanNodesUrl @"api/main_net/v1/get_all_nodes"
+#define maxFailTime 10
 
 @interface NeoNodeObject : NSObject
 @property (nonatomic, strong) NSString *url;
@@ -24,27 +25,35 @@
 @interface ApexBlockChainManager()
 @property (nonatomic, strong) NSMutableArray *nodesArr;
 @property (nonatomic, strong) AFHTTPSessionManager *neoScanManager;
+@property (nonatomic, assign) NSInteger failTime;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation ApexBlockChainManager
 singleM(SharedManager);
 
 - (void)prepare{
-    NSTimer *timer = [NSTimer timerWithTimeInterval:5*60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    self.timer = [NSTimer timerWithTimeInterval:5*60 repeats:YES block:^(NSTimer * _Nonnull timer) {
        [self lookingForSeed];
     }];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    [timer fire];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    [self.timer fire];
+    
+    self.failTime = 0;
 }
 
 - (void)lookingForSeed{
-    NSLog(@"seed");
+    
     [self.neoScanManager GET:neoScanNodesUrl parameters:@"" success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        self.failTime > 0 ? (self.failTime -= 1) : (self.failTime = 0);
         [self getInfoFromChain:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self lookingForSeed];
-        });
+        self.failTime += 1;
+        if (self.failTime <= maxFailTime) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self lookingForSeed];
+            });
+        }
     }];
 }
 
@@ -73,7 +82,7 @@ singleM(SharedManager);
             [self.seedsArr addObject:node.url];
         }
     }
-    NSLog(@"");
+    NSLog(@"seeds update seccessful");
 }
 
 #pragma mark - setter getter

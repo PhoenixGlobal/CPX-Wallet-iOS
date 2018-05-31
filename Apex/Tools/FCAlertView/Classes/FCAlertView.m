@@ -8,6 +8,9 @@
 
 #import "FCAlertView.h"
 
+#define separatorLineWidth 1.0/kScale
+#define horizontalLineWidth 1.0/kScale
+
 @implementation FCAlertView
 
 - (id)init
@@ -498,7 +501,7 @@
     UIView* separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                          alertViewFrame.size.height - 47,
                                                                          alertViewFrame.size.width,
-                                                                         2)];
+                                                                         separatorLineWidth)];
     
     separatorLineView.backgroundColor = [UIColor colorWithWhite:100.0f/255.0f alpha:1.0]; // set color as you want.
     if (_darkTheme)
@@ -700,7 +703,7 @@
         
         UIView *horizontalSeparator = [[UIView alloc] initWithFrame:CGRectMake(alertViewFrame.size.width/2 - 1,
                                                                                otherButton.frame.origin.y - 2,
-                                                                               2,
+                                                                             horizontalLineWidth,
                                                                                47)];
         
         horizontalSeparator.backgroundColor = [UIColor colorWithWhite:100.0f/255.0f alpha:1.0]; // set color as you want.

@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ApexSendMoneyController">
             <connections>
                 <outlet property="fromAddressL" destination="zfT-F7-IJd" id="pJh-HT-rPT"/>
-                <outlet property="passWordL" destination="7tc-25-Rf2" id="hJd-Kx-Lf4"/>
                 <outlet property="sendBtn" destination="DBd-ND-UUb" id="pzO-t4-gbg"/>
                 <outlet property="sendNumTF" destination="etF-Lv-HfZ" id="UYq-ry-6sx"/>
                 <outlet property="toAddressTF" destination="W34-dx-B05" id="R5r-mN-51p"/>
@@ -110,34 +109,15 @@
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入钱包密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7tc-25-Rf2">
-                    <rect key="frame" x="15" y="335" width="345" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="P89-M1-3ku"/>
-                    </constraints>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="钱包密码:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZJ-fZ-S1s">
-                    <rect key="frame" x="15" y="298" width="78.5" height="22"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ktC-Gs-G15" secondAttribute="trailing" constant="10" id="0q6-BR-dmg"/>
                 <constraint firstItem="ktC-Gs-G15" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="3dS-JW-1tw"/>
-                <constraint firstItem="2ZJ-fZ-S1s" firstAttribute="leading" secondItem="GGE-Fh-pDF" secondAttribute="leading" id="3fD-HC-yZC"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="7tc-25-Rf2" secondAttribute="trailing" constant="15" id="3mP-i9-8PX"/>
-                <constraint firstItem="7tc-25-Rf2" firstAttribute="leading" secondItem="2ZJ-fZ-S1s" secondAttribute="leading" id="6Lp-ai-6AR"/>
                 <constraint firstItem="DBd-ND-UUb" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="6vB-TK-IY8"/>
                 <constraint firstAttribute="trailing" secondItem="PcI-AE-Hy2" secondAttribute="trailing" constant="10" id="Dp2-wa-Xyt"/>
                 <constraint firstItem="zfT-F7-IJd" firstAttribute="top" secondItem="kC6-Ra-Pzg" secondAttribute="bottom" constant="5" id="Hg3-DW-jhL"/>
                 <constraint firstItem="wkU-ep-3OE" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="10" id="Iue-yI-zF8"/>
-                <constraint firstItem="2ZJ-fZ-S1s" firstAttribute="top" secondItem="ktC-Gs-G15" secondAttribute="bottom" constant="15" id="L6W-LE-mvw"/>
                 <constraint firstItem="W34-dx-B05" firstAttribute="top" secondItem="GGE-Fh-pDF" secondAttribute="bottom" constant="10" id="MQS-MA-EZh"/>
                 <constraint firstItem="7P1-rl-7hL" firstAttribute="baseline" secondItem="etF-Lv-HfZ" secondAttribute="baseline" id="ORf-5p-GwH"/>
                 <constraint firstItem="nxT-xB-leE" firstAttribute="top" secondItem="zfT-F7-IJd" secondAttribute="bottom" constant="15" id="P7D-hM-HC3"/>
@@ -151,7 +131,6 @@
                 <constraint firstItem="wkU-ep-3OE" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="gfw-DT-bBy"/>
                 <constraint firstItem="PcI-AE-Hy2" firstAttribute="top" secondItem="W34-dx-B05" secondAttribute="bottom" constant="10" id="hzh-Mw-W9s"/>
                 <constraint firstItem="zfT-F7-IJd" firstAttribute="leading" secondItem="kC6-Ra-Pzg" secondAttribute="leading" id="j6p-CN-3QM"/>
-                <constraint firstItem="7tc-25-Rf2" firstAttribute="top" secondItem="2ZJ-fZ-S1s" secondAttribute="bottom" constant="15" id="jEI-Jo-Nf3"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="W34-dx-B05" secondAttribute="trailing" constant="15" id="mlc-N8-vX3"/>
                 <constraint firstItem="PcI-AE-Hy2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="nyH-YU-R9s"/>
                 <constraint firstItem="etF-Lv-HfZ" firstAttribute="top" secondItem="PcI-AE-Hy2" secondAttribute="bottom" constant="25" id="rAC-Wy-NxS"/>

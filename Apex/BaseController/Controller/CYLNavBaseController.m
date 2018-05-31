@@ -26,9 +26,11 @@
 {
     if (self.viewControllers.count != 0) {
         
-        UIImage *image = [UIImage imageNamed:@"back-w"];
-        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image  style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+        [self.navigationBar setTintColor:[UIColor whiteColor]];
+//        UIImage *image = [UIImage imageNamed:@"back-w"];
+//        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image  style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+        
     }
     [self findHairlineImageViewUnder:self.navigationBar].hidden = YES;
     [super pushViewController:viewController animated:animated];

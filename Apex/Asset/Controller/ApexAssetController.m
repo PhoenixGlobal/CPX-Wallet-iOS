@@ -48,8 +48,9 @@
 
 #pragma mark - ------private------
 - (void)setNav{
+    self.title = @"资产";
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
-    self.navigationItem.titleView = self.titleL;
+//    self.navigationItem.titleView = self.titleL;
 }
 
 - (void)setUI{

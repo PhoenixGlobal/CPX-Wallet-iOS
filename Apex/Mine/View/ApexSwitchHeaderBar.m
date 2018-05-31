@@ -54,7 +54,7 @@
     [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self).offset(2);
         make.bottom.equalTo(self).offset(0);
-        make.width.mas_equalTo(self.width/2.0 - 10);
+        make.width.mas_equalTo(self.width/2.0-5);
     }];
     
     [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {

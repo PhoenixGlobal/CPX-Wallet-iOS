@@ -12,6 +12,7 @@
 #import "ApexTransferCell.h"
 #import "ApexTransferDetailHeader.h"
 #import "CYLEmptyView.h"
+#import "ApexSwithWalletView.h"
 
 @interface ApexTransactionDetailController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *balance;
@@ -21,7 +22,10 @@
 @property (nonatomic, strong) UIButton *swithBtn;
 @property (nonatomic, strong) ApexSearchWalletToolBar *searchToolBar;
 @property (nonatomic, strong) NSMutableArray *contentArr;
+@property (nonatomic, strong) NSArray *walletArr;
 @property (nonatomic, strong) CYLEmptyView *ev;
+@property (nonatomic, strong) NSArray *allTxArr;
+@property (nonatomic, strong) ApexSwithWalletView *switchView;
 @end
 
 @implementation ApexTransactionDetailController
@@ -43,9 +47,7 @@
 
 #pragma mark - ------private------
 - (void)initUI{
-    
-    self.title = self.model.name;
-    self.addressL.text = self.model.address;
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.swithBtn];
     [self.searchBaseV addSubview:self.searchToolBar];
     self.tableView.delegate = self;
@@ -66,8 +68,14 @@
 }
 
 - (void)prepareData{
-    NSArray *arr = [TKFileManager loadDataWithFileName:TXRECORD_KEY];
-    for (ApexTXRecorderModel *model in arr) {
+    self.title = self.model.name;
+    self.addressL.text = self.model.address;
+    
+    self.allTxArr = [TKFileManager loadDataWithFileName:TXRECORD_KEY];
+    self.walletArr = [ApexWalletManager getWalletsArr];
+    [self.contentArr removeAllObjects];
+    
+    for (ApexTXRecorderModel *model in _allTxArr) {
         if ([model.fromAddress isEqualToString:self.model.address]) {
             [self.contentArr addObject:model];
         }
@@ -75,8 +83,16 @@
     
     if (_contentArr.count == 0) {
         self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无交易记录" refreshBlock:nil];
+    }else{
+        [self.ev removeFromSuperview];
     }
     
+    if (self.walletArr.count == 1) {
+        self.swithBtn.hidden = YES;
+    }
+    else{
+        self.swithBtn.hidden = NO;
+    }
     
     [self.tableView reloadData];
 }
@@ -109,9 +125,36 @@
 
 #pragma mark - ------eventResponse------
 - (void)handleEvent{
+    @weakify(self);
     self.searchToolBar.textDidChangeSub = [RACSubject subject];
-    [self.searchToolBar.textDidChangeSub subscribeNext:^(NSString *address) {
+    [self.searchToolBar.textDidChangeSub subscribeNext:^(NSString *key) {
         
+        if (key.length == 0) {
+            [self prepareData];
+        }else{
+            NSMutableArray *tempArr = [NSMutableArray array];
+            for (ApexTXRecorderModel *model in self.allTxArr) {
+                if ([model.toAddress containsString:key]) {
+                    [tempArr addObject:model];
+                }
+            }
+            self.contentArr = tempArr;
+            [self.tableView reloadData];
+        }
+    }];
+    
+    [[self.swithBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self);
+        self.swithBtn.selected = !self.swithBtn.selected;
+        self.switchView.contentArr = self.walletArr;
+        [[UIApplication sharedApplication].keyWindow addSubview:self.switchView];
+    }];
+    
+    self.switchView.didSwitchSub = [RACSubject subject];
+    [self.switchView.didSwitchSub subscribeNext:^(ApexWalletModel *x) {
+        self.model = x;
+        [self prepareData];
+        [self requestBalance];
     }];
 }
 
@@ -119,6 +162,8 @@
 - (UIButton *)swithBtn{
     if (!_swithBtn) {
         _swithBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        [_swithBtn setImage:[UIImage imageNamed:@"Group 2-1"] forState:UIControlStateNormal];
+        _swithBtn.selected = false;
     }
     return _swithBtn;
 }
@@ -130,10 +175,25 @@
     return _searchToolBar;
 }
 
+- (NSArray *)walletArr{
+    if (!_walletArr) {
+        _walletArr = [NSArray array];
+    }
+    return _walletArr;
+}
+
 - (NSMutableArray *)contentArr{
     if (!_contentArr) {
         _contentArr = [NSMutableArray array];
     }
     return _contentArr;
+}
+
+- (ApexSwithWalletView *)switchView{
+    if (!_switchView) {
+        _switchView = [[ApexSwithWalletView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _switchView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+    }
+    return _switchView;
 }
 @end

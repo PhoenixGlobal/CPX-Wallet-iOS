@@ -52,6 +52,7 @@
 }
 
 + (UIView *)addLineInView:(UIView *)view color:(UIColor *)color edge:(UIEdgeInsets)edge{
+    NSAssert(view != nil, @"addLineInView: view can not be nil");
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = color;
     [view addSubview:line];

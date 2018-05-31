@@ -46,7 +46,7 @@
     
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view).offset(NavBarHeight + 48);
+        make.top.equalTo(self.view).offset(NavBarHeight + scaleHeight667(48));
         make.width.mas_equalTo(43);
         make.height.mas_equalTo(52);
     }];

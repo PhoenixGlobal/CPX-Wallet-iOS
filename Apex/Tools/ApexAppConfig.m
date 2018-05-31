@@ -16,6 +16,14 @@
     [self configBlockChainManager];
     
     [self configNetWork];
+    
+    [self startMonitorThread];
+}
+
++ (void)startMonitorThread{
+    [[ApexThread shareInstance] startRunLoopSuccessBlock:^{
+        NSLog(@"apex runloop started");
+    }];
 }
 
 + (void)configBlockChainManager{

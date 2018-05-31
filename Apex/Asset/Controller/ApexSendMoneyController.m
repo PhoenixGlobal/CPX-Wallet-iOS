@@ -11,13 +11,13 @@
 #import "ApexTXRecorderModel.h"
 #import "ApexSendMoneyViewModel.h"
 #import "LXDScanCodeController.h"
+#import "ApexPassWordConfirmAlertView.h"
 
 @interface ApexSendMoneyController ()<LXDScanCodeControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
 @property (weak, nonatomic) IBOutlet UILabel *fromAddressL;
 @property (weak, nonatomic) IBOutlet UITextField *sendNumTF;
 @property (weak, nonatomic) IBOutlet UITextField *toAddressTF;
-@property (weak, nonatomic) IBOutlet UITextField *passWordL;
 
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @property (nonatomic, strong) UIButton *scanBtn;
@@ -57,22 +57,18 @@
     
     [ApexUIHelper addLineInView:self.sendNumTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
-    [ApexUIHelper addLineInView:self.passWordL color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
-    
     self.sendBtn.layer.cornerRadius = 6;
 }
 
-- (void)utxoSearch{
-    if (_passWordL.text.length == 0 || _toAddressTF.text.length == 0) {
-        [self showMessage:@"请填写完整信息"];
+- (void)utxoSearch:(NeomobileWallet*)wallet{
+    if (_toAddressTF.text.length == 0) {
+        [self showMessage:@"请填写转账地址"];
         return;
     }
     
-    NSError *err = nil;
-    NSString *keys = [PDKeyChain load:KEYCHAIN_KEY(self.fromAddressL.text)];
-    self.wallet = NeomobileFromKeyStore(keys, _passWordL.text, &err);
-    if (err) {
-        [self showMessage:@"密码错误,钱包开启失败"];
+    self.wallet = wallet;
+    if (!self.wallet) {
+        [self showMessage:@"钱包开启失败"];
         return;
     }
     
@@ -150,7 +146,11 @@
 }
 
 - (IBAction)sendAction:(id)sender {
-    [self utxoSearch];
+    [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress subTitle:@"" Success:^(NeomobileWallet *wallet) {
+       [self utxoSearch:wallet];
+    } fail:^{
+        [self showMessage:@"密码输入错误"];
+    }];
 }
 #pragma mark - ------getter & setter------
 - (ApexSendMoneyViewModel *)viewModel{

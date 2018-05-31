@@ -101,7 +101,20 @@
 		E3CE66B820BEA812002A1E07 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66AB20BEA811002A1E07 /* DTTimePeriodGroup.m */; };
 		E3CE66B920BEA812002A1E07 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66B020BEA811002A1E07 /* DTConstants.m */; };
 		E3CE66BA20BEA812002A1E07 /* CYLDayCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66B120BEA811002A1E07 /* CYLDayCollectionView.m */; };
+		E3CE66BD20BF99AF002A1E07 /* ApexSwithWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66BC20BF99AF002A1E07 /* ApexSwithWalletView.m */; };
+		E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66C020BFA91F002A1E07 /* ApexThread.m */; };
+		E3CE66D020BFC9A4002A1E07 /* ApexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66CF20BFC9A4002A1E07 /* ApexTests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E3CE66D220BFC9A4002A1E07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E33A8B4020AE724D0067505E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E33A8B4720AE724D0067505E;
+			remoteInfo = Apex;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,6 +290,13 @@
 		E3CE66AF20BEA811002A1E07 /* NSDate+DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateTools.h"; sourceTree = "<group>"; };
 		E3CE66B020BEA811002A1E07 /* DTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTConstants.m; sourceTree = "<group>"; };
 		E3CE66B120BEA811002A1E07 /* CYLDayCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLDayCollectionView.m; sourceTree = "<group>"; };
+		E3CE66BB20BF99AF002A1E07 /* ApexSwithWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexSwithWalletView.h; sourceTree = "<group>"; };
+		E3CE66BC20BF99AF002A1E07 /* ApexSwithWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexSwithWalletView.m; sourceTree = "<group>"; };
+		E3CE66BF20BFA91F002A1E07 /* ApexThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexThread.h; sourceTree = "<group>"; };
+		E3CE66C020BFA91F002A1E07 /* ApexThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexThread.m; sourceTree = "<group>"; };
+		E3CE66CD20BFC9A4002A1E07 /* ApexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3CE66CF20BFC9A4002A1E07 /* ApexTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTests.m; sourceTree = "<group>"; };
+		E3CE66D120BFC9A4002A1E07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +307,13 @@
 				9B2E51F7E3F83C04602FA8C4 /* libPods-Apex.a in Frameworks */,
 				E33A8BC120B28CD90067505E /* Neomobile.framework in Frameworks */,
 				E33A8BA420AE76860067505E /* CYLAppBaseFrameWork.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3CE66CA20BFC9A4002A1E07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				E33A8B4A20AE724D0067505E /* Apex */,
+				E3CE66CE20BFC9A4002A1E07 /* ApexTests */,
 				E33A8B4920AE724D0067505E /* Products */,
 				9A650F6290F0980BBC778DE8 /* Pods */,
 				33554FE32BBC78449D127132 /* Frameworks */,
@@ -365,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				E33A8B4820AE724D0067505E /* Apex.app */,
+				E3CE66CD20BFC9A4002A1E07 /* ApexTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -423,6 +452,8 @@
 				E3CE668C20BD38BC002A1E07 /* ApexTransferDetailHeader.m */,
 				E3CE668E20BD3B56002A1E07 /* ApexTransferCell.h */,
 				E3CE668F20BD3B56002A1E07 /* ApexTransferCell.m */,
+				E3CE66BB20BF99AF002A1E07 /* ApexSwithWalletView.h */,
+				E3CE66BC20BF99AF002A1E07 /* ApexSwithWalletView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -561,6 +592,8 @@
 				E33A8BD220B29D060067505E /* ApexAppConfig.m */,
 				E3CE667F20BBF9A4002A1E07 /* MethodSwizzling.h */,
 				E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */,
+				E3CE66BF20BFA91F002A1E07 /* ApexThread.h */,
+				E3CE66C020BFA91F002A1E07 /* ApexThread.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -768,6 +801,15 @@
 			path = DateTools;
 			sourceTree = "<group>";
 		};
+		E3CE66CE20BFC9A4002A1E07 /* ApexTests */ = {
+			isa = PBXGroup;
+			children = (
+				E3CE66CF20BFC9A4002A1E07 /* ApexTests.m */,
+				E3CE66D120BFC9A4002A1E07 /* Info.plist */,
+			);
+			path = ApexTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -791,6 +833,24 @@
 			productReference = E33A8B4820AE724D0067505E /* Apex.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E3CE66CC20BFC9A4002A1E07 /* ApexTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3CE66D420BFC9A4002A1E07 /* Build configuration list for PBXNativeTarget "ApexTests" */;
+			buildPhases = (
+				E3CE66C920BFC9A4002A1E07 /* Sources */,
+				E3CE66CA20BFC9A4002A1E07 /* Frameworks */,
+				E3CE66CB20BFC9A4002A1E07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E3CE66D320BFC9A4002A1E07 /* PBXTargetDependency */,
+			);
+			name = ApexTests;
+			productName = ApexTests;
+			productReference = E3CE66CD20BFC9A4002A1E07 /* ApexTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -803,6 +863,10 @@
 				TargetAttributes = {
 					E33A8B4720AE724D0067505E = {
 						CreatedOnToolsVersion = 9.3;
+					};
+					E3CE66CC20BFC9A4002A1E07 = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = E33A8B4720AE724D0067505E;
 					};
 				};
 			};
@@ -820,6 +884,7 @@
 			projectRoot = "";
 			targets = (
 				E33A8B4720AE724D0067505E /* Apex */,
+				E3CE66CC20BFC9A4002A1E07 /* ApexTests */,
 			);
 		};
 /* End PBXProject section */
@@ -848,6 +913,13 @@
 				E33A8B5520AE724F0067505E /* Assets.xcassets in Resources */,
 				E3263EE720B69BB6001D3C19 /* alert-round.png in Resources */,
 				E3263EED20B69BB6001D3C19 /* .gitkeep in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3CE66CB20BFC9A4002A1E07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,6 +1009,7 @@
 				E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */,
 				E3263EDA20B68CFB001D3C19 /* ApexBackUpController.m in Sources */,
 				E3CE66B820BEA812002A1E07 /* DTTimePeriodGroup.m in Sources */,
+				E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */,
 				E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */,
 				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
 				E3CE669E20BE47C3002A1E07 /* ApexMnemonicShowCell.m in Sources */,
@@ -982,6 +1055,7 @@
 				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,
 				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
 				E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */,
+				E3CE66BD20BF99AF002A1E07 /* ApexSwithWalletView.m in Sources */,
 				E33A8B4D20AE724D0067505E /* AppDelegate.m in Sources */,
 				E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */,
 				E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */,
@@ -989,7 +1063,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E3CE66C920BFC9A4002A1E07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3CE66D020BFC9A4002A1E07 /* ApexTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E3CE66D320BFC9A4002A1E07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E33A8B4720AE724D0067505E /* Apex */;
+			targetProxy = E3CE66D220BFC9A4002A1E07 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */ = {
@@ -1177,6 +1267,42 @@
 			};
 			name = Release;
 		};
+		E3CE66D520BFC9A4002A1E07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ApexTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.ApexTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Apex.app/Apex";
+			};
+			name = Debug;
+		};
+		E3CE66D620BFC9A4002A1E07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ApexTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.ApexTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Apex.app/Apex";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1194,6 +1320,15 @@
 			buildConfigurations = (
 				E33A8B5F20AE724F0067505E /* Debug */,
 				E33A8B6020AE724F0067505E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E3CE66D420BFC9A4002A1E07 /* Build configuration list for PBXNativeTarget "ApexTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3CE66D520BFC9A4002A1E07 /* Debug */,
+				E3CE66D620BFC9A4002A1E07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
