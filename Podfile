@@ -17,6 +17,7 @@ target 'Apex' do
   pod 'IQKeyboardManager'
   pod 'YYModel'
   pod 'MJRefresh'
+  pod 'AAChartKit'
   # Pods for Apex
 
 end

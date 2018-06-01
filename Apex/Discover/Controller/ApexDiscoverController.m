@@ -8,6 +8,7 @@
 
 #import "ApexDiscoverController.h"
 #import "CYLEmptyView.h"
+#import "ApexScrollerController.h"
 
 @interface ApexDiscoverController ()
 @end
@@ -22,11 +23,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self.navigationController lt_setBackgroundColor:[UIColor colorWithRed255:70 green255:105 blue255:214 alpha:1]];
+    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+//    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 
 #pragma mark - ------private------
@@ -34,7 +35,7 @@
     self.title = @"发现";
     self.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     
-    [CYLEmptyView showEmptyViewOnView:self.view emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
+//    [CYLEmptyView showEmptyViewOnView:self.view emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
 }
 
 #pragma mark - ------public------
@@ -42,6 +43,13 @@
 #pragma mark - ------delegate & datasource------
 
 #pragma mark - ------eventResponse------
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    ApexScrollerController *svc = [[ApexScrollerController alloc] init];
+    svc.baseColor = [ApexUIHelper navColor];
+    svc.hidesBottomBarWhenPushed = YES;
+    svc.firstLayerDelta = 200 - NavBarHeight;
+    [self.navigationController pushViewController:svc animated:YES];
+}
 
 #pragma mark - ------getter & setter------
 

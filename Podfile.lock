@@ -1,4 +1,5 @@
 PODS:
+  - AAChartKit (2.1.6)
   - AFJSONRPCClient (2.1.1):
     - AFNetworking (~> 2.1)
   - AFNetworking (2.6.3):
@@ -71,6 +72,7 @@ PODS:
   - YYModel (1.0.4)
 
 DEPENDENCIES:
+  - AAChartKit
   - AFJSONRPCClient (~> 2.1)
   - AFNetworking (~> 2.4)
   - DACircularProgress
@@ -86,6 +88,7 @@ DEPENDENCIES:
   - YYModel
 
 SPEC CHECKSUMS:
+  AAChartKit: adc0da2830cfc7dd8e9a0a706413eec9598e004d
   AFJSONRPCClient: 333bada91e6e45398446b8bd84e238e6f2389b1b
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
@@ -100,6 +103,6 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: c31a14878b30f58132c244b36f6fdce25dc0020f
+PODFILE CHECKSUM: 8de0a42f21e1cd9f0ce36d0552254a479f1d2824
 
 COCOAPODS: 1.4.0

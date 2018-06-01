@@ -104,6 +104,8 @@
 		E3CE66BD20BF99AF002A1E07 /* ApexSwithWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66BC20BF99AF002A1E07 /* ApexSwithWalletView.m */; };
 		E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66C020BFA91F002A1E07 /* ApexThread.m */; };
 		E3CE66D020BFC9A4002A1E07 /* ApexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66CF20BFC9A4002A1E07 /* ApexTests.m */; };
+		E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCA20C112B700E2C597 /* NullSafe.m */; };
+		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -297,6 +299,9 @@
 		E3CE66CD20BFC9A4002A1E07 /* ApexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3CE66CF20BFC9A4002A1E07 /* ApexTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTests.m; sourceTree = "<group>"; };
 		E3CE66D120BFC9A4002A1E07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
+		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
+		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -582,7 +587,6 @@
 				E33A8BC220B28F800067505E /* keyChain */,
 				E33A8BBB20AE7D830067505E /* NetWork */,
 				E33A8B6F20AE75500067505E /* ScanTool */,
-				E33A8B7520AE75500067505E /* FileManager */,
 				E338964820B401F200DD51FE /* EmptyView */,
 				E33A8B7620AE75500067505E /* Macro.h */,
 				E33A8BBF20AE7DF60067505E /* OtherMacro.h */,
@@ -594,6 +598,7 @@
 				E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */,
 				E3CE66BF20BFA91F002A1E07 /* ApexThread.h */,
 				E3CE66C020BFA91F002A1E07 /* ApexThread.m */,
+				E7EA1BCA20C112B700E2C597 /* NullSafe.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -609,13 +614,6 @@
 			path = ScanTool;
 			sourceTree = "<group>";
 		};
-		E33A8B7520AE75500067505E /* FileManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FileManager;
-			sourceTree = "<group>";
-		};
 		E33A8B7B20AE75650067505E /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,10 +626,10 @@
 		E33A8B7C20AE75650067505E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E33A8B7D20AE75650067505E /* CYLTabbar.h */,
-				E33A8B7E20AE75650067505E /* CYLTabBarButton.m */,
-				E33A8B7F20AE75650067505E /* CYLTabbar.m */,
 				E33A8B8020AE75650067505E /* CYLTabBarButton.h */,
+				E33A8B7E20AE75650067505E /* CYLTabBarButton.m */,
+				E33A8B7D20AE75650067505E /* CYLTabbar.h */,
+				E33A8B7F20AE75650067505E /* CYLTabbar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -763,6 +761,8 @@
 			children = (
 				E3CE668320BCEB10002A1E07 /* ApexAlertTextField.h */,
 				E3CE668420BCEB10002A1E07 /* ApexAlertTextField.m */,
+				E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */,
+				E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -951,11 +951,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Apex/Pods-Apex-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/AAChartKit/AAChartKitLib.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AAChartKitLib.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
@@ -1003,6 +1005,7 @@
 				E3CE66BA20BEA812002A1E07 /* CYLDayCollectionView.m in Sources */,
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
+				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
 				E3263EC220B55A63001D3C19 /* ApexTransactionRecordView.m in Sources */,
 				E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */,
@@ -1060,6 +1063,7 @@
 				E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */,
 				E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */,
 				E33A8B8920AE75650067505E /* CYLTabBarController.m in Sources */,
+				E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

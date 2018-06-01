@@ -22,6 +22,8 @@
 @end
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#define scanPeriod 10 * 60
+
 @interface ApexBlockChainManager()
 @property (nonatomic, strong) NSMutableArray *nodesArr;
 @property (nonatomic, strong) AFHTTPSessionManager *neoScanManager;
@@ -33,7 +35,7 @@
 singleM(SharedManager);
 
 - (void)prepare{
-    self.timer = [NSTimer timerWithTimeInterval:5*60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    self.timer = [NSTimer timerWithTimeInterval:scanPeriod repeats:YES block:^(NSTimer * _Nonnull timer) {
        [self lookingForSeed];
     }];
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
@@ -65,8 +67,11 @@ singleM(SharedManager);
     
     for (NSDictionary *dic in arr) {
         NeoNodeObject *node = [[NeoNodeObject alloc] init];
-        node.height = ((NSNumber*)dic[@"height"]).integerValue;
-        node.url = dic[@"url"];
+        if ([dic.allKeys containsObject:@"height"] && [dic.allKeys containsObject:@"url"]) {
+            node.height = ((NSNumber*)dic[@"height"]).integerValue;
+            node.url = dic[@"url"];
+
+        }
         if (self.maxBlockChain <= node.height) {
             self.maxBlockChain = node.height;
         }

@@ -43,7 +43,13 @@
     else
     {
         //设置title位置
-        CGRect frame = CGRectMake(0, CGRectGetMaxY(imageViewFrame), self.bounds.size.width, self.frame.size.height - CGRectGetMaxY(imageViewFrame));
+        CGFloat height =  self.frame.size.height - CGRectGetMaxY(imageViewFrame);
+        
+        if (IS_IPHONE_X) {
+            height -= 20;
+        }
+        
+        CGRect frame = CGRectMake(0, CGRectGetMaxY(imageViewFrame), self.bounds.size.width,height);
         return frame;
     }
 }
