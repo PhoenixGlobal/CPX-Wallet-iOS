@@ -47,7 +47,7 @@
     ApexScrollerController *svc = [[ApexScrollerController alloc] init];
     svc.baseColor = [ApexUIHelper navColor];
     svc.hidesBottomBarWhenPushed = YES;
-    svc.firstLayerDelta = 200 - NavBarHeight;
+    svc.firstLayerDelta = 180 - NavBarHeight;
     [self.navigationController pushViewController:svc animated:YES];
 }
 

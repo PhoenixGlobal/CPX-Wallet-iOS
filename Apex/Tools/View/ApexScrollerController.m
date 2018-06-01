@@ -17,6 +17,7 @@
 @property (nonatomic, assign) CGFloat translateOffset; /**< tableview的初始offset*/
 @property (nonatomic, assign) CGFloat translateLength; /**<  第一个cell距离navbar的距离*/
 @property (nonatomic, strong) UIView *accessoryBaseView; /**<  */
+@property (nonatomic, assign) CGFloat lastPercent; /**<  */
 @end
 
 @implementation ApexScrollerController
@@ -65,7 +66,7 @@
     }];
     
     self.translateOffset = -99999;
-    
+    self.lastPercent = 0;
 }
 
 #pragma mark - ------public------
@@ -117,10 +118,17 @@
         CGFloat percent = 1.0 - (translateDelta/self.translateLength);
         
         if (percent <= 1.5) {
-            CGAffineTransform transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
-            self.baseView.transform = transform;
-            self.accessoryBaseView.transform = transform;
+            self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+            
+            if (percent <= 0) {
+                percent += (percent - self.lastPercent) *0.001;
+                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+            }else{
+                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+            }
         }
+        
+        self.lastPercent = percent;
     }];
     
     
