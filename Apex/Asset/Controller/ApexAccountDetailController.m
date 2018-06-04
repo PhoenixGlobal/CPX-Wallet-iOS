@@ -63,7 +63,8 @@
 
 #pragma mark - ------delegate & datasource------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.accountModel.balances.count;
+    NSInteger count = self.accountModel.balances.count;
+    return count == 0 ? 1 : count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -72,7 +73,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexAssetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.model = self.accountModel.balances[indexPath.row];
+    if (self.accountModel.balances.count == 0) {
+        cell.hidden = YES;
+    }else{
+        cell.model = self.accountModel.balances[indexPath.row];
+    }
     return cell;
 }
 

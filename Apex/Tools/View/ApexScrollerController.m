@@ -89,17 +89,23 @@
         CGFloat translateDelta = self.translateLength - (offSetY + fabs(self.translateOffset));
         CGFloat percent = 1.0 - (translateDelta/self.translateLength);
         
-        self.accessoryBaseView.alpha = 1 + percent;
+        self.accessoryBaseView.alpha = 1 + percent*2;
         
         if (percent <= 1.5) {
-            self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
             
             if (percent <= 0) {
-                percent += (percent - self.lastPercent) *0.001;
-                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+                self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*0.8);
             }else{
-                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+                self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
             }
+            
+//            if (percent <= 0) {
+//                CGFloat assPercent = percent + (percent - self.lastPercent) *0.001;
+//                NSLog(@"%f",assPercent);
+//                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*assPercent);
+//            }else{
+                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+//            }
         }
         
         self.lastPercent = percent;

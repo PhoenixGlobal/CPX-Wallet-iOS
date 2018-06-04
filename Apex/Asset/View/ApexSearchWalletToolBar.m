@@ -85,6 +85,7 @@
         _searchTF.font = [UIFont systemFontOfSize:14];
         _searchTF.backgroundColor = [UIColor colorWithWhite:1 alpha:0.12];
         _searchTF.borderStyle = UITextBorderStyleRoundedRect;
+        _searchTF.layer.borderColor = [UIColor clearColor].CGColor;
         _searchTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search"]];
         _searchTF.leftViewMode = UITextFieldViewModeAlways;
         _searchTF.textColor = [UIColor whiteColor];
