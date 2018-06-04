@@ -1236,6 +1236,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apexs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Debug;
 		};
@@ -1268,6 +1269,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apexs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Release;
 		};
