@@ -9,14 +9,13 @@
 #import "ApexScrollerController.h"
 
 #define LayersDelta 35.0
-
+#define layersSubtle 70.0
 
 
 @interface ApexScrollerController ()
 @property (nonatomic, strong) UIView *baseView; /**< 中间层 */
 @property (nonatomic, assign) CGFloat translateOffset; /**< tableview的初始offset*/
 @property (nonatomic, assign) CGFloat translateLength; /**<  第一个cell距离navbar的距离*/
-@property (nonatomic, strong) UIView *accessoryBaseView; /**<  */
 @property (nonatomic, assign) CGFloat lastPercent; /**<  */
 @end
 
@@ -25,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initUI];
+    [self scrollController_InitUI];
 
     [self subAddObserver];
 }
@@ -36,9 +35,10 @@
 }
 
 #pragma mark - ------private------
-- (void)initUI{
+- (void)scrollController_InitUI{
     
-    self.title = @"自残";
+    self.baseColor = [ApexUIHelper navColor];
+    self.firstLayerDelta = 160 - NavBarHeight;
     self.view.backgroundColor = self.baseColor;
     [self.navigationController lt_setBackgroundColor:self.baseColor];
     
@@ -47,8 +47,8 @@
     [self.view addSubview:self.accessoryBaseView];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    self.tableView.contentInset = UIEdgeInsetsMake(_firstLayerDelta-60, 0, 0, 0);
-    self.tableView.contentOffset = CGPointMake(0, -(_firstLayerDelta-60));
+    self.tableView.contentInset = UIEdgeInsetsMake(_firstLayerDelta-layersSubtle, 0, 0, 0);
+    self.tableView.contentOffset = CGPointMake(0, -(_firstLayerDelta-layersSubtle));
     
     [self.baseView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(NavBarHeight+self.firstLayerDelta);
@@ -89,6 +89,8 @@
         CGFloat translateDelta = self.translateLength - (offSetY + fabs(self.translateOffset));
         CGFloat percent = 1.0 - (translateDelta/self.translateLength);
         
+        self.accessoryBaseView.alpha = 1 + percent;
+        
         if (percent <= 1.5) {
             self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
             
@@ -106,7 +108,7 @@
         [self.baseView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(NavBarHeight+self.firstLayerDelta);
             make.left.right.equalTo(self.view);
-            make.height.mas_equalTo(x.CGSizeValue.height);
+            make.height.mas_equalTo(x.CGSizeValue.height <= kScreenH ? kScreenH*2 : x.CGSizeValue.height);
         }];
     }
 }
@@ -128,10 +130,6 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
 }
@@ -151,7 +149,7 @@
 #pragma mark - ------getter & setter------
 - (void)setFirstLayerDelta:(CGFloat)firstLayerDelta{
     _firstLayerDelta = firstLayerDelta;
-    _translateLength = (_firstLayerDelta - 60.0) + LayersDelta;
+    _translateLength = (_firstLayerDelta - layersSubtle) + LayersDelta;
 }
 
 - (UIView *)baseView{
@@ -169,6 +167,7 @@
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
@@ -176,7 +175,7 @@
 - (UIView *)accessoryBaseView{
     if (!_accessoryBaseView) {
         _accessoryBaseView = [[UIView alloc] initWithFrame:CGRectZero];
-        _accessoryBaseView.backgroundColor = [UIColor whiteColor];
+        _accessoryBaseView.backgroundColor = [UIColor clearColor];
     }
     return _accessoryBaseView;
 }

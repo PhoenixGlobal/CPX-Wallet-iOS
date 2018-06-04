@@ -10,7 +10,7 @@
 #import "CYLNavBaseController.h"
 #import "CYLTabbar.h"
 #import "ApexDiscoverController.h"
-#import "ApexAssetController.h"
+#import "ApexAssetMainController.h"
 #import "ApexMineController.h"
 
 @interface CYLTabBarController ()
@@ -56,7 +56,7 @@
     ApexDiscoverController *vc = [[ApexDiscoverController alloc] init];
     [self setOneViewController:vc image:[UIImage imageNamed:@"Page 1-1"] selImage:[UIImage imageNamed:@"Page 1-2"] title:@"发现"];
     
-    ApexAssetController *vc1 = [[ApexAssetController alloc] init];
+    ApexAssetMainController *vc1 = [[ApexAssetMainController alloc] init];
     [self setOneViewController:vc1 image:[UIImage imageNamed:@"叠加_块"] selImage:[UIImage imageNamed:@"叠加_块-1"] title:@"资产"];
     
     ApexMineController *vc2 = [[ApexMineController alloc] init];

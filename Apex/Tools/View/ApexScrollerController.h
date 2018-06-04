@@ -12,5 +12,5 @@
 @property (nonatomic, strong) UIColor *baseColor; /**< backGroudColor */
 @property (nonatomic, strong) UITableView *tableView; /**<  */
 @property (nonatomic, assign) CGFloat firstLayerDelta; /**< 白色baseview与navbar之间的高度 */
-
+@property (nonatomic, strong) UIView *accessoryBaseView; /**<  */
 @end

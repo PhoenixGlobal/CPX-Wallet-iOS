@@ -8,7 +8,7 @@
 
 #import "ApexDiscoverController.h"
 #import "CYLEmptyView.h"
-#import "ApexScrollerController.h"
+#import "ApexAssetMainController.h"
 
 @interface ApexDiscoverController ()
 @end
@@ -44,10 +44,7 @@
 
 #pragma mark - ------eventResponse------
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    ApexScrollerController *svc = [[ApexScrollerController alloc] init];
-    svc.baseColor = [ApexUIHelper navColor];
-    svc.hidesBottomBarWhenPushed = YES;
-    svc.firstLayerDelta = 180 - NavBarHeight;
+    ApexAssetMainController *svc = [[ApexAssetMainController alloc] init];
     [self.navigationController pushViewController:svc animated:YES];
 }
 
