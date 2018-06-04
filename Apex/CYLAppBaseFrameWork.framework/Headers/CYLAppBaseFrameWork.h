@@ -24,7 +24,7 @@ FOUNDATION_EXPORT const unsigned char CYLAppBaseFrameWorkVersionString[];
 #import <CYLAppBaseFrameWork/CYLApiBaseManager.h>
 
 /* referesh */
-#import <CYLAppBaseFrameWork/UIScrollView+Refresh.h>
+//#import <CYLAppBaseFrameWork/UIScrollView+Refresh.h>
 
 /* transitionging */
 #import <CYLAppBaseFrameWork/CYLTransitionHeader.h>
@@ -40,4 +40,4 @@ FOUNDATION_EXPORT const unsigned char CYLAppBaseFrameWorkVersionString[];
 #import <CYLAppBaseFrameWork/CYLCountDownButton.h>
 
 #import <CYLAppBaseFrameWork/HYFAppInfo.h>
-#import<CYLAppBaseFrameWork/TKFileManager.h>
+#import <CYLAppBaseFrameWork/TKFileManager.h>

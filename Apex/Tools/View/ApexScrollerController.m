@@ -27,9 +27,13 @@
     
     [self initUI];
 
-    [self addEvent];
+    [self subAddObserver];
 }
 
+- (void)dealloc{
+    [self.tableView removeObserver:self forKeyPath:@"contentOffset" context:nil];
+    [self.tableView removeObserver:self forKeyPath:@"contentSize" context:nil];
+}
 
 #pragma mark - ------private------
 - (void)initUI{
@@ -69,6 +73,44 @@
     self.lastPercent = 0;
 }
 
+- (void)subAddObserver{
+    [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+    [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"contentOffset"]) {
+        NSValue *x = change[NSKeyValueChangeNewKey];
+        CGFloat offSetY = x.CGPointValue.y;
+        if (self.translateOffset == -99999) {
+            self.translateOffset = offSetY;
+        }
+        
+        CGFloat translateDelta = self.translateLength - (offSetY + fabs(self.translateOffset));
+        CGFloat percent = 1.0 - (translateDelta/self.translateLength);
+        
+        if (percent <= 1.5) {
+            self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+            
+            if (percent <= 0) {
+                percent += (percent - self.lastPercent) *0.001;
+                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+            }else{
+                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+            }
+        }
+        
+        self.lastPercent = percent;
+    }else if ([keyPath isEqualToString:@"contentSize"]){
+        NSValue *x = change[NSKeyValueChangeNewKey];
+        [self.baseView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view).offset(NavBarHeight+self.firstLayerDelta);
+            make.left.right.equalTo(self.view);
+            make.height.mas_equalTo(x.CGSizeValue.height);
+        }];
+    }
+}
+
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
@@ -105,42 +147,6 @@
 }
 
 #pragma mark - ------eventResponse------
-- (void)addEvent{
-    @weakify(self);
-    [[RACObserve(self.tableView, contentOffset) takeUntil:self.tableView.rac_willDeallocSignal] subscribeNext:^(NSValue *x) {
-        @strongify(self);
-        CGFloat offSetY = x.CGPointValue.y;
-        if (self.translateOffset == -99999) {
-            self.translateOffset = offSetY;
-        }
-        
-        CGFloat translateDelta = self.translateLength - (offSetY + fabs(self.translateOffset));
-        CGFloat percent = 1.0 - (translateDelta/self.translateLength);
-        
-        if (percent <= 1.5) {
-            self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
-            
-            if (percent <= 0) {
-                percent += (percent - self.lastPercent) *0.001;
-                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
-            }else{
-                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
-            }
-        }
-        
-        self.lastPercent = percent;
-    }];
-    
-    
-    [[[RACObserve(self.tableView, contentSize) takeUntil:self.tableView.rac_willDeallocSignal] distinctUntilChanged] subscribeNext:^(NSValue *x) {
-        @strongify(self);
-        [self.baseView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view).offset(NavBarHeight+self.firstLayerDelta);
-            make.left.right.equalTo(self.view);
-            make.height.mas_equalTo(x.CGSizeValue.height);
-        }];
-    }];
-}
 
 #pragma mark - ------getter & setter------
 - (void)setFirstLayerDelta:(CGFloat)firstLayerDelta{
