@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     [self initUI];
-    
+
     [self addEvent];
 }
 
@@ -107,7 +107,7 @@
 #pragma mark - ------eventResponse------
 - (void)addEvent{
     @weakify(self);
-    [[RACObserve(self.tableView, contentOffset) takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSValue *x) {
+    [[RACObserve(self.tableView, contentOffset) takeUntil:self.tableView.rac_willDeallocSignal] subscribeNext:^(NSValue *x) {
         @strongify(self);
         CGFloat offSetY = x.CGPointValue.y;
         if (self.translateOffset == -99999) {
@@ -132,7 +132,7 @@
     }];
     
     
-    [[[RACObserve(self.tableView, contentSize) takeUntil:self.rac_willDeallocSignal] distinctUntilChanged] subscribeNext:^(NSValue *x) {
+    [[[RACObserve(self.tableView, contentSize) takeUntil:self.tableView.rac_willDeallocSignal] distinctUntilChanged] subscribeNext:^(NSValue *x) {
         @strongify(self);
         [self.baseView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(NavBarHeight+self.firstLayerDelta);
