@@ -7,6 +7,8 @@
 //
 
 #import "ApexAssetCell.h"
+#import "CYLEmptyView.h"
+
 @interface ApexAssetCell()
 @property (weak, nonatomic) IBOutlet UILabel *assetNameL;
 @property (weak, nonatomic) IBOutlet UILabel *assetNameLTwo;
@@ -14,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *percentL;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *balanceL;
+@property (weak, nonatomic) IBOutlet UIView *baseView;
 
 @end
 
@@ -27,5 +30,12 @@
 - (void)initUI{
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
+    
+    [CYLEmptyView showEmptyViewOnView:self.baseView emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
+}
+
+- (void)setModel:(BalanceObject *)model{
+    _model = model;
+    _balanceL.text = model.value;
 }
 @end

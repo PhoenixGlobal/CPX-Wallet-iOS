@@ -7,6 +7,7 @@
 //
 
 #import "ApexAccountDetailController.h"
+#import "ApexWalletDetailController.h"
 #import "ApexAssetCell.h"
 #import "ApexAccountStateModel.h"
 #import "CYLEmptyView.h"
@@ -24,8 +25,13 @@
     [super viewDidLoad];
     
     [self initUI];
-    
+    [self setNav];
     [self requestBalance];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setNav];
 }
 
 #pragma mark - ------private------
@@ -41,6 +47,10 @@
     [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.addressL.superview);
     }];
+}
+
+- (void)setNav{
+    [self.navigationController lt_setBackgroundColor:self.baseColor];
 }
 
 - (void)requestBalance{
@@ -76,9 +86,17 @@
     if (self.accountModel.balances.count == 0) {
         cell.hidden = YES;
     }else{
-        cell.model = self.accountModel.balances[indexPath.row];
+        cell.model = self.accountModel.balances[indexPath.section];
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ApexWalletDetailController *vc = [[ApexWalletDetailController alloc] init];
+    vc.walletAddress = self.walletModel.address;
+    vc.walletName = self.walletModel.name;
+    vc.balanceModel = self.accountModel.balances[indexPath.section];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - ------eventResponse------

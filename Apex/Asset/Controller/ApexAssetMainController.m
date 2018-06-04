@@ -26,13 +26,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
-    [self setNav];
+    
     [self handleEvent];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self getWalletLists];
+    [self setNav];
 }
 #pragma mark - ------private------
 - (void)initUI{
@@ -51,6 +52,7 @@
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     }];
+    [self.tableView.mj_header setTintColor:[UIColor whiteColor]];
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
@@ -77,14 +79,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexAssetMainViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    ApexWalletModel *model = _contentArr[indexPath.row];
+    ApexWalletModel *model = _contentArr[indexPath.section];
     cell.walletNameStr = model.name;
     cell.addressStr = model.address;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ApexWalletModel *model = self.contentArr[indexPath.row];
+    ApexWalletModel *model = self.contentArr[indexPath.section];
     ApexAccountDetailController *vc = [[ApexAccountDetailController alloc] init];
     vc.walletModel = model;
     vc.hidesBottomBarWhenPushed = YES;

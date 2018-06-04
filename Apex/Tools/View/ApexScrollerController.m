@@ -38,7 +38,13 @@
 - (void)scrollController_InitUI{
     
     self.baseColor = [ApexUIHelper navColor];
-    self.firstLayerDelta = 160 - NavBarHeight;
+    
+    if (IS_IPHONE_X) {
+        self.firstLayerDelta = 180 - NavBarHeight;
+    }else{
+        self.firstLayerDelta = 160 - NavBarHeight;
+    }
+    
     self.view.backgroundColor = self.baseColor;
     [self.navigationController lt_setBackgroundColor:self.baseColor];
     

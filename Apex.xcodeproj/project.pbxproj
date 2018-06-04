@@ -754,8 +754,8 @@
 		E33A8BC220B28F800067505E /* keyChain */ = {
 			isa = PBXGroup;
 			children = (
-				E33A8BC320B28F800067505E /* PDKeyChain.m */,
 				E33A8BC420B28F800067505E /* PDKeyChain.h */,
+				E33A8BC320B28F800067505E /* PDKeyChain.m */,
 			);
 			path = keyChain;
 			sourceTree = "<group>";

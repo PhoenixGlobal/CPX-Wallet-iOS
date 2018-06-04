@@ -44,8 +44,6 @@
 
 #pragma mark - ------eventResponse------
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    ApexAssetMainController *svc = [[ApexAssetMainController alloc] init];
-    [self.navigationController pushViewController:svc animated:YES];
 }
 
 #pragma mark - ------getter & setter------

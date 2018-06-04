@@ -111,7 +111,7 @@
     
     self.moreView.transform = CGAffineTransformMakeTranslation(-kScreenW, 0);
     
-    self.balanceL.text = self.accountModel.balances.count == 0 ? @"0" : (self.accountModel.balances.firstObject.value);
+    self.balanceL.text = self.balanceModel.value;
 }
 
 #pragma mark - ------public------

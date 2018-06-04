@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ApexAccountStateModel;
+@class BalanceObject;
 @interface ApexWalletDetailController : UIViewController
 @property (nonatomic, strong) NSString *walletName;
 @property (nonatomic, strong) NSString *walletAddress;
-@property (nonatomic, strong) ApexAccountStateModel *accountModel;
+@property (nonatomic, strong) BalanceObject *balanceModel;
 @end

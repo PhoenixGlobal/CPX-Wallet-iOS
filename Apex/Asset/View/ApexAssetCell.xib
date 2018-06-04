@@ -45,13 +45,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.0001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3a-OR-lEM">
-                        <rect key="frame" x="236.5" y="39" width="38.5" height="14.5"/>
+                        <rect key="frame" x="262" y="39" width="38.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.32941176470588235" green="0.792156862745098" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VBO-VN-X8M">
-                        <rect key="frame" x="220.5" y="43.5" width="6" height="6"/>
+                        <rect key="frame" x="246" y="43.5" width="6" height="6"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="6" id="Luo-wm-9ee"/>
                             <constraint firstAttribute="width" constant="6" id="St0-Zu-vt8"/>
@@ -93,10 +93,10 @@
                     <constraint firstAttribute="trailing" secondItem="8b0-2J-Npi" secondAttribute="trailing" id="Q7e-03-Zme"/>
                     <constraint firstItem="zRW-qg-Lk5" firstAttribute="centerY" secondItem="i3a-OR-lEM" secondAttribute="centerY" id="QO4-32-rdV"/>
                     <constraint firstAttribute="trailing" secondItem="auQ-Sf-XAJ" secondAttribute="trailing" constant="15" id="R6x-zq-ovz"/>
-                    <constraint firstItem="i3a-OR-lEM" firstAttribute="leading" secondItem="A4Y-FI-xLw" secondAttribute="leading" id="V6u-gX-UCe"/>
                     <constraint firstItem="auQ-Sf-XAJ" firstAttribute="leading" secondItem="A4Y-FI-xLw" secondAttribute="trailing" constant="10" id="XZQ-20-KQx"/>
                     <constraint firstItem="A4Y-FI-xLw" firstAttribute="baseline" secondItem="auQ-Sf-XAJ" secondAttribute="baseline" id="Yx5-iX-KAd"/>
                     <constraint firstItem="YOb-3u-oZE" firstAttribute="top" secondItem="zRW-qg-Lk5" secondAttribute="bottom" constant="10" id="e61-2Z-Ilm"/>
+                    <constraint firstItem="zRW-qg-Lk5" firstAttribute="leading" secondItem="i3a-OR-lEM" secondAttribute="trailing" constant="10" id="nfn-ck-nSu"/>
                     <constraint firstItem="aAP-IE-0o8" firstAttribute="centerY" secondItem="YOb-3u-oZE" secondAttribute="centerY" id="rUc-GH-XVX"/>
                     <constraint firstItem="x2p-JP-C6g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="tjs-Lv-5mc"/>
                     <constraint firstItem="VBO-VN-X8M" firstAttribute="centerY" secondItem="i3a-OR-lEM" secondAttribute="centerY" id="tlR-GN-Lpu"/>
@@ -108,6 +108,7 @@
                 <outlet property="assetNameLThree" destination="zRW-qg-Lk5" id="oRK-Us-Mfk"/>
                 <outlet property="assetNameLTwo" destination="auQ-Sf-XAJ" id="w5C-v7-6y8"/>
                 <outlet property="balanceL" destination="A4Y-FI-xLw" id="uFS-zq-b2z"/>
+                <outlet property="baseView" destination="8b0-2J-Npi" id="fkl-de-LMp"/>
                 <outlet property="imageV" destination="VBO-VN-X8M" id="5Ri-Jq-EMl"/>
                 <outlet property="percentL" destination="i3a-OR-lEM" id="l36-vi-CE3"/>
             </connections>
