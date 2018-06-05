@@ -84,6 +84,8 @@
 		E39E02CD20C5088C005DD251 /* ApexAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02CB20C5088C005DD251 /* ApexAssetCell.m */; };
 		E39E02D020C657F8005DD251 /* ApexMorePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02CF20C657F8005DD251 /* ApexMorePanelController.m */; };
 		E39E02D420C659E2005DD251 /* ApexDrawTransAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02D320C659E2005DD251 /* ApexDrawTransAnimator.m */; };
+		E39E02DD20C68C13005DD251 /* ApexMoreTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02DC20C68C13005DD251 /* ApexMoreTopCell.m */; };
+		E39E02E020C68C38005DD251 /* ApexMoreFuncCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02DF20C68C38005DD251 /* ApexMoreFuncCell.m */; };
 		E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */; };
 		E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */; };
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
@@ -263,6 +265,10 @@
 		E39E02CF20C657F8005DD251 /* ApexMorePanelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMorePanelController.m; sourceTree = "<group>"; };
 		E39E02D220C659E2005DD251 /* ApexDrawTransAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexDrawTransAnimator.h; sourceTree = "<group>"; };
 		E39E02D320C659E2005DD251 /* ApexDrawTransAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexDrawTransAnimator.m; sourceTree = "<group>"; };
+		E39E02DB20C68C13005DD251 /* ApexMoreTopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMoreTopCell.h; sourceTree = "<group>"; };
+		E39E02DC20C68C13005DD251 /* ApexMoreTopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMoreTopCell.m; sourceTree = "<group>"; };
+		E39E02DE20C68C38005DD251 /* ApexMoreFuncCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMoreFuncCell.h; sourceTree = "<group>"; };
+		E39E02DF20C68C38005DD251 /* ApexMoreFuncCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMoreFuncCell.m; sourceTree = "<group>"; };
 		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
 		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
 		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -560,6 +566,10 @@
 				E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */,
 				E3CE667920BBF0D6002A1E07 /* ApexTempEmptyView.h */,
 				E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */,
+				E39E02DB20C68C13005DD251 /* ApexMoreTopCell.h */,
+				E39E02DC20C68C13005DD251 /* ApexMoreTopCell.m */,
+				E39E02DE20C68C38005DD251 /* ApexMoreFuncCell.h */,
+				E39E02DF20C68C38005DD251 /* ApexMoreFuncCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1032,6 +1042,7 @@
 				E3CE66B620BEA812002A1E07 /* NSDate+DateTools.m in Sources */,
 				E3CE669020BD3B56002A1E07 /* ApexTransferCell.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
+				E39E02E020C68C38005DD251 /* ApexMoreFuncCell.m in Sources */,
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
 				E3CE66BA20BEA812002A1E07 /* CYLDayCollectionView.m in Sources */,
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
@@ -1085,6 +1096,7 @@
 				E3CE66B720BEA812002A1E07 /* DTTimePeriodCollection.m in Sources */,
 				E39E02C520C4EDF6005DD251 /* ApexAssetMainViewCell.m in Sources */,
 				E39E02C820C50517005DD251 /* ApexAccountDetailController.m in Sources */,
+				E39E02DD20C68C13005DD251 /* ApexMoreTopCell.m in Sources */,
 				E3263EC520B5639D001D3C19 /* ApexManageWalletView.m in Sources */,
 				E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */,
 				E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */,

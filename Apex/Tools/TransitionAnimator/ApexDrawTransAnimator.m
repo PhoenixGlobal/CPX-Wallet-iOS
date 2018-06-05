@@ -38,7 +38,7 @@
             [container addSubview:_fakeView];
             
             [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                self.fakeView.transform = CGAffineTransformMakeTranslation(-150, 0);
+                self.fakeView.transform = CGAffineTransformMakeTranslation(-scaleWidth375(150), 0);
             } completion:^(BOOL finished) {
                 [transitionContext completeTransition:YES];
             }];
