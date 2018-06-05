@@ -15,5 +15,17 @@
 @end
 
 @implementation BalanceObject
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super init]) {
+        self.asset = [aDecoder decodeObjectForKey:@"asset"];
+        self.value = [aDecoder decodeObjectForKey:@"value"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.asset forKey:@"asset"];
+    [aCoder encodeObject:self.value forKey:@"value"];
+}
 
 @end

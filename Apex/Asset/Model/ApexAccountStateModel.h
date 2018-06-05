@@ -33,7 +33,7 @@
 @property (nonatomic, strong) NSArray<BalanceObject *> *balances;
 @end
 
-@interface BalanceObject : NSObject
+@interface BalanceObject : NSObject<NSCoding>
 @property (nonatomic, strong) NSString *asset;
 @property (nonatomic, strong) NSString *value;
 @end

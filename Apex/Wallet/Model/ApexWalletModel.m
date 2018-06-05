@@ -14,6 +14,7 @@
         self.name = [aDecoder decodeObjectForKey:@"name"];
         self.address = [aDecoder decodeObjectForKey:@"address"];
         self.isBackUp = ((NSNumber*)[aDecoder decodeObjectForKey:@"isBackUp"]).boolValue;
+        self.assetArr = [aDecoder decodeObjectForKey:@"assetArr"];
     }
     return self;
 }
@@ -22,5 +23,6 @@
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.address forKey:@"address"];
     [aCoder encodeObject:@(self.isBackUp) forKey:@"isBackUp"];
+    [aCoder encodeObject:self.assetArr forKey:@"assetArr"];
 }
 @end

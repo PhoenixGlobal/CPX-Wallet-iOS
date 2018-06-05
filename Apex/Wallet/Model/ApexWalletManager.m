@@ -20,7 +20,7 @@
     model.name = array.lastObject;
     model.address = array.firstObject;
     model.isBackUp = false;
-    
+    model.assetArr = [self setDefultAsset];
     [arr addObject:model];
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
@@ -55,6 +55,15 @@
         }
     }
     [TKFileManager saveData:arr withFileName:walletsKey];
+}
+
++ (NSMutableArray*)setDefultAsset{
+    NSMutableArray *arr = [NSMutableArray array];
+    BalanceObject *cpx = [[BalanceObject alloc] init];
+    cpx.asset = assetId_CPX;
+    cpx.value = @"0.0";
+    [arr addObject:cpx];
+    return arr;
 }
 
 + (void)getAccountStateWithAddress:(NSString *)address Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{

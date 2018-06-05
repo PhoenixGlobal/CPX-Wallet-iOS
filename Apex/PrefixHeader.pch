@@ -39,5 +39,6 @@
 #import "ApexWalletModel.h"
 #import "ApexBlockChainManager.h"
 #import "ApexThread.h"
+#import "ApexAccountStateModel.h"
 #endif /* PrefixHeader_pch */
 
