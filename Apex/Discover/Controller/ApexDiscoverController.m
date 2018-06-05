@@ -35,7 +35,7 @@
     self.title = @"发现";
     self.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     
-//    [CYLEmptyView showEmptyViewOnView:self.view emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
+    [CYLEmptyView showEmptyViewOnView:self.view emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
 }
 
 #pragma mark - ------public------

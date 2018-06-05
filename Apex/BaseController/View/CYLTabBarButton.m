@@ -33,6 +33,18 @@
     
 }
 
+#pragma mark - animation
+- (void)doAnimation{
+    CAKeyframeAnimation *animation = [[CAKeyframeAnimation alloc] init];
+    animation.keyPath = @"transform.scale";
+    animation.values = @[@0.8,@1.2,@0.9,@1.0];
+    animation.duration = 0.2;
+    animation.removedOnCompletion = YES;
+    animation.repeatCount = 1;
+    [self.layer addAnimation:animation forKey:@""];
+}
+
+#pragma mark - layout
 - (CGRect)titleRectForContentRect:(CGRect)contentRect
 {
     CGRect imageViewFrame = self.imageView.frame;

@@ -11,4 +11,6 @@
 @interface CYLTabBarButton : UIButton
 @property (nonatomic, assign) BOOL isOnlyPic;
 @property (nonatomic, strong) UIView *redDot; /**< 通知红点*/
+
+- (void)doAnimation;
 @end

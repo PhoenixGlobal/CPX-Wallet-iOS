@@ -10,17 +10,18 @@
 #import "ApexAccountStateModel.h"
 #import "ApexRequestMoenyController.h"
 #import "ApexSendMoneyController.h"
-#import "ApexMorePanelView.h"
 #import "LXDScanCodeController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ApexCreatWalletController.h"
 #import "ApexTempEmptyView.h"
+#import "ApexMorePanelController.h"
+#import "ApexDrawTransAnimator.h"
 
 #define RouteNameEvent_SendMoney @"RouteNameEvent_SendMoney"
 #define RouteNameEvent_RequestMoney @"RouteNameEvent_RequestMoney"
 #define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
 
-@interface ApexWalletDetailController ()<LXDScanCodeControllerDelegate>
+@interface ApexWalletDetailController ()<LXDScanCodeControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) UILabel *balanceL;
 @property (nonatomic, strong) UILabel *unitL;
@@ -29,7 +30,7 @@
 @property (nonatomic, strong) UIButton *sendBtn;
 @property (nonatomic, strong) UIButton *requestBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
-@property (nonatomic, strong) ApexMorePanelView *moreView;
+@property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
 @end
 
 @implementation ApexWalletDetailController
@@ -46,6 +47,7 @@
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     self.navigationItem.titleView = self.titleL;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
+    self.navigationController.delegate = self;
 }
 
 - (void)setUI{
@@ -62,7 +64,6 @@
     [self.view addSubview:self.addressL];
     [self.view addSubview:self.requestBtn];
     [self.view addSubview:self.sendBtn];
-    [self.view addSubview:self.moreView];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
@@ -97,10 +98,7 @@
         make.top.equalTo(self.balanceL.mas_bottom).offset(10);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
-    
-    [self.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.top.equalTo(self.view);
-    }];
+
     
     [ev mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.requestBtn.mas_bottom).offset(30);
@@ -108,8 +106,6 @@
         make.right.equalTo(self.view).offset(-15);
         make.height.mas_equalTo(127);
     }];
-    
-    self.moreView.transform = CGAffineTransformMakeTranslation(-kScreenW, 0);
     
     self.balanceL.text = self.balanceModel.value;
 }
@@ -146,14 +142,15 @@
         svc.walletName = self.walletName;
         [self.navigationController pushViewController:svc animated:YES];
     }else if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
-        _moreView.hidden = NO;
-        _moreView.transform = CGAffineTransformIdentity;
-    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewScan]){
-        [self scanAction];
-    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewCreatWallet]){
-        ApexCreatWalletController *wvc = [[ApexCreatWalletController alloc] init];
-        [self.navigationController pushViewController:wvc animated:YES];
+        ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
+//    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewScan]){
+//        [self scanAction];
+//    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewCreatWallet]){
+//        ApexCreatWalletController *wvc = [[ApexCreatWalletController alloc] init];
+//        [self.navigationController pushViewController:wvc animated:YES];
+//    }
 }
 
 
@@ -178,6 +175,23 @@
     scanCodeController.hidesBottomBarWhenPushed = YES;
     scanCodeController.scanDelegate = self;
     [self.navigationController pushViewController:scanCodeController animated:YES];
+    
+}
+#pragma mark - ------transition-----
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
+    if (operation == UINavigationControllerOperationPush) {
+        if ([toVC isKindOfClass:[ApexMorePanelController class]]) {
+            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Push animateDuration:0.3 andTransitionAnimation:self.transAnimator];
+        }else{
+            return nil;
+        }
+    }else {
+        if ([fromVC isKindOfClass:[ApexMorePanelController class]]) {
+            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Pop animateDuration:0.3 andTransitionAnimation:self.transAnimator];
+        }else{
+            return nil;
+        }
+    }
 }
 
 #pragma mark - ------getter & setter------
@@ -272,13 +286,11 @@
     return _moreBtn;
 }
 
-- (ApexMorePanelView *)moreView{
-    if (!_moreView) {
-        _moreView = [[ApexMorePanelView alloc] init];
-        _moreView.hidden = YES;
-        _moreView.nameL.text = self.walletName;
+- (ApexDrawTransAnimator *)transAnimator{
+    if (!_transAnimator) {
+        _transAnimator = [[ApexDrawTransAnimator alloc] init];
     }
-    return _moreView;
+    return _transAnimator;
 }
 
 @end

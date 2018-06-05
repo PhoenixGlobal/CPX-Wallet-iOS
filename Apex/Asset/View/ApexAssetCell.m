@@ -37,5 +37,17 @@
 - (void)setModel:(BalanceObject *)model{
     _model = model;
     _balanceL.text = model.value;
+    
+    NSString *assetName = @"err";
+    if ([model.asset isEqualToString:assetId_CPX]) {
+        assetName = @"CPX";
+    }else if ([model.asset isEqualToString:assetId_Neo]){
+        assetName = @"NEO";
+    }else if ([model.asset isEqualToString:assetId_NeoGas]){
+        assetName = @"GAS";
+    }
+    _assetNameL.text = assetName;
+    _assetNameLTwo.text = assetName;
+    _assetNameLThree.text = assetName;
 }
 @end

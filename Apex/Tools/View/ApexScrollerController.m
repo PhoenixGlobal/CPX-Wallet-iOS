@@ -9,7 +9,7 @@
 #import "ApexScrollerController.h"
 
 #define LayersDelta 35.0
-#define layersSubtle 70.0
+#define layersSubtle 40.0
 
 
 @interface ApexScrollerController ()
@@ -87,11 +87,13 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:@"contentOffset"]) {
         NSValue *x = change[NSKeyValueChangeNewKey];
+        
         CGFloat offSetY = x.CGPointValue.y;
         if (self.translateOffset == -99999) {
             self.translateOffset = offSetY;
         }
         
+        //baseview到navbar的距离
         CGFloat translateDelta = self.translateLength - (offSetY + fabs(self.translateOffset));
         CGFloat percent = 1.0 - (translateDelta/self.translateLength);
         
@@ -102,7 +104,7 @@
             if (percent <= 0) {
                 self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*0.8);
             }else{
-                self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
+                self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*1.6);
             }
             
 //            if (percent <= 0) {
@@ -143,7 +145,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
+    return 5.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -151,9 +153,16 @@
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 20)];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 5)];
     v.backgroundColor = [UIColor clearColor];
     return v;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 1)];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
 
 #pragma mark - ------eventResponse------

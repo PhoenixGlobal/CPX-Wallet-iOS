@@ -82,6 +82,8 @@
 		E39E02C820C50517005DD251 /* ApexAccountDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02C720C50517005DD251 /* ApexAccountDetailController.m */; };
 		E39E02CC20C5088C005DD251 /* ApexAssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E02C920C5088C005DD251 /* ApexAssetCell.xib */; };
 		E39E02CD20C5088C005DD251 /* ApexAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02CB20C5088C005DD251 /* ApexAssetCell.m */; };
+		E39E02D020C657F8005DD251 /* ApexMorePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02CF20C657F8005DD251 /* ApexMorePanelController.m */; };
+		E39E02D420C659E2005DD251 /* ApexDrawTransAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02D320C659E2005DD251 /* ApexDrawTransAnimator.m */; };
 		E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */; };
 		E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */; };
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
@@ -257,6 +259,10 @@
 		E39E02C920C5088C005DD251 /* ApexAssetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexAssetCell.xib; sourceTree = "<group>"; };
 		E39E02CA20C5088C005DD251 /* ApexAssetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetCell.h; sourceTree = "<group>"; };
 		E39E02CB20C5088C005DD251 /* ApexAssetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetCell.m; sourceTree = "<group>"; };
+		E39E02CE20C657F8005DD251 /* ApexMorePanelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMorePanelController.h; sourceTree = "<group>"; };
+		E39E02CF20C657F8005DD251 /* ApexMorePanelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMorePanelController.m; sourceTree = "<group>"; };
+		E39E02D220C659E2005DD251 /* ApexDrawTransAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexDrawTransAnimator.h; sourceTree = "<group>"; };
+		E39E02D320C659E2005DD251 /* ApexDrawTransAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexDrawTransAnimator.m; sourceTree = "<group>"; };
 		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
 		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
 		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -567,6 +573,8 @@
 				E39E02C720C50517005DD251 /* ApexAccountDetailController.m */,
 				E33A8BDA20B2B5950067505E /* ApexWalletDetailController.h */,
 				E33A8BDB20B2B5950067505E /* ApexWalletDetailController.m */,
+				E39E02CE20C657F8005DD251 /* ApexMorePanelController.h */,
+				E39E02CF20C657F8005DD251 /* ApexMorePanelController.m */,
 				E33A8BE120B2C3A50067505E /* ApexRequestMoenyController.h */,
 				E33A8BE220B2C3A50067505E /* ApexRequestMoenyController.m */,
 				E33A8BE020B2C3A50067505E /* ApexRequestMoenyController.xib */,
@@ -593,6 +601,7 @@
 		E33A8B6E20AE75500067505E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				E39E02D120C659C6005DD251 /* TransitionAnimator */,
 				E3CE669F20BEA811002A1E07 /* DateTools */,
 				E3CE668220BCEAD6002A1E07 /* View */,
 				E3CE667220BBC8B3002A1E07 /* BlockChain */,
@@ -758,6 +767,15 @@
 				E33A8BC320B28F800067505E /* PDKeyChain.m */,
 			);
 			path = keyChain;
+			sourceTree = "<group>";
+		};
+		E39E02D120C659C6005DD251 /* TransitionAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				E39E02D220C659E2005DD251 /* ApexDrawTransAnimator.h */,
+				E39E02D320C659E2005DD251 /* ApexDrawTransAnimator.m */,
+			);
+			path = TransitionAnimator;
 			sourceTree = "<group>";
 		};
 		E3CE667220BBC8B3002A1E07 /* BlockChain */ = {
@@ -1035,6 +1053,7 @@
 				E3CE66B420BEA812002A1E07 /* DTTimePeriodChain.m in Sources */,
 				E3CE66B320BEA812002A1E07 /* DTTimePeriod.m in Sources */,
 				E33A8BEC20B3AD680067505E /* ApexMorePanelView.m in Sources */,
+				E39E02D420C659E2005DD251 /* ApexDrawTransAnimator.m in Sources */,
 				E33A8B9C20AE756E0067505E /* UIViewController+Toast.m in Sources */,
 				E33A8B7820AE75500067505E /* LXDScanView.m in Sources */,
 				E3263EF920B6AF07001D3C19 /* ApexMnemonicFlowLayout.m in Sources */,
@@ -1057,6 +1076,7 @@
 				E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */,
 				E33A8B7920AE75500067505E /* LXDScanCodeController.m in Sources */,
 				E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */,
+				E39E02D020C657F8005DD251 /* ApexMorePanelController.m in Sources */,
 				E3CE669820BE3D13002A1E07 /* ApexSendMoneyViewModel.m in Sources */,
 				E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */,
 				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
