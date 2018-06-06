@@ -28,6 +28,7 @@
 #import "UIView+Common.h"
 #import "UIButton+EnlargeTouchArea.h"
 #import "DateTools.h"
+#import "UITextView+placeholder.h"
 
 /**< other */
 #import "ApexUIHelper.h"

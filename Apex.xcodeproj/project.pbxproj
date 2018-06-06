@@ -88,6 +88,11 @@
 		E39E02E020C68C38005DD251 /* ApexMoreFuncCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02DF20C68C38005DD251 /* ApexMoreFuncCell.m */; };
 		E39E02E320C7ACDB005DD251 /* UIViewController+Apex.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02E220C7ACDB005DD251 /* UIViewController+Apex.m */; };
 		E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02E520C7AE54005DD251 /* ApexScanAction.m */; };
+		E39E02E920C7C82E005DD251 /* ApexImportSwithHeaderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02E820C7C82E005DD251 /* ApexImportSwithHeaderBar.m */; };
+		E39E02EC20C7D1F3005DD251 /* ApexImportByKeystoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02EB20C7D1F3005DD251 /* ApexImportByKeystoreView.m */; };
+		E39E02EF20C7D206005DD251 /* ApexImportByMnemonicView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02EE20C7D206005DD251 /* ApexImportByMnemonicView.m */; };
+		E39E02F520C7D771005DD251 /* UITextView+placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02F420C7D771005DD251 /* UITextView+placeholder.m */; };
+		E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02F720C7E0AA005DD251 /* ApexPrivacyAggreView.m */; };
 		E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */; };
 		E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */; };
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
@@ -275,6 +280,16 @@
 		E39E02E220C7ACDB005DD251 /* UIViewController+Apex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Apex.m"; sourceTree = "<group>"; };
 		E39E02E420C7AE54005DD251 /* ApexScanAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScanAction.h; sourceTree = "<group>"; };
 		E39E02E520C7AE54005DD251 /* ApexScanAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScanAction.m; sourceTree = "<group>"; };
+		E39E02E720C7C82E005DD251 /* ApexImportSwithHeaderBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexImportSwithHeaderBar.h; sourceTree = "<group>"; };
+		E39E02E820C7C82E005DD251 /* ApexImportSwithHeaderBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexImportSwithHeaderBar.m; sourceTree = "<group>"; };
+		E39E02EA20C7D1F3005DD251 /* ApexImportByKeystoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexImportByKeystoreView.h; sourceTree = "<group>"; };
+		E39E02EB20C7D1F3005DD251 /* ApexImportByKeystoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexImportByKeystoreView.m; sourceTree = "<group>"; };
+		E39E02ED20C7D206005DD251 /* ApexImportByMnemonicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexImportByMnemonicView.h; sourceTree = "<group>"; };
+		E39E02EE20C7D206005DD251 /* ApexImportByMnemonicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexImportByMnemonicView.m; sourceTree = "<group>"; };
+		E39E02F320C7D771005DD251 /* UITextView+placeholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+placeholder.h"; sourceTree = "<group>"; };
+		E39E02F420C7D771005DD251 /* UITextView+placeholder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+placeholder.m"; sourceTree = "<group>"; };
+		E39E02F620C7E0AA005DD251 /* ApexPrivacyAggreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexPrivacyAggreView.h; sourceTree = "<group>"; };
+		E39E02F720C7E0AA005DD251 /* ApexPrivacyAggreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexPrivacyAggreView.m; sourceTree = "<group>"; };
 		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
 		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
 		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -692,10 +707,7 @@
 				E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */,
 				E33A8BDD20B2BB340067505E /* UIView+Common.h */,
 				E33A8BDE20B2BB340067505E /* UIView+Common.m */,
-				E33A8B8B20AE756E0067505E /* UIColor+HYF.h */,
-				E33A8B8C20AE756E0067505E /* UIView+TKFrame.h */,
-				E33A8B8D20AE756E0067505E /* UIViewController+NetLoadingIndicator.h */,
-				E33A8B8E20AE756E0067505E /* UIResponder+Router.m */,
+				E33A8B9520AE756E0067505E /* UINavigationController+ApexNavigationBar.h */,
 				E33A8B8F20AE756E0067505E /* UINavigationController+ApexNavigationBar.m */,
 				E33A8B9720AE756E0067505E /* UIViewController+NetLoadIndicator.h */,
 				E33A8B9020AE756E0067505E /* UIViewController+NetLoadIndicator.m */,
@@ -703,13 +715,18 @@
 				E33A8B9120AE756E0067505E /* UIViewController+Toast.m */,
 				E39E02E120C7ACDB005DD251 /* UIViewController+Apex.h */,
 				E39E02E220C7ACDB005DD251 /* UIViewController+Apex.m */,
+				E33A8B8D20AE756E0067505E /* UIViewController+NetLoadingIndicator.h */,
 				E33A8B9220AE756E0067505E /* UIViewController+NetLoadingIndicator.m */,
+				E33A8B8C20AE756E0067505E /* UIView+TKFrame.h */,
 				E33A8B9320AE756E0067505E /* UIView+TKFrame.m */,
+				E33A8B8B20AE756E0067505E /* UIColor+HYF.h */,
 				E33A8B9420AE756E0067505E /* UIColor+HYF.m */,
-				E33A8B9520AE756E0067505E /* UINavigationController+ApexNavigationBar.h */,
 				E33A8B9620AE756E0067505E /* UIResponder+Router.h */,
+				E33A8B8E20AE756E0067505E /* UIResponder+Router.m */,
 				E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */,
 				E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */,
+				E39E02F320C7D771005DD251 /* UITextView+placeholder.h */,
+				E39E02F420C7D771005DD251 /* UITextView+placeholder.m */,
 			);
 			path = Catagotries;
 			sourceTree = "<group>";
@@ -735,6 +752,14 @@
 				E3CE669A20BE4539002A1E07 /* ApexMnenonicShowView.m */,
 				E3CE669C20BE47C3002A1E07 /* ApexMnemonicShowCell.h */,
 				E3CE669D20BE47C3002A1E07 /* ApexMnemonicShowCell.m */,
+				E39E02E720C7C82E005DD251 /* ApexImportSwithHeaderBar.h */,
+				E39E02E820C7C82E005DD251 /* ApexImportSwithHeaderBar.m */,
+				E39E02EA20C7D1F3005DD251 /* ApexImportByKeystoreView.h */,
+				E39E02EB20C7D1F3005DD251 /* ApexImportByKeystoreView.m */,
+				E39E02ED20C7D206005DD251 /* ApexImportByMnemonicView.h */,
+				E39E02EE20C7D206005DD251 /* ApexImportByMnemonicView.m */,
+				E39E02F620C7E0AA005DD251 /* ApexPrivacyAggreView.h */,
+				E39E02F720C7E0AA005DD251 /* ApexPrivacyAggreView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1047,17 +1072,21 @@
 				E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */,
 				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
 				E33A8BBE20AE7D9F0067505E /* ApexRPCClient.m in Sources */,
+				E39E02F520C7D771005DD251 /* UITextView+placeholder.m in Sources */,
 				E3263EBF20B54A41001D3C19 /* ApexSwitchHeaderBar.m in Sources */,
 				E3CE669B20BE4539002A1E07 /* ApexMnenonicShowView.m in Sources */,
 				E3CE66B620BEA812002A1E07 /* NSDate+DateTools.m in Sources */,
 				E3CE669020BD3B56002A1E07 /* ApexTransferCell.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
+				E39E02E920C7C82E005DD251 /* ApexImportSwithHeaderBar.m in Sources */,
 				E39E02E020C68C38005DD251 /* ApexMoreFuncCell.m in Sources */,
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
 				E3CE66BA20BEA812002A1E07 /* CYLDayCollectionView.m in Sources */,
+				E39E02EC20C7D1F3005DD251 /* ApexImportByKeystoreView.m in Sources */,
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
 				E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */,
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
+				E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */,
 				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
 				E39E02CD20C5088C005DD251 /* ApexAssetCell.m in Sources */,
@@ -1102,6 +1131,7 @@
 				E39E02D020C657F8005DD251 /* ApexMorePanelController.m in Sources */,
 				E3CE669820BE3D13002A1E07 /* ApexSendMoneyViewModel.m in Sources */,
 				E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */,
+				E39E02EF20C7D206005DD251 /* ApexImportByMnemonicView.m in Sources */,
 				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
 				E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */,
 				E3263EEE20B69BB6001D3C19 /* FCAlertView.m in Sources */,

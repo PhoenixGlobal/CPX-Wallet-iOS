@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *percentL;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *balanceL;
-@property (weak, nonatomic) IBOutlet UIView *baseView;
+@property (weak, nonatomic) IBOutlet UIButton *mappignBtn;
 
 @end
 
@@ -28,10 +28,13 @@
 }
 
 - (void)initUI{
-    self.layer.cornerRadius = 5;
+    self.layer.cornerRadius = 3;
     self.layer.masksToBounds = YES;
     
-    [CYLEmptyView showEmptyViewOnView:self.baseView emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
+    [_mappignBtn setTitleColor:[ApexUIHelper grayColor] forState:UIControlStateNormal];
+    _mappignBtn.layer.borderColor = [ApexUIHelper grayColor].CGColor;
+    _mappignBtn.layer.borderWidth = 1.0/kScale;
+    _mappignBtn.layer.cornerRadius = 4;
 }
 
 - (void)setModel:(BalanceObject *)model{

@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteWalletBtn;
 @property (weak, nonatomic) IBOutlet UILabel *balanceL;
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
+@property (weak, nonatomic) IBOutlet UIButton *exportKeyStoreBtn;
+
 @property (nonatomic, strong) UIButton *saveBtn;
 @end
 

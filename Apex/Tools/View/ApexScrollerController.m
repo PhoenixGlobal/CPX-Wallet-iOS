@@ -9,7 +9,7 @@
 #import "ApexScrollerController.h"
 
 #define LayersDelta 35.0
-#define layersSubtle 40.0
+#define layersSubtle 30.0
 
 
 @interface ApexScrollerController ()
@@ -104,7 +104,7 @@
             if (percent <= 0) {
                 self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*0.8);
             }else{
-                self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*1.6);
+                self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*1.53);
             }
             
 //            if (percent <= 0) {

@@ -15,10 +15,11 @@
 #import "ApexSwithWalletView.h"
 
 @interface ApexTransactionDetailController ()<UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UILabel *balance;
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
 @property (weak, nonatomic) IBOutlet UIView *searchBaseV;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseViewH;
+
 @property (nonatomic, strong) UIButton *swithBtn;
 @property (nonatomic, strong) ApexSearchWalletToolBar *searchToolBar;
 @property (nonatomic, strong) NSMutableArray *contentArr;
@@ -36,8 +37,6 @@
     
     [self initUI];
     [self handleEvent];
-    [self requestBalance];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -54,18 +53,20 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ApexTransferCell class] forCellReuseIdentifier:@"cell"];
+    
+    self.baseViewH.constant = NavBarHeight+ 60;
 }
 
-- (void)requestBalance{
-    @weakify(self);
-    [ApexWalletManager getAccountStateWithAddress:self.model.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        @strongify(self);
-        ApexAccountStateModel *model = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
-        model.balances.count == 0 ? (self.balance.text = @"0") : (self.balance.text = model.balances.firstObject.value);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        self.balance.text = @"N/A";
-    }];
-}
+//- (void)requestBalance{
+//    @weakify(self);
+//    [ApexWalletManager getAccountStateWithAddress:self.model.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        @strongify(self);
+//        ApexAccountStateModel *model = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
+//        model.balances.count == 0 ? (self.balance.text = @"0") : (self.balance.text = model.balances.firstObject.value);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        self.balance.text = @"N/A";
+//    }];
+//}
 
 - (void)prepareData{
     self.title = self.model.name;
@@ -154,7 +155,6 @@
     [self.switchView.didSwitchSub subscribeNext:^(ApexWalletModel *x) {
         self.model = x;
         [self prepareData];
-        [self requestBalance];
     }];
 }
 

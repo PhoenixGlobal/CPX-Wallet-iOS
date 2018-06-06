@@ -8,7 +8,7 @@
 
 #import "ApexDiscoverController.h"
 #import "CYLEmptyView.h"
-#import "ApexAssetMainController.h"
+#import "ApexImportWalletController.h"
 
 @interface ApexDiscoverController ()
 @end
@@ -44,6 +44,8 @@
 
 #pragma mark - ------eventResponse------
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    ApexImportWalletController *vc = [[ApexImportWalletController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - ------getter & setter------
