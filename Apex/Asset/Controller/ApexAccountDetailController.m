@@ -124,8 +124,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexWalletDetailController *vc = [[ApexWalletDetailController alloc] init];
-    vc.walletAddress = self.walletModel.address;
-    vc.walletName = self.walletModel.name;
+    vc.wallModel = self.walletModel;
     vc.balanceModel = self.assetArr[indexPath.section];
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -86,6 +86,8 @@
 		E39E02D420C659E2005DD251 /* ApexDrawTransAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02D320C659E2005DD251 /* ApexDrawTransAnimator.m */; };
 		E39E02DD20C68C13005DD251 /* ApexMoreTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02DC20C68C13005DD251 /* ApexMoreTopCell.m */; };
 		E39E02E020C68C38005DD251 /* ApexMoreFuncCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02DF20C68C38005DD251 /* ApexMoreFuncCell.m */; };
+		E39E02E320C7ACDB005DD251 /* UIViewController+Apex.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02E220C7ACDB005DD251 /* UIViewController+Apex.m */; };
+		E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02E520C7AE54005DD251 /* ApexScanAction.m */; };
 		E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */; };
 		E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */; };
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
@@ -269,6 +271,10 @@
 		E39E02DC20C68C13005DD251 /* ApexMoreTopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMoreTopCell.m; sourceTree = "<group>"; };
 		E39E02DE20C68C38005DD251 /* ApexMoreFuncCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMoreFuncCell.h; sourceTree = "<group>"; };
 		E39E02DF20C68C38005DD251 /* ApexMoreFuncCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMoreFuncCell.m; sourceTree = "<group>"; };
+		E39E02E120C7ACDB005DD251 /* UIViewController+Apex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Apex.h"; sourceTree = "<group>"; };
+		E39E02E220C7ACDB005DD251 /* UIViewController+Apex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Apex.m"; sourceTree = "<group>"; };
+		E39E02E420C7AE54005DD251 /* ApexScanAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScanAction.h; sourceTree = "<group>"; };
+		E39E02E520C7AE54005DD251 /* ApexScanAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScanAction.m; sourceTree = "<group>"; };
 		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
 		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
 		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -638,10 +644,12 @@
 		E33A8B6F20AE75500067505E /* ScanTool */ = {
 			isa = PBXGroup;
 			children = (
-				E33A8B7020AE75500067505E /* LXDScanView.m */,
-				E33A8B7120AE75500067505E /* LXDScanCodeController.m */,
 				E33A8B7220AE75500067505E /* LXDScanView.h */,
+				E33A8B7020AE75500067505E /* LXDScanView.m */,
 				E33A8B7320AE75500067505E /* LXDScanCodeController.h */,
+				E33A8B7120AE75500067505E /* LXDScanCodeController.m */,
+				E39E02E420C7AE54005DD251 /* ApexScanAction.h */,
+				E39E02E520C7AE54005DD251 /* ApexScanAction.m */,
 			);
 			path = ScanTool;
 			sourceTree = "<group>";
@@ -689,15 +697,17 @@
 				E33A8B8D20AE756E0067505E /* UIViewController+NetLoadingIndicator.h */,
 				E33A8B8E20AE756E0067505E /* UIResponder+Router.m */,
 				E33A8B8F20AE756E0067505E /* UINavigationController+ApexNavigationBar.m */,
+				E33A8B9720AE756E0067505E /* UIViewController+NetLoadIndicator.h */,
 				E33A8B9020AE756E0067505E /* UIViewController+NetLoadIndicator.m */,
+				E33A8B9820AE756E0067505E /* UIViewController+Toast.h */,
 				E33A8B9120AE756E0067505E /* UIViewController+Toast.m */,
+				E39E02E120C7ACDB005DD251 /* UIViewController+Apex.h */,
+				E39E02E220C7ACDB005DD251 /* UIViewController+Apex.m */,
 				E33A8B9220AE756E0067505E /* UIViewController+NetLoadingIndicator.m */,
 				E33A8B9320AE756E0067505E /* UIView+TKFrame.m */,
 				E33A8B9420AE756E0067505E /* UIColor+HYF.m */,
 				E33A8B9520AE756E0067505E /* UINavigationController+ApexNavigationBar.h */,
 				E33A8B9620AE756E0067505E /* UIResponder+Router.h */,
-				E33A8B9720AE756E0067505E /* UIViewController+NetLoadIndicator.h */,
-				E33A8B9820AE756E0067505E /* UIViewController+Toast.h */,
 				E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */,
 				E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */,
 			);
@@ -1046,6 +1056,7 @@
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
 				E3CE66BA20BEA812002A1E07 /* CYLDayCollectionView.m in Sources */,
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
+				E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */,
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
 				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
@@ -1074,6 +1085,7 @@
 				E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */,
 				E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */,
 				E33A8B9A20AE756E0067505E /* UINavigationController+ApexNavigationBar.m in Sources */,
+				E39E02E320C7ACDB005DD251 /* UIViewController+Apex.m in Sources */,
 				E3CE66B920BEA812002A1E07 /* DTConstants.m in Sources */,
 				E3CE66D920C4E29E002A1E07 /* ApexAssetMainController.m in Sources */,
 				E33A8BEF20B3C16C0067505E /* ApexTXIDModel.m in Sources */,

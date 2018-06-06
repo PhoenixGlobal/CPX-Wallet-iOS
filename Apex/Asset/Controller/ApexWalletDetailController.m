@@ -10,8 +10,6 @@
 #import "ApexAccountStateModel.h"
 #import "ApexRequestMoenyController.h"
 #import "ApexSendMoneyController.h"
-#import "LXDScanCodeController.h"
-#import <AVFoundation/AVFoundation.h>
 #import "ApexCreatWalletController.h"
 #import "ApexTempEmptyView.h"
 #import "ApexMorePanelController.h"
@@ -21,7 +19,7 @@
 #define RouteNameEvent_RequestMoney @"RouteNameEvent_RequestMoney"
 #define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
 
-@interface ApexWalletDetailController ()<LXDScanCodeControllerDelegate,UINavigationControllerDelegate>
+@interface ApexWalletDetailController ()<UINavigationControllerDelegate>
 @property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) UILabel *balanceL;
 @property (nonatomic, strong) UILabel *unitL;
@@ -113,36 +111,23 @@
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
-- (void)scanCodeController:(LXDScanCodeController *)scanCodeController codeInfo:(NSString *)codeInfo{
-    
-//    if (![codeInfo containsString:commonScheme]) {
-//        [self showMessage:@"未识别的二维码"];
-//        return;
-//    }
-    NSString *toaddress = codeInfo;
-    
-    ApexSendMoneyController *svc = [[ApexSendMoneyController alloc] init];
-    svc.walletAddress = self.walletAddress;
-    svc.walletName = self.walletName;
-    svc.toAddressIfHave = toaddress;
-    [self.navigationController pushViewController:svc animated:YES];
-}
 
 
 #pragma mark - ------eventResponse------
 - (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
     if ([eventName isEqualToString:RouteNameEvent_RequestMoney]) {
         ApexRequestMoenyController *rvc = [[ApexRequestMoenyController alloc] init];
-        rvc.walletAddress = self.walletAddress;
-        rvc.walletName = self.walletName;
+        rvc.walletAddress = self.wallModel.address;
+        rvc.walletName = self.wallModel.name;
         [self.navigationController pushViewController:rvc animated:YES];
     }else if ([eventName isEqualToString:RouteNameEvent_SendMoney]){
         ApexSendMoneyController *svc = [[ApexSendMoneyController alloc] init];
-        svc.walletAddress = self.walletAddress;
-        svc.walletName = self.walletName;
+        svc.walletAddress = self.wallModel.address;
+        svc.walletName = self.wallModel.name;
         [self.navigationController pushViewController:svc animated:YES];
     }else if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
         ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+        vc.curWallet = self.wallModel;
         [self.navigationController pushViewController:vc animated:YES];
     }
 //    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewScan]){
@@ -154,29 +139,7 @@
 }
 
 
-//二维码扫描
-- (void)scanAction{
-    NSString *mediaType = AVMediaTypeVideo;
-    
-    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
-    
-    if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied){
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"没有相机访问权限" message:@"请在iPhone的“设置”-“隐私”-“相机”功能中，找到“”打开相机访问权限" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        [alert addAction:action];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-    
-    LXDScanCodeController * scanCodeController = [LXDScanCodeController scanCodeController];
-    scanCodeController.hidesBottomBarWhenPushed = YES;
-    scanCodeController.scanDelegate = self;
-    [self.navigationController pushViewController:scanCodeController animated:YES];
-    
-}
+
 #pragma mark - ------transition-----
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
     if (operation == UINavigationControllerOperationPush) {
@@ -199,7 +162,7 @@
     if (!_titleL) {
         _titleL = [[UILabel alloc] init];
         _titleL.frame = CGRectMake(152, 30, 72.5, 25);
-        _titleL.text = self.walletName;
+        _titleL.text = self.wallModel.name;
         _titleL.textAlignment = NSTextAlignmentCenter;
         _titleL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:18];
         _titleL.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
@@ -231,7 +194,7 @@
 - (UILabel *)addressL{
     if (!_addressL) {
         _addressL = [[UILabel alloc] init];
-        _addressL.text = self.walletAddress;
+        _addressL.text = self.wallModel.address;
         _addressL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
         _addressL.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
     }

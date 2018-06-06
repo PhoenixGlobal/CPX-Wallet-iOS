@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexMoreTopCell : UITableViewCell
-
+@property (nonatomic, strong) NSArray *walletArr;
 @end

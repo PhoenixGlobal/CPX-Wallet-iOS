@@ -9,9 +9,13 @@
 #import "ApexMorePanelController.h"
 #import "ApexMoreTopCell.h"
 #import "ApexMoreFuncCell.h"
+#import "ApexCreatWalletController.h"
+#import "ApexSendMoneyController.h"
+#import "ApexScanAction.h"
 
 @interface ApexMorePanelController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
+
 @end
 
 @implementation ApexMorePanelController
@@ -27,10 +31,14 @@
 - (void)initUI{
     self.view.backgroundColor = [UIColor whiteColor];
     
+    [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.equalTo(self.view);
+        make.top.right.bottom.equalTo(self.view);
         make.width.mas_equalTo(scaleWidth375(150));
     }];
+    
+    [self.tableView registerClass:[ApexMoreTopCell class] forCellReuseIdentifier:@"topCell"];
+    [self.tableView registerClass:[ApexMoreFuncCell class] forCellReuseIdentifier:@"funcCell"];
 }
 
 
@@ -38,18 +46,42 @@
 
 #pragma mark - ------delegate & datasource------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    if (indexPath.row == 0) {
+        ApexMoreTopCell *topCell = [tableView dequeueReusableCellWithIdentifier:@"topCell" forIndexPath:indexPath];
+        topCell.walletArr = self.walletsArr;
+        return topCell;
+    }else{
+        ApexMoreFuncCell *funcCell = [tableView dequeueReusableCellWithIdentifier:@"funcCell" forIndexPath:indexPath];
+        return funcCell;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return self.walletsArr.count * 40;
+    }else{
+        return 40*2;
+    }
 }
 
 #pragma mark - ------eventResponse------
+- (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
+    if ([eventName isEqualToString:RouteNameEvent_FuncCellDidClickScan]){
+        [ApexScanAction shareScanHelper].curWallet = self.curWallet;
+        [ApexScanAction scanActionOnViewController:self];
+    }else if ([eventName isEqualToString:RouteNameEvent_FuncCellDidClickCreat]){
+        ApexCreatWalletController *wvc = [[ApexCreatWalletController alloc] init];
+        [self directlyPushToViewControllerWithSelfDeleted:wvc];
+    }
+}
 
 #pragma mark - ------getter & setter------
 - (UITableView *)tableView{
@@ -57,6 +89,7 @@
         _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
     return _tableView;
 }

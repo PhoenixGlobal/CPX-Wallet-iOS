@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define RouteNameEvent_FuncCellDidClickScan @"RouteNameEvent_FuncCellDidClickScan"
+#define RouteNameEvent_FuncCellDidClickCreat @"RouteNameEvent_FuncCellDidClickCreat"
 @interface ApexMoreFuncCell : UITableViewCell
 
 @end

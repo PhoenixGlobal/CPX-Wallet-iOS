@@ -21,6 +21,7 @@
 #import "UIView+TKFrame.h"
 #import "UIResponder+Router.h"
 #import "UIViewController+NetLoadIndicator.h"
+#import "UIViewController+Apex.h"
 #import "UIColor+HYF.h"
 #import "UIViewController+Toast.h"
 #import "UINavigationController+ApexNavigationBar.h"
