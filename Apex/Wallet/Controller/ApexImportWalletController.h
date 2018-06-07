@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexImportWalletController : UIViewController
-
+@property (nonatomic, strong) RACSubject *didFinishImportSub;
 @end

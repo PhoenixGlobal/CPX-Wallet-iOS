@@ -1,21 +1,19 @@
 //
-//  ApexImportSwithHeaderBar.m
+//  ApexTwoSwitchView.m
 //  Apex
 //
-//  Created by chinapex on 2018/6/6.
+//  Created by chinapex on 2018/6/7.
 //  Copyright © 2018年 Gary. All rights reserved.
 //
 
-#import "ApexImportSwithHeaderBar.h"
-@interface ApexImportSwithHeaderBar()
-@property (nonatomic, strong) UIButton *leftBtn;
-@property (nonatomic, strong) UIButton *rightBtn;
+#import "ApexTwoSwitchView.h"
+@interface ApexTwoSwitchView()
 @end
 
-@implementation ApexImportSwithHeaderBar
+@implementation ApexTwoSwitchView
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        
+        [self initUI];
     }
     return self;
 }
@@ -87,7 +85,7 @@
     self.leftBtn.selected = YES;
     self.rightBtn.selected = NO;
     
-    [self routeEventWithName:RouteNameEvent_ImportWalletByMnemonic userInfo:@{}];
+    [self routeEventWithName:RouteNameEvent_SwitchViewChooseLeft userInfo:@{}];
 }
 
 - (void)selectRightBtn{
@@ -98,9 +96,8 @@
     self.leftBtn.backgroundColor = [ApexUIHelper subThemeColor];
     self.rightBtn.selected = YES;
     self.leftBtn.selected = NO;
-    [self routeEventWithName:RouteNameEvent_ImportWalletByKeystore userInfo:@{}];
+    [self routeEventWithName:RouteNameEvent_SwitchViewChooseRight userInfo:@{}];
     
 }
-
 
 @end

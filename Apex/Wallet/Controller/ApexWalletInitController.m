@@ -79,8 +79,9 @@
     }else{
         /**< 导入钱包 */
         [self showMessage:@"暂未开放"];
-//        ApexImportWalletController *iwvc = [[ApexImportWalletController alloc] init];
-//        [self.navigationController pushViewController:iwvc animated:YES];
+        ApexImportWalletController *iwvc = [[ApexImportWalletController alloc] init];
+        iwvc.didFinishImportSub = self.didFinishCreatSub;
+        [self.navigationController pushViewController:iwvc animated:YES];
         
     }
     

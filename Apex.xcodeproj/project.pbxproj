@@ -93,6 +93,8 @@
 		E39E02EF20C7D206005DD251 /* ApexImportByMnemonicView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02EE20C7D206005DD251 /* ApexImportByMnemonicView.m */; };
 		E39E02F520C7D771005DD251 /* UITextView+placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02F420C7D771005DD251 /* UITextView+placeholder.m */; };
 		E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02F720C7E0AA005DD251 /* ApexPrivacyAggreView.m */; };
+		E39E02FB20C8F4CB005DD251 /* ApexExportKeyStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02FA20C8F4CB005DD251 /* ApexExportKeyStoreController.m */; };
+		E39E02FE20C8F77A005DD251 /* ApexTwoSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02FD20C8F77A005DD251 /* ApexTwoSwitchView.m */; };
 		E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */; };
 		E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */; };
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
@@ -290,6 +292,10 @@
 		E39E02F420C7D771005DD251 /* UITextView+placeholder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+placeholder.m"; sourceTree = "<group>"; };
 		E39E02F620C7E0AA005DD251 /* ApexPrivacyAggreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexPrivacyAggreView.h; sourceTree = "<group>"; };
 		E39E02F720C7E0AA005DD251 /* ApexPrivacyAggreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexPrivacyAggreView.m; sourceTree = "<group>"; };
+		E39E02F920C8F4CB005DD251 /* ApexExportKeyStoreController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexExportKeyStoreController.h; sourceTree = "<group>"; };
+		E39E02FA20C8F4CB005DD251 /* ApexExportKeyStoreController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexExportKeyStoreController.m; sourceTree = "<group>"; };
+		E39E02FC20C8F77A005DD251 /* ApexTwoSwitchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTwoSwitchView.h; sourceTree = "<group>"; };
+		E39E02FD20C8F77A005DD251 /* ApexTwoSwitchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTwoSwitchView.m; sourceTree = "<group>"; };
 		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
 		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
 		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -515,6 +521,8 @@
 				E3CE668720BD34B7002A1E07 /* ApexTransactionDetailController.h */,
 				E3CE668820BD34B7002A1E07 /* ApexTransactionDetailController.m */,
 				E3CE668620BD34B7002A1E07 /* ApexTransactionDetailController.xib */,
+				E39E02F920C8F4CB005DD251 /* ApexExportKeyStoreController.h */,
+				E39E02FA20C8F4CB005DD251 /* ApexExportKeyStoreController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -839,6 +847,8 @@
 				E3CE668420BCEB10002A1E07 /* ApexAlertTextField.m */,
 				E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */,
 				E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */,
+				E39E02FC20C8F77A005DD251 /* ApexTwoSwitchView.h */,
+				E39E02FD20C8F77A005DD251 /* ApexTwoSwitchView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1098,6 +1108,7 @@
 				E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */,
 				E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */,
 				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
+				E39E02FB20C8F4CB005DD251 /* ApexExportKeyStoreController.m in Sources */,
 				E3CE669E20BE47C3002A1E07 /* ApexMnemonicShowCell.m in Sources */,
 				E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */,
 				E33A8B5B20AE724F0067505E /* main.m in Sources */,
@@ -1120,6 +1131,7 @@
 				E33A8BEF20B3C16C0067505E /* ApexTXIDModel.m in Sources */,
 				E3263EF620B6ABF8001D3C19 /* ApexMnemonicConfirmController.m in Sources */,
 				E33A8BDC20B2B5950067505E /* ApexWalletDetailController.m in Sources */,
+				E39E02FE20C8F77A005DD251 /* ApexTwoSwitchView.m in Sources */,
 				E33A8BAD20AE77C70067505E /* ApexMineController.m in Sources */,
 				E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */,
 				E3263ED220B666CA001D3C19 /* ApexWalletManageDetailController.m in Sources */,
@@ -1303,7 +1315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WNNZLJCCS5;
+				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1323,7 +1335,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apexs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s";
@@ -1336,7 +1348,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WNNZLJCCS5;
+				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1356,7 +1368,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apexs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s";

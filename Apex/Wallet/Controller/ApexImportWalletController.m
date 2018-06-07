@@ -31,11 +31,12 @@
     self.title = @"导入钱包";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    self.mnemonicView.didFinishImportSub = self.didFinishImportSub;
     
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.switchHeader];
-    [self.view addSubview:self.mnemonicView];
     [self.view addSubview:self.keyStoreView];
+    [self.view addSubview:self.mnemonicView];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);

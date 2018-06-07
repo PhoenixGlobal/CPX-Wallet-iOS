@@ -169,7 +169,7 @@
         [self showMessage:[NSString stringWithFormat:@"钱包创建失败: %@",err]];
         return nil;
     }
-    
+//    NSLog(@"%@",[wallet mnemonic:mnemonicEnglish error:nil]);
     NSString *keystore = [wallet toKeyStore:self.passWordL.text error:&keystoreErr];
     if (keystoreErr) {
         [self showMessage:[NSString stringWithFormat:@"keystore创建失败: %@",keystoreErr]];
