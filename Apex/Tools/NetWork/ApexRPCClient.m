@@ -52,7 +52,7 @@ singleM(RPCClient);
 #pragma mark - setter getter
 - (AFJSONRPCClient *)client{
     if (!_client) {
-        _client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:BlockChainBaseUrl_Test]];
+        _client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:BlockChainBaseUrl_Main]];
 
     }
     return _client;

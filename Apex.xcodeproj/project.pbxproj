@@ -95,6 +95,10 @@
 		E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02F720C7E0AA005DD251 /* ApexPrivacyAggreView.m */; };
 		E39E02FB20C8F4CB005DD251 /* ApexExportKeyStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02FA20C8F4CB005DD251 /* ApexExportKeyStoreController.m */; };
 		E39E02FE20C8F77A005DD251 /* ApexTwoSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02FD20C8F77A005DD251 /* ApexTwoSwitchView.m */; };
+		E39E030120C8FB51005DD251 /* ApexExportKeystoryFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030020C8FB51005DD251 /* ApexExportKeystoryFileView.m */; };
+		E39E030320C8FB61005DD251 /* ApexExportKeystoryFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E030220C8FB61005DD251 /* ApexExportKeystoryFileView.xib */; };
+		E39E030620C8FB85005DD251 /* ApexExportKeystoreQRView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */; };
+		E39E030820C8FB8D005DD251 /* ApexExportKeystoreQRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */; };
 		E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */; };
 		E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */; };
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
@@ -296,6 +300,12 @@
 		E39E02FA20C8F4CB005DD251 /* ApexExportKeyStoreController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexExportKeyStoreController.m; sourceTree = "<group>"; };
 		E39E02FC20C8F77A005DD251 /* ApexTwoSwitchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTwoSwitchView.h; sourceTree = "<group>"; };
 		E39E02FD20C8F77A005DD251 /* ApexTwoSwitchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTwoSwitchView.m; sourceTree = "<group>"; };
+		E39E02FF20C8FB51005DD251 /* ApexExportKeystoryFileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexExportKeystoryFileView.h; sourceTree = "<group>"; };
+		E39E030020C8FB51005DD251 /* ApexExportKeystoryFileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexExportKeystoryFileView.m; sourceTree = "<group>"; };
+		E39E030220C8FB61005DD251 /* ApexExportKeystoryFileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexExportKeystoryFileView.xib; sourceTree = "<group>"; };
+		E39E030420C8FB85005DD251 /* ApexExportKeystoreQRView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexExportKeystoreQRView.h; sourceTree = "<group>"; };
+		E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexExportKeystoreQRView.m; sourceTree = "<group>"; };
+		E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexExportKeystoreQRView.xib; sourceTree = "<group>"; };
 		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
 		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
 		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -506,6 +516,12 @@
 				E3CE668F20BD3B56002A1E07 /* ApexTransferCell.m */,
 				E3CE66BB20BF99AF002A1E07 /* ApexSwithWalletView.h */,
 				E3CE66BC20BF99AF002A1E07 /* ApexSwithWalletView.m */,
+				E39E02FF20C8FB51005DD251 /* ApexExportKeystoryFileView.h */,
+				E39E030020C8FB51005DD251 /* ApexExportKeystoryFileView.m */,
+				E39E030220C8FB61005DD251 /* ApexExportKeystoryFileView.xib */,
+				E39E030420C8FB85005DD251 /* ApexExportKeystoreQRView.h */,
+				E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */,
+				E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -981,10 +997,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E39E02CC20C5088C005DD251 /* ApexAssetCell.xib in Resources */,
+				E39E030820C8FB8D005DD251 /* ApexExportKeystoreQRView.xib in Resources */,
 				E33A8B5820AE724F0067505E /* LaunchScreen.storyboard in Resources */,
 				E3CE66B220BEA812002A1E07 /* DateTools.bundle in Resources */,
 				E33A8BE820B2C3B50067505E /* ApexSendMoneyController.xib in Resources */,
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
+				E39E030320C8FB61005DD251 /* ApexExportKeystoryFileView.xib in Resources */,
 				E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */,
 				E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */,
 				E3263EE920B69BB6001D3C19 /* heart.png in Resources */,
@@ -1139,6 +1157,7 @@
 				E3263ED520B6870C001D3C19 /* ApexPrepareBackUpController.m in Sources */,
 				E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */,
 				E33A8B7920AE75500067505E /* LXDScanCodeController.m in Sources */,
+				E39E030120C8FB51005DD251 /* ApexExportKeystoryFileView.m in Sources */,
 				E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */,
 				E39E02D020C657F8005DD251 /* ApexMorePanelController.m in Sources */,
 				E3CE669820BE3D13002A1E07 /* ApexSendMoneyViewModel.m in Sources */,
@@ -1160,6 +1179,7 @@
 				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,
 				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
 				E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */,
+				E39E030620C8FB85005DD251 /* ApexExportKeystoreQRView.m in Sources */,
 				E3CE66BD20BF99AF002A1E07 /* ApexSwithWalletView.m in Sources */,
 				E33A8B4D20AE724D0067505E /* AppDelegate.m in Sources */,
 				E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */,

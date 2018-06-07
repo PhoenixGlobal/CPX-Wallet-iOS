@@ -49,6 +49,11 @@
     [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.addressL.superview);
     }];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self requestAsset];
+    }];
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 - (void)setNav{
@@ -62,6 +67,7 @@
 - (void)requestAsset{
     @weakify(self);
     [ApexWalletManager getAccountStateWithAddress:self.walletModel.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.tableView.mj_header endRefreshing];
         @strongify(self);
         self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
         [self updateAssets:self.accountModel.balances];
@@ -92,6 +98,8 @@
             }
             if (equalObj) {
                 [self.assetArr removeObject:equalObj];
+                [self.assetArr addObject:remoteObj];
+            }else{
                 [self.assetArr addObject:remoteObj];
             }
         }else{

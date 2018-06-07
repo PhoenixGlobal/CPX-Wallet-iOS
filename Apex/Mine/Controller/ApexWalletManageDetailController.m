@@ -10,6 +10,7 @@
 #import "ApexAccountStateModel.h"
 #import "ApexPrepareBackUpController.h"
 #import "ApexPassWordConfirmAlertView.h"
+#import "ApexExportKeyStoreController.h"
 
 @interface ApexWalletManageDetailController ()
 @property (weak, nonatomic) IBOutlet UITextField *walletNameTF;
@@ -91,6 +92,16 @@
         ApexPrepareBackUpController *vc = [[ApexPrepareBackUpController alloc] init];
         vc.address = self.model.address;
         [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [[self.exportKeyStoreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:self.model.address subTitle:@"请输入密码" Success:^(NeomobileWallet *wallet) {
+            ApexExportKeyStoreController *vc = [[ApexExportKeyStoreController alloc] init];
+            vc.address = self.model.address;
+            [self.navigationController pushViewController:vc animated:YES];
+        } fail:^{
+            [self showMessage:@"密码输入错误"];
+        }];
     }];
 }
 

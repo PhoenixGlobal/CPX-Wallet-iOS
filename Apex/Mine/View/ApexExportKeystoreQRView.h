@@ -1,5 +1,5 @@
 //
-//  ApexExportKeyStoreController.h
+//  ApexExportKeystoreQRView.h
 //  Apex
 //
 //  Created by chinapex on 2018/6/7.
@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ApexExportKeyStoreController : UIViewController
+@interface ApexExportKeystoreQRView : UIView
+@property (weak, nonatomic) IBOutlet UIImageView *QRImageV;
 @property (nonatomic, strong) NSString *address;
 @end

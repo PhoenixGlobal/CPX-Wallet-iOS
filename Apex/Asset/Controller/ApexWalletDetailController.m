@@ -106,6 +106,16 @@
     }];
     
     self.balanceL.text = self.balanceModel.value;
+    
+    NSString *assetName = @"err";
+    if ([self.balanceModel.asset isEqualToString:assetId_CPX]) {
+        assetName = @"CPX";
+    }else if ([self.balanceModel.asset isEqualToString:assetId_Neo]){
+        assetName = @"NEO";
+    }else if ([self.balanceModel.asset isEqualToString:assetId_NeoGas]){
+        assetName = @"GAS";
+    }
+    self.unitL.text = assetName;
 }
 
 #pragma mark - ------public------
