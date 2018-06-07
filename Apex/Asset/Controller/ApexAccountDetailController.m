@@ -50,9 +50,12 @@
         make.edges.equalTo(self.addressL.superview);
     }];
     
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
         [self requestAsset];
     }];
+    header.stateLabel.textColor = [ApexUIHelper grayColor240];
+    header.lastUpdatedTimeLabel.textColor = [ApexUIHelper grayColor240];
+    self.tableView.mj_header = header;
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 

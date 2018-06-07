@@ -8,8 +8,8 @@
 
 #import "FCAlertView.h"
 
-#define separatorLineWidth 1.0/kScale
-#define horizontalLineWidth 1.0/kScale
+#define separatorLineWidth 2/kScale
+#define horizontalLineWidth 2/kScale
 
 @implementation FCAlertView
 
@@ -503,9 +503,9 @@
                                                                          alertViewFrame.size.width,
                                                                          separatorLineWidth)];
     
-    separatorLineView.backgroundColor = [UIColor colorWithWhite:100.0f/255.0f alpha:1.0]; // set color as you want.
+    separatorLineView.backgroundColor = [UIColor colorWithHexString:@"dddddd"]; // set color as you want.
     if (_darkTheme)
-        separatorLineView.backgroundColor = [UIColor colorWithWhite:58.0f/255.0f alpha:1.0];
+        separatorLineView.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
     
     // TEXTFIELD VIEW - Section with TextField
     
@@ -706,9 +706,9 @@
                                                                              horizontalLineWidth,
                                                                                47)];
         
-        horizontalSeparator.backgroundColor = [UIColor colorWithWhite:100.0f/255.0f alpha:1.0]; // set color as you want.
+        horizontalSeparator.backgroundColor = [UIColor colorWithHexString:@"dddddd"]; // set color as you want.
         if (_darkTheme)
-            horizontalSeparator.backgroundColor = [UIColor colorWithWhite:58.0f/255.0f alpha:1.0];
+            horizontalSeparator.backgroundColor = [UIColor colorWithHexString:@"dddddd"];
         
         UIVisualEffect *blurEffect;
         blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];

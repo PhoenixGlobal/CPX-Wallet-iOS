@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexImportByKeystoreView : UIView
-
+@property (nonatomic, strong) RACSubject *didFinishImportSub;
 @end

@@ -30,10 +30,13 @@
 
 - (void)setUI{
     self.startP = CGPointMake(kScreenW, 0);
-    self.backgroundColor = [ApexUIHelper grayColor240];
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
+//    self.layer.shadowColor = [UIColor grayColor].CGColor;
+//    self.layer.shadowOffset = CGSizeMake(0, 1);
+//    self.layer.shadowOpacity = 0.8;
+//    self.layer.shadowRadius = 3;
 }
 
 - (void)setWalletNameStr:(NSString *)walletNameStr{

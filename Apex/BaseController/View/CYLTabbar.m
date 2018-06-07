@@ -83,7 +83,7 @@
         btn.selected = NO;
     }
     [btn setSelected:YES];
-    [btn doAnimation];
+//    [btn doAnimation];
     [self routeEventWithName:RouteEventName_TabBarDidClicked userInfo:@{KTabBarBtnTag:@(btn.tag)}];
 }
 

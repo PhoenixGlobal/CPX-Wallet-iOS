@@ -13,7 +13,14 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     
+    self.textView.layer.borderColor = [ApexUIHelper grayColor].CGColor;
+    self.textView.layer.borderWidth = 1.0/kScale;
+    
+    self.textView.editable = false;
     [self.ksBtn addTarget:self action:@selector(copyAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(copyAction)];
+    [self.textView addGestureRecognizer:tap];
 }
 
 - (void)setAddress:(NSString *)address{

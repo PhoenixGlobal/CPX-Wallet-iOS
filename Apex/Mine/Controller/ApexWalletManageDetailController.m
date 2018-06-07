@@ -45,7 +45,7 @@
 
 #pragma mark - ------private------
 - (void)initUI{
-    [ApexUIHelper addLineInView:self.walletNameTF color:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-2, 0, 0, 0)];
+    [ApexUIHelper addLineInView:self.walletNameTF color:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     self.mnemonicBackUpBtn.layer.cornerRadius = 6;
     self.deleteWalletBtn.layer.cornerRadius = 6;
     
@@ -95,7 +95,7 @@
     }];
     
     [[self.exportKeyStoreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:self.model.address subTitle:@"请输入密码" Success:^(NeomobileWallet *wallet) {
+        [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:self.model.address subTitle:@"" Success:^(NeomobileWallet *wallet) {
             ApexExportKeyStoreController *vc = [[ApexExportKeyStoreController alloc] init];
             vc.address = self.model.address;
             [self.navigationController pushViewController:vc animated:YES];

@@ -38,14 +38,15 @@
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(NavBarHeight+40);
+        make.height.mas_equalTo(NavBarHeight);
     }];
     
     [self.switchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.backIV);
         make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(40);
+        make.height.mas_equalTo(0);
     }];
+    self.switchView.hidden = YES;
     
     [self.QRView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.backIV.mas_bottom);

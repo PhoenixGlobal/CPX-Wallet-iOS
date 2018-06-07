@@ -48,11 +48,13 @@
         make.edges.equalTo(self.searchTooBar.superview);
     }];
     
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     }];
-    [self.tableView.mj_header setTintColor:[UIColor whiteColor]];
+    header.stateLabel.textColor = [ApexUIHelper grayColor240];
+    header.lastUpdatedTimeLabel.textColor = [ApexUIHelper grayColor240];
+    self.tableView.mj_header = header;
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 

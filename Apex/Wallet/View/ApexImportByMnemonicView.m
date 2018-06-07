@@ -108,6 +108,8 @@
     [[self topViewController] showMessage:@"导入成功"];
     if (self.didFinishImportSub) {
         [self.didFinishImportSub sendNext:@""];
+    }else{
+        [[self topViewController].navigationController popViewControllerAnimated:YES];
     }
 }
 #pragma mark - ------eventResponse------
@@ -138,11 +140,11 @@
         _textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 300, 300, 60)];
         _textView.layer.cornerRadius = 2;
         _textView.layer.borderWidth = 0.6;
-        _textView.layer.borderColor = [UIColor grayColor].CGColor;
+        _textView.layer.borderColor = [UIColor colorWithHexString:@"dddddd"].CGColor;
         _textView.layer.masksToBounds = YES;
         _textView.font = [UIFont systemFontOfSize:13];
         //调用私有方法
-        [_textView setPlaceholder:@"助记词,按空格分割" placeholdColor:[UIColor lightGrayColor]];
+        [_textView setPlaceholder:@"助记词,按空格分隔" placeholdColor:[UIColor lightGrayColor]];
     }
     return _textView;
 }
@@ -159,7 +161,7 @@
         // 指明当输入文字时,是否下调基准线(baseline).设置为YES(非默认值),意味着占位内容会和输入内容对齐.
         _passWordTF.keepBaseline = YES;
         // 设置占位符文字和浮动式标签的文字.
-        [_passWordTF setPlaceholder:@"输入密码(不少于6个字符)"
+        [_passWordTF setPlaceholder:@"密码(不少于6个字符)"
                       floatingTitle:@"密码"];
         _passWordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         
@@ -223,7 +225,14 @@
         _importBtn.layer.cornerRadius = 5;
         _importBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_importBtn setTitle:@"开始导入" forState:UIControlStateNormal];
-        
+        [[RACObserve(_importBtn, enabled) takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNumber *x) {
+            if (x.boolValue) {
+                [_importBtn setBackgroundColor:[ApexUIHelper mainThemeColor]];
+            }else{
+                [_importBtn setBackgroundColor:[ApexUIHelper grayColor]];
+            }
+        }];
+        _importBtn.enabled = false;
     }
     return _importBtn;
 }

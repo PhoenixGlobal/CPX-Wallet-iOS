@@ -31,7 +31,9 @@
     self.title = @"导入钱包";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    
     self.mnemonicView.didFinishImportSub = self.didFinishImportSub;
+    self.keyStoreView.didFinishImportSub = self.didFinishImportSub;
     
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.switchHeader];

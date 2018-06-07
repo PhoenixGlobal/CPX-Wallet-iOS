@@ -30,6 +30,10 @@
 - (void)initUI{
     self.layer.cornerRadius = 3;
     self.layer.masksToBounds = YES;
+//    self.layer.shadowColor = [UIColor grayColor].CGColor;
+//    self.layer.shadowOffset = CGSizeMake(0, 1);
+//    self.layer.shadowOpacity = 0.8;
+//    self.layer.shadowRadius = 3;
     
     [_mappignBtn setTitleColor:[ApexUIHelper grayColor] forState:UIControlStateNormal];
     _mappignBtn.layer.borderColor = [ApexUIHelper grayColor].CGColor;

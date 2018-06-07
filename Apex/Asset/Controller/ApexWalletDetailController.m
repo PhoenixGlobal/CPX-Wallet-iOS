@@ -52,10 +52,6 @@
     self.view.backgroundColor = [ApexUIHelper grayColor240];
     self.title = @"收款";
     
-    ApexTempEmptyView *ev = [[ApexTempEmptyView alloc] initWithFrame:CGRectZero];
-    ev.backgroundColor = [UIColor whiteColor];
-    
-    [self.view addSubview:ev];
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.balanceL];
     [self.view addSubview:self.unitL];
@@ -95,14 +91,6 @@
     [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.balanceL.mas_bottom).offset(10);
         make.centerX.equalTo(self.view.mas_centerX);
-    }];
-
-    
-    [ev mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.requestBtn.mas_bottom).offset(30);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
-        make.height.mas_equalTo(127);
     }];
     
     self.balanceL.text = self.balanceModel.value;
