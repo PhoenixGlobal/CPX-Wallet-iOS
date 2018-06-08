@@ -10,6 +10,7 @@
 @interface ApexMoreFuncCell()
 @property (nonatomic, strong) ZJNButton *scanBtn;
 @property (nonatomic, strong) ZJNButton *creatBtn;
+@property (nonatomic, strong) ZJNButton *importBtn;
 @end
 
 @implementation ApexMoreFuncCell
@@ -25,22 +26,50 @@
 - (void)initUI{
     [self.contentView addSubview:self.scanBtn];
     [self.contentView addSubview:self.creatBtn];
+    [self.contentView addSubview:self.importBtn];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [ApexUIHelper addLineInView:self.scanBtn color:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-1, 15, 0, 0)];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    [self.scanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self);
-        make.height.mas_equalTo(self.height/2.0);
-    }];
-    
-    [self.creatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.scanBtn.mas_bottom);
-        make.left.right.equalTo(self);
-        make.height.equalTo(self.scanBtn);
-    }];
+    CGFloat count = self.configArr.count;
+    UIView *lastBtn = nil;
+    for (NSNumber *num in self.configArr) {
+        
+        if (num.integerValue == PanelFuncConfig_Scan) {
+            if(!lastBtn) lastBtn = self;
+            [self.scanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(lastBtn);
+                make.left.right.equalTo(self);
+                make.height.mas_equalTo(self.height/count);
+            }];
+            lastBtn = self.scanBtn;
+//            [ApexUIHelper addLineInView:self.scanBtn color:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-1, 15, 0, 0)];
+            
+        }else if (num.integerValue == PanelFuncConfig_Create){
+            
+            if(!lastBtn) lastBtn = self;
+            [self.creatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo([lastBtn isKindOfClass:ApexMoreFuncCell.class] ? lastBtn : lastBtn.mas_bottom);
+                make.left.right.equalTo(self);
+                make.height.mas_equalTo(self.height/count);
+            }];
+            lastBtn = self.creatBtn;
+//            [ApexUIHelper addLineInView:self.creatBtn color:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-1, 15, 0, 0)];
+            
+        }else if (num.integerValue == PanelFuncConfig_Import){
+            
+            if(!lastBtn) lastBtn = self;
+            [self.importBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo([lastBtn isKindOfClass:ApexMoreFuncCell.class] ? lastBtn : lastBtn.mas_bottom);
+                make.left.right.equalTo(self);
+                make.height.mas_equalTo(self.height/count);
+            }];
+            lastBtn = self.importBtn;
+//            [ApexUIHelper addLineInView:self.importBtn color:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-1, 15, 0, 0)];
+        }
+        
+    }
 }
 
 - (void)handleEvent{
@@ -51,6 +80,10 @@
     [[self.creatBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         [self routeEventWithName:RouteNameEvent_FuncCellDidClickCreat userInfo:@{}];
     }];
+    
+    [[self.importBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [self routeEventWithName:RouteNameEvent_FuncCellDidClickImport userInfo:@{}];
+    }];
 }
 
 #pragma mark - ------setter getter-----
@@ -58,7 +91,7 @@
     if (!_scanBtn) {
         _scanBtn = [[ZJNButton alloc] init];
         [_scanBtn setImage:[UIImage imageNamed:@"Group 3"] forState:UIControlStateNormal];
-        [_scanBtn setTitle:@"扫一扫\0" forState:UIControlStateNormal];
+        [_scanBtn setTitle:@"扫一扫" forState:UIControlStateNormal];
         _scanBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_scanBtn setTitleColor:[UIColor colorWithHexString:@"666666"] forState:UIControlStateNormal];
         _scanBtn.contentMode = UIViewContentModeScaleAspectFill;
@@ -80,5 +113,19 @@
         _creatBtn.spacingBetweenImageAndTitle = 10;
     }
     return _creatBtn;
+}
+
+- (ZJNButton *)importBtn{
+    if (!_importBtn) {
+        _importBtn = [[ZJNButton alloc] init];
+        [_importBtn setImage:[UIImage imageNamed:@"Page 13"] forState:UIControlStateNormal];
+        [_importBtn setTitle:@"导入钱包" forState:UIControlStateNormal];
+        _importBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_importBtn setTitleColor:[UIColor colorWithHexString:@"666666"] forState:UIControlStateNormal];
+        _importBtn.contentMode = UIViewContentModeScaleAspectFit;
+        _importBtn.imagePosition = ZJNButtonImagePosition_Left;
+        _importBtn.spacingBetweenImageAndTitle = 10;
+    }
+    return _importBtn;
 }
 @end

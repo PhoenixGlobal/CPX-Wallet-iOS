@@ -11,12 +11,18 @@
 #import "ApexAssetCell.h"
 #import "ApexAccountStateModel.h"
 #import "CYLEmptyView.h"
+#import "ApexMorePanelController.h"
+#import "ApexDrawTransAnimator.h"
 
-@interface ApexAccountDetailController ()
+#define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
+
+@interface ApexAccountDetailController ()<UINavigationControllerDelegate>
 @property (nonatomic, strong) UILabel *addressL;
 @property (nonatomic, strong) ApexAccountStateModel *accountModel;
 @property (nonatomic, strong) CYLEmptyView *emptyV;
 @property (nonatomic, strong) NSMutableArray *assetArr;
+@property (nonatomic, strong) UIButton *moreBtn;
+@property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
 @end
 
 @implementation ApexAccountDetailController
@@ -43,6 +49,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.navigationController.delegate = self;
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexAssetCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
     [self.accessoryBaseView addSubview:self.addressL];
@@ -60,7 +68,8 @@
 }
 
 - (void)setNav{
-    [self.navigationController lt_setBackgroundColor:self.baseColor];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
 }
 
 - (void)getLoacalAsset{
@@ -111,6 +120,24 @@
     }
 }
 
+#pragma mark - ------transition-----
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
+    if (operation == UINavigationControllerOperationPush) {
+        if ([toVC isKindOfClass:[ApexMorePanelController class]]) {
+            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Push animateDuration:0.3 andTransitionAnimation:self.transAnimator];
+        }else{
+            return nil;
+        }
+    }else {
+        if ([fromVC isKindOfClass:[ApexMorePanelController class]]) {
+            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Pop animateDuration:0.3 andTransitionAnimation:self.transAnimator];
+        }else{
+            return nil;
+        }
+    }
+}
+
+
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
@@ -141,6 +168,15 @@
 }
 
 #pragma mark - ------eventResponse------
+- (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
+    if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
+        ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+        vc.curWallet = self.walletModel;
+        vc.walletsArr = [ApexWalletManager getWalletsArr];
+        vc.funcConfigArr = @[@(PanelFuncConfig_Scan), @(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
 #pragma mark - ------getter & setter------
 - (UILabel *)addressL{
@@ -166,5 +202,24 @@
         _assetArr = [NSMutableArray array];
     }
     return _assetArr;
+}
+
+- (UIButton *)moreBtn{
+    if (!_moreBtn) {
+        _moreBtn = [[UIButton alloc] init];
+        _moreBtn.frame = CGRectMake(0, 0, 40, 40);
+        [_moreBtn setImage:[UIImage imageNamed:@"dots"] forState:UIControlStateNormal];
+        [[_moreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+            [self routeEventWithName:RouteNameEvent_ShowMorePanel userInfo:@{}];
+        }];
+    }
+    return _moreBtn;
+}
+
+- (ApexDrawTransAnimator *)transAnimator{
+    if (!_transAnimator) {
+        _transAnimator = [[ApexDrawTransAnimator alloc] init];
+    }
+    return _transAnimator;
 }
 @end

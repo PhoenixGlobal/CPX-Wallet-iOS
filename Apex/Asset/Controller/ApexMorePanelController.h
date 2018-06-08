@@ -10,5 +10,8 @@
 
 @interface ApexMorePanelController : UIViewController
 @property (nonatomic, strong) NSArray *walletsArr;/** 若是需要显示钱包切换cell 则传入此项 */
+@property (nonatomic, strong) NSArray *funcConfigArr; 
 @property (nonatomic, strong) ApexWalletModel *curWallet;
+
+@property (nonatomic, strong) RACSubject *didChooseWalletSub;
 @end

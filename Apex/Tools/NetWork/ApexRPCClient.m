@@ -53,7 +53,6 @@ singleM(RPCClient);
 - (AFJSONRPCClient *)client{
     if (!_client) {
         _client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:BlockChainBaseUrl_Main]];
-
     }
     return _client;
 }

@@ -122,10 +122,12 @@
         ApexSendMoneyController *svc = [[ApexSendMoneyController alloc] init];
         svc.walletAddress = self.wallModel.address;
         svc.walletName = self.wallModel.name;
+        svc.unit = self.unitL.text;
         [self.navigationController pushViewController:svc animated:YES];
     }else if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
         ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
         vc.curWallet = self.wallModel;
+        vc.funcConfigArr = @[@(PanelFuncConfig_Scan), @(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
         [self.navigationController pushViewController:vc animated:YES];
     }
 //    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewScan]){

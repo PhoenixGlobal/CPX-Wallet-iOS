@@ -16,9 +16,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *walletNameTF;
 @property (weak, nonatomic) IBOutlet UIButton *mnemonicBackUpBtn;
 @property (weak, nonatomic) IBOutlet UIButton *deleteWalletBtn;
-@property (weak, nonatomic) IBOutlet UILabel *balanceL;
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
 @property (weak, nonatomic) IBOutlet UIButton *exportKeyStoreBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseVHeight;
 
 @property (nonatomic, strong) UIButton *saveBtn;
 @end
@@ -31,7 +31,7 @@
     
     [self initUI];
     [self handleEvent];
-    [self requestBalance];
+//    [self requestBalance];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -54,18 +54,20 @@
     self.addressL.text = self.model.address;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.saveBtn];
+    
+    self.baseVHeight.constant = NavBarHeight + 60;
 }
 
-- (void)requestBalance{
-    @weakify(self);
-    [ApexWalletManager getAccountStateWithAddress:self.model.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        @strongify(self);
-        ApexAccountStateModel *model = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
-        model.balances.count == 0 ? (self.balanceL.text = @"0") : (self.balanceL.text = model.balances.firstObject.value);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        self.balanceL.text = @"N/A";
-    }];
-}
+//- (void)requestBalance{
+//    @weakify(self);
+//    [ApexWalletManager getAccountStateWithAddress:self.model.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        @strongify(self);
+//        ApexAccountStateModel *model = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
+//        model.balances.count == 0 ? (self.balanceL.text = @"0") : (self.balanceL.text = model.balances.firstObject.value);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        self.balanceL.text = @"N/A";
+//    }];
+//}
 
 #pragma mark - ------public------
 

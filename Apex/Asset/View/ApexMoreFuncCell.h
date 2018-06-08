@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #define RouteNameEvent_FuncCellDidClickScan @"RouteNameEvent_FuncCellDidClickScan"
 #define RouteNameEvent_FuncCellDidClickCreat @"RouteNameEvent_FuncCellDidClickCreat"
+#define RouteNameEvent_FuncCellDidClickImport @"RouteNameEvent_FuncCellDidClickImport"
 @interface ApexMoreFuncCell : UITableViewCell
-
+@property (nonatomic, strong) NSArray *configArr;
 @end

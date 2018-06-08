@@ -16,6 +16,7 @@
                 <outlet property="sendBtn" destination="DBd-ND-UUb" id="pzO-t4-gbg"/>
                 <outlet property="sendNumTF" destination="etF-Lv-HfZ" id="UYq-ry-6sx"/>
                 <outlet property="toAddressTF" destination="W34-dx-B05" id="R5r-mN-51p"/>
+                <outlet property="unitL" destination="7P1-rl-7hL" id="ifo-m3-hca"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="walletNameL" destination="kC6-Ra-Pzg" id="wxv-bY-hSc"/>
             </connections>

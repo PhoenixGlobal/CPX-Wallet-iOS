@@ -13,4 +13,5 @@
 @property (nonatomic, strong) NSString *walletAddress;
 
 @property (nonatomic, strong) NSString *toAddressIfHave;
+@property (nonatomic, strong) NSString *unit;
 @end

@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *fromAddressL;
 @property (weak, nonatomic) IBOutlet UITextField *sendNumTF;
 @property (weak, nonatomic) IBOutlet UITextField *toAddressTF;
-
+@property (weak, nonatomic) IBOutlet UILabel *unitL;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @property (nonatomic, strong) UIButton *scanBtn;
 
@@ -50,6 +50,7 @@
 #pragma mark - ------private------
 - (void)setUI{
     self.title = @"转账";
+    self.unitL.text = self.unit;
     self.walletNameL.text = self.walletName;
     self.fromAddressL.text = self.walletAddress;
     self.toAddressTF.text = self.toAddressIfHave;

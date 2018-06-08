@@ -29,6 +29,7 @@
 #import "UIButton+EnlargeTouchArea.h"
 #import "DateTools.h"
 #import "UITextView+placeholder.h"
+#import "PublicEnum.h"
 
 /**< other */
 #import "ApexUIHelper.h"

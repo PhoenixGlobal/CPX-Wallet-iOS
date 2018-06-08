@@ -12,6 +12,7 @@
 #import "ApexCreatWalletController.h"
 #import "ApexSendMoneyController.h"
 #import "ApexScanAction.h"
+#import "ApexImportWalletController.h"
 
 @interface ApexMorePanelController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -56,19 +57,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         ApexMoreTopCell *topCell = [tableView dequeueReusableCellWithIdentifier:@"topCell" forIndexPath:indexPath];
-        topCell.walletArr = self.walletsArr;
+        if (!self.walletsArr || self.walletsArr.count == 0) {
+            topCell.hidden = YES;
+        }else{
+            topCell.walletArr = self.walletsArr;
+        }
         return topCell;
     }else{
         ApexMoreFuncCell *funcCell = [tableView dequeueReusableCellWithIdentifier:@"funcCell" forIndexPath:indexPath];
+        funcCell.configArr = self.funcConfigArr;
         return funcCell;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return self.walletsArr.count * 40;
+        return self.walletsArr.count * 44;
     }else{
-        return 40*2;
+        return 44*self.funcConfigArr.count;
     }
 }
 
@@ -79,7 +85,17 @@
         [ApexScanAction scanActionOnViewController:self];
     }else if ([eventName isEqualToString:RouteNameEvent_FuncCellDidClickCreat]){
         ApexCreatWalletController *wvc = [[ApexCreatWalletController alloc] init];
+        wvc.hidesBottomBarWhenPushed = YES;
         [self directlyPushToViewControllerWithSelfDeleted:wvc];
+    }else if ([eventName isEqualToString:RouteNameEvent_FuncCellDidClickImport]){
+        ApexImportWalletController *imvc = [[ApexImportWalletController alloc] init];
+        imvc.hidesBottomBarWhenPushed = YES;
+        [self directlyPushToViewControllerWithSelfDeleted:imvc];
+    }else if ([eventName isEqualToString:RouteNameEvent_TopWalletCellDidChooseWallet]){
+        ApexWalletModel *wallet = userinfo[@"wallet"];
+        if (self.didChooseWalletSub) {
+            [self.didChooseWalletSub sendNext:wallet];
+        }
     }
 }
 
@@ -90,7 +106,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }

@@ -92,6 +92,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexMoreWalletCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = !cell.selected;
+    [self routeEventWithName:RouteNameEvent_TopWalletCellDidChooseWallet userInfo:@{@"wallet":self.walletArr[indexPath.row]}];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -306,6 +306,7 @@
 		E39E030420C8FB85005DD251 /* ApexExportKeystoreQRView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexExportKeystoreQRView.h; sourceTree = "<group>"; };
 		E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexExportKeystoreQRView.m; sourceTree = "<group>"; };
 		E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexExportKeystoreQRView.xib; sourceTree = "<group>"; };
+		E39E030920CA1C07005DD251 /* PublicEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicEnum.h; sourceTree = "<group>"; };
 		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
 		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
 		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -667,6 +668,7 @@
 				E338964820B401F200DD51FE /* EmptyView */,
 				E33A8B7620AE75500067505E /* Macro.h */,
 				E33A8BBF20AE7DF60067505E /* OtherMacro.h */,
+				E39E030920CA1C07005DD251 /* PublicEnum.h */,
 				E33A8B7420AE75500067505E /* ApexUIHelper.h */,
 				E33A8B7720AE75500067505E /* ApexUIHelper.m */,
 				E33A8BD120B29D060067505E /* ApexAppConfig.h */,
