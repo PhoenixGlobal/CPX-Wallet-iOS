@@ -7,8 +7,9 @@
 //
 
 #import "CYLNavBaseController.h"
+#import "ApexMorePanelController.h"
 
-@interface CYLNavBaseController ()
+@interface CYLNavBaseController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -20,6 +21,21 @@
     UIColor* color = [UIColor whiteColor];
     NSDictionary* dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
     self.navigationBar.titleTextAttributes= dict;
+    
+    self.interactivePopGestureRecognizer.delegate = self;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    if (self.childViewControllers.count == 1) {
+        return NO;
+    }else{
+        
+        if ([self.topViewController isKindOfClass:[ApexMorePanelController class]]) {
+            return NO;
+        }else{
+            return YES;
+        }
+    }
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
