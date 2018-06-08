@@ -122,6 +122,7 @@
 }
 
 #pragma mark - ------eventResponse------
+
 - (void)handleEvent{
     @weakify(self);
     self.searchTooBar.textDidChangeSub = [RACSubject subject];

@@ -19,7 +19,7 @@
 @interface ApexAccountDetailController ()<UINavigationControllerDelegate>
 @property (nonatomic, strong) UILabel *addressL;
 @property (nonatomic, strong) ApexAccountStateModel *accountModel;
-@property (nonatomic, strong) CYLEmptyView *emptyV;
+//@property (nonatomic, strong) CYLEmptyView *emptyV;
 @property (nonatomic, strong) NSMutableArray *assetArr;
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
@@ -32,21 +32,17 @@
     [super viewDidLoad];
     
     [self initUI];
-    [self setNav];
     [self getLoacalAsset];
-    [self requestAsset];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setNav];
+    [self requestAsset];
 }
 
 #pragma mark - ------private------
 - (void)initUI{
-    self.title = self.walletModel.name;
-    self.addressL.text = self.walletModel.address;
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.navigationController.delegate = self;
@@ -73,6 +69,8 @@
 }
 
 - (void)getLoacalAsset{
+    self.title = self.walletModel.name;
+    self.addressL.text = self.walletModel.address;
     self.assetArr = self.walletModel.assetArr;
 }
 
@@ -83,14 +81,14 @@
         @strongify(self);
         self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
         [self updateAssets:self.accountModel.balances];
-        if (self.assetArr.count == 0) {
-            [self.tableView addSubview:self.emptyV];
-        }else{
-            [self.emptyV removeFromSuperview];
-        }
+//        if (self.assetArr.count == 0) {
+//            [self.tableView addSubview:self.emptyV];
+//        }else{
+//            [self.emptyV removeFromSuperview];
+//        }
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self.tableView addSubview:self.emptyV];
+//        [self.tableView addSubview:self.emptyV];
     }];
 }
 
@@ -174,6 +172,12 @@
         vc.curWallet = self.walletModel;
         vc.walletsArr = [ApexWalletManager getWalletsArr];
         vc.funcConfigArr = @[@(PanelFuncConfig_Scan), @(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+        vc.didChooseWalletSub = [RACSubject subject];
+        [vc.didChooseWalletSub subscribeNext:^(ApexWalletModel *x) {
+            self.walletModel = x;
+            [self getLoacalAsset];
+            [self requestAsset];
+        }];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -190,12 +194,12 @@
     return _addressL;
 }
 
-- (CYLEmptyView *)emptyV{
-    if (!_emptyV) {
-        _emptyV = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
-    }
-    return _emptyV;
-}
+//- (CYLEmptyView *)emptyV{
+//    if (!_emptyV) {
+//        _emptyV = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
+//    }
+//    return _emptyV;
+//}
 
 - (NSMutableArray *)assetArr{
     if (!_assetArr) {

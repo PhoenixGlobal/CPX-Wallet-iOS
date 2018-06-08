@@ -90,7 +90,7 @@
         }
         
     } fail:^(NSError *error) {
-        [self showMessage:@"tx获取失败"];
+        [self showMessage:@"utxo获取失败"];
     }];
 }
 

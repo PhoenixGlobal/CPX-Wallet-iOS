@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#define BlockChainBaseUrl_Test @"http://dev.apexnetwork.io"
-#define BlockChainBaseUrl_Main @"http://139.219.1.147:10332"
+
 
 
 @class AFHTTPRequestOperation;

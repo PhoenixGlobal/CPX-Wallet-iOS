@@ -95,6 +95,7 @@
         ApexWalletModel *wallet = userinfo[@"wallet"];
         if (self.didChooseWalletSub) {
             [self.didChooseWalletSub sendNext:wallet];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }

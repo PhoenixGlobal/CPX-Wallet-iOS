@@ -99,6 +99,8 @@
 		E39E030320C8FB61005DD251 /* ApexExportKeystoryFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E030220C8FB61005DD251 /* ApexExportKeystoryFileView.xib */; };
 		E39E030620C8FB85005DD251 /* ApexExportKeystoreQRView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */; };
 		E39E030820C8FB8D005DD251 /* ApexExportKeystoreQRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */; };
+		E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030C20CA72A7005DD251 /* ApexDrawTransPercentDriven.m */; };
+		E39E031020CA7B1E005DD251 /* ApexNetWorkCommonConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030F20CA7B1E005DD251 /* ApexNetWorkCommonConfig.m */; };
 		E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */; };
 		E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */; };
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
@@ -307,6 +309,10 @@
 		E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexExportKeystoreQRView.m; sourceTree = "<group>"; };
 		E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexExportKeystoreQRView.xib; sourceTree = "<group>"; };
 		E39E030920CA1C07005DD251 /* PublicEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicEnum.h; sourceTree = "<group>"; };
+		E39E030B20CA72A7005DD251 /* ApexDrawTransPercentDriven.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexDrawTransPercentDriven.h; sourceTree = "<group>"; };
+		E39E030C20CA72A7005DD251 /* ApexDrawTransPercentDriven.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexDrawTransPercentDriven.m; sourceTree = "<group>"; };
+		E39E030E20CA7B1E005DD251 /* ApexNetWorkCommonConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNetWorkCommonConfig.h; sourceTree = "<group>"; };
+		E39E030F20CA7B1E005DD251 /* ApexNetWorkCommonConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNetWorkCommonConfig.m; sourceTree = "<group>"; };
 		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
 		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
 		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -466,6 +472,8 @@
 			children = (
 				E33A8B4B20AE724D0067505E /* AppDelegate.h */,
 				E33A8B4C20AE724D0067505E /* AppDelegate.m */,
+				E39E030E20CA7B1E005DD251 /* ApexNetWorkCommonConfig.h */,
+				E39E030F20CA7B1E005DD251 /* ApexNetWorkCommonConfig.m */,
 				E33A8B6E20AE75500067505E /* Tools */,
 				E33A8B7B20AE75650067505E /* BaseController */,
 				E33A8B6520AE73F00067505E /* Discover */,
@@ -845,6 +853,8 @@
 			children = (
 				E39E02D220C659E2005DD251 /* ApexDrawTransAnimator.h */,
 				E39E02D320C659E2005DD251 /* ApexDrawTransAnimator.m */,
+				E39E030B20CA72A7005DD251 /* ApexDrawTransPercentDriven.h */,
+				E39E030C20CA72A7005DD251 /* ApexDrawTransPercentDriven.m */,
 			);
 			path = TransitionAnimator;
 			sourceTree = "<group>";
@@ -1117,12 +1127,14 @@
 				E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */,
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
 				E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */,
+				E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */,
 				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
 				E39E02CD20C5088C005DD251 /* ApexAssetCell.m in Sources */,
 				E3263EC220B55A63001D3C19 /* ApexTransactionRecordView.m in Sources */,
 				E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */,
 				E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */,
+				E39E031020CA7B1E005DD251 /* ApexNetWorkCommonConfig.m in Sources */,
 				E3263EDA20B68CFB001D3C19 /* ApexBackUpController.m in Sources */,
 				E3CE66B820BEA812002A1E07 /* DTTimePeriodGroup.m in Sources */,
 				E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */,

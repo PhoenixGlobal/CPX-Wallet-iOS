@@ -8,6 +8,7 @@
 
 #import "ApexAppConfig.h"
 #import <IQKeyboardManager.h>
+#import "ApexNetWorkCommonConfig.h"
 
 @implementation ApexAppConfig
 + (void) configAll{
@@ -31,6 +32,8 @@
 }
 
 + (void)configNetWork{
+    NSString *baseUrl = [ApexNetWorkCommonConfig getToolBaseUrl];
+    NSLog(@"tool baseurl: %@",baseUrl);
     [[CYLNetWorkManager shareInstance] setBaseUrl:[NSURL URLWithString:baseUrl]];
 }
 

@@ -248,9 +248,9 @@
         // 设置占位符文字和浮动式标签的文字.
         [_walletNameL setPlaceholder:@"钱包名称"
                              floatingTitle:@"钱包名称"];
-        _walletNameL.alertString = @"请输入最多五个字符";
+        _walletNameL.alertString = @"请输入最多八个字符";
         _walletNameL.alertShowConditionBlock = ^BOOL(NSString *text) {
-            if (text.length <= 5 && text.length > 0) {
+            if (text.length <= 8 && text.length > 0) {
                 return false;
             }
             return true;

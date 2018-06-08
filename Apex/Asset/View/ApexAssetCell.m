@@ -12,9 +12,6 @@
 @interface ApexAssetCell()
 @property (weak, nonatomic) IBOutlet UILabel *assetNameL;
 @property (weak, nonatomic) IBOutlet UILabel *assetNameLTwo;
-@property (weak, nonatomic) IBOutlet UILabel *assetNameLThree;
-@property (weak, nonatomic) IBOutlet UILabel *percentL;
-@property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *balanceL;
 @property (weak, nonatomic) IBOutlet UIButton *mappignBtn;
 
@@ -39,6 +36,7 @@
     _mappignBtn.layer.borderColor = [ApexUIHelper grayColor].CGColor;
     _mappignBtn.layer.borderWidth = 1.0/kScale;
     _mappignBtn.layer.cornerRadius = 4;
+    _mappignBtn.hidden = YES;
 }
 
 - (void)setModel:(BalanceObject *)model{
@@ -48,6 +46,7 @@
     NSString *assetName = @"err";
     if ([model.asset isEqualToString:assetId_CPX]) {
         assetName = @"CPX";
+        _mappignBtn.hidden = NO;
     }else if ([model.asset isEqualToString:assetId_Neo]){
         assetName = @"NEO";
     }else if ([model.asset isEqualToString:assetId_NeoGas]){
@@ -55,6 +54,5 @@
     }
     _assetNameL.text = assetName;
     _assetNameLTwo.text = assetName;
-    _assetNameLThree.text = assetName;
 }
 @end

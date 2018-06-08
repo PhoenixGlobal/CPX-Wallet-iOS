@@ -25,7 +25,7 @@
 - (void)initUI{
     _headerView = [[UIImageView alloc] init];
     _headerView.image = [UIImage imageNamed:@"wallet-7"];
-    _headerView.hidden = YES;
+//    _headerView.hidden = YES;
     
     _nameLable = [[UILabel alloc] init];
     _nameLable.textColor = [UIColor colorWithHexString:@"666666"];
@@ -85,7 +85,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexMoreWalletCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     ApexWalletModel *model = self.walletArr[indexPath.row];
-    cell.nameLable.text = model.name;
+    cell.nameLable.text = [model.name capitalizedString];
     return cell;
 }
 

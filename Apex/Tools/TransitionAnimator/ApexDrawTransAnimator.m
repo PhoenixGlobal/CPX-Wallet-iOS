@@ -7,6 +7,7 @@
 //
 
 #import "ApexDrawTransAnimator.h"
+
 @interface ApexDrawTransAnimator()
 @property (nonatomic, strong) UIView *fakeView;
 @end

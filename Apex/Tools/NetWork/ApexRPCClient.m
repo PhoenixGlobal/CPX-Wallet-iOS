@@ -8,7 +8,7 @@
 
 #import "ApexRPCClient.h"
 #import <AFJSONRPCClient.h>
-
+#import "ApexNetWorkCommonConfig.h"
 
 
 @interface ApexRPCClient()
@@ -52,7 +52,9 @@ singleM(RPCClient);
 #pragma mark - setter getter
 - (AFJSONRPCClient *)client{
     if (!_client) {
-        _client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:BlockChainBaseUrl_Main]];
+        NSString *baseUrl = [ApexNetWorkCommonConfig getCliBaseUrl];
+        NSLog(@"cli baseurl: %@",baseUrl);
+        _client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:baseUrl]];
     }
     return _client;
 }

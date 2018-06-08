@@ -55,13 +55,13 @@
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.balanceL];
     [self.view addSubview:self.unitL];
-    [self.view addSubview:self.addressL];
+//    [self.view addSubview:self.addressL];
     [self.view addSubview:self.requestBtn];
     [self.view addSubview:self.sendBtn];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(scaleHeight667(192));
+        make.height.mas_equalTo(scaleHeight667(NavBarHeight+80));
     }];
     
     [self.sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,10 +88,10 @@
         make.left.equalTo(self.balanceL.mas_right).offset(20);
     }];
     
-    [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.balanceL.mas_bottom).offset(10);
-        make.centerX.equalTo(self.view.mas_centerX);
-    }];
+//    [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.balanceL.mas_bottom).offset(10);
+//        make.centerX.equalTo(self.view.mas_centerX);
+//    }];
     
     self.balanceL.text = self.balanceModel.value;
     
