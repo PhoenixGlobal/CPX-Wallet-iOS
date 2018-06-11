@@ -172,7 +172,7 @@
         // 指明当输入文字时,是否下调基准线(baseline).设置为YES(非默认值),意味着占位内容会和输入内容对齐.
         _passTF.keepBaseline = YES;
         // 设置占位符文字和浮动式标签的文字.
-        [_passTF setPlaceholder:@"密码(不少于6个字符)"
+        [_passTF setPlaceholder:@"密码"
                               floatingTitle:@"密码"];
         _passTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         
@@ -180,7 +180,7 @@
         _passTF.alertString = @"输入密码太短";
         _passTF.alertShowConditionBlock = ^BOOL(NSString *text) {
             
-            if (text.length >= 6) {
+            if (text.length > 0) {
                 return false;
             }
             return true;

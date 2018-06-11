@@ -13,6 +13,7 @@
 #import "ApexSendMoneyController.h"
 #import "ApexScanAction.h"
 #import "ApexImportWalletController.h"
+#import "ApexDrawTransPercentDriven.h"
 
 @interface ApexMorePanelController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -107,6 +108,7 @@
         if (self.didChooseWalletSub) {
             [self.didChooseWalletSub sendNext:wallet];
             [self.navigationController popViewControllerAnimated:YES];
+            [[ApexDrawTransPercentDriven shareDriven] startPopWithDuration:0.5];
         }
     }
 }
