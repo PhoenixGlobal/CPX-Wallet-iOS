@@ -45,7 +45,6 @@
 - (void)initUI{
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.navigationController.delegate = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexAssetCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
@@ -64,6 +63,7 @@
 }
 
 - (void)setNav{
+    self.navigationController.delegate = self;
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
 }
@@ -89,6 +89,7 @@
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        [self.tableView addSubview:self.emptyV];
+        [self showMessage:@"请求失败,请检查网络连接"];
     }];
 }
 
@@ -133,6 +134,13 @@
             return nil;
         }
     }
+}
+
+/**
+ 实现此方法后 所有的转场动画过程都要由ApexDrawTransPercentDriven的百分比决定*/
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
+    
+    return [ApexDrawTransPercentDriven shareDriven];
 }
 
 
@@ -223,6 +231,7 @@
 - (ApexDrawTransAnimator *)transAnimator{
     if (!_transAnimator) {
         _transAnimator = [[ApexDrawTransAnimator alloc] init];
+//        _transAnimator.fakeView = [self.view snapshotViewAfterScreenUpdates:NO];
     }
     return _transAnimator;
 }

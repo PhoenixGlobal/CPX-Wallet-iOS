@@ -37,6 +37,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self setNav];
 }
 
@@ -157,6 +161,13 @@
     }
 }
 
+/**
+ 实现此方法后 所有的转场动画过程都要由ApexDrawTransPercentDriven的百分比决定*/
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
+    
+    return [ApexDrawTransPercentDriven shareDriven];
+}
+
 #pragma mark - ------getter & setter------
 - (UILabel *)titleL{
     if (!_titleL) {
@@ -252,6 +263,7 @@
 - (ApexDrawTransAnimator *)transAnimator{
     if (!_transAnimator) {
         _transAnimator = [[ApexDrawTransAnimator alloc] init];
+//        _transAnimator.fakeView = [self.view snapshotViewAfterScreenUpdates:NO];
     }
     return _transAnimator;
 }

@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ApexDrawTransPercentDriven : NSObject
+@interface ApexDrawTransPercentDriven : UIPercentDrivenInteractiveTransition
 singleH(Driven);
+- (void)startPushWithDuration:(NSTimeInterval)duration;
+- (void)startPopWithDuration:(NSTimeInterval)duration;
 
-- (void)setPercentDrivenForView:(UIView*)view;
+- (void)setPercentDrivenForFakeView:(UIView*)view ToViewController:(UIViewController*)viewController drawTransFromDelta:(CGFloat)delta;
 
 @end

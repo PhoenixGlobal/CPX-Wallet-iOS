@@ -44,8 +44,6 @@
 #pragma mark - ------private------
 - (void)initUI{
     self.view.backgroundColor = self.baseColor;
-    
-    self.navigationController.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexAssetMainViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
@@ -67,6 +65,7 @@
 
 - (void)setNav{
     self.title = @"资产";
+    self.navigationController.delegate = self;
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
 }
@@ -92,6 +91,13 @@
             return nil;
         }
     }
+}
+
+/**
+ 实现此方法后 所有的转场动画过程都要由ApexDrawTransPercentDriven的百分比决定*/
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
+    
+    return [ApexDrawTransPercentDriven shareDriven];
 }
 
 #pragma mark - ------public------
@@ -189,6 +195,7 @@
 - (ApexDrawTransAnimator *)transAnimator{
     if (!_transAnimator) {
         _transAnimator = [[ApexDrawTransAnimator alloc] init];
+//        _transAnimator.fakeView = [self.view snapshotViewAfterScreenUpdates:NO];
     }
     return _transAnimator;
 }

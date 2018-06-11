@@ -113,7 +113,7 @@
             [self showMessage:@"广播交易失败"];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showMessage:@"广播交易失败"];
+        [self showMessage:@"广播交易失败,请检查网络连接"];
     }];
 }
 

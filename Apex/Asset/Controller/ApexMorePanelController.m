@@ -16,7 +16,7 @@
 
 @interface ApexMorePanelController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, strong) UIBarButtonItem *leftItem;
 @end
 
 @implementation ApexMorePanelController
@@ -26,6 +26,17 @@
     [super viewDidLoad];
     
     [self initUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    _leftItem = self.navigationItem.leftBarButtonItem;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] init];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationItem.leftBarButtonItem = _leftItem;
 }
 
 #pragma mark - ------private------

@@ -7,7 +7,7 @@
 //
 
 #import <CYLAppBaseFrameWork/CYLAppBaseFrameWork.h>
-
+#import "ApexDrawTransPercentDriven.h"
 @interface ApexDrawTransAnimator : CYLBaseTransitionAnimation
-
+@property (nonatomic, strong) UIView *fakeView;
 @end
