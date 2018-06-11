@@ -6,6 +6,14 @@
 //  Copyright © 2018年 Gary. All rights reserved.
 //
 
+/*
+ 1.控制器的代理方法里需要返回此驱动控制类的实例
+ 2.在驱动调用updateInteractiveTransition:之前 要确保控制器已经开始转场既已经pop或者push过
+ 3.转场的过程则完全由updateInteractiveTransition:的百分比控制
+ 4.动画完成后要调用finishInteractiveTransition/cancelInteractiveTransition告知转场动画是否完成
+ 5.利用transitionContext判断转场动画是完成了还是取消了 从而来用[transitionContext completeTransition:YES/No]告知转场是否可以完成
+ */
+
 #import "ApexDrawTransPercentDriven.h"
 
 #define frame 30.0
@@ -15,6 +23,8 @@
 @property (nonatomic, assign) CGFloat translateDelta;
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
 @property (nonatomic, strong) UIViewController *toVC;
+
+@property (nonatomic, copy) void (^edgePanBlock)(UIScreenEdgePanGestureRecognizer *pan);
 @end
 
 @implementation ApexDrawTransPercentDriven
@@ -65,12 +75,11 @@ singleM(Driven);
         }
             break;
         case UIGestureRecognizerStateChanged:{
-            [self updateInteractiveTransition:percent];
-            NSLog(@"%f  %f", curP.x,percent);
+            [self updateInteractiveTransition:percent/1.5];
         }
             break;
         case UIGestureRecognizerStateEnded:{
-            if (percent*2.0 > 0.5) {
+            if (percent*2.0 > 0.2) {
                 [self finishInteractiveTransition];
             }else{
                 [self cancelInteractiveTransition];
@@ -83,7 +92,17 @@ singleM(Driven);
     }
 }
 
-#pragma mark - ------delegate-----
+- (void)setPercentDrivenForFromViewController:(UIViewController*)fromVC edgePan:(void (^)(UIScreenEdgePanGestureRecognizer *))panGesture{
+    self.edgePanBlock = panGesture;
+    UIScreenEdgePanGestureRecognizer *edgePan = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(edgePan:)];
+    edgePan.edges = UIRectEdgeRight;
+    [fromVC.view addGestureRecognizer:edgePan];
+}
 
+- (void)edgePan:(UIScreenEdgePanGestureRecognizer*)edgePan{
+    if (self.edgePanBlock) {
+        self.edgePanBlock(edgePan);
+    }
+}
 
 @end

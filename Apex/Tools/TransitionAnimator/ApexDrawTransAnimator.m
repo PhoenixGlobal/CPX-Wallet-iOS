@@ -7,7 +7,7 @@
 //
 
 #import "ApexDrawTransAnimator.h"
-#define delta 150
+
 @interface ApexDrawTransAnimator()
 
 @end
@@ -42,14 +42,21 @@
             [container addSubview:toVC.view];
             [container addSubview:_fakeView];
             
-            [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            //animation setting
+            UITableView *toTableView = toVC.view.subviews.lastObject;
+            toTableView = [toTableView isKindOfClass:UITableView.class] ? toTableView : nil;
+            toTableView.transform = CGAffineTransformMakeTranslation(delta, 0);
+            [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:0.75 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 self.fakeView.transform = CGAffineTransformMakeTranslation(-scaleWidth375(delta), 0);
+                toTableView.transform = CGAffineTransformIdentity;
             } completion:^(BOOL finished) {
+                
                 if (![transitionContext transitionWasCancelled]) {
                     [transitionContext completeTransition:YES];
                 }else{
                     [transitionContext completeTransition:NO];
                 }
+                
             }];
             
             [[ApexDrawTransPercentDriven shareDriven] startPushWithDuration:duration];
@@ -66,17 +73,25 @@
             [container addSubview:fromVC.view];
             [container addSubview:toVC.view];
             [container addSubview:_fakeView];
-            [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            UITableView *fromTableView = fromVC.view.subviews.lastObject;
+            fromTableView = [fromTableView isKindOfClass:UITableView.class] ? fromTableView : nil;
+            
+            [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                fromTableView.transform = CGAffineTransformMakeTranslation(delta, 0);
                 self.fakeView.transform = CGAffineTransformIdentity;
                 self.fakeView.alpha = 1;
             } completion:^(BOOL finished) {
+                
                 if (![transitionContext transitionWasCancelled]) {
+                    fromTableView.transform = CGAffineTransformIdentity;
                     toVC.view.hidden = NO;
                     self.fakeView.hidden = YES;
                     [transitionContext completeTransition:YES];
                 }else{
                     [transitionContext completeTransition:NO];
                 }
+                
             }];
             
         }

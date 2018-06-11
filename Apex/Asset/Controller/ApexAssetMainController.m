@@ -32,8 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
-    
     [self handleEvent];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -63,6 +63,7 @@
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
+
 - (void)setNav{
     self.title = @"资产";
     self.navigationController.delegate = self;
@@ -80,13 +81,13 @@
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
     if (operation == UINavigationControllerOperationPush) {
         if ([toVC isKindOfClass:[ApexMorePanelController class]]) {
-            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Push animateDuration:0.3 andTransitionAnimation:self.transAnimator];
+            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Push animateDuration:0.5 andTransitionAnimation:self.transAnimator];
         }else{
             return nil;
         }
     }else {
         if ([fromVC isKindOfClass:[ApexMorePanelController class]]) {
-            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Pop animateDuration:0.3 andTransitionAnimation:self.transAnimator];
+            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Pop animateDuration:0.5 andTransitionAnimation:self.transAnimator];
         }else{
             return nil;
         }
@@ -166,11 +167,15 @@
 
 - (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
     if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
-        ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
-        vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        [self pushAction];
     }
+}
+
+- (void)pushAction{
+    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+    vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - ------getter & setter------
 - (ApexSearchWalletToolBar *)searchTooBar{

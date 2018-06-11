@@ -8,6 +8,10 @@
 
 #import <CYLAppBaseFrameWork/CYLAppBaseFrameWork.h>
 #import "ApexDrawTransPercentDriven.h"
+
+//侧滑出来的距离
+#define delta 150
+
 @interface ApexDrawTransAnimator : CYLBaseTransitionAnimation
 @property (nonatomic, strong) UIView *fakeView;
 @end
