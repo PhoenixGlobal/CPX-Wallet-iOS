@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *assetArr;
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
+@property (nonatomic, strong) NSMutableDictionary *assetMap; //资产对应的余额字典
 @end
 
 @implementation ApexAccountDetailController
@@ -32,7 +33,6 @@
     [super viewDidLoad];
     
     [self initUI];
-    [self getLoacalAsset];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -75,47 +75,77 @@
     self.title = self.walletModel.name;
     self.addressL.text = self.walletModel.address;
     self.assetArr = self.walletModel.assetArr;
+    [self creataAssetMap];
+}
+
+- (void)creataAssetMap{
+    self.assetMap = [NSMutableDictionary dictionary];
+    for (BalanceObject *balance in self.assetArr) {
+        [self.assetMap setValue:balance.value forKey:balance.asset];
+    }
 }
 
 - (void)requestAsset{
+    
+    [self getLoacalAsset];
     @weakify(self);
     [ApexWalletManager getAccountStateWithAddress:self.walletModel.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self.tableView.mj_header endRefreshing];
         @strongify(self);
         self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
         [self updateAssets:self.accountModel.balances];
-//        if (self.assetArr.count == 0) {
-//            [self.tableView addSubview:self.emptyV];
-//        }else{
-//            [self.emptyV removeFromSuperview];
-//        }
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [self.tableView addSubview:self.emptyV];
         [self showMessage:@"请求失败,请检查网络连接"];
     }];
 }
 
 - (void)updateAssets:(NSArray*)balanceArr{
-    for (BalanceObject *remoteObj in balanceArr) {
+    
+    if (balanceArr.count == 0) {
+        //网络请求没有返回任何资产,本地资产置0
+        for (BalanceObject *localObj in self.assetArr) {
+            localObj.value = @"0.0";
+        }
         
-        if (self.assetArr.count != 0) {
-            BalanceObject *equalObj = nil;
-            for (BalanceObject *localObj in [self.assetArr copy]) {
-                if ([localObj.asset isEqualToString:remoteObj.asset]) {
-                    equalObj = localObj;
+    }else{
+        
+        for (BalanceObject *remoteObj in balanceArr) {
+            
+            if ([self.assetMap.allKeys containsObject:remoteObj.asset]) {
+                //更新余额
+                BalanceObject *equalObj = nil;
+                for (BalanceObject *localObj in [self.assetArr copy]) {
+                    if ([localObj.asset isEqualToString:remoteObj.asset]) {
+                        equalObj = localObj;
+                        break;
+                    }
+                }
+                if (equalObj) {
+                    [self.assetArr removeObject:equalObj];
+                    [self.assetArr addObject:remoteObj];
+                }
+            }else{
+                //余额置0或者添加余额
+                BalanceObject *equalObj = nil;
+                for (BalanceObject *localObj in [self.assetArr copy]) {
+                    if ([localObj.asset isEqualToString:remoteObj.asset]) {
+                        equalObj = localObj;
+                        break;
+                    }
+                }
+                if (equalObj) {
+                    equalObj.value = @"0.0";
+                }else{
+                    [self.assetArr addObject:remoteObj];
                 }
             }
-            if (equalObj) {
-                [self.assetArr removeObject:equalObj];
-                [self.assetArr addObject:remoteObj];
-            }else{
-                [self.assetArr addObject:remoteObj];
-            }
-        }else{
-            [self.assetArr addObject:remoteObj];
+        
         }
     }
+    
+    //更新本地存储的钱包资产
+    [ApexWalletManager updateWallet:self.walletModel WithAssetsArr:self.assetArr];
 }
 
 #pragma mark - ------transition-----

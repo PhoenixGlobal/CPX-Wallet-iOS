@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #define walletsKey @"walletsKey"
+@class ApexWalletModel;
+
 @interface ApexWalletManager : NSObject
 + (void)saveWallet:(NSString*)wallet;
 + (void)changeWalletName:(NSString*)name forAddress:(NSString*)address;
 + (id)getWalletsArr; /**< string : address/name */
 + (void)deleteWalletForAddress:(NSString*)address;
 + (void)setBackupFinished:(NSString*)address;
++ (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray*)assetArr;
 
 /** 获取钱包余额 */
 + (void)getAccountStateWithAddress:(NSString*)address Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

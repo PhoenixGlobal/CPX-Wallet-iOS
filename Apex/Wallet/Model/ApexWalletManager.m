@@ -21,7 +21,16 @@
     model.address = array.firstObject;
     model.isBackUp = false;
     model.assetArr = [self setDefultAsset];
+    model.createTimeStamp = @([[NSDate date] timeIntervalSince1970]);
     [arr addObject:model];
+    [TKFileManager saveData:arr withFileName:walletsKey];
+}
+
++ (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray*)assetArr{
+    [self deleteWalletForAddress:wallet.address];
+    NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
+    wallet.assetArr = assetArr;
+    [arr addObject:wallet];
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
 

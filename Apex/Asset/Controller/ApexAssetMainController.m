@@ -78,6 +78,9 @@
 - (void)getWalletLists{
     [self.searchTooBar clearEntrance];
     _contentArr = [ApexWalletManager getWalletsArr];
+    [_contentArr sortUsingComparator:^NSComparisonResult(ApexWalletModel *wallet1, ApexWalletModel *wallet2) {
+        return wallet1.createTimeStamp.integerValue > wallet2.createTimeStamp.integerValue;
+    }];
     [self.tableView reloadData];
 }
 

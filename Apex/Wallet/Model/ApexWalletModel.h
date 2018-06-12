@@ -12,5 +12,6 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSMutableArray *assetArr;
+@property (nonatomic, strong) NSNumber *createTimeStamp;
 @property (nonatomic, assign) BOOL isBackUp;
 @end
