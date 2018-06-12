@@ -41,6 +41,10 @@
     [self requestAsset];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
+}
 #pragma mark - ------private------
 - (void)initUI{
     self.tableView.delegate = self;
@@ -64,7 +68,6 @@
 
 - (void)setNav{
     self.navigationController.delegate = self;
-    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
 }
 

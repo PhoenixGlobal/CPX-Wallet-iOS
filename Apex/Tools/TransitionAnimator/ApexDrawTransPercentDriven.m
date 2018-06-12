@@ -12,6 +12,7 @@
  3.转场的过程则完全由updateInteractiveTransition:的百分比控制
  4.动画完成后要调用finishInteractiveTransition/cancelInteractiveTransition告知转场动画是否完成
  5.利用transitionContext判断转场动画是完成了还是取消了 从而来用[transitionContext completeTransition:YES/No]告知转场是否可以完成
+ 6.对于转场中导航栏颜色变化问题,可以利用驱动percent进行颜色渐变处理
  */
 
 #import "ApexDrawTransPercentDriven.h"
