@@ -17,24 +17,38 @@
 #import "ApexDrawTransPercentDriven.h"
 
 #define frame 30.0
+#define percentSubtle 0.1
 
 @interface ApexDrawTransPercentDriven()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIView *drivenView;
 @property (nonatomic, assign) CGFloat translateDelta;
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
 @property (nonatomic, strong) UIViewController *toVC;
+@property (nonatomic, strong) UIViewController *fromVC;
 
 @property (nonatomic, copy) void (^edgePanBlock)(UIScreenEdgePanGestureRecognizer *pan);
 @end
 
 @implementation ApexDrawTransPercentDriven
 singleM(Driven);
-
-- (void)startPushWithDuration:(NSTimeInterval)duration{
+/**无论是pop还是push percent都是从0->1的*/
+- (void)startTranstionWithDuration:(NSTimeInterval)duration fromVC:(UIViewController *)fromVC{
+    Class class = NSClassFromString(@"ApexMorePanelController");
     CGFloat delta = duration/frame;
+    __block CGFloat progress = 0;
+    
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:delta repeats:YES block:^(NSTimer * _Nonnull timer) {
         if (self.percentComplete < 1) {
-            [self updateInteractiveTransition:self.percentComplete + (1/frame)];
+            progress = self.percentComplete + (1/frame);
+            //调节转场过程中的导航栏颜色
+            if ([fromVC isKindOfClass:class]) {
+                [fromVC.navigationController lt_setBackgroundColor:[ApexUIHelper navColorWithAlpha:progress]];
+
+            }else{
+                [fromVC.navigationController lt_setBackgroundColor:[ApexUIHelper navColorWithAlpha:(1 -progress)*percentSubtle]];
+            }
+            
+            [self updateInteractiveTransition:progress];
         }else{
             [self finishInteractiveTransition];
             [timer invalidate];
@@ -43,24 +57,40 @@ singleM(Driven);
     [timer fire];
 }
 
-- (void)startPopWithDuration:(NSTimeInterval)duration{
-    CGFloat delta = duration/frame;
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:delta repeats:YES block:^(NSTimer * _Nonnull timer) {
-        if (self.percentComplete > 0) {
-            [self updateInteractiveTransition:self.percentComplete - (1/frame)];
-        }else{
-            [self finishInteractiveTransition];
-            [timer invalidate];
-        }
-    }];
-    [timer fire];
-}
+//- (void)startPushWithDuration:(NSTimeInterval)duration{
+//    CGFloat delta = duration/frame;
+//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:delta repeats:YES block:^(NSTimer * _Nonnull timer) {
+//        if (self.percentComplete < 1) {
+//            CGFloat progress = self.percentComplete + (1/frame);
+//            [self updateInteractiveTransition:progress];
+//        }else{
+//            [self finishInteractiveTransition];
+//            [timer invalidate];
+//        }
+//    }];
+//    [timer fire];
+//}
+//
+//- (void)startPopWithDuration:(NSTimeInterval)duration{
+//    CGFloat delta = duration/frame;
+//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:delta repeats:YES block:^(NSTimer * _Nonnull timer) {
+//        if (self.percentComplete < 1) {
+//            CGFloat progress = self.percentComplete + (1/frame);
+//            [self updateInteractiveTransition:progress];
+//        }else{
+//            [self finishInteractiveTransition];
+//            [timer invalidate];
+//        }
+//    }];
+//    [timer fire];
+//}
 
-- (void)setPercentDrivenForFakeView:(UIView *)view ToViewController:(UIViewController *)viewController drawTransFromDelta:(CGFloat)delta{
+- (void)setPercentDrivenForFakeView:(UIView *)view fromViewController:(UIViewController *)fromVC ToViewController:(UIViewController *)viewController drawTransFromDelta:(CGFloat)delta{
     self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
     self.drivenView = view;
     self.translateDelta = delta;
     self.toVC = viewController;
+    self.fromVC = fromVC;
     [self.drivenView addGestureRecognizer:self.pan];
 }
 
@@ -76,6 +106,7 @@ singleM(Driven);
             break;
         case UIGestureRecognizerStateChanged:{
             [self updateInteractiveTransition:percent/1.5];
+            [self.fromVC.navigationController lt_setBackgroundColor:[ApexUIHelper navColorWithAlpha:percent]];
         }
             break;
         case UIGestureRecognizerStateEnded:{

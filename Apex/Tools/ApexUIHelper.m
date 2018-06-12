@@ -46,6 +46,10 @@
     return [UIColor colorWithRed255:70 green255:105 blue255:214 alpha:1];
 }
 
++ (UIColor *)navColorWithAlpha:(CGFloat)alpha{
+    return [UIColor colorWithRed255:70 green255:105 blue255:214 alpha:alpha];
+}
+
 + (CGFloat)naviBarHeight{
     static CGFloat height = 0;
     if (height == 0) {

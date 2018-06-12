@@ -46,7 +46,7 @@
 
 #pragma mark - ------private------
 - (void)setNav{
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
     self.navigationItem.titleView = self.titleL;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
     self.navigationController.delegate = self;

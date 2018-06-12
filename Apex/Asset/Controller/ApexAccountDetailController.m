@@ -64,7 +64,7 @@
 
 - (void)setNav{
     self.navigationController.delegate = self;
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
 }
 

@@ -10,11 +10,9 @@
 
 @interface ApexDrawTransPercentDriven : UIPercentDrivenInteractiveTransition
 singleH(Driven);
-- (void)startPushWithDuration:(NSTimeInterval)duration;
-- (void)startPopWithDuration:(NSTimeInterval)duration;
-
+- (void)startTranstionWithDuration:(NSTimeInterval)duration fromVC:(UIViewController*)fromVC;
 //toVC pop回来时的percent控制方法
-- (void)setPercentDrivenForFakeView:(UIView*)view ToViewController:(UIViewController*)viewController drawTransFromDelta:(CGFloat)delta;
+- (void)setPercentDrivenForFakeView:(UIView*)view fromViewController:(UIViewController*)fromVC ToViewController:(UIViewController*)viewController drawTransFromDelta:(CGFloat)delta;
 /* fromVC push过去时的percent控制方法 需要在viewcontroller里调用*/
 - (void)setPercentDrivenForFromViewController:(UIViewController*)fromVC edgePan:(void (^)(UIScreenEdgePanGestureRecognizer *edgePan))panGesture;
 

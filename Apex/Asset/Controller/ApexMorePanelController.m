@@ -43,6 +43,7 @@
 #pragma mark - ------private------
 - (void)initUI{
     self.view.backgroundColor = [UIColor whiteColor];
+//    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
     
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,7 +109,7 @@
         if (self.didChooseWalletSub) {
             [self.didChooseWalletSub sendNext:wallet];
             [self.navigationController popViewControllerAnimated:YES];
-            [[ApexDrawTransPercentDriven shareDriven] startPopWithDuration:0.5];
+            [[ApexDrawTransPercentDriven shareDriven] startTranstionWithDuration:0.5 fromVC:self];
         }
     }
 }

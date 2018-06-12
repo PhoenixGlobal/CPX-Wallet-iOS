@@ -29,13 +29,13 @@
             _fakeView.layer.shadowOffset = CGSizeMake(1, 0);
             _fakeView.layer.shadowOpacity = 1.0;
             _fakeView.hidden = NO;
-            //设置驱动手势
-            [[ApexDrawTransPercentDriven shareDriven] setPercentDrivenForFakeView:_fakeView ToViewController:toVC drawTransFromDelta:delta];
+            //为图片设置驱动手势
+            [[ApexDrawTransPercentDriven shareDriven] setPercentDrivenForFakeView:_fakeView fromViewController:fromVC ToViewController:toVC drawTransFromDelta:delta];
             
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
             [[[tap rac_gestureSignal] takeUntil:toVC.rac_willDeallocSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
                 [toVC.navigationController popViewControllerAnimated:YES];
-                [[ApexDrawTransPercentDriven shareDriven] startPopWithDuration:duration];
+                [[ApexDrawTransPercentDriven shareDriven] startTranstionWithDuration:duration fromVC:toVC];
             }];
             [_fakeView addGestureRecognizer:tap];
             
@@ -47,8 +47,10 @@
             toTableView = [toTableView isKindOfClass:UITableView.class] ? toTableView : nil;
             toTableView.transform = CGAffineTransformMakeTranslation(delta, 0);
             [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:0.75 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                
                 self.fakeView.transform = CGAffineTransformMakeTranslation(-scaleWidth375(delta), 0);
                 toTableView.transform = CGAffineTransformIdentity;
+                
             } completion:^(BOOL finished) {
                 
                 if (![transitionContext transitionWasCancelled]) {
@@ -59,7 +61,7 @@
                 
             }];
             
-            [[ApexDrawTransPercentDriven shareDriven] startPushWithDuration:duration];
+            [[ApexDrawTransPercentDriven shareDriven] startTranstionWithDuration:duration fromVC:fromVC];
         }
             break;
             
@@ -78,9 +80,11 @@
             fromTableView = [fromTableView isKindOfClass:UITableView.class] ? fromTableView : nil;
             
             [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                
                 fromTableView.transform = CGAffineTransformMakeTranslation(delta, 0);
                 self.fakeView.transform = CGAffineTransformIdentity;
                 self.fakeView.alpha = 1;
+                
             } completion:^(BOOL finished) {
                 
                 if (![transitionContext transitionWasCancelled]) {

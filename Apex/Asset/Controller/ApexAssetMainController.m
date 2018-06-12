@@ -41,6 +41,11 @@
     [self getWalletLists];
     [self setNav];
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
+}
 #pragma mark - ------private------
 - (void)initUI{
     self.view.backgroundColor = self.baseColor;
@@ -67,7 +72,6 @@
 - (void)setNav{
     self.title = @"资产";
     self.navigationController.delegate = self;
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
 }
 

@@ -94,7 +94,7 @@
         }
         
         //baseview到navbar的距离
-        CGFloat translateDelta = self.translateLength - (offSetY + fabs(self.translateOffset));
+        CGFloat translateDelta = self.translateLength - (offSetY + fabs(self.translateOffset));        
         CGFloat percent = 1.0 - (translateDelta/self.translateLength);
         
         self.accessoryBaseView.alpha = 1 + percent*2;

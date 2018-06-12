@@ -13,6 +13,7 @@
 
 + (CGFloat)naviBarHeight;
 
++ (UIColor *)navColorWithAlpha:(CGFloat)alpha;
 + (UIColor*)navColor;
 + (UIColor*)tabBarColor;
 + (UIColor*)tabBarSelectedColor;
