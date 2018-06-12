@@ -50,6 +50,7 @@ singleM(ScanHelper);
     svc.walletAddress = self.curWallet.address;
     svc.walletName = self.curWallet.name;
     svc.toAddressIfHave = toaddress;
+    svc.balanceModel = self.balanceMode;
     NSEnumerator *enumerator = self.navVC.childViewControllers.reverseObjectEnumerator;
     UIViewController *vc = nil;
     while (vc = [enumerator nextObject]) {

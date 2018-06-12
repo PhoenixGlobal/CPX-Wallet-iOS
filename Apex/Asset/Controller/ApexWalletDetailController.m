@@ -131,10 +131,12 @@
         svc.walletAddress = self.wallModel.address;
         svc.walletName = self.wallModel.name;
         svc.unit = self.unitL.text;
+        svc.balanceModel = self.balanceModel;
         [self.navigationController pushViewController:svc animated:YES];
     }else if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
         ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
         vc.curWallet = self.wallModel;
+        vc.balanceModel = self.balanceModel;
         vc.funcConfigArr = @[@(PanelFuncConfig_Scan), @(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
         [self.navigationController pushViewController:vc animated:YES];
     }

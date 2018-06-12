@@ -99,10 +99,6 @@
 - (void)updateAssets:(NSArray*)balanceArr{
     for (BalanceObject *remoteObj in balanceArr) {
         
-        if ([remoteObj.asset containsString:@"0x"]) {
-            remoteObj.asset = [remoteObj.asset stringByReplacingOccurrencesOfString:@"0x" withString:@""];
-        }
-        
         if (self.assetArr.count != 0) {
             BalanceObject *equalObj = nil;
             for (BalanceObject *localObj in [self.assetArr copy]) {
@@ -182,7 +178,7 @@
         ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
         vc.curWallet = self.walletModel;
         vc.walletsArr = [ApexWalletManager getWalletsArr];
-        vc.funcConfigArr = @[@(PanelFuncConfig_Scan), @(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+        vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
         vc.didChooseWalletSub = [RACSubject subject];
         [vc.didChooseWalletSub subscribeNext:^(ApexWalletModel *x) {
             self.walletModel = x;

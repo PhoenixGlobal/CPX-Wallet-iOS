@@ -11,6 +11,7 @@
 @interface ApexSendMoneyController : UIViewController
 @property (nonatomic, strong) NSString *walletName;
 @property (nonatomic, strong) NSString *walletAddress;
+@property (nonatomic, strong) BalanceObject *balanceModel;
 
 @property (nonatomic, strong) NSString *toAddressIfHave;
 @property (nonatomic, strong) NSString *unit;

@@ -82,7 +82,7 @@
         NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
         NSError *err = nil;
-        NeomobileTx *tx = [self.wallet createAssertTx:neo_assetid from:self.wallet.address to:self.toAddressTF.text amount:self.sendNumTF.text.doubleValue unspent:unspendStr error:&err];
+        NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:self.sendNumTF.text.doubleValue unspent:unspendStr error:&err];
         if (err) {
             [self showMessage:@"tx生成失败"];
         }else{

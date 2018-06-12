@@ -10,7 +10,7 @@
 
 @interface ApexScanAction : NSObject
 @property (nonatomic, strong) ApexWalletModel *curWallet;
-
+@property (nonatomic, strong) BalanceObject *balanceMode;
 singleH(ScanHelper);
 + (void)scanActionOnViewController:(UIViewController*)vc;
 @end

@@ -95,6 +95,7 @@
 - (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
     if ([eventName isEqualToString:RouteNameEvent_FuncCellDidClickScan]){
         [ApexScanAction shareScanHelper].curWallet = self.curWallet;
+        [ApexScanAction shareScanHelper].balanceMode = self.balanceModel;
         [ApexScanAction scanActionOnViewController:self];
     }else if ([eventName isEqualToString:RouteNameEvent_FuncCellDidClickCreat]){
         ApexCreatWalletController *wvc = [[ApexCreatWalletController alloc] init];
