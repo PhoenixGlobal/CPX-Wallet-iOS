@@ -46,7 +46,7 @@
     }
     
     self.view.backgroundColor = self.baseColor;
-    [self.navigationController lt_setBackgroundColor:self.baseColor];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     
     [self.view addSubview:self.baseView];
     [self.view addSubview:self.tableView];
@@ -93,11 +93,17 @@
             self.translateOffset = offSetY;
         }
         
+        if (offSetY < 0) {
+            [self.navigationController showImageOnNavigationBar:[UIImage new]];
+        }else{
+            [self.navigationController showImageOnNavigationBar:[UIImage imageNamed:@"bg-2"]];
+        }
+        
         //baseview到navbar的距离
         CGFloat translateDelta = self.translateLength - (offSetY + fabs(self.translateOffset));        
         CGFloat percent = 1.0 - (translateDelta/self.translateLength);
         
-        self.accessoryBaseView.alpha = 1 + percent*2;
+        self.accessoryBaseView.alpha = 1 + percent*8;
         
         if (percent <= 1.5) {
             

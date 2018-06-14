@@ -42,11 +42,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setNav];
+    [self setEdgeGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 
 #pragma mark - ------private------
@@ -112,6 +113,21 @@
         assetName = @"GAS";
     }
     self.unitL.text = assetName;
+
+}
+
+- (void)setEdgeGesture{
+    [[ApexDrawTransPercentDriven shareDriven] setPercentDrivenForFromViewController:self edgePan:^(UIScreenEdgePanGestureRecognizer *edgePan) {
+        switch (edgePan.state) {
+            case UIGestureRecognizerStateBegan:
+            {
+                [self pushAction];
+            }
+                break;
+            default:
+                break;
+        }
+    }];
 }
 
 #pragma mark - ------public------
@@ -134,11 +150,7 @@
         svc.balanceModel = self.balanceModel;
         [self.navigationController pushViewController:svc animated:YES];
     }else if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
-        ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
-        vc.curWallet = self.wallModel;
-        vc.balanceModel = self.balanceModel;
-        vc.funcConfigArr = @[@(PanelFuncConfig_Scan), @(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self pushAction];
     }
 //    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewScan]){
 //        [self scanAction];
@@ -148,6 +160,13 @@
 //    }
 }
 
+- (void)pushAction{
+    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+    vc.curWallet = self.wallModel;
+    vc.balanceModel = self.balanceModel;
+    vc.funcConfigArr = @[@(PanelFuncConfig_Scan), @(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 #pragma mark - ------transition-----
@@ -221,7 +240,7 @@
 - (UIImageView *)backIV{
     if (!_backIV) {
         _backIV = [[UIImageView alloc] init];
-        _backIV.image = [UIImage imageNamed:@"Background"];
+        _backIV.image = [UIImage imageNamed:@"barImage"];
     }
     return _backIV;
 }

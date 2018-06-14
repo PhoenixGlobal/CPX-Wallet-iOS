@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #define walletsKey @"walletsKey"
 @class ApexWalletModel;
+@class BalanceObject;
 
 @interface ApexWalletManager : NSObject
 + (void)saveWallet:(NSString*)wallet;
@@ -16,10 +18,16 @@
 + (id)getWalletsArr; /**< string : address/name */
 + (void)deleteWalletForAddress:(NSString*)address;
 + (void)setBackupFinished:(NSString*)address;
-+ (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray*)assetArr;
++ (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr;
 
 /** 获取钱包余额 */
 + (void)getAccountStateWithAddress:(NSString*)address Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/**获取nep5资产余额 返回BalanceObject实例*/
++ (void)getNep5AssetAccountStateWithAddress:(NSString*)address andAssetId:(NSString*)assetId  Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/**获取资产symbol*/
++ (void)getAssetSymbol:(NSString*)assetId Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
 
 /** 获取交易明细 */
 + (void)getRawTransactionWithTxid:(NSString*)txid Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

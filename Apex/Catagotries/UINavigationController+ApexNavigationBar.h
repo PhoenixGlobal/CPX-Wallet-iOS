@@ -16,4 +16,5 @@
 - (void)setNeedsNavigationBackground:(CGFloat)alpha;
 - (UIImageView *)findHairlineImageViewUnder:(UIView *)view;
 - (UIView*)barBackgroundView;
+- (void)showImageOnNavigationBar:(UIImage*)image;
 @end

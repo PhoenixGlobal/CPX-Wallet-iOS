@@ -43,10 +43,12 @@ singleM(Driven);
             progress = self.percentComplete + (1/frame);
             //调节转场过程中的导航栏颜色
             if ([fromVC isKindOfClass:class]) {
-                [fromVC.navigationController lt_setBackgroundColor:[ApexUIHelper navColorWithAlpha:progress]];
+                [fromVC.navigationController setNeedsNavigationBackground:progress];
+//                fromVC.navigationController.navigationBar.alpha = progress;
 
             }else{
-                [fromVC.navigationController lt_setBackgroundColor:[ApexUIHelper navColorWithAlpha:(1 -progress)*percentSubtle]];
+                [fromVC.navigationController setNeedsNavigationBackground:(1 -progress)*percentSubtle];
+//                fromVC.navigationController.navigationBar.alpha = 0;
             }
             
             [self updateInteractiveTransition:progress];
@@ -57,34 +59,6 @@ singleM(Driven);
     }];
     [timer fire];
 }
-
-//- (void)startPushWithDuration:(NSTimeInterval)duration{
-//    CGFloat delta = duration/frame;
-//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:delta repeats:YES block:^(NSTimer * _Nonnull timer) {
-//        if (self.percentComplete < 1) {
-//            CGFloat progress = self.percentComplete + (1/frame);
-//            [self updateInteractiveTransition:progress];
-//        }else{
-//            [self finishInteractiveTransition];
-//            [timer invalidate];
-//        }
-//    }];
-//    [timer fire];
-//}
-//
-//- (void)startPopWithDuration:(NSTimeInterval)duration{
-//    CGFloat delta = duration/frame;
-//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:delta repeats:YES block:^(NSTimer * _Nonnull timer) {
-//        if (self.percentComplete < 1) {
-//            CGFloat progress = self.percentComplete + (1/frame);
-//            [self updateInteractiveTransition:progress];
-//        }else{
-//            [self finishInteractiveTransition];
-//            [timer invalidate];
-//        }
-//    }];
-//    [timer fire];
-//}
 
 - (void)setPercentDrivenForFakeView:(UIView *)view fromViewController:(UIViewController *)fromVC ToViewController:(UIViewController *)viewController drawTransFromDelta:(CGFloat)delta{
     self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
@@ -107,7 +81,7 @@ singleM(Driven);
             break;
         case UIGestureRecognizerStateChanged:{
             [self updateInteractiveTransition:percent/1.5];
-            [self.fromVC.navigationController lt_setBackgroundColor:[ApexUIHelper navColorWithAlpha:percent]];
+            [self.fromVC.navigationController setNeedsNavigationBackground:percent];
         }
             break;
         case UIGestureRecognizerStateEnded:{

@@ -33,6 +33,7 @@
 		E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EFB20B6AF93001D3C19 /* ApexMnemonicCell.m */; };
 		E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */; };
 		E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */; };
+		E32920C320D0B0DC0012C36D /* ApexCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E32920C220D0B0DC0012C36D /* ApexCrypto.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -183,6 +184,8 @@
 		E3263EFE20B6BDB1001D3C19 /* UILabel+Spacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Spacing.h"; sourceTree = "<group>"; };
 		E3263F0020B7BC84001D3C19 /* ApexWalletModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletModel.h; sourceTree = "<group>"; };
 		E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletModel.m; sourceTree = "<group>"; };
+		E32920C120D0B0DC0012C36D /* ApexCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexCrypto.h; sourceTree = "<group>"; };
+		E32920C220D0B0DC0012C36D /* ApexCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexCrypto.m; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -686,6 +689,8 @@
 				E3CE66BF20BFA91F002A1E07 /* ApexThread.h */,
 				E3CE66C020BFA91F002A1E07 /* ApexThread.m */,
 				E7EA1BCA20C112B700E2C597 /* NullSafe.m */,
+				E32920C120D0B0DC0012C36D /* ApexCrypto.h */,
+				E32920C220D0B0DC0012C36D /* ApexCrypto.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1127,6 +1132,7 @@
 				E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */,
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
 				E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */,
+				E32920C320D0B0DC0012C36D /* ApexCrypto.m in Sources */,
 				E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */,
 				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,

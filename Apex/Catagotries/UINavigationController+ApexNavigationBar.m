@@ -82,6 +82,9 @@ static const char *overlayKey = "overlayKey";
     }
 }
 
+- (void)showImageOnNavigationBar:(UIImage*)image{
+    [self.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+}
 
 - (UIView*)barBackgroundView
 {

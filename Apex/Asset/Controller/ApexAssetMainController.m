@@ -24,6 +24,7 @@
 @property (nonatomic, strong) ApexSearchWalletToolBar *searchTooBar;
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
+@property (nonatomic, strong) UIImageView *backIV;
 @end
 
 @implementation ApexAssetMainController
@@ -40,15 +41,17 @@
     [super viewWillAppear:animated];
     [self getWalletLists];
     [self setNav];
+    [self setEdgeGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 #pragma mark - ------private------
 - (void)initUI{
-    self.view.backgroundColor = self.baseColor;
+//    self.view.backgroundColor = self.baseColor;
+    [self.view insertSubview:self.backIV atIndex:0];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexAssetMainViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
@@ -66,6 +69,20 @@
     header.lastUpdatedTimeLabel.textColor = [ApexUIHelper grayColor240];
     self.tableView.mj_header = header;
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
+}
+
+- (void)setEdgeGesture{
+    [[ApexDrawTransPercentDriven shareDriven] setPercentDrivenForFromViewController:self edgePan:^(UIScreenEdgePanGestureRecognizer *edgePan) {
+        switch (edgePan.state) {
+            case UIGestureRecognizerStateBegan:
+            {
+                [self pushAction];
+            }
+                break;
+            default:
+                break;
+        }
+    }];
 }
 
 
@@ -210,5 +227,13 @@
 //        _transAnimator.fakeView = [self.view snapshotViewAfterScreenUpdates:NO];
     }
     return _transAnimator;
+}
+
+- (UIImageView *)backIV{
+    if (!_backIV) {
+        _backIV = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        _backIV.image = [UIImage imageNamed:@"backImage"];
+    }
+    return _backIV;
 }
 @end

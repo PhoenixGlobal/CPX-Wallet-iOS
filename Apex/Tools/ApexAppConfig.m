@@ -19,6 +19,8 @@
     [self configNetWork];
     
     [self startMonitorThread];
+    
+    [self text];
 }
 
 + (void)startMonitorThread{
@@ -55,6 +57,19 @@
     keyboardManager.placeholderFont = [UIFont boldSystemFontOfSize:17]; // 设置占位文字的字体
     
     keyboardManager.keyboardDistanceFromTextField = 10.0f; // 输入框距离键盘的距离
+}
 
++ (void)text{
+//    [ApexWalletManager getNep5AssetAccountStateWithAddress:@"ALDbmTMY54RZnLmibH3eXfHvrZt4fLiZhh" andAssetId:assetId_CPX Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@",responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
+//    
+//    [ApexWalletManager getAssetSymbol:assetId_CPX Success:^(AFHTTPRequestOperation *operation, id resp) {
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+//        
+//    }];
 }
 @end

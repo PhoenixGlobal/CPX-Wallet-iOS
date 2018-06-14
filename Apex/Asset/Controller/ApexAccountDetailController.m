@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
 @property (nonatomic, strong) NSMutableDictionary *assetMap; //资产对应的余额字典
+@property (nonatomic, strong) UIImageView *backIV;
 @end
 
 @implementation ApexAccountDetailController
@@ -39,14 +40,17 @@
     [super viewWillAppear:animated];
     [self setNav];
     [self requestAsset];
+    [self setEdgeGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 #pragma mark - ------private------
 - (void)initUI{
+    
+    [self.view insertSubview:self.backIV atIndex:0];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -64,6 +68,20 @@
     header.lastUpdatedTimeLabel.textColor = [ApexUIHelper grayColor240];
     self.tableView.mj_header = header;
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
+}
+
+- (void)setEdgeGesture{
+    [[ApexDrawTransPercentDriven shareDriven] setPercentDrivenForFromViewController:self edgePan:^(UIScreenEdgePanGestureRecognizer *edgePan) {
+        switch (edgePan.state) {
+            case UIGestureRecognizerStateBegan:
+            {
+                [self pushAction];
+            }
+                break;
+            default:
+                break;
+        }
+    }];
 }
 
 - (void)setNav{
@@ -89,15 +107,47 @@
     
     [self getLoacalAsset];
     @weakify(self);
-    [ApexWalletManager getAccountStateWithAddress:self.walletModel.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.tableView.mj_header endRefreshing];
-        @strongify(self);
-        self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
-        [self updateAssets:self.accountModel.balances];
-        [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showMessage:@"请求失败,请检查网络连接"];
+    RACSignal *request1 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+       
+        [ApexWalletManager getAccountStateWithAddress:self.walletModel.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+            @strongify(self);
+            self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
+            [subscriber sendNext:self.accountModel.balances];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [subscriber sendError:error];
+            [self showMessage:@"请求失败,请检查网络连接"];
+        }];
+        
+        return nil;
     }];
+    
+    
+    RACSignal *request2 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+       
+        for (NSString *assetId in self.assetMap.allKeys) {
+            if (![assetId isEqualToString:assetId_Neo] && ![assetId isEqualToString:assetId_NeoGas]) {
+                //代币
+                [ApexWalletManager getNep5AssetAccountStateWithAddress:self.walletModel.address andAssetId:assetId Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [subscriber sendNext:@[responseObject]];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [self showMessage:@"请求失败,请检查网络连接"];
+                }];
+            }
+        }
+        
+        return nil;
+    }];
+
+    [self rac_liftSelector:@selector(updateWithR1:R2:) withSignals:request1,request2, nil];
+}
+
+- (void)updateWithR1:(id)r1 R2:(id)r2{
+    [self.tableView.mj_header endRefreshing];
+    [self updateAssets:r1];
+    [self updateAssets:r2];
+    [self.tableView reloadData];
 }
 
 - (void)updateAssets:(NSArray*)balanceArr{
@@ -143,7 +193,6 @@
         
         }
     }
-    
     //更新本地存储的钱包资产
     [ApexWalletManager updateWallet:self.walletModel WithAssetsArr:self.assetArr];
 }
@@ -201,22 +250,29 @@
     vc.balanceModel = self.assetArr[indexPath.section];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
 #pragma mark - ------eventResponse------
 - (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
     if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
-        ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
-        vc.curWallet = self.walletModel;
-        vc.walletsArr = [ApexWalletManager getWalletsArr];
-        vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-        vc.didChooseWalletSub = [RACSubject subject];
-        [vc.didChooseWalletSub subscribeNext:^(ApexWalletModel *x) {
-            self.walletModel = x;
-            [self getLoacalAsset];
-            [self requestAsset];
-        }];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self pushAction];
     }
+}
+
+
+- (void)pushAction{
+    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+    vc.curWallet = self.walletModel;
+    vc.walletsArr = [ApexWalletManager getWalletsArr];
+    vc.walletsArr = [vc.walletsArr sortedArrayUsingComparator:^NSComparisonResult(ApexWalletModel *wallet1, ApexWalletModel *wallet2) {
+        return wallet1.createTimeStamp.integerValue > wallet2.createTimeStamp.integerValue;
+    }];
+    vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+    vc.didChooseWalletSub = [RACSubject subject];
+    [vc.didChooseWalletSub subscribeNext:^(ApexWalletModel *x) {
+        self.walletModel = x;
+        [self getLoacalAsset];
+        [self requestAsset];
+    }];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - ------getter & setter------
@@ -263,5 +319,13 @@
 //        _transAnimator.fakeView = [self.view snapshotViewAfterScreenUpdates:NO];
     }
     return _transAnimator;
+}
+
+- (UIImageView *)backIV{
+    if (!_backIV) {
+        _backIV = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        _backIV.image = [UIImage imageNamed:@"backImage"];
+    }
+    return _backIV;
 }
 @end

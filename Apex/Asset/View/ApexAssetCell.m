@@ -41,7 +41,7 @@
 
 - (void)setModel:(BalanceObject *)model{
     _model = model;
-    _balanceL.text = model.value;
+    _balanceL.text = model.value.floatValue == 0 ? @"0.0" : model.value;
     
     NSString *assetName = @"err";
     if ([model.asset isEqualToString:assetId_CPX]) {

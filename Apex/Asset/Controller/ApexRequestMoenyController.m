@@ -27,11 +27,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self.navigationController lt_setBackgroundColor:[UIColor colorWithRed255:70 green255:105 blue255:214 alpha:1]];
+//    [self.navigationController lt_setBackgroundColor:[UIColor colorWithRed255:70 green255:105 blue255:214 alpha:1]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+//    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 
 #pragma mark - ------private------

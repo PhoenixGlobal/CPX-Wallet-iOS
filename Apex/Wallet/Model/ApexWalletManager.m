@@ -26,7 +26,7 @@
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
 
-+ (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray*)assetArr{
++ (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr{
     [self deleteWalletForAddress:wallet.address];
     NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
     wallet.assetArr = assetArr;
@@ -85,5 +85,140 @@
 
 + (void)broadCastTransactionWithData:(NSString *)data Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
     [[ApexRPCClient shareRPCClient] invokeMethod:@"sendrawtransaction" withParameters:@[data] success:success failure:failure];
+}
+
++ (void)getNep5AssetAccountStateWithAddress:(NSString *)address andAssetId:(NSString *)assetId Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    //先获取资产的精度
+    [self getAssetDicimalWithAssetId:assetId Success:^(AFHTTPRequestOperation *operation, id resp) {
+        //再获取nep5资产
+        NSArray *stack = resp[@"stack"];
+        NSDictionary *balanceDic = stack.firstObject;
+        NSString *dicimal = balanceDic[@"value"];
+        
+        NSError *err = nil;
+        NSString *encodeAddress = NeomobileDecodeAddress(address, &err);
+        if (err) {
+            failure(operation, [NSError new]);
+            return;
+        }
+        NSArray *param = @[
+                           assetId,
+                           @"balanceOf",
+                           @[
+                            @{
+                                @"type": @"Hash160",
+                                @"value": encodeAddress
+                        }
+                        ]
+                           ];
+        
+        [[ApexRPCClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSArray *stack = responseObject[@"stack"];
+            NSDictionary *balanceDic = stack.firstObject;
+            NSString *value = balanceDic[@"value"];
+            NSData *data = [self convertHexStrToData:value];
+            
+            BalanceObject *balanceOBJ = [BalanceObject new];
+            balanceOBJ.asset = assetId;
+            if (value.length != 0) {
+                NSString *balance = [NSString stringWithFormat:@"%lf", [self getBalanceWithByte:(Byte *)data.bytes length:data.length] / pow(10, dicimal.doubleValue)];
+                balanceOBJ.value = balance;
+            }else{
+                balanceOBJ.value = @"0.0";
+            }
+            success(operation,balanceOBJ);
+        } failure:failure];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+        failure(operation,err);
+    }];
+    
+}
+
+
+
++ (void)getAssetDicimalWithAssetId:(NSString*)assetid Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    
+    if (![assetid hasPrefix:@"0x"]) {
+        assetid = [NSString stringWithFormat:@"0x%@",assetid];
+    }
+    NSArray *param = @[
+                      assetid,
+                      @"decimals",
+                      @[]
+                      ];
+    [[ApexRPCClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:success failure:failure];
+}
+
++ (void)getAssetSymbol:(NSString*)assetId Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    NSArray *param = @[
+                      assetId,
+                      @"symbol",
+                      @[]
+                      ];
+    
+    [[ApexRPCClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *stack = responseObject[@"stack"];
+        NSDictionary *balanceDic = stack.firstObject;
+        NSString *value = balanceDic[@"value"];
+        NSString *symbol = [[NSString alloc] initWithData:[self convertHexStrToData:value] encoding:NSUTF8StringEncoding];
+        success(operation, symbol);
+    } failure:failure];
+}
+
+/**
+ 将16进制的字符串转换成NSData
+ */
++ (NSData *)convertHexStrToData:(NSString *)str {
+    NSString *balance = [NSString stringWithFormat:@"%@", str];
+    if (!balance || [balance length] == 0) {
+        return nil;
+    }
+    NSMutableData *hexData = [[NSMutableData alloc] initWithCapacity:8];
+    NSRange range;
+    if ([balance length] %2 == 0) {
+        range = NSMakeRange(0,2);
+    } else {
+        range = NSMakeRange(0,1);
+    }
+    for (NSInteger i = range.location; i < [balance length]; i += 2) {
+        unsigned int anInt;
+        NSString *hexCharStr = [balance substringWithRange:range];
+        NSScanner *scanner = [[NSScanner alloc] initWithString:hexCharStr];
+        [scanner scanHexInt:&anInt];
+        NSData *entity = [[NSData alloc] initWithBytes:&anInt length:1];
+        [hexData appendData:entity];
+        range.location += range.length;
+        range.length = 2;
+    }
+    return [hexData copy];
+}
+
+/**
+ byte转换成余额
+ */
++ (unsigned long long)getBalanceWithByte:(Byte *)byte length:(NSInteger)length {
+    Byte newByte[length];
+    for (NSInteger i = 0; i < length; i++) {
+        newByte[i] = byte[length - i - 1];
+    }
+    
+    NSString *hexStr = @"";
+    for(int i=0;i < length;i++)
+    {
+        NSString *newHexStr = [NSString stringWithFormat:@"%x",newByte[i]&0xff]; // 16进制数
+        if([newHexStr length]==1)
+            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
+        else
+            hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
+    }
+    NSLog(@"bytes 的16进制数为:%@",hexStr);
+    NSScanner * scanner = [NSScanner scannerWithString:hexStr];
+    
+    unsigned long long balance;
+    
+    [scanner scanHexLongLong:&balance];
+    
+    return balance;
 }
 @end
