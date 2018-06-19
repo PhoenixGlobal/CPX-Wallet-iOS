@@ -10,6 +10,7 @@
 
 @interface ApexSearchWalletToolBar : UIView
 @property (nonatomic, strong) RACSubject *textDidChangeSub;
+@property (nonatomic, strong) NSString *placeHolder;
 
 - (void)clearEntrance;
 @end

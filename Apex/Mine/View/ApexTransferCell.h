@@ -10,8 +10,10 @@
 #import "ApexTXRecorderModel.h"
 
 @interface ApexTransferCell : UITableViewCell
+@property (nonatomic, strong) UIImageView *iconImage;
 @property (nonatomic, strong) UILabel *toAddressL;
 @property (nonatomic, strong) UILabel *amountL;
+@property (nonatomic, strong) UILabel *successFlag;
 @property (nonatomic, strong) UILabel *timeStampL;
 @property (nonatomic, strong) ApexTXRecorderModel *model;
 @end

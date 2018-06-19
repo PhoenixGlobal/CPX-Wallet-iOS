@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="EKE-LI-o5X">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barImage" translatesAutoresizingMaskIntoConstraints="NO" id="EKE-LI-o5X">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="132" id="6uZ-Rz-MGX"/>
@@ -128,7 +128,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Background" width="375" height="191"/>
         <image name="arrows-1_minimal-left" width="11" height="20"/>
+        <image name="barImage" width="375" height="148"/>
     </resources>
 </document>

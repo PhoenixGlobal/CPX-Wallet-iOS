@@ -109,7 +109,7 @@
 - (UIImageView *)backIV{
     if (!_backIV) {
         _backIV = [[UIImageView alloc] init];
-        _backIV.image = [UIImage imageNamed:@"Background"];
+        _backIV.image = [UIImage imageNamed:@"barImage"];
     }
     return _backIV;
 }

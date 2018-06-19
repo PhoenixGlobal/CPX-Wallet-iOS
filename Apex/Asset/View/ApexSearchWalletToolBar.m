@@ -79,6 +79,11 @@
 }
 
 #pragma mark - setter getter
+- (void)setPlaceHolder:(NSString *)placeHolder{
+    _placeHolder = placeHolder;
+    self.searchTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:14]}];
+}
+
 - (LeftViewSpaceTextField *)searchTF{
     if (!_searchTF) {
         _searchTF = [[LeftViewSpaceTextField alloc] init];

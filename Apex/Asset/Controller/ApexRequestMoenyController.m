@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *requestNumTF;
 @property (nonatomic, strong) UILabel *titleLable;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
-
+@property (nonatomic, strong) UIButton *backBtn;
 @end
 
 @implementation ApexRequestMoenyController
@@ -24,9 +24,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUI];
+    [self setNav];
 }
 
 #pragma mark - ------private------
+
+- (void)setNav{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
+    [[self.backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
 - (void)setUI{
     self.navigationItem.titleView = self.titleLable;
     self.addressL.text = self.walletAddress;
@@ -116,5 +125,13 @@
         _titleLable.text = @"收款";
     }
     return _titleLable;
+}
+
+- (UIButton *)backBtn{
+    if (!_backBtn) {
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backBtn setImage:[UIImage imageNamed:@"back-4"] forState:UIControlStateNormal];
+    }
+    return _backBtn;
 }
 @end

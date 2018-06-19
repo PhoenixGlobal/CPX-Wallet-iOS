@@ -54,7 +54,6 @@
     self.addressL.text = self.model.address;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.saveBtn];
-    
     self.baseVHeight.constant = NavBarHeight + 60;
 }
 

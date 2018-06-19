@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSNumber *confirmBlock;
 @property (nonatomic, strong) ApexTXIDModel *txidModel;
 @property (nonatomic, strong) NeomobileWallet *wallet;
+@property (nonatomic, strong) UIButton *backBtn;
 @end
 
 @implementation ApexSendMoneyController
@@ -38,6 +39,8 @@
     [self setUI];
     
     [self handleEvent];
+    
+    [self setNav];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -49,6 +52,13 @@
 }
 
 #pragma mark - ------private------
+- (void)setNav{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
+    [[self.backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
 - (void)setUI{
     self.navigationItem.titleView = self.titleLable;
     self.unitL.text = self.unit;
@@ -166,7 +176,7 @@
 - (UIButton *)scanBtn{
     if (!_scanBtn) {
         _scanBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        [_scanBtn setImage:[UIImage imageNamed:@"Group 3-3"] forState:UIControlStateNormal];
+        [_scanBtn setImage:[UIImage imageNamed:@"Group 3"] forState:UIControlStateNormal];
     }
     return _scanBtn;
 }
@@ -179,5 +189,13 @@
         _titleLable.text = @"转账";
     }
     return _titleLable;
+}
+
+- (UIButton *)backBtn{
+    if (!_backBtn) {
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backBtn setImage:[UIImage imageNamed:@"back-4"] forState:UIControlStateNormal];
+    }
+    return _backBtn;
 }
 @end

@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="gTI-Rq-4mP">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barImage" translatesAutoresizingMaskIntoConstraints="NO" id="gTI-Rq-4mP">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -69,6 +69,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Background" width="375" height="191"/>
+        <image name="barImage" width="375" height="148"/>
     </resources>
 </document>

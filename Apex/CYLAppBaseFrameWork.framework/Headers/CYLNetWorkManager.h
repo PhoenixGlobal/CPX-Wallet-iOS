@@ -10,6 +10,7 @@
 #import "CYLResponse.h"
 #import "Constant.h"
 
+@class AFHTTPSessionManager;
 @class UIViewController;
 static NSString *CYLNetWorkStatusHasChnagedNotification = @"CYLNetWorkStatusHasChnagedNotification";
 
@@ -23,7 +24,7 @@ typedef NS_ENUM(NSInteger,CYLNetWorkStatus) {
 + (instancetype)shareInstance;
 - (void)setBaseUrl:(NSURL*)baseurl;
 - (CYLNetWorkStatus)currentNetWorkStatus;
-
+- (AFHTTPSessionManager*)getManager;
 #pragma mark - 网络请求
 
 + (NSURLSessionDataTask*)GET:(NSString*)url parameter:(id)param success:(void (^)(CYLResponse *response))successBlock fail:(void (^)(NSError *error))failBlock;

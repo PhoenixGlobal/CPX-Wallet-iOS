@@ -34,6 +34,8 @@
 		E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */; };
 		E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */; };
 		E32920C320D0B0DC0012C36D /* ApexCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E32920C220D0B0DC0012C36D /* ApexCrypto.m */; };
+		E32920C720D8CC170012C36D /* ApexTXDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E32920C420D8CC170012C36D /* ApexTXDetailController.xib */; };
+		E32920C820D8CC170012C36D /* ApexTXDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E32920C620D8CC170012C36D /* ApexTXDetailController.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -186,6 +188,9 @@
 		E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletModel.m; sourceTree = "<group>"; };
 		E32920C120D0B0DC0012C36D /* ApexCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexCrypto.h; sourceTree = "<group>"; };
 		E32920C220D0B0DC0012C36D /* ApexCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexCrypto.m; sourceTree = "<group>"; };
+		E32920C420D8CC170012C36D /* ApexTXDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTXDetailController.xib; sourceTree = "<group>"; };
+		E32920C520D8CC170012C36D /* ApexTXDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTXDetailController.h; sourceTree = "<group>"; };
+		E32920C620D8CC170012C36D /* ApexTXDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTXDetailController.m; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -549,6 +554,9 @@
 				E3CE668720BD34B7002A1E07 /* ApexTransactionDetailController.h */,
 				E3CE668820BD34B7002A1E07 /* ApexTransactionDetailController.m */,
 				E3CE668620BD34B7002A1E07 /* ApexTransactionDetailController.xib */,
+				E32920C520D8CC170012C36D /* ApexTXDetailController.h */,
+				E32920C620D8CC170012C36D /* ApexTXDetailController.m */,
+				E32920C420D8CC170012C36D /* ApexTXDetailController.xib */,
 				E39E02F920C8F4CB005DD251 /* ApexExportKeyStoreController.h */,
 				E39E02FA20C8F4CB005DD251 /* ApexExportKeyStoreController.m */,
 			);
@@ -1026,6 +1034,7 @@
 				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
 				E3263ED920B68CFB001D3C19 /* ApexBackUpController.xib in Resources */,
 				E3263ED120B666CA001D3C19 /* ApexWalletManageDetailController.xib in Resources */,
+				E32920C720D8CC170012C36D /* ApexTXDetailController.xib in Resources */,
 				E33A8BF620B3F4030067505E /* ApexTXRecordCell.xib in Resources */,
 				E3263EF520B6ABF8001D3C19 /* ApexMnemonicConfirmController.xib in Resources */,
 				E3263EC920B567FC001D3C19 /* ApexWallerItemCell.xib in Resources */,
@@ -1141,6 +1150,7 @@
 				E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */,
 				E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */,
 				E39E031020CA7B1E005DD251 /* ApexNetWorkCommonConfig.m in Sources */,
+				E32920C820D8CC170012C36D /* ApexTXDetailController.m in Sources */,
 				E3263EDA20B68CFB001D3C19 /* ApexBackUpController.m in Sources */,
 				E3CE66B820BEA812002A1E07 /* DTTimePeriodGroup.m in Sources */,
 				E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */,
