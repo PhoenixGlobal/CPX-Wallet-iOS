@@ -103,7 +103,12 @@
         CGFloat translateDelta = self.translateLength - (offSetY + fabs(self.translateOffset));        
         CGFloat percent = 1.0 - (translateDelta/self.translateLength);
         
-        self.accessoryBaseView.alpha = 1 + percent*8;
+        //调整辅助条的alpha
+        if (percent<0) {
+            self.accessoryBaseView.alpha = 1 + percent*8;
+        }else{
+            self.accessoryBaseView.alpha = 1 - percent*8;
+        }
         
         if (percent <= 1.5) {
             

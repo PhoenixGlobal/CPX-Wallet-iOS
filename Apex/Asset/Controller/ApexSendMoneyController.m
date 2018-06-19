@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *unitL;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @property (nonatomic, strong) UIButton *scanBtn;
+@property (nonatomic, strong) UILabel *titleLable;
 
 @property (nonatomic, strong) ApexSendMoneyViewModel *viewModel;
 @property (nonatomic, strong) NSNumber *confirmBlock;
@@ -49,7 +50,7 @@
 
 #pragma mark - ------private------
 - (void)setUI{
-    self.title = @"转账";
+    self.navigationItem.titleView = self.titleLable;
     self.unitL.text = self.unit;
     self.walletNameL.text = self.walletName;
     self.fromAddressL.text = self.walletAddress;
@@ -168,5 +169,15 @@
         [_scanBtn setImage:[UIImage imageNamed:@"Group 3-3"] forState:UIControlStateNormal];
     }
     return _scanBtn;
+}
+
+- (UILabel *)titleLable{
+    if (!_titleLable) {
+        _titleLable = [[UILabel alloc] init];
+        _titleLable.font = [UIFont systemFontOfSize:17];
+        _titleLable.textColor = [UIColor blackColor];
+        _titleLable.text = @"转账";
+    }
+    return _titleLable;
 }
 @end

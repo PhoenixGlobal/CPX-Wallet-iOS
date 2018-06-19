@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
 @property (weak, nonatomic) IBOutlet UITextField *requestNumTF;
-
+@property (nonatomic, strong) UILabel *titleLable;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 
 @end
@@ -26,17 +26,9 @@
     [self setUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-//    [self.navigationController lt_setBackgroundColor:[UIColor colorWithRed255:70 green255:105 blue255:214 alpha:1]];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-//    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
-}
-
 #pragma mark - ------private------
 - (void)setUI{
-    self.title = @"收款";
+    self.navigationItem.titleView = self.titleLable;
     self.addressL.text = self.walletAddress;
     self.walletNameL.text = self.walletName;
     self.QRImageV.image = [self scanCodeGenerator:[NSString stringWithFormat:@"%@",self.walletAddress]];
@@ -116,5 +108,13 @@
 }
 
 #pragma mark - ------getter & setter------
-
+- (UILabel *)titleLable{
+    if (!_titleLable) {
+        _titleLable = [[UILabel alloc] init];
+        _titleLable.font = [UIFont systemFontOfSize:17];
+        _titleLable.textColor = [UIColor blackColor];
+        _titleLable.text = @"收款";
+    }
+    return _titleLable;
+}
 @end
