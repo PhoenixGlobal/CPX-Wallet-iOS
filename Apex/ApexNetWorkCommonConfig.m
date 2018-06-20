@@ -28,6 +28,8 @@
 
 + (void)text{
     NSString *s = NeomobileDecodeAddress(@"ALDbmTMY54RZnLmibH3eXfHvrZt4fLiZhh", nil);
+    
+    
     NSLog(@"%@",s);
 }
 
@@ -63,6 +65,7 @@
  byte转换成余额
  */
 + (unsigned long long)getBalanceWithByte:(Byte *)byte length:(NSInteger)length {
+    
     Byte newByte[length];
     for (NSInteger i = 0; i < length; i++) {
         newByte[i] = byte[length - i - 1];
@@ -86,4 +89,5 @@
     
     return balance;
 }
+
 @end

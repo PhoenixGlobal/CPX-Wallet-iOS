@@ -38,7 +38,6 @@ singleM(RPCClient);
     }];
 }
 
-
 - (void)replaceClient{
     NSString *url = [[ApexBlockChainManager shareSharedManager].seedsArr firstObject];
     [[ApexBlockChainManager shareSharedManager].seedsArr removeObject:url];

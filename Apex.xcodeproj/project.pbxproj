@@ -33,7 +33,6 @@
 		E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EFB20B6AF93001D3C19 /* ApexMnemonicCell.m */; };
 		E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */; };
 		E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */; };
-		E32920C320D0B0DC0012C36D /* ApexCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = E32920C220D0B0DC0012C36D /* ApexCrypto.m */; };
 		E32920C720D8CC170012C36D /* ApexTXDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E32920C420D8CC170012C36D /* ApexTXDetailController.xib */; };
 		E32920C820D8CC170012C36D /* ApexTXDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E32920C620D8CC170012C36D /* ApexTXDetailController.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
@@ -186,8 +185,6 @@
 		E3263EFE20B6BDB1001D3C19 /* UILabel+Spacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Spacing.h"; sourceTree = "<group>"; };
 		E3263F0020B7BC84001D3C19 /* ApexWalletModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletModel.h; sourceTree = "<group>"; };
 		E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletModel.m; sourceTree = "<group>"; };
-		E32920C120D0B0DC0012C36D /* ApexCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexCrypto.h; sourceTree = "<group>"; };
-		E32920C220D0B0DC0012C36D /* ApexCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexCrypto.m; sourceTree = "<group>"; };
 		E32920C420D8CC170012C36D /* ApexTXDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTXDetailController.xib; sourceTree = "<group>"; };
 		E32920C520D8CC170012C36D /* ApexTXDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTXDetailController.h; sourceTree = "<group>"; };
 		E32920C620D8CC170012C36D /* ApexTXDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTXDetailController.m; sourceTree = "<group>"; };
@@ -697,8 +694,6 @@
 				E3CE66BF20BFA91F002A1E07 /* ApexThread.h */,
 				E3CE66C020BFA91F002A1E07 /* ApexThread.m */,
 				E7EA1BCA20C112B700E2C597 /* NullSafe.m */,
-				E32920C120D0B0DC0012C36D /* ApexCrypto.h */,
-				E32920C220D0B0DC0012C36D /* ApexCrypto.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1141,7 +1136,6 @@
 				E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */,
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
 				E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */,
-				E32920C320D0B0DC0012C36D /* ApexCrypto.m in Sources */,
 				E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */,
 				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
@@ -1385,10 +1379,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = "arm64 armv7s x86_64";
 			};
 			name = Debug;
 		};
@@ -1418,10 +1413,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = "arm64 armv7s x86_64";
 			};
 			name = Release;
 		};
