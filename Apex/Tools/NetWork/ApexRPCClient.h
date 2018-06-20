@@ -14,6 +14,11 @@
 @interface ApexRPCClient : NSObject
 singleH(RPCClient);
 
+//更换seed
+- (void)replaceClient;
+//重置seed
+- (void)resetClient;
+
 - (void)invokeMethod:(NSString *)method
              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

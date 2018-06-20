@@ -221,4 +221,8 @@
     
     return balance;
 }
+
+- (void)getTxRecordOfAddress:(NSString*)address{
+    
+}
 @end

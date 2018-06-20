@@ -52,9 +52,9 @@
     }];
     
     [self.swithBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.backIV).offset(-10);
-        make.left.equalTo(self.view).offset(10);
-        make.right.equalTo(self.view).offset(-10);
+        make.bottom.equalTo(self.backIV).offset(0);
+        make.left.equalTo(self.view).offset(0);
+        make.right.equalTo(self.view).offset(0);
         make.height.mas_equalTo(40);
     }];
     

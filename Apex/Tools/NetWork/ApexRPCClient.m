@@ -48,6 +48,14 @@ singleM(RPCClient);
     }
 }
 
+- (void)resetClient{
+    self.client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:[ApexNetWorkCommonConfig getCliBaseUrl]]];
+    AFSecurityPolicy *sp = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    sp.allowInvalidCertificates = YES;
+    sp.validatesDomainName = NO;
+    _client.securityPolicy = sp;
+}
+
 #pragma mark - setter getter
 - (AFJSONRPCClient *)client{
     if (!_client) {

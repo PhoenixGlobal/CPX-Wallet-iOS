@@ -23,6 +23,8 @@
 /** 获取钱包余额 */
 + (void)getAccountStateWithAddress:(NSString*)address Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+/** 获取钱包的转账记录*/
+
 /**获取nep5资产余额 返回BalanceObject实例*/
 + (void)getNep5AssetAccountStateWithAddress:(NSString*)address andAssetId:(NSString*)assetId  Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
