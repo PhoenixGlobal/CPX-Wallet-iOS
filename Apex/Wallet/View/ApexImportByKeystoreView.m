@@ -108,6 +108,13 @@
     
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
     
+    for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
+        if ([model.address isEqualToString:address]) {
+            [[self topViewController] showMessage:@"钱包已存在"];
+            return;
+        }
+    }
+    
     //删除已有的 再添加新的
     [ApexWalletManager deleteWalletForAddress:address];
     [ApexWalletManager saveWallet:[NSString stringWithFormat:@"%@/%@",address, @"Wallet"]];

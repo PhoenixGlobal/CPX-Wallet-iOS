@@ -8,21 +8,11 @@
 
 #import "ApexWalletManager.h"
 #import "ApexWalletModel.h"
+#import "ApexTransferModel.h"
 
-//交易状态模型
-@interface ApexTransferStatusModel : NSObject
-@property (nonatomic, assign) ApexTransferStatus status; /**< 此笔交易的状态 */
-@property (nonatomic, assign) NSInteger transferAtHeight; /**< 此笔交易所在的区块高度 */
-@end
-
-@implementation ApexAccountStateModel
-
-@end
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //钱包管理模型
 @interface ApexWalletManager()
-@property (nonatomic, strong) NSMutableDictionary<NSString*, ApexTransferStatusModel*> *transferStatusDict;
+@property (nonatomic, strong) NSMutableDictionary<NSString*, ApexTransferModel*> *transferStatusDict;
 @end
 
 @implementation ApexWalletManager
@@ -54,12 +44,30 @@ singleM(Manager);
 }
 
 + (void)changeWalletName:(NSString*)name forAddress:(NSString*)address{
-    [self deleteWalletForAddress:address];
-    [self saveWallet:[NSString stringWithFormat:@"%@/%@",address, name]];
+    
+    ApexWalletModel *wallet = nil;
+    for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
+        if ([model.address isEqualToString:address]) {
+            wallet = model;
+            break;
+        }
+    }
+    
+    if (wallet) {
+        wallet.name = name;
+    }
+    
+    [ApexWalletManager deleteWalletForAddress:address];
+    
+    NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
+    [arr addObject:wallet];
+    [TKFileManager saveData:arr withFileName:walletsKey];
 }
 
 + (id)getWalletsArr{
-    return [TKFileManager loadDataWithFileName:walletsKey];
+    return [[[TKFileManager loadDataWithFileName:walletsKey] sortedArrayUsingComparator:^NSComparisonResult(ApexWalletModel *obj1, ApexWalletModel *obj2) {
+        return obj1.createTimeStamp.integerValue > obj2.createTimeStamp.integerValue;
+    }] mutableCopy];
 }
 
 + (void)deleteWalletForAddress:(NSString *)address{
@@ -103,7 +111,10 @@ singleM(Manager);
 }
 
 + (void)broadCastTransactionWithData:(NSString *)data Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"sendrawtransaction" withParameters:@[data] success:success failure:failure];
+    [[ApexRPCClient shareRPCClient] invokeMethod:@"sendrawtransaction" withParameters:@[data] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        success(operation, responseObject);
+    } failure:failure];
 }
 
 + (void)getNep5AssetAccountStateWithAddress:(NSString *)address andAssetId:(NSString *)assetId Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
@@ -183,18 +194,42 @@ singleM(Manager);
     } failure:failure];
 }
 
++ (ApexTransferStatus)transferStatusForAddress:(NSString *)address{
+    return 0;
+}
 
 #pragma mark - ------tools------
 
 + (void)setTransferStatus:(ApexTransferStatus)status forAddress:(NSString*)address{
     ApexWalletManager *Manager = [ApexWalletManager shareManager];
+    ApexTransferModel *model = nil;
     if (![Manager.transferStatusDict.allKeys containsObject:address]) {
-        ApexTransferStatusModel *model = [ApexTransferStatusModel new];
+        model = [ApexTransferModel new];
         model.status = status;
         
     }else{
-        ApexTransferStatusModel *model = Manager.transferStatusDict[address];
+        model = Manager.transferStatusDict[address];
         model.status = status;
+    }
+    
+    if (model == nil) {
+        NSLog(@"交易模型生成失败");
+        return;
+    }
+    
+    switch (model.status) {
+        case ApexTransferStatus_Progressing:{
+            
+        }
+            break;
+        case ApexTransferStatus_Confirmed:{
+            
+        }
+            break;
+        case ApexTransferStatus_Failed:{
+            
+        }
+            break;
     }
 }
 
@@ -256,7 +291,7 @@ singleM(Manager);
 
 
 #pragma mark - ------getter------
-- (NSMutableDictionary<NSString *,ApexTransferStatusModel *> *)transferStatusDict{
+- (NSMutableDictionary<NSString *,ApexTransferModel *> *)transferStatusDict{
     if (!_transferStatusDict) {
         _transferStatusDict = [NSMutableDictionary dictionary];
     }

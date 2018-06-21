@@ -150,9 +150,9 @@
         [self.navigationController pushViewController:vc animated:YES];
 
     }else if ([eventName isEqualToString:RouteNameEvent_GoToImportWallet]){
-        [self showMessage:@"正在开发中..."];
-//        ApexImportWalletController *importVC = [[ApexImportWalletController alloc] init];
-//        [self.navigationController pushViewController:importVC animated:YES];
+//        [self showMessage:@"正在开发中..."];
+        ApexImportWalletController *importVC = [[ApexImportWalletController alloc] init];
+        [self.navigationController pushViewController:importVC animated:YES];
     }
     
     

@@ -27,6 +27,7 @@
     [super viewDidLoad];
     
     [self setUI];
+    [self setNav];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -39,7 +40,7 @@
 - (void)setUI{
     self.title = @"我的";
     self.view.backgroundColor = [ApexUIHelper grayColor240];
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    
 
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.swithBar];
@@ -71,6 +72,11 @@
         make.left.equalTo(self.view).offset(10);
         make.right.equalTo(self.view).offset(-10);
     }];
+}
+
+- (void)setNav{
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController findHairlineImageViewUnder:self.navigationController.navigationBar].hidden = YES;
 }
 
 #pragma mark - ------public------

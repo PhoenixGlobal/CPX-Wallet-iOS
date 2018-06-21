@@ -114,7 +114,7 @@
             /**< 轮询 */
             
             [self.navigationController popToRootViewControllerAnimated:YES];
-            
+            NSLog(@"%@",tx.id_);
 //            ApexTXRecorderModel *txRecordModel = [[ApexTXRecorderModel alloc] init];
 //            txRecordModel.txid = tx.id_;
 //            txRecordModel.fromAddress = self.fromAddressL.text;
@@ -162,11 +162,15 @@
 }
 
 - (IBAction)sendAction:(id)sender {
-    [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress subTitle:@"" Success:^(NeomobileWallet *wallet) {
-       [self utxoSearch:wallet];
-    } fail:^{
-        [self showMessage:@"密码输入错误"];
-    }];
+    if (_sendNumTF.text.floatValue > _balanceModel.value.floatValue) {
+        [self showMessage:@"金额不足"];
+    }else{
+        [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress subTitle:@"" Success:^(NeomobileWallet *wallet) {
+            [self utxoSearch:wallet];
+        } fail:^{
+            [self showMessage:@"密码输入错误"];
+        }];
+    }
 }
 #pragma mark - ------getter & setter------
 - (ApexSendMoneyViewModel *)viewModel{
