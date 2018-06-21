@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #define walletsKey @"walletsKey"
+typedef NS_ENUM(NSInteger,ApexTransferStatus) {
+    ApexTransferStatus_Progressing,
+    ApexTransferStatus_Confirmed,
+    ApexTransferStatus_Failed
+};
+
 @class ApexWalletModel;
 @class BalanceObject;
 
@@ -19,6 +25,8 @@
 + (void)deleteWalletForAddress:(NSString*)address;
 + (void)setBackupFinished:(NSString*)address;
 + (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr;
+
++ (ApexTransferStatus)transferStatusForAddress:(NSString*)address;
 
 /** 获取钱包余额 */
 + (void)getAccountStateWithAddress:(NSString*)address Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

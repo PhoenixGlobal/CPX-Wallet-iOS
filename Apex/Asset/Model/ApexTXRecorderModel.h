@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface ApexTXRecorderModel : NSObject<NSCoding>
-@property (nonatomic, strong) NSString *txid;
-@property (nonatomic, strong) NSString *fromAddress;
-@property (nonatomic, strong) NSString *toAddress;
-@property (nonatomic, strong) NSString *value;
+@property (nonatomic, strong) NSString *txid; /**< 交易id */
+@property (nonatomic, strong) NSString *fromAddress;/**< 转账地址 */
+@property (nonatomic, strong) NSString *toAddress; /**< 收款地址 */
+@property (nonatomic, strong) NSString *value; /**< 款项 */
 @property (nonatomic, strong) NSString *data;
-@property (nonatomic, strong) NSString *timeStamp;
+@property (nonatomic, strong) NSString *timeStamp; /**< 转账时间 */
 @end

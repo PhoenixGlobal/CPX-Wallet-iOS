@@ -35,6 +35,7 @@
 		E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */; };
 		E32920C720D8CC170012C36D /* ApexTXDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E32920C420D8CC170012C36D /* ApexTXDetailController.xib */; };
 		E32920C820D8CC170012C36D /* ApexTXDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E32920C620D8CC170012C36D /* ApexTXDetailController.m */; };
+		E32921DA20DB3CE60012C36D /* ApexUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E32921D920DB3CE60012C36D /* ApexUITests.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -133,6 +134,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E32921DC20DB3CE60012C36D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E33A8B4020AE724D0067505E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E33A8B4720AE724D0067505E;
+			remoteInfo = Apex;
+		};
 		E3CE66D220BFC9A4002A1E07 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E33A8B4020AE724D0067505E /* Project object */;
@@ -188,6 +196,9 @@
 		E32920C420D8CC170012C36D /* ApexTXDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTXDetailController.xib; sourceTree = "<group>"; };
 		E32920C520D8CC170012C36D /* ApexTXDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTXDetailController.h; sourceTree = "<group>"; };
 		E32920C620D8CC170012C36D /* ApexTXDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTXDetailController.m; sourceTree = "<group>"; };
+		E32921D720DB3CE60012C36D /* ApexUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApexUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E32921D920DB3CE60012C36D /* ApexUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexUITests.m; sourceTree = "<group>"; };
+		E32921DB20DB3CE60012C36D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -374,6 +385,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E32921D420DB3CE60012C36D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E33A8B4520AE724D0067505E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -443,6 +461,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		E32921D820DB3CE60012C36D /* ApexUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E32921D920DB3CE60012C36D /* ApexUITests.m */,
+				E32921DB20DB3CE60012C36D /* Info.plist */,
+			);
+			path = ApexUITests;
+			sourceTree = "<group>";
+		};
 		E338964820B401F200DD51FE /* EmptyView */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,6 +484,7 @@
 			children = (
 				E33A8B4A20AE724D0067505E /* Apex */,
 				E3CE66CE20BFC9A4002A1E07 /* ApexTests */,
+				E32921D820DB3CE60012C36D /* ApexUITests */,
 				E33A8B4920AE724D0067505E /* Products */,
 				9A650F6290F0980BBC778DE8 /* Pods */,
 				33554FE32BBC78449D127132 /* Frameworks */,
@@ -468,6 +496,7 @@
 			children = (
 				E33A8B4820AE724D0067505E /* Apex.app */,
 				E3CE66CD20BFC9A4002A1E07 /* ApexTests.xctest */,
+				E32921D720DB3CE60012C36D /* ApexUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -935,6 +964,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E32921D620DB3CE60012C36D /* ApexUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E32921DE20DB3CE60012C36D /* Build configuration list for PBXNativeTarget "ApexUITests" */;
+			buildPhases = (
+				E32921D320DB3CE60012C36D /* Sources */,
+				E32921D420DB3CE60012C36D /* Frameworks */,
+				E32921D520DB3CE60012C36D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E32921DD20DB3CE60012C36D /* PBXTargetDependency */,
+			);
+			name = ApexUITests;
+			productName = ApexUITests;
+			productReference = E32921D720DB3CE60012C36D /* ApexUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E33A8B4720AE724D0067505E /* Apex */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E33A8B5E20AE724F0067505E /* Build configuration list for PBXNativeTarget "Apex" */;
@@ -983,6 +1030,10 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Gary;
 				TargetAttributes = {
+					E32921D620DB3CE60012C36D = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = E33A8B4720AE724D0067505E;
+					};
 					E33A8B4720AE724D0067505E = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -1007,11 +1058,19 @@
 			targets = (
 				E33A8B4720AE724D0067505E /* Apex */,
 				E3CE66CC20BFC9A4002A1E07 /* ApexTests */,
+				E32921D620DB3CE60012C36D /* ApexUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E32921D520DB3CE60012C36D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E33A8B4620AE724D0067505E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1110,6 +1169,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E32921D320DB3CE60012C36D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E32921DA20DB3CE60012C36D /* ApexUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E33A8B4420AE724D0067505E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1224,6 +1291,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E32921DD20DB3CE60012C36D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E33A8B4720AE724D0067505E /* Apex */;
+			targetProxy = E32921DC20DB3CE60012C36D /* PBXContainerItemProxy */;
+		};
 		E3CE66D320BFC9A4002A1E07 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E33A8B4720AE724D0067505E /* Apex */;
@@ -1243,6 +1315,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E32921DF20DB3CE60012C36D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2WU6NZ66PC;
+				INFOPLIST_FILE = ApexUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chinapex.-WalletManager.ApexUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Apex;
+			};
+			name = Debug;
+		};
+		E32921E020DB3CE60012C36D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2WU6NZ66PC;
+				INFOPLIST_FILE = ApexUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chinapex.-WalletManager.ApexUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Apex;
+			};
+			name = Release;
+		};
 		E33A8B5C20AE724F0067505E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1460,6 +1568,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E32921DE20DB3CE60012C36D /* Build configuration list for PBXNativeTarget "ApexUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E32921DF20DB3CE60012C36D /* Debug */,
+				E32921E020DB3CE60012C36D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E33A8B4320AE724D0067505E /* Build configuration list for PBXProject "Apex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -9,7 +9,26 @@
 #import "ApexWalletManager.h"
 #import "ApexWalletModel.h"
 
+//交易状态模型
+@interface ApexTransferStatusModel : NSObject
+@property (nonatomic, assign) ApexTransferStatus status; /**< 此笔交易的状态 */
+@property (nonatomic, assign) NSInteger transferAtHeight; /**< 此笔交易所在的区块高度 */
+@end
+
+@implementation ApexAccountStateModel
+
+@end
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//钱包管理模型
+@interface ApexWalletManager()
+@property (nonatomic, strong) NSMutableDictionary<NSString*, ApexTransferStatusModel*> *transferStatusDict;
+@end
+
 @implementation ApexWalletManager
+
+singleM(Manager);
+
 + (void)saveWallet:(NSString *)wallet{
     NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
     if (!arr) {
@@ -135,8 +154,6 @@
     
 }
 
-
-
 + (void)getAssetDicimalWithAssetId:(NSString*)assetid Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
     
     if (![assetid hasPrefix:@"0x"]) {
@@ -164,6 +181,21 @@
         NSString *symbol = [[NSString alloc] initWithData:[self convertHexStrToData:value] encoding:NSUTF8StringEncoding];
         success(operation, symbol);
     } failure:failure];
+}
+
+
+#pragma mark - ------tools------
+
++ (void)setTransferStatus:(ApexTransferStatus)status forAddress:(NSString*)address{
+    ApexWalletManager *Manager = [ApexWalletManager shareManager];
+    if (![Manager.transferStatusDict.allKeys containsObject:address]) {
+        ApexTransferStatusModel *model = [ApexTransferStatusModel new];
+        model.status = status;
+        
+    }else{
+        ApexTransferStatusModel *model = Manager.transferStatusDict[address];
+        model.status = status;
+    }
 }
 
 /**
@@ -222,7 +254,12 @@
     return balance;
 }
 
-- (void)getTxRecordOfAddress:(NSString*)address{
-    
+
+#pragma mark - ------getter------
+- (NSMutableDictionary<NSString *,ApexTransferStatusModel *> *)transferStatusDict{
+    if (!_transferStatusDict) {
+        _transferStatusDict = [NSMutableDictionary dictionary];
+    }
+    return _transferStatusDict;
 }
 @end

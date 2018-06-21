@@ -110,16 +110,20 @@
         BOOL isSuccess = ((NSNumber*)responseObject).boolValue;
         if (isSuccess) {
             [self showMessage:@"广播交易成功"];
-            ApexTXRecorderModel *txRecordModel = [[ApexTXRecorderModel alloc] init];
-            txRecordModel.txid = tx.id_;
-            txRecordModel.fromAddress = self.fromAddressL.text;
-            txRecordModel.toAddress = self.toAddressTF.text;
-            txRecordModel.value = self.sendNumTF.text;
-            txRecordModel.data = tx.data;
-            float timestamp = [[NSDate date] timeIntervalSince1970];
-            txRecordModel.timeStamp = [NSString stringWithFormat:@"%f",timestamp];
-            [self saveTX:txRecordModel];
+            
+            /**< 轮询 */
+            
             [self.navigationController popToRootViewControllerAnimated:YES];
+            
+//            ApexTXRecorderModel *txRecordModel = [[ApexTXRecorderModel alloc] init];
+//            txRecordModel.txid = tx.id_;
+//            txRecordModel.fromAddress = self.fromAddressL.text;
+//            txRecordModel.toAddress = self.toAddressTF.text;
+//            txRecordModel.value = self.sendNumTF.text;
+//            txRecordModel.data = tx.data;
+//            float timestamp = [[NSDate date] timeIntervalSince1970];
+//            txRecordModel.timeStamp = [NSString stringWithFormat:@"%f",timestamp];
+//            [self saveTX:txRecordModel];
         }else{
             [self showMessage:@"广播交易失败"];
         }
@@ -128,16 +132,16 @@
     }];
 }
 
-- (void)saveTX:(ApexTXRecorderModel*)model{
-    NSMutableArray *arr = [TKFileManager loadDataWithFileName:TXRECORD_KEY];
-    if (arr == nil) {
-        arr = [NSMutableArray array];
-    }
-    
-    [arr addObject:model];
-    
-    [TKFileManager saveData:arr withFileName:TXRECORD_KEY];
-}
+//- (void)saveTX:(ApexTXRecorderModel*)model{
+//    NSMutableArray *arr = [TKFileManager loadDataWithFileName:TXRECORD_KEY];
+//    if (arr == nil) {
+//        arr = [NSMutableArray array];
+//    }
+//
+//    [arr addObject:model];
+//
+//    [TKFileManager saveData:arr withFileName:TXRECORD_KEY];
+//}
 
 #pragma mark - ------public------
 
