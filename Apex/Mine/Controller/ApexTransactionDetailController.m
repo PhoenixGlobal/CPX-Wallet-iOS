@@ -25,7 +25,6 @@
 @property (nonatomic, strong) NSMutableArray *contentArr;
 @property (nonatomic, strong) NSArray *walletArr;
 @property (nonatomic, strong) CYLEmptyView *ev;
-@property (nonatomic, strong) NSArray *allTxArr;
 @property (nonatomic, strong) ApexSwithWalletView *switchView;
 @end
 
@@ -72,21 +71,22 @@
     self.title = self.model.name;
     self.addressL.text = self.model.address;
     
-    self.allTxArr = [TKFileManager loadDataWithFileName:TXRECORD_KEY];
     self.walletArr = [ApexWalletManager getWalletsArr];
     [self.contentArr removeAllObjects];
     
-    for (ApexTXRecorderModel *model in _allTxArr) {
-        if ([model.fromAddress isEqualToString:self.model.address]) {
-            [self.contentArr addObject:model];
+    [self showHUD];
+    [ApexWalletManager getTransactionHistoryWithAddress:@"AQVh2pG732YvtNaxEGkQUei3YA4cvo7d2i" BeginTime:0 Success:^(CYLResponse *response) {
+        [self hideHUD];
+        self.contentArr = response.returnObj;
+        if (self.contentArr.count == 0) {
+            self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无交易记录" refreshBlock:nil];
+        }else{
+            [self.ev removeFromSuperview];
         }
-    }
-    
-    if (_contentArr.count == 0) {
-        self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无交易记录" refreshBlock:nil];
-    }else{
-        [self.ev removeFromSuperview];
-    }
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
     
     if (self.walletArr.count == 1) {
         self.swithBtn.hidden = YES;
@@ -94,8 +94,6 @@
     else{
         self.swithBtn.hidden = NO;
     }
-    
-    [self.tableView reloadData];
 }
 
 #pragma mark - ------public------
@@ -134,18 +132,18 @@
     self.searchToolBar.textDidChangeSub = [RACSubject subject];
     [self.searchToolBar.textDidChangeSub subscribeNext:^(NSString *key) {
         
-        if (key.length == 0) {
-            [self prepareData];
-        }else{
-            NSMutableArray *tempArr = [NSMutableArray array];
-            for (ApexTXRecorderModel *model in self.allTxArr) {
-                if ([model.toAddress containsString:key]) {
-                    [tempArr addObject:model];
-                }
-            }
-            self.contentArr = tempArr;
-            [self.tableView reloadData];
-        }
+//        if (key.length == 0) {
+//            [self prepareData];
+//        }else{
+//            NSMutableArray *tempArr = [NSMutableArray array];
+//            for (ApexTXRecorderModel *model in self.allTxArr) {
+//                if ([model.toAddress containsString:key]) {
+//                    [tempArr addObject:model];
+//                }
+//            }
+//            self.contentArr = tempArr;
+//            [self.tableView reloadData];
+//        }
     }];
     
     [[self.swithBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {

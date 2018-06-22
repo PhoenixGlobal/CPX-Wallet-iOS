@@ -194,6 +194,22 @@ singleM(Manager);
     } failure:failure];
 }
 
++ (void)getTransactionHistoryWithAddress:(NSString *)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
+    [CYLNetWorkManager GET:@"transaction-history" parameter:@{@"address":addr, @"beginTime":@(beginTime)} success:^(CYLResponse *response) {
+        NSMutableArray *tempArr = [NSMutableArray array];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+        NSArray *txArr = dict[@"result"];
+        for (NSDictionary *txDict in txArr) {
+            ApexTransferModel *model = [ApexTransferModel yy_modelWithDictionary:txDict];
+            [tempArr addObject:model];
+        }
+        
+        response.returnObj = tempArr;
+        success(response);
+        
+    } fail:failure];
+}
+
 + (ApexTransferStatus)transferStatusForAddress:(NSString *)address{
     return 0;
 }

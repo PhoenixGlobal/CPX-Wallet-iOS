@@ -10,7 +10,7 @@
 
 #define walletsKey @"walletsKey"
 typedef NS_ENUM(NSInteger,ApexTransferStatus) {
-    ApexTransferStatus_Progressing,
+    ApexTransferStatus_Progressing = 100102,
     ApexTransferStatus_Confirmed,
     ApexTransferStatus_Failed
 };
@@ -41,6 +41,9 @@ typedef NS_ENUM(NSInteger,ApexTransferStatus) {
 
 /** 获取交易明细 */
 + (void)getRawTransactionWithTxid:(NSString*)txid Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/** 获取交易历史记录*/
++ (void)getTransactionHistoryWithAddress:(NSString*)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse  *response))success failure:(void (^)(NSError *error))failure;
 
 /** 广播交易 */
 + (void)broadCastTransactionWithData:(NSString*)data Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

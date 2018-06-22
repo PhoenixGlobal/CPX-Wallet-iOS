@@ -55,15 +55,45 @@
 
 }
 
-- (void)setModel:(ApexTXRecorderModel *)model{
+- (void)setModel:(ApexTransferModel *)model{
     _model = model;
-    _toAddressL.text = model.toAddress;
+    _toAddressL.text = model.to;
     _amountL.text = model.value;
+    
+//    if ([_model.vmstate containsString:@"FAULT"]) {
+//        _model.status = ApexTransferStatus_Failed;
+//    }else if ([_model.vmstate containsString:@""]){
+        _model.status = ApexTransferStatus_Confirmed;
+//    }
+    
+    switch (model.status) {
+        case ApexTransferStatus_Progressing:{
+            _successFlag.text = @"确认中";
+            _successFlag.textColor = [UIColor redColor];
+        }
+            break;
+        case ApexTransferStatus_Failed:{
+            _successFlag.text = @"交易失败";
+            _successFlag.textColor = [UIColor redColor];
+        }
+            
+            break;
+        case ApexTransferStatus_Confirmed:{
+            _successFlag.text = @"交易成功";
+            _successFlag.textColor = [UIColor blueColor];
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
+    
     [self caculatePeriod];
 }
 
 - (void)caculatePeriod{
-    CGFloat timeStamp = self.model.timeStamp.floatValue;
+    CGFloat timeStamp = self.model.time.floatValue;
     CGFloat now = [[NSDate date] timeIntervalSince1970];
     CGFloat period = now - timeStamp;
     if (period <= 60) {
@@ -127,6 +157,7 @@
 - (UILabel *)successFlag{
     if (!_successFlag) {
         _successFlag = [[UILabel alloc] init];
+        _successFlag.font = [UIFont systemFontOfSize:10];
     }
     return _successFlag;
 }

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ApexTXRecorderModel.h"
+#import "ApexTransferModel.h"
 
 @interface ApexTransferCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *iconImage;
@@ -15,5 +15,5 @@
 @property (nonatomic, strong) UILabel *amountL;
 @property (nonatomic, strong) UILabel *successFlag;
 @property (nonatomic, strong) UILabel *timeStampL;
-@property (nonatomic, strong) ApexTXRecorderModel *model;
+@property (nonatomic, strong) ApexTransferModel *model;
 @end
