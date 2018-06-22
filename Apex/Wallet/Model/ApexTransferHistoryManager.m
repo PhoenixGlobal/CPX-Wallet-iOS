@@ -70,7 +70,7 @@ static ApexTransferHistoryManager *_instance;
 
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString*)walletAddress{
     [_db open];
-    walletAddress = @"ANhiknDaRH9maXYDhVDUAat65KqrgHuVbV";
+//    walletAddress = @"ANhiknDaRH9maXYDhVDUAat65KqrgHuVbV";
     
     NSNumber *maxID = @(0);
     

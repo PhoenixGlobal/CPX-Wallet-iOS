@@ -10,7 +10,7 @@
 
 #define walletsKey @"walletsKey"
 typedef NS_ENUM(NSInteger,ApexTransferStatus) {
-    ApexTransferStatus_Progressing = 100102,
+    ApexTransferStatus_Progressing = 0,
     ApexTransferStatus_Confirmed,
     ApexTransferStatus_Failed
 };

@@ -24,6 +24,7 @@
 #define isFirstOpenApp @"isFirstOpenApp"
 #define commonScheme @"Apex://"
 #define KEYCHAIN_KEY(address) [NSString stringWithFormat:@"%@", address]
+#define LASTUPDATETXHISTORY_KEY(address) [NSString stringWithFormat:@"LASTUPDATETXHISTORY_KEY_%@", address]
 #define TXRECORD_KEY @"TXRECORD_KEY"
 #define KMyAseetArr @"KMyAseetArr"
 
