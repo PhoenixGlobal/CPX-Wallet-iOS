@@ -94,7 +94,7 @@
         _searchTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search"]];
         _searchTF.leftViewMode = UITextFieldViewModeAlways;
         _searchTF.textColor = [UIColor whiteColor];
-        _searchTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"钱包名称" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:14]}];
+        _searchTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"钱包地址" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:14]}];
         [_searchTF addTarget:self action:@selector(tfDidChangeChar) forControlEvents:UIControlEventEditingChanged];
     }
     return _searchTF;

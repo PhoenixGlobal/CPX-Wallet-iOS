@@ -9,6 +9,7 @@
 #import "ApexWalletManager.h"
 #import "ApexWalletModel.h"
 #import "ApexTransferModel.h"
+#import "ApexTransferHistoryManager.h"
 
 //钱包管理模型
 @interface ApexWalletManager()
@@ -31,6 +32,7 @@ singleM(Manager);
     model.isBackUp = false;
     model.assetArr = [self setDefultAsset];
     model.createTimeStamp = @([[NSDate date] timeIntervalSince1970]);
+    [[ApexTransferHistoryManager shareManager] createTableForWallet:model.address];
     [arr addObject:model];
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
@@ -201,6 +203,7 @@ singleM(Manager);
         NSArray *txArr = dict[@"result"];
         for (NSDictionary *txDict in txArr) {
             ApexTransferModel *model = [ApexTransferModel yy_modelWithDictionary:txDict];
+            [[ApexTransferHistoryManager shareManager] addTransferHistory:model forWallet:addr];
             [tempArr addObject:model];
         }
         

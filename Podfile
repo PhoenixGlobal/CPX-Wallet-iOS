@@ -17,7 +17,7 @@ target 'Apex' do
   pod 'IQKeyboardManager'
   pod 'YYModel'
   pod 'MJRefresh'
-  pod 'AAChartKit'
+  pod 'FMDB'
+  #pod 'FMDB/SQLCipher'
   # Pods for Apex
-
 end
