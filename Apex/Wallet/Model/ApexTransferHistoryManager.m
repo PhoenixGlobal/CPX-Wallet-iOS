@@ -75,15 +75,18 @@ static ApexTransferHistoryManager *_instance;
 //    walletAddress = @"ANhiknDaRH9maXYDhVDUAat65KqrgHuVbV";
     
     NSNumber *maxID = @(0);
-    
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ",walletAddress]];
     //获取数据库中最大的ID
     while ([res next]) {
         if ([maxID integerValue] < [[res stringForColumn:@"id"] integerValue]) {
+            //本地数据的交易号以及状态
             NSString *txidInDB = [res stringForColumn:@"txid"];
+            NSInteger status = [res intForColumn:@"state"];
+            
             maxID = @([[res stringForColumn:@"id"] integerValue]);
             //网络请求数据与本地有冲突时 以网络为准 删除本地此条数据 重新写入
-            if ([txidInDB isEqualToString:model.txid]) {
+            //本地数据的状态为已确认的状态时才替换
+            if ([txidInDB isEqualToString:model.txid] && (status == ApexTransferStatus_Confirmed || status == ApexTransferStatus_Failed)) {
                 [self deleteHistoryWithTxid:model.txid ofAddress:walletAddress];
             }
         }
@@ -142,8 +145,6 @@ static ApexTransferHistoryManager *_instance;
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model{
     //设置钱包状态不可交易
     [ApexWalletManager setStatus:NO forWallet:address];
-    //交易打包中
-    [self updateTransferStatus:ApexTransferStatus_Blocking forTXID:model.txid ofWallet:address];
     
     NSTimer *aTimer = [NSTimer timerWithTimeInterval:timerInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
         NSLog(@"交易记录计时器....");
@@ -168,6 +169,7 @@ static ApexTransferHistoryManager *_instance;
         }];
     }];
     
+    [[ApexThread shareInstance].threadRunLoop addTimer:aTimer forMode:NSRunLoopCommonModes];
     [aTimer fire];
 }
 
@@ -181,6 +183,7 @@ static ApexTransferHistoryManager *_instance;
 - (void)requestTxHistoryForAddress:(NSString*)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
     //获取上次更新时间
     __block NSNumber *bTime = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(address)];
+    
     if (!bTime) {
         bTime = @0;
         [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(address)];

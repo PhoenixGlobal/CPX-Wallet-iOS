@@ -219,6 +219,9 @@ singleM(Manager);
     } failure:failure];
 }
 
++ (void)verifyIsValideNeoAddress:(NSString*)address success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[ApexRPCClient shareRPCClient] invokeMethod:@"validateaddress" withParameters:@[address] success:success failure:failure];
+}
 
 
 + (ApexTransferStatus)transferStatusForAddress:(NSString *)address{
@@ -226,7 +229,6 @@ singleM(Manager);
 }
 
 #pragma mark - ------tools------
-
 + (void)setTransferStatus:(ApexTransferStatus)status forAddress:(NSString*)address{
     ApexWalletManager *Manager = [ApexWalletManager shareManager];
     ApexTransferModel *model = nil;

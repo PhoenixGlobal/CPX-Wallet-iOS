@@ -97,7 +97,7 @@
         NSError *err = nil;
         NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:self.sendNumTF.text.floatValue unspent:unspendStr error:&err];
         if (err) {
-            [self showMessage:@"tx生成失败"];
+            [self showMessage:@"交易生成失败"];
         }else{
             [self broadCastTransaction:tx];
         }

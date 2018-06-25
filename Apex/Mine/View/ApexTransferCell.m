@@ -82,7 +82,11 @@
             _successFlag.text = @"交易成功";
             _successFlag.textColor = [UIColor greenColor];
         }
-            
+          
+        case ApexTransferStatus_Blocking:{
+            _successFlag.text = @"打包中..";
+            _successFlag.textColor = [ApexUIHelper mainThemeColor];
+        }
             break;
             
         default:

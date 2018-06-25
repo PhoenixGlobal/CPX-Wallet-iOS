@@ -37,6 +37,11 @@
     
     [self initUI];
     [self handleEvent];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestTXHistory) name:Notification_TranferStatusHasChanged object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:Notification_TranferStatusHasChanged object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -54,19 +59,13 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ApexTransferCell class] forCellReuseIdentifier:@"cell"];
     
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        [self requestTXHistory];
+    }];
+    [self.tableView.mj_header setAutomaticallyChangeAlpha:YES];
+    
     self.baseViewH.constant = NavBarHeight+ 60;
 }
-
-//- (void)requestBalance{
-//    @weakify(self);
-//    [ApexWalletManager getAccountStateWithAddress:self.model.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        @strongify(self);
-//        ApexAccountStateModel *model = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
-//        model.balances.count == 0 ? (self.balance.text = @"0") : (self.balance.text = model.balances.firstObject.value);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        self.balance.text = @"N/A";
-//    }];
-//}
 
 - (void)prepareData{
     self.title = self.model.name;
@@ -88,6 +87,7 @@
     [self.contentArr removeAllObjects];
     
     [self showHUD];
+    
     [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:self.model.address Success:^(CYLResponse *response) {
         [self hideHUD];
         
