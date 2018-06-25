@@ -12,6 +12,8 @@
 #import "ApexSendMoneyViewModel.h"
 #import "LXDScanCodeController.h"
 #import "ApexPassWordConfirmAlertView.h"
+#import "ApexTransferModel.h"
+#import "ApexTransferHistoryManager.h"
 
 @interface ApexSendMoneyController ()<LXDScanCodeControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
@@ -93,7 +95,7 @@
         NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
         NSError *err = nil;
-        NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:self.sendNumTF.text.doubleValue unspent:unspendStr error:&err];
+        NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:self.sendNumTF.text.floatValue unspent:unspendStr error:&err];
         if (err) {
             [self showMessage:@"tx生成失败"];
         }else{
@@ -111,19 +113,18 @@
         if (isSuccess) {
             [self showMessage:@"广播交易成功"];
             
-            /**< 轮询 */
+            /**< 创建新的临时交易历史记录 */
+            ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
+            historyModel.txid = tx.id_;
+            historyModel.from = self.fromAddressL.text;
+            historyModel.to = self.toAddressTF.text;
+            historyModel.value = self.sendNumTF.text;
+            historyModel.status = ApexTransferStatus_Blocking;
+            [[ApexTransferHistoryManager shareManager] addTransferHistory:historyModel forWallet:self.fromAddressL.text];
+            [[ApexTransferHistoryManager shareManager] beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
+            NSLog(@"%@",tx.id_);
             
             [self.navigationController popToRootViewControllerAnimated:YES];
-            NSLog(@"%@",tx.id_);
-//            ApexTXRecorderModel *txRecordModel = [[ApexTXRecorderModel alloc] init];
-//            txRecordModel.txid = tx.id_;
-//            txRecordModel.fromAddress = self.fromAddressL.text;
-//            txRecordModel.toAddress = self.toAddressTF.text;
-//            txRecordModel.value = self.sendNumTF.text;
-//            txRecordModel.data = tx.data;
-//            float timestamp = [[NSDate date] timeIntervalSince1970];
-//            txRecordModel.timeStamp = [NSString stringWithFormat:@"%f",timestamp];
-//            [self saveTX:txRecordModel];
         }else{
             [self showMessage:@"广播交易失败"];
         }

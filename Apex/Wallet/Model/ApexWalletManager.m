@@ -104,6 +104,29 @@ singleM(Manager);
     return arr;
 }
 
++ (void)setStatus:(BOOL)status forWallet:(NSString *)address{
+    NSArray *arr = [self getWalletsArr];
+    for (ApexWalletModel *wallet in arr) {
+        if ([wallet.address isEqualToString:address]) {
+            wallet.canTransfer = status;
+            break;
+        }
+    }
+    [TKFileManager saveData:arr withFileName:walletsKey];
+}
+
++ (BOOL)getWalletTransferStatusForAddress:(NSString*)address{
+    NSArray *arr = [self getWalletsArr];
+    for (ApexWalletModel *wallet in arr) {
+        if ([wallet.address isEqualToString:address]) {
+            return wallet.canTransfer;
+        }
+    }
+    
+    return NO;
+}
+
+#pragma mark - ------request-----
 + (void)getAccountStateWithAddress:(NSString *)address Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
     [[ApexRPCClient shareRPCClient] invokeMethod:@"getaccountstate" withParameters:@[address] success:success failure:failure];
 }
@@ -196,23 +219,7 @@ singleM(Manager);
     } failure:failure];
 }
 
-+ (void)getTransactionHistoryWithAddress:(NSString *)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
-    
-    [CYLNetWorkManager GET:@"transaction-history" parameter:@{@"address":addr, @"beginTime":@(beginTime)} success:^(CYLResponse *response) {
-        NSMutableArray *tempArr = [NSMutableArray array];
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
-        NSArray *txArr = dict[@"result"];
-        for (NSDictionary *txDict in txArr) {
-            ApexTransferModel *model = [ApexTransferModel yy_modelWithDictionary:txDict];
-            [[ApexTransferHistoryManager shareManager] addTransferHistory:model forWallet:addr];
-            [tempArr addObject:model];
-        }
-        
-        response.returnObj = tempArr;
-        success(response);
-        
-    } fail:failure];
-}
+
 
 + (ApexTransferStatus)transferStatusForAddress:(NSString *)address{
     return 0;

@@ -16,6 +16,7 @@
         self.isBackUp = ((NSNumber*)[aDecoder decodeObjectForKey:@"isBackUp"]).boolValue;
         self.assetArr = [aDecoder decodeObjectForKey:@"assetArr"];
         self.createTimeStamp = [aDecoder decodeObjectForKey:@"createTimeStamp"];
+        self.canTransfer = ((NSNumber*)[aDecoder decodeObjectForKey:@"canTransfer"]).boolValue;
     }
     return self;
 }
@@ -26,5 +27,6 @@
     [aCoder encodeObject:@(self.isBackUp) forKey:@"isBackUp"];
     [aCoder encodeObject:self.assetArr forKey:@"assetArr"];
     [aCoder encodeObject:self.createTimeStamp forKey:@"createTimeStamp"];
+    [aCoder encodeObject:@(self.canTransfer) forKey:@"canTransfer"];
 }
 @end

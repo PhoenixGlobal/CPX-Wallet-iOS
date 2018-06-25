@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #define walletsKey @"walletsKey"
-typedef NS_ENUM(NSInteger,ApexTransferStatus) {
-    ApexTransferStatus_Progressing = 0,
-    ApexTransferStatus_Confirmed,
-    ApexTransferStatus_Failed
-};
 
 @class ApexWalletModel;
 @class BalanceObject;
@@ -24,6 +19,9 @@ typedef NS_ENUM(NSInteger,ApexTransferStatus) {
 + (id)getWalletsArr; /**< string : address/name */
 + (void)deleteWalletForAddress:(NSString*)address;
 + (void)setBackupFinished:(NSString*)address;
++ (void)setStatus:(BOOL)status forWallet:(NSString *)address;
++ (BOOL)getWalletTransferStatusForAddress:(NSString*)address;
+
 + (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr;
 
 + (ApexTransferStatus)transferStatusForAddress:(NSString*)address;
@@ -43,7 +41,7 @@ typedef NS_ENUM(NSInteger,ApexTransferStatus) {
 + (void)getRawTransactionWithTxid:(NSString*)txid Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /** 获取交易历史记录*/
-+ (void)getTransactionHistoryWithAddress:(NSString*)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse  *response))success failure:(void (^)(NSError *error))failure;
+//+ (void)getTransactionHistoryWithAddress:(NSString*)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse  *response))success failure:(void (^)(NSError *error))failure;
 
 /** 广播交易 */
 + (void)broadCastTransactionWithData:(NSString*)data Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

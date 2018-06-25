@@ -16,4 +16,13 @@ typedef NS_ENUM(NSInteger, PanelFuncConfig) {
     PanelFuncConfig_Import
 };
 
+/**< 钱包交易状态 */
+typedef NS_ENUM(NSInteger,ApexTransferStatus) {
+    ApexTransferStatus_Blocking = 109871, /**< 打包中 */
+    ApexTransferStatus_Progressing,     /**< 确认中 */
+    ApexTransferStatus_Confirmed,       /**< 交易成功 */
+    ApexTransferStatus_Failed,           /**< 交易失败 */
+    ApexTransferStatus_Error
+};
+
 #endif /* PublicEnum_h */

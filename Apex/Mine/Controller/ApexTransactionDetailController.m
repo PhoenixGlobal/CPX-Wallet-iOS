@@ -13,6 +13,7 @@
 #import "ApexTransferDetailHeader.h"
 #import "CYLEmptyView.h"
 #import "ApexSwithWalletView.h"
+#import "ApexTransferHistoryManager.h"
 
 @interface ApexTransactionDetailController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
@@ -86,20 +87,9 @@
 - (void)requestTXHistory{
     [self.contentArr removeAllObjects];
     
-    //获取上次更新时间
-    __block NSNumber *bTime = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(self.model.address)];
-    if (!bTime) {
-        bTime = @0;
-        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(self.model.address)];
-    }
-    
     [self showHUD];
-    [ApexWalletManager getTransactionHistoryWithAddress:self.model.address BeginTime:bTime.integerValue Success:^(CYLResponse *response) {
+    [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:self.model.address Success:^(CYLResponse *response) {
         [self hideHUD];
-        
-        //更新时间
-        bTime = @([[NSDate date] timeIntervalSince1970] * 1000000);
-        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(self.model.address)];
         
         self.contentArr = response.returnObj;
         if (self.contentArr.count == 0) {
@@ -108,8 +98,8 @@
             [self.ev removeFromSuperview];
         }
         [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
+    } failure:^(NSError *err) {
+        [self showMessage:@"请求失败,请稍后再试"];
     }];
 }
 

@@ -10,6 +10,8 @@
 #import <FMDB.h>
 #import "ApexTransferModel.h"
 
+#define timerInterval 5.0
+
 @interface ApexTransferHistoryManager()
 @property (nonatomic, strong) FMDatabase *db;
 @end
@@ -78,7 +80,12 @@ static ApexTransferHistoryManager *_instance;
     //获取数据库中最大的ID
     while ([res next]) {
         if ([maxID integerValue] < [[res stringForColumn:@"id"] integerValue]) {
-            maxID = @([[res stringForColumn:@"id"] integerValue] ) ;
+            NSString *txidInDB = [res stringForColumn:@"txid"];
+            maxID = @([[res stringForColumn:@"id"] integerValue]);
+            //网络请求数据与本地有冲突时 以网络为准 删除本地此条数据 重新写入
+            if ([txidInDB isEqualToString:model.txid]) {
+                [self deleteHistoryWithTxid:model.txid ofAddress:walletAddress];
+            }
         }
     }
     maxID = @([maxID integerValue] + 1);
@@ -88,8 +95,17 @@ static ApexTransferHistoryManager *_instance;
     [_db close];
 }
 
+- (void)deleteHistoryWithTxid:(NSString*)txid ofAddress:(NSString*)address{
+    [_db open];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE txid = %@",address,txid];
+    [_db executeUpdate:sql];
+    [_db close];
+}
+
 - (void)updateTransferStatus:(ApexTransferStatus)status forTXID:(NSString*)txid ofWallet:(NSString*)walletAddress{
     [_db open];
+    //广播交易状态改变
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferStatusHasChanged object:@""];
     [_db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",walletAddress],@(status),txid];
     [_db close];
 }
@@ -121,6 +137,91 @@ static ApexTransferHistoryManager *_instance;
     
     [_db close];
     return dataArray;
+}
+
+- (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model{
+    //设置钱包状态不可交易
+    [ApexWalletManager setStatus:NO forWallet:address];
+    //交易打包中
+    [self updateTransferStatus:ApexTransferStatus_Blocking forTXID:model.txid ofWallet:address];
+    
+    NSTimer *aTimer = [NSTimer timerWithTimeInterval:timerInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSLog(@"交易记录计时器....");
+        [[ApexTransferHistoryManager shareManager] requestBlockHeightWithTxid:model.txid success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSDictionary *dict = (NSDictionary*)responseObject;
+            if ([dict.allKeys containsObject:@"confirmations"]) {
+                //交易确认中
+                [self updateTransferStatus:ApexTransferStatus_Progressing forTXID:model.txid ofWallet:address];
+                NSInteger confirmations = ((NSString*)dict[@"confirmations"]).integerValue;
+                if (confirmations >= 12) {
+                    
+                    //交易成功
+                    [ApexWalletManager setStatus:YES forWallet:address];
+                    [[ApexTransferHistoryManager shareManager] updateTransferStatus:ApexTransferStatus_Confirmed forTXID:model.txid ofWallet:address];
+                    [timer invalidate];
+                }
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
+    }];
+    
+    [aTimer fire];
+}
+
+#pragma mark - ------request------
+//根据txid获取此交易所在区块
+- (void)requestBlockHeightWithTxid:(NSString*)txid success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[ApexRPCClient shareRPCClient] invokeMethod:@"getrawtransaction" withParameters:@[txid,@1] success:success failure:failure];
+}
+
+//从服务器中获取交易历史记录
+- (void)requestTxHistoryForAddress:(NSString*)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
+    //获取上次更新时间
+    __block NSNumber *bTime = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(address)];
+    if (!bTime) {
+        bTime = @0;
+        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(address)];
+    }
+
+    //此方法内部 调用了-addTransferHistory: forWallet:
+    [[ApexTransferHistoryManager shareManager] getTransactionHistoryWithAddress:address BeginTime:bTime.integerValue Success:^(CYLResponse *response) {
+        //更新时间
+        bTime = @([[NSDate date] timeIntervalSince1970] * 1000000);
+        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(address)];
+        if (success) {
+            success(response);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+- (void)getTransactionHistoryWithAddress:(NSString *)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
+    
+    [CYLNetWorkManager GET:@"transaction-history" parameter:@{@"address":addr, @"beginTime":@(beginTime)} success:^(CYLResponse *response) {
+        NSMutableArray *tempArr = [NSMutableArray array];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+        NSArray *txArr = dict[@"result"];
+        for (NSDictionary *txDict in txArr) {
+            ApexTransferModel *model = [ApexTransferModel yy_modelWithDictionary:txDict];
+            if ([model.vmstate containsString:@"FAULT"]) {
+                model.status = ApexTransferStatus_Failed;
+            }else{
+                model.status = ApexTransferStatus_Confirmed;
+            }
+            [[ApexTransferHistoryManager shareManager] addTransferHistory:model forWallet:addr];
+            [tempArr addObject:model];
+        }
+        
+        response.returnObj = tempArr;
+        success(response);
+        
+    } fail:failure];
 }
 
 @end
