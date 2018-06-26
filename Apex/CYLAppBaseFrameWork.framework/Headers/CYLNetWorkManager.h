@@ -10,6 +10,9 @@
 #import "CYLResponse.h"
 #import "Constant.h"
 
+typedef void(^successfulBlock)(CYLResponse *response);
+typedef void(^failureBlock)(NSError *error);
+
 @class AFHTTPSessionManager;
 @class UIViewController;
 static NSString *CYLNetWorkStatusHasChnagedNotification = @"CYLNetWorkStatusHasChnagedNotification";

@@ -120,6 +120,7 @@
             historyModel.to = self.toAddressTF.text;
             historyModel.value = self.sendNumTF.text;
             historyModel.status = ApexTransferStatus_Blocking;
+            historyModel.time = @([[NSDate date] timeIntervalSince1970] * 1000000).stringValue;
             [[ApexTransferHistoryManager shareManager] addTransferHistory:historyModel forWallet:self.fromAddressL.text];
             [[ApexTransferHistoryManager shareManager] beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
             NSLog(@"%@",tx.id_);

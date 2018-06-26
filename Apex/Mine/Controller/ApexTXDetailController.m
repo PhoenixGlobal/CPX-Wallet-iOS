@@ -7,6 +7,7 @@
 //
 
 #import "ApexTXDetailController.h"
+#import "ApexTransferModel.h"
 
 @interface ApexTXDetailController ()
 @property (weak, nonatomic) IBOutlet UILabel *fromAddressL;
@@ -20,6 +21,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self initUI];
+}
+
+- (void)initUI{
+    _fromAddressL.text = self.model.from;
+    _toAddressL.text = self.model.to;
+    _timeStamp.text = self.model.time;
+    _txic.text = self.model.txid;
     
 }
 

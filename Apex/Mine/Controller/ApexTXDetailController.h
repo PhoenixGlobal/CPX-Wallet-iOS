@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ApexTransferModel;
 
 @interface ApexTXDetailController : UIViewController
-
+@property (nonatomic, strong) ApexTransferModel *model;
 @end

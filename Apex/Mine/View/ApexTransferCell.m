@@ -28,8 +28,8 @@
     
     [self.iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(15);
-        make.top.equalTo(self).offset(10);
-        make.width.height.mas_equalTo(20);
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.height.mas_equalTo(30);
     }];
     
     [self.toAddressL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,28 +63,30 @@
 //    if ([_model.vmstate containsString:@"FAULT"]) {
 //        _model.status = ApexTransferStatus_Failed;
 //    }else if ([_model.vmstate containsString:@""]){
-        _model.status = arc4random_uniform(3) % 3;
 //    }
+    _timeStampL.hidden = YES;
     
     switch (model.status) {
         case ApexTransferStatus_Progressing:{
-            _successFlag.text = @"确认中..";
+            _successFlag.text = @"交易确认中";
             _successFlag.textColor = [ApexUIHelper mainThemeColor];
         }
             break;
         case ApexTransferStatus_Failed:{
             _successFlag.text = @"交易失败";
             _successFlag.textColor = [UIColor redColor];
+            _timeStampL.hidden = NO;
         }
             
             break;
         case ApexTransferStatus_Confirmed:{
             _successFlag.text = @"交易成功";
             _successFlag.textColor = [UIColor greenColor];
+            _timeStampL.hidden = NO;
         }
-          
+            break;
         case ApexTransferStatus_Blocking:{
-            _successFlag.text = @"打包中..";
+            _successFlag.text = @"交易打包中";
             _successFlag.textColor = [ApexUIHelper mainThemeColor];
         }
             break;
@@ -154,6 +156,7 @@
 - (UIImageView *)iconImage{
     if (!_iconImage) {
         _iconImage = [[UIImageView alloc] init];
+        _iconImage.image = NEOPlaceHolder;
     }
     return _iconImage;
 }

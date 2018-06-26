@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Page 1-4" translatesAutoresizingMaskIntoConstraints="NO" id="pd4-Gi-VA9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="-25" width="320" height="638"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-1" translatesAutoresizingMaskIntoConstraints="NO" id="woV-ya-LL6">
-                                <rect key="frame" x="90" y="231" width="194" height="45"/>
+                                <rect key="frame" x="63" y="191.5" width="194" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="194" id="lnl-0q-Po4"/>
                                     <constraint firstAttribute="height" constant="45" id="yZd-kD-c2B"/>
@@ -31,12 +31,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Bag-mN-7JK" firstAttribute="bottom" secondItem="pd4-Gi-VA9" secondAttribute="bottom" id="4aY-bJ-eN6"/>
+                            <constraint firstItem="Bag-mN-7JK" firstAttribute="bottom" secondItem="pd4-Gi-VA9" secondAttribute="bottom" constant="-45" id="4aY-bJ-eN6"/>
                             <constraint firstItem="pd4-Gi-VA9" firstAttribute="leading" secondItem="Bag-mN-7JK" secondAttribute="leading" id="5xj-rx-jiI"/>
                             <constraint firstItem="woV-ya-LL6" firstAttribute="centerY" secondItem="pd4-Gi-VA9" secondAttribute="centerY" constant="-80" id="7LL-Bh-XW1"/>
                             <constraint firstItem="Bag-mN-7JK" firstAttribute="trailing" secondItem="pd4-Gi-VA9" secondAttribute="trailing" id="LRj-fD-4jg"/>
                             <constraint firstItem="woV-ya-LL6" firstAttribute="centerX" secondItem="pd4-Gi-VA9" secondAttribute="centerX" id="Lyp-qG-Zu7"/>
-                            <constraint firstItem="pd4-Gi-VA9" firstAttribute="top" secondItem="Bag-mN-7JK" secondAttribute="top" constant="-20" id="RIV-GJ-n5L"/>
+                            <constraint firstItem="pd4-Gi-VA9" firstAttribute="top" secondItem="Bag-mN-7JK" secondAttribute="top" constant="-45" id="RIV-GJ-n5L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bag-mN-7JK"/>
                     </view>

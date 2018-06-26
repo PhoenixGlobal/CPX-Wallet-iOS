@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9B2E51F7E3F83C04602FA8C4 /* libPods-Apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */; };
 		E324311620DCC14700284B91 /* ApexTransferHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */; };
+		E324311920E0F5A200284B91 /* ApexAssetModelManage.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311820E0F5A200284B91 /* ApexAssetModelManage.m */; };
+		E324311C20E21F3E00284B91 /* ApexMappingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311B20E21F3E00284B91 /* ApexMappingBtnView.m */; };
 		E3263EBF20B54A41001D3C19 /* ApexSwitchHeaderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EBE20B54A41001D3C19 /* ApexSwitchHeaderBar.m */; };
 		E3263EC220B55A63001D3C19 /* ApexTransactionRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EC120B55A63001D3C19 /* ApexTransactionRecordView.m */; };
 		E3263EC520B5639D001D3C19 /* ApexManageWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3263EC420B5639D001D3C19 /* ApexManageWalletView.m */; };
@@ -158,6 +160,10 @@
 		8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.debug.xcconfig"; sourceTree = "<group>"; };
 		E324311420DCC14700284B91 /* ApexTransferHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferHistoryManager.h; sourceTree = "<group>"; };
 		E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransferHistoryManager.m; sourceTree = "<group>"; };
+		E324311720E0F5A200284B91 /* ApexAssetModelManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetModelManage.h; sourceTree = "<group>"; };
+		E324311820E0F5A200284B91 /* ApexAssetModelManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetModelManage.m; sourceTree = "<group>"; };
+		E324311A20E21F3E00284B91 /* ApexMappingBtnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMappingBtnView.h; sourceTree = "<group>"; };
+		E324311B20E21F3E00284B91 /* ApexMappingBtnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMappingBtnView.m; sourceTree = "<group>"; };
 		E3263EBD20B54A41001D3C19 /* ApexSwitchHeaderBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexSwitchHeaderBar.h; sourceTree = "<group>"; };
 		E3263EBE20B54A41001D3C19 /* ApexSwitchHeaderBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexSwitchHeaderBar.m; sourceTree = "<group>"; };
 		E3263EC020B55A63001D3C19 /* ApexTransactionRecordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransactionRecordView.h; sourceTree = "<group>"; };
@@ -667,6 +673,8 @@
 				E39E02DC20C68C13005DD251 /* ApexMoreTopCell.m */,
 				E39E02DE20C68C38005DD251 /* ApexMoreFuncCell.h */,
 				E39E02DF20C68C38005DD251 /* ApexMoreFuncCell.m */,
+				E324311A20E21F3E00284B91 /* ApexMappingBtnView.h */,
+				E324311B20E21F3E00284B91 /* ApexMappingBtnView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -701,6 +709,8 @@
 				E33A8BEE20B3C16C0067505E /* ApexTXIDModel.m */,
 				E33A8BF020B3F0350067505E /* ApexTXRecorderModel.h */,
 				E33A8BF120B3F0350067505E /* ApexTXRecorderModel.m */,
+				E324311720E0F5A200284B91 /* ApexAssetModelManage.h */,
+				E324311820E0F5A200284B91 /* ApexAssetModelManage.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1201,6 +1211,7 @@
 				E3CE669B20BE4539002A1E07 /* ApexMnenonicShowView.m in Sources */,
 				E3CE66B620BEA812002A1E07 /* NSDate+DateTools.m in Sources */,
 				E3CE669020BD3B56002A1E07 /* ApexTransferCell.m in Sources */,
+				E324311C20E21F3E00284B91 /* ApexMappingBtnView.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
 				E39E02E920C7C82E005DD251 /* ApexImportSwithHeaderBar.m in Sources */,
 				E39E02E020C68C38005DD251 /* ApexMoreFuncCell.m in Sources */,
@@ -1237,6 +1248,7 @@
 				E33A8B9C20AE756E0067505E /* UIViewController+Toast.m in Sources */,
 				E33A8B7820AE75500067505E /* LXDScanView.m in Sources */,
 				E3263EF920B6AF07001D3C19 /* ApexMnemonicFlowLayout.m in Sources */,
+				E324311920E0F5A200284B91 /* ApexAssetModelManage.m in Sources */,
 				E33A8BF220B3F0350067505E /* ApexTXRecorderModel.m in Sources */,
 				E33A8BF720B3F4030067505E /* ApexTXRecordCell.m in Sources */,
 				E3CE668120BBF9A5002A1E07 /* MethodSwizzling.m in Sources */,
@@ -1331,7 +1343,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				INFOPLIST_FILE = ApexUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chinapex.-WalletManager.ApexUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1345,7 +1361,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				INFOPLIST_FILE = ApexUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chinapex.-WalletManager.ApexUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1485,7 +1505,10 @@
 				);
 				INFOPLIST_FILE = Apex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1516,7 +1539,10 @@
 				);
 				INFOPLIST_FILE = Apex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1531,7 +1557,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ApexTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.ApexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1545,7 +1575,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ApexTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.ApexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

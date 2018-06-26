@@ -41,7 +41,7 @@
 + (void)getRawTransactionWithTxid:(NSString*)txid Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /** 验证是否neo有效地址 */
-+ (void)verifyIsValideNeoAddress:(NSString*)address success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
++ (void)verifyIsValideNeoAddress:(NSString*)address success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /** 获取交易历史记录*/
 //+ (void)getTransactionHistoryWithAddress:(NSString*)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse  *response))success failure:(void (^)(NSError *error))failure;

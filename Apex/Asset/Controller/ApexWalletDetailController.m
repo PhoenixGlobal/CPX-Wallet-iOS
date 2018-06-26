@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIButton *requestBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
+
 @end
 
 @implementation ApexWalletDetailController

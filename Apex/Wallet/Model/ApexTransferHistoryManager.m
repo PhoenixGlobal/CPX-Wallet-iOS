@@ -11,6 +11,7 @@
 #import "ApexTransferModel.h"
 
 #define timerInterval 5.0
+#define confirmHeight 6
 
 @interface ApexTransferHistoryManager()
 @property (nonatomic, strong) FMDatabase *db;
@@ -70,6 +71,7 @@ static ApexTransferHistoryManager *_instance;
     [_db close];
 }
 
+#pragma mark - ------增-----
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString*)walletAddress{
     [_db open];
 //    walletAddress = @"ANhiknDaRH9maXYDhVDUAat65KqrgHuVbV";
@@ -98,6 +100,7 @@ static ApexTransferHistoryManager *_instance;
     [_db close];
 }
 
+#pragma mark - ------删-----
 - (void)deleteHistoryWithTxid:(NSString*)txid ofAddress:(NSString*)address{
     [_db open];
     NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE txid = %@",address,txid];
@@ -105,6 +108,7 @@ static ApexTransferHistoryManager *_instance;
     [_db close];
 }
 
+#pragma mark - ------改-----
 - (void)updateTransferStatus:(ApexTransferStatus)status forTXID:(NSString*)txid ofWallet:(NSString*)walletAddress{
     [_db open];
     //广播交易状态改变
@@ -113,6 +117,29 @@ static ApexTransferHistoryManager *_instance;
     [_db close];
 }
 
+#pragma mark - ------查-----
+//查找txid前缀
+- (NSMutableArray*)getHistoryiesWithPrefixOfTxid:(NSString*)prefix address:(NSString*)address{
+    
+    [_db open];
+    NSMutableArray *array = [NSMutableArray array];
+    
+    if (![prefix hasPrefix:@"0x"]) {
+        prefix = [NSString stringWithFormat:@"0x%@",prefix];
+    }
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE txid LIKE %@%%",address,prefix]];
+    
+    while ([res next]) {
+        ApexTransferModel *model = [self buildModelWithResult:res];
+        [array addObject:model];
+    }
+    
+    [_db close];
+    
+    return array;
+}
+
+//获得所有的模型
 - (NSMutableArray*)getAllTransferHistoryForAddress:(NSString*)address{
     [_db open];
     
@@ -121,20 +148,7 @@ static ApexTransferHistoryManager *_instance;
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@",address]];
     
     while ([res next]) {
-        ApexTransferModel *model = [[ApexTransferModel alloc] init];
-        model.txid = [res stringForColumn:@"txid"];
-        model.assetId = [res stringForColumn:@"assetId"];
-        model.decimal = [res stringForColumn:@"decimal"];
-        model.from = [res stringForColumn:@"from"];
-        model.to = [res stringForColumn:@"to"];
-        model.gas_consumed = [res stringForColumn:@"gas_consumed"];
-        model.imageURL = [res stringForColumn:@"imageURL"];
-        model.symbol = [res stringForColumn:@"symbol"];
-        model.time = [res stringForColumn:@"time"];
-        model.type = [res stringForColumn:@"type"];
-        model.value = [res stringForColumn:@"value"];
-        model.vmstate = [res stringForColumn:@"vmstate"];
-        model.status = [res intForColumn:@"state"] ;
+        ApexTransferModel *model = [self buildModelWithResult:res];
         [dataArray addObject:model];
     }
     
@@ -142,12 +156,30 @@ static ApexTransferHistoryManager *_instance;
     return dataArray;
 }
 
+- (ApexTransferModel*)buildModelWithResult:(FMResultSet*)res{
+    ApexTransferModel *model = [[ApexTransferModel alloc] init];
+    model.txid = [res stringForColumn:@"txid"];
+    model.assetId = [res stringForColumn:@"assetId"];
+    model.decimal = [res stringForColumn:@"decimal"];
+    model.from = [res stringForColumn:@"from"];
+    model.to = [res stringForColumn:@"to"];
+    model.gas_consumed = [res stringForColumn:@"gas_consumed"];
+    model.imageURL = [res stringForColumn:@"imageURL"];
+    model.symbol = [res stringForColumn:@"symbol"];
+    model.time = [res stringForColumn:@"time"];
+    model.type = [res stringForColumn:@"type"];
+    model.value = [res stringForColumn:@"value"];
+    model.vmstate = [res stringForColumn:@"vmstate"];
+    model.status = [res intForColumn:@"state"] ;
+    return model;
+}
+
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model{
     //设置钱包状态不可交易
     [ApexWalletManager setStatus:NO forWallet:address];
     
     NSTimer *aTimer = [NSTimer timerWithTimeInterval:timerInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"交易记录计时器....");
+        
         [[ApexTransferHistoryManager shareManager] requestBlockHeightWithTxid:model.txid success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             NSDictionary *dict = (NSDictionary*)responseObject;
@@ -155,7 +187,10 @@ static ApexTransferHistoryManager *_instance;
                 //交易确认中
                 [self updateTransferStatus:ApexTransferStatus_Progressing forTXID:model.txid ofWallet:address];
                 NSInteger confirmations = ((NSString*)dict[@"confirmations"]).integerValue;
-                if (confirmations >= 12) {
+                
+                NSLog(@"%@", [NSString stringWithFormat:@"交易上链,confirmations:%ld",confirmations]);
+                
+                if (confirmations >= confirmHeight) {
                     
                     //交易成功
                     [ApexWalletManager setStatus:YES forWallet:address];

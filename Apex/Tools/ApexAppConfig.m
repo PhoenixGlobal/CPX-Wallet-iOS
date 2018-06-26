@@ -10,7 +10,7 @@
 #import <IQKeyboardManager.h>
 #import "ApexNetWorkCommonConfig.h"
 #import <AFNetworking.h>
-#import "ApexTransferHistoryManager.h"
+#import "ApexAssetModelManage.h"
 
 @implementation ApexAppConfig
 + (void) configAll{
@@ -22,18 +22,18 @@
     
     [self startMonitorThread];
     
-    [self updateAllWalletTransferHistory];
+//    [self updateAllWalletTransferHistory];
 }
 
-+ (void)updateAllWalletTransferHistory{
-    for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
-        [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:model.address Success:^(CYLResponse *resp) {
-            
-        } failure:^(NSError *err) {
-            
-        }];
-    }
-}
+//+ (void)updateAllWalletTransferHistory{
+//    for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
+//        [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:model.address Success:^(CYLResponse *resp) {
+//
+//        } failure:^(NSError *err) {
+//
+//        }];
+//    }
+//}
 
 + (void)startMonitorThread{
     [[ApexThread shareInstance] startRunLoopSuccessBlock:^{

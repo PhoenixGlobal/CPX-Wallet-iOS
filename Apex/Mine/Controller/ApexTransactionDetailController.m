@@ -14,6 +14,7 @@
 #import "CYLEmptyView.h"
 #import "ApexSwithWalletView.h"
 #import "ApexTransferHistoryManager.h"
+#import "ApexTXDetailController.h"
 
 @interface ApexTransactionDetailController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
@@ -54,6 +55,7 @@
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.swithBtn];
     [self.searchBaseV addSubview:self.searchToolBar];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -86,21 +88,26 @@
 - (void)requestTXHistory{
     [self.contentArr removeAllObjects];
     
-    [self showHUD];
-    
+//    [self showHUD];
+    //请求最新历史记录写入数据库
     [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:self.model.address Success:^(CYLResponse *response) {
-        [self hideHUD];
+//        [self hideHUD];
+        [self.tableView.mj_header endRefreshing];
         
-        self.contentArr = response.returnObj;
-        if (self.contentArr.count == 0) {
-            self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无交易记录" refreshBlock:nil];
-        }else{
-            [self.ev removeFromSuperview];
-        }
-        [self.tableView reloadData];
+        [self requestSuccessLoadDataFromFMDB];
     } failure:^(NSError *err) {
         [self showMessage:@"请求失败,请稍后再试"];
     }];
+}
+
+- (void)requestSuccessLoadDataFromFMDB{
+    self.contentArr = [[ApexTransferHistoryManager shareManager] getAllTransferHistoryForAddress:self.model.address];
+    if (self.contentArr.count == 0) {
+        self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无交易记录" refreshBlock:nil];
+    }else{
+        [self.ev removeFromSuperview];
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - ------public------
@@ -118,6 +125,12 @@
     ApexTransferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.model = self.contentArr[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ApexTXDetailController *vc = [[ApexTXDetailController alloc] init];
+    vc.model = self.contentArr[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -180,7 +193,7 @@
 - (ApexSearchWalletToolBar *)searchToolBar{
     if (!_searchToolBar) {
         _searchToolBar = [[ApexSearchWalletToolBar alloc] initWithFrame:self.searchBaseV.bounds];
-        _searchToolBar.placeHolder = @"搜索转账地址";
+        _searchToolBar.placeHolder = @"搜索txid";
     }
     return _searchToolBar;
 }
