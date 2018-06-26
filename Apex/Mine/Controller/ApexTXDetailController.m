@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *toAddressL;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 @property (weak, nonatomic) IBOutlet UILabel *txic;
+@property (weak, nonatomic) IBOutlet UILabel *valueL;
 
 @end
 
@@ -30,7 +31,7 @@
     _toAddressL.text = self.model.to;
     _timeStamp.text = self.model.time;
     _txic.text = self.model.txid;
-    
+    _valueL.text = self.model.value;
 }
 
 @end

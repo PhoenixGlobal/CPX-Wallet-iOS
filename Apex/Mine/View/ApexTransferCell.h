@@ -15,5 +15,6 @@
 @property (nonatomic, strong) UILabel *amountL;
 @property (nonatomic, strong) UILabel *successFlag;
 @property (nonatomic, strong) UILabel *timeStampL;
+@property (nonatomic, strong) UIButton *pushBtn;
 @property (nonatomic, strong) ApexTransferModel *model;
 @end

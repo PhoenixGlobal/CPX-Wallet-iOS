@@ -74,7 +74,6 @@ static ApexTransferHistoryManager *_instance;
 #pragma mark - ------增-----
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString*)walletAddress{
     [_db open];
-//    walletAddress = @"ANhiknDaRH9maXYDhVDUAat65KqrgHuVbV";
     
     NSNumber *maxID = @(0);
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ",walletAddress]];

@@ -23,6 +23,7 @@
     [self addSubview:self.timeStampL];
     [self addSubview:self.iconImage];
     [self addSubview:self.successFlag];
+    [self addSubview:self.pushBtn];
     
      [ApexUIHelper addLineInView:self color:UIColorHex(dddddd) edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
@@ -53,6 +54,9 @@
         make.right.equalTo(self.amountL);
     }];
 
+    [self.pushBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentView);
+    }];
 }
 
 - (void)setModel:(ApexTransferModel *)model{
@@ -167,5 +171,12 @@
         _successFlag.font = [UIFont systemFontOfSize:10];
     }
     return _successFlag;
+}
+
+- (UIButton *)pushBtn{
+    if (!_pushBtn) {
+        _pushBtn = [[UIButton alloc] init];
+    }
+    return _pushBtn;
 }
 @end

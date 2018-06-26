@@ -123,16 +123,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexTransferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    [[[cell.pushBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        ApexTXDetailController *vc = [[ApexTXDetailController alloc] init];
+        vc.model = self.contentArr[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
     cell.model = self.contentArr[indexPath.row];
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ApexTXDetailController *vc = [[ApexTXDetailController alloc] init];
-    vc.model = self.contentArr[indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
 }
-
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 //    ApexTransferDetailHeader *h = [[ApexTransferDetailHeader alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 40)];
 //    return h;
@@ -142,9 +146,7 @@
 //    return 40;
 //}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
-}
+
 
 #pragma mark - ------eventResponse------
 - (void)handleEvent{
