@@ -8,12 +8,14 @@
 
 #import "ApexAssetCell.h"
 #import "CYLEmptyView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ApexAssetCell()
 @property (weak, nonatomic) IBOutlet UILabel *assetNameL;
 @property (weak, nonatomic) IBOutlet UILabel *assetNameLTwo;
 @property (weak, nonatomic) IBOutlet UILabel *balanceL;
 @property (weak, nonatomic) IBOutlet UIButton *mappignBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *assetIcon;
 
 @end
 
@@ -37,22 +39,26 @@
     _mappignBtn.layer.borderWidth = 1.0/kScale;
     _mappignBtn.layer.cornerRadius = 4;
     _mappignBtn.hidden = YES;
+    
+    _assetIcon.image = NEOPlaceHolder;
 }
 
 - (void)setModel:(BalanceObject *)model{
     _model = model;
     _balanceL.text = model.value.floatValue == 0 ? @"0.0" : model.value;
     
-    NSString *assetName = @"err";
-    if ([model.asset isEqualToString:assetId_CPX]) {
-        assetName = @"CPX";
-        _mappignBtn.hidden = NO;
-    }else if ([model.asset isEqualToString:assetId_Neo]){
-        assetName = @"NEO";
-    }else if ([model.asset isEqualToString:assetId_NeoGas]){
-        assetName = @"GAS";
+    for (ApexAssetModel *assetModel in [ApexAssetModelManage getLocalAssetModelsArr]) {
+        if ([assetModel.hex_hash containsString:model.asset]) {
+            
+            _assetNameL.text = assetModel.symbol;
+            _assetNameLTwo.text = assetModel.symbol;
+            
+            NSURL *url = [NSURL URLWithString:assetModel.image_url];
+            if (url) {
+                [self.assetIcon sd_setImageWithURL:url];
+            }
+            break;
+        }
     }
-    _assetNameL.text = assetName;
-    _assetNameLTwo.text = assetName;
 }
 @end

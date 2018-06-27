@@ -44,5 +44,6 @@
 #import "ApexBlockChainManager.h"
 #import "ApexThread.h"
 #import "ApexAccountStateModel.h"
+#import "ApexAssetModelManage.h"
 #endif /* PrefixHeader_pch */
 

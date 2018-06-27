@@ -38,16 +38,18 @@
     
     [self initUI];
     [self handleEvent];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestTXHistory) name:Notification_TranferStatusHasChanged object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:Notification_TranferStatusHasChanged object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:Notification_TranferHasConfirmed object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self prepareData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferStatusHasChanged) name:Notification_TranferStatusHasChanged object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestTXHistory) name:Notification_TranferHasConfirmed object:nil];
 }
 
 #pragma mark - ------private------
@@ -86,18 +88,20 @@
 }
 
 - (void)requestTXHistory{
-    [self.contentArr removeAllObjects];
-    
-//    [self showHUD];
     //请求最新历史记录写入数据库
     [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:self.model.address Success:^(CYLResponse *response) {
-//        [self hideHUD];
+
         [self.tableView.mj_header endRefreshing];
         
         [self requestSuccessLoadDataFromFMDB];
     } failure:^(NSError *err) {
+        [self.tableView.mj_header endRefreshing];
         [self showMessage:@"请求失败,请稍后再试"];
     }];
+}
+
+- (void)transferStatusHasChanged{
+    [self requestSuccessLoadDataFromFMDB];
 }
 
 - (void)requestSuccessLoadDataFromFMDB{
@@ -134,9 +138,7 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
-}
+
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 //    ApexTransferDetailHeader *h = [[ApexTransferDetailHeader alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 40)];
 //    return h;

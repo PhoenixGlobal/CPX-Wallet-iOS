@@ -11,21 +11,13 @@
 @class ApexAssetModel;
 
 @interface ApexAssetModelManage : NSObject
-// 获取资产列表
+// 更新资产列表
 + (void)requestAssetlistSuccess:(successfulBlock)success fail:(failureBlock)failBlock;
+// 获取本地资产列表
++ (nullable NSMutableArray*)getLocalAssetModelsArr;
 @end
 
-
-/**
- "type": "NEP5",
- "symbol": "ASA",
- "precision": "8",
- "name": "Asura World Coin",
- "image_url": "https://seeklogo.com/images/N/neo-logo-6D07F7C1E7-seeklogo.com.gif",
- "hex_hash": "0xa58b56b30425d3d1f8902034996fcac4168ef71d",
- "hash": "a58b56b30425d3d1f8902034996fcac4168ef71d"
- */
-@interface ApexAssetModel : NSObject
+@interface ApexAssetModel : NSObject<NSCoding>
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *symbol;
 @property (nonatomic, strong) NSString *precision;

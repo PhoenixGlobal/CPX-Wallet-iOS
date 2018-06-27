@@ -22,18 +22,16 @@
     
     [self startMonitorThread];
     
-//    [self updateAllWalletTransferHistory];
+    [self updateAssetList];
 }
 
-//+ (void)updateAllWalletTransferHistory{
-//    for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
-//        [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:model.address Success:^(CYLResponse *resp) {
-//
-//        } failure:^(NSError *err) {
-//
-//        }];
-//    }
-//}
++ (void)updateAssetList{
+    [ApexAssetModelManage requestAssetlistSuccess:^(CYLResponse *response) {
+        
+    } fail:^(NSError *error) {
+        
+    }];
+}
 
 + (void)startMonitorThread{
     [[ApexThread shareInstance] startRunLoopSuccessBlock:^{

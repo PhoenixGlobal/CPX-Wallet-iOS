@@ -176,7 +176,7 @@ singleM(Manager);
             BalanceObject *balanceOBJ = [BalanceObject new];
             balanceOBJ.asset = assetId;
             if (value.length != 0) {
-                NSString *balance = [NSString stringWithFormat:@"%lf", [self getBalanceWithByte:(Byte *)data.bytes length:data.length] / pow(10, dicimal.doubleValue)];
+                NSString *balance = [NSString stringWithFormat:@"%.8lf", [self getBalanceWithByte:(Byte *)data.bytes length:data.length] / pow(10, dicimal.doubleValue)];
                 balanceOBJ.value = balance;
             }else{
                 balanceOBJ.value = @"0.0";

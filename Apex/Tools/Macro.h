@@ -27,6 +27,7 @@
 #define LASTUPDATETXHISTORY_KEY(address) [NSString stringWithFormat:@"LASTUPDATETXHISTORY_KEY_%@", address]
 #define TXRECORD_KEY @"TXRECORD_KEY"
 #define KMyAseetArr @"KMyAseetArr"
+#define KAssetModelListKey @"KAssetModelListKey"
 
 #define baseUrl_tool_test @"http://dev.chinapex.com.cn:10086/tool/"
 #define baseUrl_cli_test @"http://dev.chinapex.com.cn:10086/neo-cli/"

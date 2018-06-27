@@ -77,6 +77,8 @@ static ApexTransferHistoryManager *_instance;
     
     NSNumber *maxID = @(0);
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ",walletAddress]];
+    BOOL isLocalDataProcessing = false;
+    
     //获取数据库中最大的ID
     while ([res next]) {
         if ([maxID integerValue] < [[res stringForColumn:@"id"] integerValue]) {
@@ -90,12 +92,20 @@ static ApexTransferHistoryManager *_instance;
             if ([txidInDB isEqualToString:model.txid] && (status == ApexTransferStatus_Confirmed || status == ApexTransferStatus_Failed)) {
                 [self deleteHistoryWithTxid:model.txid ofAddress:walletAddress];
             }
+            
+            if (status == ApexTransferStatus_Progressing) {
+                isLocalDataProcessing = true;
+            }
         }
     }
     maxID = @([maxID integerValue] + 1);
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",walletAddress];
-    [_db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status)];
+    if (!isLocalDataProcessing) {
+        NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",walletAddress];
+        [_db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status)];
+        [self updateRequestTime:@(model.time.integerValue) address:model.from];
+    }
+    
     [_db close];
 }
 
@@ -111,8 +121,8 @@ static ApexTransferHistoryManager *_instance;
 - (void)updateTransferStatus:(ApexTransferStatus)status forTXID:(NSString*)txid ofWallet:(NSString*)walletAddress{
     [_db open];
     //广播交易状态改变
-    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferStatusHasChanged object:@""];
     [_db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",walletAddress],@(status),txid];
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferStatusHasChanged object:@""];
     [_db close];
 }
 
@@ -144,7 +154,7 @@ static ApexTransferHistoryManager *_instance;
     
     NSMutableArray *dataArray = [[NSMutableArray alloc] init];
     
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@",address]];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC",address]];
     
     while ([res next]) {
         ApexTransferModel *model = [self buildModelWithResult:res];
@@ -177,7 +187,13 @@ static ApexTransferHistoryManager *_instance;
     //设置钱包状态不可交易
     [ApexWalletManager setStatus:NO forWallet:address];
     
+   __block BOOL cancleTimer = false;
+    
     NSTimer *aTimer = [NSTimer timerWithTimeInterval:timerInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
+        
+        if (cancleTimer) {
+            return;
+        }
         
         [[ApexTransferHistoryManager shareManager] requestBlockHeightWithTxid:model.txid success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
@@ -193,7 +209,11 @@ static ApexTransferHistoryManager *_instance;
                     
                     //交易成功
                     [ApexWalletManager setStatus:YES forWallet:address];
-                    [[ApexTransferHistoryManager shareManager] updateTransferStatus:ApexTransferStatus_Confirmed forTXID:model.txid ofWallet:address];
+                    [self.db open];
+                    [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",address],@(ApexTransferStatus_Confirmed),model.txid];
+                    [self.db close];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
+                    cancleTimer = true;
                     [timer invalidate];
                 }
             }
@@ -225,9 +245,6 @@ static ApexTransferHistoryManager *_instance;
 
     //此方法内部 调用了-addTransferHistory: forWallet:
     [[ApexTransferHistoryManager shareManager] getTransactionHistoryWithAddress:address BeginTime:bTime.integerValue Success:^(CYLResponse *response) {
-        //更新时间
-        bTime = @([[NSDate date] timeIntervalSince1970] * 1000000);
-        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(address)];
         if (success) {
             success(response);
         }
@@ -259,6 +276,10 @@ static ApexTransferHistoryManager *_instance;
         success(response);
         
     } fail:failure];
+}
+
+- (void)updateRequestTime:(NSNumber*)timestamp address:(NSString*)address{
+    [TKFileManager saveValue:timestamp forKey:LASTUPDATETXHISTORY_KEY(address)];
 }
 
 @end

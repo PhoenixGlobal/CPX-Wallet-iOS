@@ -30,6 +30,8 @@
 @property (nonatomic, strong) ApexTXIDModel *txidModel;
 @property (nonatomic, strong) NeomobileWallet *wallet;
 @property (nonatomic, strong) UIButton *backBtn;
+
+@property (nonatomic, strong) ApexAssetModel *assetModel;
 @end
 
 @implementation ApexSendMoneyController
@@ -72,6 +74,13 @@
     [ApexUIHelper addLineInView:self.sendNumTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
     self.sendBtn.layer.cornerRadius = 6;
+    
+    for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
+        if ([model.hex_hash containsString:self.balanceModel.asset]) {
+            self.assetModel = model;
+            break;
+        }
+    }
 }
 
 - (void)utxoSearch:(NeomobileWallet*)wallet{
@@ -86,25 +95,47 @@
         return;
     }
     
-    @weakify(self);
-    [self.viewModel getUtxoSuccess:^(CYLResponse *response) {
-        @strongify(self);
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
-        NSArray *unspendArr = dict[@"result"];
-        NSData *data = [NSJSONSerialization dataWithJSONObject:unspendArr options:NSJSONWritingPrettyPrinted error:nil];
-        NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    //创建neo/gas的tx 交易
+    if ([neo_assetid containsString:_balanceModel.asset] || [neoGas_Assetid containsString:_balanceModel.asset]) {
+        @weakify(self);
+        [self.viewModel getUtxoSuccess:^(CYLResponse *response) {
+            @strongify(self);
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+            NSArray *unspendArr = dict[@"result"];
+            NSData *data = [NSJSONSerialization dataWithJSONObject:unspendArr options:NSJSONWritingPrettyPrinted error:nil];
+            NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            
+            NSError *err = nil;
+            NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:self.sendNumTF.text.floatValue unspent:unspendStr error:&err];
+            if (err) {
+                [self showMessage:@"交易生成失败"];
+            }else{
+                [self broadCastTransaction:tx];
+            }
+            
+        } fail:^(NSError *error) {
+            [self showMessage:@"utxo获取失败"];
+        }];
+    }else{
         
+//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//        dic[@"txid"] = @"0x744241ccd9a85e2732c14d121c00022c832a9edfdefc9cae43c41b49f9aa48db";
+//        dic[@"block"] = @(2274806);
+//        dic[@"vout"] = @{@"Address":self.walletAddress,@"Asset":self.balanceModel.asset,@"Value":@"1000000",@"N":@(0)};
+//        dic[@"spentBlock"] = @(-1);
+//        dic[@"spentTime"] = @"";
+//        dic[@"createTime"] = @"2018-05-16T10:40:47Z";
+//        dic[@"gas"] = @"";
+//        NSString *unspend = [NSString stringWithFormat:@"[%@]",[self convertToJsonData:dic]];
+//
         NSError *err = nil;
-        NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:self.sendNumTF.text.floatValue unspent:unspendStr error:&err];
+        NeomobileTx *nep5TX = [self.wallet createNep5Tx:_balanceModel.asset from:NeomobileDecodeAddress(self.wallet.address, nil) to:NeomobileDecodeAddress(self.toAddressTF.text, nil) amount:self.sendNumTF.text.floatValue*pow(10, self.assetModel.precision.integerValue) unspent:@"[]" error:&err];
         if (err) {
             [self showMessage:@"交易生成失败"];
         }else{
-            [self broadCastTransaction:tx];
+            [self broadCastTransaction:nep5TX];
         }
-        
-    } fail:^(NSError *error) {
-        [self showMessage:@"utxo获取失败"];
-    }];
+    }
 }
 
 - (void)broadCastTransaction:(NeomobileTx*)tx{
@@ -115,15 +146,15 @@
             
             /**< 创建新的临时交易历史记录 */
             ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
-            historyModel.txid = tx.id_;
+            historyModel.txid = [tx.id_ hasPrefix:@"0x"] ? tx.id_ : [NSString stringWithFormat:@"0x%@",tx.id_];
             historyModel.from = self.fromAddressL.text;
             historyModel.to = self.toAddressTF.text;
             historyModel.value = self.sendNumTF.text;
             historyModel.status = ApexTransferStatus_Blocking;
-            historyModel.time = @([[NSDate date] timeIntervalSince1970] * 1000000).stringValue;
+            historyModel.time = @((NSInteger)[[NSDate date] timeIntervalSince1970]).stringValue;
             [[ApexTransferHistoryManager shareManager] addTransferHistory:historyModel forWallet:self.fromAddressL.text];
             [[ApexTransferHistoryManager shareManager] beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
-            NSLog(@"%@",tx.id_);
+            NSLog(@"txid %@",tx.id_);
             
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
@@ -132,6 +163,36 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showMessage:@"广播交易失败,请检查网络连接"];
     }];
+}
+
+-(NSString *)convertToJsonData:(NSDictionary *)dict{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString;
+
+    if (!jsonData) {
+        
+        NSLog(@"%@",error);
+        
+    }else{
+        
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+    }
+    
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+    
+    NSRange range = {0,jsonString.length};
+    
+    //去掉字符串中的空格
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    
+    NSRange range2 = {0,mutStr.length};
+    
+    //去掉字符串中的换行符
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    
+    return mutStr;
 }
 
 //- (void)saveTX:(ApexTXRecorderModel*)model{
