@@ -104,17 +104,13 @@
 //    }];
     
     self.balanceL.text = self.balanceModel.value;
-    
-    NSString *assetName = @"err";
-    if ([self.balanceModel.asset isEqualToString:assetId_CPX]) {
-        assetName = @"CPX";
-    }else if ([self.balanceModel.asset isEqualToString:assetId_Neo]){
-        assetName = @"NEO";
-    }else if ([self.balanceModel.asset isEqualToString:assetId_NeoGas]){
-        assetName = @"GAS";
+    for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
+        if ([model.hex_hash containsString:self.balanceModel.asset]) {
+            NSString *assetName = model.symbol;
+            self.unitL.text = assetName;
+            break;
+        }
     }
-    self.unitL.text = assetName;
-
 }
 
 - (void)setEdgeGesture{
@@ -143,13 +139,18 @@
         rvc.walletAddress = self.wallModel.address;
         rvc.walletName = self.wallModel.name;
         [self.navigationController pushViewController:rvc animated:YES];
+        
     }else if ([eventName isEqualToString:RouteNameEvent_SendMoney]){
         ApexSendMoneyController *svc = [[ApexSendMoneyController alloc] init];
         svc.walletAddress = self.wallModel.address;
         svc.walletName = self.wallModel.name;
         svc.unit = self.unitL.text;
         svc.balanceModel = self.balanceModel;
-        [self.navigationController pushViewController:svc animated:YES];
+        if ([ApexWalletManager getWalletTransferStatusForAddress:self.wallModel.address]) {
+            [self.navigationController pushViewController:svc animated:YES];
+        }else{
+            [self showMessage:@"目前仍有一笔待确认中的交易"];
+        }
     }else if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
         [self pushAction];
     }

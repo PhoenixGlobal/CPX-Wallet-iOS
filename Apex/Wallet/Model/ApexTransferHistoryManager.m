@@ -90,7 +90,7 @@ static ApexTransferHistoryManager *_instance;
             //网络请求数据与本地有冲突时 以网络为准 删除本地此条数据 重新写入
             //本地数据的状态为已确认的状态时才替换
             if ([txidInDB isEqualToString:model.txid] && (status == ApexTransferStatus_Confirmed || status == ApexTransferStatus_Failed)) {
-                [self deleteHistoryWithTxid:model.txid ofAddress:walletAddress];
+                    [self deleteHistoryWithTxid:model.txid ofAddress:walletAddress];
             }
             
             if (status == ApexTransferStatus_Progressing) {
@@ -106,6 +106,7 @@ static ApexTransferHistoryManager *_instance;
         [self updateRequestTime:@(model.time.integerValue) address:model.from];
     }
     
+    [res close];
     [_db close];
 }
 
