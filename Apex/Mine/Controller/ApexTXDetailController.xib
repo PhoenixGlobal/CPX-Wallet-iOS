@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ApexTXDetailController">
             <connections>
+                <outlet property="blockHeight" destination="cJI-7x-9ng" id="saJ-vs-9cc"/>
                 <outlet property="fromAddressL" destination="atX-NG-Lsy" id="rdi-Fn-y02"/>
+                <outlet property="subTitleL" destination="NKF-Gf-bYR" id="30S-OM-DLD"/>
                 <outlet property="timeStamp" destination="GOs-Xo-fVv" id="tV6-5g-IQz"/>
                 <outlet property="toAddressL" destination="vOm-VU-JN1" id="WVs-MP-Df7"/>
                 <outlet property="txic" destination="2qg-vL-Dwl" id="9RT-wl-i14"/>
@@ -92,13 +94,25 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJI-7x-9ng">
+                    <rect key="frame" x="10" y="371" width="28.5" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iqd-yp-sQL">
-                    <rect key="frame" x="0.0" y="356" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="399.5" width="375" height="1"/>
                     <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="0Nx-6S-9pn"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="区块高度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rI-JJ-dj1">
+                    <rect key="frame" x="10" y="351" width="45" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -107,6 +121,9 @@
                 <constraint firstItem="vOm-VU-JN1" firstAttribute="top" secondItem="J4J-hR-Umc" secondAttribute="bottom" constant="6" id="FZf-NN-7eZ"/>
                 <constraint firstItem="Iqd-yp-sQL" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Gm1-BF-vlT"/>
                 <constraint firstItem="J4J-hR-Umc" firstAttribute="leading" secondItem="hTs-Eq-mTh" secondAttribute="leading" id="H28-8o-FRj"/>
+                <constraint firstItem="6rI-JJ-dj1" firstAttribute="top" secondItem="2qg-vL-Dwl" secondAttribute="bottom" constant="25" id="H9k-3m-vsC"/>
+                <constraint firstItem="cJI-7x-9ng" firstAttribute="top" secondItem="6rI-JJ-dj1" secondAttribute="bottom" constant="6" id="HTP-vM-erE"/>
+                <constraint firstItem="cJI-7x-9ng" firstAttribute="leading" secondItem="6rI-JJ-dj1" secondAttribute="leading" id="J7e-ml-kY4"/>
                 <constraint firstItem="K4B-YB-txy" firstAttribute="top" secondItem="vOm-VU-JN1" secondAttribute="bottom" constant="25" id="Jka-0o-uO5"/>
                 <constraint firstItem="NKF-Gf-bYR" firstAttribute="top" secondItem="JCO-de-hSL" secondAttribute="bottom" constant="10" id="Jmg-sC-bed"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Iqd-yp-sQL" secondAttribute="trailing" id="Jw4-5S-3UM"/>
@@ -117,10 +134,12 @@
                 <constraint firstItem="jLp-i4-7l6" firstAttribute="top" secondItem="NKF-Gf-bYR" secondAttribute="bottom" constant="15" id="OJf-IA-ag4"/>
                 <constraint firstItem="atX-NG-Lsy" firstAttribute="top" secondItem="hTs-Eq-mTh" secondAttribute="bottom" constant="6" id="OwI-OQ-n9G"/>
                 <constraint firstItem="vOm-VU-JN1" firstAttribute="leading" secondItem="J4J-hR-Umc" secondAttribute="leading" id="Rxk-Fr-Sck"/>
+                <constraint firstItem="Iqd-yp-sQL" firstAttribute="top" secondItem="cJI-7x-9ng" secondAttribute="bottom" constant="15" id="Tkk-v9-7fm"/>
                 <constraint firstItem="2qg-vL-Dwl" firstAttribute="leading" secondItem="Krl-a9-19X" secondAttribute="leading" id="XDV-qL-m8Y"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2qg-vL-Dwl" secondAttribute="trailing" constant="15" id="aE4-lm-0Gs"/>
                 <constraint firstItem="K4B-YB-txy" firstAttribute="leading" secondItem="J4J-hR-Umc" secondAttribute="leading" id="bbz-E8-YY9"/>
                 <constraint firstItem="JCO-de-hSL" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="f9U-nv-6Oq"/>
+                <constraint firstItem="6rI-JJ-dj1" firstAttribute="leading" secondItem="Krl-a9-19X" secondAttribute="leading" id="iK9-O2-qKT"/>
                 <constraint firstItem="hTs-Eq-mTh" firstAttribute="top" secondItem="jLp-i4-7l6" secondAttribute="bottom" constant="15" id="ids-iE-IGU"/>
                 <constraint firstItem="JCO-de-hSL" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="jsE-2f-ihv"/>
                 <constraint firstItem="Krl-a9-19X" firstAttribute="leading" secondItem="K4B-YB-txy" secondAttribute="leading" id="mES-Bi-9Ib"/>
@@ -128,7 +147,6 @@
                 <constraint firstItem="jLp-i4-7l6" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="sux-Jm-2Zz"/>
                 <constraint firstItem="Krl-a9-19X" firstAttribute="top" secondItem="GOs-Xo-fVv" secondAttribute="bottom" constant="25" id="wM9-uU-Ke4"/>
                 <constraint firstItem="2qg-vL-Dwl" firstAttribute="top" secondItem="Krl-a9-19X" secondAttribute="bottom" constant="6" id="xvm-Fm-gPM"/>
-                <constraint firstItem="Iqd-yp-sQL" firstAttribute="top" secondItem="2qg-vL-Dwl" secondAttribute="bottom" constant="30" id="z4W-ug-9Kd"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>

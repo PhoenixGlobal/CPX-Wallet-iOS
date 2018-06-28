@@ -11,7 +11,7 @@
 
 @interface ApexTransferCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *iconImage;
-@property (nonatomic, strong) UILabel *toAddressL;
+@property (nonatomic, strong) UILabel *txidL;
 @property (nonatomic, strong) UILabel *amountL;
 @property (nonatomic, strong) UILabel *successFlag;
 @property (nonatomic, strong) UILabel *timeStampL;

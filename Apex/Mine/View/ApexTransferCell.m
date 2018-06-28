@@ -18,7 +18,7 @@
 }
 
 - (void)initUI{
-    [self addSubview:self.toAddressL];
+    [self addSubview:self.txidL];
     [self addSubview:self.amountL];
     [self addSubview:self.timeStampL];
     [self addSubview:self.iconImage];
@@ -32,21 +32,23 @@
         make.centerY.equalTo(self.mas_centerY);
         make.width.height.mas_equalTo(30);
     }];
-    
-    [self.toAddressL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(10);
-        make.left.equalTo(self.iconImage.mas_right).offset(10);
-        make.right.mas_greaterThanOrEqualTo(170);
-    }];
 
     [self.timeStampL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.toAddressL.mas_bottom).offset(4);
-        make.left.equalTo(self.toAddressL);
+        make.top.equalTo(self.txidL.mas_bottom).offset(10);
+        make.left.equalTo(self.txidL);
     }];
     
     [self.amountL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.toAddressL.mas_centerY);
-        make.right.equalTo(self).offset(-10);
+        make.centerY.equalTo(self.txidL.mas_centerY);
+        make.right.equalTo(self).offset(-5);
+    }];
+    
+    
+    [self.txidL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(10);
+        make.left.equalTo(self.iconImage.mas_right).offset(10);
+        make.right.equalTo(self.amountL.mas_left).offset(-70);
+//        make.right.mas_greaterThanOrEqualTo(170);
     }];
     
     [self.successFlag mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,7 +63,7 @@
 
 - (void)setModel:(ApexTransferModel *)model{
     _model = model;
-    _toAddressL.text = model.to;
+    _txidL.text = model.txid;
     _amountL.text = model.value;
     
 //    if ([_model.vmstate containsString:@"FAULT"]) {
@@ -85,13 +87,13 @@
             break;
         case ApexTransferStatus_Confirmed:{
             _successFlag.text = @"交易成功";
-            _successFlag.textColor = [UIColor greenColor];
+            _successFlag.textColor = [UIColor colorWithHexString:@"54CA80"];
             _timeStampL.hidden = NO;
         }
             break;
         case ApexTransferStatus_Blocking:{
             _successFlag.text = @"交易打包中";
-            _successFlag.textColor = [ApexUIHelper mainThemeColor];
+            _successFlag.textColor = [UIColor colorWithHexString:@"F5A623"];
         }
             break;
             
@@ -126,15 +128,15 @@
 }
 
 #pragma mark - setter getter
-- (UILabel *)toAddressL{
-    if (!_toAddressL) {
-        _toAddressL = [[UILabel alloc] init];
-        _toAddressL.text = @"钱包地址";
-        _toAddressL.lineBreakMode = NSLineBreakByTruncatingMiddle;
-        _toAddressL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
-        _toAddressL.textColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1];
+- (UILabel *)txidL{
+    if (!_txidL) {
+        _txidL = [[UILabel alloc] init];
+        _txidL.text = @"钱包地址";
+        _txidL.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        _txidL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
+        _txidL.textColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1];
     }
-    return _toAddressL;
+    return _txidL;
 }
 
 - (UILabel *)amountL{
