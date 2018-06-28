@@ -78,7 +78,7 @@ static ApexTransferHistoryManager *_instance;
     NSNumber *maxID = @(0);
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ",walletAddress]];
     BOOL isLocalDataProcessing = false;
-    
+    BOOL isDelete = false;
     //获取数据库中最大的ID
     while ([res next]) {
         if ([maxID integerValue] < [[res stringForColumn:@"id"] integerValue]) {
@@ -93,6 +93,8 @@ static ApexTransferHistoryManager *_instance;
                 NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id = %@",walletAddress,maxID.stringValue];
                 if (![_db executeUpdate:sql]){
                     NSLog(@"删除冗余数据失败");
+                }else{
+                    isDelete = YES;
                 }
             }
             
@@ -101,7 +103,12 @@ static ApexTransferHistoryManager *_instance;
             }
         }
     }
-    maxID = @([maxID integerValue] + 1);
+    
+    if (isDelete) {
+        maxID = @([maxID integerValue]);
+    }else{
+        maxID = @([maxID integerValue] + 1);
+    }
     
     if (!isLocalDataProcessing) {
         NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",walletAddress];
@@ -140,7 +147,7 @@ static ApexTransferHistoryManager *_instance;
     if (![prefix hasPrefix:@"0x"]) {
         prefix = [NSString stringWithFormat:@"0x%@",prefix];
     }
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE txid LIKE %@%%",address,prefix]];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE txid LIKE '%@%%'",address,prefix]];
     
     while ([res next]) {
         ApexTransferModel *model = [self buildModelWithResult:res];
@@ -150,6 +157,29 @@ static ApexTransferHistoryManager *_instance;
     [_db close];
     
     return array;
+}
+
+- (NSMutableArray*)getHistoriesOffset:(NSInteger)offset walletAddress:(NSString*)address{
+    [_db open];
+    NSMutableArray *temp = [NSMutableArray array];
+    int totalCount = 0;
+    int row = 10;
+    
+    FMResultSet *s = [_db executeQuery:[NSString stringWithFormat:@"SELECT COUNT(*) FROM %@",address]];
+    if ([s next]) {
+        totalCount = [s intForColumnIndex:0];
+    }
+
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE id BETWEEN '%ld' AND '%ld'",address,(long)(totalCount-(row * (offset + 1))),(long)(totalCount - (row * offset))]];
+    while ([res next]) {
+        ApexTransferModel *model = [self buildModelWithResult:res];
+        [temp addObject:model];
+    }
+    
+    temp = [[[temp reverseObjectEnumerator] allObjects] mutableCopy];
+    
+    [_db close];
+    return temp;
 }
 
 //获得所有的模型

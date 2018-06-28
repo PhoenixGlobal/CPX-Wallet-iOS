@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSArray *walletArr;
 @property (nonatomic, strong) CYLEmptyView *ev;
 @property (nonatomic, strong) ApexSwithWalletView *switchView;
+@property (nonatomic, assign) NSInteger offset;
 @end
 
 @implementation ApexTransactionDetailController
@@ -68,6 +69,10 @@
     }];
     [self.tableView.mj_header setAutomaticallyChangeAlpha:YES];
     
+    self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        [self requestNextPage];
+    }];
+    
     self.baseViewH.constant = NavBarHeight+ 60;
 }
 
@@ -105,13 +110,28 @@
 }
 
 - (void)requestSuccessLoadDataFromFMDB{
-    self.contentArr = [[ApexTransferHistoryManager shareManager] getAllTransferHistoryForAddress:self.model.address];
+    self.offset = 0;
+    [self.tableView.mj_footer setState:MJRefreshStateIdle];
+    self.contentArr = [[ApexTransferHistoryManager shareManager] getHistoriesOffset:self.offset walletAddress:self.model.address];
     if (self.contentArr.count == 0) {
         self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无交易记录" refreshBlock:nil];
     }else{
         [self.ev removeFromSuperview];
     }
     [self.tableView reloadData];
+}
+
+- (void)requestNextPage{
+    self.offset += 1;
+    NSArray *arr = [[ApexTransferHistoryManager shareManager] getHistoriesOffset:self.offset walletAddress:self.model.address];
+    [self.contentArr addObjectsFromArray:arr];
+    [self.tableView reloadData];
+    if (arr.count == 0) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }else{
+        [self.tableView.mj_footer endRefreshing];
+    }
+
 }
 
 #pragma mark - ------public------
@@ -160,18 +180,13 @@
     self.searchToolBar.textDidChangeSub = [RACSubject subject];
     [self.searchToolBar.textDidChangeSub subscribeNext:^(NSString *key) {
         
-//        if (key.length == 0) {
-//            [self prepareData];
-//        }else{
-//            NSMutableArray *tempArr = [NSMutableArray array];
-//            for (ApexTXRecorderModel *model in self.allTxArr) {
-//                if ([model.toAddress containsString:key]) {
-//                    [tempArr addObject:model];
-//                }
-//            }
-//            self.contentArr = tempArr;
-//            [self.tableView reloadData];
-//        }
+        if (key.length == 0) {
+            [self prepareData];
+        }else{
+            NSMutableArray *tempArr = [[ApexTransferHistoryManager shareManager] getHistoryiesWithPrefixOfTxid:key address:self.model.address];
+            self.contentArr = tempArr;
+            [self.tableView reloadData];
+        }
     }];
     
     [[self.swithBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {

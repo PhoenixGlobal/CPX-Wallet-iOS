@@ -21,6 +21,13 @@ singleH(Manager);
 - (void)updateTransferStatus:(ApexTransferStatus)status forTXID:(NSString*)txid ofWallet:(NSString*)walletAddress;
 - (NSMutableArray*)getAllTransferHistoryForAddress:(NSString*)address;
 
+//获取资产id前缀为prefix的记录
+- (NSMutableArray*)getHistoryiesWithPrefixOfTxid:(NSString*)prefix address:(NSString*)address;
+//获取id区间内的历史记录
+- (NSMutableArray*)getHistoriesOffset:(NSInteger)offset walletAddress:(NSString*)address;
+//- (NSMutableArray*)getHistoriesBetweenId:(NSInteger)fromID to:(NSInteger)toID walletAddress:(NSString*)address;
+
+
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model; /**< 轮询获取此交易状态 */
 
 - (void)requestTxHistoryForAddress:(NSString*)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure;
