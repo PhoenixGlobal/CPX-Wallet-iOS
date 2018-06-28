@@ -32,6 +32,7 @@ singleM(Manager);
     model.isBackUp = false;
     model.assetArr = [self setDefultAsset];
     model.createTimeStamp = @([[NSDate date] timeIntervalSince1970]);
+    model.canTransfer = @(YES);
     [[ApexTransferHistoryManager shareManager] createTableForWallet:model.address];
     [arr addObject:model];
     [TKFileManager saveData:arr withFileName:walletsKey];

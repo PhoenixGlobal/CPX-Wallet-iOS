@@ -85,12 +85,15 @@ static ApexTransferHistoryManager *_instance;
             //本地数据的交易号以及状态
             NSString *txidInDB = [res stringForColumn:@"txid"];
             NSInteger status = [res intForColumn:@"state"];
-            
             maxID = @([[res stringForColumn:@"id"] integerValue]);
+            
             //网络请求数据与本地有冲突时 以网络为准 删除本地此条数据 重新写入
             //本地数据的状态为已确认的状态时才替换
             if ([txidInDB isEqualToString:model.txid] && (status == ApexTransferStatus_Confirmed || status == ApexTransferStatus_Failed)) {
-                    [self deleteHistoryWithTxid:model.txid ofAddress:walletAddress];
+                NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id = %@",walletAddress,maxID.stringValue];
+                if (![_db executeUpdate:sql]){
+                    NSLog(@"删除冗余数据失败");
+                }
             }
             
             if (status == ApexTransferStatus_Progressing) {
@@ -103,7 +106,7 @@ static ApexTransferHistoryManager *_instance;
     if (!isLocalDataProcessing) {
         NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",walletAddress];
         [_db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status)];
-        [self updateRequestTime:@(model.time.integerValue) address:model.from];
+        [self updateRequestTime:@(model.time.integerValue) address:walletAddress];
     }
     
     [res close];

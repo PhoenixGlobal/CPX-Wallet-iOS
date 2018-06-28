@@ -95,7 +95,7 @@
     
     [self.unitL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.baseline.equalTo(self.balanceL);
-        make.left.equalTo(self.balanceL.mas_right).offset(20);
+        make.left.equalTo(self.balanceL.mas_right).offset(10);
     }];
     
 //    [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {
