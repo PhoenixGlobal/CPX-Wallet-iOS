@@ -48,6 +48,11 @@
     [self setEdgeGesture];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.emptyV removeFromSuperview];
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
@@ -182,6 +187,7 @@
             if (!self.emptyV) {
                 self.emptyV = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
             }
+            [self.tableView addSubview:self.emptyV];
         }else{
             [self.emptyV removeFromSuperview];
             self.emptyV = nil;

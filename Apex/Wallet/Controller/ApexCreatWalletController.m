@@ -147,7 +147,8 @@
                 [self.didFinishCreatSub sendNext:@""];
             }
         };
-        [self.navigationController pushViewController:vc animated:YES];
+        [self directlyPushToViewControllerWithSelfDeleted:vc];
+//        [self.navigationController pushViewController:vc animated:YES];
 
     }else if ([eventName isEqualToString:RouteNameEvent_GoToImportWallet]){
 //        [self showMessage:@"正在开发中..."];

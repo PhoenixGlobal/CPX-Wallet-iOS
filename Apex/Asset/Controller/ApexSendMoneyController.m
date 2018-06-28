@@ -149,7 +149,7 @@
             historyModel.txid = [tx.id_ hasPrefix:@"0x"] ? tx.id_ : [NSString stringWithFormat:@"0x%@",tx.id_];
             historyModel.from = self.fromAddressL.text;
             historyModel.to = self.toAddressTF.text;
-            historyModel.value = self.sendNumTF.text;
+            historyModel.value = [NSString stringWithFormat:@"-%@",self.sendNumTF.text];
             historyModel.status = ApexTransferStatus_Blocking;
             historyModel.time = @((NSInteger)[[NSDate date] timeIntervalSince1970]).stringValue;
             [[ApexTransferHistoryManager shareManager] addTransferHistory:historyModel forWallet:self.fromAddressL.text];

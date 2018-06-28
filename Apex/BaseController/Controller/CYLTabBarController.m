@@ -60,7 +60,7 @@
     [self setOneViewController:vc1 image:[UIImage imageNamed:@"叠加_块"] selImage:[UIImage imageNamed:@"叠加_块-1"] title:@"资产"];
     
     ApexMineController *vc2 = [[ApexMineController alloc] init];
-    [self setOneViewController:vc2 image:[UIImage imageNamed:@"钱包"] selImage:[UIImage imageNamed:@"钱包-sel"] title:@"我的"];
+    [self setOneViewController:vc2 image:[UIImage imageNamed:@"钱包"] selImage:[UIImage imageNamed:@"钱包-sel"] title:@"我"];
     
 }
 

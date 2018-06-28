@@ -29,6 +29,9 @@
 - (void)testExample {
 //    [self importFromMnemonic];
     [self testImportFromKs];
+    
+    
+    
 }
 
 - (void)testTransfer{
@@ -37,7 +40,7 @@
 
 - (void)importFromMnemonic{
     XCUIApplication *app = [[XCUIApplication alloc] init];
-    [app.buttons[@"\u5bfc\u5165\u94b1\u5305"] tap];
+//    [app.buttons[@"\u5bfc\u5165\u94b1\u5305"] tap];
     [app.textViews[@"\u52a9\u8bb0\u8bcd,\u6309\u7a7a\u683c\u5206\u9694"] tap];
     [app.textViews[@"\u52a9\u8bb0\u8bcd,\u6309\u7a7a\u683c\u5206\u9694"] typeText:@"icon when engine hood race eagle industry warfare invite like organ dose bulb purpose man cave nothing panda code between bracket eye fancy scrub"];
     [app.toolbars[@"Toolbar"].buttons[@"Toolbar Done Button"] tap];
@@ -50,8 +53,7 @@
     [app.secureTextFields[@"\u91cd\u590d\u5bc6\u7801(\u4e0d\u5c11\u4e8e6\u4e2a\u5b57\u7b26)"] typeText:@"111111"];
     [app.toolbars[@"Toolbar"].buttons[@"Toolbar Done Button"] tap];
     
-    XCUIElement *group31Button = app.buttons[@"Group 3 1"];
-    [group31Button tap];
+    [app.buttons[@"Group 3 1"] tap];
     
     [app.buttons[@"\u5f00\u59cb\u5bfc\u5165"] tap];
 }

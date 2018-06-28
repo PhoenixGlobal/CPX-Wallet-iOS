@@ -145,8 +145,8 @@
 
 - (void)updateWithR1:(id)r1 R2:(id)r2{
     [self.tableView.mj_header endRefreshing];
-    [self updateAssets:r1];
     [self updateAssets:r2];
+    [self updateAssets:r1];
     [self.tableView reloadData];
 }
 
