@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *subTitleL;
 //@property (weak, nonatomic) IBOutlet UILabel *blockHeight;
 
-@property (nonatomic, strong) UIButton *backBtn;
+@property (nonatomic, strong) UIImageView *backIV;
 @property (nonatomic, strong) UILabel *titleLable;
 @end
 
@@ -34,10 +34,12 @@
 }
 
 - (void)setNav{
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
-    [[self.backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backIV];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
+    [self.backIV addGestureRecognizer:tap];
 }
 
 - (void)initUI{
@@ -59,7 +61,7 @@
     [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
         @strongify(self);
         UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
-        pasteBoard.string = self.txic.text;;
+        pasteBoard.string = self.txic.text;
         [self showMessage:@"txid已复制到剪切板"];
     }];
     _txic.userInteractionEnabled = YES;
@@ -67,14 +69,14 @@
 }
 
 #pragma mark - ------getter-----
-- (UIButton *)backBtn{
-    if (!_backBtn) {
-        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backBtn setImage:[UIImage imageNamed:@"back-4"] forState:UIControlStateNormal];
-        _backBtn.frame = CGRectMake(0, 0, 50, 40);
-        [_backBtn setEnlargeEdgeWithTop:20 right:20 bottom:20 left:30];
+- (UIImageView *)backIV{
+    if (!_backIV) {
+        UIImage *image = [UIImage imageNamed:@"back-4"];
+        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _backIV = [[UIImageView alloc] initWithImage:image];
+        _backIV.userInteractionEnabled = YES;
     }
-    return _backBtn;
+    return _backIV;
 }
 
 - (UILabel *)titleLable{
