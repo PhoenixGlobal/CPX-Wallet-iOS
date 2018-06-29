@@ -142,7 +142,7 @@
 - (UILabel *)amountL{
     if (!_amountL) {
         _amountL = [[UILabel alloc] init];
-        _amountL.text = @"交易额(CPX)";
+        _amountL.text = @"交易额()";
         _amountL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
         _amountL.textColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1];
     }

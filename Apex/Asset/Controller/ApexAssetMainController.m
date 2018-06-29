@@ -178,7 +178,7 @@
         
         for (ApexWalletModel *wallet in [ApexWalletManager getWalletsArr]) {
             
-            if ([wallet.name containsString:key]) {
+            if ([wallet.address.lowercaseString containsString:key.lowercaseString]) {
                 [self.contentArr addObject:wallet];
             }
         }

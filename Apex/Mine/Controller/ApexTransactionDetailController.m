@@ -118,6 +118,7 @@
     }else{
         [self.ev removeFromSuperview];
     }
+    
     [self.tableView reloadData];
 }
 
@@ -126,12 +127,12 @@
     NSArray *arr = [[ApexTransferHistoryManager shareManager] getHistoriesOffset:self.offset walletAddress:self.model.address];
     [self.contentArr addObjectsFromArray:arr];
     [self.tableView reloadData];
+    
     if (arr.count == 0) {
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
     }else{
         [self.tableView.mj_footer endRefreshing];
     }
-
 }
 
 #pragma mark - ------public------
@@ -181,10 +182,16 @@
     [self.searchToolBar.textDidChangeSub subscribeNext:^(NSString *key) {
         
         if (key.length == 0) {
+            //恢复拉动
+            [self.tableView.mj_footer setState:MJRefreshStateIdle];
+            [self.tableView.mj_header setState:MJRefreshStateIdle];
             [self prepareData];
         }else{
             NSMutableArray *tempArr = [[ApexTransferHistoryManager shareManager] getHistoryiesWithPrefixOfTxid:key address:self.model.address];
             self.contentArr = tempArr;
+            //禁用上拉下拉
+            [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+            [self.tableView.mj_header setState:MJRefreshStateNoMoreData];
             [self.tableView reloadData];
         }
     }];
@@ -199,6 +206,7 @@
     self.switchView.didSwitchSub = [RACSubject subject];
     [self.switchView.didSwitchSub subscribeNext:^(ApexWalletModel *x) {
         self.model = x;
+        [self.searchToolBar clearEntrance];
         [self prepareData];
     }];
 }

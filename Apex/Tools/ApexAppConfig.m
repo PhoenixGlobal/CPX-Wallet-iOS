@@ -47,10 +47,6 @@
     NSString *baseUrl = [ApexNetWorkCommonConfig getToolBaseUrl];
     NSLog(@"tool baseurl: %@",baseUrl);
     [[CYLNetWorkManager shareInstance] setBaseUrl:[NSURL URLWithString:baseUrl]];
-    AFSecurityPolicy *sp = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-    sp.allowInvalidCertificates = YES;
-    sp.validatesDomainName = NO;
-    [[[CYLNetWorkManager shareInstance] getManager] setSecurityPolicy:sp];
 }
 
 + (void)configKeyBoard{

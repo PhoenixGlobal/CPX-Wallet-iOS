@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *txic;
 @property (weak, nonatomic) IBOutlet UILabel *valueL;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleL;
-@property (weak, nonatomic) IBOutlet UILabel *blockHeight;
+//@property (weak, nonatomic) IBOutlet UILabel *blockHeight;
 
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UILabel *titleLable;
@@ -51,7 +51,19 @@
     _toAddressL.text = self.model.to;
     _txic.text = self.model.txid;
     _valueL.text = self.model.value;
-    _subTitleL.text = [NSString stringWithFormat:@"交易金额(%@)",self.model.symbol];
+    if (self.model.symbol) {
+        _subTitleL.text = [NSString stringWithFormat:@"交易金额(%@)",self.model.symbol];
+    }
+    @weakify(self);
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        @strongify(self);
+        UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
+        pasteBoard.string = self.txic.text;;
+        [self showMessage:@"txid已复制到剪切板"];
+    }];
+    _txic.userInteractionEnabled = YES;
+    [_txic addGestureRecognizer:tap];
 }
 
 #pragma mark - ------getter-----
@@ -59,6 +71,8 @@
     if (!_backBtn) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backBtn setImage:[UIImage imageNamed:@"back-4"] forState:UIControlStateNormal];
+        _backBtn.frame = CGRectMake(0, 0, 50, 40);
+        [_backBtn setEnlargeEdgeWithTop:20 right:20 bottom:20 left:30];
     }
     return _backBtn;
 }

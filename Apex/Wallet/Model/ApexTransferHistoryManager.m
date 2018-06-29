@@ -222,7 +222,6 @@ static ApexTransferHistoryManager *_instance;
     [ApexWalletManager setStatus:NO forWallet:address];
     
    __block BOOL cancleTimer = false;
-    
     NSTimer *aTimer = [NSTimer timerWithTimeInterval:timerInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
         
         if (cancleTimer) {
@@ -279,6 +278,12 @@ static ApexTransferHistoryManager *_instance;
 
     //此方法内部 调用了-addTransferHistory: forWallet:
     [[ApexTransferHistoryManager shareManager] getTransactionHistoryWithAddress:address BeginTime:bTime.integerValue Success:^(CYLResponse *response) {
+        
+        if (((NSArray*)response.returnObj).count == 500) {
+            //请求下一组数据
+            [self requestTxHistoryForAddress:address Success:success failure:failure];
+        }
+        
         if (success) {
             success(response);
         }
@@ -309,7 +314,9 @@ static ApexTransferHistoryManager *_instance;
         response.returnObj = tempArr;
         success(response);
         
-    } fail:failure];
+    } fail:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 - (void)updateRequestTime:(NSNumber*)timestamp address:(NSString*)address{

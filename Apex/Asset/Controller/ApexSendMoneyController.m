@@ -114,7 +114,7 @@
             }
             
         } fail:^(NSError *error) {
-            [self showMessage:@"utxo获取失败"];
+            [self showMessage:@"utxo获取失败,请检查网络设置"];
         }];
     }else{
         
