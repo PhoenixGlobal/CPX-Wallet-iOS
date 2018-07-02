@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q0U-cv-QNr">
-                    <rect key="frame" x="83.5" y="85" width="207" height="207"/>
+                    <rect key="frame" x="84" y="85" width="207" height="207"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="207" id="icq-gJ-PRT"/>
                         <constraint firstAttribute="width" constant="207" id="mhf-pe-WZi"/>
@@ -58,7 +58,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngq-Cr-ULa">
-                    <rect key="frame" x="34.5" y="587" width="305" height="40"/>
+                    <rect key="frame" x="35" y="587" width="305" height="40"/>
                     <color key="backgroundColor" red="0.29803921570000003" green="0.5568627451" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Cyc-Qi-4sQ"/>
@@ -89,6 +89,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="cSD-kk-Zov" secondAttribute="trailing" constant="15" id="C30-sd-juY"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="yey-o0-7WW" secondAttribute="trailing" constant="15" id="CJD-dz-yrH"/>
                 <constraint firstItem="BJx-w2-5j7" firstAttribute="leading" secondItem="yey-o0-7WW" secondAttribute="leading" id="IHa-cd-IYT"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UrD-p3-u5f" secondAttribute="trailing" constant="15" id="LK0-bg-hUe"/>
                 <constraint firstItem="UrD-p3-u5f" firstAttribute="leading" secondItem="BJx-w2-5j7" secondAttribute="leading" id="T8l-SC-PK2"/>
                 <constraint firstItem="Ngq-Cr-ULa" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="aE9-Mf-CJw"/>
                 <constraint firstItem="cSD-kk-Zov" firstAttribute="leading" secondItem="0zR-PM-rKe" secondAttribute="leading" id="cdu-Y0-sAh"/>

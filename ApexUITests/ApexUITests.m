@@ -58,8 +58,9 @@
     [NSThread sleepForTimeInterval:1];
     [navigationBar.buttons[@"back w"] tap];
     [NSThread sleepForTimeInterval:1];
+        
     [self.application.navigationBars[@"Wallet"].buttons[@"back w"] tap];
-    
+    [NSThread sleepForTimeInterval:1];
     //转账
     XCUIElement *garyCell = [wallet_tableview.cells elementBoundByIndex:0];
     [garyCell tap];

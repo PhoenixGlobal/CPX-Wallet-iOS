@@ -125,11 +125,21 @@
     
     RACSignal *request2 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
        
-        for (NSString *assetId in self.assetMap.allKeys) {
+        NSMutableArray *array = [NSMutableArray array];
+        NSMutableArray *nep5Keys = [self.assetMap.allKeys mutableCopy];
+        [nep5Keys removeObject:assetId_NeoGas];
+        [nep5Keys removeObject:assetId_Neo];
+        
+        for (NSString *assetId in nep5Keys) {
             if (![assetId isEqualToString:assetId_Neo] && ![assetId isEqualToString:assetId_NeoGas]) {
                 //代币
                 [ApexWalletManager getNep5AssetAccountStateWithAddress:self.walletModel.address andAssetId:assetId Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    [subscriber sendNext:@[responseObject]];
+                    [array addObject:responseObject];
+                    
+                    if (array.count == nep5Keys.count) {
+                        [subscriber sendNext:array];
+                    }
+                    
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     [subscriber sendError:error];
                     [self showMessage:@"请求失败,请检查网络连接"];

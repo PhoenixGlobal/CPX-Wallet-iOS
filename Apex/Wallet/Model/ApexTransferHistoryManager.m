@@ -10,8 +10,8 @@
 #import <FMDB.h>
 #import "ApexTransferModel.h"
 
-#define timerInterval 5.0
-#define confirmHeight 10
+#define timerInterval 10.0
+#define confirmHeight 6
 
 @interface ApexTransferHistoryManager()
 @property (nonatomic, strong) FMDatabase *db;

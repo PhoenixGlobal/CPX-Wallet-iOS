@@ -27,11 +27,11 @@
     [super viewDidLoad];
     
     [self setUI];
-    [self setNav];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self setNav];
     [self.transactionView reloadTransactionData];
     [self.manageView reloadWalletData];
 }

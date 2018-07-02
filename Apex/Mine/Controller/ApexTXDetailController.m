@@ -53,7 +53,13 @@
     _toAddressL.text = self.model.to;
     _txic.text = self.model.txid;
     _valueL.text = self.model.value;
+    
     if (self.model.symbol) {
+        
+        if ([self.model.assetId isEqualToString:assetId_NeoGas]) {
+            self.model.symbol = @"GAS";
+        }
+        
         _subTitleL.text = [NSString stringWithFormat:@"交易金额(%@)",self.model.symbol];
     }
     @weakify(self);

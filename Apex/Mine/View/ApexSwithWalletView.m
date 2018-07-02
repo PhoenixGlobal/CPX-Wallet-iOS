@@ -12,6 +12,7 @@
 @property (nonatomic, strong) UIButton *cancleBtn;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *baseView;
+@property (nonatomic, strong) UILabel *titleL;
 @end
 
 @implementation ApexSwithWalletView
@@ -27,6 +28,7 @@
     [self addSubview:self.baseView];
     [self.baseView addSubview:self.cancleBtn];
     [self.baseView addSubview:self.tableView];
+    [self.baseView addSubview:self.titleL];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
@@ -41,6 +43,11 @@
         make.width.height.mas_equalTo(40);
         make.top.equalTo(self.cancleBtn.superview).offset(10);
         make.right.equalTo(self.cancleBtn.superview).offset(-10);
+    }];
+    
+    [self.titleL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.titleL.superview);
+        make.bottom.equalTo(self.cancleBtn).offset(10);
     }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -109,5 +116,16 @@
         _tableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
     }
     return _tableView;
+}
+
+- (UILabel *)titleL{
+    if (!_titleL) {
+        _titleL = [[UILabel alloc] init];
+        _titleL.font = [UIFont systemFontOfSize:17];
+        _titleL.text = @"切换钱包";
+        _titleL.textColor = [ApexUIHelper grayColor];
+        _titleL.textAlignment = NSTextAlignmentCenter;
+    }
+    return _titleL;
 }
 @end

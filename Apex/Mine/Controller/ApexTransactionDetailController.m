@@ -97,7 +97,6 @@
     [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:self.model.address Success:^(CYLResponse *response) {
 
         [self.tableView.mj_header endRefreshing];
-        
         [self requestSuccessLoadDataFromFMDB];
     } failure:^(NSError *err) {
         [self.tableView.mj_header endRefreshing];

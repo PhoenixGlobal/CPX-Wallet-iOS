@@ -43,6 +43,7 @@
     
     [self.nameLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.headerView.mas_right).offset(15);
+        make.right.equalTo(self.contentView).offset(-10);
         make.centerY.equalTo(self.mas_centerY);
     }];
 }
