@@ -26,6 +26,13 @@
     type == CYLEmptyViewType_EmptyData ? (emptyView.refereshBtn.hidden = YES) : (emptyView.refereshBtn.hidden = NO);
     emptyView.messageL.text = message;
     [emptyView prepareUI];
+    
+    for (UIView *ev in superView.subviews) {
+        if ([ev isKindOfClass:CYLEmptyView.class]) {
+            [ev removeFromSuperview];
+        }
+    }
+    
     [superView addSubview:emptyView];
     
     return emptyView;

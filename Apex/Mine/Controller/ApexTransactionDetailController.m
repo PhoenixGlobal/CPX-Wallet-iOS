@@ -79,7 +79,6 @@
 - (void)prepareData{
     self.title = self.model.name;
     self.addressL.text = self.model.address;
-    [self.searchToolBar clearEntrance];
     self.walletArr = [ApexWalletManager getWalletsArr];
     
     [self requestTXHistory];
