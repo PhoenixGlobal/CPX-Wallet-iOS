@@ -11,6 +11,7 @@
 #import "ApexNetWorkCommonConfig.h"
 #import <AFNetworking.h>
 #import "ApexAssetModelManage.h"
+#import "ApexTransferHistoryManager.h"
 
 @implementation ApexAppConfig
 + (void) configAll{
@@ -23,6 +24,14 @@
     [self startMonitorThread];
     
     [self updateAssetList];
+    
+    [self transHistorySelfCheck];
+}
+
++ (void)transHistorySelfCheck{
+    for (ApexWalletModel *wallet in [ApexWalletManager getWalletsArr]) {
+        [[ApexTransferHistoryManager shareManager] applicationIntializeSelfCheckWithAddress:wallet.address];
+    }
 }
 
 + (void)updateAssetList{

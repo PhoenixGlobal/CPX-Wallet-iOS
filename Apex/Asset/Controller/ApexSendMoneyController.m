@@ -155,7 +155,14 @@
             historyModel.to = self.toAddressTF.text;
             historyModel.value = [NSString stringWithFormat:@"-%@",self.sendNumTF.text];
             historyModel.status = ApexTransferStatus_Blocking;
-            historyModel.time = @((NSInteger)[[NSDate date] timeIntervalSince1970]).stringValue;
+            historyModel.time = @"0";
+            
+            ApexTransferModel *lastRecord = [[ApexTransferHistoryManager shareManager] getLastTransferHistoryOfAddress:self.fromAddressL.text];
+            
+            if (lastRecord) {
+                historyModel.time = lastRecord.time;
+            }
+            
             [[ApexTransferHistoryManager shareManager] addTransferHistory:historyModel forWallet:self.fromAddressL.text];
             [[ApexTransferHistoryManager shareManager] beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
             NSLog(@"txid %@",tx.id_);

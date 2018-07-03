@@ -25,7 +25,10 @@ singleH(Manager);
 - (NSMutableArray*)getHistoryiesWithPrefixOfTxid:(NSString*)prefix address:(NSString*)address;
 //获取id区间内的历史记录
 - (NSMutableArray*)getHistoriesOffset:(NSInteger)offset walletAddress:(NSString*)address;
-
+//获取id最后一条记录
+- (ApexTransferModel*)getLastTransferHistoryOfAddress:(NSString*)address;
+//应用启动自检测
+- (void)applicationIntializeSelfCheckWithAddress:(NSString*)address;
 
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model; /**< 轮询获取此交易状态 */
 

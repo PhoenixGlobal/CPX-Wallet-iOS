@@ -47,6 +47,7 @@
     [super viewDidAppear:animated];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
+
 #pragma mark - ------private------
 - (void)initUI{
     
@@ -155,8 +156,10 @@
 
 - (void)updateWithR1:(id)r1 R2:(id)r2{
     [self.tableView.mj_header endRefreshing];
-    [self updateAssets:r2];
+    //asset
     [self updateAssets:r1];
+    //nep5
+    [self updateAssets:r2];
     [self.tableView reloadData];
 }
 
@@ -267,6 +270,11 @@
     }
 }
 
+- (void)addressCopy{
+    UIPasteboard *pastBoard = [UIPasteboard generalPasteboard];
+    pastBoard.string = self.walletModel.address;
+    [self showMessage:@"钱包地址已复制到剪切板"];
+}
 
 - (void)pushAction{
     ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
@@ -293,6 +301,13 @@
         _addressL.textAlignment = NSTextAlignmentCenter;
         _addressL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
         _addressL.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
+        _addressL.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+        [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+            [self addressCopy];
+        }];
+        [_addressL addGestureRecognizer:tap];
     }
     return _addressL;
 }

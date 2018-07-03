@@ -137,6 +137,16 @@ static ApexTransferHistoryManager *_instance;
     [_db close];
 }
 
+//应用开启时的自检测 是否有处理中的交易 并更新状态
+- (void)applicationIntializeSelfCheckWithAddress:(NSString*)address{
+    ApexTransferModel *last = [self getLastTransferHistoryOfAddress:address];
+    if (last == nil) return;
+    if (last.status == ApexTransferStatus_Blocking || last.status == ApexTransferStatus_Progressing) {
+        //开启循环更新状态
+        [self beginTimerToConfirmTransactionOfAddress:address txModel:last];
+    }
+}
+
 #pragma mark - ------查-----
 //查找txid前缀
 - (NSMutableArray*)getHistoryiesWithPrefixOfTxid:(NSString*)prefix address:(NSString*)address{
@@ -185,19 +195,29 @@ static ApexTransferHistoryManager *_instance;
 //获得所有的模型
 - (NSMutableArray*)getAllTransferHistoryForAddress:(NSString*)address{
     [_db open];
-    
     NSMutableArray *dataArray = [[NSMutableArray alloc] init];
-    
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC",address]];
-    
     while ([res next]) {
         ApexTransferModel *model = [self buildModelWithResult:res];
         [dataArray addObject:model];
     }
-    
     [_db close];
     return dataArray;
 }
+
+//获取最新一条数据
+- (ApexTransferModel*)getLastTransferHistoryOfAddress:(NSString*)address{
+    [_db open];
+    ApexTransferModel *model = nil;
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT 1",address]];
+    while ([res next]) {
+        model = [self buildModelWithResult:res];
+    }
+    
+    [_db close];
+    return model;
+}
+
 
 - (ApexTransferModel*)buildModelWithResult:(FMResultSet*)res{
     ApexTransferModel *model = [[ApexTransferModel alloc] init];
@@ -218,8 +238,6 @@ static ApexTransferHistoryManager *_instance;
 }
 
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model{
-    //设置钱包状态不可交易
-    [ApexWalletManager setStatus:NO forWallet:address];
     
    __block BOOL cancleTimer = false;
     NSTimer *aTimer = [NSTimer timerWithTimeInterval:timerInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
@@ -248,6 +266,10 @@ static ApexTransferHistoryManager *_instance;
                     [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
                     cancleTimer = true;
                     [timer invalidate];
+                }else{
+                    //确认中
+                    //设置钱包状态不可交易 写在timer外 可能会错误的重置yes状态成为no
+                    [ApexWalletManager setStatus:NO forWallet:address];
                 }
             }
             
