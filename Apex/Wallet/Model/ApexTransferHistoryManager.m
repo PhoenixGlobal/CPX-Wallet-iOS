@@ -186,6 +186,9 @@ static ApexTransferHistoryManager *_instance;
         [temp addObject:model];
     }
     
+    [temp sortUsingComparator:^NSComparisonResult(ApexTransferModel *obj1, ApexTransferModel *obj2) {
+        return obj1.time.integerValue > obj2.time.integerValue;
+    }];
     temp = [[[temp reverseObjectEnumerator] allObjects] mutableCopy];
     
     [_db close];
