@@ -81,33 +81,33 @@ static ApexTransferHistoryManager *_instance;
     BOOL isDelete = false;
     //获取数据库中最大的ID
     while ([res next]) {
-        if ([maxID integerValue] < [[res stringForColumn:@"id"] integerValue]) {
-            //本地数据的交易号以及状态
-            NSString *txidInDB = [res stringForColumn:@"txid"];
-            NSInteger status = [res intForColumn:@"state"];
-            maxID = @([[res stringForColumn:@"id"] integerValue]);
-            
-            //网络请求数据与本地有冲突时 以网络为准 删除本地此条数据 重新写入
-            //本地数据的状态为已确认的状态时才替换
-            if ([txidInDB isEqualToString:model.txid] && (status == ApexTransferStatus_Confirmed || status == ApexTransferStatus_Failed)) {
-                NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id = %@",walletAddress,maxID.stringValue];
-                if (![_db executeUpdate:sql]){
-                    NSLog(@"删除冗余数据失败");
-                }else{
-                    isDelete = YES;
-                }
-            }
-            
-            if (status == ApexTransferStatus_Progressing) {
-                isLocalDataProcessing = true;
+        //本地数据的交易号以及状态
+        NSString *txidInDB = [res stringForColumn:@"txid"];
+        NSInteger status = [res intForColumn:@"state"];
+        maxID = @([[res stringForColumn:@"id"] integerValue]);
+        
+        //网络请求数据与本地有冲突时 以网络为准 删除本地此条数据 重新写入
+        //本地数据的状态为已确认的状态时才替换
+        if ([txidInDB isEqualToString:model.txid] && (status == ApexTransferStatus_Confirmed || status == ApexTransferStatus_Failed)) {
+            NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id = %@",walletAddress,maxID.stringValue];
+            if (![_db executeUpdate:sql]){
+                NSLog(@"删除冗余数据失败");
+            }else{
+                NSLog(@"%@", [NSString stringWithFormat:@"删除冗余数据:%@",txidInDB]);
+                isDelete = YES;
             }
         }
-    }
-    
-    if (isDelete) {
-        maxID = @([maxID integerValue]);
-    }else{
-        maxID = @([maxID integerValue] + 1);
+        
+        if (status == ApexTransferStatus_Progressing) {
+            isLocalDataProcessing = true;
+        }
+        
+        if (isDelete) {
+            maxID = @([maxID integerValue]);
+            break;
+        }else{
+            maxID = @([maxID integerValue] + 1);
+        }
     }
     
     if (!isLocalDataProcessing) {
@@ -239,6 +239,10 @@ static ApexTransferHistoryManager *_instance;
 
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model{
     
+    if (model.status == ApexTransferStatus_Blocking) {
+        [ApexWalletManager setStatus:NO forWallet:address];
+    }
+    
    __block BOOL cancleTimer = false;
     NSTimer *aTimer = [NSTimer timerWithTimeInterval:timerInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
         
@@ -268,7 +272,7 @@ static ApexTransferHistoryManager *_instance;
                     [timer invalidate];
                 }else{
                     //确认中
-                    //设置钱包状态不可交易 写在timer外 可能会错误的重置yes状态成为no
+                    //设置钱包状态不可交易
                     [ApexWalletManager setStatus:NO forWallet:address];
                 }
             }
