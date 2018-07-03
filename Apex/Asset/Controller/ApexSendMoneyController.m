@@ -106,7 +106,9 @@
             NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             
             NSError *err = nil;
-            NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:self.sendNumTF.text.floatValue unspent:unspendStr error:&err];
+            NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:self.sendNumTF.text];
+            NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:num.doubleValue unspent:unspendStr error:&err];
+            
             if (err) {
                 [self showMessage:@"交易生成失败"];
             }else{
@@ -127,9 +129,11 @@
 //        dic[@"createTime"] = @"2018-05-16T10:40:47Z";
 //        dic[@"gas"] = @"";
 //        NSString *unspend = [NSString stringWithFormat:@"[%@]",[self convertToJsonData:dic]];
-//
+
         NSError *err = nil;
-        NeomobileTx *nep5TX = [self.wallet createNep5Tx:_balanceModel.asset from:NeomobileDecodeAddress(self.wallet.address, nil) to:NeomobileDecodeAddress(self.toAddressTF.text, nil) amount:self.sendNumTF.text.floatValue*pow(10, self.assetModel.precision.integerValue) unspent:@"[]" error:&err];
+        NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:self.sendNumTF.text];
+        num = [num decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@(pow(10, self.assetModel.precision.integerValue)).stringValue]];
+        NeomobileTx *nep5TX = [self.wallet createNep5Tx:_balanceModel.asset from:NeomobileDecodeAddress(self.wallet.address, nil) to:NeomobileDecodeAddress(self.toAddressTF.text, nil) amount:num.integerValue unspent:@"[]" error:&err];
         if (err) {
             [self showMessage:@"交易生成失败"];
         }else{

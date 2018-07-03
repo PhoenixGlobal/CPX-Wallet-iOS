@@ -38,7 +38,7 @@
 
 #pragma mark - ------private------
 - (void)setUI{
-    self.title = @"我的";
+    self.title = @"我";
     self.view.backgroundColor = [ApexUIHelper grayColor240];
     
 
