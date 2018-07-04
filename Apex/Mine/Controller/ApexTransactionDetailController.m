@@ -74,6 +74,9 @@
     }];
     
     self.baseViewH.constant = NavBarHeight+ 60;
+    
+    //获取本地信息
+    [self requestSuccessLoadDataFromFMDB];
 }
 
 - (void)prepareData{

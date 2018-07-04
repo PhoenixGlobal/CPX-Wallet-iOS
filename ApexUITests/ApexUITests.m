@@ -111,6 +111,7 @@
     [app.secureTextFields[@"\u91cd\u590d\u5bc6\u7801(\u4e0d\u5c11\u4e8e6\u4e2a\u5b57\u7b26)"] typeText:@"111111"];
     [app.toolbars[@"Toolbar"].buttons[@"Toolbar Done Button"] tap];
     [NSThread sleepForTimeInterval:1];
+    
     [app.buttons[@"Group 3 1"] tap];
     [NSThread sleepForTimeInterval:1];
     [app.buttons[@"\u5f00\u59cb\u5bfc\u5165"] tap];

@@ -251,7 +251,14 @@
     if (!_sendBtn) {
         _sendBtn = [[UIButton alloc] init];
         [_sendBtn setTitle:@"转账" forState:UIControlStateNormal];
-        _sendBtn.backgroundColor = [ApexUIHelper mainThemeColor];
+        [_sendBtn setTitleColor:[ApexUIHelper mainThemeColor] forState:UIControlStateNormal];
+        [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        
+        
+        
+        _sendBtn.backgroundColor = [UIColor whiteColor];
+        _sendBtn.layer.borderColor = [ApexUIHelper mainThemeColor].CGColor;
+        _sendBtn.layer.borderWidth = 1.0/kScale;
         _sendBtn.layer.cornerRadius = 6;
         _sendBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [[_sendBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -264,9 +271,12 @@
 - (UIButton *)requestBtn{
     if (!_requestBtn) {
         _requestBtn = [[UIButton alloc] init];
+        [_requestBtn setTitleColor:[ApexUIHelper mainThemeColor] forState:UIControlStateNormal];
         [_requestBtn setTitle:@"收款" forState:UIControlStateNormal];
-        _requestBtn.backgroundColor = [ApexUIHelper mainThemeColor];
+        _requestBtn.backgroundColor = [UIColor whiteColor];
         _requestBtn.layer.cornerRadius = 6;
+        _requestBtn.layer.borderColor = [ApexUIHelper mainThemeColor].CGColor;
+        _requestBtn.layer.borderWidth = 1.0 / kScale;
         _requestBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [[_requestBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             [self routeEventWithName:RouteNameEvent_RequestMoney userInfo:@{}];

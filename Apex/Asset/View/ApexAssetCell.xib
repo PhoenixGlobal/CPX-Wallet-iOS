@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="350" height="87.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CPX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2p-JP-C6g">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="CPX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2p-JP-C6g">
                         <rect key="frame" x="55" y="12" width="43" height="63.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <nil key="textColor"/>
@@ -32,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4Y-FI-xLw">
-                        <rect key="frame" x="245" y="32" width="55.5" height="24"/>
+                        <rect key="frame" x="250" y="32" width="55.5" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" red="0.29803921570000003" green="0.5568627451" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -66,7 +67,8 @@
                     <constraint firstAttribute="bottomMargin" secondItem="A4Y-FI-xLw" secondAttribute="bottom" constant="21" id="tR5-ti-msY"/>
                     <constraint firstItem="x2p-JP-C6g" firstAttribute="leading" secondItem="UUh-yT-GE0" secondAttribute="trailing" constant="10" id="tam-uI-hC8"/>
                     <constraint firstItem="x2p-JP-C6g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="tjs-Lv-5mc"/>
-                    <constraint firstItem="auQ-Sf-XAJ" firstAttribute="leading" secondItem="A4Y-FI-xLw" secondAttribute="trailing" constant="10" id="whS-w1-WYU"/>
+                    <constraint firstItem="A4Y-FI-xLw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aFt-X6-DGK" secondAttribute="trailing" constant="10" id="veE-qW-De0"/>
+                    <constraint firstItem="auQ-Sf-XAJ" firstAttribute="leading" secondItem="A4Y-FI-xLw" secondAttribute="trailing" constant="5" id="whS-w1-WYU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

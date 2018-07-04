@@ -84,6 +84,10 @@
 		E33A8BF620B3F4030067505E /* ApexTXRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33A8BF320B3F4030067505E /* ApexTXRecordCell.xib */; };
 		E33A8BF720B3F4030067505E /* ApexTXRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BF520B3F4030067505E /* ApexTXRecordCell.m */; };
 		E3689AFE20DB92A300B4B001 /* ApexTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3689AFD20DB92A300B4B001 /* ApexTransferModel.m */; };
+		E3855AD620EC730B00C377BF /* ApexSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3855AD520EC730B00C377BF /* ApexSheetView.m */; };
+		E38A64BA20ECB0EA00150F3B /* ApexAddAssetsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A64B920ECB0EA00150F3B /* ApexAddAssetsController.m */; };
+		E38A64BE20ECB88600150F3B /* ApexAddAssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38A64BB20ECB88600150F3B /* ApexAddAssetCell.xib */; };
+		E38A64BF20ECB88600150F3B /* ApexAddAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A64BD20ECB88600150F3B /* ApexAddAssetCell.m */; };
 		E39E02C420C4EDF6005DD251 /* ApexAssetMainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E02C120C4EDF6005DD251 /* ApexAssetMainViewCell.xib */; };
 		E39E02C520C4EDF6005DD251 /* ApexAssetMainViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02C320C4EDF6005DD251 /* ApexAssetMainViewCell.m */; };
 		E39E02C820C50517005DD251 /* ApexAccountDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02C720C50517005DD251 /* ApexAccountDetailController.m */; };
@@ -296,6 +300,13 @@
 		E33A8BF520B3F4030067505E /* ApexTXRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTXRecordCell.m; sourceTree = "<group>"; };
 		E3689AFC20DB92A300B4B001 /* ApexTransferModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferModel.h; sourceTree = "<group>"; };
 		E3689AFD20DB92A300B4B001 /* ApexTransferModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransferModel.m; sourceTree = "<group>"; };
+		E3855AD420EC730B00C377BF /* ApexSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexSheetView.h; sourceTree = "<group>"; };
+		E3855AD520EC730B00C377BF /* ApexSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexSheetView.m; sourceTree = "<group>"; };
+		E38A64B820ECB0EA00150F3B /* ApexAddAssetsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAddAssetsController.h; sourceTree = "<group>"; };
+		E38A64B920ECB0EA00150F3B /* ApexAddAssetsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAddAssetsController.m; sourceTree = "<group>"; };
+		E38A64BB20ECB88600150F3B /* ApexAddAssetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexAddAssetCell.xib; sourceTree = "<group>"; };
+		E38A64BC20ECB88600150F3B /* ApexAddAssetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAddAssetCell.h; sourceTree = "<group>"; };
+		E38A64BD20ECB88600150F3B /* ApexAddAssetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAddAssetCell.m; sourceTree = "<group>"; };
 		E39E02C120C4EDF6005DD251 /* ApexAssetMainViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexAssetMainViewCell.xib; sourceTree = "<group>"; };
 		E39E02C220C4EDF6005DD251 /* ApexAssetMainViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetMainViewCell.h; sourceTree = "<group>"; };
 		E39E02C320C4EDF6005DD251 /* ApexAssetMainViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetMainViewCell.m; sourceTree = "<group>"; };
@@ -675,6 +686,9 @@
 				E39E02DF20C68C38005DD251 /* ApexMoreFuncCell.m */,
 				E324311A20E21F3E00284B91 /* ApexMappingBtnView.h */,
 				E324311B20E21F3E00284B91 /* ApexMappingBtnView.m */,
+				E38A64BC20ECB88600150F3B /* ApexAddAssetCell.h */,
+				E38A64BD20ECB88600150F3B /* ApexAddAssetCell.m */,
+				E38A64BB20ECB88600150F3B /* ApexAddAssetCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -686,6 +700,8 @@
 				E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */,
 				E39E02C620C50517005DD251 /* ApexAccountDetailController.h */,
 				E39E02C720C50517005DD251 /* ApexAccountDetailController.m */,
+				E38A64B820ECB0EA00150F3B /* ApexAddAssetsController.h */,
+				E38A64B920ECB0EA00150F3B /* ApexAddAssetsController.m */,
 				E33A8BDA20B2B5950067505E /* ApexWalletDetailController.h */,
 				E33A8BDB20B2B5950067505E /* ApexWalletDetailController.m */,
 				E39E02CE20C657F8005DD251 /* ApexMorePanelController.h */,
@@ -934,6 +950,8 @@
 				E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */,
 				E39E02FC20C8F77A005DD251 /* ApexTwoSwitchView.h */,
 				E39E02FD20C8F77A005DD251 /* ApexTwoSwitchView.m */,
+				E3855AD420EC730B00C377BF /* ApexSheetView.h */,
+				E3855AD520EC730B00C377BF /* ApexSheetView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1099,6 +1117,7 @@
 				E39E030820C8FB8D005DD251 /* ApexExportKeystoreQRView.xib in Resources */,
 				E33A8B5820AE724F0067505E /* LaunchScreen.storyboard in Resources */,
 				E3CE66B220BEA812002A1E07 /* DateTools.bundle in Resources */,
+				E38A64BE20ECB88600150F3B /* ApexAddAssetCell.xib in Resources */,
 				E33A8BE820B2C3B50067505E /* ApexSendMoneyController.xib in Resources */,
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
 				E39E030320C8FB61005DD251 /* ApexExportKeystoryFileView.xib in Resources */,
@@ -1211,6 +1230,7 @@
 				E3CE669B20BE4539002A1E07 /* ApexMnenonicShowView.m in Sources */,
 				E3CE66B620BEA812002A1E07 /* NSDate+DateTools.m in Sources */,
 				E3CE669020BD3B56002A1E07 /* ApexTransferCell.m in Sources */,
+				E3855AD620EC730B00C377BF /* ApexSheetView.m in Sources */,
 				E324311C20E21F3E00284B91 /* ApexMappingBtnView.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
 				E39E02E920C7C82E005DD251 /* ApexImportSwithHeaderBar.m in Sources */,
@@ -1240,6 +1260,7 @@
 				E324311620DCC14700284B91 /* ApexTransferHistoryManager.m in Sources */,
 				E3CE669E20BE47C3002A1E07 /* ApexMnemonicShowCell.m in Sources */,
 				E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */,
+				E38A64BF20ECB88600150F3B /* ApexAddAssetCell.m in Sources */,
 				E33A8B5B20AE724F0067505E /* main.m in Sources */,
 				E3CE66B420BEA812002A1E07 /* DTTimePeriodChain.m in Sources */,
 				E3CE66B320BEA812002A1E07 /* DTTimePeriod.m in Sources */,
@@ -1262,6 +1283,7 @@
 				E3263EF620B6ABF8001D3C19 /* ApexMnemonicConfirmController.m in Sources */,
 				E33A8BDC20B2B5950067505E /* ApexWalletDetailController.m in Sources */,
 				E39E02FE20C8F77A005DD251 /* ApexTwoSwitchView.m in Sources */,
+				E38A64BA20ECB0EA00150F3B /* ApexAddAssetsController.m in Sources */,
 				E33A8BAD20AE77C70067505E /* ApexMineController.m in Sources */,
 				E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */,
 				E3263ED220B666CA001D3C19 /* ApexWalletManageDetailController.m in Sources */,

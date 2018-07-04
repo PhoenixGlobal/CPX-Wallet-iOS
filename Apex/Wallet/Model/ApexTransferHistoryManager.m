@@ -144,6 +144,8 @@ static ApexTransferHistoryManager *_instance;
     if (last.status == ApexTransferStatus_Blocking || last.status == ApexTransferStatus_Progressing) {
         //开启循环更新状态
         [self beginTimerToConfirmTransactionOfAddress:address txModel:last];
+    }else{
+        [ApexWalletManager setStatus:YES forWallet:address];
     }
 }
 

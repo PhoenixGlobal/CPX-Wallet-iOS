@@ -13,6 +13,7 @@
 #import "CYLEmptyView.h"
 #import "ApexMorePanelController.h"
 #import "ApexDrawTransAnimator.h"
+#import "ApexAddAssetsController.h"
 
 #define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
 
@@ -277,6 +278,9 @@
 }
 
 - (void)pushAction{
+//    ApexAddAssetsController *addVC = [[ApexAddAssetsController alloc] init];
+//    [self.navigationController presentViewController:addVC animated:YES completion:nil];
+    
     ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
     vc.curWallet = self.walletModel;
     vc.walletsArr = [ApexWalletManager getWalletsArr];
@@ -306,6 +310,21 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
         [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
             [self addressCopy];
+            
+//            UIAlertController *alertVC = [[UIAlertController alloc] init];
+//            UIAlertAction *action = [UIAlertAction actionWithTitle:@"复制" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                [self addressCopy];
+//            }];
+//
+//            UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//                [alertVC dismissViewControllerAnimated:YES completion:nil];
+//            }];
+//
+//            [alertVC addAction:action];
+//            [alertVC addAction:cancle];
+//
+//            [self.navigationController presentViewController:alertVC animated:YES completion:nil];
+            
         }];
         [_addressL addGestureRecognizer:tap];
     }

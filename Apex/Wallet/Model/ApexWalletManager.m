@@ -98,6 +98,17 @@ singleM(Manager);
 
 + (NSMutableArray*)setDefultAsset{
     NSMutableArray *arr = [NSMutableArray array];
+    
+    BalanceObject *gas = [[BalanceObject alloc] init];
+    gas.asset = assetId_NeoGas;
+    gas.value = @"0.0";
+    [arr addObject:gas];
+    
+    BalanceObject *neo = [[BalanceObject alloc] init];
+    neo.asset = assetId_Neo;
+    neo.value = @"0.0";
+    [arr addObject:neo];
+    
     BalanceObject *cpx = [[BalanceObject alloc] init];
     cpx.asset = assetId_CPX;
     cpx.value = @"0.0";

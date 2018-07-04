@@ -38,7 +38,8 @@
     _mappignBtn.layer.borderColor = [ApexUIHelper grayColor].CGColor;
     _mappignBtn.layer.borderWidth = 1.0/kScale;
     _mappignBtn.layer.cornerRadius = 4;
-    _mappignBtn.hidden = YES;
+    _mappignBtn.backgroundColor = [ApexUIHelper grayColor240];
+    
     
     _assetIcon.image = NEOPlaceHolder;
 }
@@ -51,7 +52,13 @@
         if ([assetModel.hex_hash containsString:model.asset]) {
             
             _assetNameL.text = assetModel.symbol;
-            _assetNameLTwo.text = assetModel.symbol;
+            _assetNameLTwo.text = @"";
+            
+            if ([assetModel.hex_hash containsString:assetId_CPX]) {
+                _mappignBtn.hidden = NO;
+            }else{
+                _mappignBtn.hidden = YES;
+            }
             
             NSURL *url = [NSURL URLWithString:assetModel.image_url];
             if (url) {
