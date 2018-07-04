@@ -35,6 +35,7 @@
     [super viewDidLoad];
     
     [self initUI];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
