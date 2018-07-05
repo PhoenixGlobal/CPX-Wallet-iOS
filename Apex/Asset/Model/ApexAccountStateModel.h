@@ -36,4 +36,6 @@
 @interface BalanceObject : NSObject<NSCoding>
 @property (nonatomic, strong) NSString *asset;
 @property (nonatomic, strong) NSString *value;
+
+- (BOOL)isEqualAsset:(BalanceObject*)object;
 @end

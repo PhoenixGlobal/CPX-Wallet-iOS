@@ -28,4 +28,8 @@
     [aCoder encodeObject:self.value forKey:@"value"];
 }
 
+- (BOOL)isEqualAsset:(BalanceObject*)object{
+    return [object.asset isEqualToString:self.asset];
+}
+
 @end

@@ -8,7 +8,7 @@
 
 #import "ApexAddAssetsController.h"
 #import "ApexSearchWalletToolBar.h"
-#import "ApexAddAssetsController.h"
+#import "ApexAddAssetCell.h"
 
 @interface ApexAddAssetsController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIButton *backBtn;
@@ -51,6 +51,7 @@
         make.left.right.bottom.equalTo(self.view);
     }];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"ApexAddAssetCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 }
 
 #pragma mark - ------public------
@@ -61,11 +62,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    ApexAddAssetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    return cell;
 }
 
 #pragma mark - ------eventResponse------

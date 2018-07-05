@@ -168,6 +168,19 @@
 
 - (void)updateAssets:(NSArray*)balanceArr{
     
+    BOOL isNep5Arr = YES;
+    for (BalanceObject *objct in balanceArr) {
+        if ([objct.asset isEqualToString:assetId_Neo] || [objct.asset isEqualToString:assetId_NeoGas]) {
+            isNep5Arr = false;
+            break;
+        }
+    }
+    
+    //非nep5资产
+    if (!isNep5Arr) {
+        //todo  重写balanceObject的isequal
+    }
+    
     if (balanceArr.count == 0) {
         //网络请求没有返回任何资产,本地资产置0
         for (BalanceObject *localObj in self.assetArr) {
@@ -280,23 +293,23 @@
 }
 
 - (void)pushAction{
-//    ApexAddAssetsController *addVC = [[ApexAddAssetsController alloc] init];
-//    [self.navigationController presentViewController:addVC animated:YES completion:nil];
+    ApexAddAssetsController *addVC = [[ApexAddAssetsController alloc] init];
+    [self.navigationController presentViewController:addVC animated:YES completion:nil];
     
-    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
-    vc.curWallet = self.walletModel;
-    vc.walletsArr = [ApexWalletManager getWalletsArr];
-    vc.walletsArr = [vc.walletsArr sortedArrayUsingComparator:^NSComparisonResult(ApexWalletModel *wallet1, ApexWalletModel *wallet2) {
-        return wallet1.createTimeStamp.integerValue > wallet2.createTimeStamp.integerValue;
-    }];
-    vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-    vc.didChooseWalletSub = [RACSubject subject];
-    [vc.didChooseWalletSub subscribeNext:^(ApexWalletModel *x) {
-        self.walletModel = x;
-        [self getLoacalAsset];
-        [self requestAsset];
-    }];
-    [self.navigationController pushViewController:vc animated:YES];
+//    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+//    vc.curWallet = self.walletModel;
+//    vc.walletsArr = [ApexWalletManager getWalletsArr];
+//    vc.walletsArr = [vc.walletsArr sortedArrayUsingComparator:^NSComparisonResult(ApexWalletModel *wallet1, ApexWalletModel *wallet2) {
+//        return wallet1.createTimeStamp.integerValue > wallet2.createTimeStamp.integerValue;
+//    }];
+//    vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+//    vc.didChooseWalletSub = [RACSubject subject];
+//    [vc.didChooseWalletSub subscribeNext:^(ApexWalletModel *x) {
+//        self.walletModel = x;
+//        [self getLoacalAsset];
+//        [self requestAsset];
+//    }];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - ------getter & setter------
