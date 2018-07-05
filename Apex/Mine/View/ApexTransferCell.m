@@ -66,6 +66,14 @@
     _txidL.text = model.txid;
     _amountL.text = model.value;
     
+    !(model.assetId) ? (model.assetId = neo_assetid) : nil;
+    
+    if ([assetId_CPX containsString:model.assetId]) {
+        self.iconImage.image = CPX_Logo;
+    }else{
+        self.iconImage.image = NEOPlaceHolder;
+    }
+    
 //    if ([_model.vmstate containsString:@"FAULT"]) {
 //        _model.status = ApexTransferStatus_Failed;
 //    }else if ([_model.vmstate containsString:@""]){

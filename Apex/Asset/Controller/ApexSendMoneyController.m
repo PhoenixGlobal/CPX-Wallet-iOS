@@ -158,6 +158,7 @@
             historyModel.value = [NSString stringWithFormat:@"-%@",self.sendNumTF.text];
             historyModel.status = ApexTransferStatus_Blocking;
             historyModel.time = @"0";
+            historyModel.assetId = self.balanceModel.asset;
             
             ApexTransferModel *lastRecord = [[ApexTransferHistoryManager shareManager] getLastTransferHistoryOfAddress:self.fromAddressL.text];
             

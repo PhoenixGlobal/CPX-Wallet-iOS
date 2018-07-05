@@ -65,9 +65,11 @@ static ApexTransferHistoryManager *_instance;
     BOOL success = [_db executeUpdate:addressSql];
     if (success) {
         NSLog(@"表创建成功");
-        [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:walletAddress Success:^(CYLResponse *res) {
-        } failure:^(NSError *err) {
-        }];
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:walletAddress Success:^(CYLResponse *res) {
+            } failure:^(NSError *err) {
+            }];
+        });
     }else{
         NSLog(@"表创建失败");
     }
