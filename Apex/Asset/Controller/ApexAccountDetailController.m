@@ -179,6 +179,25 @@
     //非nep5资产
     if (!isNep5Arr) {
         //todo  重写balanceObject的isequal
+        //查找缺失项
+        if (balanceArr.count != 2) {
+            BalanceObject *obj = balanceArr.firstObject;
+            if ([obj.asset isEqualToString:assetId_Neo]) {
+                //缺失gas
+                for (BalanceObject *obj in self.assetArr) {
+                    if ([obj.asset isEqualToString:assetId_NeoGas]) {
+                        obj.value = @"0.0";
+                    }
+                }
+            }else{
+                //缺失neo
+                for (BalanceObject *obj in self.assetArr) {
+                    if ([obj.asset isEqualToString:assetId_Neo]) {
+                        obj.value = @"0.0";
+                    }
+                }
+            }
+        }
     }
     
     if (balanceArr.count == 0) {
