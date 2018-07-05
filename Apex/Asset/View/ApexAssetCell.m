@@ -41,7 +41,7 @@
     _mappignBtn.backgroundColor = [ApexUIHelper grayColor240];
     
     
-    _assetIcon.image = NEOPlaceHolder;
+//    _assetIcon.image = NEOPlaceHolder;
 }
 
 - (void)setModel:(BalanceObject *)model{
@@ -56,14 +56,16 @@
             
             if ([assetModel.hex_hash containsString:assetId_CPX]) {
                 _mappignBtn.hidden = NO;
+                self.assetIcon.image = CPX_Logo;
             }else{
                 _mappignBtn.hidden = YES;
+                self.assetIcon.image = NEOPlaceHolder;
             }
             
-            NSURL *url = [NSURL URLWithString:assetModel.image_url];
-            if (url) {
-                [self.assetIcon sd_setImageWithURL:url];
-            }
+//            NSURL *url = [NSURL URLWithString:assetModel.image_url];
+//            if (url) {
+//                [self.assetIcon sd_setImageWithURL:url];
+//            }
             break;
         }
     }

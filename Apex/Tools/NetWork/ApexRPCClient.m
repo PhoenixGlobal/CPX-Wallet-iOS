@@ -62,7 +62,7 @@ singleM(RPCClient);
         NSString *baseUrl = [ApexNetWorkCommonConfig getCliBaseUrl];
         NSLog(@"cli baseurl: %@",baseUrl);
         _client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:baseUrl]];
-        AFSecurityPolicy *sp = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+        AFSecurityPolicy *sp = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         sp.allowInvalidCertificates = YES;
         sp.validatesDomainName = NO;
         _client.securityPolicy = sp;

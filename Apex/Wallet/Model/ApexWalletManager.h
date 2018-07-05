@@ -48,4 +48,6 @@
 
 /** 广播交易 */
 + (void)broadCastTransactionWithData:(NSString*)data Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
++ (void)reSortAssetArr:(NSMutableArray*)assetArr;
 @end

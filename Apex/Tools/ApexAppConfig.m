@@ -29,7 +29,9 @@
 }
 
 + (void)transHistorySelfCheck{
+    
     for (ApexWalletModel *wallet in [ApexWalletManager getWalletsArr]) {
+        
         [[ApexTransferHistoryManager shareManager] applicationIntializeSelfCheckWithAddress:wallet.address];
     }
 }

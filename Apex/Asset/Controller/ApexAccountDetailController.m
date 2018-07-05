@@ -95,6 +95,7 @@
     self.title = self.walletModel.name;
     self.addressL.text = self.walletModel.address;
     self.assetArr = self.walletModel.assetArr;
+    [ApexWalletManager reSortAssetArr:self.assetArr];
     [self creataAssetMap];
 }
 

@@ -41,5 +41,5 @@
 #define mnemonicChianese @"zh_CN"
 
 #define NEOPlaceHolder [UIImage imageNamed:@"NEON-Wallet-Logo"];
-#define CPX_Logo [UIImage imageNamed:@"CPX_Logo"];
+#define CPX_Logo [UIImage imageNamed:@"CPX_logo"];
 #endif /* Macro_h */

@@ -65,6 +65,9 @@ static ApexTransferHistoryManager *_instance;
     BOOL success = [_db executeUpdate:addressSql];
     if (success) {
         NSLog(@"表创建成功");
+        [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:walletAddress Success:^(CYLResponse *res) {
+        } failure:^(NSError *err) {
+        }];
     }else{
         NSLog(@"表创建失败");
     }
@@ -188,9 +191,9 @@ static ApexTransferHistoryManager *_instance;
         [temp addObject:model];
     }
     
-    [temp sortUsingComparator:^NSComparisonResult(ApexTransferModel *obj1, ApexTransferModel *obj2) {
-        return obj1.time.integerValue > obj2.time.integerValue;
-    }];
+//    [temp sortUsingComparator:^NSComparisonResult(ApexTransferModel *obj1, ApexTransferModel *obj2) {
+//        return obj1.time.integerValue > obj2.time.integerValue;
+//    }];
     temp = [[[temp reverseObjectEnumerator] allObjects] mutableCopy];
     
     [_db close];

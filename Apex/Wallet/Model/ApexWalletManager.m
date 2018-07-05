@@ -41,9 +41,25 @@ singleM(Manager);
 + (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr{
     [self deleteWalletForAddress:wallet.address];
     NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
+    [self reSortAssetArr:assetArr];
     wallet.assetArr = assetArr;
     [arr addObject:wallet];
     [TKFileManager saveData:arr withFileName:walletsKey];
+}
+
++ (void)reSortAssetArr:(NSMutableArray*)assetArr{
+    BalanceObject *cpx = nil;
+    for (BalanceObject *obj in [assetArr copy]) {
+        if ([assetId_CPX containsString:obj.asset]) {
+            cpx = obj;
+            [assetArr removeObject:obj];
+            break;
+        }
+    }
+    
+    if (cpx) {
+        [assetArr insertObject:cpx atIndex:0];
+    }
 }
 
 + (void)changeWalletName:(NSString*)name forAddress:(NSString*)address{

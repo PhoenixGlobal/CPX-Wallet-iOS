@@ -143,7 +143,9 @@
 }
 
 - (void)broadCastTransaction:(NeomobileTx*)tx{
+    [self showHUD];
     [ApexWalletManager broadCastTransactionWithData:tx.data Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self hideHUD];
         BOOL isSuccess = ((NSNumber*)responseObject).boolValue;
         if (isSuccess) {
             [self showMessage:@"广播交易成功"];
