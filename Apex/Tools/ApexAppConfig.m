@@ -34,6 +34,12 @@
         
         [[ApexTransferHistoryManager shareManager] applicationIntializeSelfCheckWithAddress:wallet.address];
     }
+    
+//    [ApexWalletManager getAccountStateWithAddress:[apex] Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
 }
 
 + (void)updateAssetList{
