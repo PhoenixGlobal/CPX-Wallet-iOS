@@ -7,6 +7,7 @@
 //
 
 #import "ApexAssetModelManage.h"
+#import "ApexAccountStateModel.h"
 
 @implementation ApexAssetModelManage
 + (nullable NSMutableArray*)getLocalAssetModelsArr{
@@ -70,6 +71,13 @@
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.image_url forKey:@"image_url"];
     [aCoder encodeObject:self.hex_hash forKey:@"hex_hash"];
+}
+
+- (BalanceObject *)convertToBalanceObject{
+    BalanceObject *balanceObj = [[BalanceObject alloc] init];
+    balanceObj.asset = self.hex_hash;
+    balanceObj.value = @"0.0";
+    return balanceObj;
 }
 
 @end

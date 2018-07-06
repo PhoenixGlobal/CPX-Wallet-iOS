@@ -146,7 +146,6 @@
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     [subscriber sendError:error];
-                    [self showMessage:@"请求失败,请检查网络连接"];
                 }];
             }
         }
@@ -154,7 +153,10 @@
         return nil;
     }];
 
-    [self rac_liftSelector:@selector(updateWithR1:R2:) withSignals:request1,request2, nil];
+    [[self rac_liftSelector:@selector(updateWithR1:R2:) withSignals:request1,request2, nil] subscribeError:^(NSError * _Nullable error) {
+        [self.tableView.mj_header endRefreshing];
+        [self showMessage:@"请求失败,请检查网络连接"];
+    }];
 }
 
 - (void)updateWithR1:(id)r1 R2:(id)r2{
@@ -178,24 +180,11 @@
     
     //非nep5资产
     if (!isNep5Arr) {
-        //todo  重写balanceObject的isequal
-        //查找缺失项
-        if (balanceArr.count != 2) {
-            BalanceObject *obj = balanceArr.firstObject;
-            if ([obj.asset isEqualToString:assetId_Neo]) {
-                //缺失gas
-                for (BalanceObject *obj in self.assetArr) {
-                    if ([obj.asset isEqualToString:assetId_NeoGas]) {
-                        obj.value = @"0.0";
-                    }
-                }
-            }else{
-                //缺失neo
-                for (BalanceObject *obj in self.assetArr) {
-                    if ([obj.asset isEqualToString:assetId_Neo]) {
-                        obj.value = @"0.0";
-                    }
-                }
+    
+        for (BalanceObject *obj in self.assetArr) {
+            if (([obj.asset isEqualToString:assetId_NeoGas] || [obj.asset isEqualToString:assetId_Neo]) && ![balanceArr containsObject:obj]) {
+                NSLog(@"缺失%@",obj.asset);
+                obj.value = @"0.0";
             }
         }
     }
@@ -313,6 +302,7 @@
 
 - (void)pushAction{
     ApexAddAssetsController *addVC = [[ApexAddAssetsController alloc] init];
+    addVC.walletAssetArr = self.assetArr;
     [self.navigationController presentViewController:addVC animated:YES completion:nil];
     
 //    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];

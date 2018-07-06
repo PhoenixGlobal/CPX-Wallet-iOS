@@ -28,8 +28,16 @@
     [aCoder encodeObject:self.value forKey:@"value"];
 }
 
-- (BOOL)isEqualAsset:(BalanceObject*)object{
-    return [object.asset isEqualToString:self.asset];
+- (BOOL)isHashEqual:(id)objct{
+    return self == objct;
 }
 
+- (BOOL)isEqual:(id)object{
+    if (![object isKindOfClass:BalanceObject.class]) {
+        return false;
+    }
+    
+    typeof(self) balanceObj = object;
+    return [balanceObj.asset isEqualToString:self.asset];
+}
 @end

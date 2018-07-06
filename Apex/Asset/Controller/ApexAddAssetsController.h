@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexAddAssetsController : UIViewController
-
+@property (nonatomic, strong) NSMutableArray *walletAssetArr;
 @end

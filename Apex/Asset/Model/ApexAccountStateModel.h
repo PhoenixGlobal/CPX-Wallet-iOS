@@ -37,5 +37,5 @@
 @property (nonatomic, strong) NSString *asset;
 @property (nonatomic, strong) NSString *value;
 
-- (BOOL)isEqualAsset:(BalanceObject*)object;
+- (BOOL)isHashEqual:(id)objct;
 @end

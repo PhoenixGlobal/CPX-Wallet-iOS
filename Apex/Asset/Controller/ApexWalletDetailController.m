@@ -14,10 +14,11 @@
 #import "ApexTempEmptyView.h"
 #import "ApexMorePanelController.h"
 #import "ApexDrawTransAnimator.h"
+#import "ApexScanAction.h"
 
 #define RouteNameEvent_SendMoney @"RouteNameEvent_SendMoney"
 #define RouteNameEvent_RequestMoney @"RouteNameEvent_RequestMoney"
-#define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
+#define RouteNameEvent_ScanAction @"RouteNameEvent_ScanAction"
 
 @interface ApexWalletDetailController ()<UINavigationControllerDelegate>
 @property (nonatomic, strong) UILabel *titleL;
@@ -43,7 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setNav];
-    [self setEdgeGesture];
+//    [self setEdgeGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -55,7 +56,6 @@
 - (void)setNav{
     self.navigationItem.titleView = self.titleL;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
-    self.navigationController.delegate = self;
 }
 
 - (void)setUI{
@@ -65,7 +65,6 @@
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.balanceL];
     [self.view addSubview:self.unitL];
-//    [self.view addSubview:self.addressL];
     [self.view addSubview:self.requestBtn];
     [self.view addSubview:self.sendBtn];
     
@@ -113,19 +112,19 @@
     }
 }
 
-- (void)setEdgeGesture{
-    [[ApexDrawTransPercentDriven shareDriven] setPercentDrivenForFromViewController:self edgePan:^(UIScreenEdgePanGestureRecognizer *edgePan) {
-        switch (edgePan.state) {
-            case UIGestureRecognizerStateBegan:
-            {
-                [self pushAction];
-            }
-                break;
-            default:
-                break;
-        }
-    }];
-}
+//- (void)setEdgeGesture{
+//    [[ApexDrawTransPercentDriven shareDriven] setPercentDrivenForFromViewController:self edgePan:^(UIScreenEdgePanGestureRecognizer *edgePan) {
+//        switch (edgePan.state) {
+//            case UIGestureRecognizerStateBegan:
+//            {
+//                [self pushAction];
+//            }
+//                break;
+//            default:
+//                break;
+//        }
+//    }];
+//}
 
 #pragma mark - ------public------
 
@@ -151,49 +150,43 @@
         }else{
             [self showMessage:@"目前仍有一笔待确认中的交易"];
         }
-    }else if([eventName isEqualToString:RouteNameEvent_ShowMorePanel]){
-        [self pushAction];
+    }else if([eventName isEqualToString:RouteNameEvent_ScanAction]){
+        [ApexScanAction scanActionOnViewController:self];
     }
-//    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewScan]){
-//        [self scanAction];
-//    }else if ([eventName isEqualToString:RouteNameEvent_PanelViewCreatWallet]){
-//        ApexCreatWalletController *wvc = [[ApexCreatWalletController alloc] init];
-//        [self.navigationController pushViewController:wvc animated:YES];
-//    }
 }
 
-- (void)pushAction{
-    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
-    vc.curWallet = self.wallModel;
-    vc.balanceModel = self.balanceModel;
-    vc.funcConfigArr = @[@(PanelFuncConfig_Scan), @(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-    [self.navigationController pushViewController:vc animated:YES];
-}
+//- (void)pushAction{
+//    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+//    vc.curWallet = self.wallModel;
+//    vc.balanceModel = self.balanceModel;
+//    vc.funcConfigArr = @[@(PanelFuncConfig_Scan), @(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+//    [self.navigationController pushViewController:vc animated:YES];
+//}
 
 
 #pragma mark - ------transition-----
-- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
-    if (operation == UINavigationControllerOperationPush) {
-        if ([toVC isKindOfClass:[ApexMorePanelController class]]) {
-            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Push animateDuration:0.5 andTransitionAnimation:self.transAnimator];
-        }else{
-            return nil;
-        }
-    }else {
-        if ([fromVC isKindOfClass:[ApexMorePanelController class]]) {
-            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Pop animateDuration:0.5 andTransitionAnimation:self.transAnimator];
-        }else{
-            return nil;
-        }
-    }
-}
-
-/**
- 实现此方法后 所有的转场动画过程都要由ApexDrawTransPercentDriven的百分比决定*/
-- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
-    
-    return [ApexDrawTransPercentDriven shareDriven];
-}
+//- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
+//    if (operation == UINavigationControllerOperationPush) {
+//        if ([toVC isKindOfClass:[ApexMorePanelController class]]) {
+//            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Push animateDuration:0.5 andTransitionAnimation:self.transAnimator];
+//        }else{
+//            return nil;
+//        }
+//    }else {
+//        if ([fromVC isKindOfClass:[ApexMorePanelController class]]) {
+//            return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Pop animateDuration:0.5 andTransitionAnimation:self.transAnimator];
+//        }else{
+//            return nil;
+//        }
+//    }
+//}
+//
+///**
+// 实现此方法后 所有的转场动画过程都要由ApexDrawTransPercentDriven的百分比决定*/
+//- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
+//
+//    return [ApexDrawTransPercentDriven shareDriven];
+//}
 
 #pragma mark - ------getter & setter------
 - (UILabel *)titleL{
@@ -289,9 +282,9 @@
     if (!_moreBtn) {
         _moreBtn = [[UIButton alloc] init];
         _moreBtn.frame = CGRectMake(0, 0, 40, 40);
-        [_moreBtn setImage:[UIImage imageNamed:@"dots"] forState:UIControlStateNormal];
+        [_moreBtn setImage:[UIImage imageNamed:@"Group 3-3"] forState:UIControlStateNormal];
         [[_moreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-            [self routeEventWithName:RouteNameEvent_ShowMorePanel userInfo:@{}];
+            [self routeEventWithName:RouteNameEvent_ScanAction userInfo:@{}];
         }];
     }
     return _moreBtn;

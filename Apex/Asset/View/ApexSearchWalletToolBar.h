@@ -11,6 +11,9 @@
 @interface ApexSearchWalletToolBar : UIView
 @property (nonatomic, strong) RACSubject *textDidChangeSub;
 @property (nonatomic, strong) NSString *placeHolder;
+@property (nonatomic, strong) UIImage *searchTFLeftImage;
 
+- (void)setPlaceHolder:(NSString *)placeHolder color:(UIColor*)color;
+- (void)setTextColor:(UIColor*)textColor backgroundColor:(UIColor*)bgColor;
 - (void)clearEntrance;
 @end

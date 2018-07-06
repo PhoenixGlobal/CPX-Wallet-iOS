@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ApexSearchWalletToolBar *searchToolBar;
+@property (nonatomic, strong) UILabel *titleL;
+@property (nonatomic, strong) NSArray *contentArr;
 @end
 
 @implementation ApexAddAssetsController
@@ -26,17 +28,24 @@
     [self handleEvent];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self prepareData];
+}
+
 #pragma mark - ------private------
 - (void)setUI{
-    self.title = @"添加资产";
+    
     self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.titleL];
     [self.view addSubview:self.backBtn];
     [self.view addSubview:self.searchToolBar];
     [self.view addSubview:self.tableView];
     
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(self.view).offset(10);
-        make.width.height.mas_equalTo(44);
+        make.top.equalTo(self.view).offset(30);
+        make.left.equalTo(self.view).offset(10);
+        make.width.height.mas_equalTo(30);
     }];
     
     [self.searchToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -52,6 +61,25 @@
     }];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexAddAssetCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    
+    [self.titleL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.backBtn.mas_centerY);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
+}
+
+- (void)prepareData{
+    self.contentArr = [ApexAssetModelManage getLocalAssetModelsArr];
+    [self.tableView reloadData];
+}
+
+- (BOOL)verifyIsSelect:(ApexAssetModel*)model{
+    for (BalanceObject *obj in self.walletAssetArr) {
+        if ([model.hex_hash isEqualToString:obj.asset]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - ------public------
@@ -62,13 +90,28 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.contentArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexAddAssetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.model = self.contentArr[indexPath.row];
+    cell.indicator.selected = [self verifyIsSelect:cell.model];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ApexAddAssetCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    ApexAssetModel *model = self.contentArr[indexPath.row];
+    cell.indicator.selected = !cell.indicator.selected;
+    if (cell.indicator.selected) {
+        [self.walletAssetArr addObject:[model convertToBalanceObject]];
+    }else{
+        [self.walletAssetArr removeObject:[model convertToBalanceObject]];
+    }
+    
+}
+
 
 #pragma mark - ------eventResponse------
 - (void)handleEvent{
@@ -83,6 +126,7 @@
     if (!_backBtn) {
         _backBtn = [[UIButton alloc] init];
         [_backBtn setImage:[UIImage imageNamed:@"Group 21"] forState:UIControlStateNormal];
+        _backBtn.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _backBtn;
 }
@@ -99,8 +143,20 @@
 - (ApexSearchWalletToolBar *)searchToolBar{
     if (!_searchToolBar) {
         _searchToolBar = [[ApexSearchWalletToolBar alloc] init];
-        _searchToolBar.placeHolder = @"资产id";
+        [_searchToolBar setPlaceHolder:@"资产id" color:UIColorHex(666666)];
+        [_searchToolBar setTextColor:UIColorHex(666666) backgroundColor:[UIColorHex(999999) colorWithAlphaComponent:0.2]];
+        
     }
     return _searchToolBar;
+}
+
+- (UILabel *)titleL{
+    if (!_titleL) {
+        _titleL = [[UILabel alloc] init];
+        _titleL.text = @"添加资产";
+        _titleL.font = [UIFont systemFontOfSize:17];
+        _titleL.textColor = [UIColor blackColor];
+    }
+    return _titleL;
 }
 @end

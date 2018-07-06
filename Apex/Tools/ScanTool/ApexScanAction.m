@@ -39,7 +39,11 @@ singleM(ScanHelper);
     scanCodeController.scanDelegate = [ApexScanAction shareScanHelper];
     [ApexScanAction shareScanHelper].fromVC = vc;
     [ApexScanAction shareScanHelper].navVC = vc.navigationController;
-    [vc directlyPushToViewControllerWithSelfDeleted:scanCodeController];
+    if ([vc isKindOfClass:NSClassFromString(@"ApexMorePanelController")]) {
+        [vc directlyPushToViewControllerWithSelfDeleted:scanCodeController];
+    }else{
+        [vc.navigationController pushViewController:scanCodeController animated:YES];
+    }
 }
 
 #pragma mark - ------delegate-----

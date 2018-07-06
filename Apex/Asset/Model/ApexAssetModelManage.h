@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @class ApexAssetModel;
+@class BalanceObject;
 
 @interface ApexAssetModelManage : NSObject
 // 更新资产列表
 + (void)requestAssetlistSuccess:(successfulBlock)success fail:(failureBlock)failBlock;
 // 获取本地资产列表
-+ (nullable NSMutableArray*)getLocalAssetModelsArr;
++ (NSMutableArray*)getLocalAssetModelsArr;
 @end
 
 @interface ApexAssetModel : NSObject<NSCoding>
@@ -24,5 +25,6 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *image_url;
 @property (nonatomic, strong) NSString *hex_hash; /**< 0xassetId */
-//@property (nonatomic, strong) NSString *hash;
+
+- (BalanceObject*)convertToBalanceObject;
 @end

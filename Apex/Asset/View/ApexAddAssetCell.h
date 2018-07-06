@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexAddAssetCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIButton *indicator;
+@property (nonatomic, strong) ApexAssetModel *model;
 @end

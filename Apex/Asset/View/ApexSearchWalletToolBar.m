@@ -79,6 +79,21 @@
 }
 
 #pragma mark - setter getter
+- (void)setTextColor:(UIColor*)textColor backgroundColor:(UIColor *)bgColor{
+    [self.cancleBtn setTitleColor:textColor forState:UIControlStateNormal];
+    self.searchTF.backgroundColor = bgColor;
+    self.searchTF.textColor = textColor;
+}
+
+- (void)setSearchTFLeftImage:(UIImage *)searchTFLeftImage{
+    self.searchTF.leftView = [[UIImageView alloc] initWithImage:searchTFLeftImage];
+}
+
+- (void)setPlaceHolder:(NSString *)placeHolder color:(UIColor*)color{
+    _placeHolder = placeHolder;
+    self.searchTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName:color, NSFontAttributeName:[UIFont systemFontOfSize:14]}];
+}
+
 - (void)setPlaceHolder:(NSString *)placeHolder{
     _placeHolder = placeHolder;
     self.searchTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:14]}];
@@ -103,7 +118,7 @@
 - (UIButton *)cancleBtn{
     if (!_cancleBtn) {
         _cancleBtn = [[UIButton alloc] init];
-        [_cancleBtn setTitle:@"Cancel" forState:UIControlStateNormal];
+        [_cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
         [_cancleBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
         _cancleBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         @weakify(self);
