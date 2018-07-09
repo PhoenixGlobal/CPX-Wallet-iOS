@@ -184,7 +184,7 @@
         for (BalanceObject *obj in self.assetArr) {
             if (([obj.asset isEqualToString:assetId_NeoGas] || [obj.asset isEqualToString:assetId_Neo]) && ![balanceArr containsObject:obj]) {
                 NSLog(@"缺失%@",obj.asset);
-                obj.value = @"0.0";
+                obj.value = @"0";
             }
         }
     }
@@ -192,7 +192,7 @@
     if (balanceArr.count == 0) {
         //网络请求没有返回任何资产,本地资产置0
         for (BalanceObject *localObj in self.assetArr) {
-            localObj.value = @"0.0";
+            localObj.value = @"0";
         }
         
     }else{
@@ -222,7 +222,7 @@
                     }
                 }
                 if (equalObj) {
-                    equalObj.value = @"0.0";
+                    equalObj.value = @"0";
                 }else{
                     [self.assetArr addObject:remoteObj];
                 }
@@ -373,7 +373,7 @@
     if (!_moreBtn) {
         _moreBtn = [[UIButton alloc] init];
         _moreBtn.frame = CGRectMake(0, 0, 40, 40);
-        [_moreBtn setImage:[UIImage imageNamed:@"dots"] forState:UIControlStateNormal];
+        [_moreBtn setImage:[UIImage imageNamed:@"添加"] forState:UIControlStateNormal];
         [[_moreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             [self routeEventWithName:RouteNameEvent_ShowMorePanel userInfo:@{}];
         }];

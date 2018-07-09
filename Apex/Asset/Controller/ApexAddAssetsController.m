@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ApexSearchWalletToolBar *searchToolBar;
 @property (nonatomic, strong) UILabel *titleL;
-@property (nonatomic, strong) NSArray *contentArr;
+@property (nonatomic, strong) NSMutableArray *contentArr;
 @end
 
 @implementation ApexAddAssetsController
@@ -70,6 +70,12 @@
 
 - (void)prepareData{
     self.contentArr = [ApexAssetModelManage getLocalAssetModelsArr];
+    //移除neo gas cpx的展示
+    for (ApexAssetModel *model in [self.contentArr copy]) {
+        if ([model.hex_hash isEqualToString:assetId_NeoGas] || [model.hex_hash isEqualToString:assetId_Neo] || [model.hex_hash isEqualToString:assetId_CPX]) {
+            [self.contentArr removeObject:model];
+        }
+    }
     [self.tableView reloadData];
 }
 
@@ -109,7 +115,6 @@
     }else{
         [self.walletAssetArr removeObject:[model convertToBalanceObject]];
     }
-    
 }
 
 
@@ -118,6 +123,24 @@
     
     [[self.backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    self.searchToolBar.textDidChangeSub = [RACSubject subject];
+    [self.searchToolBar.textDidChangeSub subscribeNext:^(NSString *key) {
+        
+        if (key.length == 0) {
+            [self prepareData];
+        }else{
+            NSMutableArray *temp = [NSMutableArray array];
+            for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
+                if ([model.symbol.lowercaseString hasPrefix:key.lowercaseString]) {
+                    [temp addObject:model];
+                }
+            }
+            self.contentArr = temp;
+        }
+        
+        [self.tableView reloadData];
     }];
     
 }
@@ -143,7 +166,7 @@
 - (ApexSearchWalletToolBar *)searchToolBar{
     if (!_searchToolBar) {
         _searchToolBar = [[ApexSearchWalletToolBar alloc] init];
-        [_searchToolBar setPlaceHolder:@"资产id" color:UIColorHex(666666)];
+        [_searchToolBar setPlaceHolder:@"资产名称" color:UIColorHex(666666)];
         [_searchToolBar setTextColor:UIColorHex(666666) backgroundColor:[UIColorHex(999999) colorWithAlphaComponent:0.2]];
         
     }

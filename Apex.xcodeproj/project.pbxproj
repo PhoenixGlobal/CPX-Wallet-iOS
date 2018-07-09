@@ -112,6 +112,7 @@
 		E39E030820C8FB8D005DD251 /* ApexExportKeystoreQRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */; };
 		E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030C20CA72A7005DD251 /* ApexDrawTransPercentDriven.m */; };
 		E39E031020CA7B1E005DD251 /* ApexNetWorkCommonConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030F20CA7B1E005DD251 /* ApexNetWorkCommonConfig.m */; };
+		E3CD112B20F30D4A009C1439 /* AssetResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E3CD112A20F30D49009C1439 /* AssetResources.bundle */; };
 		E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */; };
 		E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */; };
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
@@ -352,6 +353,7 @@
 		E39E030C20CA72A7005DD251 /* ApexDrawTransPercentDriven.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexDrawTransPercentDriven.m; sourceTree = "<group>"; };
 		E39E030E20CA7B1E005DD251 /* ApexNetWorkCommonConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNetWorkCommonConfig.h; sourceTree = "<group>"; };
 		E39E030F20CA7B1E005DD251 /* ApexNetWorkCommonConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNetWorkCommonConfig.m; sourceTree = "<group>"; };
+		E3CD112A20F30D49009C1439 /* AssetResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AssetResources.bundle; sourceTree = "<group>"; };
 		E3CE667320BBC8D0002A1E07 /* ApexBlockChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexBlockChainManager.h; sourceTree = "<group>"; };
 		E3CE667420BBC8D0002A1E07 /* ApexBlockChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexBlockChainManager.m; sourceTree = "<group>"; };
 		E3CE667620BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 				E33A8BAE20AE795F0067505E /* Wallet */,
 				E33A8B8A20AE756E0067505E /* Catagotries */,
 				E33A8BA320AE76850067505E /* CYLAppBaseFrameWork.framework */,
+				E3CD112A20F30D49009C1439 /* AssetResources.bundle */,
 				E33A8BC020B28CD90067505E /* Neomobile.framework */,
 				E33A8BA220AE75980067505E /* PrefixHeader.pch */,
 				E33A8B5420AE724F0067505E /* Assets.xcassets */,
@@ -1133,6 +1136,7 @@
 				E3263EC920B567FC001D3C19 /* ApexWallerItemCell.xib in Resources */,
 				E3263EEC20B69BB6001D3C19 /* star.png in Resources */,
 				E3263EEA20B69BB6001D3C19 /* close-round.png in Resources */,
+				E3CD112B20F30D4A009C1439 /* AssetResources.bundle in Resources */,
 				E39E02C420C4EDF6005DD251 /* ApexAssetMainViewCell.xib in Resources */,
 				E33A8B5520AE724F0067505E /* Assets.xcassets in Resources */,
 				E3263EE720B69BB6001D3C19 /* alert-round.png in Resources */,

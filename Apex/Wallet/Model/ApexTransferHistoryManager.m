@@ -247,6 +247,7 @@ static ApexTransferHistoryManager *_instance;
     return model;
 }
 
+//开启轮询 获取交易记录的最新状态
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model{
     
     if (model.status == ApexTransferStatus_Blocking) {

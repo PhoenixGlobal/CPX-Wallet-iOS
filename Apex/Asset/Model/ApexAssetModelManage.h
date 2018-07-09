@@ -16,6 +16,8 @@
 + (void)requestAssetlistSuccess:(successfulBlock)success fail:(failureBlock)failBlock;
 // 获取本地资产列表
 + (NSMutableArray*)getLocalAssetModelsArr;
+
++ (NSBundle*)resourceBundle;
 @end
 
 @interface ApexAssetModel : NSObject<NSCoding>

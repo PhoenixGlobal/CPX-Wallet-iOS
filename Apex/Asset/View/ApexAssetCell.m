@@ -40,13 +40,14 @@
     _mappignBtn.layer.cornerRadius = 4;
     _mappignBtn.backgroundColor = [ApexUIHelper grayColor240];
     
+    [_balanceL setAdjustsFontSizeToFitWidth:YES];
     
 //    _assetIcon.image = NEOPlaceHolder;
 }
 
 - (void)setModel:(BalanceObject *)model{
     _model = model;
-    _balanceL.text = model.value.floatValue == 0 ? @"0.0" : model.value;
+    _balanceL.text = model.value.floatValue == 0 ? @"0" : model.value;
     
     for (ApexAssetModel *assetModel in [ApexAssetModelManage getLocalAssetModelsArr]) {
         if ([assetModel.hex_hash containsString:model.asset]) {
@@ -54,12 +55,21 @@
             _assetNameL.text = assetModel.symbol;
             _assetNameLTwo.text = @"";
             
-            if ([assetModel.hex_hash containsString:assetId_CPX]) {
+            if ([model.asset containsString:assetId_CPX]) {
                 _mappignBtn.hidden = NO;
                 self.assetIcon.image = CPX_Logo;
-            }else{
+            }else if([model.asset containsString:assetId_NeoGas] || [model.asset containsString:assetId_Neo]){
                 _mappignBtn.hidden = YES;
                 self.assetIcon.image = NEOPlaceHolder;
+            }else{
+                _mappignBtn.hidden = YES;
+                UIImage *image = [UIImage imageNamed:model.asset inBundle:[ApexAssetModelManage resourceBundle] compatibleWithTraitCollection:nil];
+                if (image) {
+                    self.assetIcon.image = image;
+                }else{
+                    self.assetIcon.image = NEOPlaceHolder;
+                }
+                
             }
             
 //            NSURL *url = [NSURL URLWithString:assetModel.image_url];

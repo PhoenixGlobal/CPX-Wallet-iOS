@@ -88,8 +88,8 @@
     [self.balanceL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(70);
         make.centerX.equalTo(self.view.mas_centerX);
-//        make.width.mas_equalTo(scaleWidth375(50));
-//        make.height.mas_equalTo(scaleHeight667(60));
+        make.left.greaterThanOrEqualTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-55);
     }];
     
     [self.unitL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -207,6 +207,7 @@
         _balanceL.text = @"0";
         _balanceL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:50];
         _balanceL.textAlignment = NSTextAlignmentCenter;
+        [_balanceL setAdjustsFontSizeToFitWidth:YES];
         _balanceL.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
     }
     return _balanceL;

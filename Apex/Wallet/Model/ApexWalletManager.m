@@ -49,17 +49,32 @@ singleM(Manager);
 
 + (void)reSortAssetArr:(NSMutableArray*)assetArr{
     BalanceObject *cpx = nil;
+    BalanceObject *neo = nil;
+    BalanceObject *gas = nil;
     for (BalanceObject *obj in [assetArr copy]) {
         if ([assetId_CPX containsString:obj.asset]) {
             cpx = obj;
             [assetArr removeObject:obj];
-            break;
+        }
+        
+        if ([assetId_Neo containsString:obj.asset]) {
+            neo = obj;
+            [assetArr removeObject:obj];
+        }
+        
+        if ([assetId_NeoGas containsString:obj.asset]) {
+            gas = obj;
+            [assetArr removeObject:obj];
         }
     }
     
-    if (cpx) {
-        [assetArr insertObject:cpx atIndex:0];
-    }
+    [assetArr sortUsingComparator:^NSComparisonResult(BalanceObject *obj1, BalanceObject *obj2) {
+        return obj1.asset > obj2.asset;
+    }];
+    
+    [assetArr insertObject:cpx atIndex:0];
+    [assetArr insertObject:neo atIndex:1];
+    [assetArr insertObject:gas atIndex:2];
 }
 
 + (void)changeWalletName:(NSString*)name forAddress:(NSString*)address{
@@ -117,17 +132,17 @@ singleM(Manager);
     
     BalanceObject *gas = [[BalanceObject alloc] init];
     gas.asset = assetId_NeoGas;
-    gas.value = @"0.0";
+    gas.value = @"0";
     [arr addObject:gas];
     
     BalanceObject *neo = [[BalanceObject alloc] init];
     neo.asset = assetId_Neo;
-    neo.value = @"0.0";
+    neo.value = @"0";
     [arr addObject:neo];
     
     BalanceObject *cpx = [[BalanceObject alloc] init];
     cpx.asset = assetId_CPX;
-    cpx.value = @"0.0";
+    cpx.value = @"0";
     [arr addObject:cpx];
     return arr;
 }
@@ -207,7 +222,7 @@ singleM(Manager);
                 NSString *balance = [NSString stringWithFormat:@"%.8lf", [self getBalanceWithByte:(Byte *)data.bytes length:data.length] / pow(10, dicimal.doubleValue)];
                 balanceOBJ.value = balance;
             }else{
-                balanceOBJ.value = @"0.0";
+                balanceOBJ.value = @"0";
             }
             success(operation,balanceOBJ);
         } failure:failure];

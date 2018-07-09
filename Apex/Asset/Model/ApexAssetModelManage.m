@@ -28,7 +28,9 @@
         NSMutableArray *temp = [NSMutableArray array];
         for (NSDictionary *dic in result) {
             ApexAssetModel *model = [ApexAssetModel yy_modelWithDictionary:dic];
-            [temp addObject:model];
+            if ([model.type isEqualToString:@"NEP5"] || [model.hex_hash isEqualToString:assetId_Neo] || [model.hex_hash isEqualToString:assetId_NeoGas]) {
+                [temp addObject:model];
+            }
         }
         
         [TKFileManager saveData:temp withFileName:KAssetModelListKey];
@@ -38,6 +40,12 @@
     } fail:^(NSError *error) {
         failBlock(error);
     }];
+}
+
++ (NSBundle *)resourceBundle{
+    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/AssetResources.bundle"];
+    NSBundle *resource = [NSBundle bundleWithPath:path];
+    return resource;
 }
 
 @end
@@ -76,7 +84,7 @@
 - (BalanceObject *)convertToBalanceObject{
     BalanceObject *balanceObj = [[BalanceObject alloc] init];
     balanceObj.asset = self.hex_hash;
-    balanceObj.value = @"0.0";
+    balanceObj.value = @"0";
     return balanceObj;
 }
 

@@ -45,5 +45,11 @@
     }
     
     
+    UIImage *image = [UIImage imageNamed:model.hex_hash inBundle:[ApexAssetModelManage resourceBundle] compatibleWithTraitCollection:nil];
+    if (!image) {
+        image = NEOPlaceHolder;
+    }
+    _IconIV.image = image;
 }
+
 @end
