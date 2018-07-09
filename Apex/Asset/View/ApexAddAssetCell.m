@@ -41,7 +41,7 @@
     if ([model.hex_hash isEqualToString:assetId_Neo] || [model.hex_hash isEqualToString:assetId_NeoGas]) {
         _typeL.text = @"Asset";
     }else{
-        _typeL.text = [NSString stringWithFormat:@"%@ Token",model.symbol];
+        _typeL.text = [NSString stringWithFormat:@"%@",model.name];
     }
     
     
