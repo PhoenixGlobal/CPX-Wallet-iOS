@@ -23,10 +23,12 @@
 #pragma mark - ------life cycle------
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self scrollController_InitUI];
-
     [self subAddObserver];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 - (void)dealloc{
@@ -117,14 +119,7 @@
             }else{
                 self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*1.53);
             }
-            
-//            if (percent <= 0) {
-//                CGFloat assPercent = percent + (percent - self.lastPercent) *0.001;
-//                NSLog(@"%f",assPercent);
-//                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*assPercent);
-//            }else{
-                self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
-//            }
+            self.accessoryBaseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent);
         }
         
         self.lastPercent = percent;

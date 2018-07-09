@@ -44,7 +44,6 @@
         _typeL.text = [NSString stringWithFormat:@"%@",model.name];
     }
     
-    
     UIImage *image = [UIImage imageNamed:model.hex_hash inBundle:[ApexAssetModelManage resourceBundle] compatibleWithTraitCollection:nil];
     if (!image) {
         image = NEOPlaceHolder;
