@@ -120,7 +120,7 @@
     if (!_creatBtn) {
         _creatBtn = [[ZJNButton alloc] init];
         [_creatBtn setImage:[UIImage imageNamed:@"Page 1"] forState:UIControlStateNormal];
-        [_creatBtn setTitle:@"创建钱包" forState:UIControlStateNormal];
+        [_creatBtn setTitle:NSLocalizedString(@"Create Wallet", nil) forState:UIControlStateNormal];
         _creatBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         _creatBtn.contentMode = UIViewContentModeScaleAspectFit;
         _creatBtn.imagePosition = ZJNButtonImagePosition_Left;
