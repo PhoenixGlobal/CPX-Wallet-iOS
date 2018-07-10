@@ -47,8 +47,8 @@
 //    [self setEdgeGesture];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 

@@ -45,6 +45,11 @@
     [self setEdgeGesture];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+}
+
 #pragma mark - ------private------
 - (void)initUI{
     

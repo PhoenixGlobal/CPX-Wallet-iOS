@@ -69,7 +69,7 @@ singleM(Manager);
     }
     
     [assetArr sortUsingComparator:^NSComparisonResult(BalanceObject *obj1, BalanceObject *obj2) {
-        return obj1.asset > obj2.asset;
+        return [obj1.asset compare:obj2.asset] == NSOrderedAscending;
     }];
     
     [assetArr insertObject:cpx atIndex:0];
