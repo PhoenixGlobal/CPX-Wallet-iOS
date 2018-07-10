@@ -17,4 +17,6 @@
 - (UIImageView *)findHairlineImageViewUnder:(UIView *)view;
 - (UIView*)barBackgroundView;
 - (void)showImageOnNavigationBar:(UIImage*)image;
+
+@property (nonatomic, strong) UIView *overlay;
 @end

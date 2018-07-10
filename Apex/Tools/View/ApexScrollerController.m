@@ -17,6 +17,7 @@
 @property (nonatomic, assign) CGFloat translateOffset; /**< tableview的初始offset*/
 @property (nonatomic, assign) CGFloat translateLength; /**<  第一个cell距离navbar的距离*/
 @property (nonatomic, assign) CGFloat lastPercent; /**<  */
+@property (nonatomic, strong) UIColor *navColor;
 @end
 
 @implementation ApexScrollerController
@@ -27,8 +28,17 @@
     [self subAddObserver];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_navColor) {
+        [self.navigationController lt_setBackgroundColor:_navColor];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    _navColor = self.navigationController.overlay.backgroundColor;
+    
 }
 
 - (void)dealloc{
@@ -48,7 +58,7 @@
     }
     
     self.view.backgroundColor = self.baseColor;
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+//    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     
     [self.view addSubview:self.baseView];
     [self.view addSubview:self.tableView];
@@ -96,9 +106,11 @@
         }
         
         if (offSetY < 0) {
-            [self.navigationController showImageOnNavigationBar:[UIImage new]];
+//            [self.navigationController showImageOnNavigationBar:[UIImage new]];
+            [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
         }else{
-            [self.navigationController showImageOnNavigationBar:[UIImage imageNamed:@"bg-2"]];
+//            [self.navigationController showImageOnNavigationBar:[UIImage imageNamed:@"bg-2"]];
+            [self.navigationController lt_setBackgroundColor:[ApexUIHelper mainThemeColor]];
         }
         
         //baseview到navbar的距离

@@ -35,7 +35,7 @@
 }
 
 + (UIColor *)mainThemeColor{
-    return [UIColor colorWithHexString:@"4c8efa"];
+    return [UIColor colorWithRed255:40 green255:66 blue255:193 alpha:1];
 }
 
 + (UIColor *)subThemeColor{
