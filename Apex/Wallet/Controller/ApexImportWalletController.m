@@ -28,7 +28,7 @@
 
 #pragma mark - ------private------
 - (void)initUI{
-    self.title = @"导入钱包";
+    self.title = SOLocalizedStringFromTable(@"Import Wallet", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     

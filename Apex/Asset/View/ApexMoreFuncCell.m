@@ -119,7 +119,7 @@
     if (!_importBtn) {
         _importBtn = [[ZJNButton alloc] init];
         [_importBtn setImage:[UIImage imageNamed:@"Page 13"] forState:UIControlStateNormal];
-        [_importBtn setTitle:@"导入钱包" forState:UIControlStateNormal];
+        [_importBtn setTitle:NSLocalizedString(@"Import Wallet", nil) forState:UIControlStateNormal];
         _importBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_importBtn setTitleColor:[UIColor colorWithHexString:@"666666"] forState:UIControlStateNormal];
         _importBtn.contentMode = UIViewContentModeScaleAspectFit;

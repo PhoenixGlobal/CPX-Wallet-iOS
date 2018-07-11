@@ -35,7 +35,7 @@
 }
 
 + (UIColor *)mainThemeColor{
-    return [UIColor colorWithRed255:40 green255:66 blue255:193 alpha:1];
+    return [UIColor colorWithHexString:@"4C8EFA"];
 }
 
 + (UIColor *)subThemeColor{
@@ -43,7 +43,7 @@
 }
 
 + (UIColor *)navColor{
-    return [UIColor colorWithRed255:70 green255:105 blue255:214 alpha:1];
+    return [UIColor colorWithRed255:40 green255:66 blue255:193 alpha:1];
 }
 
 + (UIColor *)navColorWithAlpha:(CGFloat)alpha{

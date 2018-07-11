@@ -84,7 +84,8 @@
 }
 
 - (void)utxoSearch:(NeomobileWallet*)wallet{
-    if (_toAddressTF.text.length == 0) {
+    NSString *address = _toAddressTF.text;
+    if (address.length <= 15) {
         [self showMessage:@"请填写转账地址"];
         return;
     }
@@ -240,6 +241,8 @@
 - (IBAction)sendAction:(id)sender {
     if (_sendNumTF.text.floatValue > _balanceModel.value.floatValue) {
         [self showMessage:@"金额不足"];
+    }else if ([_toAddressTF.text isEqualToString:_walletAddress]){
+        [self showMessage:@"请填写其他收款地址"];
     }else{
         [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress subTitle:@"" Success:^(NeomobileWallet *wallet) {
             [self utxoSearch:wallet];

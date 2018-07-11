@@ -167,13 +167,13 @@
     
     NeomobileWallet *wallet = NeomobileNew(&err);
     if (err) {
-        [self showMessage:[NSString stringWithFormat:@"钱包创建失败: %@",err]];
+        [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Wallet Fail", nil),err]];
         return nil;
     }
 //    NSLog(@"%@",[wallet mnemonic:mnemonicEnglish error:nil]);
     NSString *keystore = [wallet toKeyStore:self.passWordL.text error:&keystoreErr];
     if (keystoreErr) {
-        [self showMessage:[NSString stringWithFormat:@"keystore创建失败: %@",keystoreErr]];
+        [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Fail", nil),keystoreErr]];
         return nil;
     }
     
@@ -228,7 +228,7 @@
     if (!_titleL) {
         _titleL = [[UILabel alloc] init];
         _titleL.frame = CGRectMake(152, 30, 72.5, 25);
-        _titleL.text = @"创建钱包";
+        _titleL.text = SOLocalizedStringFromTable(@"Create Wallet", nil);
         _titleL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:18];
         _titleL.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
     }
@@ -247,9 +247,9 @@
         // 指明当输入文字时,是否下调基准线(baseline).设置为YES(非默认值),意味着占位内容会和输入内容对齐.
         _walletNameL.keepBaseline = YES;
         // 设置占位符文字和浮动式标签的文字.
-        [_walletNameL setPlaceholder:@"钱包名称"
-                             floatingTitle:@"钱包名称"];
-        _walletNameL.alertString = @"请输入最多八个字符";
+        [_walletNameL setPlaceholder:SOLocalizedStringFromTable(@"Wallet Name", nil)
+                             floatingTitle:SOLocalizedStringFromTable(@"Wallet Name", nil)];
+        _walletNameL.alertString = SOLocalizedStringFromTable(@"8 Characters Most", nil);
         _walletNameL.alertShowConditionBlock = ^BOOL(NSString *text) {
             if (text.length <= 8 && text.length > 0) {
                 return false;
@@ -275,11 +275,11 @@
         // 指明当输入文字时,是否下调基准线(baseline).设置为YES(非默认值),意味着占位内容会和输入内容对齐.
         _passWordL.keepBaseline = YES;
         // 设置占位符文字和浮动式标签的文字.
-        [_passWordL setPlaceholder:@"密码(不少于6个字符)"
-                       floatingTitle:@"密码"];
+        [_passWordL setPlaceholder:SOLocalizedStringFromTable(@"Password(at least 6 characters)", nil)
+                       floatingTitle:SOLocalizedStringFromTable(@"Password", nil)];
         _passWordL.clearButtonMode = UITextFieldViewModeWhileEditing;
         
-        _passWordL.alertString = @"不少于6个字符";
+        _passWordL.alertString = SOLocalizedStringFromTable(@"at least 6 characters", nil);
         _passWordL.alertShowConditionBlock = ^BOOL(NSString *text) {
             if (text.length<6) {
                 return true;
@@ -304,12 +304,12 @@
         // 指明当输入文字时,是否下调基准线(baseline).设置为YES(非默认值),意味着占位内容会和输入内容对齐.
         _repeatPassWordL.keepBaseline = YES;
         // 设置占位符文字和浮动式标签的文字.
-        [_repeatPassWordL setPlaceholder:@"重复密码(不少于6个字符)"
-                     floatingTitle:@"重复密码"];
+        [_repeatPassWordL setPlaceholder:SOLocalizedStringFromTable(@"Repeat Password", nil)
+                     floatingTitle:SOLocalizedStringFromTable(@"Repeat Password", nil)];
         _repeatPassWordL.clearButtonMode = UITextFieldViewModeWhileEditing;
         
         @weakify(self);
-        _repeatPassWordL.alertString = @"输入密码不相符";
+        _repeatPassWordL.alertString = SOLocalizedStringFromTable(@"Password is different", nil);
         _repeatPassWordL.alertShowConditionBlock = ^BOOL(NSString *text) {
             @strongify(self)
             
@@ -328,7 +328,7 @@
     if (!_creatBtn) {
         _creatBtn = [[UIButton alloc] init];
         _creatBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_creatBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [_creatBtn setTitle:SOLocalizedStringFromTable(@"Confirm", nil) forState:UIControlStateNormal];
         _creatBtn.layer.cornerRadius = 6;
         [[RACObserve(_creatBtn, enabled) takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNumber *x) {
             if (x.boolValue) {
@@ -362,8 +362,12 @@
     if (!_privacyAgreeLable) {
         _privacyAgreeLable = [[UILabel alloc] init];
         _privacyAgreeLable.font = [UIFont systemFontOfSize:10];
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"我已仔细阅读并同意服务及隐私条款"];
-        [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(9, 7)];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:SOLocalizedStringFromTable(@"I agree to the Service and Privacy Policy", nil)];
+        if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(15, 26)];
+        }else{
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(9, 7)];
+        }
         _privacyAgreeLable.attributedText = str;
     }
     return _privacyAgreeLable;
@@ -372,7 +376,7 @@
 - (UIButton *)importBtn{
     if (!_importBtn) {
         _importBtn = [[UIButton alloc] init];
-        [_importBtn setTitle:@"导入钱包" forState:UIControlStateNormal];
+        [_importBtn setTitle:SOLocalizedStringFromTable(@"Import Wallet", nil) forState:UIControlStateNormal];
         _importBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_importBtn setTitleColor:[ApexUIHelper textColor] forState:UIControlStateNormal];
         [ApexUIHelper addLineInView:_importBtn color:[ApexUIHelper textColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];

@@ -93,14 +93,14 @@
     NSError *err = nil;
     NeomobileWallet *wallet = NeomobileFromKeyStore(self.textView.text, self.passTF.text, &err);
     if (err) {
-        [[self topViewController] showMessage:@"导入失败"];
+        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Fail", nil)];
         return;
     }
     
     NSError *keystoreErr = nil;
     NSString *keystore = [wallet toKeyStore:self.passTF.text error:&keystoreErr];
     if (keystoreErr) {
-        [[self topViewController] showMessage:[NSString stringWithFormat:@"keystore创建失败: %@",keystoreErr]];
+        [[self topViewController] showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Fail", nil) ,keystoreErr]];
         return;
     }
     
@@ -110,7 +110,7 @@
     
     for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
         if ([model.address isEqualToString:address]) {
-            [[self topViewController] showMessage:@"钱包已存在"];
+            [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];
             return;
         }
     }
@@ -119,7 +119,7 @@
     [ApexWalletManager deleteWalletForAddress:address];
     [ApexWalletManager saveWallet:[NSString stringWithFormat:@"%@/%@",address, @"Wallet"]];
     
-    [[self topViewController] showMessage:@"导入成功"];
+    [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Success", nil)];
     if (self.didFinishImportSub) {
         [self.didFinishImportSub sendNext:@""];
     }else{
@@ -151,7 +151,7 @@
         _textView.layer.masksToBounds = YES;
         _textView.font = [UIFont systemFontOfSize:13];
         //调用私有方法
-        [_textView setPlaceholder:@"Keystore 文本内容" placeholdColor:[UIColor lightGrayColor]];
+        [_textView setPlaceholder:@"Keystore" placeholdColor:[UIColor lightGrayColor]];
     }
     return _textView;
 }
@@ -159,7 +159,7 @@
 - (UILabel *)tipL{
     if (!_tipL) {
         _tipL = [[UILabel alloc] init];
-        _tipL.text = @"直接复制粘贴官方钱包Keystore文件内容至输入框。或者通过生成Keystore内容的二维码，扫描录入。";
+        _tipL.text = SOLocalizedStringFromTable(@"Input KeyStore Content Here", nil);
         _tipL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
         _tipL.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
         _tipL.numberOfLines = 0;
@@ -179,12 +179,12 @@
         // 指明当输入文字时,是否下调基准线(baseline).设置为YES(非默认值),意味着占位内容会和输入内容对齐.
         _passTF.keepBaseline = YES;
         // 设置占位符文字和浮动式标签的文字.
-        [_passTF setPlaceholder:@"密码"
-                              floatingTitle:@"密码"];
+        [_passTF setPlaceholder:SOLocalizedStringFromTable(@"Password", nil)
+                              floatingTitle:SOLocalizedStringFromTable(@"Password", nil)];
         _passTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         
         @weakify(self);
-        _passTF.alertString = @"输入密码太短";
+        _passTF.alertString = SOLocalizedStringFromTable(@"Password Too Short", nil);
         _passTF.alertShowConditionBlock = ^BOOL(NSString *text) {
             
             if (text.length > 0) {
@@ -212,7 +212,7 @@
         _importBtn.backgroundColor = [ApexUIHelper mainThemeColor];
         _importBtn.layer.cornerRadius = 5;
         _importBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-        [_importBtn setTitle:@"开始导入" forState:UIControlStateNormal];
+        [_importBtn setTitle:SOLocalizedStringFromTable(@"Import", nil) forState:UIControlStateNormal];
         [[RACObserve(_importBtn, enabled) takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNumber *x) {
             if (x.boolValue) {
                 [_importBtn setBackgroundColor:[ApexUIHelper mainThemeColor]];

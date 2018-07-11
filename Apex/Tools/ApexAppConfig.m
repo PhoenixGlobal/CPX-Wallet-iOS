@@ -12,6 +12,7 @@
 #import <AFNetworking.h>
 #import "ApexAssetModelManage.h"
 #import "ApexTransferHistoryManager.h"
+#import "SOLocalization.h"
 
 @implementation ApexAppConfig
 + (void) configAll{
@@ -26,6 +27,13 @@
     [self updateAssetList];
     
     [self transHistorySelfCheck];
+    
+    [self localization];
+}
+
++ (void)localization{
+    [SOLocalization configSupportRegions:@[SOLocalizationEnglish,SOLocalizationSimplifiedChinese] fallbackRegion:SOLocalizationSimplifiedChinese];
+    [[SOLocalization sharedLocalization] setRegion:SOLocalizationEnglish];
 }
 
 + (void)transHistorySelfCheck{

@@ -86,14 +86,14 @@
     NSError *err = nil;
     NeomobileWallet *wallet = NeomobileFromMnemonic(self.textView.text, mnemonicEnglish, &err);
     if (err) {
-        [[self topViewController] showMessage:@"导入失败"];
+        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Fail", nil)];
         return;
     }
     
     NSError *keystoreErr = nil;
     NSString *keystore = [wallet toKeyStore:self.passWordTF.text error:&keystoreErr];
     if (keystoreErr) {
-        [[self topViewController] showMessage:[NSString stringWithFormat:@"keystore创建失败: %@",keystoreErr]];
+        [[self topViewController] showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Fail", nil),keystoreErr]];
         return;
     }
     
@@ -103,7 +103,7 @@
     
     for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
         if ([model.address isEqualToString:address]) {
-            [[self topViewController] showMessage:@"钱包已存在"];
+            [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];
             return;
         }
     }
@@ -112,7 +112,7 @@
     [ApexWalletManager deleteWalletForAddress:address];
     [ApexWalletManager saveWallet:[NSString stringWithFormat:@"%@/%@",address, @"Wallet"]];
     
-    [[self topViewController] showMessage:@"导入成功"];
+    [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Success", nil)];
     if (self.didFinishImportSub) {
         [self.didFinishImportSub sendNext:@""];
     }else{
@@ -151,7 +151,7 @@
         _textView.layer.masksToBounds = YES;
         _textView.font = [UIFont systemFontOfSize:13];
         //调用私有方法
-        [_textView setPlaceholder:@"助记词,按空格分隔" placeholdColor:[UIColor lightGrayColor]];
+        [_textView setPlaceholder:SOLocalizedStringFromTable(@"Input Mnemonics Seperated By Blank Space", nil) placeholdColor:[UIColor lightGrayColor]];
     }
     return _textView;
 }

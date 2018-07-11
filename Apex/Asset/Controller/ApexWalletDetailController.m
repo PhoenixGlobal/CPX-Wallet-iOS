@@ -151,6 +151,8 @@
             [self showMessage:@"目前仍有一笔待确认中的交易"];
         }
     }else if([eventName isEqualToString:RouteNameEvent_ScanAction]){
+        [ApexScanAction shareScanHelper].curWallet = self.wallModel;
+        [ApexScanAction shareScanHelper].balanceMode = self.balanceModel;
         [ApexScanAction scanActionOnViewController:self];
     }
 }

@@ -39,6 +39,15 @@
 		E32920C720D8CC170012C36D /* ApexTXDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E32920C420D8CC170012C36D /* ApexTXDetailController.xib */; };
 		E32920C820D8CC170012C36D /* ApexTXDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E32920C620D8CC170012C36D /* ApexTXDetailController.m */; };
 		E32921DA20DB3CE60012C36D /* ApexUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E32921D920DB3CE60012C36D /* ApexUITests.m */; };
+		E3373B3720F5F14F00590407 /* SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2320F5F14F00590407 /* SOLocalization.m */; };
+		E3373B3820F5F14F00590407 /* SOSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2520F5F14F00590407 /* SOSwizzle.m */; };
+		E3373B3920F5F14F00590407 /* UIView+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2620F5F14F00590407 /* UIView+SOLocalization.m */; };
+		E3373B3A20F5F14F00590407 /* UIViewController+SOLocalizations.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2820F5F14F00590407 /* UIViewController+SOLocalizations.m */; };
+		E3373B3B20F5F14F00590407 /* UILabel+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2A20F5F14F00590407 /* UILabel+SOLocalization.m */; };
+		E3373B3C20F5F14F00590407 /* UIBarItem+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2B20F5F14F00590407 /* UIBarItem+SOLocalization.m */; };
+		E3373B3D20F5F14F00590407 /* UINavigationItem+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2C20F5F14F00590407 /* UINavigationItem+SOLocalization.m */; };
+		E3373B3E20F5F14F00590407 /* UIButton+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2E20F5F14F00590407 /* UIButton+SOLocalization.m */; };
+		E3373B3F20F5F14F00590407 /* UITextField+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B3220F5F14F00590407 /* UITextField+SOLocalization.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -215,6 +224,25 @@
 		E32921D720DB3CE60012C36D /* ApexUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApexUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E32921D920DB3CE60012C36D /* ApexUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexUITests.m; sourceTree = "<group>"; };
 		E32921DB20DB3CE60012C36D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3373B2320F5F14F00590407 /* SOLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOLocalization.m; sourceTree = "<group>"; };
+		E3373B2520F5F14F00590407 /* SOSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSwizzle.m; sourceTree = "<group>"; };
+		E3373B2620F5F14F00590407 /* UIView+SOLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SOLocalization.m"; sourceTree = "<group>"; };
+		E3373B2720F5F14F00590407 /* UIButton+SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SOLocalization.h"; sourceTree = "<group>"; };
+		E3373B2820F5F14F00590407 /* UIViewController+SOLocalizations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SOLocalizations.m"; sourceTree = "<group>"; };
+		E3373B2920F5F14F00590407 /* UITextField+SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+SOLocalization.h"; sourceTree = "<group>"; };
+		E3373B2A20F5F14F00590407 /* UILabel+SOLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SOLocalization.m"; sourceTree = "<group>"; };
+		E3373B2B20F5F14F00590407 /* UIBarItem+SOLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarItem+SOLocalization.m"; sourceTree = "<group>"; };
+		E3373B2C20F5F14F00590407 /* UINavigationItem+SOLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+SOLocalization.m"; sourceTree = "<group>"; };
+		E3373B2D20F5F14F00590407 /* UIViewController+SOLocalizations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SOLocalizations.h"; sourceTree = "<group>"; };
+		E3373B2E20F5F14F00590407 /* UIButton+SOLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SOLocalization.m"; sourceTree = "<group>"; };
+		E3373B2F20F5F14F00590407 /* SOLocalizationElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOLocalizationElement.h; sourceTree = "<group>"; };
+		E3373B3020F5F14F00590407 /* UIView+SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SOLocalization.h"; sourceTree = "<group>"; };
+		E3373B3120F5F14F00590407 /* SOSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSwizzle.h; sourceTree = "<group>"; };
+		E3373B3220F5F14F00590407 /* UITextField+SOLocalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+SOLocalization.m"; sourceTree = "<group>"; };
+		E3373B3320F5F14F00590407 /* UINavigationItem+SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+SOLocalization.h"; sourceTree = "<group>"; };
+		E3373B3420F5F14F00590407 /* UIBarItem+SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarItem+SOLocalization.h"; sourceTree = "<group>"; };
+		E3373B3520F5F14F00590407 /* UILabel+SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SOLocalization.h"; sourceTree = "<group>"; };
+		E3373B3620F5F14F00590407 /* SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOLocalization.h; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -497,6 +525,40 @@
 			path = ApexUITests;
 			sourceTree = "<group>";
 		};
+		E3373B2220F5F14F00590407 /* SOLocalizations */ = {
+			isa = PBXGroup;
+			children = (
+				E3373B3620F5F14F00590407 /* SOLocalization.h */,
+				E3373B2320F5F14F00590407 /* SOLocalization.m */,
+				E3373B2420F5F14F00590407 /* UIKit */,
+			);
+			path = SOLocalizations;
+			sourceTree = "<group>";
+		};
+		E3373B2420F5F14F00590407 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				E3373B2520F5F14F00590407 /* SOSwizzle.m */,
+				E3373B2620F5F14F00590407 /* UIView+SOLocalization.m */,
+				E3373B2720F5F14F00590407 /* UIButton+SOLocalization.h */,
+				E3373B2820F5F14F00590407 /* UIViewController+SOLocalizations.m */,
+				E3373B2920F5F14F00590407 /* UITextField+SOLocalization.h */,
+				E3373B2A20F5F14F00590407 /* UILabel+SOLocalization.m */,
+				E3373B2B20F5F14F00590407 /* UIBarItem+SOLocalization.m */,
+				E3373B2C20F5F14F00590407 /* UINavigationItem+SOLocalization.m */,
+				E3373B2D20F5F14F00590407 /* UIViewController+SOLocalizations.h */,
+				E3373B2E20F5F14F00590407 /* UIButton+SOLocalization.m */,
+				E3373B2F20F5F14F00590407 /* SOLocalizationElement.h */,
+				E3373B3020F5F14F00590407 /* UIView+SOLocalization.h */,
+				E3373B3120F5F14F00590407 /* SOSwizzle.h */,
+				E3373B3220F5F14F00590407 /* UITextField+SOLocalization.m */,
+				E3373B3320F5F14F00590407 /* UINavigationItem+SOLocalization.h */,
+				E3373B3420F5F14F00590407 /* UIBarItem+SOLocalization.h */,
+				E3373B3520F5F14F00590407 /* UILabel+SOLocalization.h */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		E338964820B401F200DD51FE /* EmptyView */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,6 +802,7 @@
 		E33A8B6E20AE75500067505E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				E3373B2220F5F14F00590407 /* SOLocalizations */,
 				E39E02D120C659C6005DD251 /* TransitionAnimator */,
 				E3CE669F20BEA811002A1E07 /* DateTools */,
 				E3CE668220BCEAD6002A1E07 /* View */,
@@ -1230,8 +1293,10 @@
 				E33A8BCB20B292B90067505E /* ApexWalletManager.m in Sources */,
 				E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */,
 				E33A8BDF20B2BB340067505E /* UIView+Common.m in Sources */,
+				E3373B3F20F5F14F00590407 /* UITextField+SOLocalization.m in Sources */,
 				E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */,
 				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
+				E3373B3C20F5F14F00590407 /* UIBarItem+SOLocalization.m in Sources */,
 				E33A8BBE20AE7D9F0067505E /* ApexRPCClient.m in Sources */,
 				E39E02F520C7D771005DD251 /* UITextView+placeholder.m in Sources */,
 				E3263EBF20B54A41001D3C19 /* ApexSwitchHeaderBar.m in Sources */,
@@ -1242,6 +1307,7 @@
 				E324311C20E21F3E00284B91 /* ApexMappingBtnView.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
 				E39E02E920C7C82E005DD251 /* ApexImportSwithHeaderBar.m in Sources */,
+				E3373B3820F5F14F00590407 /* SOSwizzle.m in Sources */,
 				E39E02E020C68C38005DD251 /* ApexMoreFuncCell.m in Sources */,
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
 				E3CE66BA20BEA812002A1E07 /* CYLDayCollectionView.m in Sources */,
@@ -1264,6 +1330,7 @@
 				E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */,
 				E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */,
 				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
+				E3373B3920F5F14F00590407 /* UIView+SOLocalization.m in Sources */,
 				E39E02FB20C8F4CB005DD251 /* ApexExportKeyStoreController.m in Sources */,
 				E324311620DCC14700284B91 /* ApexTransferHistoryManager.m in Sources */,
 				E3CE669E20BE47C3002A1E07 /* ApexMnemonicShowCell.m in Sources */,
@@ -1302,19 +1369,23 @@
 				E39E030120C8FB51005DD251 /* ApexExportKeystoryFileView.m in Sources */,
 				E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */,
 				E39E02D020C657F8005DD251 /* ApexMorePanelController.m in Sources */,
+				E3373B3D20F5F14F00590407 /* UINavigationItem+SOLocalization.m in Sources */,
 				E3CE669820BE3D13002A1E07 /* ApexSendMoneyViewModel.m in Sources */,
 				E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */,
 				E39E02EF20C7D206005DD251 /* ApexImportByMnemonicView.m in Sources */,
 				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
 				E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */,
+				E3373B3A20F5F14F00590407 /* UIViewController+SOLocalizations.m in Sources */,
 				E3263EEE20B69BB6001D3C19 /* FCAlertView.m in Sources */,
 				E3CE66B720BEA812002A1E07 /* DTTimePeriodCollection.m in Sources */,
 				E39E02C520C4EDF6005DD251 /* ApexAssetMainViewCell.m in Sources */,
 				E39E02C820C50517005DD251 /* ApexAccountDetailController.m in Sources */,
 				E39E02DD20C68C13005DD251 /* ApexMoreTopCell.m in Sources */,
+				E3373B3720F5F14F00590407 /* SOLocalization.m in Sources */,
 				E3263EC520B5639D001D3C19 /* ApexManageWalletView.m in Sources */,
 				E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */,
 				E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */,
+				E3373B3E20F5F14F00590407 /* UIButton+SOLocalization.m in Sources */,
 				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,
 				E3CE668D20BD38BC002A1E07 /* ApexTransferDetailHeader.m in Sources */,
 				E3CE66B520BEA812002A1E07 /* DTError.m in Sources */,
@@ -1325,6 +1396,7 @@
 				E39E030620C8FB85005DD251 /* ApexExportKeystoreQRView.m in Sources */,
 				E3CE66BD20BF99AF002A1E07 /* ApexSwithWalletView.m in Sources */,
 				E33A8B4D20AE724D0067505E /* AppDelegate.m in Sources */,
+				E3373B3B20F5F14F00590407 /* UILabel+SOLocalization.m in Sources */,
 				E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */,
 				E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */,
 				E33A8B8920AE75650067505E /* CYLTabBarController.m in Sources */,

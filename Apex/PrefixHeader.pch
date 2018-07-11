@@ -45,5 +45,6 @@
 #import "ApexThread.h"
 #import "ApexAccountStateModel.h"
 #import "ApexAssetModelManage.h"
+#import "SOLocalization.h"
 #endif /* PrefixHeader_pch */
 

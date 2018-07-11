@@ -133,7 +133,7 @@
         }else{
             NSMutableArray *temp = [NSMutableArray array];
             for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
-                if ([model.symbol.lowercaseString hasPrefix:key.lowercaseString]) {
+                if ([model.symbol.lowercaseString hasPrefix:key.lowercaseString] && ![model.hex_hash isEqualToString:assetId_CPX] && ![model.hex_hash isEqualToString:assetId_Neo] && ![model.hex_hash isEqualToString:assetId_NeoGas]) {
                     [temp addObject:model];
                 }
             }

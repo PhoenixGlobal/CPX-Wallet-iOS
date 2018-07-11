@@ -8,8 +8,13 @@
 "Create Wallet" = "创建钱包";
 "Import Wallet" = "导入钱包";
 "Wallet Name" = "钱包名称";
+"8 Characters Most" = "请输入最多八个字符";
 "Password" = "密码";
+"Password(at least 6 characters)" = "密码(不少于6个字符)";
+"at least 6 characters" = "不少于6个字符";
 "Repeat Password" = "重复密码";
+"Password is different" = "输入密码不相符";
+"Mnemonics" = "助记词"
 "Submit" = "提交";
 "I agree to the Service and Privacy Policy" = "我已经仔细阅读并同意 服务及隐私条款";
 "Backup Mnemonic" = "备份钱包";
@@ -40,7 +45,13 @@
 "Amount" = "交易金额";
 "Language" = "语言设置";
 "Profile" = "个人画像";
-
-
-
-
+// tips
+"Create Wallet Fail" = "钱包创建失败";
+"Create Keystore Fail" = "keystore创建失败";
+"Import Wallet Fail" = "导入失败";
+"Import Wallet Success" = "导入成功";
+"Wallet Exist" = "钱包已存在";
+"Input KeyStore Content Here" = "直接复制粘贴官方钱包Keystore文件内容至输入框.";
+"Password Too Short" = "输入密码太短";
+"Import" = "开始导入";
+"Input Mnemonics Seperated By Blank Space" = "助记词,按空格分隔"

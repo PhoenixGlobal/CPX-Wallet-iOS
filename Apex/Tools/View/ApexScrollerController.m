@@ -110,7 +110,7 @@
             [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
         }else{
 //            [self.navigationController showImageOnNavigationBar:[UIImage imageNamed:@"bg-2"]];
-            [self.navigationController lt_setBackgroundColor:[ApexUIHelper mainThemeColor]];
+            [self.navigationController lt_setBackgroundColor:[ApexUIHelper navColor]];
         }
         
         //baseview到navbar的距离

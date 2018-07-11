@@ -33,7 +33,7 @@
     
     _leftBtn = [[UIButton alloc] init];
     _leftBtn.backgroundColor = [UIColor clearColor];
-    [_leftBtn setTitle:@"助记词" forState:UIControlStateNormal];
+    [_leftBtn setTitle:SOLocalizedStringFromTable(@"Mnemonics",nil) forState:UIControlStateNormal];
     [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_leftBtn setTitleColor:[ApexUIHelper subThemeColor] forState:UIControlStateSelected];
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
