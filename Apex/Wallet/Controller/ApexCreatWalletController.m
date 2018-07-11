@@ -167,13 +167,13 @@
     
     NeomobileWallet *wallet = NeomobileNew(&err);
     if (err) {
-        [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Wallet Fail", nil),err]];
+        [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Wallet Failed", nil),err]];
         return nil;
     }
 //    NSLog(@"%@",[wallet mnemonic:mnemonicEnglish error:nil]);
     NSString *keystore = [wallet toKeyStore:self.passWordL.text error:&keystoreErr];
     if (keystoreErr) {
-        [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Fail", nil),keystoreErr]];
+        [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Failed", nil),keystoreErr]];
         return nil;
     }
     
@@ -390,7 +390,7 @@
 - (UILabel *)tipsL{
     if (!_tipsL) {
         _tipsL = [[UILabel alloc] init];
-        _tipsL.text = @"您将在这个设备上生成一个新的加密的脱机钱包。我们建议选择一个强密码，确保您的资金安全。PS：生成一个强大安全的钱包是一个高度计算密集型的任务，可能需要几分钟。这个过程将在后台执行，期间您仍然可用您的手机，一旦我们完成了您的钱包，我们会让你知道。";
+        _tipsL.text = SOLocalizedStringFromTable(@"We Will Create A New Encrypted Offline Wallet On This Device. We Recommond You Choose A Strong Password To Keep Your Assets Safe. PS: Generating A Safe Wallet Might Takes A Couple Of Minutes, Once We Done Generation, We Will Let You Know", nil);
         _tipsL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
         _tipsL.textColor = [UIColor colorWithRed:102/255 green:102/255 blue:102/255 alpha:1];
         _tipsL.textAlignment = NSTextAlignmentCenter;

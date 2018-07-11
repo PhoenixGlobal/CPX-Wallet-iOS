@@ -96,7 +96,7 @@
 
 
 - (void)setNav{
-    self.title = @"资产";
+    self.title = SOLocalizedStringFromTable(@"Assets", nil);
     self.navigationController.delegate = self;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
     [self.navigationController findHairlineImageViewUnder:self.navigationController.navigationBar].hidden = YES;
@@ -185,7 +185,7 @@
         
         if (self.contentArr.count == 0) {
             if (!self.emptyV) {
-                self.emptyV = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
+                self.emptyV = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:SOLocalizedStringFromTable(@"Data Empty", nil) refreshBlock:nil];
             }
             [self.tableView addSubview:self.emptyV];
         }else{

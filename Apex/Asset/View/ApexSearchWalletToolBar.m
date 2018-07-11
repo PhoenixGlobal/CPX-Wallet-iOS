@@ -109,7 +109,7 @@
         _searchTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search"]];
         _searchTF.leftViewMode = UITextFieldViewModeAlways;
         _searchTF.textColor = [UIColor whiteColor];
-        _searchTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"钱包地址" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:14]}];
+        _searchTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:SOLocalizedStringFromTable(@"Wallet Address", nil) attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:14]}];
         [_searchTF addTarget:self action:@selector(tfDidChangeChar) forControlEvents:UIControlEventEditingChanged];
     }
     return _searchTF;
@@ -118,7 +118,7 @@
 - (UIButton *)cancleBtn{
     if (!_cancleBtn) {
         _cancleBtn = [[UIButton alloc] init];
-        [_cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancleBtn setTitle:SOLocalizedStringFromTable(@"Cancle", nil) forState:UIControlStateNormal];
         [_cancleBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
         _cancleBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         @weakify(self);

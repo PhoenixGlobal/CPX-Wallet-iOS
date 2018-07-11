@@ -93,14 +93,14 @@
     NSError *err = nil;
     NeomobileWallet *wallet = NeomobileFromKeyStore(self.textView.text, self.passTF.text, &err);
     if (err) {
-        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Fail", nil)];
+        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Failed", nil)];
         return;
     }
     
     NSError *keystoreErr = nil;
     NSString *keystore = [wallet toKeyStore:self.passTF.text error:&keystoreErr];
     if (keystoreErr) {
-        [[self topViewController] showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Fail", nil) ,keystoreErr]];
+        [[self topViewController] showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Failed", nil) ,keystoreErr]];
         return;
     }
     

@@ -39,6 +39,7 @@
     _mappignBtn.layer.borderWidth = 1.0/kScale;
     _mappignBtn.layer.cornerRadius = 4;
     _mappignBtn.backgroundColor = [ApexUIHelper grayColor240];
+    [_mappignBtn setTitle:SOLocalizedStringFromTable(@"Go Mapping", nil) forState:UIControlStateNormal];
     
     [_balanceL setAdjustsFontSizeToFitWidth:YES];
     

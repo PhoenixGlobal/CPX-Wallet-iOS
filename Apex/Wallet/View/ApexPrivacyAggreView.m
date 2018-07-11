@@ -56,8 +56,12 @@
     if (!_privacyAgreeLable) {
         _privacyAgreeLable = [[UILabel alloc] init];
         _privacyAgreeLable.font = [UIFont systemFontOfSize:10];
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"我已仔细阅读并同意服务及隐私条款"];
-        [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"3D76F8"] range:NSMakeRange(9, 7)];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:SOLocalizedStringFromTable(@"I agree to the Service and Privacy Policy", nil)];
+        if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(15, 26)];
+        }else{
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(9, 7)];
+        }
         _privacyAgreeLable.attributedText = str;
     }
     return _privacyAgreeLable;

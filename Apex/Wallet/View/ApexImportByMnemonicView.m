@@ -86,14 +86,14 @@
     NSError *err = nil;
     NeomobileWallet *wallet = NeomobileFromMnemonic(self.textView.text, mnemonicEnglish, &err);
     if (err) {
-        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Fail", nil)];
+        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Failed", nil)];
         return;
     }
     
     NSError *keystoreErr = nil;
     NSString *keystore = [wallet toKeyStore:self.passWordTF.text error:&keystoreErr];
     if (keystoreErr) {
-        [[self topViewController] showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Fail", nil),keystoreErr]];
+        [[self topViewController] showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Failed", nil),keystoreErr]];
         return;
     }
     
@@ -168,11 +168,11 @@
         // 指明当输入文字时,是否下调基准线(baseline).设置为YES(非默认值),意味着占位内容会和输入内容对齐.
         _passWordTF.keepBaseline = YES;
         // 设置占位符文字和浮动式标签的文字.
-        [_passWordTF setPlaceholder:@"密码(不少于6个字符)"
-                      floatingTitle:@"密码"];
+        [_passWordTF setPlaceholder:SOLocalizedStringFromTable(@"Password(at least 6 characters)", nil)
+                      floatingTitle:SOLocalizedStringFromTable(@"Password", nil)];
         _passWordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         
-        _passWordTF.alertString = @"输入密码太短";
+        _passWordTF.alertString = SOLocalizedStringFromTable(@"Password Too Short", nil);
         _passWordTF.alertShowConditionBlock = ^BOOL(NSString *text) {
             
             if (text.length >= 6) {
@@ -198,12 +198,12 @@
         // 指明当输入文字时,是否下调基准线(baseline).设置为YES(非默认值),意味着占位内容会和输入内容对齐.
         _repeatPassWTF.keepBaseline = YES;
         // 设置占位符文字和浮动式标签的文字.
-        [_repeatPassWTF setPlaceholder:@"重复密码(不少于6个字符)"
-                         floatingTitle:@"重复密码"];
+        [_repeatPassWTF setPlaceholder:SOLocalizedStringFromTable(@"Repeat Password", nil)
+                         floatingTitle:SOLocalizedStringFromTable(@"Repeat Password", nil)];
         _repeatPassWTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         
         @weakify(self);
-        _repeatPassWTF.alertString = @"输入密码不相符";
+        _repeatPassWTF.alertString = SOLocalizedStringFromTable(@"Password is different", nil);
         _repeatPassWTF.alertShowConditionBlock = ^BOOL(NSString *text) {
             @strongify(self)
             
@@ -231,7 +231,7 @@
         _importBtn.backgroundColor = [ApexUIHelper mainThemeColor];
         _importBtn.layer.cornerRadius = 5;
         _importBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-        [_importBtn setTitle:@"开始导入" forState:UIControlStateNormal];
+        [_importBtn setTitle:SOLocalizedStringFromTable(@"Import", nil) forState:UIControlStateNormal];
         [[RACObserve(_importBtn, enabled) takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNumber *x) {
             if (x.boolValue) {
                 [_importBtn setBackgroundColor:[ApexUIHelper mainThemeColor]];
