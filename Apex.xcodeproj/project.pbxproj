@@ -50,6 +50,8 @@
 		E3373B3F20F5F14F00590407 /* UITextField+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B3220F5F14F00590407 /* UITextField+SOLocalization.m */; };
 		E3373B4220F725D200590407 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3373B4420F725D200590407 /* Localizable.strings */; };
 		E3373B4920F72CF400590407 /* ApexMinePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B4820F72CF400590407 /* ApexMinePageController.m */; };
+		E3373B4C20F7458E00590407 /* ApexWalletManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B4B20F7458E00590407 /* ApexWalletManageController.m */; };
+		E3373B4F20F7459D00590407 /* ApexTransferHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B4E20F7459D00590407 /* ApexTransferHistoryController.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -249,6 +251,10 @@
 		E3373B4620F726B300590407 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E3373B4720F72CF400590407 /* ApexMinePageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMinePageController.h; sourceTree = "<group>"; };
 		E3373B4820F72CF400590407 /* ApexMinePageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMinePageController.m; sourceTree = "<group>"; };
+		E3373B4A20F7458E00590407 /* ApexWalletManageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletManageController.h; sourceTree = "<group>"; };
+		E3373B4B20F7458E00590407 /* ApexWalletManageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletManageController.m; sourceTree = "<group>"; };
+		E3373B4D20F7459D00590407 /* ApexTransferHistoryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferHistoryController.h; sourceTree = "<group>"; };
+		E3373B4E20F7459D00590407 /* ApexTransferHistoryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransferHistoryController.m; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -672,6 +678,10 @@
 				E33A8BAC20AE77C70067505E /* ApexMineController.m */,
 				E3373B4720F72CF400590407 /* ApexMinePageController.h */,
 				E3373B4820F72CF400590407 /* ApexMinePageController.m */,
+				E3373B4A20F7458E00590407 /* ApexWalletManageController.h */,
+				E3373B4B20F7458E00590407 /* ApexWalletManageController.m */,
+				E3373B4D20F7459D00590407 /* ApexTransferHistoryController.h */,
+				E3373B4E20F7459D00590407 /* ApexTransferHistoryController.m */,
 				E3263ECF20B666CA001D3C19 /* ApexWalletManageDetailController.h */,
 				E3263ED020B666CA001D3C19 /* ApexWalletManageDetailController.m */,
 				E3263ECE20B666CA001D3C19 /* ApexWalletManageDetailController.xib */,
@@ -1302,6 +1312,7 @@
 				E3CE667820BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m in Sources */,
 				E33A8BDF20B2BB340067505E /* UIView+Common.m in Sources */,
 				E3373B3F20F5F14F00590407 /* UITextField+SOLocalization.m in Sources */,
+				E3373B4C20F7458E00590407 /* ApexWalletManageController.m in Sources */,
 				E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */,
 				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
 				E3373B3C20F5F14F00590407 /* UIBarItem+SOLocalization.m in Sources */,
@@ -1354,6 +1365,7 @@
 				E3263EF920B6AF07001D3C19 /* ApexMnemonicFlowLayout.m in Sources */,
 				E324311920E0F5A200284B91 /* ApexAssetModelManage.m in Sources */,
 				E33A8BF220B3F0350067505E /* ApexTXRecorderModel.m in Sources */,
+				E3373B4F20F7459D00590407 /* ApexTransferHistoryController.m in Sources */,
 				E33A8BF720B3F4030067505E /* ApexTXRecordCell.m in Sources */,
 				E3CE668120BBF9A5002A1E07 /* MethodSwizzling.m in Sources */,
 				E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */,

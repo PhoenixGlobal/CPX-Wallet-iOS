@@ -46,6 +46,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:Notification_TranferHasConfirmed object:nil];
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self prepareData];

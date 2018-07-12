@@ -166,7 +166,7 @@
 - (ApexSearchWalletToolBar *)searchToolBar{
     if (!_searchToolBar) {
         _searchToolBar = [[ApexSearchWalletToolBar alloc] init];
-        [_searchToolBar setPlaceHolder:@"资产名称" color:UIColorHex(666666)];
+        [_searchToolBar setPlaceHolder:SOLocalizedStringFromTable(@"Assets", nil) color:UIColorHex(666666)];
         [_searchToolBar setTextColor:UIColorHex(666666) backgroundColor:[UIColorHex(999999) colorWithAlphaComponent:0.2]];
         
     }
@@ -176,7 +176,7 @@
 - (UILabel *)titleL{
     if (!_titleL) {
         _titleL = [[UILabel alloc] init];
-        _titleL.text = @"添加资产";
+        _titleL.text = SOLocalizedStringFromTable(@"Add Assets", nil);
         _titleL.font = [UIFont systemFontOfSize:17];
         _titleL.textColor = [UIColor blackColor];
     }

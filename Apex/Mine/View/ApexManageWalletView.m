@@ -26,10 +26,13 @@
 #pragma mark - private
 - (void)initUI{
     self.tableView.backgroundColor = [ApexUIHelper grayColor240];
+    self.backgroundColor = [ApexUIHelper grayColor240];
     
     [self addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.equalTo(self);
+        make.left.equalTo(self).offset(15);
+        make.right.equalTo(self).offset(-15);
+        make.bottom.equalTo(self);
         make.top.equalTo(self).offset(10);
     }];
     
@@ -95,6 +98,7 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.estimatedRowHeight = 100;
         _tableView.rowHeight = UITableViewAutomaticDimension;
+        _tableView.contentInset = UIEdgeInsetsMake(15, 0, 0, 0);
     }
     return _tableView;
 }
