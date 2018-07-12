@@ -38,7 +38,7 @@
 
 #pragma mark - ------private------
 - (void)setUI{
-    self.title = @"我";
+    self.title = SOLocalizedStringFromTable(@"Main", nil);
     self.view.backgroundColor = [ApexUIHelper grayColor240];
     
 

@@ -26,6 +26,8 @@
     self.backupTipBtn.layer.borderColor = [UIColor colorWithHexString:@"B3D38D"].CGColor;
     self.backupTipBtn.layer.borderWidth = 1.0/kScale;
     self.backupTipBtn.layer.cornerRadius = 9;
+    [self.backupTipBtn setTitle:SOLocalizedStringFromTable(@"Back up", nil) forState:UIControlStateNormal];
+    [self.backupTipBtn.titleLabel setAdjustsFontSizeToFitWidth:YES];
 }
 
 - (void)setModel:(ApexWalletModel *)model

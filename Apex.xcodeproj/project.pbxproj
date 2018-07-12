@@ -48,6 +48,8 @@
 		E3373B3D20F5F14F00590407 /* UINavigationItem+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2C20F5F14F00590407 /* UINavigationItem+SOLocalization.m */; };
 		E3373B3E20F5F14F00590407 /* UIButton+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B2E20F5F14F00590407 /* UIButton+SOLocalization.m */; };
 		E3373B3F20F5F14F00590407 /* UITextField+SOLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B3220F5F14F00590407 /* UITextField+SOLocalization.m */; };
+		E3373B4220F725D200590407 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3373B4420F725D200590407 /* Localizable.strings */; };
+		E3373B4920F72CF400590407 /* ApexMinePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B4820F72CF400590407 /* ApexMinePageController.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -97,7 +99,6 @@
 		E38A64BA20ECB0EA00150F3B /* ApexAddAssetsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A64B920ECB0EA00150F3B /* ApexAddAssetsController.m */; };
 		E38A64BE20ECB88600150F3B /* ApexAddAssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38A64BB20ECB88600150F3B /* ApexAddAssetCell.xib */; };
 		E38A64BF20ECB88600150F3B /* ApexAddAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A64BD20ECB88600150F3B /* ApexAddAssetCell.m */; };
-		E397A12F20F48FC6008718F3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E397A13120F48FC6008718F3 /* Localizable.strings */; };
 		E39E02C420C4EDF6005DD251 /* ApexAssetMainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E02C120C4EDF6005DD251 /* ApexAssetMainViewCell.xib */; };
 		E39E02C520C4EDF6005DD251 /* ApexAssetMainViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02C320C4EDF6005DD251 /* ApexAssetMainViewCell.m */; };
 		E39E02C820C50517005DD251 /* ApexAccountDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02C720C50517005DD251 /* ApexAccountDetailController.m */; };
@@ -243,6 +244,11 @@
 		E3373B3420F5F14F00590407 /* UIBarItem+SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarItem+SOLocalization.h"; sourceTree = "<group>"; };
 		E3373B3520F5F14F00590407 /* UILabel+SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SOLocalization.h"; sourceTree = "<group>"; };
 		E3373B3620F5F14F00590407 /* SOLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOLocalization.h; sourceTree = "<group>"; };
+		E3373B4320F725D200590407 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E3373B4520F726B100590407 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E3373B4620F726B300590407 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E3373B4720F72CF400590407 /* ApexMinePageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMinePageController.h; sourceTree = "<group>"; };
+		E3373B4820F72CF400590407 /* ApexMinePageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMinePageController.m; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -337,7 +343,6 @@
 		E38A64BB20ECB88600150F3B /* ApexAddAssetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexAddAssetCell.xib; sourceTree = "<group>"; };
 		E38A64BC20ECB88600150F3B /* ApexAddAssetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAddAssetCell.h; sourceTree = "<group>"; };
 		E38A64BD20ECB88600150F3B /* ApexAddAssetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAddAssetCell.m; sourceTree = "<group>"; };
-		E397A13420F49022008718F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E39E02C120C4EDF6005DD251 /* ApexAssetMainViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexAssetMainViewCell.xib; sourceTree = "<group>"; };
 		E39E02C220C4EDF6005DD251 /* ApexAssetMainViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetMainViewCell.h; sourceTree = "<group>"; };
 		E39E02C320C4EDF6005DD251 /* ApexAssetMainViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetMainViewCell.m; sourceTree = "<group>"; };
@@ -608,11 +613,11 @@
 				E3CD112A20F30D49009C1439 /* AssetResources.bundle */,
 				E33A8BC020B28CD90067505E /* Neomobile.framework */,
 				E33A8BA220AE75980067505E /* PrefixHeader.pch */,
+				E3373B4420F725D200590407 /* Localizable.strings */,
 				E33A8B5420AE724F0067505E /* Assets.xcassets */,
 				E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */,
 				E33A8B5920AE724F0067505E /* Info.plist */,
 				E33A8B5A20AE724F0067505E /* main.m */,
-				E397A13120F48FC6008718F3 /* Localizable.strings */,
 			);
 			path = Apex;
 			sourceTree = "<group>";
@@ -665,6 +670,8 @@
 			children = (
 				E33A8BAB20AE77C70067505E /* ApexMineController.h */,
 				E33A8BAC20AE77C70067505E /* ApexMineController.m */,
+				E3373B4720F72CF400590407 /* ApexMinePageController.h */,
+				E3373B4820F72CF400590407 /* ApexMinePageController.m */,
 				E3263ECF20B666CA001D3C19 /* ApexWalletManageDetailController.h */,
 				E3263ED020B666CA001D3C19 /* ApexWalletManageDetailController.m */,
 				E3263ECE20B666CA001D3C19 /* ApexWalletManageDetailController.xib */,
@@ -1157,6 +1164,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = E33A8B3F20AE724D0067505E;
 			productRefGroup = E33A8B4920AE724D0067505E /* Products */;
@@ -1191,7 +1199,7 @@
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
 				E39E030320C8FB61005DD251 /* ApexExportKeystoryFileView.xib in Resources */,
 				E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */,
-				E397A12F20F48FC6008718F3 /* Localizable.strings in Resources */,
+				E3373B4220F725D200590407 /* Localizable.strings in Resources */,
 				E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */,
 				E3263EE920B69BB6001D3C19 /* heart.png in Resources */,
 				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
@@ -1397,6 +1405,7 @@
 				E3CE66BD20BF99AF002A1E07 /* ApexSwithWalletView.m in Sources */,
 				E33A8B4D20AE724D0067505E /* AppDelegate.m in Sources */,
 				E3373B3B20F5F14F00590407 /* UILabel+SOLocalization.m in Sources */,
+				E3373B4920F72CF400590407 /* ApexMinePageController.m in Sources */,
 				E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */,
 				E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */,
 				E33A8B8920AE75650067505E /* CYLTabBarController.m in Sources */,
@@ -1428,20 +1437,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E3373B4420F725D200590407 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3373B4320F725D200590407 /* en */,
+				E3373B4620F726B300590407 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E33A8B5720AE724F0067505E /* Base */,
+				E3373B4520F726B100590407 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		E397A13120F48FC6008718F3 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E397A13420F49022008718F3 /* en */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1487,6 +1498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1545,6 +1557,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -37,7 +37,7 @@
 #pragma mark - ------private------
 - (void)initUI{
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"创建钱包";
+    self.title = SOLocalizedStringFromTable(@"Create Wallet", nil);
     
     [self.view addSubview:self.imageV];
     [self.view addSubview:self.tipL];
@@ -85,12 +85,12 @@
             vc.mnemonic = [wallet mnemonic:mnemonicEnglish error:&err];
             vc.BackupCompleteBlock = self.BackupCompleteBlock;
             if (err) {
-                [self showMessage:@"助记词生成失败"];
+                [self showMessage:SOLocalizedStringFromTable(@"Create Mnemonics Failed", nil)];
                 return;
             }
             [self.navigationController pushViewController:vc animated:YES];
         } fail:^{
-            [self showMessage:@"助记词生成失败"];
+            [self showMessage:SOLocalizedStringFromTable(@"Create Mnemonics Failed", nil)];
         }];
         
         
@@ -110,7 +110,7 @@
     if (!_tipL) {
         _tipL = [[UILabel alloc] init];
         _tipL.font = [UIFont systemFontOfSize:18];
-        _tipL.text = @"备注钱包";
+        _tipL.text = SOLocalizedStringFromTable(@"Backup Mnemonic", nil);
         _tipL.textColor = [UIColor colorWithHexString:@"666666"];
     }
     return _tipL;
@@ -120,7 +120,7 @@
     if (!_detailL) {
         _detailL = [[UILabel alloc] init];
         _detailL.font = [UIFont systemFontOfSize:13];
-        _detailL.text = @"导出【助记词】并抄写到安全的地方，千万不要保存到网络上，然后尝试转入、转出小额资产开始使用。";
+        _detailL.text = SOLocalizedStringFromTable(@"Export mnemonics and keep it in a safe place, do not save on the internet. then begin using with transfer small assets.", nil);
         _detailL.numberOfLines = 0;
         _detailL.textColor = [UIColor colorWithHexString:@"666666"];
     }
@@ -130,7 +130,7 @@
 - (UIButton *)toBackUpBtn{
     if (!_toBackUpBtn) {
         _toBackUpBtn = [[UIButton alloc] init];
-        [_toBackUpBtn setTitle:@"备份钱包" forState:UIControlStateNormal];
+        [_toBackUpBtn setTitle:SOLocalizedStringFromTable(@"Backup Mnemonic", nil) forState:UIControlStateNormal];
         [_toBackUpBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _toBackUpBtn.backgroundColor = [ApexUIHelper mainThemeColor];
         _toBackUpBtn.titleLabel.font = [UIFont systemFontOfSize:13];

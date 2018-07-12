@@ -122,7 +122,7 @@
     if (!_titleL) {
         _titleL = [[UILabel alloc] init];
         _titleL.font = [UIFont systemFontOfSize:17];
-        _titleL.text = @"切换钱包";
+        _titleL.text = SOLocalizedStringFromTable(@"Change Wallet", nil);
         _titleL.textColor = [ApexUIHelper grayColor];
         _titleL.textAlignment = NSTextAlignmentCenter;
     }

@@ -15,6 +15,10 @@
                 <outlet property="fromAddressL" destination="atX-NG-Lsy" id="rdi-Fn-y02"/>
                 <outlet property="subTitleL" destination="NKF-Gf-bYR" id="30S-OM-DLD"/>
                 <outlet property="timeStamp" destination="GOs-Xo-fVv" id="tV6-5g-IQz"/>
+                <outlet property="tipL0" destination="hTs-Eq-mTh" id="O2X-2z-lub"/>
+                <outlet property="tipL1" destination="J4J-hR-Umc" id="LOE-6m-CFl"/>
+                <outlet property="tipL2" destination="K4B-YB-txy" id="Z5H-88-qgm"/>
+                <outlet property="tipL3" destination="Krl-a9-19X" id="C9Z-7g-i15"/>
                 <outlet property="toAddressL" destination="vOm-VU-JN1" id="WVs-MP-Df7"/>
                 <outlet property="txic" destination="2qg-vL-Dwl" id="9RT-wl-i14"/>
                 <outlet property="valueL" destination="JCO-de-hSL" id="p3S-TJ-2Di"/>

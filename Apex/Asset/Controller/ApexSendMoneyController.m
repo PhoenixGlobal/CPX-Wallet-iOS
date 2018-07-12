@@ -65,7 +65,6 @@
 
 - (void)setUI{
     self.navigationItem.titleView = self.titleLable;
-    self.unitL.text = self.unit;
     self.walletNameL.text = self.walletName;
     self.fromAddressL.text = self.walletAddress;
     self.toAddressTF.text = self.toAddressIfHave;
@@ -78,6 +77,7 @@
     for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
         if ([model.hex_hash containsString:self.balanceModel.asset]) {
             self.assetModel = model;
+            self.unitL.text = self.assetModel.symbol;
             break;
         }
     }

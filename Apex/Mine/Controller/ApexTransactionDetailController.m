@@ -102,7 +102,7 @@
         [self requestSuccessLoadDataFromFMDB];
     } failure:^(NSError *err) {
         [self.tableView.mj_header endRefreshing];
-        [self showMessage:@"请求失败,请稍后再试"];
+        [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
     }];
 }
 
@@ -115,7 +115,7 @@
     [self.tableView.mj_footer setState:MJRefreshStateIdle];
     self.contentArr = [[ApexTransferHistoryManager shareManager] getHistoriesOffset:self.offset walletAddress:self.model.address];
     if (self.contentArr.count == 0) {
-        self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无交易记录" refreshBlock:nil];
+        self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:SOLocalizedStringFromTable(@"Data Empty", nil) refreshBlock:nil];
     }else{
         [self.ev removeFromSuperview];
     }
@@ -229,7 +229,7 @@
 - (ApexSearchWalletToolBar *)searchToolBar{
     if (!_searchToolBar) {
         _searchToolBar = [[ApexSearchWalletToolBar alloc] initWithFrame:self.searchBaseV.bounds];
-        _searchToolBar.placeHolder = @"搜索txid";
+        _searchToolBar.placeHolder = SOLocalizedStringFromTable(@"Search Txid", nil);
     }
     return _searchToolBar;
 }

@@ -13,6 +13,10 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *tipLable01;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *tipLable3;
+
 @end
 
 @implementation ApexBackUpController
@@ -32,7 +36,11 @@
 }
 
 - (void)initUI{
-    self.title = @"备份钱包";
+    self.title = SOLocalizedStringFromTable(@"Backup Wallet", nil);
+    [self.nextBtn setTitle:SOLocalizedStringFromTable(@"Next step", nil) forState:UIControlStateNormal];
+    _tipLable01.text = SOLocalizedStringFromTable(@"Copy Your Mnemonic", nil);
+    _tipLabel2.text = SOLocalizedStringFromTable(@"The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know.", nil);
+    _tipLable3.text = SOLocalizedStringFromTable(@"Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place.", nil);
     
     self.textView.layer.cornerRadius = 3;
     self.textView.layer.shadowColor = [UIColor darkGrayColor].CGColor;

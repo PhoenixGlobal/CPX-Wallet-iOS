@@ -22,6 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [self localization];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     CYLTabBarController *tabbarVC = [[CYLTabBarController alloc] init];
     
@@ -45,6 +46,11 @@
     [self.window makeKeyAndVisible];
 
     return YES;
+}
+
+- (void)localization{
+    [SOLocalization configSupportRegions:@[SOLocalizationEnglish,SOLocalizationSimplifiedChinese] fallbackRegion:SOLocalizationSimplifiedChinese];
+    [SOLocalization sharedLocalization].region = SOLocalizationSimplifiedChinese;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

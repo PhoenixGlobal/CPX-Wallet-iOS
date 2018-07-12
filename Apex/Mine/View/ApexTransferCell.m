@@ -82,25 +82,25 @@
     
     switch (model.status) {
         case ApexTransferStatus_Progressing:{
-            _successFlag.text = @"交易确认中";
+            _successFlag.text = SOLocalizedStringFromTable(@"Confirming", nil);
             _successFlag.textColor = [ApexUIHelper mainThemeColor];
         }
             break;
         case ApexTransferStatus_Failed:{
-            _successFlag.text = @"交易失败";
+            _successFlag.text = SOLocalizedStringFromTable(@"Fail", nil);
             _successFlag.textColor = [UIColor redColor];
             _timeStampL.hidden = NO;
         }
             
             break;
         case ApexTransferStatus_Confirmed:{
-            _successFlag.text = @"交易成功";
+            _successFlag.text = SOLocalizedStringFromTable(@"Success", nil);
             _successFlag.textColor = [UIColor colorWithHexString:@"54CA80"];
             _timeStampL.hidden = NO;
         }
             break;
         case ApexTransferStatus_Blocking:{
-            _successFlag.text = @"交易打包中";
+            _successFlag.text = SOLocalizedStringFromTable(@"Blocking", nil);
             _successFlag.textColor = [UIColor colorWithHexString:@"F5A623"];
         }
             break;
@@ -114,24 +114,24 @@
 
 - (void)caculatePeriod{
     CGFloat timeStamp = self.model.time.floatValue;
-    CGFloat now = [[NSDate date] timeIntervalSince1970];
-    CGFloat period = now - timeStamp;
-    if (period <= 60) {
-        _timeStampL.text = [NSString stringWithFormat:@"%.0f秒前",period];
-    }
-    
-    if (period > 60 && period < 3600) {
-        _timeStampL.text = [NSString stringWithFormat:@"%.0f分钟前",period/60.0];
-    }
-    
-    if (period > 3600 && period <= 86400) {
-        _timeStampL.text = [NSString stringWithFormat:@"%.0f小时前",period/3600.0];
-    }
-    
-    if (period > 86400) {
+//    CGFloat now = [[NSDate date] timeIntervalSince1970];
+//    CGFloat period = now - timeStamp;
+//    if (period <= 60) {
+//        _timeStampL.text = [NSString stringWithFormat:@"%.0f秒前",period];
+//    }
+//
+//    if (period > 60 && period < 3600) {
+//        _timeStampL.text = [NSString stringWithFormat:@"%.0f分钟前",period/60.0];
+//    }
+//
+//    if (period > 3600 && period <= 86400) {
+//        _timeStampL.text = [NSString stringWithFormat:@"%.0f小时前",period/3600.0];
+//    }
+//
+//    if (period > 86400) {
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
-        _timeStampL.text = [NSString stringWithFormat:@"%ld年%ld月%ld日",(long)date.year,date.month,date.day];
-    }
+    _timeStampL.text = [NSString stringWithFormat:@"%ld/%ld/%ld %ld:%ld",(long)date.year,date.month,date.day, date.hour, date.minute];
+//    }
     
 }
 

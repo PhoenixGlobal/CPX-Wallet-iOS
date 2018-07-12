@@ -27,14 +27,9 @@
     [self updateAssetList];
     
     [self transHistorySelfCheck];
-    
-    [self localization];
 }
 
-+ (void)localization{
-    [SOLocalization configSupportRegions:@[SOLocalizationEnglish,SOLocalizationSimplifiedChinese] fallbackRegion:SOLocalizationSimplifiedChinese];
-    [[SOLocalization sharedLocalization] setRegion:SOLocalizationEnglish];
-}
+
 
 + (void)transHistorySelfCheck{
     

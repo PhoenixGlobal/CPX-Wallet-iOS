@@ -18,6 +18,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *valueL;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleL;
 //@property (weak, nonatomic) IBOutlet UILabel *blockHeight;
+@property (weak, nonatomic) IBOutlet UILabel *tipL0;
+@property (weak, nonatomic) IBOutlet UILabel *tipL1;
+@property (weak, nonatomic) IBOutlet UILabel *tipL2;
+@property (weak, nonatomic) IBOutlet UILabel *tipL3;
 
 @property (nonatomic, strong) UIImageView *backIV;
 @property (nonatomic, strong) UILabel *titleLable;
@@ -60,7 +64,7 @@
             self.model.symbol = @"GAS";
         }
         
-        _subTitleL.text = [NSString stringWithFormat:@"交易金额(%@)",self.model.symbol];
+        _subTitleL.text = [NSString stringWithFormat:@"%@(%@)",SOLocalizedStringFromTable(@"Amount", nil),self.model.symbol];
     }
     @weakify(self);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
@@ -68,10 +72,15 @@
         @strongify(self);
         UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
         pasteBoard.string = self.txic.text;
-        [self showMessage:@"txid已复制到剪切板"];
+        [self showMessage:SOLocalizedStringFromTable(@"%@", nil)];
     }];
     _txic.userInteractionEnabled = YES;
     [_txic addGestureRecognizer:tap];
+    
+    _tipL0.text = SOLocalizedStringFromTable(@"From", nil);
+    _tipL1.text = SOLocalizedStringFromTable(@"To", nil);
+    _tipL2.text = SOLocalizedStringFromTable(@"Time", nil);
+    _tipL3.text = SOLocalizedStringFromTable(@"Txid", nil);
 }
 
 #pragma mark - ------getter-----
@@ -90,7 +99,7 @@
         _titleLable = [[UILabel alloc] init];
         _titleLable.font = [UIFont systemFontOfSize:17];
         _titleLable.textColor = [UIColor blackColor];
-        _titleLable.text = @"交易详情";
+        _titleLable.text = SOLocalizedStringFromTable(@"Transaction Detail", nil);
     }
     return _titleLable;
 }

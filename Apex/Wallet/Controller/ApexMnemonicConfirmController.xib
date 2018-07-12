@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,6 +16,8 @@
                 <outlet property="confirmBtn" destination="WOR-am-rfz" id="VTN-FI-S9c"/>
                 <outlet property="flowLayout" destination="Tci-x6-Tvi" id="jl7-m1-MGe"/>
                 <outlet property="showCollectionView" destination="bGM-4W-mhZ" id="Rhc-fe-SZe"/>
+                <outlet property="tipLable0" destination="69i-Ul-eOG" id="qey-dq-i8Q"/>
+                <outlet property="tipLable1" destination="Od5-zH-Zvn" id="ByE-Y5-PyL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,17 +35,17 @@
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请按顺序点击助记词，以确认你的备份助记词正确。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od5-zH-Zvn">
-                    <rect key="frame" x="35" y="111.5" width="305" height="14.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please click on the mnemonic in order, make sure you backup correctly." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od5-zH-Zvn">
+                    <rect key="frame" x="35" y="111.5" width="305" height="29"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="Jkr-NV-AqT"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="Jkr-NV-AqT"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOR-am-rfz">
-                    <rect key="frame" x="35" y="536.5" width="305" height="40"/>
+                    <rect key="frame" x="35" y="550.5" width="305" height="40"/>
                     <color key="backgroundColor" red="0.29803921570000003" green="0.5568627451" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="8R6-vY-UqJ"/>
@@ -58,7 +60,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bGM-4W-mhZ" customClass="ApexMnenonicShowView">
-                    <rect key="frame" x="15" y="146" width="345" height="160"/>
+                    <rect key="frame" x="15" y="160.5" width="345" height="160"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="160" id="Qej-oL-faw"/>
@@ -66,7 +68,7 @@
                     <collectionViewLayout key="collectionViewLayout" id="NfS-DU-QNp" customClass="ApexMnemonicFlowLayout"/>
                 </collectionView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mbm-Hg-IUV">
-                    <rect key="frame" x="25" y="326.5" width="325" height="180"/>
+                    <rect key="frame" x="25" y="340.5" width="325" height="180"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="180" id="k4Z-Ov-aTA"/>

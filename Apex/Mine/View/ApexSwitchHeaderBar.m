@@ -33,7 +33,7 @@
     
     _leftBtn = [[UIButton alloc] init];
     _leftBtn.backgroundColor = [UIColor clearColor];
-    [_leftBtn setTitle:@"管理钱包" forState:UIControlStateNormal];
+    [_leftBtn setTitle:SOLocalizedStringFromTable(@"Manage Wallet", nil) forState:UIControlStateNormal];
     [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_leftBtn setTitleColor:[ApexUIHelper subThemeColor] forState:UIControlStateSelected];
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -41,7 +41,7 @@
     
     _rightBtn = [[UIButton alloc] init];
     _rightBtn.backgroundColor = [UIColor clearColor];
-    [_rightBtn setTitle:@"交易记录" forState:UIControlStateNormal];
+    [_rightBtn setTitle:SOLocalizedStringFromTable(@"Transaction Records", nil) forState:UIControlStateNormal];
     [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_rightBtn setTitleColor:[ApexUIHelper subThemeColor] forState:UIControlStateSelected];
     _rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];

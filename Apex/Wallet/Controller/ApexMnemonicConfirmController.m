@@ -21,6 +21,9 @@
 @property (nonatomic, strong) NSMutableArray *choosenArr;
 @property (weak, nonatomic) IBOutlet ApexMnemonicFlowLayout *flowLayout;
 
+@property (weak, nonatomic) IBOutlet UILabel *tipLable0;
+@property (weak, nonatomic) IBOutlet UILabel *tipLable1;
+
 @end
 
 @implementation ApexMnemonicConfirmController
@@ -42,7 +45,7 @@
 
 #pragma mark - ------private------
 - (void)initUI{
-    self.title = @"备份钱包";
+     self.title = SOLocalizedStringFromTable(@"Backup Wallet", nil);
     _choosenArr = [NSMutableArray array];
     
     _collectionView.delegate = self;
@@ -56,7 +59,10 @@
     self.showCollectionView.layer.shadowOpacity = 0.63;
     
     self.confirmBtn.layer.cornerRadius = 6;
+    [self.confirmBtn setTitle:SOLocalizedStringFromTable(@"Confirm", nil) forState:UIControlStateNormal];
     
+    _tipLable0.text = SOLocalizedStringFromTable(@"Confirm your mnemonic", nil);
+    _tipLable1.text = SOLocalizedStringFromTable(@"Please click on the mnemonic in order, make sure you backup correctly.", nil);
 }
 
 - (void)prepareData{
@@ -112,14 +118,14 @@
 - (IBAction)confirmAction:(id)sender {
     NSString *mnemonic = [self.choosenArr componentsJoinedByString:@" "];
     if ([mnemonic isEqualToString:self.mnemonic]) {
-        [self showMessage:@"备份成功"];
+        [self showMessage:SOLocalizedStringFromTable(@"Back Up Success", nil)];
         [ApexWalletManager setBackupFinished:self.address];
         if (self.BackupCompleteBlock) {
             self.BackupCompleteBlock();
         }
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
-        [self showMessage:@"备份失败"];
+        [self showMessage:SOLocalizedStringFromTable(@"Back Up Filed", nil)];
     }
 }
 

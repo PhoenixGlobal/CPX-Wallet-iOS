@@ -91,7 +91,7 @@
     if (!_scanBtn) {
         _scanBtn = [[ZJNButton alloc] init];
         [_scanBtn setImage:[UIImage imageNamed:@"Group 3"] forState:UIControlStateNormal];
-        [_scanBtn setTitle:@"扫一扫" forState:UIControlStateNormal];
+        [_scanBtn setTitle:SOLocalizedStringFromTable(@"Scan", nil) forState:UIControlStateNormal];
         _scanBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_scanBtn setTitleColor:[UIColor colorWithHexString:@"666666"] forState:UIControlStateNormal];
         _scanBtn.contentMode = UIViewContentModeScaleAspectFill;
@@ -105,7 +105,7 @@
     if (!_creatBtn) {
         _creatBtn = [[ZJNButton alloc] init];
         [_creatBtn setImage:[UIImage imageNamed:@"Page 1"] forState:UIControlStateNormal];
-        [_creatBtn setTitle:@"创建钱包" forState:UIControlStateNormal];
+        [_creatBtn setTitle:SOLocalizedStringFromTable(@"Create Wallet", nil) forState:UIControlStateNormal];
         _creatBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_creatBtn setTitleColor:[UIColor colorWithHexString:@"666666"] forState:UIControlStateNormal];
         _creatBtn.contentMode = UIViewContentModeScaleAspectFill;
@@ -119,7 +119,7 @@
     if (!_importBtn) {
         _importBtn = [[ZJNButton alloc] init];
         [_importBtn setImage:[UIImage imageNamed:@"Page 13"] forState:UIControlStateNormal];
-        [_importBtn setTitle:NSLocalizedString(@"Import Wallet", nil) forState:UIControlStateNormal];
+        [_importBtn setTitle:SOLocalizedStringFromTable(@"Import Wallet", nil) forState:UIControlStateNormal];
         _importBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_importBtn setTitleColor:[UIColor colorWithHexString:@"666666"] forState:UIControlStateNormal];
         _importBtn.contentMode = UIViewContentModeScaleAspectFit;

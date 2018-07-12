@@ -1,0 +1,85 @@
+/* 
+  Localizable.strings
+  Apex
+
+  Created by chinapex on 2018/7/12.
+  Copyright © 2018 Gary. All rights reserved.
+*/
+"Create Wallet" = "创建钱包";
+"Import Wallet" = "导入钱包";
+"Wallet Name" = "钱包名称";
+"Wallet Address" = "钱包地址";
+"8 Characters Most" = "请输入最多八个字符";
+"Password" = "密码";
+"Password(at least 6 characters)" = "密码(不少于6个字符)";
+"at least 6 characters" = "不少于6个字符";
+"Repeat Password" = "重复密码";
+"Password is different" = "输入密码不相符";
+"Mnemonics" = "助记词";
+"Submit" = "提交";
+"I agree to the Service and Privacy Policy" = "我已经仔细阅读并同意 服务及隐私条款";
+"Backup Mnemonic" = "备份助记词";
+"Backup Wallet" = "备份钱包";
+"Start Backup Mnemonics" = "开始备份助记词";
+"Copy Your Mnemonic" = "抄写下你的钱包助记词";
+"Export mnemonics and keep it in a safe place, do not save on the internet. then begin using with transfer small assets." = "导出【助记词】并抄写到安全的地方，千万不要保存到网络上，然后尝试转入、转出小额资产开始使用。";
+"Next step" = "下一步";
+"The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know." = "助记词用于恢复钱包或重复钱包密码，将它准确的抄写到纸上，并存放在的只有你知道的安全的地方。";
+"Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place." = "请勿截图，如果有人获取你的助记词将直接获取你的资产！请抄写下助记词并存放在安全的地方。";
+"Confirm your mnemonic" = "确定你的钱包助记词";
+"Please click on the mnemonic in order, make sure you backup correctly." = "请按顺序点击助记词，以确认你的备份助记词正确。";
+"Confirm" = "确定";
+"Assets" = "资产";
+"Search Wallet Address" = "搜索钱包地址";
+"Add Assets" = "添加资产";
+"Transfer" = "转账";
+"Receipt" = "收款";
+"send" = "发送";
+"Copy Wallet address" = "复制收款地址";
+"Mine" = "我";
+"Save" = "保存";
+"Cancle" = "取消";
+"Scan" = "扫一扫";
+"Transaction Records" = "交易记录";
+"Transaction Detail" = "交易详情";
+"Copy Txid into ClipBoard" = "txid已复制到剪切板";
+"Success" = "交易成功";
+"Failed" = "交易失败";
+"Blocking" = "交易打包中";
+"Confirming" = "交易确认中";
+"Export Keystore" = "导出Keystore";
+"Manage Wallet" = "管理钱包";
+"About Us" = "关于我们";
+"Amount" = "交易金额";
+"From" = "付款钱包地址";
+"To" = "收款钱包地址";
+"Time" = "交易时间";
+"Txid" = "交易单号";
+
+"Language" = "语言设置";
+"Profile" = "个人画像";
+"Go Mapping" = "一键映射";
+"Back up" = "请备份";
+"Delete Wallet" = "删除钱包";
+"Change Wallet" = "切换钱包";
+"We Will Create A New Encrypted Offline Wallet On This Device. We Recommond You Choose A Strong Password To Keep Your Assets Safe. PS: Generating A Safe Wallet Might Takes A Couple Of Minutes, Once We Done Generation, We Will Let You Know" = "您将在这个设备上生成一个新的加密的脱机钱包。我们建议选择一个强密码，确保您的资金安全。PS：生成一个强大安全的钱包是一个高度计算密集型的任务，可能需要几分钟。这个过程将在后台执行，期间您仍然可用您的手机，一旦我们完成了您的钱包，我们会让你知道。";
+
+// tips
+"Create Wallet Failed" = "钱包创建失败";
+"Create Keystore Failed" = "keystore创建失败";
+"Import Wallet Failed" = "导入失败";
+"Import Wallet Success" = "导入成功";
+"Wallet Exist" = "钱包已存在";
+"Input Keystore Text Here" = "直接复制粘贴官方钱包Keystore文件内容至输入框.";
+"Password Too Short" = "输入密码太短";
+"Import" = "开始导入";
+"Input Mnemonics Seperated By Blank Space" = "助记词,按空格分隔";
+"Data Empty" = "暂无数据";
+"Please Input Wallet Name" = "请输入钱包名称";
+"Password Error" = "输入密码错误";
+"Attention! Delete Wallet Can Not Be Revoked" = "请慎重,此操作无法撤销";
+"Create Mnemonics Failed" = "助记词生成失败";
+"Back Up Success" = "备份成功";
+"Back Up Failed" = "备份失败";
+"Request Failed, Please Check Your Network Status" = "请求失败,请稍后再试";
+"Search Txid" = "搜索txid";

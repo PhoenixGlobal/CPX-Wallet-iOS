@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,9 @@
                 <outlet property="baseVHeight" destination="6uZ-Rz-MGX" id="VTF-uA-3KS"/>
                 <outlet property="deleteWalletBtn" destination="osV-we-kM2" id="Cwt-Ko-ho1"/>
                 <outlet property="exportKeyStoreBtn" destination="6iJ-AJ-hJL" id="Noq-tm-ZS6"/>
+                <outlet property="ksLbale" destination="CEP-JV-tpE" id="Hok-EH-1vH"/>
                 <outlet property="mnemonicBackUpBtn" destination="s52-IC-6DX" id="IXf-N9-cqT"/>
+                <outlet property="nameL" destination="Iaa-An-grx" id="M6U-1m-3lh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="walletNameTF" destination="eAh-sv-4TJ" id="66D-Z4-TDO"/>
             </connections>

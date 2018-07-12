@@ -18,6 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteWalletBtn;
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
 @property (weak, nonatomic) IBOutlet UIButton *exportKeyStoreBtn;
+@property (weak, nonatomic) IBOutlet UILabel *ksLbale;
+@property (weak, nonatomic) IBOutlet UILabel *nameL;
+
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseVHeight;
 
 @property (nonatomic, strong) UIButton *saveBtn;
@@ -47,7 +51,10 @@
 - (void)initUI{
     [ApexUIHelper addLineInView:self.walletNameTF color:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     self.mnemonicBackUpBtn.layer.cornerRadius = 6;
+    [self.mnemonicBackUpBtn setTitle:SOLocalizedStringFromTable(@"Backup Mnemonic", nil) forState:UIControlStateNormal];
+    
     self.deleteWalletBtn.layer.cornerRadius = 6;
+    [self.deleteWalletBtn setTitle:SOLocalizedStringFromTable(@"Delete Wallet", nil) forState:UIControlStateNormal];
     
     self.title = self.model.name;
     self.walletNameTF.text = self.model.name;
@@ -55,6 +62,9 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.saveBtn];
     self.baseVHeight.constant = NavBarHeight + 60;
+    
+    self.ksLbale.text = SOLocalizedStringFromTable(@"Export Keystore", nil);
+    self.nameL.text = SOLocalizedStringFromTable(@"Wallet Name", nil);
 }
 
 //- (void)requestBalance{
@@ -77,7 +87,7 @@
     [[self.saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         NSString *name = self.walletNameTF.text;
         if (name.length == 0 ) {
-            [self showMessage:@"请输入钱包名称"];
+            [self showMessage:SOLocalizedStringFromTable(@"Please Input Wallet Name", nil)];
             return;
         }
         
@@ -101,17 +111,17 @@
             vc.address = self.model.address;
             [self.navigationController pushViewController:vc animated:YES];
         } fail:^{
-            [self showMessage:@"密码输入错误"];
+            [self showMessage:SOLocalizedStringFromTable(@"Password Error", nil)];
         }];
     }];
 }
 
 - (void)showDeleteConfirmAlert{
-    [ApexPassWordConfirmAlertView showDeleteConfirmAlertAddress:self.model.address subTitle:@"请慎重,此操作无法撤销" Success:^(NeomobileWallet *wallet) {
+    [ApexPassWordConfirmAlertView showDeleteConfirmAlertAddress:self.model.address subTitle:SOLocalizedStringFromTable(@"Attention! Delete Wallet Can Not Be Revoked", nil) Success:^(NeomobileWallet *wallet) {
         [ApexWalletManager deleteWalletForAddress:self.model.address];
         [self.navigationController popViewControllerAnimated:YES];
     } fail:^{
-        [self showMessage:@"密码输入错误"];
+        [self showMessage:SOLocalizedStringFromTable(@"Password Error",nil)];
     }];
 }
 
@@ -121,7 +131,7 @@
         _saveBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
         _saveBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_saveBtn setTitle:@"保存" forState:UIControlStateNormal];
+        [_saveBtn setTitle:SOLocalizedStringFromTable(@"Save", nil) forState:UIControlStateNormal];
     }
     return _saveBtn;
 }

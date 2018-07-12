@@ -22,7 +22,10 @@
     [alert addTextFieldWithCustomTextField:customField andPlaceholder:@"Password" andTextReturnBlock:^(NSString *text) {
         password = text;
     }];
-    [alert showAlertWithTitle:@"请输入密码" withSubtitle:subtitle withCustomImage:nil withDoneButtonTitle:@"确认" andButtons:@[@"取消"]];
+    NSString *tip = @"";
+    [[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish] ? (tip = @"Password") : (tip = @"请输入密码");
+    
+    [alert showAlertWithTitle:tip withSubtitle:subtitle withCustomImage:nil withDoneButtonTitle:SOLocalizedStringFromTable(@"Confirm", nil) andButtons:@[SOLocalizedStringFromTable(@"Cancle", nil)]];
     
     if (subtitle.length > 0) {
         alert.doneButtonTitleColor = [UIColor redColor];
@@ -62,7 +65,9 @@
     [alert addTextFieldWithCustomTextField:customField andPlaceholder:@"Password" andTextReturnBlock:^(NSString *text) {
         password = text;
     }];
-    [alert showAlertWithTitle:@"请输入密码" withSubtitle:subtitle withCustomImage:nil withDoneButtonTitle:@"确认" andButtons:@[@"取消"]];
+    NSString *tip = @"";
+    [[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish] ? (tip = @"Password") : (tip = @"请输入密码");
+    [alert showAlertWithTitle:tip withSubtitle:subtitle withCustomImage:nil withDoneButtonTitle:SOLocalizedStringFromTable(@"Confirm", nil) andButtons:@[SOLocalizedStringFromTable(@"Cancle", nil)]];
     
     [alert doneActionBlock:^{
         [customField resignFirstResponder];
