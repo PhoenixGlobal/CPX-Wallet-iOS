@@ -60,7 +60,7 @@
         if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
             [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(15, 26)];
         }else{
-            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(9, 7)];
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(11, 7)];
         }
         _privacyAgreeLable.attributedText = str;
     }

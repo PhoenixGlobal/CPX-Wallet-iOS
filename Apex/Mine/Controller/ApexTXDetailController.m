@@ -65,14 +65,17 @@
         }
         
         _subTitleL.text = [NSString stringWithFormat:@"%@(%@)",SOLocalizedStringFromTable(@"Amount", nil),self.model.symbol];
+    }else{
+            _subTitleL.text = SOLocalizedStringFromTable(@"Amount", nil);
     }
+    
     @weakify(self);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
     [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
         @strongify(self);
         UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
         pasteBoard.string = self.txic.text;
-        [self showMessage:SOLocalizedStringFromTable(@"%@", nil)];
+        [self showMessage:SOLocalizedStringFromTable(@"Copied", nil)];
     }];
     _txic.userInteractionEnabled = YES;
     [_txic addGestureRecognizer:tap];

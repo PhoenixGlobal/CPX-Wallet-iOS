@@ -159,7 +159,7 @@
 - (UILabel *)tipL{
     if (!_tipL) {
         _tipL = [[UILabel alloc] init];
-        _tipL.text = SOLocalizedStringFromTable(@"Input KeyStore Content Here", nil);
+        _tipL.text = SOLocalizedStringFromTable(@"Input Keystore Text Here", nil);
         _tipL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
         _tipL.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
         _tipL.numberOfLines = 0;

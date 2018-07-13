@@ -120,7 +120,7 @@
             [subscriber sendNext:self.accountModel.balances];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [subscriber sendError:error];
-            [self showMessage:@"请求失败,请检查网络连接"];
+            [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
         }];
         
         return nil;
@@ -155,7 +155,7 @@
 
     [[self rac_liftSelector:@selector(updateWithR1:R2:) withSignals:request1,request2, nil] subscribeError:^(NSError * _Nullable error) {
         [self.tableView.mj_header endRefreshing];
-        [self showMessage:@"请求失败,请检查网络连接"];
+        [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
     }];
 }
 
@@ -297,7 +297,7 @@
 - (void)addressCopy{
     UIPasteboard *pastBoard = [UIPasteboard generalPasteboard];
     pastBoard.string = self.walletModel.address;
-    [self showMessage:@"钱包地址已复制到剪切板"];
+    [self showMessage:SOLocalizedStringFromTable(@"CopySuccess", nil)];
 }
 
 - (void)pushAction{

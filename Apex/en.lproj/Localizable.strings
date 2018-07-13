@@ -87,7 +87,7 @@
 "Input Mnemonics Seperated By Blank Space" = "Input Mnemonics Seperated By Blank Space";
 "Data Empty" = "Data Empty";
 "Please Input Wallet Name" = "Please Input Wallet Name";
-"Password Error" = "Wrong Password!";
+"Password Error" = "Password Incorrect!";
 "Attention! Delete Wallet Can Not Be Revoked" = "Attention! Delete Wallet Can Not Be Revoked";
 "Create Mnemonics Failed" = "Create Mnemonics Failed";
 "Back Up Success" = "Back Up Success";
