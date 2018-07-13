@@ -70,7 +70,8 @@
 "Back up" = "Back up";
 "Delete Wallet" = "Delete Wallet";
 "Change Wallet" = "Change Wallet";
-"We Will Create A New Encrypted Offline Wallet On This Device. We Recommond You Choose A Strong Password To Keep Your Assets Safe. PS: Generating A Safe Wallet Might Takes A Couple Of Minutes, Once We Done Generation, We Will Let You Know" = "We Will Create A New Encrypted Offline Wallet On This Device. We Recommond You Choose A Strong Password To Keep Your Assets Safe. PS: Generating A Safe Wallet Might Takes A Couple Of Minutes, Once We Done Generation, We Will Let You Know";
+"CreatWalletTip01" = "• Password Is Used To Encrypt Private Key And Authorize Transaction. So It's Very Important To Set A Invulnerable Password";
+"CreatWalletTip02" = "• Apex Wallet Neither Store Your Password Nor Retrieve Them For You. Please Keep It In A Safe Place";
 "YourWallet" = "Your Wallet Address";
 "LanguageSetting" = "Language Setting";
 

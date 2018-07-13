@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIImageView *backIV;
 @property (nonatomic, strong) UIView *tipsView;
 @property (nonatomic, strong) UILabel *tipsL;
+@property (nonatomic, strong) UILabel *tipsL2;
 @property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) UIButton *privacyAgreeBtn;
 @property (nonatomic, strong) UILabel *privacyAgreeLable;
@@ -63,6 +64,7 @@
     [self.view addSubview:self.privacyAgreeLable];
     [self.view addSubview:self.importBtn];
     [self.tipsView addSubview:self.tipsL];
+    [self.tipsView addSubview:self.tipsL2];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
@@ -122,8 +124,20 @@
     }];
     
     [self.tipsL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.tipsL.superview).offset(10);
-        make.bottom.equalTo(self.tipsL.superview).offset(-10);
+        
+        if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationSimplifiedChinese]) {
+            make.top.equalTo(self.tipsL.superview).offset(30);
+        }else{
+            make.top.equalTo(self.tipsL.superview).offset(10);
+        }
+        
+        make.left.equalTo(self.tipsL.superview).offset(10);
+        make.right.equalTo(self.tipsL.superview).offset(-10);
+    }];
+    
+    [self.tipsL2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tipsL.mas_bottom).offset(20);
+//        make.bottom.equalTo(self.tipsL.superview).offset(-30);
         make.left.equalTo(self.tipsL.superview).offset(10);
         make.right.equalTo(self.tipsL.superview).offset(-10);
     }];
@@ -390,13 +404,25 @@
 - (UILabel *)tipsL{
     if (!_tipsL) {
         _tipsL = [[UILabel alloc] init];
-        _tipsL.text = SOLocalizedStringFromTable(@"We Will Create A New Encrypted Offline Wallet On This Device. We Recommond You Choose A Strong Password To Keep Your Assets Safe. PS: Generating A Safe Wallet Might Takes A Couple Of Minutes, Once We Done Generation, We Will Let You Know", nil);
+        _tipsL.text = SOLocalizedStringFromTable(@"CreatWalletTip01", nil);
         _tipsL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
         _tipsL.textColor = [UIColor colorWithRed:102/255 green:102/255 blue:102/255 alpha:1];
         _tipsL.textAlignment = NSTextAlignmentCenter;
         _tipsL.numberOfLines = 0;
     }
     return _tipsL;
+}
+
+- (UILabel *)tipsL2{
+    if (!_tipsL2) {
+        _tipsL2 = [[UILabel alloc] init];
+        _tipsL2.text = SOLocalizedStringFromTable(@"CreatWalletTip02", nil);
+        _tipsL2.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+        _tipsL2.textColor = [UIColor colorWithRed:102/255 green:102/255 blue:102/255 alpha:1];
+        _tipsL2.textAlignment = NSTextAlignmentCenter;
+        _tipsL2.numberOfLines = 0;
+    }
+    return _tipsL2;
 }
 
 @end

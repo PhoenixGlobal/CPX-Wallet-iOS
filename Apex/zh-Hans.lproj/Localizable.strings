@@ -62,7 +62,8 @@
 "Back up" = "请备份";
 "Delete Wallet" = "删除钱包";
 "Change Wallet" = "切换钱包";
-"We Will Create A New Encrypted Offline Wallet On This Device. We Recommond You Choose A Strong Password To Keep Your Assets Safe. PS: Generating A Safe Wallet Might Takes A Couple Of Minutes, Once We Done Generation, We Will Let You Know" = "您将在这个设备上生成一个新的加密的脱机钱包。我们建议选择一个强密码，确保您的资金安全。PS：生成一个强大安全的钱包是一个高度计算密集型的任务，可能需要几分钟。这个过程将在后台执行，期间您仍然可用您的手机，一旦我们完成了您的钱包，我们会让你知道。";
+"CreatWalletTip01" = "• 密码用于加密私钥和交易授权，非常重要，请勿设定的过于简单。";
+"CreatWalletTip02" = "• Apex Wallet不存储密码，也无法帮你找回，请务必牢记。";
 "YourWallet" = "你的钱包/地址";
 "LanguageSetting" = "语言设置";
 
