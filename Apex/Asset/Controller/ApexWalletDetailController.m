@@ -148,7 +148,7 @@
         if ([ApexWalletManager getWalletTransferStatusForAddress:self.wallModel.address]) {
             [self.navigationController pushViewController:svc animated:YES];
         }else{
-            [self showMessage:@"目前仍有一笔待确认中的交易"];
+            [self showMessage:SOLocalizedStringFromTable(@"ProcessingTrans", nil)];
         }
     }else if([eventName isEqualToString:RouteNameEvent_ScanAction]){
         [ApexScanAction shareScanHelper].curWallet = self.wallModel;
@@ -246,7 +246,7 @@
 - (UIButton *)sendBtn{
     if (!_sendBtn) {
         _sendBtn = [[UIButton alloc] init];
-        [_sendBtn setTitle:@"转账" forState:UIControlStateNormal];
+        [_sendBtn setTitle:SOLocalizedStringFromTable(@"Transfer", nil) forState:UIControlStateNormal];
         [_sendBtn setTitleColor:[ApexUIHelper mainThemeColor] forState:UIControlStateNormal];
         [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         
@@ -268,7 +268,7 @@
     if (!_requestBtn) {
         _requestBtn = [[UIButton alloc] init];
         [_requestBtn setTitleColor:[ApexUIHelper mainThemeColor] forState:UIControlStateNormal];
-        [_requestBtn setTitle:@"收款" forState:UIControlStateNormal];
+        [_requestBtn setTitle:SOLocalizedStringFromTable(@"Receipt", nil) forState:UIControlStateNormal];
         _requestBtn.backgroundColor = [UIColor whiteColor];
         _requestBtn.layer.cornerRadius = 6;
         _requestBtn.layer.borderColor = [ApexUIHelper mainThemeColor].CGColor;

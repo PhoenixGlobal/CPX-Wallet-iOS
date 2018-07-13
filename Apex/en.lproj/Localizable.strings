@@ -34,7 +34,7 @@
 "Next step" = "Next step";
 "The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know." = "The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know.";
 "Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place." = "Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place.";
-"Confirm your mnemonic" = "Confirm your mnemoni";
+"Confirm your mnemonic" = "Confirm Your Mnemonic";
 "Please click on the mnemonic in order, make sure you backup correctly." = "Please click on the mnemonic in order, make sure you backup correctly.";
 "Confirm" = "Confirm";
 "Assets" = "Assets";
@@ -44,12 +44,12 @@
 "Receipt" = "Receipt";
 "send" = "send";
 "Copy Wallet address" = "Copy Wallet address";
-"Mine" = "Mine";
+"Mine" = "Me";
 "Save" = "Save";
-"Cancle" = "Cancle";
+"Cancle" = "Cancel";
 "Scan" = "Scan";
 "Transaction Records" = "Transaction Records";
-"Transaction Detail" = "Transaction Detail";
+"Transaction Detail" = "Transfer Details";
 "Copy Txid into ClipBoard" = "Copy Txid into ClipBoard";
 "Success" = "Success";
 "Failed" = "Failed";
@@ -64,13 +64,15 @@
 "Time" = "Time";
 "Txid" = "Txid";
 
-"Language" = "Language";
+"Language" = "Languages";
 "Profile" = "Profile";
 "Go Mapping" = "Go Mapping";
 "Back up" = "Back up";
 "Delete Wallet" = "Delete Wallet";
 "Change Wallet" = "Change Wallet";
 "We Will Create A New Encrypted Offline Wallet On This Device. We Recommond You Choose A Strong Password To Keep Your Assets Safe. PS: Generating A Safe Wallet Might Takes A Couple Of Minutes, Once We Done Generation, We Will Let You Know" = "We Will Create A New Encrypted Offline Wallet On This Device. We Recommond You Choose A Strong Password To Keep Your Assets Safe. PS: Generating A Safe Wallet Might Takes A Couple Of Minutes, Once We Done Generation, We Will Let You Know";
+"YourWallet" = "Your Wallet Address";
+"LanguageSetting" = "Language Setting";
 
 // tips
 "Create Wallet Failed" = "Create Wallet Failed";
@@ -84,10 +86,21 @@
 "Input Mnemonics Seperated By Blank Space" = "Input Mnemonics Seperated By Blank Space";
 "Data Empty" = "Data Empty";
 "Please Input Wallet Name" = "Please Input Wallet Name";
-"Password Error" = "Password Error";
+"Password Error" = "Wrong Password!";
 "Attention! Delete Wallet Can Not Be Revoked" = "Attention! Delete Wallet Can Not Be Revoked";
 "Create Mnemonics Failed" = "Create Mnemonics Failed";
 "Back Up Success" = "Back Up Success";
 "Back Up Failed" = "Back Up Failed";
 "Request Failed, Please Check Your Network Status" = "Request Failed, Please Check Your Network Status";
 "Search Txid" = "Search Txid";
+"SendMoneyAddress" = "Please Input Address";
+"OpenWalletFailed" = "Open Wallet Failed";
+"CreateTransFailed" = "Create Transaction Failed";
+"UtxoFailed" = "Generate UTXO Failed, Please Check Network Status";
+"TransSuccess" = "Request Send Success";
+"TransSuccess" = "Transfer Failed";
+"BalanceNotEnough" = "Total Balance Not Enough";
+"InvalidateAddress" = "Please Input Valid Address";
+"CopySuccess" = "Copy Success, Your Can Share It To Your Firends";
+"Copied" = "Copy Success";
+"ProcessingTrans" = "There is still a transaction Being Progress,Please wait a moment";

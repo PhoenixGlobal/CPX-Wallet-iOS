@@ -52,6 +52,8 @@
 		E3373B4920F72CF400590407 /* ApexMinePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B4820F72CF400590407 /* ApexMinePageController.m */; };
 		E3373B4C20F7458E00590407 /* ApexWalletManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B4B20F7458E00590407 /* ApexWalletManageController.m */; };
 		E3373B4F20F7459D00590407 /* ApexTransferHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B4E20F7459D00590407 /* ApexTransferHistoryController.m */; };
+		E3373B5120F8414100590407 /* ApexSendMoneyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3373B5320F8414200590407 /* ApexSendMoneyController.xib */; };
+		E3373B5920F8711600590407 /* ApexLanguageSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B5820F8711600590407 /* ApexLanguageSettingController.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -89,7 +91,6 @@
 		E33A8BDF20B2BB340067505E /* UIView+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BDE20B2BB340067505E /* UIView+Common.m */; };
 		E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33A8BE020B2C3A50067505E /* ApexRequestMoenyController.xib */; };
 		E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BE220B2C3A50067505E /* ApexRequestMoenyController.m */; };
-		E33A8BE820B2C3B50067505E /* ApexSendMoneyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33A8BE520B2C3B50067505E /* ApexSendMoneyController.xib */; };
 		E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BE720B2C3B50067505E /* ApexSendMoneyController.m */; };
 		E33A8BEC20B3AD680067505E /* ApexMorePanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BEB20B3AD680067505E /* ApexMorePanelView.m */; };
 		E33A8BEF20B3C16C0067505E /* ApexTXIDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BEE20B3C16C0067505E /* ApexTXIDModel.m */; };
@@ -255,6 +256,10 @@
 		E3373B4B20F7458E00590407 /* ApexWalletManageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletManageController.m; sourceTree = "<group>"; };
 		E3373B4D20F7459D00590407 /* ApexTransferHistoryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferHistoryController.h; sourceTree = "<group>"; };
 		E3373B4E20F7459D00590407 /* ApexTransferHistoryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransferHistoryController.m; sourceTree = "<group>"; };
+		E3373B5220F8414200590407 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ApexSendMoneyController.xib; sourceTree = "<group>"; };
+		E3373B5520F8414500590407 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ApexSendMoneyController.strings"; sourceTree = "<group>"; };
+		E3373B5720F8711600590407 /* ApexLanguageSettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexLanguageSettingController.h; sourceTree = "<group>"; };
+		E3373B5820F8711600590407 /* ApexLanguageSettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexLanguageSettingController.m; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -328,7 +333,6 @@
 		E33A8BE020B2C3A50067505E /* ApexRequestMoenyController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexRequestMoenyController.xib; sourceTree = "<group>"; };
 		E33A8BE120B2C3A50067505E /* ApexRequestMoenyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexRequestMoenyController.h; sourceTree = "<group>"; };
 		E33A8BE220B2C3A50067505E /* ApexRequestMoenyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexRequestMoenyController.m; sourceTree = "<group>"; };
-		E33A8BE520B2C3B50067505E /* ApexSendMoneyController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexSendMoneyController.xib; sourceTree = "<group>"; };
 		E33A8BE620B2C3B50067505E /* ApexSendMoneyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexSendMoneyController.h; sourceTree = "<group>"; };
 		E33A8BE720B2C3B50067505E /* ApexSendMoneyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexSendMoneyController.m; sourceTree = "<group>"; };
 		E33A8BEA20B3AD680067505E /* ApexMorePanelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMorePanelView.h; sourceTree = "<group>"; };
@@ -570,6 +574,15 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		E3373B5620F870FF00590407 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				E3373B5720F8711600590407 /* ApexLanguageSettingController.h */,
+				E3373B5820F8711600590407 /* ApexLanguageSettingController.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		E338964820B401F200DD51FE /* EmptyView */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,6 +691,7 @@
 				E33A8BAC20AE77C70067505E /* ApexMineController.m */,
 				E3373B4720F72CF400590407 /* ApexMinePageController.h */,
 				E3373B4820F72CF400590407 /* ApexMinePageController.m */,
+				E3373B5620F870FF00590407 /* Setting */,
 				E3373B4A20F7458E00590407 /* ApexWalletManageController.h */,
 				E3373B4B20F7458E00590407 /* ApexWalletManageController.m */,
 				E3373B4D20F7459D00590407 /* ApexTransferHistoryController.h */,
@@ -796,7 +810,7 @@
 				E33A8BE020B2C3A50067505E /* ApexRequestMoenyController.xib */,
 				E33A8BE620B2C3B50067505E /* ApexSendMoneyController.h */,
 				E33A8BE720B2C3B50067505E /* ApexSendMoneyController.m */,
-				E33A8BE520B2C3B50067505E /* ApexSendMoneyController.xib */,
+				E3373B5320F8414200590407 /* ApexSendMoneyController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1205,7 +1219,7 @@
 				E33A8B5820AE724F0067505E /* LaunchScreen.storyboard in Resources */,
 				E3CE66B220BEA812002A1E07 /* DateTools.bundle in Resources */,
 				E38A64BE20ECB88600150F3B /* ApexAddAssetCell.xib in Resources */,
-				E33A8BE820B2C3B50067505E /* ApexSendMoneyController.xib in Resources */,
+				E3373B5120F8414100590407 /* ApexSendMoneyController.xib in Resources */,
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
 				E39E030320C8FB61005DD251 /* ApexExportKeystoryFileView.xib in Resources */,
 				E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */,
@@ -1409,6 +1423,7 @@
 				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,
 				E3CE668D20BD38BC002A1E07 /* ApexTransferDetailHeader.m in Sources */,
 				E3CE66B520BEA812002A1E07 /* DTError.m in Sources */,
+				E3373B5920F8711600590407 /* ApexLanguageSettingController.m in Sources */,
 				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,
 				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
 				E3689AFE20DB92A300B4B001 /* ApexTransferModel.m in Sources */,
@@ -1456,6 +1471,15 @@
 				E3373B4620F726B300590407 /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E3373B5320F8414200590407 /* ApexSendMoneyController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3373B5220F8414200590407 /* en */,
+				E3373B5520F8414500590407 /* zh-Hans */,
+			);
+			name = ApexSendMoneyController.xib;
 			sourceTree = "<group>";
 		};
 		E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */ = {

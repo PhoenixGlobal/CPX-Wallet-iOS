@@ -28,6 +28,7 @@
 #define TXRECORD_KEY @"TXRECORD_KEY"
 #define KMyAseetArr @"KMyAseetArr"
 #define KAssetModelListKey @"KAssetModelListKey"
+#define KLanguageSetting @"KLanguageSetting"
 
 #define baseUrl_tool_test @"http://dev.chinapex.com.cn:10086/tool/"
 #define baseUrl_cli_test @"http://dev.chinapex.com.cn:10086/neo-cli/"

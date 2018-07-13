@@ -117,7 +117,7 @@
     [self.importBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.creatBtn.mas_bottom).offset(15);
         make.centerX.equalTo(self.view.mas_centerX);
-        make.width.mas_equalTo(scaleWidth375(80));
+        make.width.mas_equalTo(scaleWidth375(150));
         make.height.mas_equalTo(scaleHeight667(30));
     }];
     

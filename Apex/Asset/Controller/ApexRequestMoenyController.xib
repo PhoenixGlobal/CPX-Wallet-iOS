@@ -16,6 +16,7 @@
                 <outlet property="addressL" destination="0zR-PM-rKe" id="uZf-t8-DRY"/>
                 <outlet property="btn" destination="Ngq-Cr-ULa" id="p1B-NE-NCB"/>
                 <outlet property="requestNumTF" destination="cSD-kk-Zov" id="lyb-B5-V2a"/>
+                <outlet property="tipLable0" destination="BJx-w2-5j7" id="9ic-zJ-ggR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="walletNameL" destination="UrD-p3-u5f" id="C1j-Dg-VbF"/>
             </connections>

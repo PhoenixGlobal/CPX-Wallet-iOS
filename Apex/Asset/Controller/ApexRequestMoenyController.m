@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UILabel *titleLable;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (nonatomic, strong) UIButton *backBtn;
+@property (weak, nonatomic) IBOutlet UILabel *tipLable0;
+
 @end
 
 @implementation ApexRequestMoenyController
@@ -46,6 +48,9 @@
     [ApexUIHelper addLineInView:self.requestNumTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
     self.btn.layer.cornerRadius = 5;
+    
+    _tipLable0.text = SOLocalizedStringFromTable(@"YourWallet", nil);
+    [self.btn setTitle:SOLocalizedStringFromTable(@"Copy Wallet address", nil) forState:UIControlStateNormal];
 }
 
 - (void)textFieldDidChange{
@@ -106,11 +111,11 @@
 - (IBAction)copyAddress:(id)sender {
     UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
     pasteBoard.string = self.walletAddress;
-    [self showMessage:@"钱包地址已复制到剪切板"];
+    [self showMessage:SOLocalizedStringFromTable(@"CopySuccess", nil)];
     
-    [_btn setTitle:@"已复制" forState:UIControlStateNormal];
+    [_btn setTitle:SOLocalizedStringFromTable(@"Copied", nil) forState:UIControlStateNormal];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.btn setTitle:@"复制收款地址" forState:UIControlStateNormal];
+        [self.btn setTitle:SOLocalizedStringFromTable(@"Copy Wallet address", nil) forState:UIControlStateNormal];
         
     });
 }
@@ -121,7 +126,7 @@
         _titleLable = [[UILabel alloc] init];
         _titleLable.font = [UIFont systemFontOfSize:17];
         _titleLable.textColor = [UIColor blackColor];
-        _titleLable.text = @"收款";
+        _titleLable.text = SOLocalizedStringFromTable(@"Receipt", nil);
     }
     return _titleLable;
 }

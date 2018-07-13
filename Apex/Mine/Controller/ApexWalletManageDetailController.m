@@ -39,6 +39,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    
     [super viewWillAppear:animated];
     if (self.model.isBackUp) {
         _mnemonicBackUpBtn.hidden = YES;

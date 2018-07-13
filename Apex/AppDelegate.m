@@ -50,7 +50,20 @@
 
 - (void)localization{
     [SOLocalization configSupportRegions:@[SOLocalizationEnglish,SOLocalizationSimplifiedChinese] fallbackRegion:SOLocalizationSimplifiedChinese];
-    [SOLocalization sharedLocalization].region = SOLocalizationSimplifiedChinese;
+    
+    NSString *language = [TKFileManager ValueWithKey:KLanguageSetting];
+    
+    if (!language) {
+        NSArray *appLanguages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+        NSString *languageName = [appLanguages objectAtIndex:0];
+        if ([languageName containsString:@"en"]) {
+            [SOLocalization sharedLocalization].region = SOLocalizationEnglish;
+        }else{
+            [SOLocalization sharedLocalization].region = SOLocalizationSimplifiedChinese;
+        }
+    }else{
+        [SOLocalization sharedLocalization].region = language;
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -81,18 +81,22 @@
             break;
         }
     }
+    
+    self.toAddressTF.placeholder = SOLocalizedStringFromTable(@"SendMoneyAddress", nil);
+    self.sendNumTF.placeholder = SOLocalizedStringFromTable(@"Amount", nil);
+    [self.sendBtn setTitle:SOLocalizedStringFromTable(@"Submit", nil) forState:UIControlStateNormal];
 }
 
 - (void)utxoSearch:(NeomobileWallet*)wallet{
     NSString *address = _toAddressTF.text;
     if (address.length <= 15) {
-        [self showMessage:@"请填写转账地址"];
+        [self showMessage:SOLocalizedStringFromTable(@"SendMoneyAddress", nil)];
         return;
     }
     
     self.wallet = wallet;
     if (!self.wallet) {
-        [self showMessage:@"钱包开启失败"];
+        [self showMessage:SOLocalizedStringFromTable(@"OpenWalletFailed", nil)];
         return;
     }
     
@@ -111,13 +115,13 @@
             NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:num.doubleValue unspent:unspendStr error:&err];
             
             if (err) {
-                [self showMessage:@"交易生成失败"];
+                [self showMessage:SOLocalizedStringFromTable(@"CreateTransFailed", nil)];
             }else{
                 [self broadCastTransaction:tx];
             }
             
         } fail:^(NSError *error) {
-            [self showMessage:@"utxo获取失败,请检查网络设置"];
+            [self showMessage:SOLocalizedStringFromTable(@"UtxoFailed", nil)];
         }];
     }else{
         
@@ -136,7 +140,7 @@
         num = [num decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@(pow(10, self.assetModel.precision.integerValue)).stringValue]];
         NeomobileTx *nep5TX = [self.wallet createNep5Tx:_balanceModel.asset from:NeomobileDecodeAddress(self.wallet.address, nil) to:NeomobileDecodeAddress(self.toAddressTF.text, nil) amount:num.integerValue unspent:@"[]" error:&err];
         if (err) {
-            [self showMessage:@"交易生成失败"];
+            [self showMessage:SOLocalizedStringFromTable(@"CreateTransFailed", nil)];
         }else{
             [self broadCastTransaction:nep5TX];
         }
@@ -149,7 +153,7 @@
         [self hideHUD];
         BOOL isSuccess = ((NSNumber*)responseObject).boolValue;
         if (isSuccess) {
-            [self showMessage:@"广播交易成功"];
+            [self showMessage:SOLocalizedStringFromTable(@"TransSuccess", nil)];
             
             /**< 创建新的临时交易历史记录 */
             ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
@@ -172,10 +176,10 @@
             
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
-            [self showMessage:@"广播交易失败"];
+            [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showMessage:@"广播交易失败,请检查网络连接"];
+        [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
     }];
 }
 
@@ -240,14 +244,14 @@
 
 - (IBAction)sendAction:(id)sender {
     if (_sendNumTF.text.floatValue > _balanceModel.value.floatValue) {
-        [self showMessage:@"金额不足"];
+        [self showMessage:SOLocalizedStringFromTable(@"BalanceNotEnough", nil)];
     }else if ([_toAddressTF.text isEqualToString:_walletAddress]){
-        [self showMessage:@"请填写其他收款地址"];
+        [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
     }else{
         [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress subTitle:@"" Success:^(NeomobileWallet *wallet) {
             [self utxoSearch:wallet];
         } fail:^{
-            [self showMessage:@"密码输入错误"];
+            [self showMessage:SOLocalizedStringFromTable(@"Password Error", nil)];
         }];
     }
 }
@@ -273,7 +277,7 @@
         _titleLable = [[UILabel alloc] init];
         _titleLable.font = [UIFont systemFontOfSize:17];
         _titleLable.textColor = [UIColor blackColor];
-        _titleLable.text = @"转账";
+        _titleLable.text = SOLocalizedStringFromTable(@"Transfer", nil);
     }
     return _titleLable;
 }

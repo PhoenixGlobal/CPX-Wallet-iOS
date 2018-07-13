@@ -9,7 +9,7 @@
 #import "ApexMinePageController.h"
 #import "ApexWalletManageController.h"
 #import "ApexTransferHistoryController.h"
-#import "CYLTabBarController.h"
+#import "ApexLanguageSettingController.h"
 
 @interface ApexMinePageController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UIImageView *backIV;
@@ -22,7 +22,6 @@
 #pragma mark - ------life cycle------
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initUI];
     [self handleEvent];
 }
@@ -100,19 +99,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationSimplifiedChinese] ) {
-        [SOLocalization sharedLocalization].region = SOLocalizationEnglish;
-    }else{
-        [SOLocalization sharedLocalization].region = SOLocalizationSimplifiedChinese;
-    }
     
-    [self showHUD];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self hideHUD];
-        CYLTabBarController *tabbarVC = [[CYLTabBarController alloc] init];
-        tabbarVC.initSelectTabbarBtnIndex = 0;
-        [UIApplication sharedApplication].keyWindow.rootViewController = tabbarVC;
-    });
+    ApexLanguageSettingController *settingVC = [[ApexLanguageSettingController alloc] init];
+    settingVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 #pragma mark - ------eventResponse------

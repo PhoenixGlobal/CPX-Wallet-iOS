@@ -63,6 +63,8 @@
 "Delete Wallet" = "删除钱包";
 "Change Wallet" = "切换钱包";
 "We Will Create A New Encrypted Offline Wallet On This Device. We Recommond You Choose A Strong Password To Keep Your Assets Safe. PS: Generating A Safe Wallet Might Takes A Couple Of Minutes, Once We Done Generation, We Will Let You Know" = "您将在这个设备上生成一个新的加密的脱机钱包。我们建议选择一个强密码，确保您的资金安全。PS：生成一个强大安全的钱包是一个高度计算密集型的任务，可能需要几分钟。这个过程将在后台执行，期间您仍然可用您的手机，一旦我们完成了您的钱包，我们会让你知道。";
+"YourWallet" = "你的钱包/地址";
+"LanguageSetting" = "语言设置";
 
 // tips
 "Create Wallet Failed" = "钱包创建失败";
@@ -83,3 +85,14 @@
 "Back Up Failed" = "备份失败";
 "Request Failed, Please Check Your Network Status" = "请求失败,请稍后再试";
 "Search Txid" = "搜索txid";
+"SendMoneyAddress" = "请输入收款地址";
+"OpenWalletFailed" = "开启钱包失败";
+"CreateTransFailed" = "创建交易失败";
+"UtxoFailed" = "获取utxo失败,请检查网络状态";
+"TransSuccess" = "交易广播成功";
+"TransFailed" = "交易广播失败";
+"BalanceNotEnough" = "金额不足";
+"InvalidateAddress" = "请输入其他地址";
+"CopySuccess" = "钱包地址已复制到剪切板";
+"Copied" = "已复制";
+"ProcessingTrans" = "目前仍有一笔待确认中的交易";
