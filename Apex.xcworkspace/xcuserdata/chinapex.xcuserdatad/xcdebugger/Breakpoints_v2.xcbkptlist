@@ -96,7 +96,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Apex/Wallet/Model/ApexTransferHistoryManager.m"
@@ -222,7 +222,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Apex/Asset/Controller/ApexAccountDetailController.m"
-            timestampString = "553163583.342512"
+            timestampString = "553167079.64029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "225"

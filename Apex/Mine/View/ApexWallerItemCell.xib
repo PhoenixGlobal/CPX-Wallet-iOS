@@ -40,9 +40,8 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uG0-Nq-Aux">
-                        <rect key="frame" x="160" y="22.5" width="40" height="18"/>
+                        <rect key="frame" x="169" y="22.5" width="31" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="aWF-VW-tnf"/>
                             <constraint firstAttribute="height" constant="18" id="rmG-kc-uDR"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="swS-Ux-lU6"/>
                         </constraints>

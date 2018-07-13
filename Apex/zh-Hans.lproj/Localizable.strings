@@ -59,7 +59,7 @@
 "Language" = "语言设置";
 "Profile" = "个人画像";
 "Go Mapping" = "一键映射";
-"Back up" = "请备份";
+"Back up" = " 请备份 ";
 "Delete Wallet" = "删除钱包";
 "Change Wallet" = "切换钱包";
 "CreatWalletTip01" = "• 密码用于加密私钥和交易授权，非常重要，请勿设定的过于简单。";
