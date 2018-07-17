@@ -63,6 +63,8 @@
 "To" = "To";
 "Time" = "Time";
 "Txid" = "Txid";
+"exKeystore" = "Export Keystore";
+"copyKeystore" = "KeyStore Copied In Clipboard";
 
 "Language" = "Languages";
 "Profile" = "Profile";

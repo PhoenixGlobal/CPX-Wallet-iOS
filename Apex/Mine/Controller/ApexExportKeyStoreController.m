@@ -29,7 +29,7 @@
 #pragma mark - ------private------
 - (void)initUI{
     
-    self.title = @"导出keystore";
+    self.title = SOLocalizedStringFromTable(@"exKeystore", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.switchView];

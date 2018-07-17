@@ -55,6 +55,8 @@
 "To" = "收款钱包地址";
 "Time" = "交易时间";
 "Txid" = "交易单号";
+"exKeystore" = "导出Keystore";
+"copyKeystore" = "Keystore已复制到剪切板";
 
 "Language" = "语言设置";
 "Profile" = "个人画像";

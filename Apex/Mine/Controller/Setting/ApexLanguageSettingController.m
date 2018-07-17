@@ -50,6 +50,14 @@
     
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:ApexLanguageSettingCell.class forCellReuseIdentifier:@"cell"];
+    self.tableView.backgroundColor = [ApexUIHelper grayColor240];
+    self.view.backgroundColor = [ApexUIHelper grayColor240];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(self.view);
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+    }];
     
     @weakify(self);
     [[self.saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -124,9 +132,12 @@
 #pragma mark - ------getter & setter------
 - (UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+        _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.contentInset = UIEdgeInsetsMake(15, 0, 0, 0);
+        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
