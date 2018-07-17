@@ -8,12 +8,15 @@
 
 #import "ApexLanguageSettingController.h"
 #import "CYLTabBarController.h"
+#import "ApexLanguageSettingCell.h"
 
 @interface ApexLanguageSettingController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIButton *saveBtn;
 @property (nonatomic, strong) NSString *language;
 @property (nonatomic, strong) UILabel *titleL;
+@property (nonatomic, strong) ApexLanguageSettingCell *zhCell;
+@property (nonatomic, strong) ApexLanguageSettingCell *enCell;
 @end
 
 @implementation ApexLanguageSettingController
@@ -46,7 +49,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.tableView];
-    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:ApexLanguageSettingCell.class forCellReuseIdentifier:@"cell"];
     
     @weakify(self);
     [[self.saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -84,23 +87,32 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    ApexLanguageSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == 0) {
         cell.textLabel.text = @"简体中文";
-        
+        _zhCell = cell;
+        [[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationSimplifiedChinese] ? (cell.imageV.hidden = NO) : (cell.imageV.hidden = YES);
     }else{
         cell.textLabel.text = @"English(U.S)";
+        _enCell = cell;
+        [[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish] ? (cell.imageV.hidden = NO) : (cell.imageV.hidden = YES);
     }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (indexPath.row == 0) {
         _language = SOLocalizationSimplifiedChinese;
+        _zhCell.imageV.hidden = NO;
+        _enCell.imageV.hidden = YES;
         
     }else{
         _language = SOLocalizationEnglish;
+        _zhCell.imageV.hidden = YES;
+        _enCell.imageV.hidden = NO;
     }
 }
 #pragma mark - ------eventResponse------

@@ -49,7 +49,7 @@
 }
 
 - (void)localization{
-    [SOLocalization configSupportRegions:@[SOLocalizationEnglish,SOLocalizationSimplifiedChinese] fallbackRegion:SOLocalizationSimplifiedChinese];
+    [SOLocalization configSupportRegions:@[SOLocalizationEnglish,SOLocalizationSimplifiedChinese] fallbackRegion:SOLocalizationEnglish];
     
     NSString *language = [TKFileManager ValueWithKey:KLanguageSetting];
     

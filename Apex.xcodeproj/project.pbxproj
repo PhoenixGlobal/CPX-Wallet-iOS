@@ -54,6 +54,7 @@
 		E3373B4F20F7459D00590407 /* ApexTransferHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B4E20F7459D00590407 /* ApexTransferHistoryController.m */; };
 		E3373B5120F8414100590407 /* ApexSendMoneyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3373B5320F8414200590407 /* ApexSendMoneyController.xib */; };
 		E3373B5920F8711600590407 /* ApexLanguageSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B5820F8711600590407 /* ApexLanguageSettingController.m */; };
+		E3373B6820FDD8CD00590407 /* ApexLanguageSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3373B6720FDD8CD00590407 /* ApexLanguageSettingCell.m */; };
 		E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */; };
 		E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E338964D20B505EB00DD51FE /* CYLEmptyView.m */; };
 		E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E338965020B511B400DD51FE /* ApexSearchWalletToolBar.m */; };
@@ -260,6 +261,8 @@
 		E3373B5520F8414500590407 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ApexSendMoneyController.strings"; sourceTree = "<group>"; };
 		E3373B5720F8711600590407 /* ApexLanguageSettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexLanguageSettingController.h; sourceTree = "<group>"; };
 		E3373B5820F8711600590407 /* ApexLanguageSettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexLanguageSettingController.m; sourceTree = "<group>"; };
+		E3373B6620FDD8CD00590407 /* ApexLanguageSettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexLanguageSettingCell.h; sourceTree = "<group>"; };
+		E3373B6720FDD8CD00590407 /* ApexLanguageSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexLanguageSettingCell.m; sourceTree = "<group>"; };
 		E338964920B4250E00DD51FE /* ApexNoDetailDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoDetailDataView.h; sourceTree = "<group>"; };
 		E338964A20B4250E00DD51FE /* ApexNoDetailDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoDetailDataView.m; sourceTree = "<group>"; };
 		E338964C20B505EB00DD51FE /* CYLEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLEmptyView.h; sourceTree = "<group>"; };
@@ -680,6 +683,8 @@
 				E39E030420C8FB85005DD251 /* ApexExportKeystoreQRView.h */,
 				E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */,
 				E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */,
+				E3373B6620FDD8CD00590407 /* ApexLanguageSettingCell.h */,
+				E3373B6720FDD8CD00590407 /* ApexLanguageSettingCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1327,6 +1332,7 @@
 				E33A8BDF20B2BB340067505E /* UIView+Common.m in Sources */,
 				E3373B3F20F5F14F00590407 /* UITextField+SOLocalization.m in Sources */,
 				E3373B4C20F7458E00590407 /* ApexWalletManageController.m in Sources */,
+				E3373B6820FDD8CD00590407 /* ApexLanguageSettingCell.m in Sources */,
 				E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */,
 				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
 				E3373B3C20F5F14F00590407 /* UIBarItem+SOLocalization.m in Sources */,

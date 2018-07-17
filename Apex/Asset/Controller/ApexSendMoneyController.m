@@ -179,6 +179,7 @@
             [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideHUD];
         [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
     }];
 }

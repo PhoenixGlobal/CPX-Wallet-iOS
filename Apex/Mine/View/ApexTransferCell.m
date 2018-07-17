@@ -130,7 +130,7 @@
 //
 //    if (period > 86400) {
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
-    _timeStampL.text = [NSString stringWithFormat:@"%ld/%ld/%ld %ld:%ld",(long)date.year,date.month,date.day, date.hour, date.minute];
+    _timeStampL.text = [NSString stringWithFormat:@"%ld-%ld-%ld %02ld:%02ld:%02ld",(long)date.year,date.month,date.day, date.hour, date.minute,date.second];
 //    }
     
 }

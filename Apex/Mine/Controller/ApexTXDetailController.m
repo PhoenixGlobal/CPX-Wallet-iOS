@@ -49,9 +49,8 @@
 - (void)initUI{
     self.navigationItem.titleView = self.titleLable;
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    _timeStamp.text = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.model.time.integerValue]];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_model.time.doubleValue];
+    _timeStamp.text = [NSString stringWithFormat:@"%ld-%ld-%ld %02ld:%02ld:%02ld",(long)date.year,date.month,date.day, date.hour, date.minute,date.second];
     
     _fromAddressL.text = self.model.from;
     _toAddressL.text = self.model.to;

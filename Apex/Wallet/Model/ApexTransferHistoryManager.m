@@ -344,7 +344,11 @@ static ApexTransferHistoryManager *_instance;
             }else{
                 model.status = ApexTransferStatus_Confirmed;
             }
-            [[ApexTransferHistoryManager shareManager] addTransferHistory:model forWallet:addr];
+        
+            if (model.from != model.to) {
+                [[ApexTransferHistoryManager shareManager] addTransferHistory:model forWallet:addr];
+            }
+            
             [tempArr addObject:model];
         }
         
