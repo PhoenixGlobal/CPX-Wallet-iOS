@@ -30,7 +30,7 @@
 "Backup Wallet" = "Backup Wallet";
 "Start Backup Mnemonics" = "Start Backup Mnemonics";
 "Copy Your Mnemonic" = "Copy Your Mnemonic";
-"Export mnemonics and keep it in a safe place, do not save on the internet. then begin using with transfer small assets." = "Export mnemonics and keep it in a safe place, do not save on the internet. then begin using with transfer small assets.";
+"Export mnemonics and keep it in a safe place, do not save on the internet. then begin using with transfer small assets." = "Export [mnemonics] and keep it in a safe place, do not save on the internet. then begin using with transfer small assets.";
 "Next step" = "Next step";
 "The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know." = "The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know.";
 "Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place." = "Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place.";

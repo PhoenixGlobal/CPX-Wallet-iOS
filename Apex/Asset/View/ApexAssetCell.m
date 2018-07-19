@@ -29,6 +29,8 @@
 - (void)initUI{
     self.layer.cornerRadius = 3;
     self.layer.masksToBounds = YES;
+    self.layer.borderColor = [UIColor colorWithHexString:@"dddddd"].CGColor;
+    self.layer.borderWidth = 1.0/kScale;
 //    self.layer.shadowColor = [UIColor grayColor].CGColor;
 //    self.layer.shadowOffset = CGSizeMake(0, 1);
 //    self.layer.shadowOpacity = 0.8;

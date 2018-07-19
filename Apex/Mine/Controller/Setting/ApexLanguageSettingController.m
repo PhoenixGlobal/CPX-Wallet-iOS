@@ -100,6 +100,7 @@
     if (indexPath.row == 0) {
         cell.textLabel.text = @"简体中文";
         _zhCell = cell;
+        [cell addLinecolor:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-1, 15, 0, 0)];
         [[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationSimplifiedChinese] ? (cell.imageV.hidden = NO) : (cell.imageV.hidden = YES);
     }else{
         cell.textLabel.text = @"English(U.S)";

@@ -33,6 +33,6 @@
 - (void)setCenterY:(CGFloat)centerY;
 - (void)setOrigin:(CGPoint)point;
 - (void)setSize:(CGSize)size;
-
+- (UIView *)addLinecolor:(UIColor *)color edge:(UIEdgeInsets)edge;
 
 @end

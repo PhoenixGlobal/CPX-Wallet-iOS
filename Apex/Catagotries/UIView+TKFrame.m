@@ -129,5 +129,40 @@
     self.center = CGPointMake(self.center.x, centerY);
 }
 
+- (UIView *)addLinecolor:(UIColor *)color edge:(UIEdgeInsets)edge
+{
+    UIView *line = [[UIView alloc] init];
+    line.backgroundColor = color;
+    [self addSubview:line];
+    line.translatesAutoresizingMaskIntoConstraints = NO;
+    NSDictionary *views = @{@"line":line};
+    NSString *H;
+    NSString *V;
+    if (edge.left <0) {
+        edge.left = -edge.left;
+        H = @"H:[line(left)]-right-|";
+        V = @"V:|-top-[line]-bottom-|";
+    }else if (edge.right <0){
+        edge.right = -edge.right;
+        H = @"H:|-left-[line(right)]";
+        V = @"V:|-top-[line]-bottom-|";
+    }else if (edge.top <0){
+        edge.top = -edge.top;
+        H = @"H:|-left-[line]-right-|";
+        V = @"V:[line(top)]-bottom-|";
+    }else if (edge.bottom <0){
+        edge.bottom = -edge.bottom;
+        H = @"H:|-left-[line]-right-|";
+        V = @"V:|-top-[line(bottom)]";
+    }else{
+        [line removeFromSuperview];
+        return nil;
+    }
+    NSDictionary *metrics = @{@"left": @(edge.left), @"right": @(edge.right), @"top": @(edge.top), @"bottom": @(edge.bottom)};
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:H options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:V options:0 metrics:metrics views:views]];
+    return line;
+}
+
 
 @end

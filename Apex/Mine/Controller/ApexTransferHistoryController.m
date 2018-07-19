@@ -13,6 +13,7 @@
 @interface ApexTransferHistoryController ()
 @property (nonatomic, strong) ApexTransactionRecordView *transactionView;
 @property (nonatomic, strong) UILabel *titleL;
+@property (nonatomic, strong) UIImageView *fakeNavBar; /**<  */
 @end
 
 @implementation ApexTransferHistoryController
@@ -27,8 +28,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController lt_setBackgroundColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -41,6 +42,19 @@
 - (void)initUI{
     self.navigationItem.titleView = self.titleL;
     [self.view addSubview:self.transactionView];
+    [self.view addSubview:self.fakeNavBar];
+    
+    [self.fakeNavBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(NavBarHeight);
+    }];
+    
+    [self.transactionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.fakeNavBar.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    
     [self.transactionView reloadTransactionData];
 }
 
@@ -80,8 +94,15 @@
     if (!_titleL) {
         _titleL = [[UILabel alloc] init];
         _titleL.text = SOLocalizedStringFromTable(@"Transaction Records", nil);
-        _titleL.textColor = [UIColor blackColor];
+        _titleL.textColor = [UIColor whiteColor];
     }
     return _titleL;
+}
+
+- (UIImageView *)fakeNavBar{
+    if (!_fakeNavBar) {
+        _fakeNavBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barImage"]];
+    }
+    return _fakeNavBar;
 }
 @end

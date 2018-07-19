@@ -110,7 +110,7 @@
     if (!_tipL) {
         _tipL = [[UILabel alloc] init];
         _tipL.font = [UIFont systemFontOfSize:18];
-        _tipL.text = SOLocalizedStringFromTable(@"Backup Mnemonic", nil);
+        _tipL.text = SOLocalizedStringFromTable(@"Backup Wallet", nil);
         _tipL.textColor = [UIColor colorWithHexString:@"666666"];
     }
     return _tipL;
@@ -130,7 +130,7 @@
 - (UIButton *)toBackUpBtn{
     if (!_toBackUpBtn) {
         _toBackUpBtn = [[UIButton alloc] init];
-        [_toBackUpBtn setTitle:SOLocalizedStringFromTable(@"Backup Mnemonic", nil) forState:UIControlStateNormal];
+        [_toBackUpBtn setTitle:SOLocalizedStringFromTable(@"Backup Wallet", nil) forState:UIControlStateNormal];
         [_toBackUpBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _toBackUpBtn.backgroundColor = [ApexUIHelper mainThemeColor];
         _toBackUpBtn.titleLabel.font = [UIFont systemFontOfSize:13];

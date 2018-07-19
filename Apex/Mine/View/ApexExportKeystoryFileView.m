@@ -8,6 +8,10 @@
 
 #import "ApexExportKeystoryFileView.h"
 
+@interface ApexExportKeystoryFileView()
+
+@end
+
 @implementation ApexExportKeystoryFileView
 
 - (void)awakeFromNib{

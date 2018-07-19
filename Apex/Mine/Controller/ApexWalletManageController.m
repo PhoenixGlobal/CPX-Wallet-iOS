@@ -13,6 +13,7 @@
 @interface ApexWalletManageController ()
 @property (nonatomic, strong) ApexManageWalletView *manageView;
 @property (nonatomic, strong) UILabel *titleL;
+@property (nonatomic, strong) UIImageView *fakeNavBar; /**<  */
 @end
 
 @implementation ApexWalletManageController
@@ -26,23 +27,27 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController lt_setBackgroundColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self.manageView reloadWalletData];
     [self setNav];
 }
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-}
-
 
 #pragma mark - ------private------
 - (void)initUI{
     self.navigationItem.titleView = self.titleL;
     [self.view addSubview:self.manageView];
+    [self.view addSubview:self.fakeNavBar];
+    
+    [self.fakeNavBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(NavBarHeight);
+    }];
+    
+    [self.manageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.fakeNavBar.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    
 }
 
 - (void)setNav{
@@ -80,8 +85,15 @@
     if (!_titleL) {
         _titleL = [[UILabel alloc] init];
         _titleL.text = SOLocalizedStringFromTable(@"Manage Wallet", nil);
-        _titleL.textColor = [UIColor blackColor];
+        _titleL.textColor = [UIColor whiteColor];
     }
     return _titleL;
+}
+
+- (UIImageView *)fakeNavBar{
+    if (!_fakeNavBar) {
+        _fakeNavBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barImage"]];
+    }
+    return _fakeNavBar;
 }
 @end

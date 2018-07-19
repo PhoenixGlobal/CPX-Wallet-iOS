@@ -60,7 +60,7 @@
     [self setOneViewController:vc1 image:[UIImage imageNamed:@"叠加_块"] selImage:[UIImage imageNamed:@"叠加_块-1"] title:SOLocalizedStringFromTable(@"Assets", nil)];
     
     ApexMinePageController *vc2 = [[ApexMinePageController alloc] init];
-    [self setOneViewController:vc2 image:[UIImage imageNamed:@"钱包"] selImage:[UIImage imageNamed:@"钱包-sel"] title:SOLocalizedStringFromTable(@"Mine", nil)];
+    [self setOneViewController:vc2 image:[UIImage imageNamed:@"Shape-1"] selImage:[UIImage imageNamed:@"Shape"] title:SOLocalizedStringFromTable(@"Mine", nil)];
     
 }
 

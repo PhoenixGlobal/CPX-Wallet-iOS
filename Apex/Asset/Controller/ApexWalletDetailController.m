@@ -89,7 +89,7 @@
         make.top.equalTo(self.view).offset(70);
         make.centerX.equalTo(self.view.mas_centerX);
         make.left.greaterThanOrEqualTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-55);
+        make.right.greaterThanOrEqualTo(self.view).offset(-55);
     }];
     
     [self.unitL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -247,13 +247,12 @@
     if (!_sendBtn) {
         _sendBtn = [[UIButton alloc] init];
         [_sendBtn setTitle:SOLocalizedStringFromTable(@"Transfer", nil) forState:UIControlStateNormal];
-        [_sendBtn setTitleColor:[ApexUIHelper mainThemeColor] forState:UIControlStateNormal];
-        [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         
         
-        _sendBtn.backgroundColor = [UIColor whiteColor];
-        _sendBtn.layer.borderColor = [ApexUIHelper mainThemeColor].CGColor;
+        _sendBtn.backgroundColor = [ApexUIHelper mainThemeColor];
+        _sendBtn.layer.borderColor = [UIColor whiteColor].CGColor;
         _sendBtn.layer.borderWidth = 1.0/kScale;
         _sendBtn.layer.cornerRadius = 6;
         _sendBtn.titleLabel.font = [UIFont systemFontOfSize:13];

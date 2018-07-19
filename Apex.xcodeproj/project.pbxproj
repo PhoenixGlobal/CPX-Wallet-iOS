@@ -122,7 +122,6 @@
 		E39E02FB20C8F4CB005DD251 /* ApexExportKeyStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02FA20C8F4CB005DD251 /* ApexExportKeyStoreController.m */; };
 		E39E02FE20C8F77A005DD251 /* ApexTwoSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02FD20C8F77A005DD251 /* ApexTwoSwitchView.m */; };
 		E39E030120C8FB51005DD251 /* ApexExportKeystoryFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030020C8FB51005DD251 /* ApexExportKeystoryFileView.m */; };
-		E39E030320C8FB61005DD251 /* ApexExportKeystoryFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E030220C8FB61005DD251 /* ApexExportKeystoryFileView.xib */; };
 		E39E030620C8FB85005DD251 /* ApexExportKeystoreQRView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */; };
 		E39E030820C8FB8D005DD251 /* ApexExportKeystoreQRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */; };
 		E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E030C20CA72A7005DD251 /* ApexDrawTransPercentDriven.m */; };
@@ -155,6 +154,7 @@
 		E3CE66D920C4E29E002A1E07 /* ApexAssetMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */; };
 		E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCA20C112B700E2C597 /* NullSafe.m */; };
 		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
+		E7EDD71A2100646300007F29 /* ApexExportKeystoryFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EDD7192100646300007F29 /* ApexExportKeystoryFileView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -392,7 +392,6 @@
 		E39E02FD20C8F77A005DD251 /* ApexTwoSwitchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTwoSwitchView.m; sourceTree = "<group>"; };
 		E39E02FF20C8FB51005DD251 /* ApexExportKeystoryFileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexExportKeystoryFileView.h; sourceTree = "<group>"; };
 		E39E030020C8FB51005DD251 /* ApexExportKeystoryFileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexExportKeystoryFileView.m; sourceTree = "<group>"; };
-		E39E030220C8FB61005DD251 /* ApexExportKeystoryFileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexExportKeystoryFileView.xib; sourceTree = "<group>"; };
 		E39E030420C8FB85005DD251 /* ApexExportKeystoreQRView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexExportKeystoreQRView.h; sourceTree = "<group>"; };
 		E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexExportKeystoreQRView.m; sourceTree = "<group>"; };
 		E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexExportKeystoreQRView.xib; sourceTree = "<group>"; };
@@ -455,6 +454,7 @@
 		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
 		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
+		E7EDD7192100646300007F29 /* ApexExportKeystoryFileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApexExportKeystoryFileView.xib; path = ../../../../../../.Trash/ApexExportKeystoryFileView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -679,7 +679,7 @@
 				E3CE66BC20BF99AF002A1E07 /* ApexSwithWalletView.m */,
 				E39E02FF20C8FB51005DD251 /* ApexExportKeystoryFileView.h */,
 				E39E030020C8FB51005DD251 /* ApexExportKeystoryFileView.m */,
-				E39E030220C8FB61005DD251 /* ApexExportKeystoryFileView.xib */,
+				E7EDD7192100646300007F29 /* ApexExportKeystoryFileView.xib */,
 				E39E030420C8FB85005DD251 /* ApexExportKeystoreQRView.h */,
 				E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */,
 				E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */,
@@ -1226,7 +1226,6 @@
 				E38A64BE20ECB88600150F3B /* ApexAddAssetCell.xib in Resources */,
 				E3373B5120F8414100590407 /* ApexSendMoneyController.xib in Resources */,
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
-				E39E030320C8FB61005DD251 /* ApexExportKeystoryFileView.xib in Resources */,
 				E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */,
 				E3373B4220F725D200590407 /* Localizable.strings in Resources */,
 				E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */,
@@ -1242,6 +1241,7 @@
 				E3263EEA20B69BB6001D3C19 /* close-round.png in Resources */,
 				E3CD112B20F30D4A009C1439 /* AssetResources.bundle in Resources */,
 				E39E02C420C4EDF6005DD251 /* ApexAssetMainViewCell.xib in Resources */,
+				E7EDD71A2100646300007F29 /* ApexExportKeystoryFileView.xib in Resources */,
 				E33A8B5520AE724F0067505E /* Assets.xcassets in Resources */,
 				E3263EE720B69BB6001D3C19 /* alert-round.png in Resources */,
 				E3263EED20B69BB6001D3C19 /* .gitkeep in Resources */,
