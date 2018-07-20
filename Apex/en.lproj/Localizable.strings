@@ -77,6 +77,10 @@
 "YourWallet" = "Your Wallet Address";
 "LanguageSetting" = "Language Setting";
 
+"saveofflin" = "Save Offline";
+"dontTransThNet" = "Do Not Transfer Thought Network";
+"saveinbox" = "Keep Your Password In Security Box";
+
 // tips
 "Create Wallet Failed" = "Create Wallet Failed";
 "Create Keystore Failed" = "Create Keystore Failed";

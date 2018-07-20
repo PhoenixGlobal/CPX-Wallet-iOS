@@ -78,7 +78,6 @@
 		E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8B9420AE756E0067505E /* UIColor+HYF.m */; };
 		E33A8BA420AE76860067505E /* CYLAppBaseFrameWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33A8BA320AE76850067505E /* CYLAppBaseFrameWork.framework */; };
 		E33A8BA720AE779B0067505E /* ApexDiscoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BA620AE779B0067505E /* ApexDiscoverController.m */; };
-		E33A8BAD20AE77C70067505E /* ApexMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BAC20AE77C70067505E /* ApexMineController.m */; };
 		E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BB120AE795F0067505E /* ApexWalletInitController.m */; };
 		E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BB220AE795F0067505E /* ApexImportWalletController.m */; };
 		E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BB520AE795F0067505E /* ApexCreatWalletController.m */; };
@@ -309,8 +308,6 @@
 		E33A8BA320AE76850067505E /* CYLAppBaseFrameWork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CYLAppBaseFrameWork.framework; sourceTree = "<group>"; };
 		E33A8BA520AE779B0067505E /* ApexDiscoverController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexDiscoverController.h; sourceTree = "<group>"; };
 		E33A8BA620AE779B0067505E /* ApexDiscoverController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexDiscoverController.m; sourceTree = "<group>"; };
-		E33A8BAB20AE77C70067505E /* ApexMineController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexMineController.h; sourceTree = "<group>"; };
-		E33A8BAC20AE77C70067505E /* ApexMineController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexMineController.m; sourceTree = "<group>"; };
 		E33A8BB120AE795F0067505E /* ApexWalletInitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexWalletInitController.m; sourceTree = "<group>"; };
 		E33A8BB220AE795F0067505E /* ApexImportWalletController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexImportWalletController.m; sourceTree = "<group>"; };
 		E33A8BB320AE795F0067505E /* ApexCreatWalletController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexCreatWalletController.h; sourceTree = "<group>"; };
@@ -694,8 +691,6 @@
 		E33A8B6320AE73F00067505E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E33A8BAB20AE77C70067505E /* ApexMineController.h */,
-				E33A8BAC20AE77C70067505E /* ApexMineController.m */,
 				E3373B4720F72CF400590407 /* ApexMinePageController.h */,
 				E3373B4820F72CF400590407 /* ApexMinePageController.m */,
 				E3373B5620F870FF00590407 /* Setting */,
@@ -1401,7 +1396,6 @@
 				E33A8BDC20B2B5950067505E /* ApexWalletDetailController.m in Sources */,
 				E39E02FE20C8F77A005DD251 /* ApexTwoSwitchView.m in Sources */,
 				E38A64BA20ECB0EA00150F3B /* ApexAddAssetsController.m in Sources */,
-				E33A8BAD20AE77C70067505E /* ApexMineController.m in Sources */,
 				E3263F0220B7BC84001D3C19 /* ApexWalletModel.m in Sources */,
 				E3263ED220B666CA001D3C19 /* ApexWalletManageDetailController.m in Sources */,
 				E3CE668A20BD34B7002A1E07 /* ApexTransactionDetailController.m in Sources */,

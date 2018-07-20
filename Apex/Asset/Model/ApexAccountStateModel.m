@@ -7,6 +7,7 @@
 //
 
 #import "ApexAccountStateModel.h"
+#import "ApexAssetModelManage.h"
 
 @implementation ApexAccountStateModel
 + (NSDictionary *)modelContainerPropertyGenericClass {
@@ -39,5 +40,16 @@
     
     typeof(self) balanceObj = object;
     return [balanceObj.asset isEqualToString:self.asset];
+}
+
+- (ApexAssetModel*)getRelativeAssetModel{
+    ApexAssetModel *model = nil;
+    for (ApexAssetModel *asModel in [ApexAssetModelManage getLocalAssetModelsArr]) {
+        if ([asModel.hex_hash isEqualToString:self.asset]) {
+            model = asModel;
+        }
+    }
+    
+    return model;
 }
 @end

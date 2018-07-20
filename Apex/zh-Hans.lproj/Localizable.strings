@@ -69,6 +69,11 @@
 "YourWallet" = "你的钱包/地址";
 "LanguageSetting" = "语言设置";
 
+"saveofflin" = "离线保存";
+"dontTransThNet" = "请勿通过网络传输";
+"saveinbox" = "密码保险箱保存";
+
+
 // tips
 "Create Wallet Failed" = "钱包创建失败";
 "Create Keystore Failed" = "keystore创建失败";

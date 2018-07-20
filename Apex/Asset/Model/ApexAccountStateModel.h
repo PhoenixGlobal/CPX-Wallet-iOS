@@ -25,6 +25,7 @@
  ]
  */
 @class BalanceObject;
+@class ApexAssetModel;
 
 @interface ApexAccountStateModel : NSObject
 @property (nonatomic, strong) NSString *version;
@@ -37,5 +38,7 @@
 @property (nonatomic, strong) NSString *asset;
 @property (nonatomic, strong) NSString *value;
 
+//查找相关的assetmodel
+- (ApexAssetModel*)getRelativeAssetModel;
 - (BOOL)isHashEqual:(id)objct;
 @end

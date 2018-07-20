@@ -89,7 +89,7 @@
         make.top.equalTo(self.view).offset(70);
         make.centerX.equalTo(self.view.mas_centerX);
         make.left.greaterThanOrEqualTo(self.view).offset(15);
-        make.right.greaterThanOrEqualTo(self.view).offset(-55);
+        make.right.equalTo(self.view).offset(-60);
     }];
     
     [self.unitL mas_makeConstraints:^(MASConstraintMaker *make) {

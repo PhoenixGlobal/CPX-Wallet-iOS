@@ -9,6 +9,9 @@
 #import "ApexExportKeystoryFileView.h"
 
 @interface ApexExportKeystoryFileView()
+@property (weak, nonatomic) IBOutlet UILabel *title0;
+@property (weak, nonatomic) IBOutlet UILabel *title1;
+@property (weak, nonatomic) IBOutlet UILabel *title2;
 
 @end
 
@@ -25,6 +28,10 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(copyAction)];
     [self.textView addGestureRecognizer:tap];
+    
+    _title0.text = SOLocalizedStringFromTable(@"saveofflin", nil);
+    _title1.text = SOLocalizedStringFromTable(@"dontTransThNet", nil);
+    _title2.text = SOLocalizedStringFromTable(@"saveinbox", nil);
 }
 
 - (void)setAddress:(NSString *)address{

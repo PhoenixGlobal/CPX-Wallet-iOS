@@ -30,6 +30,7 @@
     [super viewWillAppear:animated];
     [self setNav];
 }
+
 #pragma mark - ------private------
 - (void)initUI{
     self.title = SOLocalizedStringFromTable(@"Mine", nil);

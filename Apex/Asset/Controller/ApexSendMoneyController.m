@@ -32,6 +32,10 @@
 @property (nonatomic, strong) UIButton *backBtn;
 
 @property (nonatomic, strong) ApexAssetModel *assetModel;
+
+@property (weak, nonatomic) IBOutlet UILabel *availableL;
+@property (weak, nonatomic) IBOutlet UIButton *takeAllBtn;
+
 @end
 
 @implementation ApexSendMoneyController
@@ -45,14 +49,6 @@
     [self handleEvent];
     
     [self setNav];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-//    [self.navigationController lt_setBackgroundColor:[UIColor colorWithRed255:70 green255:105 blue255:214 alpha:1]];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-//    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 
 #pragma mark - ------private------
@@ -73,18 +69,26 @@
     [ApexUIHelper addLineInView:self.sendNumTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
     self.sendBtn.layer.cornerRadius = 6;
-    
-    for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
-        if ([model.hex_hash containsString:self.balanceModel.asset]) {
-            self.assetModel = model;
-            self.unitL.text = self.assetModel.symbol;
-            break;
-        }
-    }
+    self.assetModel = [self.balanceModel getRelativeAssetModel];
+    self.unitL.text = self.assetModel.symbol;
     
     self.toAddressTF.placeholder = SOLocalizedStringFromTable(@"SendMoneyAddress", nil);
     self.sendNumTF.placeholder = SOLocalizedStringFromTable(@"Amount", nil);
     [self.sendBtn setTitle:SOLocalizedStringFromTable(@"Submit", nil) forState:UIControlStateNormal];
+    
+    NSMutableAttributedString *attrStr = nil;
+    NSString *string = @"";
+    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+        string = [NSString stringWithFormat:@"Amount (Available: %@)",self.balanceModel.value];
+        attrStr = [[NSMutableAttributedString alloc] initWithString:string];
+    }else{
+        string = [NSString stringWithFormat:@"交易金额 (可用数量: %@)",self.balanceModel.value];
+        attrStr = [[NSMutableAttributedString alloc] initWithString:string];
+    }
+    
+    
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange([string rangeOfString:@":"].location+2, self.balanceModel.value.length)];
+    self.availableL.attributedText = attrStr;
 }
 
 - (void)utxoSearch:(NeomobileWallet*)wallet{
@@ -124,16 +128,6 @@
             [self showMessage:SOLocalizedStringFromTable(@"UtxoFailed", nil)];
         }];
     }else{
-        
-//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//        dic[@"txid"] = @"0x744241ccd9a85e2732c14d121c00022c832a9edfdefc9cae43c41b49f9aa48db";
-//        dic[@"block"] = @(2274806);
-//        dic[@"vout"] = @{@"Address":self.walletAddress,@"Asset":self.balanceModel.asset,@"Value":@"1000000",@"N":@(0)};
-//        dic[@"spentBlock"] = @(-1);
-//        dic[@"spentTime"] = @"";
-//        dic[@"createTime"] = @"2018-05-16T10:40:47Z";
-//        dic[@"gas"] = @"";
-//        NSString *unspend = [NSString stringWithFormat:@"[%@]",[self convertToJsonData:dic]];
 
         NSError *err = nil;
         NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:self.sendNumTF.text];
@@ -214,17 +208,6 @@
     return mutStr;
 }
 
-//- (void)saveTX:(ApexTXRecorderModel*)model{
-//    NSMutableArray *arr = [TKFileManager loadDataWithFileName:TXRECORD_KEY];
-//    if (arr == nil) {
-//        arr = [NSMutableArray array];
-//    }
-//
-//    [arr addObject:model];
-//
-//    [TKFileManager saveData:arr withFileName:TXRECORD_KEY];
-//}
-
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
@@ -241,14 +224,32 @@
         scanvc.scanDelegate = self;
         [self.navigationController pushViewController:scanvc animated:YES];
     }];
+    
+    [[self.takeAllBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        self.sendNumTF.text = self.balanceModel.value;
+    }];
+    
 }
 
 - (IBAction)sendAction:(id)sender {
+    
     if (_sendNumTF.text.floatValue > _balanceModel.value.floatValue) {
         [self showMessage:SOLocalizedStringFromTable(@"BalanceNotEnough", nil)];
     }else if ([_toAddressTF.text isEqualToString:_walletAddress]){
         [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
     }else{
+        //检查精度
+        NSString *decimal = [self.sendNumTF.text componentsSeparatedByString:@"."].lastObject;
+        if (decimal.length > self.assetModel.precision.integerValue) {
+            if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+                [self showMessage:[NSString stringWithFormat:@"given amount out of precision(%@)",self.assetModel.precision]];
+            }else{
+                [self showMessage:[NSString stringWithFormat:@"金额的精度超出正确的精度(%@)",self.assetModel.precision]];
+            }
+            return;
+        }
+        
+        //输入密码
         [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress subTitle:@"" Success:^(NeomobileWallet *wallet) {
             [self utxoSearch:wallet];
         } fail:^{
@@ -256,6 +257,7 @@
         }];
     }
 }
+
 #pragma mark - ------getter & setter------
 - (ApexSendMoneyViewModel *)viewModel{
     if (!_viewModel) {
