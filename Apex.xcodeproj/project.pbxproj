@@ -154,6 +154,7 @@
 		E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCA20C112B700E2C597 /* NullSafe.m */; };
 		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
 		E7EDD71B210064CF00007F29 /* ApexExportKeystoryFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EDD71D210064CF00007F29 /* ApexExportKeystoryFileView.xib */; };
+		E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7242101C0FF00007F29 /* ApexLoading.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -454,6 +455,8 @@
 		E7EDD71C210064CF00007F29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ApexExportKeystoryFileView.xib; sourceTree = "<group>"; };
 		E7EDD71F210064D500007F29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ApexExportKeystoryFileView.strings; sourceTree = "<group>"; };
 		E7EDD721210064D700007F29 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ApexExportKeystoryFileView.strings"; sourceTree = "<group>"; };
+		E7EDD7232101C0FF00007F29 /* ApexLoading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexLoading.h; sourceTree = "<group>"; };
+		E7EDD7242101C0FF00007F29 /* ApexLoading.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexLoading.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -835,6 +838,7 @@
 		E33A8B6E20AE75500067505E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				E7EDD7222101C0C100007F29 /* CommonAnimation */,
 				E3373B2220F5F14F00590407 /* SOLocalizations */,
 				E39E02D120C659C6005DD251 /* TransitionAnimator */,
 				E3CE669F20BEA811002A1E07 /* DateTools */,
@@ -1099,6 +1103,15 @@
 				E3CE66D120BFC9A4002A1E07 /* Info.plist */,
 			);
 			path = ApexTests;
+			sourceTree = "<group>";
+		};
+		E7EDD7222101C0C100007F29 /* CommonAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				E7EDD7232101C0FF00007F29 /* ApexLoading.h */,
+				E7EDD7242101C0FF00007F29 /* ApexLoading.m */,
+			);
+			path = CommonAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1388,6 +1401,7 @@
 				E3263EFF20B6BDB1001D3C19 /* UILabel+Spacing.m in Sources */,
 				E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */,
 				E33A8B9A20AE756E0067505E /* UINavigationController+ApexNavigationBar.m in Sources */,
+				E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */,
 				E39E02E320C7ACDB005DD251 /* UIViewController+Apex.m in Sources */,
 				E3CE66B920BEA812002A1E07 /* DTConstants.m in Sources */,
 				E3CE66D920C4E29E002A1E07 /* ApexAssetMainController.m in Sources */,

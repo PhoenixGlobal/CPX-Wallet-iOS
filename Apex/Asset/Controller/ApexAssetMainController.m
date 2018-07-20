@@ -15,6 +15,7 @@
 #import "ApexAccountDetailController.h"
 #import "ApexDrawTransAnimator.h"
 #import "ApexMorePanelController.h"
+#import "ApexLoading.h"
 
 #define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
 
@@ -34,11 +35,8 @@
     [super viewDidLoad];
     [self initUI];
     [self handleEvent];
-//    [ApexWalletManager getTransactionHistoryWithAddress:@"AQVh2pG732YvtNaxEGkQUei3YA4cvo7d2i" BeginTime:0 Success:^(CYLResponse *response) {
-//        NSLog(@"%@",response.returnObj);
-//    } failure:^(NSError *error) {
-//        NSLog(@"");
-//    }];
+
+    [ApexLoading showOnView:self.view Message:@"msmsmsmssmsms"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

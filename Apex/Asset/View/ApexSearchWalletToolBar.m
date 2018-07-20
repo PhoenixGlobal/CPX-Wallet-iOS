@@ -99,6 +99,10 @@
     self.searchTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:14]}];
 }
 
+- (void)setLeftView:(UIView *)leftView{
+    self.searchTF.leftView = leftView;
+}
+
 - (LeftViewSpaceTextField *)searchTF{
     if (!_searchTF) {
         _searchTF = [[LeftViewSpaceTextField alloc] init];

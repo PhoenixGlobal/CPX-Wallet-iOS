@@ -15,5 +15,6 @@
 
 - (void)setPlaceHolder:(NSString *)placeHolder color:(UIColor*)color;
 - (void)setTextColor:(UIColor*)textColor backgroundColor:(UIColor*)bgColor;
+- (void)setLeftView:(UIView*)leftView;
 - (void)clearEntrance;
 @end

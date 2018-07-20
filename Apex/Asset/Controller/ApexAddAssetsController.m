@@ -168,7 +168,7 @@
         _searchToolBar = [[ApexSearchWalletToolBar alloc] init];
         [_searchToolBar setPlaceHolder:SOLocalizedStringFromTable(@"Assets", nil) color:UIColorHex(666666)];
         [_searchToolBar setTextColor:UIColorHex(666666) backgroundColor:[UIColorHex(999999) colorWithAlphaComponent:0.2]];
-        
+        [_searchToolBar setLeftView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search-1"]]];
     }
     return _searchToolBar;
 }
