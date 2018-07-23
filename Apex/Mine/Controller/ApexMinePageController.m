@@ -10,6 +10,7 @@
 #import "ApexWalletManageController.h"
 #import "ApexTransferHistoryController.h"
 #import "ApexLanguageSettingController.h"
+#import "ApexProfileBaseController.h"
 
 @interface ApexMinePageController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UIImageView *backIV;
@@ -74,7 +75,7 @@
 
 #pragma mark - ------delegate & datasource------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -83,9 +84,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.imageView.image = [UIImage imageNamed:@"地球"];
-    cell.textLabel.text = SOLocalizedStringFromTable(@"Language", nil);
+    if (indexPath.section == 0) {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.imageView.image = [UIImage imageNamed:@"人物-名片-1"];
+        cell.textLabel.text = SOLocalizedStringFromTable(@"Profile", nil);
+    }else if (indexPath.section == 1){
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.imageView.image = [UIImage imageNamed:@"地球"];
+        cell.textLabel.text = SOLocalizedStringFromTable(@"Language", nil);
+    }else{
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.imageView.image = [UIImage imageNamed:@"info (1)-1"];
+        cell.textLabel.text = SOLocalizedStringFromTable(@"About Us", nil);
+    }
     return cell;
 }
 
@@ -99,11 +110,30 @@
     return v;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 1)];
+    v.backgroundColor = self.view.backgroundColor;
+    return v;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ApexLanguageSettingController *settingVC = [[ApexLanguageSettingController alloc] init];
-    settingVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:settingVC animated:YES];
+    if (indexPath.section == 0) {
+        ApexProfileBaseController *basevc = [[ApexProfileBaseController alloc] init];
+        basevc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:basevc animated:YES];
+    }else if (indexPath.section == 1){
+        ApexLanguageSettingController *settingVC = [[ApexLanguageSettingController alloc] init];
+        settingVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:settingVC animated:YES];
+    }else{
+        
+    }
+    
 }
 
 #pragma mark - ------eventResponse------

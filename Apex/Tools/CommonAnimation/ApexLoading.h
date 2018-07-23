@@ -10,4 +10,5 @@
 
 @interface ApexLoading : UIView
 + (void)showOnView:(UIView*)superView Message:(NSString*)message;
++ (void)hideOnView:(UIView*)superView;
 @end

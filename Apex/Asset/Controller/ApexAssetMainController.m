@@ -15,7 +15,6 @@
 #import "ApexAccountDetailController.h"
 #import "ApexDrawTransAnimator.h"
 #import "ApexMorePanelController.h"
-#import "ApexLoading.h"
 
 #define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
 
@@ -35,8 +34,6 @@
     [super viewDidLoad];
     [self initUI];
     [self handleEvent];
-
-    [ApexLoading showOnView:self.view Message:@"msmsmsmssmsms"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

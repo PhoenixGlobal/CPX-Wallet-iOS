@@ -81,6 +81,10 @@
 "dontTransThNet" = "Do Not Transfer Thought Network";
 "saveinbox" = "Keep Your Password In Security Box";
 
+//profile
+"commProfile" = "Basic";
+"enterProfile" = "Enterprise";
+
 // tips
 "Create Wallet Failed" = "Create Wallet Failed";
 "Create Keystore Failed" = "Create Keystore Failed";

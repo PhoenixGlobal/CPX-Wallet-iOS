@@ -73,6 +73,9 @@
 "dontTransThNet" = "请勿通过网络传输";
 "saveinbox" = "密码保险箱保存";
 
+//profile
+"commProfile" = "通用画像";
+"enterProfile" = "企业端特殊数据画像";
 
 // tips
 "Create Wallet Failed" = "钱包创建失败";

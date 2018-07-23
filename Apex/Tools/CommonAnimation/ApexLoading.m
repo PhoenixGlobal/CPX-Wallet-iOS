@@ -22,6 +22,7 @@ static CGFloat KlineWidth = 2;
 @property (nonatomic, strong) CAShapeLayer *centerCircleLayer; /**<  */
 @property (nonatomic, strong) CAShapeLayer *middleCircleLayer; /**<  */
 @property (nonatomic, strong) CAShapeLayer *outterCircleLayer; /**<  */
+@property (nonatomic, assign) BOOL shouldEndAnimation; /**< 强制一段动画才允许hide loading */
 @end
 
 @implementation ApexLoading
@@ -37,7 +38,13 @@ static CGFloat KlineWidth = 2;
 }
 
 + (void)hideOnView:(UIView*)superView{
-    
+    for (UIView *hud in [superView.subviews reverseObjectEnumerator].allObjects) {
+        if ([hud isKindOfClass:ApexLoading.class]) {
+            ApexLoading *apexloading = (ApexLoading*)hud;
+            [apexloading hideAnimation];
+            break;
+        }
+    }
 }
 
 #pragma mark - private method
@@ -56,6 +63,7 @@ static CGFloat KlineWidth = 2;
     [self.coverView addSubview:self.messageL];
     self.panelLayer.frame = CGRectMake(0, 0, self.coverView.width, (self.coverView.height * percentRatio));
     self.messageL.frame = CGRectMake(messagePadding, CGRectGetMaxY(self.panelLayer.frame), self.coverView.width-(messagePadding*2), self.coverView.height * (1 - percentRatio));
+
     
     [self.panelLayer addSublayer:self.centerCircleLayer];
     [self.panelLayer addSublayer:self.middleCircleLayer];
@@ -73,33 +81,39 @@ static CGFloat KlineWidth = 2;
 
 - (void)configCenterCirclePath{
     //center
-    CGFloat panelCenterX = self.panelLayer.frame.origin.x + self.panelLayer.bounds.size.width/2.0;
-    CGFloat panelCenterY = self.panelLayer.frame.origin.y + self.panelLayer.bounds.size.height/2.0;
-    CGPoint centerPoint = CGPointMake(panelCenterX, panelCenterY);
+    CGFloat panelCenterX = self.panelLayer.bounds.size.width/2.0;
+    CGFloat panelCenterY = self.panelLayer.bounds.size.height/2.0;
     CGFloat radius = self.panelLayer.bounds.size.width*KcenterCircleRadiusPercent;
 
-    UIBezierPath *centerPath = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:radius startAngle:M_PI*(7/4.0) endAngle:M_PI*(3/2.0) clockwise:YES];
+    _centerCircleLayer.frame = CGRectMake(panelCenterX-radius, panelCenterY-radius, 2*radius, 2*radius);
+    _centerCircleLayer.anchorPoint = CGPointMake(0.5, 0.5);
+    
+    //path的坐标是相对于其作用的layer而定的
+    UIBezierPath *centerPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(radius, radius) radius:radius startAngle:M_PI*(7/4.0) endAngle:M_PI*(3/2.0) clockwise:YES];
     self.centerCircleLayer.path = centerPath.CGPath;
 }
 
 - (void)configMiddleCirclePath{
     CGFloat panelCenterX = self.panelLayer.frame.origin.x + self.panelLayer.bounds.size.width/2.0;
     CGFloat panelCenterY = self.panelLayer.frame.origin.y + self.panelLayer.bounds.size.height/2.0;
-    CGPoint centerPoint = CGPointMake(panelCenterX, panelCenterY);
     CGFloat radius = self.panelLayer.bounds.size.width*KmiddleCircleRadiusPercent;
     
-    UIBezierPath *middlePath = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:radius startAngle:M_PI*0.3 endAngle:M_PI * 2 clockwise:YES];
+    _middleCircleLayer.frame = CGRectMake(panelCenterX-radius, panelCenterY-radius, 2*radius, 2*radius);
+    _middleCircleLayer.anchorPoint = CGPointMake(0.5, 0.5);
+    
+    UIBezierPath *middlePath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(radius, radius) radius:radius startAngle:M_PI*0.3 endAngle:M_PI * 2 clockwise:YES];
     self.middleCircleLayer.path = middlePath.CGPath;
 }
 
 - (void)configOutterCirclePath{
     CGFloat panelCenterX = self.panelLayer.frame.origin.x + self.panelLayer.bounds.size.width/2.0;
     CGFloat panelCenterY = self.panelLayer.frame.origin.y + self.panelLayer.bounds.size.height/2.0;
-    CGPoint centerPoint = CGPointMake(panelCenterX, panelCenterY);
     CGFloat radius = self.panelLayer.bounds.size.width*KoutterCircleRadiusPercent;
     
+    _outterCircleLayer.frame = CGRectMake(panelCenterX-radius, panelCenterY-radius, 2*radius, 2*radius);
+    _outterCircleLayer.anchorPoint = CGPointMake(0.5, 0.5);
     
-    UIBezierPath *outterPath = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:radius startAngle:M_PI endAngle:M_PI*0.7 clockwise:YES];
+    UIBezierPath *outterPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(radius, radius) radius:radius startAngle:M_PI endAngle:M_PI*0.7 clockwise:YES];
     self.outterCircleLayer.path = outterPath.CGPath;
 }
 
@@ -130,6 +144,18 @@ static CGFloat KlineWidth = 2;
     
 }
 
+- (void)hideAnimation{
+    [[RACObserve(self, shouldEndAnimation) takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNumber *shouldEnd) {
+        if (shouldEnd.boolValue) {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.coverView.alpha = 0;
+            } completion:^(BOOL finished) {
+                [self removeFromSuperview];
+            }];
+        }
+    }];
+}
+
 #pragma mark - animation delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     
@@ -142,19 +168,24 @@ static CGFloat KlineWidth = 2;
     rotate.fillMode = kCAFillModeForwards;
     
     if (anim == [_centerCircleLayer animationForKey:@"centerStroke"]) {
-        
+        rotate.duration = 1.0;
+        [_centerCircleLayer addAnimation:rotate forKey:nil];
         
     }else if(anim == [_middleCircleLayer animationForKey:@"middleStroke"]){
-        
+        rotate.duration = 1.5;
+        [_middleCircleLayer addAnimation:rotate forKey:nil];
         
     }else if (anim == [_outterCircleLayer animationForKey:@"outterStroke"]){
+        rotate.duration = 2.0;
+        [_outterCircleLayer addAnimation:rotate forKey:nil];
         
-        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.shouldEndAnimation = YES;
+        });
     }
 }
 
 #pragma mark - getter setter
-
 - (UIView *)coverView{
     if (!_coverView) {
         _coverView = [[UIView alloc] initWithFrame:CGRectMake(self.width/2.0 - 65, self.height/2.0 - 75, 110, 120)];
@@ -188,7 +219,7 @@ static CGFloat KlineWidth = 2;
     if (!_centerCircleLayer) {
         _centerCircleLayer = [[CAShapeLayer alloc] init];
         _centerCircleLayer.fillColor = [UIColor clearColor].CGColor;
-        _centerCircleLayer.strokeColor = [UIColor whiteColor].CGColor;
+        _centerCircleLayer.strokeColor = [UIColor colorWithHexString:@"B3D2FF"].CGColor;
         _centerCircleLayer.lineWidth = KlineWidth;
         _centerCircleLayer.lineCap = kCALineCapRound;
     }
@@ -199,7 +230,7 @@ static CGFloat KlineWidth = 2;
     if (!_middleCircleLayer) {
         _middleCircleLayer = [[CAShapeLayer alloc] init];
         _middleCircleLayer.fillColor = [UIColor clearColor].CGColor;
-        _middleCircleLayer.strokeColor = [UIColor blueColor].CGColor;
+        _middleCircleLayer.strokeColor = [UIColor colorWithHexString:@"4C8EFA"].CGColor;
         _middleCircleLayer.lineWidth = KlineWidth;
         _middleCircleLayer.lineCap = kCALineCapRound;
     }

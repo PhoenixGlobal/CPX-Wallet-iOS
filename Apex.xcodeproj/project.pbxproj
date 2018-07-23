@@ -155,6 +155,10 @@
 		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
 		E7EDD71B210064CF00007F29 /* ApexExportKeystoryFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EDD71D210064CF00007F29 /* ApexExportKeystoryFileView.xib */; };
 		E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7242101C0FF00007F29 /* ApexLoading.m */; };
+		E7EDD729210579CF00007F29 /* ApexCommonProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD728210579CF00007F29 /* ApexCommonProfileController.m */; };
+		E7EDD72C21057A0200007F29 /* ApexSpecialProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD72B21057A0200007F29 /* ApexSpecialProfileController.m */; };
+		E7EDD72F21057B8000007F29 /* ApexProfileBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD72E21057B8000007F29 /* ApexProfileBaseController.m */; };
+		E7EDD732210599D400007F29 /* ApexPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD731210599D400007F29 /* ApexPageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -457,6 +461,14 @@
 		E7EDD721210064D700007F29 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ApexExportKeystoryFileView.strings"; sourceTree = "<group>"; };
 		E7EDD7232101C0FF00007F29 /* ApexLoading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexLoading.h; sourceTree = "<group>"; };
 		E7EDD7242101C0FF00007F29 /* ApexLoading.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexLoading.m; sourceTree = "<group>"; };
+		E7EDD727210579CF00007F29 /* ApexCommonProfileController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexCommonProfileController.h; sourceTree = "<group>"; };
+		E7EDD728210579CF00007F29 /* ApexCommonProfileController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexCommonProfileController.m; sourceTree = "<group>"; };
+		E7EDD72A21057A0200007F29 /* ApexSpecialProfileController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexSpecialProfileController.h; sourceTree = "<group>"; };
+		E7EDD72B21057A0200007F29 /* ApexSpecialProfileController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexSpecialProfileController.m; sourceTree = "<group>"; };
+		E7EDD72D21057B8000007F29 /* ApexProfileBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexProfileBaseController.h; sourceTree = "<group>"; };
+		E7EDD72E21057B8000007F29 /* ApexProfileBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexProfileBaseController.m; sourceTree = "<group>"; };
+		E7EDD730210599D400007F29 /* ApexPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexPageView.h; sourceTree = "<group>"; };
+		E7EDD731210599D400007F29 /* ApexPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexPageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -697,6 +709,7 @@
 				E3373B4720F72CF400590407 /* ApexMinePageController.h */,
 				E3373B4820F72CF400590407 /* ApexMinePageController.m */,
 				E3373B5620F870FF00590407 /* Setting */,
+				E7EDD726210579A500007F29 /* profile */,
 				E3373B4A20F7458E00590407 /* ApexWalletManageController.h */,
 				E3373B4B20F7458E00590407 /* ApexWalletManageController.m */,
 				E3373B4D20F7459D00590407 /* ApexTransferHistoryController.h */,
@@ -1058,6 +1071,8 @@
 				E39E02FD20C8F77A005DD251 /* ApexTwoSwitchView.m */,
 				E3855AD420EC730B00C377BF /* ApexSheetView.h */,
 				E3855AD520EC730B00C377BF /* ApexSheetView.m */,
+				E7EDD730210599D400007F29 /* ApexPageView.h */,
+				E7EDD731210599D400007F29 /* ApexPageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1112,6 +1127,19 @@
 				E7EDD7242101C0FF00007F29 /* ApexLoading.m */,
 			);
 			path = CommonAnimation;
+			sourceTree = "<group>";
+		};
+		E7EDD726210579A500007F29 /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				E7EDD72D21057B8000007F29 /* ApexProfileBaseController.h */,
+				E7EDD72E21057B8000007F29 /* ApexProfileBaseController.m */,
+				E7EDD727210579CF00007F29 /* ApexCommonProfileController.h */,
+				E7EDD728210579CF00007F29 /* ApexCommonProfileController.m */,
+				E7EDD72A21057A0200007F29 /* ApexSpecialProfileController.h */,
+				E7EDD72B21057A0200007F29 /* ApexSpecialProfileController.m */,
+			);
+			path = profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1364,6 +1392,7 @@
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
 				E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */,
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
+				E7EDD72C21057A0200007F29 /* ApexSpecialProfileController.m in Sources */,
 				E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */,
 				E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */,
 				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,
@@ -1380,6 +1409,7 @@
 				E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */,
 				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
 				E3373B3920F5F14F00590407 /* UIView+SOLocalization.m in Sources */,
+				E7EDD729210579CF00007F29 /* ApexCommonProfileController.m in Sources */,
 				E39E02FB20C8F4CB005DD251 /* ApexExportKeyStoreController.m in Sources */,
 				E324311620DCC14700284B91 /* ApexTransferHistoryManager.m in Sources */,
 				E3CE669E20BE47C3002A1E07 /* ApexMnemonicShowCell.m in Sources */,
@@ -1389,6 +1419,7 @@
 				E3CE66B420BEA812002A1E07 /* DTTimePeriodChain.m in Sources */,
 				E3CE66B320BEA812002A1E07 /* DTTimePeriod.m in Sources */,
 				E33A8BEC20B3AD680067505E /* ApexMorePanelView.m in Sources */,
+				E7EDD732210599D400007F29 /* ApexPageView.m in Sources */,
 				E39E02D420C659E2005DD251 /* ApexDrawTransAnimator.m in Sources */,
 				E33A8B9C20AE756E0067505E /* UIViewController+Toast.m in Sources */,
 				E33A8B7820AE75500067505E /* LXDScanView.m in Sources */,
@@ -1442,6 +1473,7 @@
 				E3373B5920F8711600590407 /* ApexLanguageSettingController.m in Sources */,
 				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,
 				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
+				E7EDD72F21057B8000007F29 /* ApexProfileBaseController.m in Sources */,
 				E3689AFE20DB92A300B4B001 /* ApexTransferModel.m in Sources */,
 				E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */,
 				E39E030620C8FB85005DD251 /* ApexExportKeystoreQRView.m in Sources */,
