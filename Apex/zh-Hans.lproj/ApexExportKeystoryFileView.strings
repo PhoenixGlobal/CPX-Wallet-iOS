@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "请勿通过网络工具传输Keystore文件，一旦被黑客获取将造成不可挽回的资产损失。建议离线设备通过二维码方式传输。"; ObjectID = "DZw-7m-c91"; */
+"DZw-7m-c91.text" = "请勿通过网络工具传输Keystore文件，一旦被黑客获取将造成不可挽回的资产损失。建议离线设备通过二维码方式传输。";
+
+/* Class = "UIButton"; normalTitle = "复制Keystore"; ObjectID = "GeD-5D-bhg"; */
+"GeD-5D-bhg.normalTitle" = "复制Keystore";
+
+/* Class = "UILabel"; text = "如需在线保存，则建议使用安全等级更高的1Password等密码保管软件保存Keystore。"; ObjectID = "QUv-UT-8CI"; */
+"QUv-UT-8CI.text" = "如需在线保存，则建议使用安全等级更高的1Password等密码保管软件保存Keystore。";
+
+/* Class = "UILabel"; text = "请复制粘贴Keystore文件到安全、离线的地方保存。切勿保存至邮箱、记事本、网盘、聊天工具等，非常危险。"; ObjectID = "jOA-VA-35F"; */
+"jOA-VA-35F.text" = "请复制粘贴Keystore文件到安全、离线的地方保存。切勿保存至邮箱、记事本、网盘、聊天工具等，非常危险。";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "jRF-In-g5b"; */
+"jRF-In-g5b.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";

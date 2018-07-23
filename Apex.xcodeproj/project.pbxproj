@@ -153,12 +153,12 @@
 		E3CE66D920C4E29E002A1E07 /* ApexAssetMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */; };
 		E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCA20C112B700E2C597 /* NullSafe.m */; };
 		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
-		E7EDD71B210064CF00007F29 /* ApexExportKeystoryFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EDD71D210064CF00007F29 /* ApexExportKeystoryFileView.xib */; };
 		E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7242101C0FF00007F29 /* ApexLoading.m */; };
 		E7EDD729210579CF00007F29 /* ApexCommonProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD728210579CF00007F29 /* ApexCommonProfileController.m */; };
 		E7EDD72C21057A0200007F29 /* ApexSpecialProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD72B21057A0200007F29 /* ApexSpecialProfileController.m */; };
 		E7EDD72F21057B8000007F29 /* ApexProfileBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD72E21057B8000007F29 /* ApexProfileBaseController.m */; };
 		E7EDD732210599D400007F29 /* ApexPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD731210599D400007F29 /* ApexPageView.m */; };
+		E7EDD7352105C30D00007F29 /* ApexExportKeystoryFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EDD7332105C30D00007F29 /* ApexExportKeystoryFileView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -456,9 +456,6 @@
 		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
 		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
-		E7EDD71C210064CF00007F29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ApexExportKeystoryFileView.xib; sourceTree = "<group>"; };
-		E7EDD71F210064D500007F29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ApexExportKeystoryFileView.strings; sourceTree = "<group>"; };
-		E7EDD721210064D700007F29 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ApexExportKeystoryFileView.strings"; sourceTree = "<group>"; };
 		E7EDD7232101C0FF00007F29 /* ApexLoading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexLoading.h; sourceTree = "<group>"; };
 		E7EDD7242101C0FF00007F29 /* ApexLoading.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexLoading.m; sourceTree = "<group>"; };
 		E7EDD727210579CF00007F29 /* ApexCommonProfileController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexCommonProfileController.h; sourceTree = "<group>"; };
@@ -469,6 +466,9 @@
 		E7EDD72E21057B8000007F29 /* ApexProfileBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexProfileBaseController.m; sourceTree = "<group>"; };
 		E7EDD730210599D400007F29 /* ApexPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexPageView.h; sourceTree = "<group>"; };
 		E7EDD731210599D400007F29 /* ApexPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexPageView.m; sourceTree = "<group>"; };
+		E7EDD7342105C30D00007F29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Apex/Base.lproj/ApexExportKeystoryFileView.xib; sourceTree = SOURCE_ROOT; };
+		E7EDD7362105C32C00007F29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../../en.lproj/ApexExportKeystoryFileView.strings; sourceTree = "<group>"; };
+		E7EDD7372105C33000007F29 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "../../zh-Hans.lproj/ApexExportKeystoryFileView.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -693,7 +693,7 @@
 				E3CE66BC20BF99AF002A1E07 /* ApexSwithWalletView.m */,
 				E39E02FF20C8FB51005DD251 /* ApexExportKeystoryFileView.h */,
 				E39E030020C8FB51005DD251 /* ApexExportKeystoryFileView.m */,
-				E7EDD71D210064CF00007F29 /* ApexExportKeystoryFileView.xib */,
+				E7EDD7332105C30D00007F29 /* ApexExportKeystoryFileView.xib */,
 				E39E030420C8FB85005DD251 /* ApexExportKeystoreQRView.h */,
 				E39E030520C8FB85005DD251 /* ApexExportKeystoreQRView.m */,
 				E39E030720C8FB8D005DD251 /* ApexExportKeystoreQRView.xib */,
@@ -1279,7 +1279,7 @@
 				E3263EEA20B69BB6001D3C19 /* close-round.png in Resources */,
 				E3CD112B20F30D4A009C1439 /* AssetResources.bundle in Resources */,
 				E39E02C420C4EDF6005DD251 /* ApexAssetMainViewCell.xib in Resources */,
-				E7EDD71B210064CF00007F29 /* ApexExportKeystoryFileView.xib in Resources */,
+				E7EDD7352105C30D00007F29 /* ApexExportKeystoryFileView.xib in Resources */,
 				E33A8B5520AE724F0067505E /* Assets.xcassets in Resources */,
 				E3263EE720B69BB6001D3C19 /* alert-round.png in Resources */,
 				E3263EED20B69BB6001D3C19 /* .gitkeep in Resources */,
@@ -1539,15 +1539,14 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		E7EDD71D210064CF00007F29 /* ApexExportKeystoryFileView.xib */ = {
+		E7EDD7332105C30D00007F29 /* ApexExportKeystoryFileView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E7EDD71C210064CF00007F29 /* Base */,
-				E7EDD71F210064D500007F29 /* en */,
-				E7EDD721210064D700007F29 /* zh-Hans */,
+				E7EDD7342105C30D00007F29 /* Base */,
+				E7EDD7362105C32C00007F29 /* en */,
+				E7EDD7372105C33000007F29 /* zh-Hans */,
 			);
 			name = ApexExportKeystoryFileView.xib;
-			path = ../../../../../../.Trash;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
