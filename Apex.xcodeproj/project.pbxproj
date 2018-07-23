@@ -159,6 +159,9 @@
 		E7EDD72F21057B8000007F29 /* ApexProfileBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD72E21057B8000007F29 /* ApexProfileBaseController.m */; };
 		E7EDD732210599D400007F29 /* ApexPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD731210599D400007F29 /* ApexPageView.m */; };
 		E7EDD7352105C30D00007F29 /* ApexExportKeystoryFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EDD7332105C30D00007F29 /* ApexExportKeystoryFileView.xib */; };
+		E7EDD7472105CF6200007F29 /* ApexProfileTableViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7462105CF6200007F29 /* ApexProfileTableViewDatasource.m */; };
+		E7EDD74A2105CF7600007F29 /* ApexProfileCollectionViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7492105CF7600007F29 /* ApexProfileCollectionViewDatasource.m */; };
+		E7EDD7502105D9F200007F29 /* fakeProfileResponse in Resources */ = {isa = PBXBuildFile; fileRef = E7EDD74F2105D9F200007F29 /* fakeProfileResponse */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -469,6 +472,11 @@
 		E7EDD7342105C30D00007F29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Apex/Base.lproj/ApexExportKeystoryFileView.xib; sourceTree = SOURCE_ROOT; };
 		E7EDD7362105C32C00007F29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../../en.lproj/ApexExportKeystoryFileView.strings; sourceTree = "<group>"; };
 		E7EDD7372105C33000007F29 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "../../zh-Hans.lproj/ApexExportKeystoryFileView.strings"; sourceTree = "<group>"; };
+		E7EDD7452105CF6200007F29 /* ApexProfileTableViewDatasource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexProfileTableViewDatasource.h; sourceTree = "<group>"; };
+		E7EDD7462105CF6200007F29 /* ApexProfileTableViewDatasource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexProfileTableViewDatasource.m; sourceTree = "<group>"; };
+		E7EDD7482105CF7600007F29 /* ApexProfileCollectionViewDatasource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexProfileCollectionViewDatasource.h; sourceTree = "<group>"; };
+		E7EDD7492105CF7600007F29 /* ApexProfileCollectionViewDatasource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexProfileCollectionViewDatasource.m; sourceTree = "<group>"; };
+		E7EDD74F2105D9F200007F29 /* fakeProfileResponse */ = {isa = PBXFileReference; lastKnownFileType = text; path = fakeProfileResponse; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -732,6 +740,7 @@
 		E33A8B6420AE73F00067505E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E7EDD7382105CA5400007F29 /* Profile */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1142,6 +1151,18 @@
 			path = profile;
 			sourceTree = "<group>";
 		};
+		E7EDD7382105CA5400007F29 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E7EDD7452105CF6200007F29 /* ApexProfileTableViewDatasource.h */,
+				E7EDD7462105CF6200007F29 /* ApexProfileTableViewDatasource.m */,
+				E7EDD7482105CF7600007F29 /* ApexProfileCollectionViewDatasource.h */,
+				E7EDD7492105CF7600007F29 /* ApexProfileCollectionViewDatasource.m */,
+				E7EDD74F2105D9F200007F29 /* fakeProfileResponse */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1266,6 +1287,7 @@
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
 				E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */,
 				E3373B4220F725D200590407 /* Localizable.strings in Resources */,
+				E7EDD7502105D9F200007F29 /* fakeProfileResponse in Resources */,
 				E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */,
 				E3263EE920B69BB6001D3C19 /* heart.png in Resources */,
 				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
@@ -1392,6 +1414,7 @@
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
 				E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */,
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
+				E7EDD7472105CF6200007F29 /* ApexProfileTableViewDatasource.m in Sources */,
 				E7EDD72C21057A0200007F29 /* ApexSpecialProfileController.m in Sources */,
 				E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */,
 				E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */,
@@ -1475,6 +1498,7 @@
 				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
 				E7EDD72F21057B8000007F29 /* ApexProfileBaseController.m in Sources */,
 				E3689AFE20DB92A300B4B001 /* ApexTransferModel.m in Sources */,
+				E7EDD74A2105CF7600007F29 /* ApexProfileCollectionViewDatasource.m in Sources */,
 				E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */,
 				E39E030620C8FB85005DD251 /* ApexExportKeystoreQRView.m in Sources */,
 				E3CE66BD20BF99AF002A1E07 /* ApexSwithWalletView.m in Sources */,
