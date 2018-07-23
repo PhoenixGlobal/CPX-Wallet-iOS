@@ -107,3 +107,4 @@
 "CopySuccess" = "钱包地址已复制到剪切板";
 "Copied" = "已复制";
 "ProcessingTrans" = "目前仍有一笔待确认中的交易";
+"longName" = "钱包名过长(最多8个字符)";

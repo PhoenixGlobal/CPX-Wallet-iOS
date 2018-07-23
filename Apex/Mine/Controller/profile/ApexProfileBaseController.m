@@ -35,6 +35,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.pageView];
+    [self.view addSubview:self.currentAddress];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
@@ -44,6 +45,11 @@
     [self.pageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.backIV.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    [self.currentAddress mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.backIV).offset(-10);
+        make.centerX.equalTo(self.view.mas_centerX);
     }];
 }
 
@@ -117,7 +123,10 @@
 
 - (UILabel *)currentAddress{
     if (!_currentAddress) {
-        
+        _currentAddress = [[UILabel alloc] init];
+        _currentAddress.font = [UIFont systemFontOfSize:14];
+        _currentAddress.textColor = [UIColor whiteColor];
+        _currentAddress.text = @"dfsfs";
     }
     return _currentAddress;
 }

@@ -93,6 +93,11 @@
             return;
         }
         
+        if (name.length >8) {
+            [self showMessage:SOLocalizedStringFromTable(@"longName", nil)];
+             return;
+        }
+        
         [ApexWalletManager changeWalletName:name forAddress:self.model.address];
         [self.navigationController popViewControllerAnimated:YES];
     }];

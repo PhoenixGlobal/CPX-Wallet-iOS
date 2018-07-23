@@ -10,7 +10,8 @@
 
 @interface ApexPageSwitchHeader: UIView
 @property (nonatomic, assign) NSInteger numOfPage;
-@property (nonatomic, strong) NSMutableArray *btnsArr; /**<  */
+@property (nonatomic, strong) NSMutableArray<UIButton*> *btnsArr; /**<  */
+@property (nonatomic, strong) CAShapeLayer *indicator; /**<  */
 @end
 
 @implementation ApexPageSwitchHeader
@@ -29,8 +30,24 @@
         [self.btnsArr addObject:btn];
         [self addSubview:btn];
     }
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(self.btnsArr.firstObject.mj_x, CGRectGetMaxY(self.btnsArr.firstObject.frame)-1.5)];
+    [path addLineToPoint:CGPointMake(CGRectGetMaxX(self.btnsArr.firstObject.frame), CGRectGetMaxY(self.btnsArr.firstObject.frame)-1.5)];
+    self.indicator.path = path.CGPath;
+    [self.layer addSublayer:self.indicator];
 }
 
+- (CAShapeLayer *)indicator{
+    if (!_indicator) {
+        _indicator = [[CAShapeLayer alloc] init];
+        _indicator.fillColor = [ApexUIHelper mainThemeColor].CGColor;
+        _indicator.strokeColor = [ApexUIHelper mainThemeColor].CGColor;
+        _indicator.lineWidth = 3;
+        _indicator.lineCap = kCALineCapRound;
+    }
+    return _indicator;
+}
 @end
 
 /*************************************************************************************************************************************/
@@ -40,6 +57,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView; /**<  */
 @property (nonatomic, assign) NSInteger numOfPage; /**<  */
 @property (nonatomic, assign) NSInteger currentPage; /**<  */
+@property (nonatomic, assign) CGFloat itemWidth; /**<  */
 @end
 
 @implementation ApexPageView
@@ -61,6 +79,7 @@
     if ([_delegate respondsToSelector:@selector(numberOfPageInPageView)]) {
         self.numOfPage = [_delegate numberOfPageInPageView];
         self.switchHeader.numOfPage = self.numOfPage;
+        self.itemWidth = self.width/self.numOfPage;
         self.scrollView.contentSize = CGSizeMake(self.width*self.numOfPage, self.scrollView.height);
     }
     
@@ -119,8 +138,9 @@
 
 #pragma mark - ------delegate & datasource------
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSInteger page = scrollView.contentOffset.x / kScreenW;
-    NSLog(@"%ld",page);
+    CGFloat offset_x = scrollView.contentOffset.x;
+    CGFloat percent = offset_x / self.width;
+    self.switchHeader.indicator.transform = CATransform3DMakeTranslation(self.itemWidth*percent, 0, 0);
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
