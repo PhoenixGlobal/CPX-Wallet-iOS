@@ -14,5 +14,5 @@
 @property (nonatomic, strong) ApexWalletModel *curWallet;
 @property (nonatomic, strong) BalanceObject *balanceModel;
 @property (nonatomic, strong) RACSubject *didChooseWalletSub;
-
+@property (nonatomic, strong) UITableView *tableView;
 @end

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (nonatomic, strong) UIButton *backBtn;
 @property (weak, nonatomic) IBOutlet UILabel *tipLable0;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topMarginConstrant;
 
 @end
 
@@ -29,16 +30,23 @@
     [self setNav];
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self setNav];
+}
+
 #pragma mark - ------private------
 - (void)setNav{
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
-    [[self.backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
+    [self.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.titleView = self.titleLable;
+    
+    [self.navigationController lt_setBackgroundColor:[UIColor whiteColor]];
+//    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 }
 
 - (void)setUI{
-    self.navigationItem.titleView = self.titleLable;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.addressL.text = self.walletAddress;
     self.walletNameL.text = self.walletName;
     self.QRImageV.image = [self scanCodeGenerator:[NSString stringWithFormat:@"%@",self.walletAddress]];
@@ -120,12 +128,16 @@
     });
 }
 
+- (void)backAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark - ------getter & setter------
 - (UILabel *)titleLable{
     if (!_titleLable) {
-        _titleLable = [[UILabel alloc] init];
+        _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
         _titleLable.font = [UIFont systemFontOfSize:17];
         _titleLable.textColor = [UIColor blackColor];
+        _titleLable.textAlignment = NSTextAlignmentCenter;
         _titleLable.text = SOLocalizedStringFromTable(@"Receipt", nil);
     }
     return _titleLable;
@@ -133,8 +145,9 @@
 
 - (UIButton *)backBtn{
     if (!_backBtn) {
-        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 6, 20, 30)];
         [_backBtn setImage:[UIImage imageNamed:@"back-4"] forState:UIControlStateNormal];
+        _backBtn.imageView.contentMode = UIViewContentModeLeft;
     }
     return _backBtn;
 }

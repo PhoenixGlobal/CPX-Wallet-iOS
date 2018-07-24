@@ -16,7 +16,6 @@
 #import "ApexDrawTransPercentDriven.h"
 
 @interface ApexMorePanelController ()<UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIBarButtonItem *leftItem;
 @end
 

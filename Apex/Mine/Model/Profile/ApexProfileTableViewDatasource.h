@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ApexQuestModel.h"
+#import "ApexTagSelectCell.h"
+
+static NSString *cellIdentifier = @"cellIdentifier";
+static NSString *tagCellIdentifier = @"tagCellIdentifier";
 
 @interface ApexProfileTableViewDatasource : NSObject<UITableViewDataSource>
-
+@property (nonatomic, strong) NSMutableArray<ApexQuestModel*> *contentArr; /**<  */
+@property (nonatomic, strong) UITableView *tableView; /**<  */
 @end

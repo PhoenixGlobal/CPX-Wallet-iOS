@@ -60,6 +60,7 @@
 }
 
 - (void)setUI{
+    
     self.navigationItem.titleView = self.titleLable;
     self.walletNameL.text = self.walletName;
     self.fromAddressL.text = self.walletAddress;
@@ -277,9 +278,10 @@
 
 - (UILabel *)titleLable{
     if (!_titleLable) {
-        _titleLable = [[UILabel alloc] init];
+        _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
         _titleLable.font = [UIFont systemFontOfSize:17];
         _titleLable.textColor = [UIColor blackColor];
+        _titleLable.textAlignment = NSTextAlignmentCenter;
         _titleLable.text = SOLocalizedStringFromTable(@"Transfer", nil);
     }
     return _titleLable;
@@ -287,7 +289,7 @@
 
 - (UIButton *)backBtn{
     if (!_backBtn) {
-        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 6, 20, 30)];
         [_backBtn setImage:[UIImage imageNamed:@"back-4"] forState:UIControlStateNormal];
     }
     return _backBtn;

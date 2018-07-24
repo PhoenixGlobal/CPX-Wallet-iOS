@@ -92,6 +92,7 @@
 
 - (void)setNav{
     self.title = SOLocalizedStringFromTable(@"Assets", nil);
+    
     self.navigationController.delegate = self;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
     [self.navigationController findHairlineImageViewUnder:self.navigationController.navigationBar].hidden = YES;
@@ -199,10 +200,14 @@
 }
 
 - (void)pushAction{
-    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
-    vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    if (@available(iOS 11.0, *)) {
+        ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+        vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+//    }else{
+//
+//    }
 }
 #pragma mark - ------getter & setter------
 - (ApexSearchWalletToolBar *)searchTooBar{

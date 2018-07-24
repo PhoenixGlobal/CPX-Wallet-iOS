@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,6 +17,7 @@
                 <outlet property="btn" destination="Ngq-Cr-ULa" id="p1B-NE-NCB"/>
                 <outlet property="requestNumTF" destination="cSD-kk-Zov" id="lyb-B5-V2a"/>
                 <outlet property="tipLable0" destination="BJx-w2-5j7" id="9ic-zJ-ggR"/>
+                <outlet property="topMarginConstrant" destination="xHx-3X-ctr" id="tw3-bB-neD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="walletNameL" destination="UrD-p3-u5f" id="C1j-Dg-VbF"/>
             </connections>
@@ -27,33 +28,33 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q0U-cv-QNr">
-                    <rect key="frame" x="84" y="85" width="207" height="207"/>
+                    <rect key="frame" x="84" y="100" width="207" height="207"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="207" id="icq-gJ-PRT"/>
                         <constraint firstAttribute="width" constant="207" id="mhf-pe-WZi"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yey-o0-7WW">
-                    <rect key="frame" x="15" y="384" width="345" height="1"/>
+                    <rect key="frame" x="15" y="399" width="345" height="1"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="P1i-gw-GNE"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的钱包/地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJx-w2-5j7">
-                    <rect key="frame" x="15" y="400" width="90.5" height="17"/>
+                    <rect key="frame" x="15" y="415" width="90.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrD-p3-u5f">
-                    <rect key="frame" x="15" y="427" width="35.5" height="17"/>
+                    <rect key="frame" x="15" y="442" width="35.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zR-PM-rKe">
-                    <rect key="frame" x="15" y="449" width="26.5" height="12"/>
+                    <rect key="frame" x="15" y="464" width="26.5" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -75,7 +76,7 @@
                     </connections>
                 </button>
                 <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填入收款金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cSD-kk-Zov">
-                    <rect key="frame" x="15" y="476" width="345" height="17"/>
+                    <rect key="frame" x="15" y="491" width="345" height="17"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -85,23 +86,23 @@
             <constraints>
                 <constraint firstItem="UrD-p3-u5f" firstAttribute="top" secondItem="BJx-w2-5j7" secondAttribute="bottom" constant="10" id="4wa-Oh-l1k"/>
                 <constraint firstItem="cSD-kk-Zov" firstAttribute="top" secondItem="0zR-PM-rKe" secondAttribute="bottom" constant="15" id="8UO-Xe-RvK"/>
-                <constraint firstItem="yey-o0-7WW" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="9al-Si-gqd"/>
+                <constraint firstItem="yey-o0-7WW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="9al-Si-gqd"/>
                 <constraint firstItem="0zR-PM-rKe" firstAttribute="top" secondItem="UrD-p3-u5f" secondAttribute="bottom" constant="5" id="Ads-Dn-Tk2"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="cSD-kk-Zov" secondAttribute="trailing" constant="15" id="C30-sd-juY"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="yey-o0-7WW" secondAttribute="trailing" constant="15" id="CJD-dz-yrH"/>
+                <constraint firstAttribute="trailing" secondItem="cSD-kk-Zov" secondAttribute="trailing" constant="15" id="C30-sd-juY"/>
+                <constraint firstAttribute="trailing" secondItem="yey-o0-7WW" secondAttribute="trailing" constant="15" id="CJD-dz-yrH"/>
                 <constraint firstItem="BJx-w2-5j7" firstAttribute="leading" secondItem="yey-o0-7WW" secondAttribute="leading" id="IHa-cd-IYT"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UrD-p3-u5f" secondAttribute="trailing" constant="15" id="LK0-bg-hUe"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UrD-p3-u5f" secondAttribute="trailing" constant="15" id="LK0-bg-hUe"/>
                 <constraint firstItem="UrD-p3-u5f" firstAttribute="leading" secondItem="BJx-w2-5j7" secondAttribute="leading" id="T8l-SC-PK2"/>
-                <constraint firstItem="Ngq-Cr-ULa" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="aE9-Mf-CJw"/>
+                <constraint firstItem="Ngq-Cr-ULa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aE9-Mf-CJw"/>
                 <constraint firstItem="cSD-kk-Zov" firstAttribute="leading" secondItem="0zR-PM-rKe" secondAttribute="leading" id="cdu-Y0-sAh"/>
                 <constraint firstItem="yey-o0-7WW" firstAttribute="top" secondItem="q0U-cv-QNr" secondAttribute="bottom" constant="92" id="il8-0M-DTn"/>
                 <constraint firstItem="0zR-PM-rKe" firstAttribute="leading" secondItem="UrD-p3-u5f" secondAttribute="leading" id="ltT-iE-mAt"/>
                 <constraint firstItem="BJx-w2-5j7" firstAttribute="top" secondItem="yey-o0-7WW" secondAttribute="bottom" constant="15" id="qKa-b2-Rom"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Ngq-Cr-ULa" secondAttribute="bottom" constant="40" id="snw-3G-7AV"/>
-                <constraint firstItem="q0U-cv-QNr" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="wxt-Dg-KOl"/>
-                <constraint firstItem="q0U-cv-QNr" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="65" id="xHx-3X-ctr"/>
+                <constraint firstAttribute="bottom" secondItem="Ngq-Cr-ULa" secondAttribute="bottom" constant="40" id="snw-3G-7AV"/>
+                <constraint firstItem="q0U-cv-QNr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wxt-Dg-KOl"/>
+                <constraint firstItem="q0U-cv-QNr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="xHx-3X-ctr"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <viewLayoutGuide key="safeArea" id="i62-5o-FTu"/>
         </view>
     </objects>
 </document>
