@@ -462,6 +462,7 @@
 		E739344121071FE5007953FB /* ApexTagSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTagSelectCell.h; sourceTree = "<group>"; };
 		E739344221071FE5007953FB /* ApexTagSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTagSelectCell.m; sourceTree = "<group>"; };
 		E739344321071FE5007953FB /* ApexTagSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTagSelectCell.xib; sourceTree = "<group>"; };
+		E739344821072BA6007953FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../../en.lproj/ApexExportKeystoryFileView.xib; sourceTree = "<group>"; };
 		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
 		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
@@ -476,7 +477,6 @@
 		E7EDD730210599D400007F29 /* ApexPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexPageView.h; sourceTree = "<group>"; };
 		E7EDD731210599D400007F29 /* ApexPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexPageView.m; sourceTree = "<group>"; };
 		E7EDD7342105C30D00007F29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Apex/Base.lproj/ApexExportKeystoryFileView.xib; sourceTree = SOURCE_ROOT; };
-		E7EDD7362105C32C00007F29 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../../en.lproj/ApexExportKeystoryFileView.strings; sourceTree = "<group>"; };
 		E7EDD7372105C33000007F29 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "../../zh-Hans.lproj/ApexExportKeystoryFileView.strings"; sourceTree = "<group>"; };
 		E7EDD7452105CF6200007F29 /* ApexProfileTableViewDatasource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexProfileTableViewDatasource.h; sourceTree = "<group>"; };
 		E7EDD7462105CF6200007F29 /* ApexProfileTableViewDatasource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexProfileTableViewDatasource.m; sourceTree = "<group>"; };
@@ -1591,8 +1591,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E7EDD7342105C30D00007F29 /* Base */,
-				E7EDD7362105C32C00007F29 /* en */,
 				E7EDD7372105C33000007F29 /* zh-Hans */,
+				E739344821072BA6007953FB /* en */,
 			);
 			name = ApexExportKeystoryFileView.xib;
 			sourceTree = "<group>";

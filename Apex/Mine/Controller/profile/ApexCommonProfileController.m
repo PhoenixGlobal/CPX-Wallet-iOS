@@ -13,6 +13,7 @@
 @interface ApexCommonProfileController ()<UITableViewDelegate,UICollectionViewDelegate>
 @property (nonatomic, strong) UITableView *tableView; /**<  */
 @property (nonatomic, strong) ApexProfileTableViewDatasource *tableViewDatasource; /**<  */
+@property (nonatomic, strong) UIButton *saveBtn; /**<  */
 @end
 
 @implementation ApexCommonProfileController
@@ -32,9 +33,20 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+    [self.view addSubview:self.saveBtn];
+    
+    [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+        make.bottom.equalTo(self.view).offset(-30);
+        make.height.mas_equalTo(40);
     }];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.saveBtn.mas_top).offset(10);
+    }];
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexTagSelectCell" bundle:nil] forCellReuseIdentifier:tagCellIdentifier];
     
@@ -89,6 +101,7 @@
         _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self.tableViewDatasource;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.estimatedRowHeight = 50;
         _tableView.rowHeight = UITableViewAutomaticDimension;
         _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -102,6 +115,17 @@
         _tableViewDatasource.tableView = self.tableView;
     }
     return _tableViewDatasource;
+}
+
+- (UIButton *)saveBtn{
+    if (!_saveBtn) {
+        _saveBtn = [[UIButton alloc] init];
+        _saveBtn.backgroundColor = [ApexUIHelper mainThemeColor];
+        _saveBtn.layer.cornerRadius = 6;
+        [_saveBtn setTitle:SOLocalizedStringFromTable(@"Save", nil) forState:UIControlStateNormal];
+        [_saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    return _saveBtn;
 }
 
 @end

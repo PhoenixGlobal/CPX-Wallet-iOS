@@ -33,6 +33,7 @@
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell addLinecolor:[UIColor colorWithHexString:@"eeeeee"] edge:UIEdgeInsetsMake(-1, 15, 0, 0)];
         return cell;
     }
 }
