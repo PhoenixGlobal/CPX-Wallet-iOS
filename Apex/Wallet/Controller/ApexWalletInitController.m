@@ -66,6 +66,10 @@
         make.width.mas_equalTo(scaleWidth375(165));
         make.height.mas_equalTo(scaleHeight667(40));
     }];
+    
+    if (@available(iOS 10.0, *)) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 }
 
 - (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{

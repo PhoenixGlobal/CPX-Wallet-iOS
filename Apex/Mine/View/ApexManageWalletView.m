@@ -33,7 +33,11 @@
         make.left.equalTo(self).offset(15);
         make.right.equalTo(self).offset(-15);
         make.bottom.equalTo(self);
-        make.top.equalTo(self).offset(10);
+        if (@available(iOS 11.0, *)) {
+            make.top.equalTo(self).offset(10);
+        }else{
+            make.top.equalTo(self).offset(-NavBarHeight+10);
+        }
     }];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexWallerItemCell" bundle:nil] forCellReuseIdentifier:@"cell"];

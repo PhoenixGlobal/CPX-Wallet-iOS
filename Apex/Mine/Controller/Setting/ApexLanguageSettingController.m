@@ -155,8 +155,9 @@
 
 - (UILabel *)titleL{
     if (!_titleL) {
-        _titleL = [[UILabel alloc] init];
+        _titleL = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
         _titleL.text = SOLocalizedStringFromTable(@"LanguageSetting", nil);
+        _titleL.textAlignment = NSTextAlignmentCenter;
         _titleL.textColor = [UIColor blackColor];
     }
     return _titleL;

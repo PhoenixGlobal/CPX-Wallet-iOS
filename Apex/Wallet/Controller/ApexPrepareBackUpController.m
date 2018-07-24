@@ -36,6 +36,7 @@
 
 #pragma mark - ------private------
 - (void)initUI{
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = SOLocalizedStringFromTable(@"Create Wallet", nil);
     
@@ -48,7 +49,12 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.top.equalTo(self.view).offset(NavBarHeight + scaleHeight667(48));
         make.width.mas_equalTo(43);
-        make.height.mas_equalTo(52);
+        
+        if (@available(iOS 11.0, *)) {
+            make.height.mas_equalTo(52);
+        }else{
+            make.height.mas_equalTo(52+NavBarHeight);
+        }
     }];
     
     [self.tipL mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -83,8 +83,9 @@
 
 - (UILabel *)titleL{
     if (!_titleL) {
-        _titleL = [[UILabel alloc] init];
+        _titleL = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
         _titleL.text = SOLocalizedStringFromTable(@"Manage Wallet", nil);
+        _titleL.textAlignment = NSTextAlignmentCenter;
         _titleL.textColor = [UIColor whiteColor];
     }
     return _titleL;

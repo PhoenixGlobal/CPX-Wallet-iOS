@@ -45,6 +45,8 @@
 
 #pragma mark - ------private------
 - (void)initUI{
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
      self.title = SOLocalizedStringFromTable(@"Backup Wallet", nil);
     _choosenArr = [NSMutableArray array];
     

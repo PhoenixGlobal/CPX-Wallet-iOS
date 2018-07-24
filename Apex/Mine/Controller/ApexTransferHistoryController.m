@@ -40,6 +40,7 @@
 
 #pragma mark - ------private------
 - (void)initUI{
+
     self.navigationItem.titleView = self.titleL;
     [self.view addSubview:self.transactionView];
     [self.view addSubview:self.fakeNavBar];
@@ -92,7 +93,8 @@
 
 - (UILabel *)titleL{
     if (!_titleL) {
-        _titleL = [[UILabel alloc] init];
+        _titleL = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+        _titleL.textAlignment = NSTextAlignmentCenter;
         _titleL.text = SOLocalizedStringFromTable(@"Transaction Records", nil);
         _titleL.textColor = [UIColor whiteColor];
     }

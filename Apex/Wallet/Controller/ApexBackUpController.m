@@ -36,6 +36,8 @@
 }
 
 - (void)initUI{
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.title = SOLocalizedStringFromTable(@"Backup Wallet", nil);
     [self.nextBtn setTitle:SOLocalizedStringFromTable(@"Next step", nil) forState:UIControlStateNormal];
     _tipLable01.text = SOLocalizedStringFromTable(@"Copy Your Mnemonic", nil);
