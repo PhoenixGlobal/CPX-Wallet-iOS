@@ -125,7 +125,13 @@
  实现此方法后 所有的转场动画过程都要由ApexDrawTransPercentDriven的百分比决定*/
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
     
-    return [ApexDrawTransPercentDriven shareDriven];
+    if (@available(iOS 11.0, *)) {
+        //ios11 支持百分比驱动
+        return [ApexDrawTransPercentDriven shareDriven];
+    }else{
+        return nil;
+    }
+    
 }
 
 #pragma mark - ------public------
