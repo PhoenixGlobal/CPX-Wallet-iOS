@@ -9,45 +9,28 @@
 #import "ApexTagSelectCell.h"
 #import "ApexMnemonicFlowLayout.h"
 #import "ApexTagCollectionViewCell.h"
-#import "ApexQuestModel.h"
 
-@interface ApexTagSelectCell()<UICollectionViewDataSource, UICollectionViewDelegate>
-@property (nonatomic, strong) UICollectionView *collectionView; /**<  */
-@property (nonatomic, strong) NSLayoutConstraint *collectionViewH; /**<  */
-@property (nonatomic, strong) UILabel *titleL; /**<  */
+@interface ApexTagSelectCell()<UICollectionViewDelegate, UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet ApexMnemonicFlowLayout *flowLayout;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewH;
+
 @end
 
 @implementation ApexTagSelectCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self initUI];
-    }
-    return self;
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initUI];
 }
 
-#pragma mark - private
 - (void)initUI{
-    [self.contentView addSubview:self.collectionView];
-    [self.contentView addSubview:self.titleL];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.collectionView registerClass:ApexTagCollectionViewCell.class forCellWithReuseIdentifier:@"cell"];
     
-    [self.titleL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(15);
-        make.top.equalTo(self).offset(15);
-    }];
-    
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self);
-        make.top.equalTo(self.titleL.mas_bottom).offset(5);
-    }];
-    [self.collectionView registerClass:[ApexTagCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-    
-    _collectionViewH = [self.collectionView.heightAnchor constraintEqualToConstant:0];
-    
-    @weakify(self);
-    [RACObserve(self.collectionView, contentSize) subscribeNext:^(NSValue  *x) {
-        @strongify(self);
+    [[RACObserve(self.collectionView, contentSize) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(NSValue *x) {
         self.collectionViewH.constant = x.CGSizeValue.height;
-        self.collectionViewH.active = YES;
     }];
 }
 
@@ -62,29 +45,34 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ApexTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    cell.baseColor = UIColorHex(66BB6A);
     cell.tagStr = self.tags[indexPath.row].name;
     return cell;
 }
 
-#pragma mark - getter setter
-- (UICollectionView *)collectionView{
-    if (!_collectionView) {
-        ApexMnemonicFlowLayout *fl = [[ApexMnemonicFlowLayout alloc] init];
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:fl];
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    ApexTagCollectionViewCell *cell = (ApexTagCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.choose = !cell.choose;
+    
+    if (cell.choose) {
+        [self.selectedTags addObject:self.tags[indexPath.row]];
+    }else{
+        [self.selectedTags removeObject:self.tags[indexPath.row]];
     }
-    return _collectionView;
 }
 
-- (UILabel *)titleL{
-    if (!_titleL) {
-        _titleL = [[UILabel alloc] init];
-        _titleL.font = [UIFont systemFontOfSize:14];
-        _titleL.text = @"用户商业兴趣";
-        _titleL.textColor = [UIColor blackColor];
+#pragma mark - getter
+- (NSArray *)tags{
+    if (!_tags) {
+        _tags = [NSArray array];
     }
-    return _titleL;
+    return _tags;
+}
+
+- (NSMutableArray *)selectedTags{
+    if (!_selectedTags) {
+        _selectedTags = [NSMutableArray array];
+    }
+    return _selectedTags;
 }
 @end

@@ -24,12 +24,15 @@
     if (model.type == ApexQuestType_Tags) {
         ApexTagSelectCell *cell = [tableView dequeueReusableCellWithIdentifier:tagCellIdentifier forIndexPath:indexPath];
         cell.tags = model.data;
+        cell.titleL.text = model.title;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         cell.textLabel.text = self.contentArr[indexPath.row].title;
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }

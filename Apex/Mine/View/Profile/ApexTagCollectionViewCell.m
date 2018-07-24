@@ -15,4 +15,5 @@
     _tagStr = tagStr;
     self.mnemonicStr = tagStr;
 }
+
 @end

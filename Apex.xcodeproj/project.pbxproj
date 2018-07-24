@@ -151,6 +151,8 @@
 		E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66C020BFA91F002A1E07 /* ApexThread.m */; };
 		E3CE66D020BFC9A4002A1E07 /* ApexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66CF20BFC9A4002A1E07 /* ApexTests.m */; };
 		E3CE66D920C4E29E002A1E07 /* ApexAssetMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */; };
+		E739344421071FE5007953FB /* ApexTagSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E739344221071FE5007953FB /* ApexTagSelectCell.m */; };
+		E739344521071FE5007953FB /* ApexTagSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E739344321071FE5007953FB /* ApexTagSelectCell.xib */; };
 		E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCA20C112B700E2C597 /* NullSafe.m */; };
 		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
 		E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7242101C0FF00007F29 /* ApexLoading.m */; };
@@ -162,7 +164,6 @@
 		E7EDD7472105CF6200007F29 /* ApexProfileTableViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7462105CF6200007F29 /* ApexProfileTableViewDatasource.m */; };
 		E7EDD7502105D9F200007F29 /* fakeProfileResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E7EDD74F2105D9F200007F29 /* fakeProfileResponse.json */; };
 		E7EDD7532106BB5700007F29 /* ApexQuestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7522106BB5700007F29 /* ApexQuestModel.m */; };
-		E7EDD7572106C55700007F29 /* ApexTagSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7562106C55700007F29 /* ApexTagSelectCell.m */; };
 		E7EDD75A2106CAD000007F29 /* ApexTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7592106CAD000007F29 /* ApexTagCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -458,6 +459,9 @@
 		E3CE66D120BFC9A4002A1E07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3CE66D720C4E29E002A1E07 /* ApexAssetMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetMainController.h; sourceTree = "<group>"; };
 		E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetMainController.m; sourceTree = "<group>"; };
+		E739344121071FE5007953FB /* ApexTagSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTagSelectCell.h; sourceTree = "<group>"; };
+		E739344221071FE5007953FB /* ApexTagSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTagSelectCell.m; sourceTree = "<group>"; };
+		E739344321071FE5007953FB /* ApexTagSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTagSelectCell.xib; sourceTree = "<group>"; };
 		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
 		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
@@ -479,8 +483,6 @@
 		E7EDD74F2105D9F200007F29 /* fakeProfileResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fakeProfileResponse.json; sourceTree = "<group>"; };
 		E7EDD7512106BB5700007F29 /* ApexQuestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexQuestModel.h; sourceTree = "<group>"; };
 		E7EDD7522106BB5700007F29 /* ApexQuestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexQuestModel.m; sourceTree = "<group>"; };
-		E7EDD7552106C55700007F29 /* ApexTagSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTagSelectCell.h; sourceTree = "<group>"; };
-		E7EDD7562106C55700007F29 /* ApexTagSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTagSelectCell.m; sourceTree = "<group>"; };
 		E7EDD7582106CAD000007F29 /* ApexTagCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTagCollectionViewCell.h; sourceTree = "<group>"; };
 		E7EDD7592106CAD000007F29 /* ApexTagCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTagCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1173,8 +1175,9 @@
 		E7EDD7542106C53400007F29 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				E7EDD7552106C55700007F29 /* ApexTagSelectCell.h */,
-				E7EDD7562106C55700007F29 /* ApexTagSelectCell.m */,
+				E739344121071FE5007953FB /* ApexTagSelectCell.h */,
+				E739344221071FE5007953FB /* ApexTagSelectCell.m */,
+				E739344321071FE5007953FB /* ApexTagSelectCell.xib */,
 				E7EDD7582106CAD000007F29 /* ApexTagCollectionViewCell.h */,
 				E7EDD7592106CAD000007F29 /* ApexTagCollectionViewCell.m */,
 			);
@@ -1300,6 +1303,7 @@
 				E39E030820C8FB8D005DD251 /* ApexExportKeystoreQRView.xib in Resources */,
 				E33A8B5820AE724F0067505E /* LaunchScreen.storyboard in Resources */,
 				E3CE66B220BEA812002A1E07 /* DateTools.bundle in Resources */,
+				E739344521071FE5007953FB /* ApexTagSelectCell.xib in Resources */,
 				E38A64BE20ECB88600150F3B /* ApexAddAssetCell.xib in Resources */,
 				E3373B5120F8414100590407 /* ApexSendMoneyController.xib in Resources */,
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
@@ -1464,7 +1468,6 @@
 				E7EDD732210599D400007F29 /* ApexPageView.m in Sources */,
 				E39E02D420C659E2005DD251 /* ApexDrawTransAnimator.m in Sources */,
 				E33A8B9C20AE756E0067505E /* UIViewController+Toast.m in Sources */,
-				E7EDD7572106C55700007F29 /* ApexTagSelectCell.m in Sources */,
 				E33A8B7820AE75500067505E /* LXDScanView.m in Sources */,
 				E3263EF920B6AF07001D3C19 /* ApexMnemonicFlowLayout.m in Sources */,
 				E324311920E0F5A200284B91 /* ApexAssetModelManage.m in Sources */,
@@ -1504,6 +1507,7 @@
 				E3CE66B720BEA812002A1E07 /* DTTimePeriodCollection.m in Sources */,
 				E39E02C520C4EDF6005DD251 /* ApexAssetMainViewCell.m in Sources */,
 				E39E02C820C50517005DD251 /* ApexAccountDetailController.m in Sources */,
+				E739344421071FE5007953FB /* ApexTagSelectCell.m in Sources */,
 				E39E02DD20C68C13005DD251 /* ApexMoreTopCell.m in Sources */,
 				E3373B3720F5F14F00590407 /* SOLocalization.m in Sources */,
 				E3263EC520B5639D001D3C19 /* ApexManageWalletView.m in Sources */,

@@ -11,4 +11,5 @@
 @interface ApexMnemonicCell : UICollectionViewCell
 @property (nonatomic, strong) NSString *mnemonicStr;
 @property (nonatomic, assign) BOOL choose;
+@property (nonatomic, strong) UIColor *baseColor; /**< <#annotaion#> */
 @end

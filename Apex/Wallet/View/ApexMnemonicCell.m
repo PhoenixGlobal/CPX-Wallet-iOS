@@ -39,17 +39,21 @@
     [self setChoose:self.choose];
 }
 
+- (void)setBaseColor:(UIColor *)baseColor{
+    _baseColor = baseColor;
+    [self setChoose:self.choose];
+}
 
 - (void)setChoose:(BOOL)choose{
     _choose = choose;
     if (choose) {
         self.mnemonicL.textColor = [UIColor whiteColor];
-        self.backgroundColor = [ApexUIHelper mainThemeColor];
+        self.backgroundColor = _baseColor ? _baseColor : [ApexUIHelper mainThemeColor];
         self.layer.borderColor = [UIColor clearColor].CGColor;
     }else{
-        self.mnemonicL.textColor = [ApexUIHelper mainThemeColor];
+        self.mnemonicL.textColor = _baseColor ? _baseColor : [ApexUIHelper mainThemeColor];
         self.backgroundColor = [UIColor whiteColor];
-        self.layer.borderColor = [ApexUIHelper mainThemeColor].CGColor;
+        self.layer.borderColor = _baseColor ? _baseColor.CGColor : [ApexUIHelper mainThemeColor].CGColor;
     }
 }
 

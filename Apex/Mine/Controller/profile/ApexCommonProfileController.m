@@ -24,7 +24,6 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
     [self.tableView reloadData];
 }
 
@@ -37,7 +36,7 @@
         make.edges.equalTo(self.view);
     }];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
-    [self.tableView registerClass:[ApexTagSelectCell class] forCellReuseIdentifier:tagCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ApexTagSelectCell" bundle:nil] forCellReuseIdentifier:tagCellIdentifier];
     
     [self fakeRequest];
 }
@@ -58,6 +57,29 @@
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ApexQuestModel *model = self.tableViewDatasource.contentArr[indexPath.row];
+    switch (model.type) {
+        case ApexQuestType_Texting:
+            
+            break;
+        case ApexQuestType_singleRow:
+            
+            break;
+        case ApexQuestType_DoubleRows:
+            
+            break;
+        case ApexQuestType_TripleRows:
+            
+            break;
+        case ApexQuestType_Tags:
+            
+            break;
+            
+        default:
+            break;
+    }
+}
 
 #pragma mark - ------eventResponse------
 

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ApexQuestModel.h"
 
-@class ApexQuestItemBaseObject;
 @interface ApexTagSelectCell : UITableViewCell
 @property (nonatomic, strong) NSArray<ApexQuestItemBaseObject*> *tags; /**<  */
-//@property (nonatomic, strong) RACSubject *collectionView; /**< <#annotaion#> */
+@property (weak, nonatomic) IBOutlet UILabel *titleL;
+@property (nonatomic, strong) NSMutableArray *selectedTags; /**<  */
 @end
