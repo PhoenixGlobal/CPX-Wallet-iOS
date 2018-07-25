@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, ApexQuestType) {
 @property (nonatomic, strong) NSString *title; /**< title */
 @property (nonatomic, assign) NSInteger resource; /**< local or network */
 @property (nonatomic, strong) NSArray<ApexQuestItemBaseObject*> *data; /**<  */
+@property (nonatomic, strong) NSNumber *realTypeNum; /**<  */
 @end
 
 

@@ -13,6 +13,31 @@
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"data":ApexQuestItemBaseObject.class};
 }
+
+
+- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
+    NSNumber *typeNum = dic[@"type"];
+    
+    if (![typeNum isKindOfClass:NSNumber.class]) return NO;
+    
+    _realTypeNum = typeNum;
+    NSInteger type = typeNum.integerValue;
+    
+    if (type == 0) {
+        _type = ApexQuestType_Texting;
+    }else if (type < 20){
+        _type = ApexQuestType_singleRow;
+    }else if (type < 30){
+        _type = ApexQuestType_DoubleRows;
+    }else if (type < 40){
+        _type = ApexQuestType_TripleRows;
+    }else if (type < 50){
+        _type = ApexQuestType_Tags;
+    }
+    
+    return YES;
+}
+
 @end
 
 

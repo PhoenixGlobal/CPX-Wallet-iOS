@@ -9,6 +9,8 @@
 #import "ApexCommonProfileController.h"
 #import "ApexMnemonicFlowLayout.h"
 #import "ApexProfileTableViewDatasource.h"
+#import "ApexSimpleDatePicker.h"
+#import "ApexRowSelectView.h"
 
 @interface ApexCommonProfileController ()<UITableViewDelegate,UICollectionViewDelegate>
 @property (nonatomic, strong) UITableView *tableView; /**<  */
@@ -54,7 +56,7 @@
 }
 
 - (void)fakeRequest{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"fakeProfileResponse" ofType:@"json"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"commonQuest_zh" ofType:@"json"];
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     for (NSDictionary *modelDict in dict[@"result"]) {
@@ -75,14 +77,22 @@
         case ApexQuestType_Texting:
             
             break;
-        case ApexQuestType_singleRow:
+        case ApexQuestType_singleRow:{
             
+            [ApexRowSelectView showSingleRowSelectViewWithContentArr:model.data CompleteHandler:^(ApexQuestItemBaseObject *obj) {
+                NSLog(@"%@",obj.name);
+            }];
+        }
             break;
         case ApexQuestType_DoubleRows:
             
             break;
-        case ApexQuestType_TripleRows:
-            
+        case ApexQuestType_TripleRows:{
+         
+            [ApexSimpleDatePicker showDatePickerCompleteHandler:^(NSDate *date, NSString *dateStr) {
+                NSLog(@"%@",dateStr);
+            }];
+        }
             break;
         case ApexQuestType_Tags:
             
