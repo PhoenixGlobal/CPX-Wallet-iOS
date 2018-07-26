@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleL;
 @property (nonatomic, strong) NSMutableArray *selectedTags; /**<  */
 @property (nonatomic, assign) BOOL isFromCommon; /**<  */
+@property (nonatomic, strong) NSDictionary *showDict; /**<  */
 @end

@@ -43,9 +43,17 @@
         bindingAddress = ((ApexWalletModel*)((NSArray*)[ApexWalletManager getWalletsArr]).firstObject).address;
         [TKFileManager saveValue:bindingAddress forKey:KBindingWalletAddress];
     }
-    self.currentAddress.text = bindingAddress;
     
-//    [self.commonVC getLocalInfo];
+    if ([self.currentAddress.text isEqualToString:bindingAddress]) {
+        
+    }else{
+        self.currentAddress.text = bindingAddress;
+        [self.commonVC getLocalInfo];
+        [self.commonVC.tableView reloadData];
+    }
+    
+    
+
 }
 
 #pragma mark - ------private------
@@ -136,6 +144,7 @@
     if (!_commonVC) {
         _commonVC = [[ApexCommonProfileController alloc] init];
         _commonVC.baseController = self;
+        [self addChildViewController:_commonVC];
     }
     return _commonVC;
 }
@@ -144,6 +153,7 @@
     if (!_specialVC) {
         _specialVC = [[ApexSpecialProfileController alloc] init];
         _specialVC.baseController = self;
+        [self addChildViewController:_specialVC];
     }
     return _specialVC;
 }

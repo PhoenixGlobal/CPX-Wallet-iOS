@@ -127,6 +127,10 @@
     }
 }
 
+- (void)reloadData{
+    [self onSuperView];
+}
+
 - (void)initUI{
     [self addSubview:self.switchHeader];
     [self addSubview:self.scrollView];

@@ -17,4 +17,6 @@
 
 @interface ApexPageView : UIView
 @property (nonatomic, weak) id<ApexPageViewDelegate> delegate;
+
+- (void)reloadData;
 @end

@@ -48,8 +48,11 @@
     cell.baseColor = UIColorHex(66BB6A);
     ApexQuestItemBaseObject *obj = self.tags[indexPath.row];
     cell.tagStr = obj.name;
+    
     if ([self.selectedTags containsObject:obj]) {
         cell.choose = YES;
+    }else{
+        cell.choose = NO;
     }
     return cell;
 }
@@ -68,16 +71,20 @@
 #pragma mark - getter
 - (void)setTags:(NSArray<ApexQuestItemBaseObject *> *)tags{
     _tags = tags;
-    
+}
+
+- (void)setShowDict:(NSDictionary *)showDict{
+    _showDict = showDict;
     if (_isFromCommon) {
-        NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
-        if (bindingAddress) {
-            NSDictionary *dcit = [PDKeyChain load:KBindingAddressToCommonProfile(bindingAddress)];
-            if ([dcit.allKeys containsObject:self.titleL.text]) {
-                self.selectedTags = dcit[self.titleL.text];
-            }
+        NSDictionary *dcit = showDict;
+        if ([dcit.allKeys containsObject:self.titleL.text]) {
+            self.selectedTags = dcit[self.titleL.text];
+        }else{
+            self.selectedTags = [NSMutableArray array];
+            [showDict setValue:self.selectedTags forKey:self.titleL.text];
         }
     }
+    [self.collectionView reloadData];
 }
 
 - (NSArray *)tags{

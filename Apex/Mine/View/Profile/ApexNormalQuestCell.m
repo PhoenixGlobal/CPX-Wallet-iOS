@@ -35,6 +35,8 @@
         self.detailTextLabel.text = ((ApexQuestItemBaseObject*)model.userSelection).name;
     }else if ([model.userSelection isKindOfClass:NSString.class]){
         self.detailTextLabel.text = ((NSString*)model.userSelection);
+    }else if (model.userSelection == nil){
+        self.detailTextLabel.text = @"";
     }
     
     if (model.type == ApexQuestType_Local) {

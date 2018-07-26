@@ -31,8 +31,8 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
     [self.tableView reloadData];
 }
 
@@ -69,7 +69,7 @@
     }else{
         path = [[NSBundle mainBundle] pathForResource:@"commonQuest_zh" ofType:@"json"];
     }
-    
+    [self.tableViewDatasource.contentArr removeAllObjects];
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     for (NSDictionary *modelDict in dict[@"result"]) {
@@ -84,6 +84,8 @@
     NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
     self.answerDict = [PDKeyChain load:KBindingAddressToCommonProfile(bindingAddress)];
     self.tableViewDatasource.showDict = self.answerDict;
+    [self fakeRequest];
+
 }
 
 #pragma mark - ------public------
