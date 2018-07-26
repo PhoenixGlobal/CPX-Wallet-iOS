@@ -1,0 +1,221 @@
+{
+    "code": 200,
+    "result": [
+               {
+               "type": 30,
+               "resource": 0,
+               "title": "Birth Day",
+               "data": []
+               },
+               {
+               "type": 10,
+               "resource": 1,
+               "title": "Gender",
+               "data": [
+                        {
+                        "name": "Male",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Female",
+                        "id": "0"
+                        }
+                        ]
+               },
+               {
+               "type": 0,
+               "resource": 0,
+               "title": "Location",
+               "data": []
+               },
+               {
+               "type": 11,
+               "resource": 1,
+               "title": "Degree",
+               "data": [
+                        {
+                        "name": "Junior High School or below",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Senoir High School",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Technical School",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Special School",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Junior College",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Bachelor",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Master",
+                        "id": "0"
+                        },
+                        {
+                        "name": "MBA",
+                        "id": "0"
+                        },
+                        {
+                        "name": "EMBA",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Doctorate",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Postdoctor",
+                        "id": "0"
+                        }
+                        ]
+               },
+               {
+               "type": 0,
+               "resource": 0,
+               "title": "Current Income / Year",
+               "data": []
+               },
+               {
+               "type": 12,
+               "resource": 1,
+               "title": "Mobile Operator",
+               "data": [
+                        {
+                        "name": "CMCC",
+                        "id": "0"
+                        },
+                        {
+                        "name": "CUCC",
+                        "id": "0"
+                        },
+                        {
+                        "name": "CTCC",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Other",
+                        "id": "0"
+                        }
+                        ]
+               },
+               {
+               "type": 13,
+               "resource": 0,
+               "title": "Phone OS",
+               "data": [
+                        {
+                        "name": "iOS",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Android",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Other",
+                        "id": "0"
+                        }
+                        ]
+               },
+               {
+               "type": 0,
+               "resource": 0,
+               "title": "Career",
+               "data": []
+               },
+               {
+               "type": 40,
+               "resource": 1,
+               "title": "Tag",
+               "data": [
+                        {
+                        "name": "Education",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Tourism",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Finance",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Automobile",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Real estate",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Home & Garden",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Dress",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Fashion & Jewelry",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Food",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Service",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Beauty & Hair",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Internet",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Electronics",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Sports & Outdoors",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Healthcare",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Mother & Kids",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Game",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Government & Law",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Entertainment",
+                        "id": "0"
+                        }
+                        ]
+               }
+               ]
+}
+

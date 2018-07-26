@@ -23,12 +23,12 @@
 
 - (void)initUI{
     _cancleBtn = [[UIButton alloc] init];
-    [_cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [_cancleBtn setTitle:SOLocalizedStringFromTable(@"Cancle", nil) forState:UIControlStateNormal];
     [_cancleBtn setTitleColor:[ApexUIHelper mainThemeColor] forState:UIControlStateNormal];
     _cancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     
     _confirmBtn = [[UIButton alloc] init];
-    [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [_confirmBtn setTitle:SOLocalizedStringFromTable(@"Confirm", nil) forState:UIControlStateNormal];
     [_confirmBtn setTitleColor:[ApexUIHelper mainThemeColor] forState:UIControlStateNormal];
     _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     
@@ -112,7 +112,11 @@
     [[self.header.confirmBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         if (self.completeHandler) {
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            formatter.dateFormat = @"yyyy年 MM月 dd日";
+            if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+                formatter.dateFormat = @"yyyy-MM-dd";
+            }else{
+                formatter.dateFormat = @"yyyy年 MM月 dd日";
+            }
             NSString *dateStr = [formatter  stringFromDate:self.datePickerView.date];
             self.completeHandler(self.datePickerView.date, dateStr);
         }

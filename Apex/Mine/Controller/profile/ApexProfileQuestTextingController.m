@@ -86,6 +86,16 @@
 - (void)setModel:(ApexQuestModel *)model{
     _model = model;
     self.titleL.text = model.title;
+    
+    self.textingTF.placeholder = model.title;
+    
+    if ([model.title isEqualToString:@"居住地"] || [model.title isEqualToString:@"Location"]) {
+        if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+            self.textingTF.placeholder = @"Ex: Shanghai China";
+        }else{
+            self.textingTF.placeholder = @"如: 中国 上海";
+        }
+    }
 }
 
 - (UILabel *)titleL{

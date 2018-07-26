@@ -64,7 +64,14 @@
 }
 
 - (void)fakeRequest{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"specialQuest_zh" ofType:@"json"];
+    NSString *path = @"";
+    
+    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+        path = [[NSBundle mainBundle] pathForResource:@"specialQuest_en" ofType:@"json"];
+    }else{
+        path = [[NSBundle mainBundle] pathForResource:@"specialQuest_zh" ofType:@"json"];
+    }
+    
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     for (NSDictionary *modelDict in dict[@"result"]) {

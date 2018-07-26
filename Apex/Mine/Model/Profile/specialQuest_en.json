@@ -1,0 +1,165 @@
+
+{
+    "code": 200,
+    "result": [
+               {
+               "type": -1,
+               "resource": 0,
+               "title": " Enterprise Name ",
+               "data": []
+               },
+               {
+               "type": 10,
+               "resource": 1,
+               "title": "Drink Coffee",
+               "data": [
+                        {
+                        "name": "Yes",
+                        "id": "0"
+                        },
+                        {
+                        "name": "No",
+                        "id": "0"
+                        }
+                        ]
+               },
+               {
+               "type": 10,
+               "resource": 1,
+               "title": "Drinking Preference",
+               "data": [
+                        {
+                        "name": " Drink Outside",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Self Make",
+                        "id": "0"
+                        }
+                        ]
+               },
+               {
+               "type": 10,
+               "resource": 1,
+               "title": "Prefer Type",
+               "data": [
+                        {
+                        "name": "Ground",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Instant",
+                        "id": "0"
+                        }
+                        ]
+               },
+               {
+               "type": 10,
+               "resource": 1,
+               "title": "Prefer Flavor",
+               "data": [
+                        {
+                        "name": "Blue Mountain",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Mande Ling",
+                        "id": "0"
+                        },
+                        {
+                        "name": "BrziL",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Macha",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Espresso",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Cappuccino",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Latte",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Ireland",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Viennese",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Charcoal Roast",
+                        "id": "0"
+                        },
+                        {
+                        "name": "M.T.Hot",
+                        "id": "0"
+                        }
+                        ]
+               },
+               {
+               "type": 0,
+               "resource": 0,
+               "title": "Consumption Amount / Month $",
+               "data": []
+               },
+               {
+               "type": 0,
+               "resource": 0,
+               "title": "Drinking Frequency / Month",
+               "data": []
+               },
+               {
+               "type": 0,
+               "resource": 0,
+               "title": "Acceptable Price $",
+               "data": []
+               },
+               {
+               "type": 40,
+               "resource": 1,
+               "title": "Tag",
+               "data": [
+                        {
+                        "name": "Bank VIP User",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Steady Life",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Entertaining & Social",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Enjoy Life",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Work Hard",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Abroad Study",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Practical & Home Lover",
+                        "id": "0"
+                        },
+                        {
+                        "name": "Financial Staff",
+                        "id": "0"
+                        }
+                        ]
+               }
+               ]
+}

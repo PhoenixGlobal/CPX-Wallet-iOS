@@ -24,12 +24,12 @@
 
 - (void)initUI{
     _cancleBtn = [[UIButton alloc] init];
-    [_cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [_cancleBtn setTitle:SOLocalizedStringFromTable(@"Cancle", nil) forState:UIControlStateNormal];
     [_cancleBtn setTitleColor:[ApexUIHelper mainThemeColor] forState:UIControlStateNormal];
     _cancleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     
     _confirmBtn = [[UIButton alloc] init];
-    [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [_confirmBtn setTitle:SOLocalizedStringFromTable(@"Confirm", nil) forState:UIControlStateNormal];
     [_confirmBtn setTitleColor:[ApexUIHelper mainThemeColor] forState:UIControlStateNormal];
     _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     
