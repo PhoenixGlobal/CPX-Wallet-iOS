@@ -11,6 +11,7 @@
 #import "ApexSpecialProfileController.h"
 #import "ApexPageView.h"
 #import "ApexChangeBindWalletController.h"
+#import "ApexNoWalletView.h"
 
 @interface ApexProfileBaseController ()<ApexPageViewDelegate>
 @property (nonatomic, strong) UIImageView *backIV; /**<  */
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) UILabel *currentAddress; /**<  */
 @property (nonatomic, strong) ApexCommonProfileController *commonVC; /**<  */
 @property (nonatomic, strong) ApexSpecialProfileController *specialVC; /**<  */
+@property (nonatomic, strong) ApexNoWalletView *noWalletView; /**<  */
 @end
 
 @implementation ApexProfileBaseController
@@ -51,10 +53,16 @@
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.pageView];
     [self.view addSubview:self.currentAddress];
+    [self.view addSubview:self.noWalletView];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(NavBarHeight+24);
+        make.height.mas_equalTo(NavBarHeight+44);
+    }];
+    
+    [self.noWalletView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backIV.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
     }];
     
     [self.pageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,6 +74,16 @@
         make.bottom.equalTo(self.backIV).offset(-10);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
+    
+    if (((NSArray*)[ApexWalletManager getWalletsArr]).count == 0) {
+        self.noWalletView.hidden = NO;
+        self.currentAddress.hidden = YES;
+        self.exchangeBtn.hidden = YES;
+    }else{
+        self.noWalletView.hidden = YES;
+        self.currentAddress.hidden = NO;
+        self.exchangeBtn.hidden = NO;
+    }
 }
 
 - (void)setNav{
@@ -151,5 +169,12 @@
         _currentAddress.text = @"dfsfs";
     }
     return _currentAddress;
+}
+
+- (ApexNoWalletView *)noWalletView{
+    if (!_noWalletView) {
+        _noWalletView = [[ApexNoWalletView alloc] init];
+    }
+    return _noWalletView;
 }
 @end

@@ -70,31 +70,32 @@
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(scaleHeight667(NavBarHeight+80));
+        make.height.mas_equalTo(scaleHeight667(NavBarHeight+160));
     }];
     
     [self.sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(35);
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
         make.top.equalTo(self.backIV.mas_bottom).offset(20);
-        make.width.mas_equalTo(scaleWidth375(150));
-        make.height.mas_equalTo(40);
+        make.height.mas_equalTo(45);
     }];
     
     [self.requestBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).offset(-35);
-        make.top.width.height.equalTo(self.sendBtn);
+        make.right.equalTo(self.view).offset(-15);
+        make.width.height.equalTo(self.sendBtn);
+        make.top.equalTo(self.sendBtn.mas_bottom).offset(15);
     }];
     
     [self.balanceL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(70);
+        make.top.equalTo(self.view).offset(50+NavBarHeight);
         make.centerX.equalTo(self.view.mas_centerX);
         make.left.greaterThanOrEqualTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-60);
     }];
     
     [self.unitL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.baseline.equalTo(self.balanceL);
-        make.left.equalTo(self.balanceL.mas_right).offset(10);
+        make.top.equalTo(self.balanceL.mas_bottom).offset(0);
+        make.centerX.equalTo(self.balanceL.mas_centerX);
     }];
     
 //    [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -200,7 +200,7 @@ static CGFloat KlineWidth = 2;
     if (!_messageL) {
         _messageL = [[UILabel alloc] init];
         _messageL.textColor = [UIColor whiteColor];
-        _messageL.font = [UIFont systemFontOfSize:114];
+        _messageL.font = [UIFont systemFontOfSize:14];
         _messageL.textAlignment = NSTextAlignmentCenter;
         _messageL.numberOfLines = 2;
         _messageL.adjustsFontSizeToFitWidth = YES;

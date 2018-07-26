@@ -161,6 +161,8 @@
 		E73934AC21099F50007953FB /* ApexChangeBindWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934AB21099F50007953FB /* ApexChangeBindWalletController.m */; };
 		E73934B02109A2CC007953FB /* ApexChangeWalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934AE2109A2CC007953FB /* ApexChangeWalletCell.m */; };
 		E73934B12109A2CC007953FB /* ApexChangeWalletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */; };
+		E73934B42109B07D007953FB /* ApexNoWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934B32109B07D007953FB /* ApexNoWalletView.m */; };
+		E73934B72109B25E007953FB /* NSBundle+MJLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934B62109B25E007953FB /* NSBundle+MJLocalization.m */; };
 		E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCA20C112B700E2C597 /* NullSafe.m */; };
 		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
 		E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7242101C0FF00007F29 /* ApexLoading.m */; };
@@ -485,6 +487,10 @@
 		E73934AD2109A2CC007953FB /* ApexChangeWalletCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexChangeWalletCell.h; sourceTree = "<group>"; };
 		E73934AE2109A2CC007953FB /* ApexChangeWalletCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexChangeWalletCell.m; sourceTree = "<group>"; };
 		E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexChangeWalletCell.xib; sourceTree = "<group>"; };
+		E73934B22109B07D007953FB /* ApexNoWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoWalletView.h; sourceTree = "<group>"; };
+		E73934B32109B07D007953FB /* ApexNoWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoWalletView.m; sourceTree = "<group>"; };
+		E73934B52109B25E007953FB /* NSBundle+MJLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MJLocalization.h"; sourceTree = "<group>"; };
+		E73934B62109B25E007953FB /* NSBundle+MJLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+MJLocalization.m"; sourceTree = "<group>"; };
 		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
 		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
@@ -989,6 +995,8 @@
 				E3CE667720BBE2D8002A1E07 /* UIButton+EnlargeTouchArea.m */,
 				E39E02F320C7D771005DD251 /* UITextView+placeholder.h */,
 				E39E02F420C7D771005DD251 /* UITextView+placeholder.m */,
+				E73934B52109B25E007953FB /* NSBundle+MJLocalization.h */,
+				E73934B62109B25E007953FB /* NSBundle+MJLocalization.m */,
 			);
 			path = Catagotries;
 			sourceTree = "<group>";
@@ -1216,6 +1224,8 @@
 				E73934AD2109A2CC007953FB /* ApexChangeWalletCell.h */,
 				E73934AE2109A2CC007953FB /* ApexChangeWalletCell.m */,
 				E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */,
+				E73934B22109B07D007953FB /* ApexNoWalletView.h */,
+				E73934B32109B07D007953FB /* ApexNoWalletView.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1454,6 +1464,7 @@
 				E3373B4C20F7458E00590407 /* ApexWalletManageController.m in Sources */,
 				E3373B6820FDD8CD00590407 /* ApexLanguageSettingCell.m in Sources */,
 				E739349E21086CC0007953FB /* ApexSimpleDatePicker.m in Sources */,
+				E73934B72109B25E007953FB /* NSBundle+MJLocalization.m in Sources */,
 				E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */,
 				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
 				E3373B3C20F5F14F00590407 /* UIBarItem+SOLocalization.m in Sources */,
@@ -1478,6 +1489,7 @@
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
 				E7EDD7472105CF6200007F29 /* ApexProfileTableViewDatasource.m in Sources */,
 				E7EDD72C21057A0200007F29 /* ApexSpecialProfileController.m in Sources */,
+				E73934B42109B07D007953FB /* ApexNoWalletView.m in Sources */,
 				E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */,
 				E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */,
 				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,

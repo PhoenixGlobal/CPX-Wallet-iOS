@@ -86,6 +86,7 @@
 "enterProfile" = "Enterprise";
 "loading" = "Saving Data to DHT Cloud";
 "selWallet" = "Select Wallet";
+"noWallet" = "Please create wallet that we could distribute our rewards.";
 
 // tips
 "Create Wallet Failed" = "Create Wallet Failed";

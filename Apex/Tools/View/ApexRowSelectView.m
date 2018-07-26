@@ -90,8 +90,8 @@
     }];
     
     CGFloat height = 200;
-    if (self.contentArr.count * 50 < 200) {
-        height = self.contentArr.count * 50;
+    if (self.contentArr.count * 70 < 200) {
+        height = self.contentArr.count * 70;
     }
     
     [self.pickerView mas_makeConstraints:^(MASConstraintMaker *make) {

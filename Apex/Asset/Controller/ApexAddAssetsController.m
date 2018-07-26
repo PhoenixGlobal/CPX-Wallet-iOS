@@ -42,14 +42,8 @@
     [self.view addSubview:self.searchToolBar];
     [self.view addSubview:self.tableView];
     
-    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(30);
-        make.left.equalTo(self.view).offset(10);
-        make.width.height.mas_equalTo(30);
-    }];
-    
     [self.searchToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.backBtn.mas_bottom).offset(5);
+        make.top.equalTo(self.view).offset(NavBarHeight);
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
         make.height.mas_equalTo(50);
@@ -61,11 +55,9 @@
     }];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexAddAssetCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    
-    [self.titleL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.backBtn.mas_centerY);
-        make.centerX.equalTo(self.view.mas_centerX);
-    }];
+
+    self.navigationItem.titleView = self.titleL;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
 }
 
 - (void)prepareData{
@@ -144,7 +136,7 @@
 - (void)handleEvent{
     
     [[self.backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     
     self.searchToolBar.textDidChangeSub = [RACSubject subject];
@@ -164,13 +156,12 @@
         
         [self.tableView reloadData];
     }];
-    
 }
 #pragma mark - ------getter & setter------
 - (UIButton *)backBtn{
     if (!_backBtn) {
-        _backBtn = [[UIButton alloc] init];
-        [_backBtn setImage:[UIImage imageNamed:@"Group 21"] forState:UIControlStateNormal];
+        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 30)];
+        [_backBtn setImage:[UIImage imageNamed:@"back-4"] forState:UIControlStateNormal];
         _backBtn.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _backBtn;

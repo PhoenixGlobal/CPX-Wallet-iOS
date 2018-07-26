@@ -42,7 +42,7 @@
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(150);
+        make.height.mas_equalTo(scaleHeight667(150));
     }];
     
     [self.manageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
