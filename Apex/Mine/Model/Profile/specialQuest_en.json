@@ -3,10 +3,13 @@
     "code": 200,
     "result": [
                {
-               "type": -1,
+               "type": 10,
                "resource": 0,
                "title": " Enterprise Name ",
-               "data": []
+               "data": [{
+                        "name": "S-Coffee",
+                        "id": "0"
+                        }]
                },
                {
                "type": 10,
@@ -140,7 +143,7 @@
                         "id": "0"
                         },
                         {
-                        "name": "Enjoy Life",
+                        "name": "Financial Staff",
                         "id": "0"
                         },
                         {
@@ -156,7 +159,7 @@
                         "id": "0"
                         },
                         {
-                        "name": "Financial Staff",
+                        "name": "Enjoy Life",
                         "id": "0"
                         }
                         ]

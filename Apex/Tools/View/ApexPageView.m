@@ -12,9 +12,28 @@
 @property (nonatomic, assign) NSInteger numOfPage;
 @property (nonatomic, strong) NSMutableArray<UIButton*> *btnsArr; /**<  */
 @property (nonatomic, strong) CAShapeLayer *indicator; /**<  */
+@property (nonatomic, strong) UIView *lineV; /**<  */
 @end
 
 @implementation ApexPageSwitchHeader
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+    }
+    return self;
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview{
+    [super willMoveToSuperview:newSuperview];
+    _lineV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1.0/kScale)];
+    _lineV.backgroundColor = [ApexUIHelper grayColor240];
+    [self addSubview:_lineV];
+    [_lineV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.equalTo(self);
+        make.height.mas_equalTo(1.0/kScale);
+    }];
+    _lineV.backgroundColor = [ApexUIHelper grayColor240];
+}
+
 - (void)setNumOfPage:(NSInteger)numOfPage{
     _numOfPage = numOfPage;
     _btnsArr = [NSMutableArray array];
@@ -28,7 +47,7 @@
         btn.backgroundColor = [UIColor whiteColor];
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         [self.btnsArr addObject:btn];
-        [self addSubview:btn];
+        [self insertSubview:btn atIndex:0];
     }
     
     UIBezierPath *path = [UIBezierPath bezierPath];
@@ -117,6 +136,8 @@
         make.top.equalTo(self.switchHeader.mas_bottom);
         make.left.right.bottom.equalTo(self);
     }];
+    
+    
     
     _currentPage = 0;
 }

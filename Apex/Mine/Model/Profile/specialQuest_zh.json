@@ -2,10 +2,13 @@
     "code": 200,
     "result": [
                {
-               "type": -1,
+               "type": 10,
                "resource": 0,
                "title": "企业名称",
-               "data": []
+               "data": [{
+                        "name": "S-Coffee",
+                        "id": "0"
+                        }]
                },
                {
                "type": 10,
