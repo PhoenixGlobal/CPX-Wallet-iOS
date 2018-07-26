@@ -28,14 +28,15 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please save your Keystore File to a safe offline place, Do not save it in Email, Notebook, CloudDrive, or ChatTools" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOA-VA-35F">
-                    <rect key="frame" x="15" y="63.5" width="345" height="31.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOA-VA-35F">
+                    <rect key="frame" x="15" y="63.5" width="345" height="47"/>
+                    <string key="text">Store Offine - Please store the Keystore to a safe offline location or device such as a USB drive. Never store or upload it to the internet.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkW-da-bDY">
-                    <rect key="frame" x="15" y="115" width="104.5" height="18.5"/>
+                    <rect key="frame" x="15" y="130.5" width="104.5" height="18.5"/>
                     <attributedString key="attributedText">
                         <fragment content="请勿使用网络传输">
                             <attributes>
@@ -47,8 +48,8 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZw-7m-c91">
-                    <rect key="frame" x="15" y="143.5" width="345" height="62.5"/>
-                    <string key="text">Please do not transfer Keysotre file through Internet. Once your file stealed By hacker, it will cause you severe loss of your assets. We recommend you transfer it by QR using offline device</string>
+                    <rect key="frame" x="15" y="159" width="345" height="47"/>
+                    <string key="text">Don't Transfer via internet Tools-Don't use Email/Cloud Storage/Notepad/IM tools to transfer Keystore . It easily gets hacked and result in loss.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -65,7 +66,7 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you prefer save keystore online, we recommend you to use password manager software like 1Password to save your keystore" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUv-UT-8CI">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store to Password Vault - If you like to store online please make sure to use password vault apps , like 1Password/Keeppass." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUv-UT-8CI">
                     <rect key="frame" x="15" y="254.5" width="345" height="47"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>

@@ -10,6 +10,7 @@
 #import "ApexCommonProfileController.h"
 #import "ApexSpecialProfileController.h"
 #import "ApexPageView.h"
+#import "ApexChangeBindWalletController.h"
 
 @interface ApexProfileBaseController ()<ApexPageViewDelegate>
 @property (nonatomic, strong) UIImageView *backIV; /**<  */
@@ -27,11 +28,25 @@
     
     [self initUI];
     [self setNav];
+    [self handleEvent];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    
+    NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+    if (bindingAddress == nil) {
+        bindingAddress = ((ApexWalletModel*)((NSArray*)[ApexWalletManager getWalletsArr]).firstObject).address;
+        [TKFileManager saveValue:bindingAddress forKey:KBindingWalletAddress];
+    }
+    self.currentAddress.text = bindingAddress;
 }
 
 #pragma mark - ------private------
 - (void)initUI{
-    self.title = @"Profile";
+    self.title = SOLocalizedStringFromTable(@"Profile", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.pageView];
@@ -39,7 +54,7 @@
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(90);
+        make.height.mas_equalTo(NavBarHeight+24);
     }];
     
     [self.pageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -81,7 +96,12 @@
 }
 
 #pragma mark - ------eventResponse------
-
+- (void)handleEvent{
+    [[self.exchangeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        ApexChangeBindWalletController *vc = [[ApexChangeBindWalletController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+}
 #pragma mark - ------getter & setter------
 
 - (ApexPageView *)pageView{
@@ -95,6 +115,7 @@
 - (ApexCommonProfileController *)commonVC{
     if (!_commonVC) {
         _commonVC = [[ApexCommonProfileController alloc] init];
+        _commonVC.baseController = self;
     }
     return _commonVC;
 }
@@ -102,6 +123,7 @@
 - (ApexSpecialProfileController *)specialVC{
     if (!_specialVC) {
         _specialVC = [[ApexSpecialProfileController alloc] init];
+        _specialVC.baseController = self;
     }
     return _specialVC;
 }
@@ -115,7 +137,7 @@
 
 - (UIButton *)exchangeBtn{
     if (!_exchangeBtn) {
-        _exchangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _exchangeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
         [_exchangeBtn setImage:[UIImage imageNamed:@"Group 2-1"] forState:UIControlStateNormal];
     }
     return _exchangeBtn;

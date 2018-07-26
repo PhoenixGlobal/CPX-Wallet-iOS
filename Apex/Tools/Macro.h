@@ -29,6 +29,9 @@
 #define KMyAseetArr @"KMyAseetArr"
 #define KAssetModelListKey @"KAssetModelListKey"
 #define KLanguageSetting @"KLanguageSetting"
+#define KBindingWalletAddress @"KBindingWalletAddress"
+#define KBindingAddressToCommonProfile(address) [NSString stringWithFormat:@"%@_commonProfile",address]
+#define KBindingAddressToSpecialProfile(address) [NSString stringWithFormat:@"%@_specialProfile",address]
 
 #define baseUrl_tool_test @"http://dev.chinapex.com.cn:10086/tool/"
 #define baseUrl_cli_test @"http://dev.chinapex.com.cn:10086/neo-cli/"

@@ -9,7 +9,7 @@
 #import "ApexLoading.h"
 
 static CGFloat percentRatio= 0.66; /* panellayer占用coverview的垂直比例 */
-static CGFloat messagePadding = 25; /* messageL的左右padding */
+static CGFloat messagePadding = 15; /* messageL的左右padding */
 static CGFloat KcenterCircleRadiusPercent = 0.1; /* 中心圆'半径'占panel宽的百分比 */
 static CGFloat KmiddleCircleRadiusPercent = 0.15;
 static CGFloat KoutterCircleRadiusPercent = 0.20;
@@ -32,7 +32,7 @@ static CGFloat KlineWidth = 2;
     loading.messageL.text = message;
     [superView addSubview:loading];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [loading startAnimation];
     });
 }
@@ -188,7 +188,7 @@ static CGFloat KlineWidth = 2;
 #pragma mark - getter setter
 - (UIView *)coverView{
     if (!_coverView) {
-        _coverView = [[UIView alloc] initWithFrame:CGRectMake(self.width/2.0 - 65, self.height/2.0 - 75, 110, 120)];
+        _coverView = [[UIView alloc] initWithFrame:CGRectMake(self.width/2.0 - 55, self.height*0.2, 110, 120)];
         _coverView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
         _coverView.layer.cornerRadius = 6;
         _coverView.layer.masksToBounds = YES;
@@ -200,9 +200,10 @@ static CGFloat KlineWidth = 2;
     if (!_messageL) {
         _messageL = [[UILabel alloc] init];
         _messageL.textColor = [UIColor whiteColor];
-        _messageL.font = [UIFont systemFontOfSize:14];
+        _messageL.font = [UIFont systemFontOfSize:114];
         _messageL.textAlignment = NSTextAlignmentCenter;
         _messageL.numberOfLines = 2;
+        _messageL.adjustsFontSizeToFitWidth = YES;
     }
     return _messageL;
 }

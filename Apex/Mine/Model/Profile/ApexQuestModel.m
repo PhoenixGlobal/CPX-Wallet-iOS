@@ -35,6 +35,10 @@
         _type = ApexQuestType_Tags;
     }
     
+    if (type == -1) {
+        _type = ApexQuestType_Local;
+    }
+    
     return YES;
 }
 

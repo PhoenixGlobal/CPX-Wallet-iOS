@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ApexQuestModel.h"
 #import "ApexTagSelectCell.h"
+#import "ApexNormalQuestCell.h"
 
 static NSString *cellIdentifier = @"cellIdentifier";
 static NSString *tagCellIdentifier = @"tagCellIdentifier";

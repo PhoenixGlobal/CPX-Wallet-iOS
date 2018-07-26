@@ -28,16 +28,14 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        cell.textLabel.text = self.contentArr[indexPath.row].title;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        ApexNormalQuestCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell.model = model;
         [cell addLinecolor:[UIColor colorWithHexString:@"eeeeee"] edge:UIEdgeInsetsMake(-1, 15, 0, 0)];
         return cell;
     }
 }
 
+#pragma mark - private
 
 #pragma mark - getter
 - (NSMutableArray *)contentArr{

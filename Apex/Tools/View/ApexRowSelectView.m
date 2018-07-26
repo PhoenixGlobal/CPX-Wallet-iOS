@@ -115,8 +115,20 @@
     return self.contentArr.count;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return self.contentArr[row].name;
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UILabel *)view{
+    if (view == nil) {
+        view = [[UILabel alloc] init];
+        view.font = [UIFont systemFontOfSize:15];
+        view.textColor = [UIColor colorWithHexString:@"000000"];
+        view.textAlignment = NSTextAlignmentCenter;
+        [view addLinecolor:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
+    }
+    view.text = self.contentArr[row].name;
+    return view;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 30;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{

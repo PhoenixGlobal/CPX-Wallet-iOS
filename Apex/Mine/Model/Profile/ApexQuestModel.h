@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger, ApexQuestType) {
     ApexQuestType_DoubleRows,
     ApexQuestType_TripleRows,
     ApexQuestType_Tags,
-    ApexQuestType_NewPage
+    ApexQuestType_NewPage,
+    ApexQuestType_Local
 };
 
 @class ApexQuestItemBaseObject;
@@ -25,6 +26,8 @@ typedef NS_ENUM(NSInteger, ApexQuestType) {
 @property (nonatomic, assign) NSInteger resource; /**< local or network */
 @property (nonatomic, strong) NSArray<ApexQuestItemBaseObject*> *data; /**<  */
 @property (nonatomic, strong) NSNumber *realTypeNum; /**<  */
+
+@property (nonatomic, strong) id userSelection; /**< 用model来存储用户的选择/填写内容/选择的tags */
 @end
 
 

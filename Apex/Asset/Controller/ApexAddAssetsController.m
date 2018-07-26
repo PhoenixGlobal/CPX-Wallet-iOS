@@ -70,12 +70,29 @@
 
 - (void)prepareData{
     self.contentArr = [ApexAssetModelManage getLocalAssetModelsArr];
-    //移除neo gas cpx的展示
+    ApexAssetModel *cpxModel = nil;
+    ApexAssetModel *neoModel = nil;
+    ApexAssetModel *gasModel = nil;
+    //置顶neo gas cpx的展示
     for (ApexAssetModel *model in [self.contentArr copy]) {
-        if ([model.hex_hash isEqualToString:assetId_NeoGas] || [model.hex_hash isEqualToString:assetId_Neo] || [model.hex_hash isEqualToString:assetId_CPX]) {
+        if ([model.hex_hash isEqualToString:assetId_NeoGas]) {
             [self.contentArr removeObject:model];
+            gasModel = model;
+        }
+        if ([model.hex_hash isEqualToString:assetId_Neo]) {
+            [self.contentArr removeObject:model];
+            neoModel = model;
+        }
+        if ([model.hex_hash isEqualToString:assetId_CPX]) {
+            [self.contentArr removeObject:model];
+            cpxModel = model;
         }
     }
+    
+    [self.contentArr insertObject:gasModel atIndex:0];
+    [self.contentArr insertObject:neoModel atIndex:0];
+    [self.contentArr insertObject:cpxModel atIndex:0];
+    
     [self.tableView reloadData];
 }
 
@@ -107,8 +124,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ApexAddAssetCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     ApexAssetModel *model = self.contentArr[indexPath.row];
+    if ([model.hex_hash isEqualToString:assetId_NeoGas] || [model.hex_hash isEqualToString:assetId_Neo] || [model.hex_hash isEqualToString:assetId_CPX]) {
+        return;
+    }
+    
+    ApexAddAssetCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.indicator.selected = !cell.indicator.selected;
     if (cell.indicator.selected) {
         [self.walletAssetArr addObject:[model convertToBalanceObject]];

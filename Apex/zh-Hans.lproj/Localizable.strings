@@ -76,6 +76,8 @@
 //profile
 "commProfile" = "通用画像";
 "enterProfile" = "企业端特殊数据画像";
+"loading" = "正在上传到区块链";
+"selWallet" = "选择钱包";
 
 // tips
 "Create Wallet Failed" = "钱包创建失败";

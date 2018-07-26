@@ -62,17 +62,9 @@
     @weakify(self);
     [[self.saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self);
-        [SOLocalization sharedLocalization].region = self.language;
-        [TKFileManager saveValue:self.language forKey:KLanguageSetting];
-        
-        [self showHUD];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self hideHUD];
-            CYLTabBarController *tabbarVC = [[CYLTabBarController alloc] init];
-            tabbarVC.initSelectTabbarBtnIndex = 0;
-            [UIApplication sharedApplication].keyWindow.rootViewController = tabbarVC;
-        });
+        [self confirmSelection];
     }];
+    self.saveBtn.hidden = YES;
 }
 
 - (void)setNav{
@@ -115,14 +107,29 @@
     
     if (indexPath.row == 0) {
         _language = SOLocalizationSimplifiedChinese;
+        [self confirmSelection];
         _zhCell.imageV.hidden = NO;
         _enCell.imageV.hidden = YES;
         
     }else{
         _language = SOLocalizationEnglish;
+        [self confirmSelection];
         _zhCell.imageV.hidden = YES;
         _enCell.imageV.hidden = NO;
     }
+}
+
+- (void)confirmSelection{
+    [SOLocalization sharedLocalization].region = self.language;
+    [TKFileManager saveValue:self.language forKey:KLanguageSetting];
+    
+    [self showHUD];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self hideHUD];
+        CYLTabBarController *tabbarVC = [[CYLTabBarController alloc] init];
+        tabbarVC.initSelectTabbarBtnIndex = 0;
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabbarVC;
+    });
 }
 #pragma mark - ------eventResponse------
 

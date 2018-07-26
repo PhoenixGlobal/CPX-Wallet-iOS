@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexSpecialProfileController : UIViewController
-
+@property (nonatomic, strong) UIViewController *baseController; /**<  */
 @end

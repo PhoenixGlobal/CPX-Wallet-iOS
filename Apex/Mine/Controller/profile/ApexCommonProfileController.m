@@ -11,11 +11,15 @@
 #import "ApexProfileTableViewDatasource.h"
 #import "ApexSimpleDatePicker.h"
 #import "ApexRowSelectView.h"
+#import "ApexProfileQuestTextingController.h"
+#import "ApexLoading.h"
 
 @interface ApexCommonProfileController ()<UITableViewDelegate,UICollectionViewDelegate>
 @property (nonatomic, strong) UITableView *tableView; /**<  */
 @property (nonatomic, strong) ApexProfileTableViewDatasource *tableViewDatasource; /**<  */
 @property (nonatomic, strong) UIButton *saveBtn; /**<  */
+
+@property (nonatomic, strong) NSMutableDictionary *answerDict; /**<  */
 @end
 
 @implementation ApexCommonProfileController
@@ -23,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
+    [self handleEvent];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -49,7 +54,7 @@
         make.bottom.equalTo(self.saveBtn.mas_top).offset(10);
     }];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView registerClass:[ApexNormalQuestCell class] forCellReuseIdentifier:cellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"ApexTagSelectCell" bundle:nil] forCellReuseIdentifier:tagCellIdentifier];
     
     [self fakeRequest];
@@ -74,13 +79,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexQuestModel *model = self.tableViewDatasource.contentArr[indexPath.row];
     switch (model.type) {
-        case ApexQuestType_Texting:
+        case ApexQuestType_Texting:{
+            ApexProfileQuestTextingController *vc = [[ApexProfileQuestTextingController alloc] init];
+            vc.model = model;
+            vc.didConfirmTextSubject = [RACSubject subject];
+            [vc.didConfirmTextSubject subscribeNext:^(NSString *text) {
+                model.userSelection = text;
+                [tableView reloadData];
+                [self.answerDict setValue:text forKey:model.title];
+            }];
+            [self.baseController.navigationController pushViewController:vc animated:YES];
+        }
             
             break;
         case ApexQuestType_singleRow:{
             
             [ApexRowSelectView showSingleRowSelectViewWithContentArr:model.data CompleteHandler:^(ApexQuestItemBaseObject *obj) {
-                NSLog(@"%@",obj.name);
+                model.userSelection = obj;
+                [tableView reloadData];
+                [self.answerDict setValue:obj.name forKey:model.title];
             }];
         }
             break;
@@ -88,9 +105,11 @@
             
             break;
         case ApexQuestType_TripleRows:{
-         
+            //目前只有生日
             [ApexSimpleDatePicker showDatePickerCompleteHandler:^(NSDate *date, NSString *dateStr) {
-                NSLog(@"%@",dateStr);
+                model.userSelection = dateStr;
+                [tableView reloadData];
+                [self.answerDict setValue:dateStr forKey:model.title];
             }];
         }
             break;
@@ -103,7 +122,23 @@
     }
 }
 
+- (int)getRandomNumber:(int)from to:(int)to
+{
+    return (int)(from + (arc4random() % (to - from + 1)));
+}
 #pragma mark - ------eventResponse------
+- (void)handleEvent{
+    [[self.saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [ApexLoading showOnView:self.view Message:SOLocalizedStringFromTable(@"loading", nil)];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([self getRandomNumber:0 to:3] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [ApexLoading hideOnView:self.view];
+            NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+            //save answer
+            
+            [PDKeyChain save:KBindingAddressToCommonProfile(bindingAddress) data:self.answerDict];
+        });
+    }];
+}
 
 #pragma mark - ------getter & setter------
 - (UITableView *)tableView{
@@ -138,4 +173,10 @@
     return _saveBtn;
 }
 
+- (NSMutableDictionary *)answerDict{
+    if (!_answerDict) {
+        _answerDict = [NSMutableDictionary dictionary];
+    }
+    return _answerDict;
+}
 @end

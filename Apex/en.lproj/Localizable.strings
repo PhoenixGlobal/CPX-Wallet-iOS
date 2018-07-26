@@ -17,25 +17,25 @@
 "Import Wallet" = "Import Wallet";
 "Wallet Name" = "Wallet Name";
 "Wallet Address" = "Wallet Address";
-"8 Characters Most" = "8 Characters Most";
+"8 Characters Most" = "Please Enter a Maximum of 8 Characters";
 "Password" = "Password";
-"Password(at least 6 characters)" = "Password(at least 6 characters)";
-"at least 6 characters" = "at least 6 characters";
+"Password(at least 6 characters)" = "Password (At Least 6 Characters)";
+"at least 6 characters" = "At Least 6 Characters";
 "Repeat Password" = "Repeat Password";
-"Password is different" = "Password is different";
+"Password is different" = "Passwords do not match";
 "Mnemonics" = "Mnemonics";
 "Submit" = "Submit";
-"I agree to the Service and Privacy Policy" = "I agree to the Service and Privacy Policy";
+"I agree to the Service and Privacy Policy" = "I Agree to the Service and Privacy Policy";
 "Backup Mnemonic" = "Backup Mnemonic";
 "Backup Wallet" = "Backup Wallet";
-"Start Backup Mnemonics" = "Start Backup Mnemonics";
+"Start Backup Mnemonics" = "Start Backup of Mnemonics";
 "Copy Your Mnemonic" = "Copy Your Mnemonic";
-"Export mnemonics and keep it in a safe place, do not save on the internet. then begin using with transfer small assets." = "Export [mnemonics] and keep it in a safe place, do not save on the internet. then begin using with transfer small assets.";
-"Next step" = "Next step";
-"The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know." = "The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know.";
-"Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place." = "Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place.";
+"Export mnemonics and keep it in a safe place, do not save on the internet. then begin using with transfer small assets." = "Export [mnemonics] and keep it in a safe place, do not save on the internet. then start using and testing with small amount of assets.";
+"Next step" = "Next";
+"The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know." = "The mnemonic is used to recover the wallet. Write/store it accurately in a safe place that only you know or have access to.";
+"Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place." = "Do not take screenshots to avoid people other than yourself to have access to your wallet. Write/store it accurately in a safe place that only you know or have access to.";
 "Confirm your mnemonic" = "Confirm Your Mnemonic";
-"Please click on the mnemonic in order, make sure you backup correctly." = "Please click on the mnemonic in order, make sure you backup correctly.";
+"Please click on the mnemonic in order, make sure you backup correctly." = "Please choose the words in the correct order, make sure you backup the phrase correctly.";
 "Confirm" = "Confirm";
 "Assets" = "Assets";
 "Search Wallet Address" = "Search Wallet Address";
@@ -50,7 +50,7 @@
 "Scan" = "Scan";
 "Transaction Records" = "Transaction Records";
 "Transaction Detail" = "Transfer Details";
-"Copy Txid into ClipBoard" = "Copy Txid into ClipBoard";
+"Copy Txid into ClipBoard" = "Copy Txid to ClipBoard";
 "Success" = "Success";
 "Failed" = "Failed";
 "Blocking" = "Blocking";
@@ -58,7 +58,7 @@
 "Export Keystore" = "Export Keystore";
 "Manage Wallet" = "Manage Wallet";
 "About Us" = "About Us";
-"Amount" = "Amount";
+"Amount" = "Transfer Amount";
 "From" = "From";
 "To" = "To";
 "Time" = "Time";
@@ -68,7 +68,7 @@
 
 "Language" = "Languages";
 "Profile" = "Profile";
-"Go Mapping" = "Go Mapping";
+"Go Mapping" = " Pre-Mainnet ";
 "Back up" = " Please Backup ";
 "Delete Wallet" = "Delete Wallet";
 "Change Wallet" = "Change Wallet";
@@ -84,6 +84,8 @@
 //profile
 "commProfile" = "Basic";
 "enterProfile" = "Enterprise";
+"loading" = "Saving Data to DHT Cloud";
+"selWallet" = "Select Wallet";
 
 // tips
 "Create Wallet Failed" = "Create Wallet Failed";
