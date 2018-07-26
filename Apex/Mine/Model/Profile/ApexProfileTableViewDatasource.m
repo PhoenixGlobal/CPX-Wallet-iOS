@@ -23,13 +23,17 @@
     ApexQuestModel *model = self.contentArr[indexPath.row];
     if (model.type == ApexQuestType_Tags) {
         ApexTagSelectCell *cell = [tableView dequeueReusableCellWithIdentifier:tagCellIdentifier forIndexPath:indexPath];
-        cell.tags = model.data;
+        cell.isFromCommon = self.isFromCommon;
         cell.titleL.text = model.title;
+        cell.tags = model.data;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        model.userSelection = cell.selectedTags;
         return cell;
     }else{
         ApexNormalQuestCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell.isFromCommon = self.isFromCommon;
         cell.model = model;
+        cell.showDict = self.showDict;
         [cell addLinecolor:[UIColor colorWithHexString:@"eeeeee"] edge:UIEdgeInsetsMake(-1, 15, 0, 0)];
         return cell;
     }
@@ -38,6 +42,10 @@
 #pragma mark - private
 
 #pragma mark - getter
+- (void)setShowDict:(NSDictionary *)showDict{
+    _showDict = showDict;
+}
+
 - (NSMutableArray *)contentArr{
     if (!_contentArr) {
         _contentArr = [NSMutableArray array];

@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, ApexQuestType) {
 @end
 
 
-@interface ApexQuestItemBaseObject : NSObject
+@interface ApexQuestItemBaseObject : NSObject<NSCoding>
 @property (nonatomic, strong) NSString *name; /**<  */
 @property (nonatomic, strong) NSString *item_id; /**< id */
 

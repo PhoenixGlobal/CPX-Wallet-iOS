@@ -18,7 +18,7 @@
 @end
 
 @implementation ApexTagSelectCell
-
+@synthesize tags = _tags;
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self initUI];
@@ -46,7 +46,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ApexTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     cell.baseColor = UIColorHex(66BB6A);
-    cell.tagStr = self.tags[indexPath.row].name;
+    ApexQuestItemBaseObject *obj = self.tags[indexPath.row];
+    cell.tagStr = obj.name;
+    if ([self.selectedTags containsObject:obj]) {
+        cell.choose = YES;
+    }
     return cell;
 }
 
@@ -62,6 +66,20 @@
 }
 
 #pragma mark - getter
+- (void)setTags:(NSArray<ApexQuestItemBaseObject *> *)tags{
+    _tags = tags;
+    
+    if (_isFromCommon) {
+        NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+        if (bindingAddress) {
+            NSDictionary *dcit = [PDKeyChain load:KBindingAddressToCommonProfile(bindingAddress)];
+            if ([dcit.allKeys containsObject:self.titleL.text]) {
+                self.selectedTags = dcit[self.titleL.text];
+            }
+        }
+    }
+}
+
 - (NSArray *)tags{
     if (!_tags) {
         _tags = [NSArray array];

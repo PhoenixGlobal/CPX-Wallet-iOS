@@ -74,6 +74,18 @@
 "dontTransThNet" = "请勿通过网络传输";
 "saveinbox" = "密码保险箱保存";
 
+"DZw-7m-c91.text" = "请勿通过网络工具传输Keystore文件，一旦被黑客获取将造成不可挽回的资产损失。建议离线设备通过二维码方式传输。";
+
+/* Class = "UIButton"; normalTitle = "复制Keystore"; ObjectID = "GeD-5D-bhg"; */
+"GeD-5D-bhg.normalTitle" = "复制Keystore";
+
+/* Class = "UILabel"; text = "如需在线保存，则建议使用安全等级更高的1Password等密码保管软件保存Keystore。"; ObjectID = "QUv-UT-8CI"; */
+"QUv-UT-8CI.text" = "如需在线保存，则建议使用安全等级更高的1Password等密码保管软件保存Keystore。";
+
+/* Class = "UILabel"; text = "请复制粘贴Keystore文件到安全、离线的地方保存。切勿保存至邮箱、记事本、网盘、聊天工具等，非常危险。"; ObjectID = "jOA-VA-35F"; */
+"jOA-VA-35F.text" = "请复制粘贴Keystore文件到安全、离线的地方保存。切勿保存至邮箱、记事本、网盘、聊天工具等，非常危险。";
+
+
 //profile
 "commProfile" = "通用画像";
 "enterProfile" = "企业端特殊数据画像";

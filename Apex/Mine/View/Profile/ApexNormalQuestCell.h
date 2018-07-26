@@ -11,4 +11,6 @@
 
 @interface ApexNormalQuestCell : UITableViewCell
 @property (nonatomic, strong) ApexQuestModel *model; /**<  */
+@property (nonatomic, assign) BOOL isFromCommon; /**<  */
+@property (nonatomic, strong) NSDictionary *showDict; /**<  */
 @end

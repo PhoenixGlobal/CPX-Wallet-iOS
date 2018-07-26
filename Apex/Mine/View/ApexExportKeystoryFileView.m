@@ -13,6 +13,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *title1;
 @property (weak, nonatomic) IBOutlet UILabel *title2;
 
+@property (weak, nonatomic) IBOutlet UILabel *detail0;
+@property (weak, nonatomic) IBOutlet UILabel *detail1;
+@property (weak, nonatomic) IBOutlet UILabel *detail2;
+
 @end
 
 @implementation ApexExportKeystoryFileView
@@ -32,6 +36,12 @@
     _title0.text = SOLocalizedStringFromTable(@"saveofflin", nil);
     _title1.text = SOLocalizedStringFromTable(@"dontTransThNet", nil);
     _title2.text = SOLocalizedStringFromTable(@"saveinbox", nil);
+    
+    _detail0.text = SOLocalizedStringFromTable(@"jOA-VA-35F.text", nil);
+    _detail1.text = SOLocalizedStringFromTable(@"DZw-7m-c91.text", nil);
+    _detail2.text = SOLocalizedStringFromTable(@"QUv-UT-8CI.text", nil);
+    
+    [_ksBtn setTitle:SOLocalizedStringFromTable(@"GeD-5D-bhg.normalTitle", nil) forState:UIControlStateNormal];
 }
 
 - (void)setAddress:(NSString *)address{

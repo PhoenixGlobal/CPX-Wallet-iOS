@@ -15,7 +15,6 @@
 #import "ApexLoading.h"
 
 @interface ApexCommonProfileController ()<UITableViewDelegate,UICollectionViewDelegate>
-@property (nonatomic, strong) UITableView *tableView; /**<  */
 @property (nonatomic, strong) ApexProfileTableViewDatasource *tableViewDatasource; /**<  */
 @property (nonatomic, strong) UIButton *saveBtn; /**<  */
 
@@ -28,6 +27,8 @@
     [super viewDidLoad];
     [self initUI];
     [self handleEvent];
+    [self getLocalInfo];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -79,6 +80,11 @@
 }
 
 #pragma mark - ------private------
+- (void)getLocalInfo{
+    NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+    self.answerDict = [PDKeyChain load:KBindingAddressToCommonProfile(bindingAddress)];
+    self.tableViewDatasource.showDict = self.answerDict;
+}
 
 #pragma mark - ------public------
 
@@ -89,11 +95,12 @@
         case ApexQuestType_Texting:{
             ApexProfileQuestTextingController *vc = [[ApexProfileQuestTextingController alloc] init];
             vc.model = model;
+            vc.lastEnter = self.answerDict[model.title];
             vc.didConfirmTextSubject = [RACSubject subject];
             [vc.didConfirmTextSubject subscribeNext:^(NSString *text) {
                 model.userSelection = text;
-                [tableView reloadData];
                 [self.answerDict setValue:text forKey:model.title];
+                [tableView reloadData];
             }];
             [self.baseController.navigationController pushViewController:vc animated:YES];
         }
@@ -103,8 +110,8 @@
             
             [ApexRowSelectView showSingleRowSelectViewWithContentArr:model.data CompleteHandler:^(ApexQuestItemBaseObject *obj) {
                 model.userSelection = obj;
-                [tableView reloadData];
                 [self.answerDict setValue:obj.name forKey:model.title];
+                [tableView reloadData];
             }];
         }
             break;
@@ -115,13 +122,13 @@
             //目前只有生日
             [ApexSimpleDatePicker showDatePickerCompleteHandler:^(NSDate *date, NSString *dateStr) {
                 model.userSelection = dateStr;
-                [tableView reloadData];
                 [self.answerDict setValue:dateStr forKey:model.title];
+                [tableView reloadData];
             }];
         }
             break;
-        case ApexQuestType_Tags:
-            
+        case ApexQuestType_Tags:{
+        }
             break;
             
         default:
@@ -139,10 +146,17 @@
         [ApexLoading showOnView:self.view Message:SOLocalizedStringFromTable(@"loading", nil)];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([self getRandomNumber:0 to:3] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [ApexLoading hideOnView:self.view];
-            NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
-            //save answer
             
+            //save answer
+            //save tag
+            for (ApexQuestModel *model in self.tableViewDatasource.contentArr) {
+                [self.answerDict setValue:model.userSelection forKey:model.title];
+            }
+            
+            NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
             [PDKeyChain save:KBindingAddressToCommonProfile(bindingAddress) data:self.answerDict];
+                                               
+            [self.tableView reloadData];
         });
     }];
 }
@@ -165,6 +179,7 @@
     if (!_tableViewDatasource) {
         _tableViewDatasource = [[ApexProfileTableViewDatasource alloc] init];
         _tableViewDatasource.tableView = self.tableView;
+        _tableViewDatasource.isFromCommon = YES;
     }
     return _tableViewDatasource;
 }

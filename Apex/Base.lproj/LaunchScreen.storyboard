@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Page 1-4" translatesAutoresizingMaskIntoConstraints="NO" id="pd4-Gi-VA9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="pd4-Gi-VA9">
                                 <rect key="frame" x="0.0" y="-1" width="375" height="824"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-1" translatesAutoresizingMaskIntoConstraints="NO" id="woV-ya-LL6">
@@ -47,7 +47,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Page 1-4" width="375" height="667"/>
+        <image name="launchImage.png" width="375" height="667"/>
         <image name="logo-1" width="774" height="178"/>
     </resources>
 </document>

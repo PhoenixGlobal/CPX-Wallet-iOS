@@ -158,6 +158,7 @@
         ApexPrepareBackUpController *vc = [[ApexPrepareBackUpController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         vc.address = wallet.address;
+        vc.isFromCreat = YES;
         vc.BackupCompleteBlock = ^{
             if (self.didFinishCreatSub) {
                 [self.didFinishCreatSub sendNext:@""];

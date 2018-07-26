@@ -19,7 +19,7 @@
 }
 
 + (UIColor *)tabBarSelectedColor{
-    return [UIColor colorWithHexString:@"4c8efa"];
+    return [UIColor colorWithHexString:@"1253BF"];
 }
 
 + (UIColor *)textColor{

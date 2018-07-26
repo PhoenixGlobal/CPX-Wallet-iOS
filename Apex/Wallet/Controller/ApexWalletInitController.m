@@ -100,7 +100,7 @@
 - (ZJNButton *)creatWalletBtn{
     if (!_creatWalletBtn) {
         _creatWalletBtn = [[ZJNButton alloc] init];
-        _creatWalletBtn.backgroundColor = [UIColor colorWithHexString:@"4C8EFA"];
+        _creatWalletBtn.backgroundColor = [ApexUIHelper mainThemeColor];
         [_creatWalletBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _creatWalletBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_creatWalletBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -116,7 +116,7 @@
 - (ZJNButton *)importWalletBtn{
     if (!_importWalletBtn) {
         _importWalletBtn = [[ZJNButton alloc] init];
-        _importWalletBtn.backgroundColor = [UIColor colorWithHexString:@"4C8EFA"];
+        _importWalletBtn.backgroundColor = [ApexUIHelper mainThemeColor];
         [_importWalletBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _importWalletBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_importWalletBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

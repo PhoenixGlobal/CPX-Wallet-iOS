@@ -155,6 +155,9 @@
 		E7314690210A02D0002A6C07 /* useprotocol.html in Resources */ = {isa = PBXBuildFile; fileRef = E731468F210A02CF002A6C07 /* useprotocol.html */; };
 		E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7314692210A05BA002A6C07 /* ApexProlicyController.m */; };
 		E7314695210A174C002A6C07 /* useprotocol_en.html in Resources */ = {isa = PBXBuildFile; fileRef = E7314694210A174C002A6C07 /* useprotocol_en.html */; };
+		E731469D210A4633002A6C07 /* launchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E731469A210A4632002A6C07 /* launchImage@2x.png */; };
+		E731469E210A4633002A6C07 /* launchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = E731469B210A4632002A6C07 /* launchImage.png */; };
+		E731469F210A4633002A6C07 /* launchImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E731469C210A4633002A6C07 /* launchImage@3x.png */; };
 		E739344421071FE5007953FB /* ApexTagSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E739344221071FE5007953FB /* ApexTagSelectCell.m */; };
 		E739344521071FE5007953FB /* ApexTagSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E739344321071FE5007953FB /* ApexTagSelectCell.xib */; };
 		E739349E21086CC0007953FB /* ApexSimpleDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E739349D21086CC0007953FB /* ApexSimpleDatePicker.m */; };
@@ -481,10 +484,13 @@
 		E7314691210A05BA002A6C07 /* ApexProlicyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexProlicyController.h; sourceTree = "<group>"; };
 		E7314692210A05BA002A6C07 /* ApexProlicyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexProlicyController.m; sourceTree = "<group>"; };
 		E7314694210A174C002A6C07 /* useprotocol_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol_en.html; sourceTree = "<group>"; };
+		E7314698210A3F84002A6C07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../../en.lproj/ApexExportKeystoryFileView.strings; sourceTree = "<group>"; };
+		E731469A210A4632002A6C07 /* launchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchImage@2x.png"; sourceTree = "<group>"; };
+		E731469B210A4632002A6C07 /* launchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchImage.png; sourceTree = "<group>"; };
+		E731469C210A4633002A6C07 /* launchImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchImage@3x.png"; sourceTree = "<group>"; };
 		E739344121071FE5007953FB /* ApexTagSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTagSelectCell.h; sourceTree = "<group>"; };
 		E739344221071FE5007953FB /* ApexTagSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTagSelectCell.m; sourceTree = "<group>"; };
 		E739344321071FE5007953FB /* ApexTagSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTagSelectCell.xib; sourceTree = "<group>"; };
-		E739344821072BA6007953FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../../en.lproj/ApexExportKeystoryFileView.xib; sourceTree = "<group>"; };
 		E739349C21086CC0007953FB /* ApexSimpleDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexSimpleDatePicker.h; sourceTree = "<group>"; };
 		E739349D21086CC0007953FB /* ApexSimpleDatePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexSimpleDatePicker.m; sourceTree = "<group>"; };
 		E739349F210877E5007953FB /* ApexRowSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexRowSelectView.h; sourceTree = "<group>"; };
@@ -703,6 +709,7 @@
 				E33A8B6120AE73F00067505E /* Mine */,
 				E33A8BAE20AE795F0067505E /* Wallet */,
 				E33A8B8A20AE756E0067505E /* Catagotries */,
+				E7314699210A414E002A6C07 /* images */,
 				E33A8BA320AE76850067505E /* CYLAppBaseFrameWork.framework */,
 				E3CD112A20F30D49009C1439 /* AssetResources.bundle */,
 				E33A8BC020B28CD90067505E /* Neomobile.framework */,
@@ -1190,6 +1197,16 @@
 			path = ApexTests;
 			sourceTree = "<group>";
 		};
+		E7314699210A414E002A6C07 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E731469B210A4632002A6C07 /* launchImage.png */,
+				E731469A210A4632002A6C07 /* launchImage@2x.png */,
+				E731469C210A4633002A6C07 /* launchImage@3x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		E7EDD7222101C0C100007F29 /* CommonAnimation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1376,14 +1393,17 @@
 				E3373B5120F8414100590407 /* ApexSendMoneyController.xib in Resources */,
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
 				E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */,
+				E731469D210A4633002A6C07 /* launchImage@2x.png in Resources */,
 				E7314695210A174C002A6C07 /* useprotocol_en.html in Resources */,
 				E3373B4220F725D200590407 /* Localizable.strings in Resources */,
+				E731469E210A4633002A6C07 /* launchImage.png in Resources */,
 				E7314690210A02D0002A6C07 /* useprotocol.html in Resources */,
 				E7EDD7502105D9F200007F29 /* commonQuest_zh.json in Resources */,
 				E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */,
 				E73934BB2109BBE9007953FB /* specialQuest_en.json in Resources */,
 				E3263EE920B69BB6001D3C19 /* heart.png in Resources */,
 				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
+				E731469F210A4633002A6C07 /* launchImage@3x.png in Resources */,
 				E73934B12109A2CC007953FB /* ApexChangeWalletCell.xib in Resources */,
 				E3263ED920B68CFB001D3C19 /* ApexBackUpController.xib in Resources */,
 				E3263ED120B666CA001D3C19 /* ApexWalletManageDetailController.xib in Resources */,
@@ -1676,7 +1696,7 @@
 			children = (
 				E7EDD7342105C30D00007F29 /* Base */,
 				E7EDD7372105C33000007F29 /* zh-Hans */,
-				E739344821072BA6007953FB /* en */,
+				E7314698210A3F84002A6C07 /* en */,
 			);
 			name = ApexExportKeystoryFileView.xib;
 			sourceTree = "<group>";
@@ -1837,6 +1857,7 @@
 			baseConfigurationReference = 8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				ENABLE_BITCODE = NO;
@@ -1861,7 +1882,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7s x86_64";
 			};
 			name = Debug;
@@ -1871,6 +1892,7 @@
 			baseConfigurationReference = 2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				ENABLE_BITCODE = NO;
@@ -1895,7 +1917,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7s x86_64";
 			};
 			name = Release;

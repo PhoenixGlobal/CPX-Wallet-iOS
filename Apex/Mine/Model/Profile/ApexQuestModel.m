@@ -48,7 +48,24 @@
 
 @implementation ApexQuestItemBaseObject
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super init]) {
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.item_id = [aDecoder decodeObjectForKey:@"item_id"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.item_id forKey:@"item_id"];
+}
+
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"item_id" : @"id"};
+}
+
+- (BOOL)isEqual:(ApexQuestItemBaseObject*)object{
+    return [self.name isEqualToString:object.name];
 }
 @end

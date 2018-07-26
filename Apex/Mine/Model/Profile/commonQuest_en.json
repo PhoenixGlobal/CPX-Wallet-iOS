@@ -86,48 +86,6 @@
                "data": []
                },
                {
-               "type": 12,
-               "resource": 1,
-               "title": "Mobile Operator",
-               "data": [
-                        {
-                        "name": "CMCC",
-                        "id": "0"
-                        },
-                        {
-                        "name": "CUCC",
-                        "id": "0"
-                        },
-                        {
-                        "name": "CTCC",
-                        "id": "0"
-                        },
-                        {
-                        "name": "Other",
-                        "id": "0"
-                        }
-                        ]
-               },
-               {
-               "type": 13,
-               "resource": 0,
-               "title": "Phone OS",
-               "data": [
-                        {
-                        "name": "iOS",
-                        "id": "0"
-                        },
-                        {
-                        "name": "Android",
-                        "id": "0"
-                        },
-                        {
-                        "name": "Other",
-                        "id": "0"
-                        }
-                        ]
-               },
-               {
                "type": 0,
                "resource": 0,
                "title": "Career",

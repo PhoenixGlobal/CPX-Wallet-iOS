@@ -45,6 +45,10 @@
         make.right.equalTo(self.view).offset(-15);
         make.height.mas_equalTo(44);
     }];
+    
+    if (_lastEnter) {
+        self.textingTF.text = _lastEnter;
+    }
 }
 
 - (void)setNav{

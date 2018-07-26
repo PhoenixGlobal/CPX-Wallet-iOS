@@ -10,4 +10,5 @@
 
 @interface ApexSpecialProfileController : UIViewController
 @property (nonatomic, strong) UIViewController *baseController; /**<  */
+@property (nonatomic, strong) UITableView *tableView; /**<  */
 @end

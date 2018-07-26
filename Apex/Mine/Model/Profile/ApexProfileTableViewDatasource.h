@@ -17,4 +17,6 @@ static NSString *tagCellIdentifier = @"tagCellIdentifier";
 @interface ApexProfileTableViewDatasource : NSObject<UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray<ApexQuestModel*> *contentArr; /**<  */
 @property (nonatomic, strong) UITableView *tableView; /**<  */
+@property (nonatomic, assign) BOOL isFromCommon; /**<  */
+@property (nonatomic, strong) NSDictionary *showDict; /**<  */
 @end

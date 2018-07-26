@@ -117,6 +117,9 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="detail0" destination="jOA-VA-35F" id="rcD-UH-LCX"/>
+                <outlet property="detail1" destination="DZw-7m-c91" id="9jD-fr-Aau"/>
+                <outlet property="detail2" destination="QUv-UT-8CI" id="Es0-ti-q9k"/>
                 <outlet property="ksBtn" destination="GeD-5D-bhg" id="shC-Gr-ord"/>
                 <outlet property="textView" destination="jRF-In-g5b" id="pqf-gC-0vb"/>
                 <outlet property="title0" destination="VMU-P6-dBX" id="Q4m-jn-AZo"/>

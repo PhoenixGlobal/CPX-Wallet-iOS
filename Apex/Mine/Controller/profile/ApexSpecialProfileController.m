@@ -16,7 +16,6 @@
 #import "ApexEnterKeyView.h"
 
 @interface ApexSpecialProfileController ()<UITableViewDelegate,UICollectionViewDelegate>
-@property (nonatomic, strong) UITableView *tableView; /**<  */
 @property (nonatomic, strong) ApexProfileTableViewDatasource *tableViewDatasource; /**<  */
 @property (nonatomic, strong) UIButton *saveBtn; /**<  */
 
@@ -100,6 +99,7 @@
         case ApexQuestType_Texting:{
             ApexProfileQuestTextingController *vc = [[ApexProfileQuestTextingController alloc] init];
             vc.model = model;
+            vc.lastEnter = model.userSelection;
             vc.didConfirmTextSubject = [RACSubject subject];
             [vc.didConfirmTextSubject subscribeNext:^(NSString *text) {
                 model.userSelection = text;

@@ -38,7 +38,11 @@
 - (void)initUI{
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = SOLocalizedStringFromTable(@"Create Wallet", nil);
+    if (_isFromCreat) {
+        self.title = SOLocalizedStringFromTable(@"Create Wallet", nil);
+    }else{
+        self.title = SOLocalizedStringFromTable(@"Backup Wallet", nil);
+    }
     
     [self.view addSubview:self.imageV];
     [self.view addSubview:self.tipL];

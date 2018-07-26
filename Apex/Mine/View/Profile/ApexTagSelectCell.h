@@ -13,4 +13,5 @@
 @property (nonatomic, strong) NSArray<ApexQuestItemBaseObject*> *tags; /**<  */
 @property (weak, nonatomic) IBOutlet UILabel *titleL;
 @property (nonatomic, strong) NSMutableArray *selectedTags; /**<  */
+@property (nonatomic, assign) BOOL isFromCommon; /**<  */
 @end

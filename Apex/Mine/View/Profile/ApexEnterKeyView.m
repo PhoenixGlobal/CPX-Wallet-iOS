@@ -44,7 +44,7 @@
     }];
     
     [self.confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self).offset(-15);
+        make.bottom.equalTo(self).offset(-30);
         make.left.equalTo(self).offset(15);
         make.right.equalTo(self).offset(-15);
         make.height.mas_equalTo(40);

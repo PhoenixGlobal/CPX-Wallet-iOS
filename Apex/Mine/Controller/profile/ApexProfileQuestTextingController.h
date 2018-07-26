@@ -12,4 +12,5 @@
 @interface ApexProfileQuestTextingController : UIViewController
 @property (nonatomic, strong) RACSubject *didConfirmTextSubject; /**<  */
 @property (nonatomic, strong) ApexQuestModel *model; /**<  */
+@property (nonatomic, strong) NSString *lastEnter; /**<  */
 @end

@@ -42,4 +42,25 @@
         self.detailTextLabel.text = @"S-coffee";
     }
 }
+
+#warning 半夜三点写的代码 待优化
+- (void)setShowDict:(NSDictionary *)showDict{
+    _showDict = showDict;
+    if (_isFromCommon) {
+        NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+        if (bindingAddress) {
+            NSDictionary *dcit = showDict;
+            if ([dcit.allKeys containsObject:self.model.title]) {
+                id any = dcit[self.model.title];
+                if ([any isKindOfClass:NSString.class]) {
+                    self.detailTextLabel.text = any;
+                    self.model.userSelection = any;
+                }else if([any isKindOfClass:ApexQuestItemBaseObject.class]){
+                    self.detailTextLabel.text = ((ApexQuestItemBaseObject*)any).name;
+                    self.model.userSelection = any;
+                }
+            }
+        }
+    }
+}
 @end

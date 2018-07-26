@@ -44,6 +44,8 @@
         [TKFileManager saveValue:bindingAddress forKey:KBindingWalletAddress];
     }
     self.currentAddress.text = bindingAddress;
+    
+//    [self.commonVC getLocalInfo];
 }
 
 #pragma mark - ------private------
@@ -166,7 +168,7 @@
         _currentAddress = [[UILabel alloc] init];
         _currentAddress.font = [UIFont systemFontOfSize:14];
         _currentAddress.textColor = [UIColor whiteColor];
-        _currentAddress.text = @"dfsfs";
+        _currentAddress.text = @"";
     }
     return _currentAddress;
 }
