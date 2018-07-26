@@ -34,6 +34,7 @@
 
 #pragma mark - ------private------
 - (void)initUI{
+    
     self.title = SOLocalizedStringFromTable(@"Mine", nil);
     [self.view addSubview:self.backIV];
     [self.view addSubview:self.manageBtn];

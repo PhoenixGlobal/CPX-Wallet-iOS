@@ -80,6 +80,7 @@
 "saveofflin" = "Save Offline";
 "dontTransThNet" = "Do Not Transfer Thought Network";
 "saveinbox" = "Keep Your Password In Security Box";
+"privatePolicy" = "Private Policy";
 
 //profile
 "commProfile" = "Basic";
@@ -87,6 +88,7 @@
 "loading" = "Saving Data to DHT Cloud";
 "selWallet" = "Select Wallet";
 "noWallet" = "Please create wallet that we could distribute our rewards.";
+"enterPK" = "Private Key";
 
 // tips
 "Create Wallet Failed" = "Create Wallet Failed";

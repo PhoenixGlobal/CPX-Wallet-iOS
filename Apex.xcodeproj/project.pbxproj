@@ -151,6 +151,10 @@
 		E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66C020BFA91F002A1E07 /* ApexThread.m */; };
 		E3CE66D020BFC9A4002A1E07 /* ApexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66CF20BFC9A4002A1E07 /* ApexTests.m */; };
 		E3CE66D920C4E29E002A1E07 /* ApexAssetMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */; };
+		E731468E2109FC2D002A6C07 /* ApexEnterKeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */; };
+		E7314690210A02D0002A6C07 /* useprotocol.html in Resources */ = {isa = PBXBuildFile; fileRef = E731468F210A02CF002A6C07 /* useprotocol.html */; };
+		E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7314692210A05BA002A6C07 /* ApexProlicyController.m */; };
+		E7314695210A174C002A6C07 /* useprotocol_en.html in Resources */ = {isa = PBXBuildFile; fileRef = E7314694210A174C002A6C07 /* useprotocol_en.html */; };
 		E739344421071FE5007953FB /* ApexTagSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E739344221071FE5007953FB /* ApexTagSelectCell.m */; };
 		E739344521071FE5007953FB /* ApexTagSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E739344321071FE5007953FB /* ApexTagSelectCell.xib */; };
 		E739349E21086CC0007953FB /* ApexSimpleDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E739349D21086CC0007953FB /* ApexSimpleDatePicker.m */; };
@@ -471,6 +475,12 @@
 		E3CE66D120BFC9A4002A1E07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3CE66D720C4E29E002A1E07 /* ApexAssetMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetMainController.h; sourceTree = "<group>"; };
 		E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetMainController.m; sourceTree = "<group>"; };
+		E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEnterKeyView.h; sourceTree = "<group>"; };
+		E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEnterKeyView.m; sourceTree = "<group>"; };
+		E731468F210A02CF002A6C07 /* useprotocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol.html; sourceTree = "<group>"; };
+		E7314691210A05BA002A6C07 /* ApexProlicyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexProlicyController.h; sourceTree = "<group>"; };
+		E7314692210A05BA002A6C07 /* ApexProlicyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexProlicyController.m; sourceTree = "<group>"; };
+		E7314694210A174C002A6C07 /* useprotocol_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol_en.html; sourceTree = "<group>"; };
 		E739344121071FE5007953FB /* ApexTagSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTagSelectCell.h; sourceTree = "<group>"; };
 		E739344221071FE5007953FB /* ApexTagSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTagSelectCell.m; sourceTree = "<group>"; };
 		E739344321071FE5007953FB /* ApexTagSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTagSelectCell.xib; sourceTree = "<group>"; };
@@ -697,6 +707,8 @@
 				E3CD112A20F30D49009C1439 /* AssetResources.bundle */,
 				E33A8BC020B28CD90067505E /* Neomobile.framework */,
 				E33A8BA220AE75980067505E /* PrefixHeader.pch */,
+				E731468F210A02CF002A6C07 /* useprotocol.html */,
+				E7314694210A174C002A6C07 /* useprotocol_en.html */,
 				E3373B4420F725D200590407 /* Localizable.strings */,
 				E33A8B5420AE724F0067505E /* Assets.xcassets */,
 				E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */,
@@ -1055,6 +1067,8 @@
 				E3263EF320B6ABF8001D3C19 /* ApexMnemonicConfirmController.h */,
 				E3263EF420B6ABF8001D3C19 /* ApexMnemonicConfirmController.m */,
 				E3263EF220B6ABF8001D3C19 /* ApexMnemonicConfirmController.xib */,
+				E7314691210A05BA002A6C07 /* ApexProlicyController.h */,
+				E7314692210A05BA002A6C07 /* ApexProlicyController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1232,6 +1246,8 @@
 				E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */,
 				E73934B22109B07D007953FB /* ApexNoWalletView.h */,
 				E73934B32109B07D007953FB /* ApexNoWalletView.m */,
+				E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */,
+				E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1360,7 +1376,9 @@
 				E3373B5120F8414100590407 /* ApexSendMoneyController.xib in Resources */,
 				E3263EEB20B69BB6001D3C19 /* checkmark-round.png in Resources */,
 				E3263EE820B69BB6001D3C19 /* .gitkeep in Resources */,
+				E7314695210A174C002A6C07 /* useprotocol_en.html in Resources */,
 				E3373B4220F725D200590407 /* Localizable.strings in Resources */,
+				E7314690210A02D0002A6C07 /* useprotocol.html in Resources */,
 				E7EDD7502105D9F200007F29 /* commonQuest_zh.json in Resources */,
 				E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */,
 				E73934BB2109BBE9007953FB /* specialQuest_en.json in Resources */,
@@ -1482,6 +1500,7 @@
 				E3CE669B20BE4539002A1E07 /* ApexMnenonicShowView.m in Sources */,
 				E3CE66B620BEA812002A1E07 /* NSDate+DateTools.m in Sources */,
 				E3CE669020BD3B56002A1E07 /* ApexTransferCell.m in Sources */,
+				E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */,
 				E3855AD620EC730B00C377BF /* ApexSheetView.m in Sources */,
 				E324311C20E21F3E00284B91 /* ApexMappingBtnView.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
@@ -1555,6 +1574,7 @@
 				E33A8B9F20AE756E0067505E /* UIColor+HYF.m in Sources */,
 				E33A8B7920AE75500067505E /* LXDScanCodeController.m in Sources */,
 				E39E030120C8FB51005DD251 /* ApexExportKeystoryFileView.m in Sources */,
+				E731468E2109FC2D002A6C07 /* ApexEnterKeyView.m in Sources */,
 				E73934B02109A2CC007953FB /* ApexChangeWalletCell.m in Sources */,
 				E33A8B9E20AE756E0067505E /* UIView+TKFrame.m in Sources */,
 				E39E02D020C657F8005DD251 /* ApexMorePanelController.m in Sources */,

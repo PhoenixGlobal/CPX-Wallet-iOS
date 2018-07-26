@@ -11,6 +11,7 @@
 #import "ApexImportWalletController.h"
 #import "ApexWalletManager.h"
 #import "ApexPrepareBackUpController.h"
+#import "ApexProlicyController.h"
 
 #define RouteEventName_CallCreatWalletApi @"RouteEventName_CallCreatWalletApi"
 #define RouteNameEvent_GoToImportWallet @"RouteNameEvent_GoToImportWallet"
@@ -38,6 +39,7 @@
     [super viewDidLoad];
     
     [self initUI];
+    [self handleEvent];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -203,6 +205,23 @@
 #pragma mark - public
 
 #pragma mark - delegate & datasource
+- (void)handleEvent{
+    self.privacyAgreeLable.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        NSString *filePath = @"";
+        if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+            filePath = [[NSBundle mainBundle] pathForResource:@"useprotocol_en" ofType:@"html"];
+        }else{
+            filePath = [[NSBundle mainBundle] pathForResource:@"useprotocol" ofType:@"html"];
+        }
+        NSString *htmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        ApexProlicyController *vc = [[ApexProlicyController alloc] init];
+        vc.html = htmlString;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    [self.privacyAgreeLable addGestureRecognizer:tap];
+}
 
 #pragma mark - getter & setter
 - (RACSignal *)combineSignal{
@@ -380,7 +399,7 @@
         if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
             [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(15, 26)];
         }else{
-            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(9, 7)];
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(11, 7)];
         }
         _privacyAgreeLable.attributedText = str;
     }

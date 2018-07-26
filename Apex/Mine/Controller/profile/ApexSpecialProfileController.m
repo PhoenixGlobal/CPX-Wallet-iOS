@@ -13,6 +13,7 @@
 #import "ApexRowSelectView.h"
 #import "ApexProfileQuestTextingController.h"
 #import "ApexLoading.h"
+#import "ApexEnterKeyView.h"
 
 @interface ApexSpecialProfileController ()<UITableViewDelegate,UICollectionViewDelegate>
 @property (nonatomic, strong) UITableView *tableView; /**<  */
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) UIButton *saveBtn; /**<  */
 
 @property (nonatomic, strong) NSMutableDictionary *answerDict; /**<  */
+@property (nonatomic, strong) ApexEnterKeyView *enterKeyView; /**<  */
 
 @end
 
@@ -31,6 +33,7 @@
     
     [self initUI];
     [self handleEvent];
+    [self showEnterKeyView];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -79,6 +82,13 @@
         [self.tableViewDatasource.contentArr addObject:model];
     }
     [self.tableView reloadData];
+}
+
+- (void)showEnterKeyView{
+    [self.view addSubview:self.enterKeyView];
+    [self.enterKeyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 #pragma mark - ------public------
@@ -186,5 +196,12 @@
         _answerDict = [NSMutableDictionary dictionary];
     }
     return _answerDict;
+}
+
+- (ApexEnterKeyView *)enterKeyView{
+    if (!_enterKeyView) {
+        _enterKeyView = [[ApexEnterKeyView alloc] init];
+    }
+    return _enterKeyView;
 }
 @end

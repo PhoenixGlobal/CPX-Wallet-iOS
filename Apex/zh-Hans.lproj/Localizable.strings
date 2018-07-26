@@ -57,6 +57,7 @@
 "Txid" = "交易单号";
 "exKeystore" = "导出Keystore";
 "copyKeystore" = "Keystore已复制到剪切板";
+"privatePolicy" = "服务条款";
 
 "Language" = "语言设置";
 "Profile" = "个人画像";
@@ -79,6 +80,7 @@
 "loading" = "正在上传到区块链";
 "selWallet" = "选择钱包";
 "noWallet" = "请创建钱包,方便我们发放奖励.";
+"enterPK" = "企业秘钥";
 
 // tips
 "Create Wallet Failed" = "钱包创建失败";
