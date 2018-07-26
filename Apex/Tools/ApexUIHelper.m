@@ -35,11 +35,11 @@
 }
 
 + (UIColor *)mainThemeColor{
-    return [UIColor colorWithHexString:@"4C8EFA"];
+    return [UIColor colorWithHexString:@"1253BF"];
 }
 
 + (UIColor *)subThemeColor{
-    return [UIColor colorWithHexString:@"4C8EFA"];
+    return [UIColor colorWithHexString:@"1253BF"];
 }
 
 + (UIColor *)navColor{

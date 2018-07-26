@@ -61,7 +61,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngq-Cr-ULa">
                     <rect key="frame" x="35" y="587" width="305" height="40"/>
-                    <color key="backgroundColor" red="0.29803921570000003" green="0.5568627451" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.070588235289999995" green="0.32549019610000002" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Cyc-Qi-4sQ"/>
                         <constraint firstAttribute="width" constant="305" id="HA6-ag-ajd"/>
@@ -69,7 +69,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="复制收款地址">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="titleShadowColor" red="0.29803921570000003" green="0.5568627451" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" red="0.070588235294117646" green="0.32549019607843138" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="copyAddress:" destination="-1" eventType="touchUpInside" id="McZ-xy-GtC"/>

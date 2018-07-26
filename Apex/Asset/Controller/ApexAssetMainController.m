@@ -219,6 +219,7 @@
 - (ApexSearchWalletToolBar *)searchTooBar{
     if (!_searchTooBar) {
         _searchTooBar = [[ApexSearchWalletToolBar alloc] init];
+        [_searchTooBar setTFBackColor:[UIColor colorWithWhite:0 alpha:0.5]];
     }
     return _searchTooBar;
 }

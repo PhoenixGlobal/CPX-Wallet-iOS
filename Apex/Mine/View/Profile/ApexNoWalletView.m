@@ -27,7 +27,7 @@
 - (void)initUI{
     self.backgroundColor = [UIColor whiteColor];
     
-    _imageV = [[UIImageView alloc] init];
+    _imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"emptyWallet"]];
     [self addSubview:_imageV];
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(70);
@@ -39,6 +39,7 @@
     _messageL = [[UILabel alloc] init];
     _messageL.text = SOLocalizedStringFromTable(@"noWallet", nil);
     _messageL.textAlignment = NSTextAlignmentCenter;
+    _messageL.numberOfLines = 0;
     [self addSubview:_messageL];
     [self.messageL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.imageV.mas_bottom).offset(20);

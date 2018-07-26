@@ -13,8 +13,10 @@
 @property (nonatomic, strong) NSString *placeHolder;
 @property (nonatomic, strong) UIImage *searchTFLeftImage;
 
+
 - (void)setPlaceHolder:(NSString *)placeHolder color:(UIColor*)color;
 - (void)setTextColor:(UIColor*)textColor backgroundColor:(UIColor*)bgColor;
 - (void)setLeftView:(UIView*)leftView;
 - (void)clearEntrance;
+- (void)setTFBackColor:(UIColor*)color;
 @end

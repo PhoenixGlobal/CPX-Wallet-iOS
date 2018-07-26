@@ -28,7 +28,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self.navigationController lt_setBackgroundColor:[UIColor colorWithRed255:70 green255:105 blue255:214 alpha:1]];
+    [self.navigationController lt_setBackgroundColor:[ApexUIHelper mainThemeColor]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

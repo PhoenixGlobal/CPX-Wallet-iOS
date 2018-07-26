@@ -67,6 +67,10 @@
     }];
 }
 
+- (void)setTFBackColor:(UIColor*)color{
+    _searchTF.backgroundColor = color;
+}
+
 - (void)clearEntrance{
     self.searchTF.text = @"";
 }
@@ -107,7 +111,7 @@
     if (!_searchTF) {
         _searchTF = [[LeftViewSpaceTextField alloc] init];
         _searchTF.font = [UIFont systemFontOfSize:14];
-        _searchTF.backgroundColor = [UIColor colorWithWhite:1 alpha:0.12];
+        _searchTF.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
         _searchTF.borderStyle = UITextBorderStyleRoundedRect;
         _searchTF.layer.borderColor = [UIColor clearColor].CGColor;
         _searchTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search"]];

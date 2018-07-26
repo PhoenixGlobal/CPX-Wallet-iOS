@@ -135,10 +135,10 @@
 #pragma mark - ------getter & setter------
 - (UIButton *)saveBtn{
     if (!_saveBtn) {
-        _saveBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        _saveBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
         _saveBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_saveBtn setTitle:SOLocalizedStringFromTable(@"Save", nil) forState:UIControlStateNormal];
+        [_saveBtn setTitle:SOLocalizedStringFromTable(@"Confirm", nil) forState:UIControlStateNormal];
     }
     return _saveBtn;
 }

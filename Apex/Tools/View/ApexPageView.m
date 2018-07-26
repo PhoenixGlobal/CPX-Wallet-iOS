@@ -25,13 +25,17 @@
 - (void)willMoveToSuperview:(UIView *)newSuperview{
     [super willMoveToSuperview:newSuperview];
     _lineV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1.0/kScale)];
-    _lineV.backgroundColor = [ApexUIHelper grayColor240];
+    _lineV.backgroundColor = [ApexUIHelper grayColor];
     [self addSubview:_lineV];
     [_lineV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.equalTo(self);
-        make.height.mas_equalTo(1.0/kScale);
+        make.left.right.equalTo(self);
+        make.bottom.equalTo(self).offset(-2);
+        make.height.mas_equalTo(2.0/kScale);
     }];
-    _lineV.backgroundColor = [ApexUIHelper grayColor240];
+    _lineV.backgroundColor = [UIColor whiteColor];
+    _lineV.layer.shadowColor = [UIColor colorWithWhite:0 alpha:0.8].CGColor;
+    _lineV.layer.shadowOpacity = 0.8;
+    _lineV.layer.shadowOffset = CGSizeMake(0, 3);
 }
 
 - (void)setNumOfPage:(NSInteger)numOfPage{
