@@ -127,7 +127,7 @@
         }
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
-        [self showMessage:SOLocalizedStringFromTable(@"Back Up Filed", nil)];
+        [self showMessage:SOLocalizedStringFromTable(@"Back Up Failed", nil)];
     }
 }
 

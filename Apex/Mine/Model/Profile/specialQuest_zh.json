@@ -109,19 +109,19 @@
                {
                "type": 0,
                "resource": 0,
-               "title": "消费金额/月",
+               "title": "消费金额/月 $",
                "data": []
                },
                {
                "type": 0,
                "resource": 0,
-               "title": "咖啡饮用频次/月",
+               "title": "咖啡饮用频次/月 $",
                "data": []
                },
                {
                "type": 0,
                "resource": 0,
-               "title": "能接受的价格$",
+               "title": "能接受的价格 $",
                "data": []
                },
                {

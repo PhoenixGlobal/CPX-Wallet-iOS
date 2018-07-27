@@ -93,7 +93,7 @@
     
     self.textingTF.placeholder = model.title;
     
-    if ([model.title isEqualToString:@"居住地"] || [model.title isEqualToString:@"Location"]) {
+    if ([model.title isEqualToString:@"常住地"] || [model.title isEqualToString:@"Location"]) {
         if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
             self.textingTF.placeholder = @"Ex: Shanghai China";
         }else{

@@ -86,12 +86,6 @@
                "data": []
                },
                {
-               "type": 0,
-               "resource": 0,
-               "title": "职业",
-               "data": []
-               },
-               {
                "type": 40,
                "resource": 1,
                "title": "用户商业兴趣",

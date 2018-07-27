@@ -4,7 +4,7 @@
                {
                "type": 30,
                "resource": 0,
-               "title": "Birth Day",
+               "title": "Birth Date",
                "data": []
                },
                {
@@ -83,12 +83,6 @@
                "type": 0,
                "resource": 0,
                "title": "Current Income / Year",
-               "data": []
-               },
-               {
-               "type": 0,
-               "resource": 0,
-               "title": "Career",
                "data": []
                },
                {

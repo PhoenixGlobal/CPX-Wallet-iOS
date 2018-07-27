@@ -104,7 +104,7 @@
         [_creatWalletBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _creatWalletBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_creatWalletBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_creatWalletBtn setTitle:NSLocalizedString(@"Create Wallet", nil) forState:UIControlStateNormal];
+        [_creatWalletBtn setTitle:SOLocalizedStringFromTable(@"Create Wallet", nil) forState:UIControlStateNormal];
         _creatWalletBtn.layer.cornerRadius = 6;
         [[[_creatWalletBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
             [self routeEventWithName:RouteEventName_CreatWallet userInfo:@{}];
@@ -120,7 +120,7 @@
         [_importWalletBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _importWalletBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_importWalletBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_importWalletBtn setTitle:NSLocalizedString(@"Import Wallet", nil) forState:UIControlStateNormal];
+        [_importWalletBtn setTitle:SOLocalizedStringFromTable(@"Import Wallet", nil) forState:UIControlStateNormal];
         _importWalletBtn.layer.cornerRadius = 6;
         [[[_importWalletBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
             [self routeEventWithName:RouteEventName_ImportWallet userInfo:@{}];
