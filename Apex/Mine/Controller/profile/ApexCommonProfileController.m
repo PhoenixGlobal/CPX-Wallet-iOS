@@ -150,7 +150,6 @@
             [ApexLoading hideOnView:self.view];
             
             //save answer
-            //save tag
             for (ApexQuestModel *model in self.tableViewDatasource.contentArr) {
                 [self.answerDict setValue:model.userSelection forKey:model.title];
             }

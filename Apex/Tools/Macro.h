@@ -31,7 +31,6 @@
 #define KLanguageSetting @"KLanguageSetting"
 #define KBindingWalletAddress @"KBindingWalletAddress"
 #define KBindingAddressToCommonProfile(address) [NSString stringWithFormat:@"%@_commonProfile",address]
-#define KBindingAddressToCommonTag(address) [NSString stringWithFormat:@"%@_commonTag",address]
 #define KBindingAddressToSpecialProfile(address) [NSString stringWithFormat:@"%@_specialProfile",address]
 
 #define baseUrl_tool_test @"http://dev.chinapex.com.cn:10086/tool/"

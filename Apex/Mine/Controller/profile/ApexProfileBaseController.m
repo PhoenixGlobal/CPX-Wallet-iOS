@@ -50,6 +50,9 @@
         self.currentAddress.text = bindingAddress;
         [self.commonVC getLocalInfo];
         [self.commonVC.tableView reloadData];
+        
+        [self.specialVC getLocalInfo];
+        [self.specialVC.tableView reloadData];
     }
     
     

@@ -104,6 +104,7 @@
         _tableView.estimatedRowHeight = 100;
         _tableView.rowHeight = UITableViewAutomaticDimension;
         _tableView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0);
+        _tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
 }

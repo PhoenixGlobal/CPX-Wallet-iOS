@@ -33,6 +33,7 @@
     [self initUI];
     [self handleEvent];
     [self showEnterKeyView];
+    [self getLocalInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -73,7 +74,7 @@
     }else{
         path = [[NSBundle mainBundle] pathForResource:@"specialQuest_zh" ofType:@"json"];
     }
-    
+    [self.tableViewDatasource.contentArr removeAllObjects];
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     for (NSDictionary *modelDict in dict[@"result"]) {
@@ -90,6 +91,14 @@
     }];
 }
 
+- (void)getLocalInfo{
+    NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+    self.answerDict = [PDKeyChain load:KBindingAddressToSpecialProfile(bindingAddress)];
+    self.tableViewDatasource.showDict = self.answerDict;
+    [self fakeRequest];
+    
+}
+
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
@@ -103,8 +112,8 @@
             vc.didConfirmTextSubject = [RACSubject subject];
             [vc.didConfirmTextSubject subscribeNext:^(NSString *text) {
                 model.userSelection = text;
-                [tableView reloadData];
                 [self.answerDict setValue:text forKey:model.title];
+                [tableView reloadData];
             }];
             [self.baseController.navigationController pushViewController:vc animated:YES];
         }
@@ -114,8 +123,8 @@
             
             [ApexRowSelectView showSingleRowSelectViewWithContentArr:model.data CompleteHandler:^(ApexQuestItemBaseObject *obj) {
                 model.userSelection = obj;
-                [tableView reloadData];
                 [self.answerDict setValue:obj.name forKey:model.title];
+                [tableView reloadData];
             }];
         }
             break;
@@ -126,8 +135,8 @@
             //目前只有生日
             [ApexSimpleDatePicker showDatePickerCompleteHandler:^(NSDate *date, NSString *dateStr) {
                 model.userSelection = dateStr;
-                [tableView reloadData];
                 [self.answerDict setValue:dateStr forKey:model.title];
+                [tableView reloadData];
             }];
         }
             break;
@@ -149,10 +158,24 @@
     [[self.saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         [ApexLoading showOnView:self.view Message:SOLocalizedStringFromTable(@"loading", nil)];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([self getRandomNumber:0 to:3] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [ApexLoading hideOnView:self.view];
+//            NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+//            //save answer
+//            [PDKeyChain save:KBindingAddressToSpecialProfile(bindingAddress) data:self.answerDict];
+            
             [ApexLoading hideOnView:self.view];
-            NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+            
             //save answer
+            //save tag
+            for (ApexQuestModel *model in self.tableViewDatasource.contentArr) {
+                [self.answerDict setValue:model.userSelection forKey:model.title];
+            }
+            
+            NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
             [PDKeyChain save:KBindingAddressToSpecialProfile(bindingAddress) data:self.answerDict];
+            
+            [self.tableView reloadData];
+            
         });
     }];
 }

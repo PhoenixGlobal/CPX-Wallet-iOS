@@ -9,6 +9,7 @@
 #import "ApexImportByMnemonicView.h"
 #import "ApexAlertTextField.h"
 #import "ApexPrivacyAggreView.h"
+#import "ApexProlicyController.h"
 
 @interface ApexImportByMnemonicView()
 @property (nonatomic, strong) UITextView *textView;
@@ -80,6 +81,22 @@
     [[self.importBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         [self importWallet];
     }];
+    
+    self.agreeView.privacyAgreeLable.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        NSString *filePath = @"";
+        if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+            filePath = [[NSBundle mainBundle] pathForResource:@"useprotocol_en" ofType:@"html"];
+        }else{
+            filePath = [[NSBundle mainBundle] pathForResource:@"useprotocol" ofType:@"html"];
+        }
+        NSString *htmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        ApexProlicyController *vc = [[ApexProlicyController alloc] init];
+        vc.html = htmlString;
+        [[self topViewController].navigationController pushViewController:vc animated:YES];
+    }];
+    [self.agreeView.privacyAgreeLable addGestureRecognizer:tap];
 }
 
 - (void)importWallet{

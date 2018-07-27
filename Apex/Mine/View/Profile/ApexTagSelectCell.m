@@ -75,7 +75,7 @@
 
 - (void)setShowDict:(NSDictionary *)showDict{
     _showDict = showDict;
-    if (_isFromCommon) {
+//    if (_isFromCommon) {
         NSDictionary *dcit = showDict;
         if ([dcit.allKeys containsObject:self.titleL.text]) {
             self.selectedTags = dcit[self.titleL.text];
@@ -83,7 +83,7 @@
             self.selectedTags = [NSMutableArray array];
             [showDict setValue:self.selectedTags forKey:self.titleL.text];
         }
-    }
+//    }
     [self.collectionView reloadData];
 }
 

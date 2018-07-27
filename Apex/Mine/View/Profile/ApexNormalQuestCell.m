@@ -48,7 +48,7 @@
 #warning 半夜三点写的代码 待优化
 - (void)setShowDict:(NSDictionary *)showDict{
     _showDict = showDict;
-    if (_isFromCommon) {
+//    if (_isFromCommon) {
         NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
         if (bindingAddress) {
             NSDictionary *dcit = showDict;
@@ -63,6 +63,6 @@
                 }
             }
         }
-    }
+//    }
 }
 @end
