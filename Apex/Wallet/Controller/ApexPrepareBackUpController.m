@@ -102,8 +102,6 @@
         } fail:^{
             [self showMessage:SOLocalizedStringFromTable(@"Create Mnemonics Failed", nil)];
         }];
-        
-        
     }];
 }
 

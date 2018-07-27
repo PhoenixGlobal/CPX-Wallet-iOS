@@ -89,7 +89,7 @@
 //profile
 "commProfile" = "通用画像";
 "enterProfile" = "企业端特殊数据画像";
-"loading" = "正在上传到区块链";
+"loading" = "正在上传到 DHT Cloud";
 "selWallet" = "选择钱包";
 "noWallet" = "请创建钱包,方便我们发放奖励.";
 "enterPK" = "企业秘钥";
