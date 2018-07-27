@@ -37,6 +37,7 @@
     [self setNav];
 }
 
+
 - (void)setNav{
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backIV];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
@@ -99,6 +100,7 @@
 - (UILabel *)titleLable{
     if (!_titleLable) {
         _titleLable = [[UILabel alloc] init];
+        _titleLable.textAlignment = NSTextAlignmentCenter;
         _titleLable.font = [UIFont systemFontOfSize:17];
         _titleLable.textColor = [UIColor blackColor];
         _titleLable.text = SOLocalizedStringFromTable(@"Transaction Detail", nil);

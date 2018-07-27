@@ -180,7 +180,7 @@ static ApexTransferHistoryManager *_instance;
     [_db open];
     NSMutableArray *temp = [NSMutableArray array];
     int totalCount = 0;
-    int row = 10;
+    int row = 15;
     
     FMResultSet *s = [_db executeQuery:[NSString stringWithFormat:@"SELECT COUNT(*) FROM %@",address]];
     if ([s next]) {

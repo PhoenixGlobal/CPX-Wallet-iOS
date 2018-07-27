@@ -32,7 +32,7 @@
     
     [self initUI];
     [self handleEvent];
-    [self showEnterKeyView];
+//    [self showEnterKeyView];
     [self getLocalInfo];
 }
 

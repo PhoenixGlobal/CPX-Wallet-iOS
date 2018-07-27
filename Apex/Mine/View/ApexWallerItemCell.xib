@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -33,14 +33,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovP-pB-Alt">
-                        <rect key="frame" x="218" y="10" width="1" height="70.5"/>
+                        <rect key="frame" x="278" y="10" width="1" height="70.5"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="ZnW-pi-o0r"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uG0-Nq-Aux">
-                        <rect key="frame" x="169" y="22.5" width="31" height="18"/>
+                        <rect key="frame" x="187" y="22.5" width="31" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="rmG-kc-uDR"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="swS-Ux-lU6"/>
@@ -62,7 +62,7 @@
                     <constraint firstItem="ovP-pB-Alt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xeK-61-K8A" secondAttribute="trailing" constant="15" id="9Qa-gZ-e9D"/>
                     <constraint firstItem="uG0-Nq-Aux" firstAttribute="centerY" secondItem="Ong-tz-Ipb" secondAttribute="centerY" id="BQo-jM-rD4"/>
                     <constraint firstAttribute="trailing" secondItem="tKe-mv-kxb" secondAttribute="trailing" constant="25" id="Cek-mc-c6u"/>
-                    <constraint firstItem="ovP-pB-Alt" firstAttribute="leading" secondItem="uG0-Nq-Aux" secondAttribute="trailing" constant="18" id="IPZ-C5-ghD"/>
+                    <constraint firstItem="ovP-pB-Alt" firstAttribute="leading" secondItem="uG0-Nq-Aux" secondAttribute="trailing" constant="60" id="IPZ-C5-ghD"/>
                     <constraint firstItem="uG0-Nq-Aux" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ong-tz-Ipb" secondAttribute="trailing" constant="15" id="J9A-LO-feJ"/>
                     <constraint firstAttribute="bottom" secondItem="ovP-pB-Alt" secondAttribute="bottom" constant="10" id="NyM-17-lDh"/>
                     <constraint firstItem="ovP-pB-Alt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="W79-Mv-edx"/>
@@ -70,7 +70,7 @@
                     <constraint firstItem="Ong-tz-Ipb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="a6p-x1-Yi1"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xeK-61-K8A" secondAttribute="bottom" constant="15" id="bgZ-A4-1Cy"/>
                     <constraint firstItem="tKe-mv-kxb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gKs-CC-0wg"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ovP-pB-Alt" secondAttribute="trailing" constant="120" id="mKt-bb-HXs"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ovP-pB-Alt" secondAttribute="trailing" constant="60" id="mKt-bb-HXs"/>
                     <constraint firstItem="xeK-61-K8A" firstAttribute="top" secondItem="Ong-tz-Ipb" secondAttribute="bottom" constant="10" id="nSB-cv-aDq"/>
                     <constraint firstItem="xeK-61-K8A" firstAttribute="leading" secondItem="Ong-tz-Ipb" secondAttribute="leading" id="yLb-p0-Gdl"/>
                 </constraints>

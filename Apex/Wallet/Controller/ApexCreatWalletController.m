@@ -76,7 +76,7 @@
     [self.tipsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(scaleWidth375(290));
-        make.height.mas_equalTo(scaleHeight667(160));
+        make.height.mas_equalTo(160);
         make.top.equalTo(self.backIV).offset(scaleHeight667(96));
     }];
     

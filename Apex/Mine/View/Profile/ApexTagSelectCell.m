@@ -45,7 +45,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ApexTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.baseColor = UIColorHex(66BB6A);
+    cell.baseColor = UIColorHex(3AA03F);
     ApexQuestItemBaseObject *obj = self.tags[indexPath.row];
     cell.tagStr = obj.name;
     
