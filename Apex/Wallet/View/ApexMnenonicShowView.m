@@ -27,6 +27,7 @@
     [self initUI];
 }
 
+
 - (void)initUI{
     self.delegate = self;
     self.dataSource = self;
@@ -38,16 +39,23 @@
 
 - (void)addNewWord:(NSString *)word{
     [self.selArr addObject:word];
+    
     [self reloadData];
 }
 
 - (void)deleteWord:(NSString *)word{
     [self.selArr removeObject:word];
+    
     [self reloadData];
 }
 
 #pragma mark - delegate datasource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    CGFloat version= [UIDevice currentDevice].systemVersion.floatValue;
+    if (version < 11.0) {
+        //11一下系统
+        [self.collectionViewLayout invalidateLayout];
+    }
     return 1;
 }
 
