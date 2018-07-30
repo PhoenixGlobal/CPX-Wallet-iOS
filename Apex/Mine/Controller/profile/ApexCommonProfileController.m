@@ -100,7 +100,6 @@
             vc.lastEnter = self.answerDict[model.title];
             vc.didConfirmTextSubject = [RACSubject subject];
             [vc.didConfirmTextSubject subscribeNext:^(NSString *text) {
-                model.userSelection = text;
                 [self.answerDict setValue:text forKey:model.title];
                 [tableView reloadData];
             }];
@@ -111,7 +110,6 @@
         case ApexQuestType_singleRow:{
             
             [ApexRowSelectView showSingleRowSelectViewWithContentArr:model.data CompleteHandler:^(ApexQuestItemBaseObject *obj) {
-                model.userSelection = obj;
                 [self.answerDict setValue:obj.name forKey:model.title];
                 [tableView reloadData];
             }];
@@ -123,7 +121,6 @@
         case ApexQuestType_TripleRows:{
             //目前只有生日
             [ApexSimpleDatePicker showDatePickerCompleteHandler:^(NSDate *date, NSString *dateStr) {
-                model.userSelection = dateStr;
                 [self.answerDict setValue:dateStr forKey:model.title];
                 [tableView reloadData];
             }];
@@ -148,11 +145,6 @@
         [ApexLoading showOnView:self.view Message:SOLocalizedStringFromTable(@"loading", nil)];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([self getRandomNumber:0 to:3] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [ApexLoading hideOnView:self.view];
-            
-            //save answer
-            for (ApexQuestModel *model in self.tableViewDatasource.contentArr) {
-                [self.answerDict setValue:model.userSelection forKey:model.title];
-            }
             
             NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
             [PDKeyChain save:KBindingAddressToCommonProfile(bindingAddress) data:self.answerDict];

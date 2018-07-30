@@ -28,7 +28,6 @@
         cell.tags = model.data;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.showDict = self.showDict;
-        model.userSelection = cell.selectedTags;
         return cell;
     }else{
         ApexNormalQuestCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];

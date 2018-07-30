@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, ApexQuestType) {
 @property (nonatomic, strong) NSArray<ApexQuestItemBaseObject*> *data; /**<  */
 @property (nonatomic, strong) NSNumber *realTypeNum; /**<  */
 
-@property (nonatomic, strong) id userSelection; /**< 用model来存储用户的选择/填写内容/选择的tags */
+//@property (nonatomic, strong) id userSelection; /**< 用model来存储用户的选择/填写内容/选择的tags */
 @end
 
 

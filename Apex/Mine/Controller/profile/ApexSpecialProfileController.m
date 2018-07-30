@@ -108,10 +108,10 @@
         case ApexQuestType_Texting:{
             ApexProfileQuestTextingController *vc = [[ApexProfileQuestTextingController alloc] init];
             vc.model = model;
-            vc.lastEnter = model.userSelection;
+            vc.lastEnter = [self.answerDict valueForKey:model.title];;
             vc.didConfirmTextSubject = [RACSubject subject];
             [vc.didConfirmTextSubject subscribeNext:^(NSString *text) {
-                model.userSelection = text;
+//                model.userSelection = text;
                 [self.answerDict setValue:text forKey:model.title];
                 [tableView reloadData];
             }];
@@ -122,7 +122,7 @@
         case ApexQuestType_singleRow:{
             
             [ApexRowSelectView showSingleRowSelectViewWithContentArr:model.data CompleteHandler:^(ApexQuestItemBaseObject *obj) {
-                model.userSelection = obj;
+//                model.userSelection = obj;
                 [self.answerDict setValue:obj.name forKey:model.title];
                 [tableView reloadData];
             }];
@@ -134,7 +134,7 @@
         case ApexQuestType_TripleRows:{
             //目前只有生日
             [ApexSimpleDatePicker showDatePickerCompleteHandler:^(NSDate *date, NSString *dateStr) {
-                model.userSelection = dateStr;
+//                model.userSelection = dateStr;
                 [self.answerDict setValue:dateStr forKey:model.title];
                 [tableView reloadData];
             }];
@@ -167,9 +167,9 @@
             
             //save answer
             //save tag
-            for (ApexQuestModel *model in self.tableViewDatasource.contentArr) {
-                [self.answerDict setValue:model.userSelection forKey:model.title];
-            }
+//            for (ApexQuestModel *model in self.tableViewDatasource.contentArr) {
+//                [self.answerDict setValue:model.userSelection forKey:model.title];
+//            }
             
             NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
             [PDKeyChain save:KBindingAddressToSpecialProfile(bindingAddress) data:self.answerDict];
