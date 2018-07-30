@@ -14,6 +14,7 @@
 #import "ApexMorePanelController.h"
 #import "ApexDrawTransAnimator.h"
 #import "ApexAddAssetsController.h"
+#import "ApexTransferHistoryManager.h"
 
 #define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
 
@@ -322,6 +323,11 @@
 }
 
 #pragma mark - ------getter & setter------
+- (void)setWalletModel:(ApexWalletModel *)walletModel{
+    _walletModel = walletModel;
+    [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
+}
+
 - (UILabel *)addressL{
     if (!_addressL) {
         _addressL = [[UILabel alloc] init];

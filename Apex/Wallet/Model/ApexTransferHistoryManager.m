@@ -76,6 +76,14 @@ static ApexTransferHistoryManager *_instance;
     [_db close];
 }
 
+- (void)secreteUpdateUserTransactionHistoryAddress:(NSString*)address{
+    [self requestTxHistoryForAddress:address Success:^(CYLResponse *res) {
+        
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
 #pragma mark - ------增-----
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString*)walletAddress{
     [_db open];

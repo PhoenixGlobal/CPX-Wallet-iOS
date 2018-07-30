@@ -32,5 +32,8 @@ singleH(Manager);
 
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model; /**< 轮询获取此交易状态 */
 
+//用户在打开钱包时进行历史记录的更新
+- (void)secreteUpdateUserTransactionHistoryAddress:(NSString*)address;
+
 - (void)requestTxHistoryForAddress:(NSString*)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure;
 @end

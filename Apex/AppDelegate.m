@@ -51,20 +51,21 @@
 - (void)localization{
     [SOLocalization configSupportRegions:@[SOLocalizationEnglish,SOLocalizationSimplifiedChinese] fallbackRegion:SOLocalizationEnglish];
     
-//    NSString *language = [TKFileManager ValueWithKey:KLanguageSetting];
-//
-//    if (!language) {
-//        NSArray *appLanguages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
-//        NSString *languageName = [appLanguages objectAtIndex:0];
-//        if ([languageName containsString:@"zh"]) {
-//            [SOLocalization sharedLocalization].region = SOLocalizationSimplifiedChinese;
-//        }else{
+    NSString *language = [TKFileManager ValueWithKey:KLanguageSetting];
+
+    if (!language) {
+        NSArray *appLanguages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+        NSString *languageName = [appLanguages objectAtIndex:0];
+        if ([languageName containsString:@"zh"]) {
+            [SOLocalization sharedLocalization].region = SOLocalizationSimplifiedChinese;
+        }else{
             [SOLocalization sharedLocalization].region = SOLocalizationEnglish;
-//        }
-//    }else{
-//        [SOLocalization sharedLocalization].region = language;
-//    }
+        }
+    }else{
+        [SOLocalization sharedLocalization].region = language;
+    }
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

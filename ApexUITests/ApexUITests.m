@@ -119,8 +119,8 @@
 
 - (void)testImportFromKs{
     XCUIApplication *app = [[XCUIApplication alloc] init];
-    [app.textViews[@"Keystore \u6587\u672c\u5185\u5bb9"] tap];
-    [app.textViews[@"Keystore \u6587\u672c\u5185\u5bb9"] typeText:@"{\"address\":\"ALDbmTMY54RZnLmibH3eXfHvrZt4fLiZhh\",\"crypto\":{\"cipher\":\"aes-128-ctr\",\"ciphertext\":\"4b702f33095dd5ce5dae111d193f8dc0aa8147b30bd7d6e54bc2a29973958669\",\"cipherparams\":{\"iv\":\"1789b1a1db9583ec062a12443e30bcbb\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"n\":4096,\"p\":6,\"r\":8,\"salt\":\"144ff9d51e45ea1189fb00db1bb4beff30580792d98d046c42b531bb3735510d\"},\"mac\":\"1e355c4c4abe6f97358169a6c52e3a0193de4d550eabfd31a384a71769f8b917\"},\"id\":\"bed5859a-40a9-4a42-ba90-38e480b94a19\",\"version\":3}"];
+    [app.textViews[@"Keystore"] tap];
+    [app.textViews[@"Keystore"] typeText:@"{\"address\":\"ALDbmTMY54RZnLmibH3eXfHvrZt4fLiZhh\",\"crypto\":{\"cipher\":\"aes-128-ctr\",\"ciphertext\":\"4b702f33095dd5ce5dae111d193f8dc0aa8147b30bd7d6e54bc2a29973958669\",\"cipherparams\":{\"iv\":\"1789b1a1db9583ec062a12443e30bcbb\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"n\":4096,\"p\":6,\"r\":8,\"salt\":\"144ff9d51e45ea1189fb00db1bb4beff30580792d98d046c42b531bb3735510d\"},\"mac\":\"1e355c4c4abe6f97358169a6c52e3a0193de4d550eabfd31a384a71769f8b917\"},\"id\":\"bed5859a-40a9-4a42-ba90-38e480b94a19\",\"version\":3}"];
     [app.toolbars[@"Toolbar"].buttons[@"Toolbar Done Button"] tap];
     [NSThread sleepForTimeInterval:1];
     [app.secureTextFields[@"\u5bc6\u7801"] tap];

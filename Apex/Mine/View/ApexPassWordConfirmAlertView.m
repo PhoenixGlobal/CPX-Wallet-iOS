@@ -18,6 +18,7 @@
     customField.borderStyle = UITextBorderStyleRoundedRect;
     customField.secureTextEntry = YES;
     customField.layer.borderColor = [ApexUIHelper grayColor240].CGColor;
+    [customField becomeFirstResponder];
     __block NSString *password = nil;
     [alert addTextFieldWithCustomTextField:customField andPlaceholder:@"Password" andTextReturnBlock:^(NSString *text) {
         password = text;
@@ -61,6 +62,7 @@
     customField.borderStyle = UITextBorderStyleRoundedRect;
     customField.secureTextEntry = YES;
     customField.layer.borderColor = [ApexUIHelper grayColor240].CGColor;
+    [customField becomeFirstResponder];
     __block NSString *password = nil;
     [alert addTextFieldWithCustomTextField:customField andPlaceholder:@"Password" andTextReturnBlock:^(NSString *text) {
         password = text;
