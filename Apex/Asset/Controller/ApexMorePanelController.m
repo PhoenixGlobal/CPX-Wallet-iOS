@@ -34,6 +34,11 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] init];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationItem.leftBarButtonItem = _leftItem;

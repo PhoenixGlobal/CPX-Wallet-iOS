@@ -27,6 +27,8 @@
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
 @property (nonatomic, strong) NSMutableDictionary *assetMap; //资产对应的余额字典
 @property (nonatomic, strong) UIImageView *backIV;
+
+@property (nonatomic, assign) BOOL isNavClear; /**<  */
 @end
 
 @implementation ApexAccountDetailController
@@ -48,6 +50,14 @@
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
+    if (!_isNavClear) {
+        [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+        _isNavClear = YES;
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 

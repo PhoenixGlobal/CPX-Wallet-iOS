@@ -113,7 +113,7 @@ singleM(Manager);
             [arr removeObject:wallet];
             break;
         }
-    }
+    } 
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
 
