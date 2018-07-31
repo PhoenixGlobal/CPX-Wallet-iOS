@@ -45,13 +45,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     [self.emptyV removeFromSuperview];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
-}
 #pragma mark - ------private------
 - (void)initUI{
 //    self.view.backgroundColor = self.baseColor;

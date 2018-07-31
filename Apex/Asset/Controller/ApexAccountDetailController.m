@@ -46,14 +46,15 @@
     [self setEdgeGesture];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 
+
 #pragma mark - ------private------
 - (void)initUI{
-    
+
     [self.view insertSubview:self.backIV atIndex:0];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

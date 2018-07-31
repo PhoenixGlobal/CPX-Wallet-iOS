@@ -13,4 +13,5 @@
 @property (nonatomic, strong) UITableView *tableView; /**<  */
 @property (nonatomic, assign) CGFloat firstLayerDelta; /**< 白色baseview与navbar之间的高度 */
 @property (nonatomic, strong) UIView *accessoryBaseView; /**<  */
+@property (nonatomic, assign) BOOL shouldChildControlNavBarAppreance; /**< 是否让子类来管理导航栏的外观 */
 @end

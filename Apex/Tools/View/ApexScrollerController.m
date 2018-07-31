@@ -30,15 +30,19 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if (_navColor) {
+    if (_navColor && !_shouldChildControlNavBarAppreance) {
         [self.navigationController lt_setBackgroundColor:_navColor];
+    }else{
+        [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    _navColor = self.navigationController.overlay.backgroundColor;
     
+    if (!_shouldChildControlNavBarAppreance) {
+        _navColor = self.navigationController.overlay.backgroundColor;
+    }
 }
 
 - (void)dealloc{

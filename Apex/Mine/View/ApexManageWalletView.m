@@ -34,9 +34,9 @@
         make.right.equalTo(self).offset(-15);
         make.bottom.equalTo(self);
         if (@available(iOS 11.0, *)) {
-            make.top.equalTo(self).offset(10);
+            make.top.equalTo(self).offset(0);
         }else{
-            make.top.equalTo(self).offset(-NavBarHeight+10);
+            make.top.equalTo(self).offset(-NavBarHeight);
         }
     }];
     
@@ -102,7 +102,7 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.estimatedRowHeight = 100;
         _tableView.rowHeight = UITableViewAutomaticDimension;
-        _tableView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(15, 0, 0, 0);
         _tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
