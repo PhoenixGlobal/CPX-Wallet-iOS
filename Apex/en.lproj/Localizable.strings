@@ -77,21 +77,21 @@
 "YourWallet" = "Your Wallet Address";
 "LanguageSetting" = "Language Setting";
 
-"saveofflin" = "Save Offline";
-"dontTransThNet" = "Do Not Transfer Thought Network";
-"saveinbox" = "Keep Your Password In Security Box";
+"saveofflin" = "Store Offine";
+"dontTransThNet" = "Don't Transfer via internet Tools";
+"saveinbox" = "Store to Password Vault";
 "privatePolicy" = "Private Policy";
 
-"DZw-7m-c91.text" = "Don't Transfer via internet Tools-Don't use Email/Cloud Storage/Notepad/IM tools to transfer Keystore . It easily gets hacked and result in loss.";
+"DZw-7m-c91.text" = "Don't use Email/Cloud Storage/Notepad/IM tools to transfer Keystore . It easily gets hacked and result in loss.";
 
 /* Class = "UIButton"; normalTitle = "Copy Keystore"; ObjectID = "GeD-5D-bhg"; */
 "GeD-5D-bhg.normalTitle" = "Copy Keystore";
 
 /* Class = "UILabel"; text = "Store to Password Vault - If you like to store online please make sure to use password vault apps , like 1Password/Keeppass."; ObjectID = "QUv-UT-8CI"; */
-"QUv-UT-8CI.text" = "Store to Password Vault - If you like to store online please make sure to use password vault apps , like 1Password/Keeppass.";
+"QUv-UT-8CI.text" = "If you like to store online please make sure to use password vault apps , like 1Password/Keeppass.";
 
 /* Class = "UILabel"; text = "Store Offine - Please store the Keystore to a safe offline location or device such as a USB drive. Never store or upload it to the internet."; ObjectID = "jOA-VA-35F"; */
-"jOA-VA-35F.text" = "Store Offine - Please store the Keystore to a safe offline location or device such as a USB drive. Never store or upload it to the internet.";
+"jOA-VA-35F.text" = "Please store the Keystore to a safe offline location or device such as a USB drive. Never store or upload it to the internet.";
 
 //profile
 "commProfile" = "Basic";
