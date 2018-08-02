@@ -11,6 +11,7 @@
 @interface ApexNoWalletView()
 @property (nonatomic, strong) UIImageView *imageV; /**<*/
 @property (nonatomic, strong) UILabel *messageL; /**<  */
+@property (nonatomic, strong) UIButton *toCreateWalletBtn; /**<  */
 @end
 
 @implementation ApexNoWalletView
@@ -45,6 +46,20 @@
         make.top.equalTo(self.imageV.mas_bottom).offset(20);
         make.left.equalTo(self).offset(40);
         make.right.equalTo(self).offset(-40);
+    }];
+    
+    _toCreateWalletBtn = [[UIButton alloc] init];
+    [self addSubview:_toCreateWalletBtn];
+    [_toCreateWalletBtn setTitle:SOLocalizedStringFromTable(@"Create Wallet", nil) forState:UIControlStateNormal];
+    _toCreateWalletBtn.backgroundColor = [ApexUIHelper mainThemeColor];
+    [self.toCreateWalletBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).offset(-20);
+        make.left.equalTo(self).offset(15);
+        make.right.equalTo(self).offset(-15);
+        make.height.mas_equalTo(40);
+    }];
+    [[_toCreateWalletBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [self routeEventWithName:RouteEventName_NoWalletViewToCreateWallet userInfo:@{}];
     }];
 }
 

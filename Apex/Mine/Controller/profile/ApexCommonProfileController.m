@@ -81,8 +81,8 @@
 
 #pragma mark - ------private------
 - (void)getLocalInfo{
-    NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
-    self.answerDict = [PDKeyChain load:KBindingAddressToCommonProfile(bindingAddress)];
+//    NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+    self.answerDict = [PDKeyChain load:KBindingAddressToCommonProfile];
     self.tableViewDatasource.showDict = self.answerDict;
     [self fakeRequest];
 
@@ -146,8 +146,8 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([self getRandomNumber:0 to:3] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [ApexLoading hideOnView:self.view];
             
-            NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
-            [PDKeyChain save:KBindingAddressToCommonProfile(bindingAddress) data:self.answerDict];
+//            NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
+            [PDKeyChain save:KBindingAddressToCommonProfile data:self.answerDict];
                                                
             [self.tableView reloadData];
         });

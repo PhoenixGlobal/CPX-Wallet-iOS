@@ -12,6 +12,7 @@
 #import "ApexPageView.h"
 #import "ApexChangeBindWalletController.h"
 #import "ApexNoWalletView.h"
+#import "ApexCreatWalletController.h"
 
 @interface ApexProfileBaseController ()<ApexPageViewDelegate>
 @property (nonatomic, strong) UIImageView *backIV; /**<  */
@@ -42,6 +43,19 @@
     if (bindingAddress == nil) {
         bindingAddress = ((ApexWalletModel*)((NSArray*)[ApexWalletManager getWalletsArr]).firstObject).address;
         [TKFileManager saveValue:bindingAddress forKey:KBindingWalletAddress];
+    }else{
+        BOOL isExist = false;
+        for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
+            if ([model.address isEqualToString:bindingAddress]) {
+                isExist = YES;
+                break;
+            }
+        }
+        
+        if (!isExist) {
+            bindingAddress = ((ApexWalletModel*)((NSArray*)[ApexWalletManager getWalletsArr]).firstObject).address;
+            [TKFileManager saveValue:bindingAddress forKey:KBindingWalletAddress];
+        }
     }
     
     if ([self.currentAddress.text isEqualToString:bindingAddress]) {
@@ -55,7 +69,15 @@
         [self.specialVC.tableView reloadData];
     }
     
-    
+    if (((NSArray*)[ApexWalletManager getWalletsArr]).count == 0) {
+        self.noWalletView.hidden = NO;
+        self.currentAddress.hidden = YES;
+        self.exchangeBtn.hidden = YES;
+    }else{
+        self.noWalletView.hidden = YES;
+        self.currentAddress.hidden = NO;
+        self.exchangeBtn.hidden = NO;
+    }
 
 }
 
@@ -87,16 +109,6 @@
         make.bottom.equalTo(self.backIV).offset(-10);
         make.centerX.equalTo(self.view.mas_centerX);
     }];
-    
-    if (((NSArray*)[ApexWalletManager getWalletsArr]).count == 0) {
-        self.noWalletView.hidden = NO;
-        self.currentAddress.hidden = YES;
-        self.exchangeBtn.hidden = YES;
-    }else{
-        self.noWalletView.hidden = YES;
-        self.currentAddress.hidden = NO;
-        self.exchangeBtn.hidden = NO;
-    }
 }
 
 - (void)setNav{
@@ -132,6 +144,13 @@
         ApexChangeBindWalletController *vc = [[ApexChangeBindWalletController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }];
+}
+
+- (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
+    if ([eventName isEqualToString:RouteEventName_NoWalletViewToCreateWallet]) {
+        ApexCreatWalletController *vc = [[ApexCreatWalletController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 #pragma mark - ------getter & setter------
 

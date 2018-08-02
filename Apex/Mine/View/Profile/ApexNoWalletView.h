@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define RouteEventName_NoWalletViewToCreateWallet @"RouteEventName_NoWalletViewToCreateWallet"
+
 @interface ApexNoWalletView : UIView
 
 @end
