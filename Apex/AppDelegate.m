@@ -27,11 +27,12 @@
     CYLTabBarController *tabbarVC = [[CYLTabBarController alloc] init];
     
     NSArray *arr = [ApexWalletManager getWalletsArr];
-    if (arr.count == 0) {
+    BOOL isFirstCreatDone = ((NSNumber*)[TKFileManager ValueWithKey:KisFirstCreateWalletDone]).boolValue;
+    if (arr.count == 0 && !isFirstCreatDone) {
         ApexWalletInitController *walletVC = [[ApexWalletInitController alloc] init];
         walletVC.didFinishCreatSub = [RACSubject subject];
         [walletVC.didFinishCreatSub subscribeNext:^(id  _Nullable x) {
-            tabbarVC.initSelectTabbarBtnIndex = 1;
+            tabbarVC.initSelectTabbarBtnIndex = 0;
             self.window.rootViewController = tabbarVC;
         }];
         

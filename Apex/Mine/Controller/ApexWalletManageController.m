@@ -9,11 +9,13 @@
 #import "ApexWalletManageController.h"
 #import "ApexManageWalletView.h"
 #import "ApexWalletManageDetailController.h"
+#import "ApexNoWalletView.h"
 
 @interface ApexWalletManageController ()
 @property (nonatomic, strong) ApexManageWalletView *manageView;
 @property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) UIImageView *fakeNavBar; /**<  */
+@property (nonatomic, strong) ApexNoWalletView *noWalletView; /**<  */
 @end
 
 @implementation ApexWalletManageController
@@ -29,6 +31,7 @@
     [super viewWillAppear:animated];
     [self.manageView reloadWalletData];
     [self setNav];
+    [self judgeIfHadWallet];
 }
 
 #pragma mark - ------private------
@@ -53,6 +56,19 @@
 - (void)setNav{
     UIImage *image = [UIImage imageNamed:@"back-4"];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+}
+
+- (void)judgeIfHadWallet{
+    NSArray *arr = [ApexWalletManager getWalletsArr];
+    if (arr.count == 0) {
+        [self.manageView addSubview:self.noWalletView];
+        [self.noWalletView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.manageView);
+        }];
+        self.noWalletView.hidden = NO;
+    }else{
+        self.noWalletView.hidden = YES;
+    }
 }
 
 #pragma mark - ------public------
@@ -96,5 +112,14 @@
         _fakeNavBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barImage"]];
     }
     return _fakeNavBar;
+}
+
+- (ApexNoWalletView *)noWalletView{
+    if (!_noWalletView) {
+        _noWalletView = [[ApexNoWalletView alloc] init];
+        [_noWalletView setMessage:SOLocalizedStringFromTable(@"Data Empty", nil)];
+        [_noWalletView setBtnHidden:YES];
+    }
+    return _noWalletView;
 }
 @end

@@ -13,7 +13,6 @@
 
 
 @interface ApexScrollerController ()
-@property (nonatomic, strong) UIView *baseView; /**< 中间层 */
 @property (nonatomic, assign) CGFloat translateOffset; /**< tableview的初始offset*/
 @property (nonatomic, assign) CGFloat translateLength; /**<  第一个cell距离navbar的距离*/
 @property (nonatomic, assign) CGFloat lastPercent; /**<  */

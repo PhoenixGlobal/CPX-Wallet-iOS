@@ -11,5 +11,6 @@
 #define RouteEventName_NoWalletViewToCreateWallet @"RouteEventName_NoWalletViewToCreateWallet"
 
 @interface ApexNoWalletView : UIView
-
+- (void)setMessage:(NSString*)message;
+- (void)setBtnHidden:(BOOL)isHidden;
 @end

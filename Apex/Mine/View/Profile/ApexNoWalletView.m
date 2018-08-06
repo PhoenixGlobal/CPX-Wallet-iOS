@@ -41,6 +41,7 @@
     _messageL.text = SOLocalizedStringFromTable(@"noWallet", nil);
     _messageL.textAlignment = NSTextAlignmentCenter;
     _messageL.numberOfLines = 0;
+    [_messageL setTextColor:[UIColor colorWithHexString:@"666666"]];
     [self addSubview:_messageL];
     [self.messageL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.imageV.mas_bottom).offset(20);
@@ -63,4 +64,13 @@
     }];
 }
 
+- (void)setMessage:(NSString *)message{
+    if (message.length !=0) {
+        self.messageL.text = message;
+    }
+}
+
+- (void)setBtnHidden:(BOOL)isHidden{
+    self.toCreateWalletBtn.hidden = isHidden;
+}
 @end

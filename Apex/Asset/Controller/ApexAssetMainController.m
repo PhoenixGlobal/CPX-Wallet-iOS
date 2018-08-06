@@ -15,6 +15,7 @@
 #import "ApexAccountDetailController.h"
 #import "ApexDrawTransAnimator.h"
 #import "ApexMorePanelController.h"
+#import "ApexNoWalletView.h"
 
 #define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
 
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
 @property (nonatomic, strong) UIImageView *backIV;
+@property (nonatomic, strong) ApexNoWalletView *noWalletView; /**<  */
 @end
 
 @implementation ApexAssetMainController
@@ -98,6 +100,15 @@
 - (void)getWalletLists{
     [self.searchTooBar clearEntrance];
     _contentArr = [ApexWalletManager getWalletsArr];
+    if (_contentArr.count == 0) {
+        [self.baseView addSubview:self.noWalletView];
+        [self.noWalletView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.baseView);
+        }];
+        self.noWalletView.hidden = NO;
+    }else{
+        self.noWalletView.hidden = YES;
+    }
     [self.tableView reloadData];
 }
 
@@ -225,7 +236,7 @@
     if (!_moreBtn) {
         _moreBtn = [[UIButton alloc] init];
         _moreBtn.frame = CGRectMake(0, 0, 40, 40);
-        [_moreBtn setImage:[UIImage imageNamed:@"dots"] forState:UIControlStateNormal];
+        [_moreBtn setImage:[UIImage imageNamed:@"Fill 1"] forState:UIControlStateNormal];
         [[_moreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             [self routeEventWithName:RouteNameEvent_ShowMorePanel userInfo:@{}];
         }];
@@ -247,5 +258,14 @@
         _backIV.image = [UIImage imageNamed:@"backImage"];
     }
     return _backIV;
+}
+
+- (ApexNoWalletView *)noWalletView{
+    if (!_noWalletView) {
+        _noWalletView = [[ApexNoWalletView alloc] init];
+        [_noWalletView setMessage:SOLocalizedStringFromTable(@"noWalletInAssets", nil)];
+        [_noWalletView setBtnHidden:YES];
+    }
+    return _noWalletView;
 }
 @end

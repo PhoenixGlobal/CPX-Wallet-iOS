@@ -94,6 +94,8 @@
 "noWallet" = "请创建钱包,方便我们发放奖励.";
 "enterPK" = "企业秘钥";
 
+"noWalletInAssets" = "请点击右上角 拥有你的钱包";
+
 // tips
 "Create Wallet Failed" = "钱包创建失败";
 "Create Keystore Failed" = "keystore创建失败";

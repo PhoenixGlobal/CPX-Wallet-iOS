@@ -37,8 +37,8 @@
 - (UIButton *)privacyAgreeBtn{
     if (!_privacyAgreeBtn) {
         _privacyAgreeBtn = [[UIButton alloc] init];
-        [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Group 3-1"] forState:UIControlStateNormal];
-        [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Group 4"] forState:UIControlStateSelected];
+        [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Rectangle 13"] forState:UIControlStateNormal];
+        [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Group 4-1"] forState:UIControlStateSelected];
         [_privacyAgreeBtn setEnlargeEdge:20];
         @weakify(self);
         [[_privacyAgreeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {

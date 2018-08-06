@@ -9,11 +9,13 @@
 #import "ApexTransferHistoryController.h"
 #import "ApexTransactionRecordView.h"
 #import "ApexTransactionDetailController.h"
+#import "ApexNoWalletView.h"
 
 @interface ApexTransferHistoryController ()
 @property (nonatomic, strong) ApexTransactionRecordView *transactionView;
 @property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) UIImageView *fakeNavBar; /**<  */
+@property (nonatomic, strong) ApexNoWalletView *noWalletView; /**<  */
 @end
 
 @implementation ApexTransferHistoryController
@@ -30,6 +32,7 @@
     [super viewWillAppear:animated];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self judgeIfHadWallet];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -62,6 +65,19 @@
 - (void)setNav{
     UIImage *image = [UIImage imageNamed:@"back-4"];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+}
+
+- (void)judgeIfHadWallet{
+    NSArray *arr = [ApexWalletManager getWalletsArr];
+    if (arr.count == 0) {
+        [self.transactionView addSubview:self.noWalletView];
+        [self.noWalletView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.transactionView);
+        }];
+        self.noWalletView.hidden = NO;
+    }else{
+        self.noWalletView.hidden = YES;
+    }
 }
 
 #pragma mark - ------public------
@@ -106,5 +122,14 @@
         _fakeNavBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barImage"]];
     }
     return _fakeNavBar;
+}
+
+- (ApexNoWalletView *)noWalletView{
+    if (!_noWalletView) {
+        _noWalletView = [[ApexNoWalletView alloc] init];
+        [_noWalletView setMessage:SOLocalizedStringFromTable(@"Data Empty", nil)];
+        [_noWalletView setBtnHidden:YES];
+    }
+    return _noWalletView;
 }
 @end

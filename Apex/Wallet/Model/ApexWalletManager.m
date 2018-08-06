@@ -36,6 +36,7 @@ singleM(Manager);
     [[ApexTransferHistoryManager shareManager] createTableForWallet:model.address];
     [arr addObject:model];
     [TKFileManager saveData:arr withFileName:walletsKey];
+    [TKFileManager saveValue:@(YES) forKey:KisFirstCreateWalletDone];
 }
 
 + (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr{
