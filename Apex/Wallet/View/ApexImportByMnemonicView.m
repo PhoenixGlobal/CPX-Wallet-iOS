@@ -144,7 +144,7 @@
         _combineSignal = [RACSignal combineLatest:@[self.textView.rac_textSignal, self.passWordTF.rac_textSignal,self.repeatPassWTF.rac_textSignal,RACObserve(self.passWordTF, isAlertShowing), RACObserve(self.repeatPassWTF, isAlertShowing), RACObserve(self.agreeView.privacyAgreeBtn, selected)] reduce:^id (NSString *mnemonic, NSString *passw, NSString *repeat, NSNumber *passAlert, NSNumber *repeatAlert, NSNumber *privacySel){
             BOOL flag = true;
             
-            if ([mnemonic componentsSeparatedByString:@" "].count == 0) {
+            if ([mnemonic componentsSeparatedByString:@" "].count == 0 || mnemonic.length == 0) {
                 flag = false;
             }
             

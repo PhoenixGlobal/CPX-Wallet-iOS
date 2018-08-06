@@ -75,7 +75,7 @@
     
     self.toAddressTF.placeholder = SOLocalizedStringFromTable(@"SendMoneyAddress", nil);
     self.sendNumTF.placeholder = SOLocalizedStringFromTable(@"Amount", nil);
-    [self.sendBtn setTitle:SOLocalizedStringFromTable(@"Submit", nil) forState:UIControlStateNormal];
+    [self.sendBtn setTitle:SOLocalizedStringFromTable(@"send", nil) forState:UIControlStateNormal];
     
     NSMutableAttributedString *attrStr = nil;
     NSString *string = @"";
@@ -90,6 +90,8 @@
     
     [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange([string rangeOfString:@":"].location+2, self.balanceModel.value.length)];
     self.availableL.attributedText = attrStr;
+    
+    [self.takeAllBtn setTitle:SOLocalizedStringFromTable(@"allMoney", nil) forState:UIControlStateNormal];
 }
 
 - (void)utxoSearch:(NeomobileWallet*)wallet{

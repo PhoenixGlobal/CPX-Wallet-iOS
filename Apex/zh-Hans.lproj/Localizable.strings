@@ -24,7 +24,7 @@
 "Copy Your Mnemonic" = "抄写下你的钱包助记词";
 "Export mnemonics and keep it in a safe place, do not save on the internet. then begin using with transfer small assets." = "导出【助记词】并抄写到安全的地方，千万不要保存到网络上，然后尝试转入、转出小额资产开始使用。";
 "Next step" = "下一步";
-"The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know." = "助记词用于恢复钱包或重复钱包密码，将它准确的抄写到纸上，并存放在的只有你知道的安全的地方。";
+"The mnemonic is used to recover the wallet or repeat the wallet password, copy it to the paper accurately, and store it in a safe place that only you know." = "助记词用于恢复钱包或重复钱包密码，将它准确的抄写到纸上，并存放在只有你知道的安全的地方。";
 "Do not take screenshots,  someone will have fully accecss to your assets ,if it gets your mnemonic! Please copy the mnemonic, then store it at a safe place." = "请勿截图，如果有人获取你的助记词将直接获取你的资产！请抄写下助记词并存放在安全的地方。";
 "Confirm your mnemonic" = "确定你的钱包助记词";
 "Please click on the mnemonic in order, make sure you backup correctly." = "请按顺序点击助记词，以确认你的备份助记词正确。";
@@ -69,6 +69,7 @@
 "CreatWalletTip02" = "• Apex Wallet不存储密码，也无法帮你找回，请务必牢记。";
 "YourWallet" = "你的钱包/地址";
 "LanguageSetting" = "语言设置";
+"allMoney" = "全部";
 
 "saveofflin" = "离线保存";
 "dontTransThNet" = "请勿通过网络传输";

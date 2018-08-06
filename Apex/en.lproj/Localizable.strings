@@ -66,6 +66,8 @@
 "exKeystore" = "Export Keystore";
 "copyKeystore" = "KeyStore Copied In Clipboard";
 
+"allMoney" = "All";
+
 "Language" = "Languages";
 "Profile" = "Profile";
 "Go Mapping" = " Pre-Mainnet ";
