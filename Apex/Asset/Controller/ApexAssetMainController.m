@@ -228,6 +228,7 @@
     if (!_searchTooBar) {
         _searchTooBar = [[ApexSearchWalletToolBar alloc] init];
         [_searchTooBar setTFBackColor:[UIColor colorWithWhite:0 alpha:0.5]];
+        [_searchTooBar setCancleBtnImage:[UIImage imageNamed:@"Group 5-1"]];
     }
     return _searchTooBar;
 }

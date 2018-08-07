@@ -54,16 +54,16 @@
     
     [self.searchTF mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(23);
-        make.right.equalTo(self).offset(-62);
+        make.right.equalTo(self).offset(-23);
         make.centerY.equalTo(self.mas_centerY);
         make.height.mas_equalTo(30);
     }];
     
     [self.cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.searchTF.mas_right).offset(10);
-        make.right.equalTo(self).offset(-10);
+//        make.left.equalTo(self.searchTF).offset(-10);
+        make.right.equalTo(self.searchTF).offset(-10);
         make.centerY.equalTo(self.searchTF.mas_centerY);
-        make.height.mas_equalTo(20);
+        make.width.height.mas_equalTo(15);
     }];
 }
 
@@ -103,6 +103,10 @@
     self.searchTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:14]}];
 }
 
+- (void)setCancleBtnImage:(UIImage *)image{
+    [self.cancleBtn setImage:image forState:UIControlStateNormal];
+}
+
 - (void)setLeftView:(UIView *)leftView{
     self.searchTF.leftView = leftView;
 }
@@ -126,9 +130,10 @@
 - (UIButton *)cancleBtn{
     if (!_cancleBtn) {
         _cancleBtn = [[UIButton alloc] init];
-        [_cancleBtn setTitle:SOLocalizedStringFromTable(@"Cancle", nil) forState:UIControlStateNormal];
-        [_cancleBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
-        _cancleBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+//        [_cancleBtn setTitle:SOLocalizedStringFromTable(@"Cancle", nil) forState:UIControlStateNormal];
+//        [_cancleBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
+//        _cancleBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_cancleBtn setImage:[UIImage imageNamed:@"Group 5"] forState:UIControlStateNormal];
         @weakify(self);
         [[_cancleBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             @strongify(self);

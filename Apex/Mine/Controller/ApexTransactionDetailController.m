@@ -236,6 +236,7 @@
     if (!_searchToolBar) {
         _searchToolBar = [[ApexSearchWalletToolBar alloc] initWithFrame:self.searchBaseV.bounds];
         _searchToolBar.placeHolder = SOLocalizedStringFromTable(@"Search Txid", nil);
+        [_searchToolBar setCancleBtnImage:[UIImage imageNamed:@"Group 5-1"]];
     }
     return _searchToolBar;
 }

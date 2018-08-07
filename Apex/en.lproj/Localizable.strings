@@ -103,7 +103,7 @@
 "noWallet" = "Please create wallet that we could distribute our rewards.";
 "enterPK" = "Private Key";
 
-"noWalletInAssets" = "Please click the upper right corner to have your wallet";
+"noWalletInAssets" = "Please Click The Upper Right Corner To Have Your Wallet";
 
 // tips
 "Create Wallet Failed" = "Create Wallet Failed";

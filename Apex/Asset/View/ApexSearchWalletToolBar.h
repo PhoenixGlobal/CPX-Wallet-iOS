@@ -19,4 +19,5 @@
 - (void)setLeftView:(UIView*)leftView;
 - (void)clearEntrance;
 - (void)setTFBackColor:(UIColor*)color;
+- (void)setCancleBtnImage:(UIImage*)image;
 @end
