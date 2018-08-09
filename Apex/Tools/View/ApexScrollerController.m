@@ -73,7 +73,8 @@
     
     [self.baseView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(NavBarHeight+self.firstLayerDelta);
-        make.left.bottom.right.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
     }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

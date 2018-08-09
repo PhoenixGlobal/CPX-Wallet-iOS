@@ -12,6 +12,7 @@
 + (UIFont*)tabBarTitleFont;
 
 + (CGFloat)naviBarHeight;
++ (CGFloat)tabBarHeight;
 
 + (UIColor *)navColorWithAlpha:(CGFloat)alpha;
 + (UIColor*)navColor;

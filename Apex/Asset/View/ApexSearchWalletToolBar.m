@@ -78,6 +78,12 @@
 #pragma mark - delegate
 - (void)tfDidChangeChar{
     if (self.textDidChangeSub) {
+        if (self.searchTF.text.length == 0) {
+            _cancleBtn.hidden = YES;
+        }else{
+            _cancleBtn.hidden = false;
+        }
+        
         [self.textDidChangeSub sendNext:self.searchTF.text];
     }
 }
@@ -134,6 +140,7 @@
 //        [_cancleBtn setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
 //        _cancleBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [_cancleBtn setImage:[UIImage imageNamed:@"Group 5"] forState:UIControlStateNormal];
+        _cancleBtn.hidden = YES;
         @weakify(self);
         [[_cancleBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
             @strongify(self);

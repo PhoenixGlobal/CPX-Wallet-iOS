@@ -59,6 +59,15 @@
     return height;
 }
 
++ (CGFloat)tabBarHeight{
+    static CGFloat tabbarHeight = 0;
+    if (tabbarHeight == 0) {
+        UITabBarController *tbvc = [UITabBarController new];
+        tabbarHeight = tbvc.tabBar.height;
+    }
+    return tabbarHeight;
+}
+
 + (UIView *)addLineInView:(UIView *)view color:(UIColor *)color edge:(UIEdgeInsets)edge{
     NSAssert(view != nil, @"addLineInView: view can not be nil");
     UIView *line = [[UIView alloc] init];

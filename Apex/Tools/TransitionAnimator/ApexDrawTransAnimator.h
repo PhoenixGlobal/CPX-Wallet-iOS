@@ -14,4 +14,6 @@
 
 @interface ApexDrawTransAnimator : CYLBaseTransitionAnimation
 @property (nonatomic, strong) UIView *fakeView;
+
+- (void)clearRedundentView;
 @end

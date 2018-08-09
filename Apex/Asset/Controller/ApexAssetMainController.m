@@ -124,6 +124,7 @@
         if ([fromVC isKindOfClass:[ApexMorePanelController class]]) {
             return [CYLTansitionManager transitionObjectwithTransitionStyle:CYLTransitionStyle_Pop animateDuration:0.5 andTransitionAnimation:self.transAnimator];
         }else{
+            [self.transAnimator clearRedundentView];
             return nil;
         }
     }
@@ -214,14 +215,9 @@
 }
 
 - (void)pushAction{
-//    if (@available(iOS 11.0, *)) {
         ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
         vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-        vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
-//    }else{
-//
-//    }
 }
 #pragma mark - ------getter & setter------
 - (ApexSearchWalletToolBar *)searchTooBar{
