@@ -47,5 +47,6 @@
 #import "ApexAccountStateModel.h"
 #import "ApexAssetModelManage.h"
 #import "SOLocalization.h"
+#import "ETHWalletManager.h"
 #endif /* PrefixHeader_pch */
 

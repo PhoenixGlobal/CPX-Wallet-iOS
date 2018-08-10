@@ -11,4 +11,6 @@
 @interface ApexNetWorkCommonConfig : NSObject
 + (NSString*)getCliBaseUrl;
 + (NSString*)getToolBaseUrl;
+
++ (NSString*)getETHBaseUrl;
 @end

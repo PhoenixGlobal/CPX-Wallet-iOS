@@ -7,10 +7,10 @@
 //
 
 #import "ApexDiscoverController.h"
-#import "CYLEmptyView.h"
 #import "ApexImportWalletController.h"
 
 @interface ApexDiscoverController ()
+@property (nonatomic, strong) EthmobileWallet *wallet; /**<  */
 @end
 
 @implementation ApexDiscoverController
@@ -27,7 +27,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-//    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+
 }
 
 #pragma mark - ------private------
@@ -35,7 +35,11 @@
     self.title = @"发现";
     self.view.backgroundColor = [UIColor colorWithHexString:@"f1f1f1"];
     
-    [CYLEmptyView showEmptyViewOnView:self.view emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
+    NSError *err = nil;
+    _wallet = EthmobileFromKeyStore(@"{\"address\":\"77ebad3064c5ff81bc63632ea10a8a0ba4382cf5\",\"crypto\":{\"cipher\":\"aes-128-ctr\",\"ciphertext\":\"badadb3b1da48ac7bfdbcd9ae1f59fca74365373584785342cb5ef5f8d1a91b8\",\"cipherparams\":{\"iv\":\"db647a8a94d80ec1187fba12b90f51d1\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"n\":262144,\"p\":1,\"r\":8,\"salt\":\"304cf039af5228e4a78cdb677da77355518031ae6a92669c3663802ce50046dc\"},\"mac\":\"8f19589be75bfa985e5663b812384de19c820e484651cdba7ed5df64ee1d5262\"},\"id\":\"5d579104-555b-4a31-8077-37a923243c4a\",\"version\":3}", @"123456", &err);
+    if (err) {
+        NSLog(@"%@",err);
+    }
 }
 
 #pragma mark - ------public------
@@ -44,9 +48,11 @@
 
 #pragma mark - ------eventResponse------
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    ApexImportWalletController *vc = [[ApexImportWalletController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    [ETHWalletManager requestTransactionByHash:@"0xdaa3205ab50bade7815a0719202250731d2332cbbaa81fd05a92469da1ef3490" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 #pragma mark - ------getter & setter------

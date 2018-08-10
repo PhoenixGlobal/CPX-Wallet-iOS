@@ -154,6 +154,8 @@
 		E70392FF211D539700BA3CDB /* ETHWalletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E70392FE211D539700BA3CDB /* ETHWalletManager.m */; };
 		E7039302211D53A300BA3CDB /* NSString+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = E7039300211D53A200BA3CDB /* NSString+Tool.m */; };
 		E7039305211D53B100BA3CDB /* SystemConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = E7039304211D53B100BA3CDB /* SystemConvert.m */; };
+		E7039308211D59C600BA3CDB /* ApexETHClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E7039307211D59C600BA3CDB /* ApexETHClient.m */; };
+		E703930B211D6BF300BA3CDB /* ApexETHTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E703930A211D6BF300BA3CDB /* ApexETHTransactionModel.m */; };
 		E731468E2109FC2D002A6C07 /* ApexEnterKeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */; };
 		E7314690210A02D0002A6C07 /* useprotocol.html in Resources */ = {isa = PBXBuildFile; fileRef = E731468F210A02CF002A6C07 /* useprotocol.html */; };
 		E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7314692210A05BA002A6C07 /* ApexProlicyController.m */; };
@@ -487,6 +489,10 @@
 		E7039301211D53A200BA3CDB /* NSString+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Tool.h"; sourceTree = "<group>"; };
 		E7039303211D53B100BA3CDB /* SystemConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemConvert.h; sourceTree = "<group>"; };
 		E7039304211D53B100BA3CDB /* SystemConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemConvert.m; sourceTree = "<group>"; };
+		E7039306211D59C600BA3CDB /* ApexETHClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexETHClient.h; sourceTree = "<group>"; };
+		E7039307211D59C600BA3CDB /* ApexETHClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexETHClient.m; sourceTree = "<group>"; };
+		E7039309211D6BF300BA3CDB /* ApexETHTransactionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexETHTransactionModel.h; sourceTree = "<group>"; };
+		E703930A211D6BF300BA3CDB /* ApexETHTransactionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexETHTransactionModel.m; sourceTree = "<group>"; };
 		E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEnterKeyView.h; sourceTree = "<group>"; };
 		E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEnterKeyView.m; sourceTree = "<group>"; };
 		E731468F210A02CF002A6C07 /* useprotocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol.html; sourceTree = "<group>"; };
@@ -1107,6 +1113,8 @@
 			children = (
 				E33A8BBC20AE7D9F0067505E /* ApexNeoClient.h */,
 				E33A8BBD20AE7D9F0067505E /* ApexNeoClient.m */,
+				E7039306211D59C600BA3CDB /* ApexETHClient.h */,
+				E7039307211D59C600BA3CDB /* ApexETHClient.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -1224,6 +1232,8 @@
 			children = (
 				E70392FD211D539600BA3CDB /* ETHWalletManager.h */,
 				E70392FE211D539700BA3CDB /* ETHWalletManager.m */,
+				E7039309211D6BF300BA3CDB /* ApexETHTransactionModel.h */,
+				E703930A211D6BF300BA3CDB /* ApexETHTransactionModel.m */,
 			);
 			path = EthWalletModel;
 			sourceTree = "<group>";
@@ -1586,6 +1596,7 @@
 				E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */,
 				E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */,
 				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
+				E7039308211D59C600BA3CDB /* ApexETHClient.m in Sources */,
 				E3373B3920F5F14F00590407 /* UIView+SOLocalization.m in Sources */,
 				E7EDD729210579CF00007F29 /* ApexCommonProfileController.m in Sources */,
 				E39E02FB20C8F4CB005DD251 /* ApexExportKeyStoreController.m in Sources */,
@@ -1650,6 +1661,7 @@
 				E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */,
 				E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */,
 				E3373B3E20F5F14F00590407 /* UIButton+SOLocalization.m in Sources */,
+				E703930B211D6BF300BA3CDB /* ApexETHTransactionModel.m in Sources */,
 				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,
 				E3CE668D20BD38BC002A1E07 /* ApexTransferDetailHeader.m in Sources */,
 				E3CE66B520BEA812002A1E07 /* DTError.m in Sources */,

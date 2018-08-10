@@ -12,10 +12,13 @@
 + (NSString *)getCliBaseUrl{
 //    [self text];
 #ifdef DEBUG
-//    return baseUrl_cli_test;
     return baseUrl_cli_main;
 #endif
     return baseUrl_cli_main;
+}
+
++ (NSString*)getETHBaseUrl{
+    return ETH_baseUrl_cli_test;
 }
 
 + (NSString *)getToolBaseUrl{
