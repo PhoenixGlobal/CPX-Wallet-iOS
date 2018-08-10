@@ -73,6 +73,7 @@
         [[_gallaryBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             [self choicePhoto];
         }];
+        _gallaryBtn.hidden = YES;
     }
     return _gallaryBtn;
 }

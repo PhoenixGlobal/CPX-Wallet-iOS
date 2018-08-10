@@ -172,15 +172,15 @@ singleM(Manager);
 
 #pragma mark - ------request-----
 + (void)getAccountStateWithAddress:(NSString *)address Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"getaccountstate" withParameters:@[address] success:success failure:failure];
+    [[ApexNeoClient shareRPCClient] invokeMethod:@"getaccountstate" withParameters:@[address] success:success failure:failure];
 }
 
 + (void)getRawTransactionWithTxid:(NSString *)txid Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"getrawtransaction" withParameters:@[txid,@1] success:success failure:failure];
+    [[ApexNeoClient shareRPCClient] invokeMethod:@"getrawtransaction" withParameters:@[txid,@1] success:success failure:failure];
 }
 
 + (void)broadCastTransactionWithData:(NSString *)data Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"sendrawtransaction" withParameters:@[data] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[ApexNeoClient shareRPCClient] invokeMethod:@"sendrawtransaction" withParameters:@[data] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         success(operation, responseObject);
     } failure:failure];
@@ -211,7 +211,7 @@ singleM(Manager);
                         ]
                            ];
         
-        [[ApexRPCClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[ApexNeoClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSArray *stack = responseObject[@"stack"];
             NSDictionary *balanceDic = stack.firstObject;
             NSString *value = balanceDic[@"value"];
@@ -244,7 +244,7 @@ singleM(Manager);
                       @"decimals",
                       @[]
                       ];
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:success failure:failure];
+    [[ApexNeoClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:success failure:failure];
 }
 
 + (void)getAssetSymbol:(NSString*)assetId Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
@@ -254,7 +254,7 @@ singleM(Manager);
                       @[]
                       ];
     
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[ApexNeoClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *stack = responseObject[@"stack"];
         NSDictionary *balanceDic = stack.firstObject;
         NSString *value = balanceDic[@"value"];
@@ -264,7 +264,7 @@ singleM(Manager);
 }
 
 + (void)verifyIsValideNeoAddress:(NSString*)address success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"validateaddress" withParameters:@[address] success:success failure:failure];
+    [[ApexNeoClient shareRPCClient] invokeMethod:@"validateaddress" withParameters:@[address] success:success failure:failure];
 }
 
 

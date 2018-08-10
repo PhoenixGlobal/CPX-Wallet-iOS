@@ -81,7 +81,7 @@
 		E33A8BB820AE795F0067505E /* ApexWalletInitController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BB120AE795F0067505E /* ApexWalletInitController.m */; };
 		E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BB220AE795F0067505E /* ApexImportWalletController.m */; };
 		E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BB520AE795F0067505E /* ApexCreatWalletController.m */; };
-		E33A8BBE20AE7D9F0067505E /* ApexRPCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BBD20AE7D9F0067505E /* ApexRPCClient.m */; };
+		E33A8BBE20AE7D9F0067505E /* ApexNeoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BBD20AE7D9F0067505E /* ApexNeoClient.m */; };
 		E33A8BC120B28CD90067505E /* Neomobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33A8BC020B28CD90067505E /* Neomobile.framework */; };
 		E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BC320B28F800067505E /* PDKeyChain.m */; };
 		E33A8BCB20B292B90067505E /* ApexWalletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E33A8BCA20B292B90067505E /* ApexWalletManager.m */; };
@@ -151,6 +151,9 @@
 		E3CE66C120BFA91F002A1E07 /* ApexThread.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66C020BFA91F002A1E07 /* ApexThread.m */; };
 		E3CE66D020BFC9A4002A1E07 /* ApexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66CF20BFC9A4002A1E07 /* ApexTests.m */; };
 		E3CE66D920C4E29E002A1E07 /* ApexAssetMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */; };
+		E70392FF211D539700BA3CDB /* ETHWalletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E70392FE211D539700BA3CDB /* ETHWalletManager.m */; };
+		E7039302211D53A300BA3CDB /* NSString+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = E7039300211D53A200BA3CDB /* NSString+Tool.m */; };
+		E7039305211D53B100BA3CDB /* SystemConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = E7039304211D53B100BA3CDB /* SystemConvert.m */; };
 		E731468E2109FC2D002A6C07 /* ApexEnterKeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */; };
 		E7314690210A02D0002A6C07 /* useprotocol.html in Resources */ = {isa = PBXBuildFile; fileRef = E731468F210A02CF002A6C07 /* useprotocol.html */; };
 		E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7314692210A05BA002A6C07 /* ApexProlicyController.m */; };
@@ -344,8 +347,8 @@
 		E33A8BB420AE795F0067505E /* ApexWalletInitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexWalletInitController.h; sourceTree = "<group>"; };
 		E33A8BB520AE795F0067505E /* ApexCreatWalletController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexCreatWalletController.m; sourceTree = "<group>"; };
 		E33A8BB620AE795F0067505E /* ApexImportWalletController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexImportWalletController.h; sourceTree = "<group>"; };
-		E33A8BBC20AE7D9F0067505E /* ApexRPCClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexRPCClient.h; sourceTree = "<group>"; };
-		E33A8BBD20AE7D9F0067505E /* ApexRPCClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexRPCClient.m; sourceTree = "<group>"; };
+		E33A8BBC20AE7D9F0067505E /* ApexNeoClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNeoClient.h; sourceTree = "<group>"; };
+		E33A8BBD20AE7D9F0067505E /* ApexNeoClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNeoClient.m; sourceTree = "<group>"; };
 		E33A8BBF20AE7DF60067505E /* OtherMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherMacro.h; sourceTree = "<group>"; };
 		E33A8BC020B28CD90067505E /* Neomobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Neomobile.framework; sourceTree = "<group>"; };
 		E33A8BC320B28F800067505E /* PDKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKeyChain.m; sourceTree = "<group>"; };
@@ -478,6 +481,12 @@
 		E3CE66D120BFC9A4002A1E07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3CE66D720C4E29E002A1E07 /* ApexAssetMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetMainController.h; sourceTree = "<group>"; };
 		E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetMainController.m; sourceTree = "<group>"; };
+		E70392FD211D539600BA3CDB /* ETHWalletManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETHWalletManager.h; sourceTree = "<group>"; };
+		E70392FE211D539700BA3CDB /* ETHWalletManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETHWalletManager.m; sourceTree = "<group>"; };
+		E7039300211D53A200BA3CDB /* NSString+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tool.m"; sourceTree = "<group>"; };
+		E7039301211D53A200BA3CDB /* NSString+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Tool.h"; sourceTree = "<group>"; };
+		E7039303211D53B100BA3CDB /* SystemConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemConvert.h; sourceTree = "<group>"; };
+		E7039304211D53B100BA3CDB /* SystemConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemConvert.m; sourceTree = "<group>"; };
 		E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEnterKeyView.h; sourceTree = "<group>"; };
 		E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEnterKeyView.m; sourceTree = "<group>"; };
 		E731468F210A02CF002A6C07 /* useprotocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol.html; sourceTree = "<group>"; };
@@ -942,6 +951,8 @@
 				E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */,
 				E3CE66BF20BFA91F002A1E07 /* ApexThread.h */,
 				E3CE66C020BFA91F002A1E07 /* ApexThread.m */,
+				E7039303211D53B100BA3CDB /* SystemConvert.h */,
+				E7039304211D53B100BA3CDB /* SystemConvert.m */,
 				E7EA1BCA20C112B700E2C597 /* NullSafe.m */,
 			);
 			path = Tools;
@@ -994,6 +1005,8 @@
 		E33A8B8A20AE756E0067505E /* Catagotries */ = {
 			isa = PBXGroup;
 			children = (
+				E7039301211D53A200BA3CDB /* NSString+Tool.h */,
+				E7039300211D53A200BA3CDB /* NSString+Tool.m */,
 				E3263EFE20B6BDB1001D3C19 /* UILabel+Spacing.h */,
 				E3263EFD20B6BDB1001D3C19 /* UILabel+Spacing.m */,
 				E33A8BDD20B2BB340067505E /* UIView+Common.h */,
@@ -1083,14 +1096,8 @@
 		E33A8BB720AE795F0067505E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E33A8BC920B292B90067505E /* ApexWalletManager.h */,
-				E33A8BCA20B292B90067505E /* ApexWalletManager.m */,
-				E324311420DCC14700284B91 /* ApexTransferHistoryManager.h */,
-				E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */,
-				E3263F0020B7BC84001D3C19 /* ApexWalletModel.h */,
-				E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */,
-				E3689AFC20DB92A300B4B001 /* ApexTransferModel.h */,
-				E3689AFD20DB92A300B4B001 /* ApexTransferModel.m */,
+				E70392D9211D451A00BA3CDB /* EthWalletModel */,
+				E70392C1211D443500BA3CDB /* NeoWalletModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1098,8 +1105,8 @@
 		E33A8BBB20AE7D830067505E /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
-				E33A8BBC20AE7D9F0067505E /* ApexRPCClient.h */,
-				E33A8BBD20AE7D9F0067505E /* ApexRPCClient.m */,
+				E33A8BBC20AE7D9F0067505E /* ApexNeoClient.h */,
+				E33A8BBD20AE7D9F0067505E /* ApexNeoClient.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -1195,6 +1202,30 @@
 				E3CE66D120BFC9A4002A1E07 /* Info.plist */,
 			);
 			path = ApexTests;
+			sourceTree = "<group>";
+		};
+		E70392C1211D443500BA3CDB /* NeoWalletModel */ = {
+			isa = PBXGroup;
+			children = (
+				E33A8BC920B292B90067505E /* ApexWalletManager.h */,
+				E33A8BCA20B292B90067505E /* ApexWalletManager.m */,
+				E324311420DCC14700284B91 /* ApexTransferHistoryManager.h */,
+				E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */,
+				E3263F0020B7BC84001D3C19 /* ApexWalletModel.h */,
+				E3263F0120B7BC84001D3C19 /* ApexWalletModel.m */,
+				E3689AFC20DB92A300B4B001 /* ApexTransferModel.h */,
+				E3689AFD20DB92A300B4B001 /* ApexTransferModel.m */,
+			);
+			path = NeoWalletModel;
+			sourceTree = "<group>";
+		};
+		E70392D9211D451A00BA3CDB /* EthWalletModel */ = {
+			isa = PBXGroup;
+			children = (
+				E70392FD211D539600BA3CDB /* ETHWalletManager.h */,
+				E70392FE211D539700BA3CDB /* ETHWalletManager.m */,
+			);
+			path = EthWalletModel;
 			sourceTree = "<group>";
 		};
 		E7314699210A414E002A6C07 /* images */ = {
@@ -1514,7 +1545,7 @@
 				E33A8B8620AE75650067505E /* CYLTabBarButton.m in Sources */,
 				E33A8BD920B2ACEA0067505E /* ApexAccountStateModel.m in Sources */,
 				E3373B3C20F5F14F00590407 /* UIBarItem+SOLocalization.m in Sources */,
-				E33A8BBE20AE7D9F0067505E /* ApexRPCClient.m in Sources */,
+				E33A8BBE20AE7D9F0067505E /* ApexNeoClient.m in Sources */,
 				E39E02F520C7D771005DD251 /* UITextView+placeholder.m in Sources */,
 				E3263EBF20B54A41001D3C19 /* ApexSwitchHeaderBar.m in Sources */,
 				E3CE669B20BE4539002A1E07 /* ApexMnenonicShowView.m in Sources */,
@@ -1527,6 +1558,7 @@
 				E39E02E920C7C82E005DD251 /* ApexImportSwithHeaderBar.m in Sources */,
 				E73934A1210877E5007953FB /* ApexRowSelectView.m in Sources */,
 				E3373B3820F5F14F00590407 /* SOSwizzle.m in Sources */,
+				E7039302211D53A300BA3CDB /* NSString+Tool.m in Sources */,
 				E39E02E020C68C38005DD251 /* ApexMoreFuncCell.m in Sources */,
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
 				E3CE66BA20BEA812002A1E07 /* CYLDayCollectionView.m in Sources */,
@@ -1541,6 +1573,7 @@
 				E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */,
 				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
+				E7039305211D53B100BA3CDB /* SystemConvert.m in Sources */,
 				E39E02CD20C5088C005DD251 /* ApexAssetCell.m in Sources */,
 				E7EDD7532106BB5700007F29 /* ApexQuestModel.m in Sources */,
 				E3263EC220B55A63001D3C19 /* ApexTransactionRecordView.m in Sources */,
@@ -1560,6 +1593,7 @@
 				E3CE669E20BE47C3002A1E07 /* ApexMnemonicShowCell.m in Sources */,
 				E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */,
 				E38A64BF20ECB88600150F3B /* ApexAddAssetCell.m in Sources */,
+				E70392FF211D539700BA3CDB /* ETHWalletManager.m in Sources */,
 				E33A8B5B20AE724F0067505E /* main.m in Sources */,
 				E3CE66B420BEA812002A1E07 /* DTTimePeriodChain.m in Sources */,
 				E73934A4210958B7007953FB /* ApexNormalQuestCell.m in Sources */,

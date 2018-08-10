@@ -38,7 +38,7 @@
 #import "Macro.h"
 #import "OtherMacro.h"
 #import "PDKeyChain.h"
-#import "ApexRPCClient.h"
+#import "ApexNeoClient.h"
 #import "CYLEmptyView.h"
 #import "ApexWalletManager.h"
 #import "ApexWalletModel.h"

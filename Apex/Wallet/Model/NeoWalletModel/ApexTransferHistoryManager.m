@@ -308,7 +308,7 @@ static ApexTransferHistoryManager *_instance;
 #pragma mark - ------request------
 //根据txid获取此交易所在区块
 - (void)requestBlockHeightWithTxid:(NSString*)txid success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
-    [[ApexRPCClient shareRPCClient] invokeMethod:@"getrawtransaction" withParameters:@[txid,@1] success:success failure:failure];
+    [[ApexNeoClient shareRPCClient] invokeMethod:@"getrawtransaction" withParameters:@[txid,@1] success:success failure:failure];
 }
 
 //从服务器中获取交易历史记录

@@ -11,7 +11,7 @@
 
 
 @class AFHTTPRequestOperation;
-@interface ApexRPCClient : NSObject
+@interface ApexNeoClient : NSObject
 singleH(RPCClient);
 
 //更换seed

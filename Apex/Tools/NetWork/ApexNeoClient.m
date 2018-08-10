@@ -6,16 +6,16 @@
 //  Copyright © 2018年 Chinapex. All rights reserved.
 //
 
-#import "ApexRPCClient.h"
+#import "ApexNeoClient.h"
 #import <AFJSONRPCClient.h>
 #import "ApexNetWorkCommonConfig.h"
 
 
-@interface ApexRPCClient()
+@interface ApexNeoClient()
 @property (nonatomic, strong) AFJSONRPCClient *client;
 @end
 
-@implementation ApexRPCClient
+@implementation ApexNeoClient
 singleM(RPCClient);
 
 #pragma mark - private
@@ -69,6 +69,4 @@ singleM(RPCClient);
     }
     return _client;
 }
-
-
 @end
