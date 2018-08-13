@@ -34,6 +34,8 @@
 @property (nonatomic, strong) UIButton *importBtn;
 @property (nonatomic, strong) UIButton *creatBtn;
 @property (nonatomic, strong) RACSignal *combineSignal;
+
+@property (nonatomic, strong) id createdWallet; /**<  */
 @end
 
 @implementation ApexCreatWalletController
@@ -178,7 +180,7 @@
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
     
     [ApexWalletManager saveWallet:[NSString stringWithFormat:@"%@/%@",address, self.walletNameL.text]];
-    
+    _createdWallet = wallet;
     return wallet;
 }
 
@@ -194,7 +196,7 @@
         [PDKeyChain save:KEYCHAIN_KEY(address) data:ks];
         
         [ETHWalletManager saveETHWallet:address name:self.walletNameL.text];
-        
+        self.createdWallet = wallet;
     } failed:^(NSError *error) {
         [self showMessage:[NSString stringWithFormat:@"%@",SOLocalizedStringFromTable(@"Create Wallet Failed", nil)]];
     }];
@@ -207,20 +209,25 @@
     
     if ([eventName isEqualToString:RouteEventName_CallCreatWalletApi]) {
         
-        NeomobileWallet *wallet = nil;
-        
-        if (self.typeSelectV.type == ApexWalletType_Neo) {
-            [self creatNeoWallet];
-        }else{
-            [self createEthWallet];
-        }
-        
-        if (wallet == nil) {
-            return;
-        }
         ApexPrepareBackUpController *vc = [[ApexPrepareBackUpController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
-        vc.address = wallet.address;
+        
+        if (self.typeSelectV.type == ApexWalletType_Neo) {
+            [TKFileManager saveValue:@(ApexWalletType_Neo) forKey:KglobleWalletType];
+             [self creatNeoWallet];
+            NeomobileWallet *wallet = (NeomobileWallet*)_createdWallet;
+            vc.address = wallet.address;
+        }else{
+            [TKFileManager saveValue:@(ApexWalletType_Eth) forKey:KglobleWalletType];
+            [self createEthWallet];
+            EthmobileWallet *wallet = (EthmobileWallet*)_createdWallet;
+            vc.address = wallet.address;
+        }
+        
+        if (_createdWallet == nil) {
+            return;
+        }
+        
         vc.isFromCreat = YES;
         vc.BackupCompleteBlock = ^{
             if (self.didFinishCreatSub) {

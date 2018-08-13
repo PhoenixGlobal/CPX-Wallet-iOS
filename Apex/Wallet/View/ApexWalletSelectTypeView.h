@@ -7,14 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
-
-typedef NS_ENUM(NSInteger, ApexWalletType) {
-    ApexWalletType_Neo,
-    ApexWalletType_Eth
-};
-
 @interface ApexWalletSelectTypeView : UIView
 @property (nonatomic, strong) UITextField *typeTF; /**<  */
 @property (nonatomic, strong) RACSubject *didChooseTypeSub; /**<  */

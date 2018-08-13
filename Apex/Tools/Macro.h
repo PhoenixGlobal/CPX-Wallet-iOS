@@ -33,6 +33,7 @@
 #define KBindingAddressToCommonProfile [NSString stringWithFormat:@"address_commonProfile"]
 #define KBindingAddressToSpecialProfile [NSString stringWithFormat:@"address_specialProfile"]
 #define KisFirstCreateWalletDone  @"KisFirstCreateWalletDone"
+#define KglobleWalletType @"KglobleWalletType"
 
 //neo
 #define baseUrl_tool_test @"http://dev.chinapex.com.cn:10086/tool/"

@@ -31,6 +31,12 @@
     [TKFileManager saveValue:@(YES) forKey:KisFirstCreateWalletDone];
 }
 
++ (NSMutableArray*)getEthWalletsArray{
+    return [[[TKFileManager loadDataWithFileName:ethWalletsKey] sortedArrayUsingComparator:^NSComparisonResult(ETHWalletModel *obj1, ETHWalletModel *obj2) {
+        return obj1.createTimeStamp.integerValue > obj2.createTimeStamp.integerValue;
+    }] mutableCopy];
+}
+
 + (void)creatETHWalletSuccess:(void (^)(EthmobileWallet *))success failed:(void (^)(NSError *))fail{
     NSError *error = nil;
     EthmobileWallet *wallet = EthmobileNew(&error);

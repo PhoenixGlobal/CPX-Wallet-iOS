@@ -99,7 +99,14 @@
 
 - (void)getWalletLists{
     [self.searchTooBar clearEntrance];
-    _contentArr = [ApexWalletManager getWalletsArr];
+    NSNumber *walletType = [TKFileManager ValueWithKey:KglobleWalletType];
+    if (walletType.integerValue == ApexWalletType_Neo) {
+        _contentArr = [ApexWalletManager getWalletsArr];
+    }else{
+        _contentArr = [ETHWalletManager getEthWalletsArray];
+    }
+    
+    
     if (_contentArr.count == 0) {
         [self.baseView addSubview:self.noWalletView];
         [self.noWalletView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -177,8 +184,16 @@
     self.searchTooBar.textDidChangeSub = [RACSubject subject];
     [[self.searchTooBar.textDidChangeSub takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSString *key) {
         @strongify(self);
+        
+        NSArray *wallets = @[];
+        if (((NSNumber*)[TKFileManager ValueWithKey:KglobleWalletType]).integerValue == ApexWalletType_Neo) {
+            wallets = [ApexWalletManager getWalletsArr];
+        }else{
+            wallets = [ETHWalletManager getEthWalletsArray];
+        }
+        
         if (key.length == 0) {
-            self.contentArr = [ApexWalletManager getWalletsArr];
+            self.contentArr = [wallets mutableCopy];
             [self.emptyV removeFromSuperview];
             self.emptyV = nil;
             [self.tableView reloadData];
@@ -187,7 +202,7 @@
         
         [self.contentArr removeAllObjects];
         
-        for (ApexWalletModel *wallet in [ApexWalletManager getWalletsArr]) {
+        for (ApexWalletModel *wallet in wallets) {
             
             if ([wallet.address.lowercaseString containsString:key.lowercaseString]) {
                 [self.contentArr addObject:wallet];
@@ -220,12 +235,12 @@
     vc.typeArr = @[@"NEO", @"ETH"];
     vc.didChangeTypeSub = [RACSubject subject];
     [vc.didChangeTypeSub subscribeNext:^(NSString *type) {
-        NSLog(@"%@",type);
         if ([type isEqualToString:@"NEO"]) {
-            
+            [TKFileManager saveValue:@(ApexWalletType_Neo) forKey:KglobleWalletType];
         }else{
-            
+            [TKFileManager saveValue:@(ApexWalletType_Eth) forKey:KglobleWalletType];
         }
+        [self getWalletLists];
     }];
     [self.navigationController pushViewController:vc animated:YES];
 }

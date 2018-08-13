@@ -15,6 +15,7 @@
 @interface ETHWalletManager : NSObject
 
 + (void)saveETHWallet:(NSString*)address name:(NSString*)name;
++ (NSMutableArray*)getEthWalletsArray;
 
 //创建钱包
 + (void)creatETHWalletSuccess:(void (^)(EthmobileWallet *wallet))success failed:(void (^)(NSError *error))fail;

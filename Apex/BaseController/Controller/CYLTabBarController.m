@@ -53,8 +53,9 @@
 
 - (void)setAllViewControllers{
     
-    ApexDiscoverController *vc = [[ApexDiscoverController alloc] init];
-    [self setOneViewController:vc image:[UIImage imageNamed:@"Page 1-1"] selImage:[UIImage imageNamed:@"Page 1-2"] title:@"发现"];
+#warning 开启后此tab后 切换语言会崩溃 待处理
+//    ApexDiscoverController *vc = [[ApexDiscoverController alloc] init];
+//    [self setOneViewController:vc image:[UIImage imageNamed:@"Page 1-1"] selImage:[UIImage imageNamed:@"Page 1-2"] title:@"发现"];
     
     ApexAssetMainController *vc1 = [[ApexAssetMainController alloc] init];
     [self setOneViewController:vc1 image:[UIImage imageNamed:@"叠加_块"] selImage:[UIImage imageNamed:@"叠加_块-1"] title:SOLocalizedStringFromTable(@"Assets", nil)];

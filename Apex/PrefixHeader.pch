@@ -41,6 +41,7 @@
 #import "ApexNeoClient.h"
 #import "CYLEmptyView.h"
 #import "ApexWalletManager.h"
+#import "ETHWalletManager.h"
 #import "ApexWalletModel.h"
 #import "ApexBlockChainManager.h"
 #import "ApexThread.h"
