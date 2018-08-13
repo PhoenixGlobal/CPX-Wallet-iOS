@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #define RouteNameEvent_TopWalletCellDidChooseWallet @"RouteNameEvent_TopWalletCellDidChooseWallet"
 @interface ApexMoreTopCell : UITableViewCell
-@property (nonatomic, strong) NSArray *walletArr;
+@property (nonatomic, strong) NSArray *typeArr;
 @end

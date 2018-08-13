@@ -10,9 +10,12 @@
 #import "NSString+Tool.h"
 #import "SystemConvert.h"
 
-#define apiToken @"CTTVCEUHGU1UMY14IMWH5G9IREY7AAMT1V"
+#define ethWalletsKey @"ethWalletsKey"
 
 @interface ETHWalletManager : NSObject
+
++ (void)saveETHWallet:(NSString*)address name:(NSString*)name;
+
 //创建钱包
 + (void)creatETHWalletSuccess:(void (^)(EthmobileWallet *wallet))success failed:(void (^)(NSError *error))fail;
 
@@ -23,6 +26,14 @@
 
 //获取交易详情
 + (void)requestTransactionByHash:(NSString*)hash
+                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+//获取交易收据,pending中的交易返回nil
+/**
+    交易上链后才会有返回
+ */
++ (void)requestTransactionReceiptByHash:(NSString*)hash
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

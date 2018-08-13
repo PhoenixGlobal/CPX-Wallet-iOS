@@ -12,6 +12,9 @@
 #import "ApexWalletManager.h"
 #import "ApexPrepareBackUpController.h"
 #import "ApexProlicyController.h"
+#import "ApexWalletSelectTypeView.h"
+#import "ApexRowSelectView.h"
+#import "ETHWalletManager.h"
 
 #define RouteEventName_CallCreatWalletApi @"RouteEventName_CallCreatWalletApi"
 #define RouteNameEvent_GoToImportWallet @"RouteNameEvent_GoToImportWallet"
@@ -24,6 +27,7 @@
 @property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) UIButton *privacyAgreeBtn;
 @property (nonatomic, strong) UILabel *privacyAgreeLable;
+@property (nonatomic, strong) ApexWalletSelectTypeView *typeSelectV; /**<  */
 @property (nonatomic, strong) ApexAlertTextField *walletNameL;
 @property (nonatomic, strong) ApexAlertTextField *passWordL;
 @property (nonatomic, strong) ApexAlertTextField *repeatPassWordL;
@@ -44,8 +48,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-    [_walletNameL becomeFirstResponder];
+//    [_walletNameL becomeFirstResponder];
 }
 
 
@@ -56,6 +59,7 @@
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     self.navigationItem.titleView = self.titleL;
     
+    [self.view addSubview:self.typeSelectV];
     [self.view addSubview:self.walletNameL];
     [self.view addSubview:self.passWordL];
     [self.view addSubview:self.repeatPassWordL];
@@ -80,21 +84,28 @@
         make.top.equalTo(self.backIV).offset(scaleHeight667(96));
     }];
     
-    [self.walletNameL mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.typeSelectV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.tipsView.mas_bottom).offset(35);
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(scaleWidth375(231));
         make.height.mas_equalTo(44);
     }];
     
+    [self.walletNameL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.typeSelectV.mas_bottom).offset(20);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.width.mas_equalTo(scaleWidth375(231));
+        make.height.mas_equalTo(44);
+    }];
+    
     [self.passWordL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.walletNameL.mas_bottom).offset(30);
+        make.top.equalTo(self.walletNameL.mas_bottom).offset(20);
         make.left.right.equalTo(self.walletNameL);
         make.height.equalTo(self.walletNameL);
     }];
     
     [self.repeatPassWordL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.passWordL.mas_bottom).offset(30);
+        make.top.equalTo(self.passWordL.mas_bottom).offset(20);
         make.left.right.equalTo(self.walletNameL);
         make.height.equalTo(self.walletNameL);
     }];
@@ -139,46 +150,15 @@
     
     [self.tipsL2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.tipsL.mas_bottom).offset(20);
-//        make.bottom.equalTo(self.tipsL.superview).offset(-30);
         make.left.equalTo(self.tipsL.superview).offset(10);
         make.right.equalTo(self.tipsL.superview).offset(-10);
     }];
 
     RAC(self.creatBtn, enabled) = self.combineSignal;
 }
-- (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
-    
-    if ([eventName isEqualToString:RouteEventName_CallCreatWalletApi]) {
-        
-        NeomobileWallet *wallet = [self creatWallet];
-        
-        if (wallet == nil) {
-            return;
-        }
-        ApexPrepareBackUpController *vc = [[ApexPrepareBackUpController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        vc.address = wallet.address;
-        vc.isFromCreat = YES;
-        vc.BackupCompleteBlock = ^{
-            if (self.didFinishCreatSub) {
-                [self.didFinishCreatSub sendNext:@""];
-            }
-        };
-        [self directlyPushToViewControllerWithSelfDeleted:vc];
-//        [self.navigationController pushViewController:vc animated:YES];
 
-    }else if ([eventName isEqualToString:RouteNameEvent_GoToImportWallet]){
-//        [self showMessage:@"正在开发中..."];
-        ApexImportWalletController *importVC = [[ApexImportWalletController alloc] init];
-        [self.navigationController pushViewController:importVC animated:YES];
-    }
-    
-    
-    [super routeEventWithName:eventName userInfo:userinfo];
-}
-
-//创建钱包
-- (NeomobileWallet*)creatWallet{
+//创建Neo钱包
+- (NeomobileWallet*)creatNeoWallet{
     NSError *err = nil;
     NSError *keystoreErr = nil;
     
@@ -187,7 +167,6 @@
         [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Wallet Failed", nil),err]];
         return nil;
     }
-//    NSLog(@"%@",[wallet mnemonic:mnemonicEnglish error:nil]);
     NSString *keystore = [wallet toKeyStore:self.passWordL.text error:&keystoreErr];
     if (keystoreErr) {
         [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Failed", nil),keystoreErr]];
@@ -203,10 +182,65 @@
     return wallet;
 }
 
+- (void)createEthWallet{
+    [ETHWalletManager creatETHWalletSuccess:^(EthmobileWallet *wallet) {
+        
+        NSError *ksErr = nil;
+        NSString *ks = [wallet toKeyStore:self.passWordL.text error:&ksErr];
+        if (ksErr) {
+            [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Failed", nil),ksErr]];
+        }
+        NSString *address = wallet.address;
+        [PDKeyChain save:KEYCHAIN_KEY(address) data:ks];
+        
+        [ETHWalletManager saveETHWallet:address name:self.walletNameL.text];
+        
+    } failed:^(NSError *error) {
+        [self showMessage:[NSString stringWithFormat:@"%@",SOLocalizedStringFromTable(@"Create Wallet Failed", nil)]];
+    }];
+}
+
 #pragma mark - public
 
 #pragma mark - delegate & datasource
+- (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
+    
+    if ([eventName isEqualToString:RouteEventName_CallCreatWalletApi]) {
+        
+        NeomobileWallet *wallet = nil;
+        
+        if (self.typeSelectV.type == ApexWalletType_Neo) {
+            [self creatNeoWallet];
+        }else{
+            [self createEthWallet];
+        }
+        
+        if (wallet == nil) {
+            return;
+        }
+        ApexPrepareBackUpController *vc = [[ApexPrepareBackUpController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.address = wallet.address;
+        vc.isFromCreat = YES;
+        vc.BackupCompleteBlock = ^{
+            if (self.didFinishCreatSub) {
+                [self.didFinishCreatSub sendNext:@""];
+            }
+        };
+        [self directlyPushToViewControllerWithSelfDeleted:vc];
+        
+        
+    }else if ([eventName isEqualToString:RouteNameEvent_GoToImportWallet]){
+        ApexImportWalletController *importVC = [[ApexImportWalletController alloc] init];
+        [self.navigationController pushViewController:importVC animated:YES];
+    }
+    
+    [super routeEventWithName:eventName userInfo:userinfo];
+}
+
+
 - (void)handleEvent{
+    //用户协议
     self.privacyAgreeLable.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
     [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
@@ -222,6 +256,21 @@
         [self.navigationController pushViewController:vc animated:YES];
     }];
     [self.privacyAgreeLable addGestureRecognizer:tap];
+    
+    //选择钱包类型
+    self.typeSelectV.didChooseTypeSub = [RACSubject subject];
+    @weakify(self);
+    [self.typeSelectV.didChooseTypeSub subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        [ApexRowSelectView showSingleRowSelectViewWithContentArr:@[@"NEO",@"ETH"] CompleteHandler:^(id obj) {
+            self.typeSelectV.typeTF.text = obj;
+            if ([self.typeSelectV.typeTF.text isEqualToString:@"NEO"]) {
+                self.typeSelectV.type = ApexWalletType_Neo;
+            }else{
+                self.typeSelectV.type = ApexWalletType_Eth;
+            }
+        }];
+    }];
 }
 
 #pragma mark - getter & setter
@@ -269,6 +318,16 @@
     return _titleL;
 }
 
+- (ApexWalletSelectTypeView *)typeSelectV{
+    if (!_typeSelectV) {
+        _typeSelectV = [[ApexWalletSelectTypeView alloc] init];
+        _typeSelectV.typeTF.font = [UIFont systemFontOfSize:13];
+        _typeSelectV.typeTF.textColor = [UIColor colorWithHexString:@"555555"];
+        
+    }
+    return _typeSelectV;
+}
+
 - (ApexAlertTextField *)walletNameL{
     if (!_walletNameL) {
         _walletNameL = [[ApexAlertTextField alloc] initWithFrame:CGRectZero];
@@ -291,8 +350,6 @@
             return true;
         };
         _walletNameL.clearButtonMode = UITextFieldViewModeWhileEditing;
-        
-        
     }
     return _walletNameL;
 }
@@ -364,11 +421,13 @@
         _creatBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [_creatBtn setTitle:SOLocalizedStringFromTable(@"Confirm", nil) forState:UIControlStateNormal];
         _creatBtn.layer.cornerRadius = 6;
+        @weakify(self);
         [[RACObserve(_creatBtn, enabled) takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNumber *x) {
+            @strongify(self);
             if (x.boolValue) {
-                [_creatBtn setBackgroundColor:[ApexUIHelper mainThemeColor]];
+                [self.creatBtn setBackgroundColor:[ApexUIHelper mainThemeColor]];
             }else{
-                [_creatBtn setBackgroundColor:[ApexUIHelper grayColor]];
+                [self.creatBtn setBackgroundColor:[ApexUIHelper grayColor]];
             }
         }];
         _creatBtn.enabled = false;
@@ -385,8 +444,10 @@
         [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Rectangle 13"] forState:UIControlStateNormal];
         [_privacyAgreeBtn setImage:[UIImage imageNamed:@"Group 4-1"] forState:UIControlStateSelected];
         [_privacyAgreeBtn setEnlargeEdge:20];
+        @weakify(self);
         [[_privacyAgreeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-            _privacyAgreeBtn.selected = !_privacyAgreeBtn.selected;
+            @strongify(self);
+            self.privacyAgreeBtn.selected = !self.privacyAgreeBtn.selected;
         }];
     }
     return _privacyAgreeBtn;

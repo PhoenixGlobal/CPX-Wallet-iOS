@@ -8,6 +8,7 @@
 
 #import "ApexDiscoverController.h"
 #import "ApexImportWalletController.h"
+#import "ApexETHTransactionModel.h"
 
 @interface ApexDiscoverController ()
 @property (nonatomic, strong) EthmobileWallet *wallet; /**<  */
@@ -48,7 +49,17 @@
 
 #pragma mark - ------eventResponse------
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [ETHWalletManager requestTransactionByHash:@"0xdaa3205ab50bade7815a0719202250731d2332cbbaa81fd05a92469da1ef3490" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ETHWalletManager sendTxWithWallet:_wallet to:@"0xbe1973821307e4f6b20b03696d036e4c3c2cdd65" nonce:@"4" amount:@"0.5" gas:@"0.02" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+           
+            [ETHWalletManager requestTransactionReceiptByHash:responseObject success:^(AFHTTPRequestOperation *operation, ApexETHReceiptModel *responseObject) {
+                NSLog(@"%@",responseObject.status);
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                
+            }];
+            
+        }];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

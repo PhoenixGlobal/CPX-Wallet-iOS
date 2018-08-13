@@ -215,9 +215,19 @@
 }
 
 - (void)pushAction{
-        ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
-        vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-        [self.navigationController pushViewController:vc animated:YES];
+    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
+    vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
+    vc.typeArr = @[@"NEO", @"ETH"];
+    vc.didChangeTypeSub = [RACSubject subject];
+    [vc.didChangeTypeSub subscribeNext:^(NSString *type) {
+        NSLog(@"%@",type);
+        if ([type isEqualToString:@"NEO"]) {
+            
+        }else{
+            
+        }
+    }];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - ------getter & setter------
 - (ApexSearchWalletToolBar *)searchTooBar{

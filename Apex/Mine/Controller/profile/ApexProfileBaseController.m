@@ -142,6 +142,10 @@
 - (void)handleEvent{
     [[self.exchangeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         ApexChangeBindWalletController *vc = [[ApexChangeBindWalletController alloc] init];
+        vc.didSelectCellSub = [RACSubject subject];
+        [vc.didSelectCellSub subscribeNext:^(ApexWalletModel *model) {
+            [TKFileManager saveValue:model.address forKey:KBindingWalletAddress];
+        }];
         [self.navigationController pushViewController:vc animated:YES];
     }];
 }

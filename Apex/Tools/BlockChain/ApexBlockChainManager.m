@@ -9,7 +9,7 @@
 #import "ApexBlockChainManager.h"
 #import <AFNetworking.h>
 #define neoScanNodesUrl @"api/main_net/v1/get_all_nodes"
-#define maxFailTime 10
+#define maxFailTime 3
 
 @interface NeoNodeObject : NSObject
 @property (nonatomic, strong) NSString *url;
@@ -35,13 +35,13 @@
 singleM(SharedManager);
 
 - (void)prepare{
-    self.timer = [NSTimer timerWithTimeInterval:scanPeriod repeats:YES block:^(NSTimer * _Nonnull timer) {
-       [self lookingForSeed];
-    }];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-    [self.timer fire];
-    
-    self.failTime = 0;
+//    self.timer = [NSTimer timerWithTimeInterval:scanPeriod repeats:YES block:^(NSTimer * _Nonnull timer) {
+//       [self lookingForSeed];
+//    }];
+//    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+//    [self.timer fire];
+//    
+//    self.failTime = 0;
 }
 
 - (void)lookingForSeed{

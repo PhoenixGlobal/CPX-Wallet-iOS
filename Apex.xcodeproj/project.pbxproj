@@ -156,6 +156,8 @@
 		E7039305211D53B100BA3CDB /* SystemConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = E7039304211D53B100BA3CDB /* SystemConvert.m */; };
 		E7039308211D59C600BA3CDB /* ApexETHClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E7039307211D59C600BA3CDB /* ApexETHClient.m */; };
 		E703930B211D6BF300BA3CDB /* ApexETHTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E703930A211D6BF300BA3CDB /* ApexETHTransactionModel.m */; };
+		E703930E212162A500BA3CDB /* ApexWalletSelectTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E703930D212162A500BA3CDB /* ApexWalletSelectTypeView.m */; };
+		E70393132121A26500BA3CDB /* ETHWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E70393122121A26500BA3CDB /* ETHWalletModel.m */; };
 		E731468E2109FC2D002A6C07 /* ApexEnterKeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */; };
 		E7314690210A02D0002A6C07 /* useprotocol.html in Resources */ = {isa = PBXBuildFile; fileRef = E731468F210A02CF002A6C07 /* useprotocol.html */; };
 		E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7314692210A05BA002A6C07 /* ApexProlicyController.m */; };
@@ -493,6 +495,10 @@
 		E7039307211D59C600BA3CDB /* ApexETHClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexETHClient.m; sourceTree = "<group>"; };
 		E7039309211D6BF300BA3CDB /* ApexETHTransactionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexETHTransactionModel.h; sourceTree = "<group>"; };
 		E703930A211D6BF300BA3CDB /* ApexETHTransactionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexETHTransactionModel.m; sourceTree = "<group>"; };
+		E703930C212162A500BA3CDB /* ApexWalletSelectTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletSelectTypeView.h; sourceTree = "<group>"; };
+		E703930D212162A500BA3CDB /* ApexWalletSelectTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletSelectTypeView.m; sourceTree = "<group>"; };
+		E70393112121A26500BA3CDB /* ETHWalletModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHWalletModel.h; sourceTree = "<group>"; };
+		E70393122121A26500BA3CDB /* ETHWalletModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHWalletModel.m; sourceTree = "<group>"; };
 		E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEnterKeyView.h; sourceTree = "<group>"; };
 		E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEnterKeyView.m; sourceTree = "<group>"; };
 		E731468F210A02CF002A6C07 /* useprotocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol.html; sourceTree = "<group>"; };
@@ -1072,6 +1078,8 @@
 				E39E02EE20C7D206005DD251 /* ApexImportByMnemonicView.m */,
 				E39E02F620C7E0AA005DD251 /* ApexPrivacyAggreView.h */,
 				E39E02F720C7E0AA005DD251 /* ApexPrivacyAggreView.m */,
+				E703930C212162A500BA3CDB /* ApexWalletSelectTypeView.h */,
+				E703930D212162A500BA3CDB /* ApexWalletSelectTypeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1232,6 +1240,8 @@
 			children = (
 				E70392FD211D539600BA3CDB /* ETHWalletManager.h */,
 				E70392FE211D539700BA3CDB /* ETHWalletManager.m */,
+				E70393112121A26500BA3CDB /* ETHWalletModel.h */,
+				E70393122121A26500BA3CDB /* ETHWalletModel.m */,
 				E7039309211D6BF300BA3CDB /* ApexETHTransactionModel.h */,
 				E703930A211D6BF300BA3CDB /* ApexETHTransactionModel.m */,
 			);
@@ -1661,7 +1671,9 @@
 				E338964E20B505EB00DD51FE /* CYLEmptyView.m in Sources */,
 				E33A8B7A20AE75500067505E /* ApexUIHelper.m in Sources */,
 				E3373B3E20F5F14F00590407 /* UIButton+SOLocalization.m in Sources */,
+				E703930E212162A500BA3CDB /* ApexWalletSelectTypeView.m in Sources */,
 				E703930B211D6BF300BA3CDB /* ApexETHTransactionModel.m in Sources */,
+				E70393132121A26500BA3CDB /* ETHWalletModel.m in Sources */,
 				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,
 				E3CE668D20BD38BC002A1E07 /* ApexTransferDetailHeader.m in Sources */,
 				E3CE66B520BEA812002A1E07 /* DTError.m in Sources */,

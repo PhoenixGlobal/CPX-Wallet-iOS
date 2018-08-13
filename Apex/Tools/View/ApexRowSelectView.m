@@ -123,7 +123,13 @@
         view.textAlignment = NSTextAlignmentCenter;
         [view addLinecolor:[ApexUIHelper grayColor240] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     }
-    view.text = self.contentArr[row].name;
+    id model = self.contentArr[row];
+    if ([model isKindOfClass:ApexQuestItemBaseObject.class]) {
+        view.text = ((ApexQuestItemBaseObject*)model).name;
+    }else if([model isKindOfClass:NSString.class]){
+        view.text = model;
+    }
+    
     return view;
 }
 

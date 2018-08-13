@@ -5,6 +5,7 @@
   Created by chinapex on 2018/7/12.
   Copyright © 2018 Gary. All rights reserved.
 */
+"CreateType" = "钱包类型";
 "Create Wallet" = "创建钱包";
 "Import Wallet" = "导入钱包";
 "Wallet Name" = "钱包名称";

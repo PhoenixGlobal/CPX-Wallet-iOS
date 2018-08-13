@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class ApexQuestItemBaseObject;
-typedef void(^didSelectRow)(ApexQuestItemBaseObject* obj);
+typedef void(^didSelectRow)(id obj);
 
 @interface ApexRowSelectView : UIView
 + (void)showSingleRowSelectViewWithContentArr:(NSArray*)contentArr CompleteHandler:(didSelectRow)handler;

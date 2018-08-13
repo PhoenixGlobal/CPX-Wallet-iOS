@@ -11,7 +11,6 @@
 @interface ApexChangeWalletCell()
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
-@property (weak, nonatomic) IBOutlet UIImageView *indicator;
 
 @end
 
@@ -31,13 +30,6 @@
     _model = model;
     _walletNameL.text = model.name;
     _addressL.text = model.address;
-    
-    NSString *bindAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
-    if ([bindAddress isEqualToString:model.address]) {
-        self.indicator.hidden = NO;
-    }else{
-        self.indicator.hidden = YES;
-    }
 }
 
 @end

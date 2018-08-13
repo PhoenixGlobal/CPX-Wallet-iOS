@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UITableView *tableView; /**<  */
 @property (nonatomic, strong) UILabel *titleL; /**<  */
 @property (nonatomic, strong) NSArray *contentArr; /**<  */
+@property (nonatomic, copy) NSString *bindingAddress; /**<  */
 @end
 
 @implementation ApexChangeBindWalletController
@@ -31,7 +32,7 @@
 }
 #pragma mark - ------private------
 - (void)initUI{
-    
+    self.bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
     self.contentArr = [ApexWalletManager getWalletsArr];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
@@ -64,7 +65,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexChangeWalletCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.model = self.contentArr[indexPath.row];
+    ApexWalletModel *model = self.contentArr[indexPath.row];
+    cell.model = model;
+    if (_transHistoryWalletModel) {
+        if ([_transHistoryWalletModel.address isEqualToString:model.address]) {
+            cell.indicator.hidden = NO;
+        }else{
+            cell.indicator.hidden = YES;
+        }
+    }else{
+        if ([_bindingAddress isEqualToString:model.address]) {
+            cell.indicator.hidden = NO;
+        }else{
+            cell.indicator.hidden = YES;
+        }
+    }
     return cell;
 }
 
@@ -74,7 +89,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexWalletModel *model = self.contentArr[indexPath.row];
-    [TKFileManager saveValue:model.address forKey:KBindingWalletAddress];
+    if (self.didSelectCellSub) {
+        [self.didSelectCellSub sendNext:model];
+//        [TKFileManager saveValue:model.address forKey:KBindingWalletAddress];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - ------eventResponse------

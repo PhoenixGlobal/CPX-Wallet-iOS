@@ -13,6 +13,7 @@
  Created by chinapex on 2018/7/10.
  Copyright © 2018 Gary. All rights reserved.
  */
+"CreateType" = "Wallet Type";
 "Create Wallet" = "Create Wallet";
 "Import Wallet" = "Import Wallet";
 "Wallet Name" = "Wallet Name";

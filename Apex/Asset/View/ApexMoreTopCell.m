@@ -80,20 +80,20 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.walletArr.count;
+    return self.typeArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexMoreWalletCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    ApexWalletModel *model = self.walletArr[indexPath.row];
-    cell.nameLable.text = [model.name capitalizedString];
+    NSString *type = self.typeArr[indexPath.row];
+    cell.nameLable.text = type;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexMoreWalletCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = !cell.selected;
-    [self routeEventWithName:RouteNameEvent_TopWalletCellDidChooseWallet userInfo:@{@"wallet":self.walletArr[indexPath.row]}];
+    [self routeEventWithName:RouteNameEvent_TopWalletCellDidChooseWallet userInfo:@{@"type":self.typeArr[indexPath.row]}];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

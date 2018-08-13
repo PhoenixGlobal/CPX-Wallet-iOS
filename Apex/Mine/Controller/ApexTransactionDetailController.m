@@ -15,6 +15,7 @@
 #import "ApexSwithWalletView.h"
 #import "ApexTransferHistoryManager.h"
 #import "ApexTXDetailController.h"
+#import "ApexChangeBindWalletController.h"
 
 @interface ApexTransactionDetailController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
@@ -209,17 +210,26 @@
     
     [[self.swithBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self);
-        self.swithBtn.selected = !self.swithBtn.selected;
-        self.switchView.contentArr = self.walletArr;
-        [[UIApplication sharedApplication].keyWindow addSubview:self.switchView];
+        ApexChangeBindWalletController *vc = [[ApexChangeBindWalletController alloc] init];
+        vc.transHistoryWalletModel = self.model;
+        vc.didSelectCellSub = [RACSubject subject];
+        [vc.didSelectCellSub subscribeNext:^(ApexWalletModel *x) {
+            self.model = x;
+            [self.searchToolBar clearEntrance];
+            [self prepareData];
+        }];
+        [self.navigationController pushViewController:vc animated:YES];
+//        self.swithBtn.selected = !self.swithBtn.selected;
+//        self.switchView.contentArr = self.walletArr;
+//        [[UIApplication sharedApplication].keyWindow addSubview:self.switchView];
     }];
     
-    self.switchView.didSwitchSub = [RACSubject subject];
-    [self.switchView.didSwitchSub subscribeNext:^(ApexWalletModel *x) {
-        self.model = x;
-        [self.searchToolBar clearEntrance];
-        [self prepareData];
-    }];
+//    self.switchView.didSwitchSub = [RACSubject subject];
+//    [self.switchView.didSwitchSub subscribeNext:^(ApexWalletModel *x) {
+//        self.model = x;
+//        [self.searchToolBar clearEntrance];
+//        [self prepareData];
+//    }];
 }
 
 #pragma mark - ------getter & setter------

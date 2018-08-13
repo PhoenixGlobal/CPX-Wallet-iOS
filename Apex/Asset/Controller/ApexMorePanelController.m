@@ -74,10 +74,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         ApexMoreTopCell *topCell = [tableView dequeueReusableCellWithIdentifier:@"topCell" forIndexPath:indexPath];
-        if (!self.walletsArr || self.walletsArr.count == 0) {
+        if (!self.typeArr || self.typeArr.count == 0) {
             topCell.hidden = YES;
         }else{
-            topCell.walletArr = self.walletsArr;
+            topCell.typeArr = self.typeArr;
         }
         return topCell;
     }else{
@@ -89,7 +89,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return self.walletsArr.count * 44;
+        return self.typeArr.count * 44;
     }else{
         return 44*self.funcConfigArr.count;
     }
@@ -110,9 +110,9 @@
         imvc.hidesBottomBarWhenPushed = YES;
         [self directlyPushToViewControllerWithSelfDeleted:imvc];
     }else if ([eventName isEqualToString:RouteNameEvent_TopWalletCellDidChooseWallet]){
-        ApexWalletModel *wallet = userinfo[@"wallet"];
-        if (self.didChooseWalletSub) {
-            [self.didChooseWalletSub sendNext:wallet];
+        NSString *type = userinfo[@"type"];
+        if (self.didChangeTypeSub) {
+            [self.didChangeTypeSub sendNext:type];
             [self.navigationController popViewControllerAnimated:YES];
             [[ApexDrawTransPercentDriven shareDriven] startTranstionWithDuration:0.5 fromVC:self];
         }

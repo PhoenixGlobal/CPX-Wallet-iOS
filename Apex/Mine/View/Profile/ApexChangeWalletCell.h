@@ -10,4 +10,5 @@
 @class ApexWalletModel;
 @interface ApexChangeWalletCell : UITableViewCell
 @property (nonatomic, strong) ApexWalletModel *model; /**<  */
+@property (weak, nonatomic) IBOutlet UIImageView *indicator;
 @end

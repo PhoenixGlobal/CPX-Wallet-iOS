@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexMorePanelController : UIViewController
-@property (nonatomic, strong) NSArray *walletsArr;/** 若是需要显示钱包切换cell 则传入此项 */
+@property (nonatomic, strong) NSArray *typeArr;/** 若是需要显示钱包切换cell 则传入此项 */
 @property (nonatomic, strong) NSArray *funcConfigArr; 
 @property (nonatomic, strong) ApexWalletModel *curWallet;
 @property (nonatomic, strong) BalanceObject *balanceModel;
-@property (nonatomic, strong) RACSubject *didChooseWalletSub;
+@property (nonatomic, strong) RACSubject *didChangeTypeSub;
 @property (nonatomic, strong) UITableView *tableView;
 @end
