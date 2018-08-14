@@ -232,14 +232,10 @@
 - (void)pushAction{
     ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
     vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-    vc.typeArr = @[@"NEO", @"ETH"];
+    vc.typeArr = @[@(ApexWalletType_Neo), @(ApexWalletType_Eth)];
     vc.didChangeTypeSub = [RACSubject subject];
-    [vc.didChangeTypeSub subscribeNext:^(NSString *type) {
-        if ([type isEqualToString:@"NEO"]) {
-            [TKFileManager saveValue:@(ApexWalletType_Neo) forKey:KglobleWalletType];
-        }else{
-            [TKFileManager saveValue:@(ApexWalletType_Eth) forKey:KglobleWalletType];
-        }
+    [vc.didChangeTypeSub subscribeNext:^(NSNumber *type) {
+        [TKFileManager saveValue:type forKey:KglobleWalletType];
         [self getWalletLists];
     }];
     [self.navigationController pushViewController:vc animated:YES];

@@ -11,10 +11,11 @@
 #import "SystemConvert.h"
 
 #define ethWalletsKey @"ethWalletsKey"
+@class ETHWalletModel;
 
 @interface ETHWalletManager : NSObject
 
-+ (void)saveETHWallet:(NSString*)address name:(NSString*)name;
++ (ETHWalletModel*)saveETHWallet:(NSString*)address name:(NSString*)name; /* might return nil which means Wallet Exist already*/
 + (NSMutableArray*)getEthWalletsArray;
 
 //创建钱包

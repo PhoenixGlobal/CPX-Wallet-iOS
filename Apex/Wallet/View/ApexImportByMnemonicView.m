@@ -100,6 +100,15 @@
 }
 
 - (void)importWallet{
+    NSNumber *type = [TKFileManager ValueWithKey:KglobleWalletType];
+    if (type.integerValue == ApexWalletType_Neo) {
+        [self importNeoWallet];
+    }else{
+        [self importEthWallet];
+    }
+}
+
+- (void)importNeoWallet{
     NSError *err = nil;
     NeomobileWallet *wallet = NeomobileFromMnemonic(self.textView.text, mnemonicEnglish, &err);
     if (err) {
@@ -136,6 +145,41 @@
         [[self topViewController].navigationController popViewControllerAnimated:YES];
     }
 }
+
+- (void)importEthWallet{
+    NSError *err = nil;
+    EthmobileWallet *wallet = EthmobileFromMnemonic(self.textView.text, mnemonicEnglish, &err);
+    
+    if (err) {
+        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Failed", nil)];
+        return;
+    }
+    
+    NSError *keystoreErr = nil;
+    NSString *keystore = [wallet toKeyStore:self.passWordTF.text error:&keystoreErr];
+    if (keystoreErr) {
+        [[self topViewController] showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Keystore Failed", nil) ,keystoreErr]];
+        return;
+    }
+    
+    NSString *address = wallet.address;
+    
+    [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
+    ETHWalletModel *model = [ETHWalletManager saveETHWallet:address name:@"Wallet"];
+    
+    if (!model) {
+        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];
+        return;
+    }
+    
+    [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Success", nil)];
+    if (self.didFinishImportSub) {
+        [self.didFinishImportSub sendNext:@""];
+    }else{
+        [[self topViewController].navigationController popViewControllerAnimated:YES];
+    }
+}
+
 #pragma mark - ------eventResponse------
 
 #pragma mark - ------getter & setter------

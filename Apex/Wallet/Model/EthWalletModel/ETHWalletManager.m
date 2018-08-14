@@ -13,11 +13,20 @@
 
 @implementation ETHWalletManager
 #pragma mark - public
-+ (void)saveETHWallet:(NSString *)address name:(NSString *)name{
++ (ETHWalletModel*)saveETHWallet:(NSString *)address name:(NSString *)name{
     NSMutableArray *ethArr = [TKFileManager loadDataWithFileName:ethWalletsKey];
     if (!ethArr) {
         ethArr = [NSMutableArray array];
     }
+    //删除已有的
+    for (ETHWalletModel *wallet in ethArr) {
+        if ([wallet.address isEqualToString:address]) {
+            [ethArr removeObject:wallet];
+            return nil;
+        }
+    }
+    
+    //添加新的
     ETHWalletModel *wallet = [[ETHWalletModel alloc] init];
     wallet.address = address;
     name == nil ? (wallet.name = @"Wallet") : (wallet.name = name);
@@ -29,6 +38,8 @@
     [ethArr addObject:wallet];
     [TKFileManager saveData:ethArr withFileName:ethWalletsKey];
     [TKFileManager saveValue:@(YES) forKey:KisFirstCreateWalletDone];
+    
+    return wallet;
 }
 
 + (NSMutableArray*)getEthWalletsArray{

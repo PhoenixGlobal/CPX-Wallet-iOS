@@ -24,7 +24,6 @@
 #pragma mark - ------private------
 - (void)initUI{
     _headerView = [[UIImageView alloc] init];
-    _headerView.image = [UIImage imageNamed:@"wallet-7"];
 //    _headerView.hidden = YES;
     
     _nameLable = [[UILabel alloc] init];
@@ -52,6 +51,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface ApexMoreTopCell()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) ApexWalletType walletGlobleType; /**<  */
 @end
 
 @implementation ApexMoreTopCell
@@ -71,6 +71,7 @@
         make.edges.equalTo(self);
     }];
     
+    _walletGlobleType = ((NSNumber*)[TKFileManager ValueWithKey:KglobleWalletType]).integerValue;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -85,8 +86,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexMoreWalletCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    NSString *type = self.typeArr[indexPath.row];
-    cell.nameLable.text = type;
+    NSNumber *type = self.typeArr[indexPath.row];
+    if (type.integerValue == ApexWalletType_Neo) {
+        cell.nameLable.text = @"NEO";
+        cell.headerView.image = NEOPlaceHolder;
+    }else if (type.integerValue == ApexWalletType_Eth){
+        cell.nameLable.text = @"ETH";
+        cell.headerView.image = ETHPlaceHolder;
+    }else{
+        cell.nameLable.text = @"ERROR TYPE";
+    }
+    
+    if (type.integerValue == _walletGlobleType) {
+        cell.backgroundColor = [[UIColor colorWithHexString:@"#4C8EFA"] colorWithAlphaComponent:0.3];
+    }else{
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+    
     return cell;
 }
 
