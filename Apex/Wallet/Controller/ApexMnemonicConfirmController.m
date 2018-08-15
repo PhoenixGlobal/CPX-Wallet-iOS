@@ -121,7 +121,7 @@
     NSString *mnemonic = [self.choosenArr componentsJoinedByString:@" "];
     if ([mnemonic isEqualToString:self.mnemonic]) {
         [self showMessage:SOLocalizedStringFromTable(@"Back Up Success", nil)];
-        [ApexWalletManager setBackupFinished:self.address];
+        [[ApexWalletManager shareManager] setBackupFinished:self.address];
         if (self.BackupCompleteBlock) {
             self.BackupCompleteBlock();
         }

@@ -27,8 +27,8 @@
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
 @property (nonatomic, strong) NSMutableDictionary *assetMap; //资产对应的余额字典
 @property (nonatomic, strong) UIImageView *backIV;
-
 @property (nonatomic, assign) BOOL isNavClear; /**<  */
+@property (nonatomic, assign) ApexWalletType type; /**<  */
 @end
 
 @implementation ApexAccountDetailController
@@ -45,9 +45,11 @@
     [super viewWillAppear:animated];
     [self setNav];
     
-    if (GlobleWalletType == ApexWalletType_Neo) {
+    if (_type == ApexWalletType_Neo) {
         [self requestNeoAsset];
-    }else if (GlobleWalletType == ApexWalletType_Eth){
+        
+    }else if (_type == ApexWalletType_Eth){
+        
         [self requestETHAsset];
     }
     
@@ -83,9 +85,9 @@
     }];
     
     MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
-        if (GlobleWalletType == ApexWalletType_Neo) {
+        if (_type == ApexWalletType_Neo) {
             [self requestNeoAsset];
-        }else if (GlobleWalletType == ApexWalletType_Eth){
+        }else if (_type == ApexWalletType_Eth){
             [self requestETHAsset];
         }
     }];
@@ -138,7 +140,7 @@
     self.title = self.walletModel.name;
     self.addressL.text = self.walletModel.address;
     self.assetArr = self.walletModel.assetArr;
-    [ApexWalletManager reSortAssetArr:self.assetArr];
+    [[ApexWalletManager shareManager] reSortAssetArr:self.assetArr];
     [self creataAssetMap];
 }
 
@@ -265,7 +267,7 @@
         }
     }
     //更新本地存储的钱包资产
-    [ApexWalletManager updateWallet:self.walletModel WithAssetsArr:self.assetArr];
+    [[ApexWalletManager shareManager] updateWallet:self.walletModel WithAssetsArr:self.assetArr];
 }
 
 #pragma mark - ------transition-----
@@ -307,6 +309,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ApexAssetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.type = _type;
     if (self.assetArr.count == 0) {
         cell.hidden = YES;
     }else{
@@ -358,7 +361,15 @@
 #pragma mark - ------getter & setter------
 - (void)setWalletModel:(ApexWalletModel *)walletModel{
     _walletModel = walletModel;
-    [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
+    
+    if ([walletModel isKindOfClass:ETHWalletManager.class]) {
+        _type = ApexWalletType_Eth;
+        
+    }else{
+        _type = ApexWalletType_Neo;
+        [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
+    }
+    
 }
 
 - (UILabel *)addressL{
@@ -393,13 +404,6 @@
     }
     return _addressL;
 }
-
-//- (CYLEmptyView *)emptyV{
-//    if (!_emptyV) {
-//        _emptyV = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:@"暂无数据" refreshBlock:nil];
-//    }
-//    return _emptyV;
-//}
 
 - (NSMutableArray *)assetArr{
     if (!_assetArr) {

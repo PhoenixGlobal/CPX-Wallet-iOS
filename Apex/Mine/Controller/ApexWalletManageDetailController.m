@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ksLbale;
 @property (weak, nonatomic) IBOutlet UILabel *nameL;
 
-
+@property (nonatomic, strong) id<ApexWalletManagerProtocal> walletManager; /**<  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseVHeight;
 @property (nonatomic, assign) ApexWalletType walletType; /**<  */
 @property (nonatomic, strong) UIButton *saveBtn;
@@ -69,9 +69,9 @@
     self.nameL.text = SOLocalizedStringFromTable(@"Wallet Name", nil);
     
     if ([_model isKindOfClass:ETHWalletModel.class]) {
-        _walletType = ApexWalletType_Eth;
+        _walletManager = [ETHWalletManager shareManager];
     }else{
-        _walletType = ApexWalletType_Neo;
+        _walletManager = [ApexWalletManager shareManager];
     }
 }
 
@@ -95,11 +95,7 @@
              return;
         }
         
-        if (self.walletType == ApexWalletType_Eth) {
-            [ETHWalletManager changeWalletName:name forAddress:self.model.address];
-        }else{
-            [ApexWalletManager changeWalletName:name forAddress:self.model.address];
-        }
+        [_walletManager changeWalletName:name forAddress:self.model.address];
         
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -130,11 +126,7 @@
     [ApexPassWordConfirmAlertView showDeleteConfirmAlertAddress:self.model.address subTitle:SOLocalizedStringFromTable(@"Attention! Delete Wallet Can Not Be Revoked", nil) Success:^(NeomobileWallet *wallet) {
         
         @strongify(self);
-        if (self.walletType == ApexWalletType_Eth) {
-            [ETHWalletManager deleteWalletForAddress:self.model.address];
-        }else{
-            [ApexWalletManager deleteWalletForAddress:self.model.address];
-        }
+        [_walletManager deleteWalletForAddress:self.model.address];
         
         [self.navigationController popViewControllerAnimated:YES];
     } fail:^{

@@ -52,35 +52,36 @@
     _model = model;
     _balanceL.text = model.value.floatValue == 0 ? @"0" : model.value;
     
-    for (ApexAssetModel *assetModel in [ApexAssetModelManage getLocalAssetModelsArr]) {
-        if ([assetModel.hex_hash containsString:model.asset]) {
-            
-            _assetNameL.text = assetModel.symbol;
-            _assetNameLTwo.text = @"";
-            
-            if ([model.asset containsString:assetId_CPX]) {
-                _mappignBtn.hidden = NO;
-                self.assetIcon.image = CPX_Logo;
-            }else if([model.asset containsString:assetId_NeoGas] || [model.asset containsString:assetId_Neo]){
-                _mappignBtn.hidden = YES;
-                self.assetIcon.image = NEOPlaceHolder;
-            }else{
-                _mappignBtn.hidden = YES;
-                UIImage *image = [UIImage imageNamed:model.asset inBundle:[ApexAssetModelManage resourceBundle] compatibleWithTraitCollection:nil];
-                if (image) {
-                    self.assetIcon.image = image;
-                }else{
-                    self.assetIcon.image = NEOPlaceHolder;
-                }
+    if (_type == ApexWalletType_Neo) {
+        //neo钱包资产详情
+        for (ApexAssetModel *assetModel in [ApexAssetModelManage getLocalAssetModelsArr]) {
+            if ([assetModel.hex_hash containsString:model.asset]) {
                 
+                _assetNameL.text = assetModel.symbol;
+                _assetNameLTwo.text = @"";
+                
+                if ([model.asset containsString:assetId_CPX]) {
+                    _mappignBtn.hidden = NO;
+                    self.assetIcon.image = CPX_Logo;
+                }else if([model.asset containsString:assetId_NeoGas] || [model.asset containsString:assetId_Neo]){
+                    _mappignBtn.hidden = YES;
+                    self.assetIcon.image = NEOPlaceHolder;
+                }else{
+                    _mappignBtn.hidden = YES;
+                    UIImage *image = [UIImage imageNamed:model.asset inBundle:[ApexAssetModelManage resourceBundle] compatibleWithTraitCollection:nil];
+                    if (image) {
+                        self.assetIcon.image = image;
+                    }else{
+                        self.assetIcon.image = NEOPlaceHolder;
+                    }
+                    
+                }
+                break;
             }
-            
-//            NSURL *url = [NSURL URLWithString:assetModel.image_url];
-//            if (url) {
-//                [self.assetIcon sd_setImageWithURL:url];
-//            }
-            break;
         }
+        
+    }else{
+        //eth钱包资产详情
     }
 }
 @end

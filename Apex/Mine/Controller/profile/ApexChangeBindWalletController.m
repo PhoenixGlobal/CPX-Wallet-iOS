@@ -33,7 +33,7 @@
 #pragma mark - ------private------
 - (void)initUI{
     self.bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
-    self.contentArr = [ApexWalletManager getWalletsArr];
+    self.contentArr = [[ApexWalletManager shareManager] getWalletsArr];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

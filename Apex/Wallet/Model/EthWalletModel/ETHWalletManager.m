@@ -13,8 +13,9 @@
 #define ethWalletsKey @"ethWalletsKey"
 
 @implementation ETHWalletManager
+singleM(Manager);
 #pragma mark - public
-+ (ETHWalletModel*)saveWallet:(NSString *)address name:(NSString *)name{
+- (ETHWalletModel*)saveWallet:(NSString *)address name:(NSString *)name{
     NSMutableArray *ethArr = [TKFileManager loadDataWithFileName:ethWalletsKey];
     if (!ethArr) {
         ethArr = [NSMutableArray array];
@@ -45,7 +46,7 @@
     return wallet;
 }
 
-+ (NSMutableArray*)setDefultAsset{
+- (NSMutableArray*)setDefultAsset{
     NSMutableArray *arr = [NSMutableArray array];
     BalanceObject *Eth = [[BalanceObject alloc] init];
     Eth.asset = assetId_Eth;
@@ -54,18 +55,18 @@
     return arr;
 }
 
-+ (NSMutableArray*)getWalletsArr{
+- (NSMutableArray*)getWalletsArr{
     return [[[TKFileManager loadDataWithFileName:ethWalletsKey] sortedArrayUsingComparator:^NSComparisonResult(ETHWalletModel *obj1, ETHWalletModel *obj2) {
         return obj1.createTimeStamp.integerValue > obj2.createTimeStamp.integerValue;
     }] mutableCopy];
 }
 
-+ (void)changeWalletName:(NSString *)name forAddress:(NSString *)address {
+- (void)changeWalletName:(NSString *)name forAddress:(NSString *)address {
     [self saveWallet:address name:name];
 }
 
 
-+ (void)deleteWalletForAddress:(NSString *)address {
+- (void)deleteWalletForAddress:(NSString *)address {
     NSMutableArray *arr = [self getWalletsArr];
     NSMutableArray *temp = [NSMutableArray arrayWithArray:arr];
     
@@ -79,7 +80,7 @@
 }
 
 
-+ (BOOL)getWalletTransferStatusForAddress:(NSString *)address {
+- (BOOL)getWalletTransferStatusForAddress:(NSString *)address {
     NSArray *arr = [self getWalletsArr];
     for (ETHWalletModel *wallet in arr) {
         if ([wallet.address isEqualToString:address]) {
@@ -90,7 +91,7 @@
 }
 
 
-+ (void)setBackupFinished:(NSString *)address {
+- (void)setBackupFinished:(NSString *)address {
     NSArray *arr = [self getWalletsArr];
     for (ETHWalletModel *model in arr) {
         if ([model.address isEqualToString:address]) {
@@ -101,7 +102,7 @@
 }
 
 
-+ (void)setStatus:(BOOL)status forWallet:(NSString *)address {
+- (void)setStatus:(BOOL)status forWallet:(NSString *)address {
     NSArray *arr = [self getWalletsArr];
     for (ETHWalletModel *wallet in arr) {
         if ([wallet.address isEqualToString:address]) {
@@ -113,12 +114,12 @@
 }
 
 
-+ (ApexTransferStatus)transferStatusForAddress:(NSString *)address {
+- (ApexTransferStatus)transferStatusForAddress:(NSString *)address {
     return 0;
 }
 
 
-+ (void)updateWallet:(id)wallet WithAssetsArr:(NSMutableArray<BalanceObject *> *)assetArr {
+- (void)updateWallet:(id)wallet WithAssetsArr:(NSMutableArray<BalanceObject *> *)assetArr {
     ETHWalletModel *model = (ETHWalletModel*)wallet;
     [self deleteWalletForAddress:model.address];
     NSMutableArray *arr = [TKFileManager loadDataWithFileName:ethWalletsKey];
@@ -139,7 +140,7 @@
     }
 }
 
-+ (void)reSortAssetArr:(NSMutableArray*)assetArr{
+- (void)reSortAssetArr:(NSMutableArray*)assetArr{
     BalanceObject *eth = nil;
     
     for (BalanceObject *obj in [assetArr copy]) {

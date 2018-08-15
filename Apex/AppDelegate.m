@@ -26,7 +26,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     CYLTabBarController *tabbarVC = [[CYLTabBarController alloc] init];
     
-    NSArray *arr = [ApexWalletManager getWalletsArr];
+    NSMutableArray *arr = [[ApexWalletManager shareManager] getWalletsArr];
+    [arr addObjectsFromArray:[[ETHWalletManager shareManager] getWalletsArr]];
+    
     BOOL isFirstCreatDone = ((NSNumber*)[TKFileManager ValueWithKey:KisFirstCreateWalletDone]).boolValue;
     if (arr.count == 0 && !isFirstCreatDone) {
         ApexWalletInitController *walletVC = [[ApexWalletInitController alloc] init];

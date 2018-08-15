@@ -41,11 +41,11 @@
     
     NSString *bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
     if (bindingAddress == nil) {
-        bindingAddress = ((ApexWalletModel*)((NSArray*)[ApexWalletManager getWalletsArr]).firstObject).address;
+        bindingAddress = ((ApexWalletModel*)((NSArray*)[[ApexWalletManager shareManager] getWalletsArr]).firstObject).address;
         [TKFileManager saveValue:bindingAddress forKey:KBindingWalletAddress];
     }else{
         BOOL isExist = false;
-        for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
+        for (ApexWalletModel *model in [[ApexWalletManager shareManager] getWalletsArr]) {
             if ([model.address isEqualToString:bindingAddress]) {
                 isExist = YES;
                 break;
@@ -53,7 +53,7 @@
         }
         
         if (!isExist) {
-            bindingAddress = ((ApexWalletModel*)((NSArray*)[ApexWalletManager getWalletsArr]).firstObject).address;
+            bindingAddress = ((ApexWalletModel*)((NSArray*)[[ApexWalletManager shareManager] getWalletsArr]).firstObject).address;
             [TKFileManager saveValue:bindingAddress forKey:KBindingWalletAddress];
         }
     }
@@ -69,7 +69,7 @@
         [self.specialVC.tableView reloadData];
     }
     
-    if (((NSArray*)[ApexWalletManager getWalletsArr]).count == 0) {
+    if (((NSArray*)[[ApexWalletManager shareManager] getWalletsArr]).count == 0) {
         self.noWalletView.hidden = NO;
         self.currentAddress.hidden = YES;
         self.exchangeBtn.hidden = YES;

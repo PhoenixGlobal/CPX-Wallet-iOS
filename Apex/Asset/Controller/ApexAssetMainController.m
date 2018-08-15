@@ -27,6 +27,7 @@
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
 @property (nonatomic, strong) UIImageView *backIV;
 @property (nonatomic, strong) ApexNoWalletView *noWalletView; /**<  */
+@property (nonatomic, strong) id<ApexWalletManagerProtocal> walletManager; /**<  */
 @end
 
 @implementation ApexAssetMainController
@@ -101,11 +102,12 @@
     [self.searchTooBar clearEntrance];
     NSNumber *walletType = [TKFileManager ValueWithKey:KglobleWalletType];
     if (walletType.integerValue == ApexWalletType_Neo) {
-        _contentArr = [ApexWalletManager getWalletsArr];
+        _walletManager = [ApexWalletManager shareManager];
     }else{
-        _contentArr = [ETHWalletManager getWalletsArr];
+        _walletManager = [ETHWalletManager shareManager];
     }
     
+    _contentArr = [_walletManager getWalletsArr];
     
     if (_contentArr.count == 0) {
         [self.baseView addSubview:self.noWalletView];
@@ -186,11 +188,7 @@
         @strongify(self);
         
         NSArray *wallets = @[];
-        if (GlobleWalletType == ApexWalletType_Neo) {
-            wallets = [ApexWalletManager getWalletsArr];
-        }else{
-            wallets = [ETHWalletManager getWalletsArr];
-        }
+        wallets = [_walletManager getWalletsArr];
         
         if (key.length == 0) {
             self.contentArr = [wallets mutableCopy];

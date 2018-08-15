@@ -88,7 +88,7 @@
 - (void)prepareData{
     self.title = self.model.name;
     self.addressL.text = self.model.address;
-    self.walletArr = [ApexWalletManager getWalletsArr];
+    self.walletArr = [[ApexWalletManager shareManager] getWalletsArr];
     
     [self requestTXHistory];
     

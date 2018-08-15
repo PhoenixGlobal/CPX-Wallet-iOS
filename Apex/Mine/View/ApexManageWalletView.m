@@ -50,8 +50,8 @@
 }
 
 - (void)reloadWalletData{
-    self.contentArr = [ApexWalletManager getWalletsArr];
-    [self.contentArr addObjectsFromArray:[ETHWalletManager getWalletsArr]];
+    self.contentArr = [[ApexWalletManager shareManager] getWalletsArr];
+    [self.contentArr addObjectsFromArray:[[ETHWalletManager shareManager] getWalletsArr]];
     [self.tableView reloadData];
 }
 

@@ -59,8 +59,8 @@
 }
 
 - (void)judgeIfHadWallet{
-    NSMutableArray *arr = [ApexWalletManager getWalletsArr];
-    [arr addObject:[ETHWalletManager getWalletsArr]];
+    NSMutableArray *arr = [[ApexWalletManager shareManager] getWalletsArr];
+    [arr addObject:[[ETHWalletManager shareManager] getWalletsArr]];
     if (arr.count == 0) {
         [self.manageView addSubview:self.noWalletView];
         [self.noWalletView mas_makeConstraints:^(MASConstraintMaker *make) {

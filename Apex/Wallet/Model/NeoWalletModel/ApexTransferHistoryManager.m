@@ -158,7 +158,7 @@ static ApexTransferHistoryManager *_instance;
         //开启循环更新状态
         [self beginTimerToConfirmTransactionOfAddress:address txModel:last];
     }else{
-        [ApexWalletManager setStatus:YES forWallet:address];
+        [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
     }
 }
 
@@ -259,7 +259,7 @@ static ApexTransferHistoryManager *_instance;
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model{
     
     if (model.status == ApexTransferStatus_Blocking) {
-        [ApexWalletManager setStatus:NO forWallet:address];
+        [[ApexWalletManager shareManager] setStatus:NO forWallet:address];
     }
     
    __block BOOL cancleTimer = false;
@@ -282,7 +282,7 @@ static ApexTransferHistoryManager *_instance;
                 if (confirmations >= confirmHeight) {
                     
                     //交易成功
-                    [ApexWalletManager setStatus:YES forWallet:address];
+                    [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
                     [self.db open];
                     [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",address],@(ApexTransferStatus_Confirmed),model.txid];
                     [self.db close];
@@ -292,7 +292,7 @@ static ApexTransferHistoryManager *_instance;
                 }else{
                     //确认中
                     //设置钱包状态不可交易
-                    [ApexWalletManager setStatus:NO forWallet:address];
+                    [[ApexWalletManager shareManager] setStatus:NO forWallet:address];
                 }
             }
             

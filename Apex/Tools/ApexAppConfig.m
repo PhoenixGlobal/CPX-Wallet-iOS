@@ -33,16 +33,12 @@
 
 + (void)transHistorySelfCheck{
     
-    for (ApexWalletModel *wallet in [ApexWalletManager getWalletsArr]) {
+    //neo钱包自测
+    for (ApexWalletModel *wallet in [[ApexWalletManager shareManager] getWalletsArr]) {
         
         [[ApexTransferHistoryManager shareManager] applicationIntializeSelfCheckWithAddress:wallet.address];
     }
     
-//    [ApexWalletManager getAccountStateWithAddress:[apex] Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//    }];
 }
 
 + (void)updateAssetList{

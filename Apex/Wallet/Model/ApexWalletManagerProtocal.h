@@ -10,13 +10,14 @@
 @class BalanceObject;
 
 @protocol ApexWalletManagerProtocal <NSObject>
-+ (id)saveWallet:(NSString*)address name:(NSString*)name;;
-+ (void)changeWalletName:(NSString*)name forAddress:(NSString*)address;
-+ (id)getWalletsArr; /**< string : address/name */
-+ (void)deleteWalletForAddress:(NSString*)address;
-+ (void)setBackupFinished:(NSString*)address;
-+ (void)setStatus:(BOOL)status forWallet:(NSString *)address;
-+ (BOOL)getWalletTransferStatusForAddress:(NSString*)address;
-+ (void)updateWallet:(id)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr;
-+ (ApexTransferStatus)transferStatusForAddress:(NSString*)address;
+- (id)saveWallet:(NSString*)address name:(NSString*)name;;
+- (void)changeWalletName:(NSString*)name forAddress:(NSString*)address;
+- (id)getWalletsArr; /**< string : address/name */
+- (void)deleteWalletForAddress:(NSString*)address;
+- (void)setBackupFinished:(NSString*)address;
+- (void)setStatus:(BOOL)status forWallet:(NSString *)address;
+- (BOOL)getWalletTransferStatusForAddress:(NSString*)address;
+- (void)updateWallet:(id)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr;
+- (ApexTransferStatus)transferStatusForAddress:(NSString*)address;
+- (void)reSortAssetArr:(NSMutableArray*)assetArr;
 @end

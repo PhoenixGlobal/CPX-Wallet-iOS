@@ -13,7 +13,7 @@
 @class BalanceObject;
 
 @interface ApexWalletManager : NSObject<ApexWalletManagerProtocal>
-
+singleH(Manager);
 /** 获取钱包余额 */
 + (void)getAccountStateWithAddress:(NSString*)address Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
@@ -37,5 +37,5 @@
 /** 广播交易 */
 + (void)broadCastTransactionWithData:(NSString*)data Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-+ (void)reSortAssetArr:(NSMutableArray*)assetArr;
+
 @end

@@ -18,6 +18,7 @@
 @property (nonatomic, strong) ApexPrivacyAggreView *agreeView;
 @property (nonatomic, strong) UIButton *importBtn;
 @property (nonatomic, strong) RACSignal *combineSignal;
+@property (nonatomic, strong) id<ApexWalletManagerProtocal> walletManager; /**<  */
 @end
 
 @implementation ApexImportByKeystoreView
@@ -116,6 +117,7 @@
 }
 
 - (void)importNeoWallet{
+    _walletManager = [ApexWalletManager shareManager];
     NSError *err = nil;
     NeomobileWallet *wallet = NeomobileFromKeyStore(self.textView.text, self.passTF.text, &err);
     if (err) {
@@ -134,7 +136,7 @@
     
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
     
-    for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
+    for (ApexWalletModel *model in [_walletManager getWalletsArr]) {
         if ([model.address isEqualToString:address]) {
             [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];
             return;
@@ -142,8 +144,8 @@
     }
     
     //删除已有的 再添加新的
-    [ApexWalletManager deleteWalletForAddress:address];
-    [ApexWalletManager saveWallet:address name:nil];
+    [_walletManager deleteWalletForAddress:address];
+    [_walletManager saveWallet:address name:nil];
     
     [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Success", nil)];
     if (self.didFinishImportSub) {
@@ -154,6 +156,7 @@
 }
 
 - (void)importEthWallet{
+    _walletManager = [ETHWalletManager shareManager];
     NSError *err = nil;
     EthmobileWallet *wallet = EthmobileFromKeyStore(self.textView.text, self.passTF.text, &err);
     if (err) {
@@ -171,7 +174,7 @@
     NSString *address = wallet.address;
     
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
-    ETHWalletModel *model = [ETHWalletManager saveWallet:address name:@"Wallet"];
+    ETHWalletModel *model = [_walletManager saveWallet:address name:@"Wallet"];
     
     if (!model) {
         [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];

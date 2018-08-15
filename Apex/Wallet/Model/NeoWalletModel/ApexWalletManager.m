@@ -21,7 +21,7 @@
 
 singleM(Manager);
 
-+ (ApexWalletModel *)saveWallet:(NSString *)address name:(NSString *)name{
+- (ApexWalletModel *)saveWallet:(NSString *)address name:(NSString *)name{
     NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
     if (!arr) {
         arr = [NSMutableArray array];
@@ -59,7 +59,7 @@ singleM(Manager);
 //    [TKFileManager saveValue:@(YES) forKey:KisFirstCreateWalletDone];
 //}
 
-+ (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr{
+- (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr{
     [self deleteWalletForAddress:wallet.address];
     NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
     [self reSortAssetArr:assetArr];
@@ -68,7 +68,7 @@ singleM(Manager);
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
 
-+ (void)reSortAssetArr:(NSMutableArray*)assetArr{
+- (void)reSortAssetArr:(NSMutableArray*)assetArr{
     BalanceObject *cpx = nil;
     BalanceObject *neo = nil;
     BalanceObject *gas = nil;
@@ -106,10 +106,10 @@ singleM(Manager);
     }
 }
 
-+ (void)changeWalletName:(NSString*)name forAddress:(NSString*)address{
+- (void)changeWalletName:(NSString*)name forAddress:(NSString*)address{
     
     ApexWalletModel *wallet = nil;
-    for (ApexWalletModel *model in [ApexWalletManager getWalletsArr]) {
+    for (ApexWalletModel *model in [self getWalletsArr]) {
         if ([model.address isEqualToString:address]) {
             wallet = model;
             break;
@@ -120,20 +120,20 @@ singleM(Manager);
         wallet.name = name;
     }
     
-    [ApexWalletManager deleteWalletForAddress:address];
+    [self deleteWalletForAddress:address];
     
     NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
     [arr addObject:wallet];
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
 
-+ (id)getWalletsArr{
+- (id)getWalletsArr{
     return [[[TKFileManager loadDataWithFileName:walletsKey] sortedArrayUsingComparator:^NSComparisonResult(ApexWalletModel *obj1, ApexWalletModel *obj2) {
         return obj1.createTimeStamp.integerValue > obj2.createTimeStamp.integerValue;
     }] mutableCopy];
 }
 
-+ (void)deleteWalletForAddress:(NSString *)address{
+- (void)deleteWalletForAddress:(NSString *)address{
     NSMutableArray *arr = [self getWalletsArr];
     NSMutableArray *temp = [NSMutableArray arrayWithArray:arr];
     
@@ -146,7 +146,7 @@ singleM(Manager);
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
 
-+ (void)setBackupFinished:(NSString*)address{
+- (void)setBackupFinished:(NSString*)address{
     NSArray *arr = [self getWalletsArr];
     for (ApexWalletModel *model in arr) {
         if ([model.address isEqualToString:address]) {
@@ -156,7 +156,7 @@ singleM(Manager);
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
 
-+ (NSMutableArray*)setDefultAsset{
+- (NSMutableArray*)setDefultAsset{
     NSMutableArray *arr = [NSMutableArray array];
     
     BalanceObject *gas = [[BalanceObject alloc] init];
@@ -176,7 +176,7 @@ singleM(Manager);
     return arr;
 }
 
-+ (void)setStatus:(BOOL)status forWallet:(NSString *)address{
+- (void)setStatus:(BOOL)status forWallet:(NSString *)address{
     NSArray *arr = [self getWalletsArr];
     for (ApexWalletModel *wallet in arr) {
         if ([wallet.address isEqualToString:address]) {
@@ -187,7 +187,7 @@ singleM(Manager);
     [TKFileManager saveData:arr withFileName:walletsKey];
 }
 
-+ (BOOL)getWalletTransferStatusForAddress:(NSString*)address{
+- (BOOL)getWalletTransferStatusForAddress:(NSString*)address{
     NSArray *arr = [self getWalletsArr];
     for (ApexWalletModel *wallet in arr) {
         if ([wallet.address isEqualToString:address]) {

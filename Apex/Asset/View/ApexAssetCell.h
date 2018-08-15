@@ -10,4 +10,5 @@
 #import "ApexAccountStateModel.h"
 @interface ApexAssetCell : UITableViewCell
 @property (nonatomic, strong) BalanceObject *model;
+@property (nonatomic, assign) ApexWalletType type; /**<  */
 @end

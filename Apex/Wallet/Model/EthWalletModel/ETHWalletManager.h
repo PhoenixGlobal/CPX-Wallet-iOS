@@ -14,7 +14,7 @@
 @class ETHWalletModel;
 
 @interface ETHWalletManager : NSObject<ApexWalletManagerProtocal>
-
+singleH(Manager);
 //创建钱包
 + (void)creatETHWalletSuccess:(void (^)(EthmobileWallet *wallet))success failed:(void (^)(NSError *error))fail;
 

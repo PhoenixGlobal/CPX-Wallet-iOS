@@ -30,7 +30,7 @@
 @property (nonatomic, strong) UIButton *requestBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
-
+@property (nonatomic, strong) id<ApexWalletManagerProtocal> walletManager; /**<  */
 @end
 
 @implementation ApexWalletDetailController
@@ -146,7 +146,7 @@
         svc.walletName = self.wallModel.name;
         svc.unit = self.unitL.text;
         svc.balanceModel = self.balanceModel;
-        if ([ApexWalletManager getWalletTransferStatusForAddress:self.wallModel.address]) {
+        if ([_walletManager getWalletTransferStatusForAddress:self.wallModel.address]) {
             [self.navigationController pushViewController:svc animated:YES];
         }else{
             [self showMessage:SOLocalizedStringFromTable(@"ProcessingTrans", nil)];
@@ -192,6 +192,16 @@
 //}
 
 #pragma mark - ------getter & setter------
+- (void)setWallModel:(ApexWalletModel *)wallModel{
+    _wallModel = wallModel;
+    
+    if ([wallModel isKindOfClass:ETHWalletModel.class]) {
+        _walletManager = [ETHWalletManager shareManager];
+    }else{
+        _walletManager = [ApexWalletManager shareManager];
+    }
+}
+
 - (UILabel *)titleL{
     if (!_titleL) {
         _titleL = [[UILabel alloc] init];
