@@ -74,6 +74,11 @@
 }
 
 #pragma mark - ------getter & setter------
+- (void)setModel:(ApexWalletModel *)model{
+    _model = model;
+    self.fileView.model = model;
+}
+
 - (UIImageView *)backIV{
     if (!_backIV) {
         _backIV = [[UIImageView alloc] init];
@@ -94,7 +99,7 @@
 - (ApexExportKeystoreQRView *)QRView{
     if (!_QRView) {
         _QRView = [[NSBundle mainBundle] loadNibNamed:@"ApexExportKeystoreQRView" owner:nil options:@{}].firstObject;
-        _QRView.address = self.address;
+        _QRView.address = self.model.address;
     }
     return _QRView;
 }
@@ -102,7 +107,7 @@
 - (ApexExportKeystoryFileView *)fileView{
     if (!_fileView) {
         _fileView = [[NSBundle mainBundle] loadNibNamed:@"ApexExportKeystoryFileView" owner:nil options:@{}].firstObject;
-        _fileView.address = self.address;
+        _fileView.model = self.model;
     }
     return _fileView;
 }

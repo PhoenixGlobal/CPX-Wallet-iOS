@@ -44,10 +44,9 @@
     [_ksBtn setTitle:SOLocalizedStringFromTable(@"GeD-5D-bhg.normalTitle", nil) forState:UIControlStateNormal];
 }
 
-- (void)setAddress:(NSString *)address{
-    _address = address;
-    
-    NSString *ks = [PDKeyChain load:KEYCHAIN_KEY(address)];
+- (void)setModel:(ApexWalletModel *)model{
+    _model = model;
+    NSString *ks = [PDKeyChain load:KEYCHAIN_KEY(model.address)];
     self.textView.text = ks;
 }
 

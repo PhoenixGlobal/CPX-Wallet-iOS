@@ -23,7 +23,7 @@
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseVHeight;
-
+@property (nonatomic, assign) ApexWalletType walletType; /**<  */
 @property (nonatomic, strong) UIButton *saveBtn;
 @end
 
@@ -67,6 +67,12 @@
     
     self.ksLbale.text = SOLocalizedStringFromTable(@"Export Keystore", nil);
     self.nameL.text = SOLocalizedStringFromTable(@"Wallet Name", nil);
+    
+    if ([_model isKindOfClass:ETHWalletModel.class]) {
+        _walletType = ApexWalletType_Eth;
+    }else{
+        _walletType = ApexWalletType_Neo;
+    }
 }
 
 #pragma mark - ------public------
@@ -75,7 +81,9 @@
 
 #pragma mark - ------eventResponse------
 - (void)handleEvent{
+    @weakify(self);
     [[self.saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self);
         NSString *name = self.walletNameTF.text;
         if (name.length == 0 ) {
             [self showMessage:SOLocalizedStringFromTable(@"Please Input Wallet Name", nil)];
@@ -87,7 +95,12 @@
              return;
         }
         
-        [ApexWalletManager changeWalletName:name forAddress:self.model.address];
+        if (self.walletType == ApexWalletType_Eth) {
+            [ETHWalletManager changeWalletName:name forAddress:self.model.address];
+        }else{
+            [ApexWalletManager changeWalletName:name forAddress:self.model.address];
+        }
+        
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -104,7 +117,7 @@
     [[self.exportKeyStoreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:self.model.address subTitle:@"" Success:^(NeomobileWallet *wallet) {
             ApexExportKeyStoreController *vc = [[ApexExportKeyStoreController alloc] init];
-            vc.address = self.model.address;
+            vc.model = self.model;
             [self.navigationController pushViewController:vc animated:YES];
         } fail:^{
             [self showMessage:SOLocalizedStringFromTable(@"Password Error", nil)];
@@ -113,8 +126,16 @@
 }
 
 - (void)showDeleteConfirmAlert{
+    @weakify(self);
     [ApexPassWordConfirmAlertView showDeleteConfirmAlertAddress:self.model.address subTitle:SOLocalizedStringFromTable(@"Attention! Delete Wallet Can Not Be Revoked", nil) Success:^(NeomobileWallet *wallet) {
-        [ApexWalletManager deleteWalletForAddress:self.model.address];
+        
+        @strongify(self);
+        if (self.walletType == ApexWalletType_Eth) {
+            [ETHWalletManager deleteWalletForAddress:self.model.address];
+        }else{
+            [ApexWalletManager deleteWalletForAddress:self.model.address];
+        }
+        
         [self.navigationController popViewControllerAnimated:YES];
     } fail:^{
         [self showMessage:SOLocalizedStringFromTable(@"Password Error",nil)];

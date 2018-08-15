@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexExportKeyStoreController : UIViewController
-@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) ApexWalletModel *model; /**<  */
 @end

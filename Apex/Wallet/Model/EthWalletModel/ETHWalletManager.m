@@ -20,10 +20,12 @@
         ethArr = [NSMutableArray array];
     }
     //删除已有的
+    NSNumber *timeStampIfHave = nil;
     for (ETHWalletModel *wallet in ethArr) {
         if ([wallet.address isEqualToString:address]) {
+            timeStampIfHave = wallet.createTimeStamp;
             [ethArr removeObject:wallet];
-            return nil;
+            break;
         }
     }
     
@@ -33,7 +35,7 @@
     name == nil ? (wallet.name = @"Wallet") : (wallet.name = name);
     wallet.isBackUp = false;
     wallet.assetArr = [self setDefultAsset];
-    wallet.createTimeStamp = @([[NSDate date] timeIntervalSince1970]);
+    wallet.createTimeStamp = timeStampIfHave == nil ? @([[NSDate date] timeIntervalSince1970]) : timeStampIfHave;
     wallet.canTransfer = @(YES);
 //    [[ApexTransferHistoryManager shareManager] createTableForWallet:model.address];
     [ethArr addObject:wallet];

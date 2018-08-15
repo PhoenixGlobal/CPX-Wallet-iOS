@@ -12,5 +12,5 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *ksBtn;
 
-@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) ApexWalletModel *model;
 @end
