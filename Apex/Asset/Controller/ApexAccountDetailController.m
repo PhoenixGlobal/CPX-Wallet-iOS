@@ -44,7 +44,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setNav];
-    [self requestAsset];
+    
+    if (GlobleWalletType == ApexWalletType_Neo) {
+        [self requestNeoAsset];
+    }else if (GlobleWalletType == ApexWalletType_Eth){
+        [self requestETHAsset];
+    }
+    
     [self setEdgeGesture];
 }
 
@@ -77,7 +83,11 @@
     }];
     
     MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
-        [self requestAsset];
+        if (GlobleWalletType == ApexWalletType_Neo) {
+            [self requestNeoAsset];
+        }else if (GlobleWalletType == ApexWalletType_Eth){
+            [self requestETHAsset];
+        }
     }];
     header.stateLabel.textColor = [ApexUIHelper grayColor240];
     header.lastUpdatedTimeLabel.textColor = [ApexUIHelper grayColor240];
@@ -104,14 +114,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
 }
 
-- (void)getLoacalAsset{
-    self.title = self.walletModel.name;
-    self.addressL.text = self.walletModel.address;
-    self.assetArr = self.walletModel.assetArr;
-    [ApexWalletManager reSortAssetArr:self.assetArr];
-    [self creataAssetMap];
-}
-
 - (void)creataAssetMap{
     self.assetMap = [NSMutableDictionary dictionary];
     for (BalanceObject *balance in self.assetArr) {
@@ -119,9 +121,29 @@
     }
 }
 
-- (void)requestAsset{
-    
-    [self getLoacalAsset];
+#pragma mark - 获取钱包ETH资产
+- (void)getLoacalEthAsset{
+    self.title = self.walletModel.name;
+    self.addressL.text = self.walletModel.address;
+    self.assetArr = self.walletModel.assetArr;
+    [self creataAssetMap];
+}
+
+- (void)requestETHAsset{
+    [self getLoacalEthAsset];
+}
+
+#pragma mark - 获取钱包Neo资产
+- (void)getLoacalNeoAsset{
+    self.title = self.walletModel.name;
+    self.addressL.text = self.walletModel.address;
+    self.assetArr = self.walletModel.assetArr;
+    [ApexWalletManager reSortAssetArr:self.assetArr];
+    [self creataAssetMap];
+}
+
+- (void)requestNeoAsset{
+    [self getLoacalNeoAsset];
     @weakify(self);
     RACSignal *request1 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
        

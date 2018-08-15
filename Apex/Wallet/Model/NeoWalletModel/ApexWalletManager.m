@@ -10,6 +10,7 @@
 #import "ApexWalletModel.h"
 #import "ApexTransferModel.h"
 #import "ApexTransferHistoryManager.h"
+#define walletsKey @"walletsKey"
 
 //钱包管理模型
 @interface ApexWalletManager()
@@ -20,15 +21,14 @@
 
 singleM(Manager);
 
-+ (void)saveWallet:(NSString *)wallet{
++ (ApexWalletModel *)saveWallet:(NSString *)address name:(NSString *)name{
     NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
     if (!arr) {
         arr = [NSMutableArray array];
     }
-    NSArray *array = [wallet componentsSeparatedByString:@"/"];
     ApexWalletModel *model = [[ApexWalletModel alloc] init];
-    model.name = array.lastObject;
-    model.address = array.firstObject;
+    model.name = name ==  nil ? @"Wallet" : name;
+    model.address = address;
     model.isBackUp = false;
     model.assetArr = [self setDefultAsset];
     model.createTimeStamp = @([[NSDate date] timeIntervalSince1970]);
@@ -37,7 +37,27 @@ singleM(Manager);
     [arr addObject:model];
     [TKFileManager saveData:arr withFileName:walletsKey];
     [TKFileManager saveValue:@(YES) forKey:KisFirstCreateWalletDone];
+    return model;
 }
+
+//+ (void)saveWallet:(NSString *)wallet{
+//    NSMutableArray *arr = [TKFileManager loadDataWithFileName:walletsKey];
+//    if (!arr) {
+//        arr = [NSMutableArray array];
+//    }
+//    NSArray *array = [wallet componentsSeparatedByString:@"/"];
+//    ApexWalletModel *model = [[ApexWalletModel alloc] init];
+//    model.name = array.lastObject;
+//    model.address = array.firstObject;
+//    model.isBackUp = false;
+//    model.assetArr = [self setDefultAsset];
+//    model.createTimeStamp = @([[NSDate date] timeIntervalSince1970]);
+//    model.canTransfer = @(YES);
+//    [[ApexTransferHistoryManager shareManager] createTableForWallet:model.address];
+//    [arr addObject:model];
+//    [TKFileManager saveData:arr withFileName:walletsKey];
+//    [TKFileManager saveValue:@(YES) forKey:KisFirstCreateWalletDone];
+//}
 
 + (void)updateWallet:(ApexWalletModel*)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr{
     [self deleteWalletForAddress:wallet.address];
@@ -73,9 +93,17 @@ singleM(Manager);
         return [obj1.asset compare:obj2.asset] == NSOrderedAscending;
     }];
     
-    [assetArr insertObject:cpx atIndex:0];
-    [assetArr insertObject:neo atIndex:1];
-    [assetArr insertObject:gas atIndex:2];
+    if (cpx) {
+        [assetArr insertObject:cpx atIndex:0];
+    }
+    
+    if (neo) {
+        [assetArr insertObject:neo atIndex:1];
+    }
+    
+    if (gas) {
+        [assetArr insertObject:gas atIndex:2];
+    }
 }
 
 + (void)changeWalletName:(NSString*)name forAddress:(NSString*)address{

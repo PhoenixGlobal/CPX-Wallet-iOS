@@ -9,14 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "NSString+Tool.h"
 #import "SystemConvert.h"
+#import "ApexWalletManagerProtocal.h"
 
-#define ethWalletsKey @"ethWalletsKey"
 @class ETHWalletModel;
 
-@interface ETHWalletManager : NSObject
-
-+ (ETHWalletModel*)saveETHWallet:(NSString*)address name:(NSString*)name; /* might return nil which means Wallet Exist already*/
-+ (NSMutableArray*)getEthWalletsArray;
+@interface ETHWalletManager : NSObject<ApexWalletManagerProtocal>
 
 //创建钱包
 + (void)creatETHWalletSuccess:(void (^)(EthmobileWallet *wallet))success failed:(void (^)(NSError *error))fail;

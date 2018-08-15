@@ -19,6 +19,7 @@
 #define assetId_CPX @"0x45d493a6f73fa5f404244a5fb8472fc014ca5885"
 #define assetId_Neo @"0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"
 #define assetId_NeoGas @"0x602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"
+#define assetId_Eth @"0x0000000000000000000000000000000000000000"
 
 #define UserDefaultsIdentifier @"com.chinapex.apex"
 #define isFirstOpenApp @"isFirstOpenApp"

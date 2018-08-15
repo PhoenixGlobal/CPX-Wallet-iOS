@@ -10,10 +10,11 @@
 #import "ApexETHClient.h"
 #import "ApexETHTransactionModel.h"
 #import "ETHWalletModel.h"
+#define ethWalletsKey @"ethWalletsKey"
 
 @implementation ETHWalletManager
 #pragma mark - public
-+ (ETHWalletModel*)saveETHWallet:(NSString *)address name:(NSString *)name{
++ (ETHWalletModel*)saveWallet:(NSString *)address name:(NSString *)name{
     NSMutableArray *ethArr = [TKFileManager loadDataWithFileName:ethWalletsKey];
     if (!ethArr) {
         ethArr = [NSMutableArray array];
@@ -31,7 +32,7 @@
     wallet.address = address;
     name == nil ? (wallet.name = @"Wallet") : (wallet.name = name);
     wallet.isBackUp = false;
-//    wallet.assetArr = [self setDefultAsset];
+    wallet.assetArr = [self setDefultAsset];
     wallet.createTimeStamp = @([[NSDate date] timeIntervalSince1970]);
     wallet.canTransfer = @(YES);
 //    [[ApexTransferHistoryManager shareManager] createTableForWallet:model.address];
@@ -42,11 +43,89 @@
     return wallet;
 }
 
-+ (NSMutableArray*)getEthWalletsArray{
++ (NSMutableArray*)setDefultAsset{
+    NSMutableArray *arr = [NSMutableArray array];
+    BalanceObject *Eth = [[BalanceObject alloc] init];
+    Eth.asset = assetId_Eth;
+    Eth.value = @"0";
+    [arr addObject:Eth];
+    return arr;
+}
+
++ (NSMutableArray*)getWalletsArr{
     return [[[TKFileManager loadDataWithFileName:ethWalletsKey] sortedArrayUsingComparator:^NSComparisonResult(ETHWalletModel *obj1, ETHWalletModel *obj2) {
         return obj1.createTimeStamp.integerValue > obj2.createTimeStamp.integerValue;
     }] mutableCopy];
 }
+
++ (void)changeWalletName:(NSString *)name forAddress:(NSString *)address {
+    [self saveWallet:address name:name];
+}
+
+
++ (void)deleteWalletForAddress:(NSString *)address {
+    NSMutableArray *arr = [self getWalletsArr];
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:arr];
+    
+    for (ETHWalletModel *wallet in temp) {
+        if ([wallet.address containsString:address]) {
+            [arr removeObject:wallet];
+            break;
+        }
+    }
+    [TKFileManager saveData:arr withFileName:ethWalletsKey];
+}
+
+
++ (BOOL)getWalletTransferStatusForAddress:(NSString *)address {
+    NSArray *arr = [self getWalletsArr];
+    for (ETHWalletModel *wallet in arr) {
+        if ([wallet.address isEqualToString:address]) {
+            return wallet.canTransfer;
+        }
+    }
+    return NO;
+}
+
+
++ (void)setBackupFinished:(NSString *)address {
+    NSArray *arr = [self getWalletsArr];
+    for (ETHWalletModel *model in arr) {
+        if ([model.address isEqualToString:address]) {
+            model.isBackUp = YES;
+        }
+    }
+    [TKFileManager saveData:arr withFileName:ethWalletsKey];
+}
+
+
++ (void)setStatus:(BOOL)status forWallet:(NSString *)address {
+    NSArray *arr = [self getWalletsArr];
+    for (ETHWalletModel *wallet in arr) {
+        if ([wallet.address isEqualToString:address]) {
+            wallet.canTransfer = status;
+            break;
+        }
+    }
+    [TKFileManager saveData:arr withFileName:ethWalletsKey];
+}
+
+
++ (ApexTransferStatus)transferStatusForAddress:(NSString *)address {
+    return 0;
+}
+
+
++ (void)updateWallet:(id)wallet WithAssetsArr:(NSMutableArray<BalanceObject *> *)assetArr {
+    ETHWalletModel *model = (ETHWalletModel*)wallet;
+    [self deleteWalletForAddress:model.address];
+    NSMutableArray *arr = [TKFileManager loadDataWithFileName:ethWalletsKey];
+    [self reSortAssetArr:assetArr];
+    model.assetArr = assetArr;
+    [arr addObject:model];
+    [TKFileManager saveData:arr withFileName:ethWalletsKey];
+}
+
 
 + (void)creatETHWalletSuccess:(void (^)(EthmobileWallet *))success failed:(void (^)(NSError *))fail{
     NSError *error = nil;
@@ -58,6 +137,25 @@
     }
 }
 
++ (void)reSortAssetArr:(NSMutableArray*)assetArr{
+    BalanceObject *eth = nil;
+    
+    for (BalanceObject *obj in [assetArr copy]) {
+        if ([assetId_Eth containsString:obj.asset]) {
+            eth = obj;
+            [assetArr removeObject:obj];
+            break;
+        }
+    }
+    
+    [assetArr sortUsingComparator:^NSComparisonResult(BalanceObject *obj1, BalanceObject *obj2) {
+        return [obj1.asset compare:obj2.asset] == NSOrderedAscending;
+    }];
+    
+    if (eth) {
+        [assetArr insertObject:eth atIndex:0];
+    }
+}
 
 #pragma mark - request
 + (void)sendTxWithWallet:(EthmobileWallet*)wallet to:(NSString*)to nonce:(NSString*)nonce amount:(NSString*)amount gas:(NSString*)gas

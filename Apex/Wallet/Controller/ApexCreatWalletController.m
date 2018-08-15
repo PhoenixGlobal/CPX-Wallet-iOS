@@ -179,7 +179,7 @@
     
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
     
-    [ApexWalletManager saveWallet:[NSString stringWithFormat:@"%@/%@",address, self.walletNameL.text]];
+    [ApexWalletManager saveWallet:address name:self.walletNameL.text];
     _createdWallet = wallet;
     return wallet;
 }
@@ -195,7 +195,7 @@
         NSString *address = wallet.address;
         [PDKeyChain save:KEYCHAIN_KEY(address) data:ks];
         
-        [ETHWalletManager saveETHWallet:address name:self.walletNameL.text];
+        [ETHWalletManager saveWallet:address name:self.walletNameL.text];
         self.createdWallet = wallet;
     } failed:^(NSError *error) {
         [self showMessage:[NSString stringWithFormat:@"%@",SOLocalizedStringFromTable(@"Create Wallet Failed", nil)]];

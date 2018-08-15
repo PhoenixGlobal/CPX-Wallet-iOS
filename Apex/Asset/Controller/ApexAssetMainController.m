@@ -103,7 +103,7 @@
     if (walletType.integerValue == ApexWalletType_Neo) {
         _contentArr = [ApexWalletManager getWalletsArr];
     }else{
-        _contentArr = [ETHWalletManager getEthWalletsArray];
+        _contentArr = [ETHWalletManager getWalletsArr];
     }
     
     
@@ -186,10 +186,10 @@
         @strongify(self);
         
         NSArray *wallets = @[];
-        if (((NSNumber*)[TKFileManager ValueWithKey:KglobleWalletType]).integerValue == ApexWalletType_Neo) {
+        if (GlobleWalletType == ApexWalletType_Neo) {
             wallets = [ApexWalletManager getWalletsArr];
         }else{
-            wallets = [ETHWalletManager getEthWalletsArray];
+            wallets = [ETHWalletManager getWalletsArr];
         }
         
         if (key.length == 0) {

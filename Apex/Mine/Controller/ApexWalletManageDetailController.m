@@ -69,17 +69,6 @@
     self.nameL.text = SOLocalizedStringFromTable(@"Wallet Name", nil);
 }
 
-//- (void)requestBalance{
-//    @weakify(self);
-//    [ApexWalletManager getAccountStateWithAddress:self.model.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        @strongify(self);
-//        ApexAccountStateModel *model = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
-//        model.balances.count == 0 ? (self.balanceL.text = @"0") : (self.balanceL.text = model.balances.firstObject.value);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        self.balanceL.text = @"N/A";
-//    }];
-//}
-
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------

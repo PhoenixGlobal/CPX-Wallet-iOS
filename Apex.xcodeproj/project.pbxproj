@@ -158,6 +158,7 @@
 		E703930B211D6BF300BA3CDB /* ApexETHTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E703930A211D6BF300BA3CDB /* ApexETHTransactionModel.m */; };
 		E703930E212162A500BA3CDB /* ApexWalletSelectTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E703930D212162A500BA3CDB /* ApexWalletSelectTypeView.m */; };
 		E70393132121A26500BA3CDB /* ETHWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E70393122121A26500BA3CDB /* ETHWalletModel.m */; };
+		E70393192123C52200BA3CDB /* ETHTransferHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E70393182123C52200BA3CDB /* ETHTransferHistoryManager.m */; };
 		E731468E2109FC2D002A6C07 /* ApexEnterKeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */; };
 		E7314690210A02D0002A6C07 /* useprotocol.html in Resources */ = {isa = PBXBuildFile; fileRef = E731468F210A02CF002A6C07 /* useprotocol.html */; };
 		E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7314692210A05BA002A6C07 /* ApexProlicyController.m */; };
@@ -499,6 +500,10 @@
 		E703930D212162A500BA3CDB /* ApexWalletSelectTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexWalletSelectTypeView.m; sourceTree = "<group>"; };
 		E70393112121A26500BA3CDB /* ETHWalletModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHWalletModel.h; sourceTree = "<group>"; };
 		E70393122121A26500BA3CDB /* ETHWalletModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHWalletModel.m; sourceTree = "<group>"; };
+		E70393152123BD9A00BA3CDB /* ApexWalletManagerProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexWalletManagerProtocal.h; sourceTree = "<group>"; };
+		E70393162123C3C000BA3CDB /* ApexTransHistoryProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransHistoryProtocal.h; sourceTree = "<group>"; };
+		E70393172123C52200BA3CDB /* ETHTransferHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHTransferHistoryManager.h; sourceTree = "<group>"; };
+		E70393182123C52200BA3CDB /* ETHTransferHistoryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHTransferHistoryManager.m; sourceTree = "<group>"; };
 		E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEnterKeyView.h; sourceTree = "<group>"; };
 		E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEnterKeyView.m; sourceTree = "<group>"; };
 		E731468F210A02CF002A6C07 /* useprotocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol.html; sourceTree = "<group>"; };
@@ -1110,6 +1115,8 @@
 		E33A8BB720AE795F0067505E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E70393152123BD9A00BA3CDB /* ApexWalletManagerProtocal.h */,
+				E70393162123C3C000BA3CDB /* ApexTransHistoryProtocal.h */,
 				E70392D9211D451A00BA3CDB /* EthWalletModel */,
 				E70392C1211D443500BA3CDB /* NeoWalletModel */,
 			);
@@ -1240,6 +1247,8 @@
 			children = (
 				E70392FD211D539600BA3CDB /* ETHWalletManager.h */,
 				E70392FE211D539700BA3CDB /* ETHWalletManager.m */,
+				E70393172123C52200BA3CDB /* ETHTransferHistoryManager.h */,
+				E70393182123C52200BA3CDB /* ETHTransferHistoryManager.m */,
 				E70393112121A26500BA3CDB /* ETHWalletModel.h */,
 				E70393122121A26500BA3CDB /* ETHWalletModel.m */,
 				E7039309211D6BF300BA3CDB /* ApexETHTransactionModel.h */,
@@ -1634,6 +1643,7 @@
 				E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */,
 				E33A8B9A20AE756E0067505E /* UINavigationController+ApexNavigationBar.m in Sources */,
 				E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */,
+				E70393192123C52200BA3CDB /* ETHTransferHistoryManager.m in Sources */,
 				E39E02E320C7ACDB005DD251 /* UIViewController+Apex.m in Sources */,
 				E3CE66B920BEA812002A1E07 /* DTConstants.m in Sources */,
 				E3CE66D920C4E29E002A1E07 /* ApexAssetMainController.m in Sources */,

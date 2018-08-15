@@ -27,6 +27,8 @@
 #define IS_IPHONE_7P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 #define IS_IPHONE_X  (IS_IPHONE && SCREEN_MAX_LENGTH == 812.0)
 
+#define GlobleWalletType ((NSNumber*)[TKFileManager ValueWithKey:KglobleWalletType]).integerValue
+
 //废弃
 #define deprecated(message) __attribute__((deprecated(message)))
 

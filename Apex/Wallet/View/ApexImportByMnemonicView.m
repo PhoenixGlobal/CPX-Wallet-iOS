@@ -136,7 +136,7 @@
     
     //删除已有的 再添加新的
     [ApexWalletManager deleteWalletForAddress:address];
-    [ApexWalletManager saveWallet:[NSString stringWithFormat:@"%@/%@",address, @"Wallet"]];
+    [ApexWalletManager saveWallet:address name:nil];
     
     [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Success", nil)];
     if (self.didFinishImportSub) {
@@ -165,7 +165,7 @@
     NSString *address = wallet.address;
     
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
-    ETHWalletModel *model = [ETHWalletManager saveETHWallet:address name:@"Wallet"];
+    ETHWalletModel *model = [ETHWalletManager saveWallet:address name:@"Wallet"];
     
     if (!model) {
         [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];

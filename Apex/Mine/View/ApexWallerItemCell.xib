@@ -21,13 +21,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ong-tz-Ipb">
-                        <rect key="frame" x="15" y="20" width="46.5" height="23"/>
+                        <rect key="frame" x="70" y="20" width="46.5" height="23"/>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeK-61-K8A">
-                        <rect key="frame" x="15" y="53" width="33" height="16"/>
+                        <rect key="frame" x="70" y="53" width="33" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -57,27 +57,37 @@
                             <constraint firstAttribute="width" constant="10" id="s2V-O2-xJo"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5n1-os-FUq">
+                        <rect key="frame" x="15" y="25.5" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="YAb-P4-yPR"/>
+                            <constraint firstAttribute="height" constant="40" id="bU4-fs-RKc"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ovP-pB-Alt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xeK-61-K8A" secondAttribute="trailing" constant="15" id="9Qa-gZ-e9D"/>
                     <constraint firstItem="uG0-Nq-Aux" firstAttribute="centerY" secondItem="Ong-tz-Ipb" secondAttribute="centerY" id="BQo-jM-rD4"/>
                     <constraint firstAttribute="trailing" secondItem="tKe-mv-kxb" secondAttribute="trailing" constant="25" id="Cek-mc-c6u"/>
+                    <constraint firstItem="Ong-tz-Ipb" firstAttribute="leading" secondItem="5n1-os-FUq" secondAttribute="trailing" constant="15" id="E4w-VT-ovf"/>
                     <constraint firstItem="ovP-pB-Alt" firstAttribute="leading" secondItem="uG0-Nq-Aux" secondAttribute="trailing" constant="60" id="IPZ-C5-ghD"/>
                     <constraint firstItem="uG0-Nq-Aux" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ong-tz-Ipb" secondAttribute="trailing" constant="15" id="J9A-LO-feJ"/>
                     <constraint firstAttribute="bottom" secondItem="ovP-pB-Alt" secondAttribute="bottom" constant="10" id="NyM-17-lDh"/>
                     <constraint firstItem="ovP-pB-Alt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="W79-Mv-edx"/>
                     <constraint firstItem="Ong-tz-Ipb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Z3s-BR-Q1V"/>
-                    <constraint firstItem="Ong-tz-Ipb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="a6p-x1-Yi1"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xeK-61-K8A" secondAttribute="bottom" constant="15" id="bgZ-A4-1Cy"/>
+                    <constraint firstItem="5n1-os-FUq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eBR-cp-zQ0"/>
                     <constraint firstItem="tKe-mv-kxb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gKs-CC-0wg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ovP-pB-Alt" secondAttribute="trailing" constant="60" id="mKt-bb-HXs"/>
                     <constraint firstItem="xeK-61-K8A" firstAttribute="top" secondItem="Ong-tz-Ipb" secondAttribute="bottom" constant="10" id="nSB-cv-aDq"/>
+                    <constraint firstItem="5n1-os-FUq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="sES-rO-K9M"/>
                     <constraint firstItem="xeK-61-K8A" firstAttribute="leading" secondItem="Ong-tz-Ipb" secondAttribute="leading" id="yLb-p0-Gdl"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="backupTipBtn" destination="uG0-Nq-Aux" id="rV9-En-2sT"/>
+                <outlet property="iconIMageV" destination="5n1-os-FUq" id="LNO-MP-tSH"/>
                 <outlet property="walletAddL" destination="xeK-61-K8A" id="CRs-PK-rnI"/>
                 <outlet property="walletNameL" destination="Ong-tz-Ipb" id="bpO-G0-c9N"/>
             </connections>

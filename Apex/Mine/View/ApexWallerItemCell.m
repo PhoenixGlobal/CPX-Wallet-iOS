@@ -11,6 +11,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
 @property (weak, nonatomic) IBOutlet UILabel *walletAddL;
 @property (weak, nonatomic) IBOutlet UILabel *valueL;
+@property (weak, nonatomic) IBOutlet UIImageView *iconIMageV;
 
 @property (nonatomic, strong) ApexAccountStateModel *accountModel;
 @end
@@ -33,31 +34,18 @@
 - (void)setModel:(ApexWalletModel *)model
 {
     _model = model;
-    self.walletNameL.text = model.name;
     
+    if([model isKindOfClass:ETHWalletModel.class]){
+        _iconIMageV.image = ETHPlaceHolder;
+    }else if ([model isKindOfClass:ApexWalletModel.class]) {
+        _iconIMageV.image = NEOPlaceHolder;
+    }
+    
+    self.walletNameL.text = model.name;
     self.walletAddL.text = model.address;
     self.valueL.text = @"N/A";
-//    [self requestBalance];
-    
     self.backupTipBtn.hidden = model.isBackUp;
 }
-
-//- (void)requestBalance{
-//    @weakify(self);
-//    [ApexWalletManager getAccountStateWithAddress:self.model.address Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        @strongify(self);
-//        self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
-//        //延时加载
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            self.accountModel.balances.count == 0 ? (self.valueL.text = @"0") : (self.valueL.text = self.accountModel.balances.firstObject.value);
-//        });
-//        if (self.didFinishRequestBalanceSub) {
-//            [self.didFinishRequestBalanceSub sendNext:self.accountModel];
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         self.valueL.text = @"N/A";
-//    }];
-//}
 
 - (ApexAccountStateModel *)getAccountInfo{
     return _accountModel;

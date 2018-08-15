@@ -43,6 +43,7 @@
 #import "ApexWalletManager.h"
 #import "ETHWalletManager.h"
 #import "ApexWalletModel.h"
+#import "ETHWalletModel.h"
 #import "ApexBlockChainManager.h"
 #import "ApexThread.h"
 #import "ApexAccountStateModel.h"
