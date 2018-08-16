@@ -244,4 +244,27 @@ singleM(Manager);
         }
     }];
 }
+
++ (void)requestERC20BalanceOfContract:(NSString*)contract Address:(NSString*)address
+                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    //{"jsonrpc":"2.0","method":"eth_call","params"[{"to":"0x123ab195dd38b1b40510d467a6a359b201af056f","data":"0x70a082310000000000000000000000008afCE0B7CA212fcD4FD9EA54749c6c48e715c60f"},"latest"],"id":1}
+    NSError *err = nil;
+    NSString *data = [[EthmobileEthCall new] balanceOf:contract address:address error:&err];
+    if (err && failure) {
+        failure(nil, err);
+        return;
+    }
+    
+    [[ApexETHClient shareRPCClient] invokeMethod:@"eth_call" withParameters:@[data,@"latest"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (success) {
+            success(operation,responseObject);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(operation,error);
+        }
+    }];
+    
+}
 @end

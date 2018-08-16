@@ -16,6 +16,7 @@
 #import "ApexTransferHistoryManager.h"
 #import "ApexTXDetailController.h"
 #import "ApexChangeBindWalletController.h"
+#import "ETHTransferHistoryManager.h"
 
 @interface ApexTransactionDetailController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
@@ -26,10 +27,10 @@
 @property (nonatomic, strong) UIButton *swithBtn;
 @property (nonatomic, strong) ApexSearchWalletToolBar *searchToolBar;
 @property (nonatomic, strong) NSMutableArray *contentArr;
-@property (nonatomic, strong) NSArray *walletArr;
 @property (nonatomic, strong) CYLEmptyView *ev;
 @property (nonatomic, strong) ApexSwithWalletView *switchView;
 @property (nonatomic, assign) NSInteger offset;
+@property (nonatomic, strong) id<ApexTransHistoryProtocal> historyManager; /**<  */
 @end
 
 @implementation ApexTransactionDetailController
@@ -88,21 +89,12 @@
 - (void)prepareData{
     self.title = self.model.name;
     self.addressL.text = self.model.address;
-    self.walletArr = [[ApexWalletManager shareManager] getWalletsArr];
-    
     [self requestTXHistory];
-    
-    if (self.walletArr.count == 1) {
-        self.swithBtn.hidden = YES;
-    }
-    else{
-        self.swithBtn.hidden = NO;
-    }
 }
 
 - (void)requestTXHistory{
     //请求最新历史记录写入数据库
-    [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:self.model.address Success:^(CYLResponse *response) {
+    [_historyManager requestTxHistoryForAddress:self.model.address Success:^(CYLResponse *response) {
 
         [self.tableView.mj_header endRefreshing];
         [self requestSuccessLoadDataFromFMDB];
@@ -119,7 +111,7 @@
 - (void)requestSuccessLoadDataFromFMDB{
     self.offset = 0;
     [self.tableView.mj_footer setState:MJRefreshStateIdle];
-    self.contentArr = [[ApexTransferHistoryManager shareManager] getHistoriesOffset:self.offset walletAddress:self.model.address];
+    self.contentArr = [_historyManager getHistoriesOffset:self.offset walletAddress:self.model.address];
     if (self.contentArr.count == 0) {
         self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:SOLocalizedStringFromTable(@"Data Empty", nil) refreshBlock:nil];
     }else{
@@ -131,7 +123,7 @@
 
 - (void)requestNextPage{
     self.offset += 1;
-    NSArray *arr = [[ApexTransferHistoryManager shareManager] getHistoriesOffset:self.offset walletAddress:self.model.address];
+    NSArray *arr = [_historyManager getHistoriesOffset:self.offset walletAddress:self.model.address];
     [self.contentArr addObjectsFromArray:arr];
     [self.tableView reloadData];
     
@@ -175,18 +167,6 @@
     return 55;
 }
 
-
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    ApexTransferDetailHeader *h = [[ApexTransferDetailHeader alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 40)];
-//    return h;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return 40;
-//}
-
-
-
 #pragma mark - ------eventResponse------
 - (void)handleEvent{
     @weakify(self);
@@ -199,7 +179,7 @@
             [self.tableView.mj_header setState:MJRefreshStateIdle];
             [self prepareData];
         }else{
-            NSMutableArray *tempArr = [[ApexTransferHistoryManager shareManager] getHistoryiesWithPrefixOfTxid:key address:self.model.address];
+            NSMutableArray *tempArr = [_historyManager getHistoryiesWithPrefixOfTxid:key address:self.model.address];
             self.contentArr = tempArr;
             //禁用上拉下拉
             [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
@@ -212,6 +192,7 @@
         @strongify(self);
         ApexChangeBindWalletController *vc = [[ApexChangeBindWalletController alloc] init];
         vc.transHistoryWalletModel = self.model;
+        vc.shouldIncludETH = YES;
         vc.didSelectCellSub = [RACSubject subject];
         [vc.didSelectCellSub subscribeNext:^(ApexWalletModel *x) {
             self.model = x;
@@ -219,20 +200,20 @@
             [self prepareData];
         }];
         [self.navigationController pushViewController:vc animated:YES];
-//        self.swithBtn.selected = !self.swithBtn.selected;
-//        self.switchView.contentArr = self.walletArr;
-//        [[UIApplication sharedApplication].keyWindow addSubview:self.switchView];
     }];
     
-//    self.switchView.didSwitchSub = [RACSubject subject];
-//    [self.switchView.didSwitchSub subscribeNext:^(ApexWalletModel *x) {
-//        self.model = x;
-//        [self.searchToolBar clearEntrance];
-//        [self prepareData];
-//    }];
 }
 
 #pragma mark - ------getter & setter------
+- (void)setModel:(ApexWalletModel *)model{
+    _model = model;
+    if ([model isKindOfClass:[ETHWalletModel class]]) {
+        _historyManager = [ETHTransferHistoryManager shareManager];
+    }else{
+        _historyManager = [ApexTransferHistoryManager shareManager];
+    }
+}
+
 - (UIButton *)swithBtn{
     if (!_swithBtn) {
         _swithBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
@@ -249,13 +230,6 @@
         [_searchToolBar setCancleBtnImage:[UIImage imageNamed:@"Group 5-1"]];
     }
     return _searchToolBar;
-}
-
-- (NSArray *)walletArr{
-    if (!_walletArr) {
-        _walletArr = [NSArray array];
-    }
-    return _walletArr;
 }
 
 - (NSMutableArray *)contentArr{

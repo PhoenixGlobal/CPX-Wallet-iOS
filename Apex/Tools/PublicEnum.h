@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger,ApexTransferStatus) {
 
 /**< 全局的钱包类型*/
 typedef NS_ENUM(NSInteger, ApexWalletType) {
-    ApexWalletType_Neo,
+    ApexWalletType_Neo = 98765,
     ApexWalletType_Eth
 };
 

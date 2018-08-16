@@ -40,7 +40,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uG0-Nq-Aux">
-                        <rect key="frame" x="187" y="22.5" width="31" height="18"/>
+                        <rect key="frame" x="217" y="22.5" width="31" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="rmG-kc-uDR"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="swS-Ux-lU6"/>
@@ -70,8 +70,8 @@
                     <constraint firstItem="uG0-Nq-Aux" firstAttribute="centerY" secondItem="Ong-tz-Ipb" secondAttribute="centerY" id="BQo-jM-rD4"/>
                     <constraint firstAttribute="trailing" secondItem="tKe-mv-kxb" secondAttribute="trailing" constant="25" id="Cek-mc-c6u"/>
                     <constraint firstItem="Ong-tz-Ipb" firstAttribute="leading" secondItem="5n1-os-FUq" secondAttribute="trailing" constant="15" id="E4w-VT-ovf"/>
-                    <constraint firstItem="ovP-pB-Alt" firstAttribute="leading" secondItem="uG0-Nq-Aux" secondAttribute="trailing" constant="60" id="IPZ-C5-ghD"/>
-                    <constraint firstItem="uG0-Nq-Aux" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ong-tz-Ipb" secondAttribute="trailing" constant="15" id="J9A-LO-feJ"/>
+                    <constraint firstItem="ovP-pB-Alt" firstAttribute="leading" secondItem="uG0-Nq-Aux" secondAttribute="trailing" constant="30" id="IPZ-C5-ghD"/>
+                    <constraint firstItem="uG0-Nq-Aux" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ong-tz-Ipb" secondAttribute="trailing" constant="5" id="J9A-LO-feJ"/>
                     <constraint firstAttribute="bottom" secondItem="ovP-pB-Alt" secondAttribute="bottom" constant="10" id="NyM-17-lDh"/>
                     <constraint firstItem="ovP-pB-Alt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="W79-Mv-edx"/>
                     <constraint firstItem="Ong-tz-Ipb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Z3s-BR-Q1V"/>

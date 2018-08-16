@@ -61,6 +61,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="addressL" destination="ojJ-xg-6QU" id="MgZ-dt-YLA"/>
+                <outlet property="iconIV" destination="kDI-4Z-BXr" id="9XJ-xC-aOc"/>
                 <outlet property="indicator" destination="UeK-Rd-xkX" id="fFc-YD-J1C"/>
                 <outlet property="walletNameL" destination="izG-7H-zu1" id="HFf-c0-9Fa"/>
             </connections>

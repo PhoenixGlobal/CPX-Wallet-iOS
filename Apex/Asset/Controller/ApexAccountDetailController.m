@@ -85,9 +85,9 @@
     }];
     
     MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
-        if (_type == ApexWalletType_Neo) {
+        if (self.type == ApexWalletType_Neo) {
             [self requestNeoAsset];
-        }else if (_type == ApexWalletType_Eth){
+        }else if (self.type == ApexWalletType_Eth){
             [self requestETHAsset];
         }
     }];
@@ -362,7 +362,7 @@
 - (void)setWalletModel:(ApexWalletModel *)walletModel{
     _walletModel = walletModel;
     
-    if ([walletModel isKindOfClass:ETHWalletManager.class]) {
+    if ([walletModel isKindOfClass:ETHWalletModel.class]) {
         _type = ApexWalletType_Eth;
         
     }else{
@@ -370,6 +370,8 @@
         [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
     }
     
+    NSString *str = [[EthmobileEthCall new] balanceOf:@"0x123ab195dd38b1b40510d467a6a359b201af056f" address:@"0x8afCE0B7CA212fcD4FD9EA54749c6c48e715c60f" error:nil];
+    NSLog(@"%@",str);
 }
 
 - (UILabel *)addressL{

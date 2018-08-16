@@ -10,12 +10,15 @@
 #import "ApexImportSwithHeaderBar.h"
 #import "ApexImportByKeystoreView.h"
 #import "ApexImportByMnemonicView.h"
+#import "ApexPageView.h"
 
-@interface ApexImportWalletController ()
+
+@interface ApexImportWalletController ()<ApexPageViewDelegate>
 @property (nonatomic, strong) ApexImportSwithHeaderBar *switchHeader;
 @property (nonatomic, strong) ApexImportByKeystoreView *keyStoreView;
 @property (nonatomic, strong) ApexImportByMnemonicView *mnemonicView;
 @property (nonatomic, strong) UIImageView *backIV;
+@property (nonatomic, strong) ApexPageView *pageView; /**<  */
 @end
 
 @implementation ApexImportWalletController
@@ -35,35 +38,60 @@
     self.mnemonicView.didFinishImportSub = self.didFinishImportSub;
     self.keyStoreView.didFinishImportSub = self.didFinishImportSub;
     
+    [self.view addSubview:self.pageView];
     [self.view addSubview:self.backIV];
-    [self.view addSubview:self.switchHeader];
-    [self.view addSubview:self.keyStoreView];
-    [self.view addSubview:self.mnemonicView];
+//    [self.view addSubview:self.switchHeader];
+//    [self.view addSubview:self.keyStoreView];
+//    [self.view addSubview:self.mnemonicView];
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(NavBarHeight+40);
+        make.height.mas_equalTo(NavBarHeight+20);
     }];
     
-    [self.switchHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.backIV);
-        make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(40);
-    }];
-    
-    [self.mnemonicView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.pageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.backIV.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
     
-    [self.keyStoreView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.mnemonicView);
-    }];
+//    [self.switchHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self.backIV);
+//        make.left.right.equalTo(self.view);
+//        make.height.mas_equalTo(40);
+//    }];
+//
+//    [self.mnemonicView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.backIV.mas_bottom);
+//        make.left.right.bottom.equalTo(self.view);
+//    }];
+//
+//    [self.keyStoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.mnemonicView);
+//    }];
 }
 
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
+- (NSInteger)numberOfPageInPageView{
+    return 2;
+}
+
+- (UIView *)pageView:(ApexPageView *)pageView viewForPageAtIndex:(NSInteger)index{
+    if (index == 0) {
+        return self.mnemonicView;
+    }else{
+        return self.keyStoreView;
+    }
+}
+
+- (NSString *)pageView:(ApexPageView *)pageView titleForPageAtIndex:(NSInteger)index{
+    if (index == 0) {
+        return SOLocalizedStringFromTable(@"Mnemonics",nil);
+    }else{
+        return @"keystore";
+    }
+}
 
 #pragma mark - ------eventResponse------
 - (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
@@ -77,6 +105,14 @@
 }
 
 #pragma mark - ------getter & setter------
+- (ApexPageView *)pageView{
+    if (!_pageView) {
+        _pageView = [[ApexPageView alloc] init];
+        _pageView.delegate = self;
+    }
+    return _pageView;
+}
+
 - (UIImageView *)backIV{
     if (!_backIV) {
         _backIV = [[UIImageView alloc] init];

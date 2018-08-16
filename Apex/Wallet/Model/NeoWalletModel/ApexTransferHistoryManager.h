@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "ApexTransHistoryProtocal.h"
 
-//交易状态改变的通知
-#define Notification_TranferStatusHasChanged @"Notification_TranferStatusHasChanged"
-#define Notification_TranferHasConfirmed @"Notification_TranferHasConfirmed"
-
 @class ApexTransferModel;
 
 @interface ApexTransferHistoryManager : NSObject<ApexTransHistoryProtocal>

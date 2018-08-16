@@ -10,6 +10,8 @@
 #import "ApexAlertTextField.h"
 #import "ApexPrivacyAggreView.h"
 #import "ApexProlicyController.h"
+#import "ApexWalletSelectTypeView.h"
+#import "ApexRowSelectView.h"
 
 @interface ApexImportByMnemonicView()
 @property (nonatomic, strong) UITextView *textView;
@@ -19,6 +21,7 @@
 @property (nonatomic, strong) UIButton *importBtn;
 @property (nonatomic, strong) RACSignal *combineSignal;
 @property (nonatomic, strong) id<ApexWalletManagerProtocal> walletManager; /**<  */
+@property (nonatomic, strong) ApexWalletSelectTypeView *typeSelectView; /**<  */
 @end
 
 @implementation ApexImportByMnemonicView
@@ -38,6 +41,7 @@
     RAC(self.importBtn, enabled) = self.combineSignal;
     
     [self addSubview:self.textView];
+    [self addSubview:self.typeSelectView];
     [self addSubview:self.passWordTF];
     [self addSubview:self.repeatPassWTF];
     [self addSubview:self.agreeView];
@@ -50,8 +54,14 @@
         make.height.mas_equalTo(scaleHeight667(130));
     }];
     
-    [self.passWordTF mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.typeSelectView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.textView.mas_bottom).offset(30);
+        make.height.mas_equalTo(40);
+        make.left.right.equalTo(self.textView);
+    }];
+    
+    [self.passWordTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.typeSelectView.mas_bottom).offset(30);
         make.height.mas_equalTo(40);
         make.left.right.equalTo(self.textView);
     }];
@@ -78,31 +88,9 @@
 #pragma mark - ------public------
 
 #pragma mark - ------delegate & datasource------
-- (void)handleEvent{
-    [[self.importBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [self importWallet];
-    }];
-    
-    self.agreeView.privacyAgreeLable.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
-        NSString *filePath = @"";
-        if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
-            filePath = [[NSBundle mainBundle] pathForResource:@"useprotocol_en" ofType:@"html"];
-        }else{
-            filePath = [[NSBundle mainBundle] pathForResource:@"useprotocol" ofType:@"html"];
-        }
-        NSString *htmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-        ApexProlicyController *vc = [[ApexProlicyController alloc] init];
-        vc.html = htmlString;
-        [[self topViewController].navigationController pushViewController:vc animated:YES];
-    }];
-    [self.agreeView.privacyAgreeLable addGestureRecognizer:tap];
-}
-
 - (void)importWallet{
-    NSNumber *type = [TKFileManager ValueWithKey:KglobleWalletType];
-    if (type.integerValue == ApexWalletType_Neo) {
+     ApexWalletType type = self.typeSelectView.type;
+    if (type == ApexWalletType_Neo) {
         [self importNeoWallet];
     }else{
         [self importEthWallet];
@@ -186,12 +174,51 @@
 }
 
 #pragma mark - ------eventResponse------
-
+- (void)handleEvent{
+    //导入钱包
+    [[self.importBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [self importWallet];
+    }];
+    
+    //用户协议
+    self.agreeView.privacyAgreeLable.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        NSString *filePath = @"";
+        if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+            filePath = [[NSBundle mainBundle] pathForResource:@"useprotocol_en" ofType:@"html"];
+        }else{
+            filePath = [[NSBundle mainBundle] pathForResource:@"useprotocol" ofType:@"html"];
+        }
+        NSString *htmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        ApexProlicyController *vc = [[ApexProlicyController alloc] init];
+        vc.html = htmlString;
+        [[self topViewController].navigationController pushViewController:vc animated:YES];
+    }];
+    [self.agreeView.privacyAgreeLable addGestureRecognizer:tap];
+    
+    //钱包类型选择
+    self.typeSelectView.didChooseTypeSub = [RACSubject subject];
+    [self.typeSelectView.didChooseTypeSub subscribeNext:^(id  _Nullable x) {
+        [ApexRowSelectView showSingleRowSelectViewWithContentArr:@[@"NEO",@"ETH"] CompleteHandler:^(id obj) {
+            self.typeSelectView.typeTF.text = obj;
+            if ([self.typeSelectView.typeTF.text isEqualToString:@"NEO"]) {
+                self.typeSelectView.type = ApexWalletType_Neo;
+            }else{
+                self.typeSelectView.type = ApexWalletType_Eth;
+            }
+        }];
+    }];
+}
 #pragma mark - ------getter & setter------
 - (RACSignal *)combineSignal{
     if (!_combineSignal) {
-        _combineSignal = [RACSignal combineLatest:@[self.textView.rac_textSignal, self.passWordTF.rac_textSignal,self.repeatPassWTF.rac_textSignal,RACObserve(self.passWordTF, isAlertShowing), RACObserve(self.repeatPassWTF, isAlertShowing), RACObserve(self.agreeView.privacyAgreeBtn, selected)] reduce:^id (NSString *mnemonic, NSString *passw, NSString *repeat, NSNumber *passAlert, NSNumber *repeatAlert, NSNumber *privacySel){
+        _combineSignal = [RACSignal combineLatest:@[self.textView.rac_textSignal, self.passWordTF.rac_textSignal,self.repeatPassWTF.rac_textSignal,RACObserve(self.passWordTF, isAlertShowing), RACObserve(self.repeatPassWTF, isAlertShowing), RACObserve(self.agreeView.privacyAgreeBtn, selected),RACObserve(self.typeSelectView, type)] reduce:^id (NSString *mnemonic, NSString *passw, NSString *repeat, NSNumber *passAlert, NSNumber *repeatAlert, NSNumber *privacySel, NSNumber *type){
             BOOL flag = true;
+            
+            if (type.integerValue != ApexWalletType_Neo && type.integerValue != ApexWalletType_Eth) {
+                flag = false;
+            }
             
             if ([mnemonic componentsSeparatedByString:@" "].count == 0 || mnemonic.length == 0) {
                 flag = false;
@@ -308,5 +335,12 @@
         _importBtn.enabled = false;
     }
     return _importBtn;
+}
+
+- (ApexWalletSelectTypeView *)typeSelectView{
+    if (!_typeSelectView) {
+        _typeSelectView = [[ApexWalletSelectTypeView alloc] init];
+    }
+    return _typeSelectView;
 }
 @end

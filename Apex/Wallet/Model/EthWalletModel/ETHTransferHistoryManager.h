@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ApexTransHistoryProtocal.h"
 
-@interface ETHTransferHistoryManager : NSObject
-
+@interface ETHTransferHistoryManager : NSObject<ApexTransHistoryProtocal>
+singleH(Manager);
 @end

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 @class ApexTransferModel;
+//交易状态改变的通知
+#define Notification_TranferStatusHasChanged @"Notification_TranferStatusHasChanged"
+#define Notification_TranferHasConfirmed @"Notification_TranferHasConfirmed"
 
 @protocol ApexTransHistoryProtocal <NSObject>
 - (void)createTableForWallet:(NSString*)walletAddress;

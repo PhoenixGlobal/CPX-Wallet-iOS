@@ -11,6 +11,7 @@
 @interface ApexChangeWalletCell()
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
+@property (weak, nonatomic) IBOutlet UIImageView *iconIV;
 
 @end
 
@@ -30,6 +31,12 @@
     _model = model;
     _walletNameL.text = model.name;
     _addressL.text = model.address;
+    
+    if ([model isKindOfClass:ETHWalletModel.class]) {
+        _iconIV.image = ETHPlaceHolder;
+    }else{
+        _iconIV.image = NEOPlaceHolder;
+    }
 }
 
 @end

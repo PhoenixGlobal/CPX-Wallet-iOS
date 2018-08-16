@@ -91,7 +91,7 @@
 
 
 - (void)setNav{
-    self.title = SOLocalizedStringFromTable(@"Assets", nil);
+//    self.title = SOLocalizedStringFromTable(@"Assets", nil);
     
     self.navigationController.delegate = self;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
@@ -103,8 +103,10 @@
     NSNumber *walletType = [TKFileManager ValueWithKey:KglobleWalletType];
     if (walletType.integerValue == ApexWalletType_Neo) {
         _walletManager = [ApexWalletManager shareManager];
+        self.title = @"NEO";
     }else{
         _walletManager = [ETHWalletManager shareManager];
+        self.title = @"ETH";
     }
     
     _contentArr = [_walletManager getWalletsArr];

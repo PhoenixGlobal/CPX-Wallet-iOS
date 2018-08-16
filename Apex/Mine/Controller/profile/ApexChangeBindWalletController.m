@@ -12,7 +12,7 @@
 @interface ApexChangeBindWalletController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView; /**<  */
 @property (nonatomic, strong) UILabel *titleL; /**<  */
-@property (nonatomic, strong) NSArray *contentArr; /**<  */
+@property (nonatomic, strong) NSMutableArray *contentArr; /**<  */
 @property (nonatomic, copy) NSString *bindingAddress; /**<  */
 @end
 
@@ -33,7 +33,14 @@
 #pragma mark - ------private------
 - (void)initUI{
     self.bindingAddress = [TKFileManager ValueWithKey:KBindingWalletAddress];
-    self.contentArr = [[ApexWalletManager shareManager] getWalletsArr];
+    
+    if (_shouldIncludETH) {
+        self.contentArr = [[ApexWalletManager shareManager] getWalletsArr];
+        [self.contentArr addObjectsFromArray:[[ETHWalletManager shareManager] getWalletsArr]];
+    }else{
+        self.contentArr = [[ApexWalletManager shareManager] getWalletsArr];
+    }
+    
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
