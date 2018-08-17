@@ -322,7 +322,7 @@ static ApexTransferHistoryManager *_instance;
     }
 
     //此方法内部 调用了-addTransferHistory: forWallet:
-    [[ApexTransferHistoryManager shareManager] getTransactionHistoryWithAddress:address BeginTime:bTime.integerValue Success:^(CYLResponse *response) {
+    [self getTransactionHistoryWithAddress:address BeginTime:bTime.integerValue Success:^(CYLResponse *response) {
         
         if (((NSArray*)response.returnObj).count == 500) {
             //请求下一组数据

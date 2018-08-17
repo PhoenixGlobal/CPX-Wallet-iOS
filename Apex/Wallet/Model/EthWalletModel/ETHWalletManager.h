@@ -28,6 +28,11 @@ singleH(Manager);
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+//获取nonce
++ (void)requestTransactionCount:(NSString*)address
+                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 //获取交易收据,pending中的交易返回nil
 /**
     交易上链后才会有返回
@@ -43,5 +48,5 @@ singleH(Manager);
 //查询erc20资产
 + (void)requestERC20BalanceOfContract:(NSString*)contract Address:(NSString*)address
                               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 @end

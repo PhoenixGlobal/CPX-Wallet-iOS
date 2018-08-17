@@ -133,6 +133,62 @@
 
 - (void)requestETHAsset{
     [self getLoacalEthAsset];
+    
+    RACSignal *request1 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+       
+        [ETHWalletManager requestETHBalanceOfAddress:self.walletModel.address success:^(AFHTTPRequestOperation *operation, NSString *responseObject) {
+            
+            BalanceObject *obj = [BalanceObject new];
+            obj.asset = assetId_Eth;
+            obj.value = responseObject;
+            [subscriber sendNext:@{assetId_Eth:obj}];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [subscriber sendError:error];
+        }];
+        return nil;
+    }];
+    
+    RACSignal *request2 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+       
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        for (BalanceObject *obj in self.assetArr) {
+            //非eth
+            if (![obj.asset isEqualToString:assetId_Eth]) {
+                [ETHWalletManager requestERC20BalanceOfContract:obj.asset Address:self.walletModel.address success:^(AFHTTPRequestOperation *operation, NSNumber *responseObject) {
+                    BalanceObject *balance = [BalanceObject new];
+                    balance.asset = obj.asset;
+                    balance.value = responseObject.stringValue;
+                    [dict setObject:balance forKey:balance.asset];
+                    if (dict.allKeys.count == self.assetArr.count) {
+                        [subscriber sendNext:dict];
+                    }
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                }];
+            }
+        }
+        return nil;
+    }];
+    
+    [[self rac_liftSelector:@selector(updateEth:) withSignals:request1, nil] subscribeError:^(NSError * _Nullable error) {
+        [self.tableView.mj_header endRefreshing];
+        [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
+    }];
+    
+}
+
+
+- (void)updateEth:(NSDictionary*)eth{
+    [self.tableView.mj_header endRefreshing];
+    
+    for (BalanceObject *obj in [self.assetArr copy]) {
+        if ([eth.allKeys containsObject:obj.asset]) {
+            obj.value = ((BalanceObject*)eth[obj.asset]).value;
+        }
+    }
+    
+    [[ETHWalletManager shareManager] updateWallet:self.walletModel WithAssetsArr:self.assetArr];
+    [self.tableView reloadData];
 }
 
 #pragma mark - 获取钱包Neo资产
@@ -365,13 +421,17 @@
     if ([walletModel isKindOfClass:ETHWalletModel.class]) {
         _type = ApexWalletType_Eth;
         
+//        [ETHWalletManager requestERC20BalanceOfContract:@"0x123ab195dd38b1b40510d467a6a359b201af056f" Address:@"0x8afCE0B7CA212fcD4FD9EA54749c6c48e715c60f" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            NSLog(@"%@",responseObject);
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//
+//        }];
+        
     }else{
         _type = ApexWalletType_Neo;
         [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
     }
-    
-    NSString *str = [[EthmobileEthCall new] balanceOf:@"0x123ab195dd38b1b40510d467a6a359b201af056f" address:@"0x8afCE0B7CA212fcD4FD9EA54749c6c48e715c60f" error:nil];
-    NSLog(@"%@",str);
+
 }
 
 - (UILabel *)addressL{

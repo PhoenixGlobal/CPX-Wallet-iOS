@@ -50,6 +50,9 @@
 
 - (void)setModel:(BalanceObject *)model{
     _model = model;
+    if ([model.value isKindOfClass:NSNumber.class]) {
+        model.value = ((NSNumber*)model.value).stringValue;
+    }
     _balanceL.text = model.value.floatValue == 0 ? @"0" : model.value;
     
     if (_type == ApexWalletType_Neo) {
@@ -74,7 +77,6 @@
                     }else{
                         self.assetIcon.image = NEOPlaceHolder;
                     }
-                    
                 }
                 break;
             }
@@ -82,6 +84,9 @@
         
     }else{
         //eth钱包资产详情
+        if (_model.value.floatValue >= 0.00000001) {
+            _balanceL.text = [_balanceL.text substringToIndex:10];
+        }
     }
 }
 @end

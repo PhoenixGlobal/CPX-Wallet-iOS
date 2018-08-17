@@ -98,6 +98,9 @@
 
 "noWalletInAssets" = "请点击右上角 拥有你的钱包";
 
+//eth
+"gainNonceFail" = "获取nonce失败";
+
 // tips
 "Create Wallet Failed" = "钱包创建失败";
 "Create Keystore Failed" = "keystore创建失败";

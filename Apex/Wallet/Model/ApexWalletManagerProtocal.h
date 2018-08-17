@@ -20,4 +20,7 @@
 - (void)updateWallet:(id)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr;
 - (ApexTransferStatus)transferStatusForAddress:(NSString*)address;
 - (void)reSortAssetArr:(NSMutableArray*)assetArr;
+
+//extends
+- (void)WalletFromKeystore:(NSString*)ks password:(NSString*)passWord success:(void (^)(id wallet))success failed:(void (^)(NSError *error))failed;
 @end

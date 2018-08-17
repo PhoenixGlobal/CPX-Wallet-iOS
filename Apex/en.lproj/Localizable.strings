@@ -106,6 +106,9 @@
 
 "noWalletInAssets" = "Please Click The Upper Right Corner To Have Your Wallet";
 
+//eth
+"gainNonceFail" = "Request Nonce Failed";
+
 // tips
 "Create Wallet Failed" = "Create Wallet Failed";
 "Create Keystore Failed" = "Create Keystore Failed";

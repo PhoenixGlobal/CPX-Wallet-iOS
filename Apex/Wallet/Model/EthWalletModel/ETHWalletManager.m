@@ -10,6 +10,7 @@
 #import "ApexETHClient.h"
 #import "ApexETHTransactionModel.h"
 #import "ETHWalletModel.h"
+
 #define ethWalletsKey @"ethWalletsKey"
 
 @implementation ETHWalletManager
@@ -160,6 +161,17 @@ singleM(Manager);
     }
 }
 
+
+- (void)WalletFromKeystore:(NSString *)ks password:(NSString *)passWord success:(void (^)(id))success failed:(void (^)(NSError *))failed{
+    NSError *err = nil;
+    id wallet = nil;
+    wallet = EthmobileFromKeyStore(ks, passWord, &err);
+    if (!err && wallet) {
+        success(wallet);
+    }else{
+        failed(err);
+    }
+}
 #pragma mark - request
 + (void)sendTxWithWallet:(EthmobileWallet*)wallet to:(NSString*)to nonce:(NSString*)nonce amount:(NSString*)amount gas:(NSString*)gas
                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
@@ -187,6 +199,24 @@ singleM(Manager);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {
             failure(operation, error);
+        }
+    }];
+}
+
++ (void)requestTransactionCount:(NSString*)address
+                        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    //{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0xc94770007dda54cF92009BFF0dE90c06F603a09f","latest"],"id":1}
+    [[ApexETHClient shareRPCClient] invokeMethod:@"eth_getTransactionCount" withParameters:@[address,@"latest"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (success) {
+            NSScanner *scanner = [[NSScanner alloc] initWithString:responseObject];
+            unsigned long long i = 0;
+            [scanner scanHexLongLong:&i];
+            success(operation,@(i));
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(operation,error);
         }
     }];
 }
@@ -223,12 +253,6 @@ singleM(Manager);
     }];
 }
 
-+ (void)requestERC20TransactionByHash:(NSString*)hash
-                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
-//
-}
-
 + (void)requestETHBalanceOfAddress:(NSString *)address
                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
@@ -236,7 +260,10 @@ singleM(Manager);
     //{"jsonrpc":"2.0","method":"eth_getBalance","params":["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"],"id":1}
     [[ApexETHClient shareRPCClient] invokeMethod:@"eth_getBalance" withParameters:@[address,@"latest"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
-            success(operation,responseObject);
+            NSScanner *scanner = [NSScanner scannerWithString:responseObject];
+            unsigned long long i = 0;
+            [scanner scanHexLongLong:&i];
+            success(operation,[NSString DecimalFuncWithOperatorType:3 first:@(i).stringValue secend:@"1000000000000000000" value:0]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {
@@ -255,10 +282,15 @@ singleM(Manager);
         failure(nil, err);
         return;
     }
+    NSData *d = [data dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:d options:NSJSONReadingAllowFragments error:nil];
     
-    [[ApexETHClient shareRPCClient] invokeMethod:@"eth_call" withParameters:@[data,@"latest"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[ApexETHClient shareRPCClient] invokeMethod:@"eth_call" withParameters:@[dict,@"latest"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
-            success(operation,responseObject);
+            NSScanner *scanner = [NSScanner scannerWithString:responseObject];
+            unsigned long long i = 0;
+            [scanner scanHexLongLong:&i];
+            success(operation,@(i));
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {

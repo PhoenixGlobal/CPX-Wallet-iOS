@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseVHeight;
 @property (nonatomic, assign) ApexWalletType walletType; /**<  */
 @property (nonatomic, strong) UIButton *saveBtn;
+@property (nonatomic, assign) ApexWalletType type; /**<  */
 @end
 
 @implementation ApexWalletManageDetailController
@@ -70,7 +71,9 @@
     
     if ([_model isKindOfClass:ETHWalletModel.class]) {
         _walletManager = [ETHWalletManager shareManager];
+        _type = ApexWalletType_Eth;
     }else{
+        _type = ApexWalletType_Neo;
         _walletManager = [ApexWalletManager shareManager];
     }
 }
@@ -111,7 +114,7 @@
     }];
     
     [[self.exportKeyStoreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:self.model.address subTitle:@"" Success:^(NeomobileWallet *wallet) {
+        [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:self.model.address walletManager:self.walletManager subTitle:@"" Success:^(id wallet) {
             ApexExportKeyStoreController *vc = [[ApexExportKeyStoreController alloc] init];
             vc.model = self.model;
             [self.navigationController pushViewController:vc animated:YES];

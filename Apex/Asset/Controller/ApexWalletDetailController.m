@@ -31,6 +31,7 @@
 @property (nonatomic, strong) UIButton *moreBtn;
 @property (nonatomic, strong) ApexDrawTransAnimator *transAnimator;
 @property (nonatomic, strong) id<ApexWalletManagerProtocal> walletManager; /**<  */
+@property (nonatomic, assign) ApexWalletType type; /**<  */
 @end
 
 @implementation ApexWalletDetailController
@@ -146,6 +147,7 @@
         svc.walletName = self.wallModel.name;
         svc.unit = self.unitL.text;
         svc.balanceModel = self.balanceModel;
+        svc.walletManager = self.walletManager;
         if ([_walletManager getWalletTransferStatusForAddress:self.wallModel.address]) {
             [self.navigationController pushViewController:svc animated:YES];
         }else{
@@ -197,7 +199,9 @@
     
     if ([wallModel isKindOfClass:ETHWalletModel.class]) {
         _walletManager = [ETHWalletManager shareManager];
+        _type = ApexWalletType_Eth;
     }else{
+        _type = ApexWalletType_Neo;
         _walletManager = [ApexWalletManager shareManager];
     }
 }

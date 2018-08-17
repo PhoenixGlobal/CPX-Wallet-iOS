@@ -14,6 +14,7 @@
 #import "ApexPassWordConfirmAlertView.h"
 #import "ApexTransferModel.h"
 #import "ApexTransferHistoryManager.h"
+#import "ETHTransferHistoryManager.h"
 
 @interface ApexSendMoneyController ()<LXDScanCodeControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *walletNameL;
@@ -32,6 +33,7 @@
 @property (nonatomic, strong) UIButton *backBtn;
 
 @property (nonatomic, strong) ApexAssetModel *assetModel;
+@property (nonatomic, strong) id<ApexTransHistoryProtocal> historyManager; /**<  */
 
 @property (weak, nonatomic) IBOutlet UILabel *availableL;
 @property (weak, nonatomic) IBOutlet UIButton *takeAllBtn;
@@ -92,6 +94,51 @@
     self.availableL.attributedText = attrStr;
     
     [self.takeAllBtn setTitle:SOLocalizedStringFromTable(@"allMoney", nil) forState:UIControlStateNormal];
+}
+
+#pragma mark - eth transaction
+- (void)ethTransactionWithWallet:(EthmobileWallet*)wallet{
+    [ETHWalletManager requestTransactionCount:self.fromAddressL.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self broadEthTransactionWithNonce:responseObject wallet:wallet];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showMessage:SOLocalizedStringFromTable(@"gainNonceFail", nil)];
+    }];
+}
+
+- (void)broadEthTransactionWithNonce:(NSNumber*)nonce wallet:(EthmobileWallet*)wallet{
+    [self showHUD];
+    [ETHWalletManager sendTxWithWallet:wallet to:self.toAddressTF.text nonce:nonce.stringValue amount:self.sendNumTF.text gas:@"0.001" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self hideHUD];
+        /**< 创建新的临时交易历史记录 */
+        ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
+        historyModel.txid = [responseObject hasPrefix:@"0x"] ? responseObject : [NSString stringWithFormat:@"0x%@",responseObject];
+        historyModel.from = self.fromAddressL.text;
+        historyModel.to = self.toAddressTF.text;
+        historyModel.value = [NSString stringWithFormat:@"-%@",self.sendNumTF.text];
+        historyModel.status = ApexTransferStatus_Blocking;
+        historyModel.time = @"0";
+        historyModel.assetId = self.balanceModel.asset;
+        ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.fromAddressL.text];
+        
+        if (lastRecord) {
+            historyModel.time = lastRecord.time;
+        }
+        
+        [self.historyManager addTransferHistory:historyModel forWallet:self.fromAddressL.text];
+        [self.historyManager beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
+        NSLog(@"eth txid %@",responseObject);
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideHUD];
+        [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
+    }];
+}
+
+#pragma mark - neo transaction
+- (void)neoTransactionWithWallet:(NeomobileWallet*)wallet{
+    [self utxoSearch:wallet];
 }
 
 - (void)utxoSearch:(NeomobileWallet*)wallet{
@@ -161,14 +208,14 @@
             historyModel.status = ApexTransferStatus_Blocking;
             historyModel.time = @"0";
             historyModel.assetId = self.balanceModel.asset;
-            ApexTransferModel *lastRecord = [[ApexTransferHistoryManager shareManager] getLastTransferHistoryOfAddress:self.fromAddressL.text];
+            ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.fromAddressL.text];
             
             if (lastRecord) {
                 historyModel.time = lastRecord.time;
             }
             
-            [[ApexTransferHistoryManager shareManager] addTransferHistory:historyModel forWallet:self.fromAddressL.text];
-            [[ApexTransferHistoryManager shareManager] beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
+            [self.historyManager addTransferHistory:historyModel forWallet:self.fromAddressL.text];
+            [self.historyManager beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
             NSLog(@"txid %@",tx.id_);
             
             [self.navigationController popToRootViewControllerAnimated:YES];
@@ -253,8 +300,14 @@
 //        }
         
         //输入密码
-        [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress subTitle:@"" Success:^(NeomobileWallet *wallet) {
-            [self utxoSearch:wallet];
+        [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress walletManager:self.walletManager subTitle:@"" Success:^(id wallet) {
+            
+            if ([self.walletManager isKindOfClass:ETHWalletManager.class]) {
+                [self ethTransactionWithWallet:wallet];
+            }else{
+                [self neoTransactionWithWallet:wallet];
+            }
+            
         } fail:^{
             [self showMessage:SOLocalizedStringFromTable(@"Password Error", nil)];
         }];
@@ -262,6 +315,15 @@
 }
 
 #pragma mark - ------getter & setter------
+- (void)setWalletManager:(id<ApexWalletManagerProtocal>)walletManager{
+    _walletManager = walletManager;
+    if ([walletManager isKindOfClass:ETHWalletManager.class]) {
+        self.historyManager = [ETHTransferHistoryManager shareManager];
+    }else{
+        self.historyManager = [ApexTransferHistoryManager shareManager];
+    }
+}
+
 - (ApexSendMoneyViewModel *)viewModel{
     if (!_viewModel) {
         _viewModel = [[ApexSendMoneyViewModel alloc] init];

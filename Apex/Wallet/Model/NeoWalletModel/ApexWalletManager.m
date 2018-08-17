@@ -198,6 +198,16 @@ singleM(Manager);
     return NO;
 }
 
+- (void)WalletFromKeystore:(NSString *)ks password:(NSString *)passWord success:(void (^)(id))success failed:(void (^)(NSError *))failed{
+    NSError *err = nil;
+    id wallet = nil;
+    wallet = NeomobileFromKeyStore(ks, passWord, &err);
+    if (!err && wallet) {
+        success(wallet);
+    }else{
+        failed(err);
+    }
+}
 #pragma mark - ------request-----
 + (void)getAccountStateWithAddress:(NSString *)address Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
     [[ApexNeoClient shareRPCClient] invokeMethod:@"getaccountstate" withParameters:@[address] success:success failure:failure];

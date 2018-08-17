@@ -54,7 +54,7 @@
     }];
 }
 
-+ (void)showEntryPasswordAlertAddress:(NSString *)address subTitle:(NSString*)subtitle Success:(successBlock)success fail:(dispatch_block_t)fail{
++ (void)showEntryPasswordAlertAddress:(NSString *)address walletManager:(id<ApexWalletManagerProtocal>)manager subTitle:(NSString*)subtitle Success:(successBlock)success fail:(dispatch_block_t)fail{
     FCAlertView *alert = [[FCAlertView alloc] init];
     UITextField *customField = [[UITextField alloc] init];
     customField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
@@ -74,21 +74,18 @@
     [alert doneActionBlock:^{
         [customField resignFirstResponder];
         NSString *keystore = [PDKeyChain load:KEYCHAIN_KEY(address)];
-        NeomobileWallet *wallet = nil;
-        NSError *err = nil;
         if (keystore) {
-            wallet = NeomobileFromKeyStore(keystore, password, &err);
-        }
-        
-        if (err) {
-            if (fail) {
-                fail();
-            }
-            return;
-        }
-        
-        if (success) {
-            success(wallet);
+            [manager WalletFromKeystore:keystore password:password success:^(id wallet) {
+                if (success) {
+                    success(wallet);
+                }
+            } failed:^(NSError *error) {
+                if (error) {
+                    if (fail) {
+                        fail();
+                    }
+                }
+            }];
         }
     }];
 }

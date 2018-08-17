@@ -12,7 +12,7 @@
 @property (nonatomic, strong) NSString *walletName;
 @property (nonatomic, strong) NSString *walletAddress;
 @property (nonatomic, strong) BalanceObject *balanceModel;
-
+@property (nonatomic, assign) id<ApexWalletManagerProtocal> walletManager; /**<  */
 @property (nonatomic, strong) NSString *toAddressIfHave;
 @property (nonatomic, strong) NSString *unit;
 @end
