@@ -105,7 +105,13 @@
 //    }];
     
     self.balanceL.text = self.balanceModel.value;
-    for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
+    NSMutableArray *arr = [NSMutableArray array];
+    if (_type == ApexWalletType_Neo) {
+        arr = [ApexAssetModelManage getLocalAssetModelsArr];
+    }else{
+        arr = [ETHAssetModelManage getLocalAssetModelsArr];
+    }
+    for (ApexAssetModel *model in arr) {
         if ([model.hex_hash containsString:self.balanceModel.asset]) {
             NSString *assetName = model.symbol;
             self.unitL.text = assetName;

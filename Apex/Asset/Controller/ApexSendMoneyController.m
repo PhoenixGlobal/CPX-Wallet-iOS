@@ -98,11 +98,18 @@
 
 #pragma mark - eth transaction
 - (void)ethTransactionWithWallet:(EthmobileWallet*)wallet{
-    [ETHWalletManager requestTransactionCount:self.fromAddressL.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self broadEthTransactionWithNonce:responseObject wallet:wallet];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showMessage:SOLocalizedStringFromTable(@"gainNonceFail", nil)];
-    }];
+    
+    if ([_balanceModel.asset isEqualToString:assetId_Eth]) {
+        //eth转账
+        [ETHWalletManager requestTransactionCount:self.fromAddressL.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self broadEthTransactionWithNonce:responseObject wallet:wallet];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self showMessage:SOLocalizedStringFromTable(@"gainNonceFail", nil)];
+        }];
+    }else{
+        //erc20转账
+        
+    }
 }
 
 - (void)broadEthTransactionWithNonce:(NSNumber*)nonce wallet:(EthmobileWallet*)wallet{
@@ -288,17 +295,6 @@
     }else if ([_toAddressTF.text isEqualToString:_walletAddress]){
         [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
     }else{
-        //检查精度
-//        NSString *decimal = [self.sendNumTF.text componentsSeparatedByString:@"."].lastObject;
-//        if (decimal.length > self.assetModel.precision.integerValue) {
-//            if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
-//                [self showMessage:[NSString stringWithFormat:@"given amount out of precision(%@)",self.assetModel.precision]];
-//            }else{
-//                [self showMessage:[NSString stringWithFormat:@"金额的精度超出正确的精度(%@)",self.assetModel.precision]];
-//            }
-//            return;
-//        }
-        
         //输入密码
         [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress walletManager:self.walletManager subTitle:@"" Success:^(id wallet) {
             

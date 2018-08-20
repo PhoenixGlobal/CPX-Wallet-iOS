@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class BalanceObject;
+@class ApexAssetModel;
 
 @protocol ApexWalletManagerProtocal <NSObject>
 - (id)saveWallet:(NSString*)address name:(NSString*)name;;
@@ -20,6 +21,8 @@
 - (void)updateWallet:(id)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr;
 - (ApexTransferStatus)transferStatusForAddress:(NSString*)address;
 - (void)reSortAssetArr:(NSMutableArray*)assetArr;
+
+- (ApexAssetModel*)assetModelByBalanceModel:(BalanceObject*)balanceObj;
 
 //extends
 - (void)WalletFromKeystore:(NSString*)ks password:(NSString*)passWord success:(void (^)(id wallet))success failed:(void (^)(NSError *error))failed;

@@ -10,4 +10,5 @@
 
 @interface ApexAddAssetsController : UIViewController
 @property (nonatomic, strong) NSMutableArray *walletAssetArr;
+@property (nonatomic, assign) ApexWalletType type; /**<  */
 @end

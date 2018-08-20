@@ -396,6 +396,7 @@
 - (void)pushAction{
     ApexAddAssetsController *addVC = [[ApexAddAssetsController alloc] init];
     addVC.walletAssetArr = self.assetArr;
+    addVC.type = self.type;
     [self.navigationController pushViewController:addVC animated:YES];
     
 //    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];

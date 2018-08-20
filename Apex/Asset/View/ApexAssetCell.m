@@ -57,28 +57,24 @@
     
     if (_type == ApexWalletType_Neo) {
         //neo钱包资产详情
-        for (ApexAssetModel *assetModel in [ApexAssetModelManage getLocalAssetModelsArr]) {
-            if ([assetModel.hex_hash containsString:model.asset]) {
-                
-                _assetNameL.text = assetModel.symbol;
-                _assetNameLTwo.text = @"";
-                
-                if ([model.asset containsString:assetId_CPX]) {
-                    _mappignBtn.hidden = NO;
-                    self.assetIcon.image = CPX_Logo;
-                }else if([model.asset containsString:assetId_NeoGas] || [model.asset containsString:assetId_Neo]){
-                    _mappignBtn.hidden = YES;
-                    self.assetIcon.image = NEOPlaceHolder;
-                }else{
-                    _mappignBtn.hidden = YES;
-                    UIImage *image = [UIImage imageNamed:model.asset inBundle:[ApexAssetModelManage resourceBundle] compatibleWithTraitCollection:nil];
-                    if (image) {
-                        self.assetIcon.image = image;
-                    }else{
-                        self.assetIcon.image = NEOPlaceHolder;
-                    }
-                }
-                break;
+        
+        ApexAssetModel *assetModel = [[ApexWalletManager shareManager] assetModelByBalanceModel:model];
+        _assetNameL.text = assetModel.symbol;
+        _assetNameLTwo.text = @"";
+        
+        if ([model.asset containsString:assetId_CPX]) {
+            _mappignBtn.hidden = NO;
+            self.assetIcon.image = CPX_Logo;
+        }else if([model.asset containsString:assetId_NeoGas] || [model.asset containsString:assetId_Neo]){
+            _mappignBtn.hidden = YES;
+            self.assetIcon.image = NEOPlaceHolder;
+        }else{
+            _mappignBtn.hidden = YES;
+            UIImage *image = [UIImage imageNamed:model.asset inBundle:[ApexAssetModelManage resourceBundle] compatibleWithTraitCollection:nil];
+            if (image) {
+                self.assetIcon.image = image;
+            }else{
+                self.assetIcon.image = NEOPlaceHolder;
             }
         }
         
@@ -87,6 +83,12 @@
         if (_model.value.floatValue >= 0.00000001) {
             _balanceL.text = [_balanceL.text substringToIndex:10];
         }
+        
+        ApexAssetModel *assetModel = [[ETHWalletManager shareManager] assetModelByBalanceModel:model];
+        _mappignBtn.hidden = YES;
+        _assetNameL.text = assetModel.symbol;
+        _assetNameLTwo.text = @"";
+        _assetIcon.image = ETHPlaceHolder;
     }
 }
 @end

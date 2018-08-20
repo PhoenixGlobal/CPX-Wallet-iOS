@@ -42,8 +42,15 @@
 }
 
 + (void)updateAssetList{
+    
     [ApexAssetModelManage requestAssetlistSuccess:^(CYLResponse *response) {
+        NSLog(@"ApexAssetModelManage request success");
+    } fail:^(NSError *error) {
         
+    }];
+    
+    [ETHAssetModelManage requestAssetlistSuccess:^(CYLResponse *response) {
+        NSLog(@"ETHAssetModelManage request success");
     } fail:^(NSError *error) {
         
     }];

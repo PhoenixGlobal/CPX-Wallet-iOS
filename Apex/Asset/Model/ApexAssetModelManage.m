@@ -49,6 +49,47 @@
 }
 
 @end
+/**************************************************************************************************************************************/
+
+@implementation ETHAssetModelManage
++ (nullable NSMutableArray*)getLocalAssetModelsArr{
+    NSMutableArray *arr = [TKFileManager loadDataWithFileName:KETHAssetModelListKey];
+    if (!arr) {
+        arr = [NSMutableArray array];
+        [self requestAssetlistSuccess:^(CYLResponse *response) {
+        } fail:^(NSError *error) {
+        }];
+    }
+    return arr;
+}
+
++ (void)requestAssetlistSuccess:(successfulBlock)success fail:(failureBlock)failBlock{
+//    [CYLNetWorkManager GET:@"assets" CachePolicy:CYLNetWorkCachePolicy_DoNotCache activePeriod:0 parameter:@{} success:^(CYLResponse *response) {
+//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+//        NSArray *result = dict[@"result"];
+//        NSMutableArray *temp = [NSMutableArray array];
+//        for (NSDictionary *dic in result) {
+//            ApexAssetModel *model = [ApexAssetModel yy_modelWithDictionary:dic];
+//            if ([model.type isEqualToString:@"NEP5"] || [model.hex_hash isEqualToString:assetId_Neo] || [model.hex_hash isEqualToString:assetId_NeoGas]) {
+//                [temp addObject:model];
+//            }
+//        }
+//
+//        [TKFileManager saveData:temp withFileName:KETHAssetModelListKey];
+//        response.returnObj = temp;
+//        success(response);
+//
+//    } fail:^(NSError *error) {
+//        failBlock(error);
+//    }];
+}
+
++ (NSBundle *)resourceBundle{
+    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/AssetResources.bundle"];
+    NSBundle *resource = [NSBundle bundleWithPath:path];
+    return resource;
+}
+@end
 
 /**
  "type": "NEP5",

@@ -172,6 +172,27 @@ singleM(Manager);
         failed(err);
     }
 }
+
+- (ApexAssetModel *)assetModelByBalanceModel:(BalanceObject *)balanceObj{
+    
+    ApexAssetModel *model = nil;
+    if ([balanceObj.asset isEqualToString:assetId_Eth]) {
+        model = [ApexAssetModel new];
+        model.hex_hash = assetId_Eth;
+        model.symbol = @"ETH";
+        model.precision = @"18";
+        model.type = @"erc20";
+        model.name = @"ETH";
+    }else{
+        for (ApexAssetModel *assModel in [ETHAssetModelManage getLocalAssetModelsArr]) {
+            if ([model.hex_hash isEqualToString:balanceObj.asset]) {
+                model = assModel;
+            }
+        }
+    }
+    
+    return model;
+}
 #pragma mark - request
 + (void)sendTxWithWallet:(EthmobileWallet*)wallet to:(NSString*)to nonce:(NSString*)nonce amount:(NSString*)amount gas:(NSString*)gas
                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success

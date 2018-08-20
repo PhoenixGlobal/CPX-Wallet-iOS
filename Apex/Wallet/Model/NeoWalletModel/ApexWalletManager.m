@@ -10,6 +10,8 @@
 #import "ApexWalletModel.h"
 #import "ApexTransferModel.h"
 #import "ApexTransferHistoryManager.h"
+#import "ApexAccountStateModel.h"
+
 #define walletsKey @"walletsKey"
 
 //钱包管理模型
@@ -208,6 +210,20 @@ singleM(Manager);
         failed(err);
     }
 }
+
+- (ApexAssetModel *)assetModelByBalanceModel:(BalanceObject *)balanceObj{
+    ApexAssetModel *model = nil;
+    
+    for (ApexAssetModel *assetModel in [ApexAssetModelManage getLocalAssetModelsArr]) {
+        if ([assetModel.hex_hash containsString:balanceObj.asset]) {
+            model = assetModel;
+            break;
+        }
+    }
+    
+    return model;
+}
+
 #pragma mark - ------request-----
 + (void)getAccountStateWithAddress:(NSString *)address Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
     [[ApexNeoClient shareRPCClient] invokeMethod:@"getaccountstate" withParameters:@[address] success:success failure:failure];

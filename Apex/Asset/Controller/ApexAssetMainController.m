@@ -73,6 +73,7 @@
     header.lastUpdatedTimeLabel.textColor = [ApexUIHelper grayColor240];
     self.tableView.mj_header = header;
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    
 }
 
 - (void)setEdgeGesture{

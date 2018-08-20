@@ -30,7 +30,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self prepareData];
+    
+    if (self.type == ApexWalletType_Neo) {
+        [self prepareNeoData];
+    }else{
+        [self prepareEthData];
+    }
 }
 
 - (void)viewWillLayoutSubviews{
@@ -70,7 +75,21 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
 }
 
-- (void)prepareData{
+- (void)prepareEthData{
+    self.contentArr = [ETHAssetModelManage getLocalAssetModelsArr];
+    ApexAssetModel *ethModel = nil;
+    for (ApexAssetModel *model in [self.contentArr copy]) {
+        if ([model.hex_hash isEqualToString:assetId_Eth]) {
+            [self.contentArr removeObject:ethModel];
+            ethModel = model;
+            break;
+        }
+    }
+    if(ethModel) [self.contentArr insertObject:ethModel atIndex:0];
+    [self.tableView reloadData];
+}
+
+- (void)prepareNeoData{
     self.contentArr = [ApexAssetModelManage getLocalAssetModelsArr];
     ApexAssetModel *cpxModel = nil;
     ApexAssetModel *neoModel = nil;
@@ -153,7 +172,11 @@
     [self.searchToolBar.textDidChangeSub subscribeNext:^(NSString *key) {
         
         if (key.length == 0) {
-            [self prepareData];
+            if (self.type == ApexWalletType_Neo) {
+                [self prepareNeoData];
+            }else{
+                [self prepareEthData];
+            }
         }else{
             NSMutableArray *temp = [NSMutableArray array];
             for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
