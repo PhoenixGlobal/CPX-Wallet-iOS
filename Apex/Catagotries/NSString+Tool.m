@@ -161,33 +161,33 @@
     
 }
 
-//+ (BOOL)isAdress:(NSString *)adress
-//{
-//    if ([NSString isNulllWithObject:adress])
-//    {
-//        return NO;
-//    }
-//    if (![[adress substringToIndex:2] isEqualToString:@"0x"])
-//    {
-//        return NO;
-//    }
-//    NSString *regex = @"^[a-zA-Z0-9]{42}+$";
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-//    BOOL isMatch = [predicate evaluateWithObject:adress];
-//    return isMatch;
-//}
-//
-//+ (BOOL)isNEOAdress:(NSString *)adress
-//{
-//    if ([NSString isNulllWithObject:adress])
-//    {
-//        return NO;
-//    }
-//    NSString *regex = @"^[a-zA-Z0-9]{34}+$";
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-//    BOOL isMatch = [predicate evaluateWithObject:adress];
-//    return isMatch;
-//}
++ (BOOL)isAdress:(NSString *)adress
+{
+    if (!adress)
+    {
+        return NO;
+    }
+    if (![[adress substringToIndex:2] isEqualToString:@"0x"])
+    {
+        return NO;
+    }
+    NSString *regex = @"^[a-zA-Z0-9]{42}+$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isMatch = [predicate evaluateWithObject:adress];
+    return isMatch;
+}
+
++ (BOOL)isNEOAdress:(NSString *)adress
+{
+    if (!adress)
+    {
+        return NO;
+    }
+    NSString *regex = @"^[a-zA-Z0-9]{34}+$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isMatch = [predicate evaluateWithObject:adress];
+    return isMatch;
+}
 
 //正则匹配用户昵称2-12位
 + (BOOL)isNickName:(NSString *)nickName
@@ -200,8 +200,12 @@
 }
 
 
--(NSString *)ToHex:(long long int)tmpid
++ (NSString *)ToHex:(NSString *)string
 {
+    NSScanner *scanner = [NSScanner scannerWithString:string];
+    long long int tmpid = 0;
+    [scanner scanLongLong:&tmpid];
+    
     NSString *nLetterValue;
     NSString *str =@"";
     long long int ttmpig;
@@ -222,7 +226,7 @@
                 nLetterValue =@"E";break;
             case 15:
                 nLetterValue =@"F";break;
-            default:nLetterValue=[[NSString alloc]initWithFormat:@"%i",ttmpig];
+            default:nLetterValue=[[NSString alloc]initWithFormat:@"%lli",ttmpig];
                 
         }
         str = [nLetterValue stringByAppendingString:str];
@@ -233,6 +237,17 @@
     }
     return str;
 } 
+
++(NSString*)addString:(NSString*)string Length:(NSInteger)length OnString:(NSString*)str
+{
+    NSMutableString * nullStr = [[NSMutableString alloc] initWithString:@""];
+    if ((length-str.length)> 0) {
+        for (int i = 0; i< (length-str.length); i++) {
+            [nullStr appendString:string];
+        }
+    }
+    return [NSString stringWithFormat:@"%@%@",nullStr,str];
+}
 
 // data 转 json字符串
 + (NSString *)convertDataToHexStr:(NSData *)data {
@@ -455,5 +470,4 @@
     
     return str;
 }
-
 @end

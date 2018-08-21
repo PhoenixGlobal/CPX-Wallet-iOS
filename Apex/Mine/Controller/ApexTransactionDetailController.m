@@ -172,14 +172,14 @@
     @weakify(self);
     self.searchToolBar.textDidChangeSub = [RACSubject subject];
     [self.searchToolBar.textDidChangeSub subscribeNext:^(NSString *key) {
-        
+        @strongify(self);
         if (key.length == 0) {
             //恢复拉动
             [self.tableView.mj_footer setState:MJRefreshStateIdle];
             [self.tableView.mj_header setState:MJRefreshStateIdle];
             [self prepareData];
         }else{
-            NSMutableArray *tempArr = [_historyManager getHistoryiesWithPrefixOfTxid:key address:self.model.address];
+            NSMutableArray *tempArr = [self.historyManager getHistoryiesWithPrefixOfTxid:key address:self.model.address];
             self.contentArr = tempArr;
             //禁用上拉下拉
             [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];

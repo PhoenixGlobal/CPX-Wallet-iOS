@@ -38,6 +38,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *availableL;
 @property (weak, nonatomic) IBOutlet UIButton *takeAllBtn;
 
+//eth
+@property (weak, nonatomic) IBOutlet UIView *ethPanelView;
+@property (weak, nonatomic) IBOutlet UISlider *gasSlider;
+@property (weak, nonatomic) IBOutlet UILabel *gasPriceL;
+@property (weak, nonatomic) IBOutlet UILabel *slowL;
+@property (weak, nonatomic) IBOutlet UILabel *fastL;
+
+
 @end
 
 @implementation ApexSendMoneyController
@@ -75,6 +83,8 @@
     self.assetModel = [self.balanceModel getRelativeAssetModel];
     self.unitL.text = self.assetModel.symbol;
     
+    self.slowL.text = SOLocalizedStringFromTable(@"slow", nil);
+    self.fastL.text = SOLocalizedStringFromTable(@"fast", nil);
     self.toAddressTF.placeholder = SOLocalizedStringFromTable(@"SendMoneyAddress", nil);
     self.sendNumTF.placeholder = SOLocalizedStringFromTable(@"Amount", nil);
     [self.sendBtn setTitle:SOLocalizedStringFromTable(@"send", nil) forState:UIControlStateNormal];
@@ -94,6 +104,18 @@
     self.availableL.attributedText = attrStr;
     
     [self.takeAllBtn setTitle:SOLocalizedStringFromTable(@"allMoney", nil) forState:UIControlStateNormal];
+    
+    NSString *minValue = [NSString DecimalFuncWithOperatorType:2 first:@"25200000000000" secend:[_balanceModel.asset isEqualToString:assetId_Eth] ? @"90000" : _balanceModel.gas value:8];
+    minValue = [NSString DecimalFuncWithOperatorType:3 first:minValue secend:@"21000" value:8];
+    minValue = [NSString DecimalFuncWithOperatorType:3 first:minValue secend:@"1000000000000000000" value:8];
+    
+    NSString *maxValue = [NSString DecimalFuncWithOperatorType:2 first:@"2520120000000000" secend:[_balanceModel.asset isEqualToString:assetId_Eth] ? @"90000" : _balanceModel.gas value:8];
+    maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"21000"  value:8];
+    maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"1000000000000000000" value:8];
+    
+    self.gasSlider.minimumValue = minValue.doubleValue;
+    self.gasSlider.maximumValue = maxValue.doubleValue;
+    self.gasSlider.value = minValue.doubleValue;
 }
 
 #pragma mark - eth transaction
@@ -114,7 +136,7 @@
 
 - (void)broadEthTransactionWithNonce:(NSNumber*)nonce wallet:(EthmobileWallet*)wallet{
     [self showHUD];
-    [ETHWalletManager sendTxWithWallet:wallet to:self.toAddressTF.text nonce:nonce.stringValue amount:self.sendNumTF.text gas:@"0.001" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ETHWalletManager sendTxWithWallet:wallet to:self.toAddressTF.text nonce:nonce.stringValue amount:self.sendNumTF.text gas:@(self.gasSlider.value).stringValue success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self hideHUD];
         /**< 创建新的临时交易历史记录 */
         ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
@@ -285,8 +307,12 @@
     [[self.takeAllBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         self.sendNumTF.text = self.balanceModel.value;
     }];
-    
 }
+
+- (IBAction)sliderValueChanged:(id)sender {
+    self.gasPriceL.text = [NSString stringWithFormat:@"%.8lf ether", _gasSlider.value];
+}
+
 
 - (IBAction)sendAction:(id)sender {
     
@@ -315,8 +341,10 @@
     _walletManager = walletManager;
     if ([walletManager isKindOfClass:ETHWalletManager.class]) {
         self.historyManager = [ETHTransferHistoryManager shareManager];
+        _ethPanelView.hidden = NO;
     }else{
         self.historyManager = [ApexTransferHistoryManager shareManager];
+        _ethPanelView.hidden = YES;
     }
 }
 

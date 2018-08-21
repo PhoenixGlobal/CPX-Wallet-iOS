@@ -266,6 +266,7 @@ singleM(Manager);
                            ];
         
         [[ApexNeoClient shareRPCClient] invokeMethod:@"invokefunction" withParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
             NSArray *stack = responseObject[@"stack"];
             NSDictionary *balanceDic = stack.firstObject;
             NSString *value = balanceDic[@"value"];
@@ -275,6 +276,7 @@ singleM(Manager);
             balanceOBJ.asset = assetId;
             if (value.length != 0) {
                 NSString *balance = [NSString stringWithFormat:@"%.8lf", [self getBalanceWithByte:(Byte *)data.bytes length:data.length] / pow(10, dicimal.doubleValue)];
+                NSLog(@"balance: %@",balance);
                 balanceOBJ.value = balance;
             }else{
                 balanceOBJ.value = @"0";

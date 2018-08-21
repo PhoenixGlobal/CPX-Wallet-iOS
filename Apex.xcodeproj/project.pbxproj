@@ -295,7 +295,6 @@
 		E3373B4D20F7459D00590407 /* ApexTransferHistoryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferHistoryController.h; sourceTree = "<group>"; };
 		E3373B4E20F7459D00590407 /* ApexTransferHistoryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransferHistoryController.m; sourceTree = "<group>"; };
 		E3373B5220F8414200590407 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ApexSendMoneyController.xib; sourceTree = "<group>"; };
-		E3373B5520F8414500590407 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ApexSendMoneyController.strings"; sourceTree = "<group>"; };
 		E3373B5720F8711600590407 /* ApexLanguageSettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexLanguageSettingController.h; sourceTree = "<group>"; };
 		E3373B5820F8711600590407 /* ApexLanguageSettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexLanguageSettingController.m; sourceTree = "<group>"; };
 		E3373B6620FDD8CD00590407 /* ApexLanguageSettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexLanguageSettingCell.h; sourceTree = "<group>"; };
@@ -504,6 +503,7 @@
 		E70393162123C3C000BA3CDB /* ApexTransHistoryProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransHistoryProtocal.h; sourceTree = "<group>"; };
 		E70393172123C52200BA3CDB /* ETHTransferHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHTransferHistoryManager.h; sourceTree = "<group>"; };
 		E70393182123C52200BA3CDB /* ETHTransferHistoryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHTransferHistoryManager.m; sourceTree = "<group>"; };
+		E703931B212AC95200BA3CDB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ApexSendMoneyController.xib"; sourceTree = "<group>"; };
 		E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEnterKeyView.h; sourceTree = "<group>"; };
 		E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEnterKeyView.m; sourceTree = "<group>"; };
 		E731468F210A02CF002A6C07 /* useprotocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol.html; sourceTree = "<group>"; };
@@ -1745,7 +1745,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E3373B5220F8414200590407 /* en */,
-				E3373B5520F8414500590407 /* zh-Hans */,
+				E703931B212AC95200BA3CDB /* zh-Hans */,
 			);
 			name = ApexSendMoneyController.xib;
 			sourceTree = "<group>";

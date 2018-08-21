@@ -23,6 +23,11 @@ singleH(Manager);
                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+//erc20 交易
++ (void)sendERC20TxWithWallet:(EthmobileWallet*)wallet contractAddress:(NSString*)contract to:(NSString*)to nonce:(NSString*)nonce amount:(NSString*)amount gas:(NSString*)gas assetModel:(ApexAssetModel*)assetModel
+                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 //获取交易详情
 + (void)requestTransactionByHash:(NSString*)hash
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
@@ -49,4 +54,9 @@ singleH(Manager);
 + (void)requestERC20BalanceOfContract:(NSString*)contract Address:(NSString*)address
                               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+//估算交易需要gas
+//+ (void)requestERC20TransferGasNeeded:(NSString*)contract to:(NSString*)to value:(NSString*)valueNoDecimal
+//                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+//                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 @end

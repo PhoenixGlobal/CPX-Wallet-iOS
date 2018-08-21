@@ -146,7 +146,8 @@
     _walletManager = [ApexWalletManager shareManager];
     NSError *err = nil;
     NeomobileWallet *wallet = NeomobileFromKeyStore(self.textView.text, self.passTF.text, &err);
-    if (err) {
+    
+    if (err || ![NSString isNEOAdress:wallet.address]) {
         [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Failed", nil)];
         return;
     }
@@ -185,7 +186,7 @@
     _walletManager = [ETHWalletManager shareManager];
     NSError *err = nil;
     EthmobileWallet *wallet = EthmobileFromKeyStore(self.textView.text, self.passTF.text, &err);
-    if (err) {
+    if (err || ![NSString isAdress:wallet.address]) {
         [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Failed", nil)];
         return;
     }

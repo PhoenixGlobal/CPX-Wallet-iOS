@@ -224,6 +224,96 @@ singleM(Manager);
     }];
 }
 
++ (void)sendERC20TxWithWallet:(EthmobileWallet*)wallet contractAddress:(NSString*)contract to:(NSString*)to nonce:(NSString*)nonce amount:(NSString*)amount gas:(NSString*)gas assetModel:(ApexAssetModel*)assetModel
+                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    
+    long long transfer = amount.doubleValue * pow(10, assetModel.precision.integerValue);
+    NSString *transferStr = [NSString stringWithFormat:@"0x%@",[SystemConvert decimalToHex:transfer]];
+    NSString *gasStr = [NSString DecimalFuncWithOperatorType:2 first:gas secend:@"1000000000000000000" value:10];
+    gasStr = [NSString DecimalFuncWithOperatorType:3 first:gasStr secend:@"90000" value:8];
+    gasStr = [NSString stringWithFormat:@"0x%@",[SystemConvert decimalToHex:gasStr.integerValue]];
+    NSString *gasLimits = @"0x15f90";
+    NSError *err = nil;
+    NSString *tx = [wallet transferERC20:contract nonce:nonce to:to amount:transferStr gasPrice:gasStr gasLimits:gasLimits error:&err];
+    if (![tx hasPrefix:@"0x"]) {
+        tx = [NSString stringWithFormat:@"0x%@",tx];
+    }
+    
+    if (err&&failure) {
+        failure(nil,err);
+    }
+    
+    [[ApexETHClient shareRPCClient] invokeMethod:@"eth_sendRawTransaction" withParameters:@[tx] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (success) {
+            success(operation,responseObject);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(operation, error);
+        }
+    }];
+}
+
++ (void)requestERC20TransferGasNeeded:(NSString*)contract to:(NSString*)to value:(NSString*)valueNoDecimal
+                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    //{"jsonrpc":"2.0","method":"eth_estimateGas","params":[{"to":"0x7a6542e629630a6a2c89ccce098386dcec39f6cf", "data":"0x9d61d2340000000000000000000000003f5ce5fbfe3e9af3971dd833d26ba9b5c936f0be0000000000000000000000000000000000000000000000017a83e90a984d4000"}],"id":1}
+    NSString *methodID = @"0x9d61d234";
+    NSString *valueHex = [NSString addString:@"0" Length:64 OnString:[NSString ToHex:valueNoDecimal]];
+    if([to hasPrefix:@"0x"]) to = [to stringByReplacingOccurrencesOfString:@"0x" withString:@""];
+    to = [NSString addString:@"0" Length:64 OnString:to];
+    NSMutableString *data = [NSMutableString stringWithString:methodID];
+    [data appendString:to];
+    [data appendString:valueHex];
+    
+    [[ApexETHClient shareRPCClient] invokeMethod:@"eth_estimateGas" withParameters:@[@{@"to":contract,@"data":data}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        long long gasPrice = 3 * powl(10, 9);
+        NSString *hexGas = responseObject;
+        NSScanner *scanner = [NSScanner scannerWithString:hexGas];
+        unsigned long long gasUsed = 0;
+        [scanner scanHexLongLong:&gasUsed];
+        NSString *totalGas = @(gasUsed * gasPrice).stringValue;
+        NSString *etherUsed = [NSString DecimalFuncWithOperatorType:3 first:totalGas secend:@"1000000000000000000" value:0];
+        
+        if (success) {
+            success(operation,etherUsed);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(operation,error);
+        }
+    }];
+    
+}
+
+
+//+ (void)ethCallMethodString:(NSString*)methodHexId to:(NSString*)to extraArg:(NSString*)extro DataArgs:(NSString*)arg1, ... NS_REQUIRES_NIL_TERMINATION {
+//    
+//    NSMutableArray *argArr = [NSMutableArray array];
+//    if(arg1){
+//        arg1 = [NSString ToHex:arg1];
+//        [argArr addObject:[NSString addString:@"0" Length:64 OnString:arg1]];
+//        //定义可变参数列表指针
+//        va_list args;
+//        //定义可变参数指针
+//        NSString *arg;
+//        //可变参数列表指针指向第一个参数
+//        va_start(args, arg1);
+//        //获取第一个之后的参数
+//        while((arg = va_arg(args, NSString*))){
+//            arg = [NSString ToHex:arg];
+//            [argArr addObject:[NSString addString:@"0" Length:64 OnString:arg]];
+//        }
+//    }
+//    
+//    NSMutableString *data = [NSMutableString stringWithString:methodHexId];
+//    [data appendString:[argArr componentsJoinedByString:@""]];
+//    
+//}
+
 + (void)requestTransactionCount:(NSString*)address
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{

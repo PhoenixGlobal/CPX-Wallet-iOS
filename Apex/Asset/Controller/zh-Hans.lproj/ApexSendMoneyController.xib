@@ -14,13 +14,11 @@
             <connections>
                 <outlet property="availableL" destination="QyE-4w-qqN" id="DmT-ML-9tc"/>
                 <outlet property="ethPanelView" destination="KVV-TF-VPV" id="1b2-jk-F7u"/>
-                <outlet property="fastL" destination="5o1-Re-llt" id="8Ef-kb-EOY"/>
                 <outlet property="fromAddressL" destination="zfT-F7-IJd" id="pJh-HT-rPT"/>
                 <outlet property="gasPriceL" destination="T11-kS-GRH" id="Rni-P6-K86"/>
                 <outlet property="gasSlider" destination="D4I-rG-KGX" id="ICp-1d-YHa"/>
                 <outlet property="sendBtn" destination="DBd-ND-UUb" id="pzO-t4-gbg"/>
                 <outlet property="sendNumTF" destination="etF-Lv-HfZ" id="UYq-ry-6sx"/>
-                <outlet property="slowL" destination="CjJ-DJ-cpb" id="FmP-gf-csa"/>
                 <outlet property="takeAllBtn" destination="OaU-5H-ZwN" id="5LQ-fr-P9t"/>
                 <outlet property="toAddressTF" destination="W34-dx-B05" id="R5r-mN-51p"/>
                 <outlet property="unitL" destination="7P1-rl-7hL" id="ifo-m3-hca"/>
@@ -141,8 +139,8 @@
                                 <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="NER-u1-f9Z"/>
                             </connections>
                         </slider>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5o1-Re-llt">
-                            <rect key="frame" x="302.5" y="45" width="27.5" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5o1-Re-llt">
+                            <rect key="frame" x="315.5" y="45" width="14.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -153,8 +151,8 @@
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjJ-DJ-cpb">
-                            <rect key="frame" x="45" y="45" width="31" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="慢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjJ-DJ-cpb">
+                            <rect key="frame" x="45" y="45" width="14.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

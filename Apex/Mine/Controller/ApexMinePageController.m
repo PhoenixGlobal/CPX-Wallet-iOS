@@ -30,6 +30,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setNav];
+    
+    
 }
 
 #pragma mark - ------private------

@@ -107,6 +107,8 @@
 "noWalletInAssets" = "Please Click The Upper Right Corner To Have Your Wallet";
 
 //eth
+"slow" = "Slow";
+"fast" = "Fast";
 "gainNonceFail" = "Request Nonce Failed";
 
 // tips

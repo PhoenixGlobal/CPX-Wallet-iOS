@@ -32,6 +32,7 @@
 #import "UITextView+placeholder.h"
 #import "PublicEnum.h"
 #import "NSBundle+MJLocalization.h"
+#import "NSString+Tool.h"
 
 /**< other */
 #import "ApexUIHelper.h"

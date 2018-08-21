@@ -170,11 +170,17 @@
         return nil;
     }];
     
-    [[self rac_liftSelector:@selector(updateEth:) withSignals:request1, nil] subscribeError:^(NSError * _Nullable error) {
-        [self.tableView.mj_header endRefreshing];
-        [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
-    }];
-    
+    if (self.assetArr.count > 1) {
+        [[self rac_liftSelector:@selector(updateEth:) withSignals:request1,request2, nil] subscribeError:^(NSError * _Nullable error) {
+            [self.tableView.mj_header endRefreshing];
+            [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
+        }];
+    }else{
+        [[self rac_liftSelector:@selector(updateEth:) withSignals:request1, nil] subscribeError:^(NSError * _Nullable error) {
+            [self.tableView.mj_header endRefreshing];
+            [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
+        }];
+    }
 }
 
 
@@ -422,15 +428,22 @@
     if ([walletModel isKindOfClass:ETHWalletModel.class]) {
         _type = ApexWalletType_Eth;
         
-//        [ETHWalletManager requestERC20BalanceOfContract:@"0x123ab195dd38b1b40510d467a6a359b201af056f" Address:@"0x8afCE0B7CA212fcD4FD9EA54749c6c48e715c60f" success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSLog(@"%@",responseObject);
+        //erc20 转账测试
+//        NSString *ks = [PDKeyChain load:walletModel.address];
+//        EthmobileWallet *wallet = EthmobileFromKeyStore(ks, @"123456", nil);
+//
+//        ApexAssetModel *model = [ApexAssetModel new];
+//        model.precision = @"18";
+//
+//        [ETHWalletManager sendERC20TxWithWallet:wallet contractAddress:@"0x83a26efb18082cefc47db5c0a75c464b4d12f93c" to:@"0xe43e88407b126ba20745dda453b3cde25317796f" nonce:@"5" amount:@"200000000000" gas:@"0.00018" assetModel:model success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//
 //        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //
 //        }];
-        
-    }else{
-        _type = ApexWalletType_Neo;
-        [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
+//
+//    }else{
+//        _type = ApexWalletType_Neo;
+//        [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
     }
 
 }

@@ -63,15 +63,21 @@
 //金额
 + (BOOL)isMoneyNumber:(NSString *)number;
 
-//+ (BOOL)isAdress:(NSString *)adress;
-//
-//+ (BOOL)isNEOAdress:(NSString *)adress;
++ (BOOL)isAdress:(NSString *)adress;
+
++ (BOOL)isNEOAdress:(NSString *)adress;
+
+////字符串前缀补0
++(NSString*)addString:(NSString*)string Length:(NSInteger)length OnString:(NSString*)str;
 
 // data 转 json字符串
 + (NSString *)convertDataToHexStr:(NSData *)data;
 
 // data 转 16进制字符串
 + (NSString *)hexStringFromData:(NSData *)myD;
+
+//转16进账字符串
++ (NSString *)ToHex:(NSString *)string;
 
 //精度计算
 + (NSString *)DecimalFuncWithOperatorType:(NSInteger)operatorType first:(id)first secend:(id)secend value:(int)value;
