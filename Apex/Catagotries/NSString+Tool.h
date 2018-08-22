@@ -100,9 +100,6 @@
  
  @return 处理后的str
  */
-- (NSString *)URLEncodedString;
-
-+ (NSString *)stringFromHexStr:(NSString *)hexStr;
 /**
  替换标签
 

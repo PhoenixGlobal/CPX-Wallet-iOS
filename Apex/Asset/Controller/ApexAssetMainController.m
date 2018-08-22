@@ -17,6 +17,7 @@
 #import "ApexMorePanelController.h"
 #import "ApexNoWalletView.h"
 
+
 #define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
 
 @interface ApexAssetMainController ()<UINavigationControllerDelegate>
@@ -37,6 +38,8 @@
     [super viewDidLoad];
     [self initUI];
     [self handleEvent];
+    
+    NSLog(@"%@",[SystemConvert hexToDecimal:@"3635c9adc5dea00000"]);
 }
 
 - (void)viewWillAppear:(BOOL)animated{

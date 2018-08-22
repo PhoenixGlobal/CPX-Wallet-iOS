@@ -159,7 +159,7 @@
                     balance.asset = obj.asset;
                     balance.value = responseObject.stringValue;
                     [dict setObject:balance forKey:balance.asset];
-                    if (dict.allKeys.count == self.assetArr.count) {
+                    if (dict.allKeys.count == self.assetArr.count - 1) {
                         [subscriber sendNext:dict];
                     }
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -171,7 +171,7 @@
     }];
     
     if (self.assetArr.count > 1) {
-        [[self rac_liftSelector:@selector(updateEth:) withSignals:request1,request2, nil] subscribeError:^(NSError * _Nullable error) {
+        [[self rac_liftSelector:@selector(updateEth:erc20:) withSignals:request1,request2, nil] subscribeError:^(NSError * _Nullable error) {
             [self.tableView.mj_header endRefreshing];
             [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
         }];
@@ -191,6 +191,21 @@
         if ([eth.allKeys containsObject:obj.asset]) {
             obj.value = ((BalanceObject*)eth[obj.asset]).value;
         }
+    }
+    
+    [[ETHWalletManager shareManager] updateWallet:self.walletModel WithAssetsArr:self.assetArr];
+    [self.tableView reloadData];
+}
+
+- (void)updateEth:(NSDictionary*)eth erc20:(NSDictionary*)erc20{
+    [self.tableView.mj_header endRefreshing];
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict addEntriesFromDictionary:eth];
+    [dict addEntriesFromDictionary:erc20];
+    
+    for (BalanceObject *obj in [self.assetArr copy]) {
+        obj.value = ((BalanceObject*)dict[obj.asset]).value;
     }
     
     [[ETHWalletManager shareManager] updateWallet:self.walletModel WithAssetsArr:self.assetArr];
@@ -440,10 +455,9 @@
 //        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //
 //        }];
-//
-//    }else{
-//        _type = ApexWalletType_Neo;
-//        [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
+    }else{
+        _type = ApexWalletType_Neo;
+        [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
     }
 
 }

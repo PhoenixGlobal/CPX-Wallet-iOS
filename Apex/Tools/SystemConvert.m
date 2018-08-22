@@ -128,13 +128,17 @@ static NSMutableDictionary *_bitQDic;
  */
 + (NSString *)binaryToDecimal:(NSString *)binary{
     //1110110
-    NSUInteger decimal = 0;
+    NSDecimalNumber *decimal = [NSDecimalNumber decimalNumberWithString:@"0"];
     for (NSInteger index = 0; index < binary.length; index++) {
-        double num = [[binary substringWithRange:(NSRange){binary.length - index - 1, 1}] doubleValue];
-        decimal +=  num * pow(2, index);
+        NSString *subString = [binary substringWithRange:(NSRange){binary.length - index - 1, 1}];
+        NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:subString];
+        NSDecimalNumber *low = [NSDecimalNumber decimalNumberWithString:@"2"];
+        num = [num decimalNumberByMultiplyingBy:[low decimalNumberByRaisingToPower:index]];
+        decimal = [decimal decimalNumberByAdding:num];
     }
-    return [NSString stringWithFormat:@"%ld", decimal];
+    return decimal.stringValue;
 }
+
 /**
  *  二进制 -> 八进制
  */
@@ -212,10 +216,13 @@ static NSMutableDictionary *_bitQDic;
  *  十六进制 -> 二进制
  */
 + (NSString *)hexToBinary:(NSString *)hex{
+    hex = hex.uppercaseString;
     NSMutableString *str = [NSMutableString stringWithString:@""];
     NSUInteger count = hex.length;
     for (NSInteger index = 0; index < count; index++) {
-        NSString *appendStr = [[self bitHexDic] objectForKey:[hex substringWithRange:(NSRange){index, 1}]];
+        NSString *subString = [hex substringWithRange:(NSRange){index, 1}];
+        NSString *appendStr = [[self bitHexDic] objectForKey:subString];
+        
         if(index == 0){
             //过滤前面的0
             appendStr = [NSString stringWithFormat:@"%ld", [appendStr integerValue]];

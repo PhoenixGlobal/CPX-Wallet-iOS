@@ -53,6 +53,13 @@ singleM(Manager);
     Eth.asset = assetId_Eth;
     Eth.value = @"0";
     [arr addObject:Eth];
+    
+    //test erc20
+    BalanceObject *nmb = [[BalanceObject alloc] init];
+    nmb.asset = assetID_Test_Erc20;
+    nmb.value = @"0";
+    [arr addObject:nmb];
+    
     return arr;
 }
 
@@ -395,12 +402,14 @@ singleM(Manager);
     }
     NSData *d = [data dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:d options:NSJSONReadingAllowFragments error:nil];
-    
+    NSLog(@"%@",data);
     [[ApexETHClient shareRPCClient] invokeMethod:@"eth_call" withParameters:@[dict,@"latest"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
+            
             NSScanner *scanner = [NSScanner scannerWithString:responseObject];
             unsigned long long i = 0;
             [scanner scanHexLongLong:&i];
+            NSLog(@"%@",[SystemConvert hexToDecimal:responseObject]);
             success(operation,@(i));
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

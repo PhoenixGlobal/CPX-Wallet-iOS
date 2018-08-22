@@ -81,7 +81,7 @@
     }else{
         //eth钱包资产详情
         if (_model.value.floatValue >= 0.00000001) {
-            _balanceL.text = [_balanceL.text substringToIndex:10];
+            _balanceL.text = [[NSString stringWithFormat:@"%.18f",_balanceL.text.doubleValue] substringToIndex:10];
         }
         
         ApexAssetModel *assetModel = [[ETHWalletManager shareManager] assetModelByBalanceModel:model];
