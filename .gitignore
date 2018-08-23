@@ -1,3 +1,5 @@
 
 *.xcuserstate
 .DS_Store
+Apex.xcodeproj/xcuserdata/fengzhiyong.xcuserdatad/xcschemes/xcschememanagement.plist
+Pods/Pods.xcodeproj/xcuserdata/fengzhiyong.xcuserdatad/xcschemes/xcschememanagement.plist
