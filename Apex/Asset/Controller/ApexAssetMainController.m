@@ -39,7 +39,7 @@
     [self initUI];
     [self handleEvent];
     
-    NSLog(@"%@",[SystemConvert hexToDecimal:@"3635c9adc5dea00000"]);
+NSLog(@"%@",[SystemConvert decimalToHex:@"1000000000000000000000000"]);
 }
 
 - (void)viewWillAppear:(BOOL)animated{

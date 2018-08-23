@@ -7,7 +7,6 @@ target 'Apex' do
   pod 'AFJSONRPCClient', '~> 2.1'
   pod 'AFNetworking', '~> 2.4'
   pod 'Masonry'
-  pod 'libextobjc'
   pod 'ReactiveObjC'
   pod 'SDWebImage'
   pod 'DACircularProgress'

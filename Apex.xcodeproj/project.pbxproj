@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B2E51F7E3F83C04602FA8C4 /* libPods-Apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */; };
+		85E67580B2D0B467389B681E /* libPods-Apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */; };
 		E324311620DCC14700284B91 /* ApexTransferHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */; };
 		E324311920E0F5A200284B91 /* ApexAssetModelManage.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311820E0F5A200284B91 /* ApexAssetModelManage.m */; };
 		E324311C20E21F3E00284B91 /* ApexMappingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311B20E21F3E00284B91 /* ApexMappingBtnView.m */; };
@@ -213,9 +213,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.release.xcconfig"; sourceTree = "<group>"; };
 		8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.debug.xcconfig"; sourceTree = "<group>"; };
+		A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E324311420DCC14700284B91 /* ApexTransferHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferHistoryManager.h; sourceTree = "<group>"; };
 		E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransferHistoryManager.m; sourceTree = "<group>"; };
 		E324311720E0F5A200284B91 /* ApexAssetModelManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetModelManage.h; sourceTree = "<group>"; };
@@ -540,6 +540,7 @@
 		E73934BA2109BBE9007953FB /* specialQuest_en.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = specialQuest_en.json; sourceTree = "<group>"; };
 		E7393589212E5232007F61AC /* ApexEncourageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEncourageController.h; sourceTree = "<group>"; };
 		E739358A212E5232007F61AC /* ApexEncourageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageController.m; sourceTree = "<group>"; };
+		E739358C212E9CED007F61AC /* Apex-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Apex-Bridging-Header.h"; sourceTree = "<group>"; };
 		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
 		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
@@ -576,9 +577,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B2E51F7E3F83C04602FA8C4 /* libPods-Apex.a in Frameworks */,
 				E33A8BC120B28CD90067505E /* Neomobile.framework in Frameworks */,
 				E33A8BA420AE76860067505E /* CYLAppBaseFrameWork.framework in Frameworks */,
+				85E67580B2D0B467389B681E /* libPods-Apex.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,7 +596,7 @@
 		33554FE32BBC78449D127132 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2695CEF3FAC5BC5762B317F1 /* libPods-Apex.a */,
+				A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -751,6 +752,7 @@
 				E33A8B5620AE724F0067505E /* LaunchScreen.storyboard */,
 				E33A8B5920AE724F0067505E /* Info.plist */,
 				E33A8B5A20AE724F0067505E /* main.m */,
+				E739358C212E9CED007F61AC /* Apex-Bridging-Header.h */,
 			);
 			path = Apex;
 			sourceTree = "<group>";
@@ -1441,6 +1443,7 @@
 					};
 					E33A8B4720AE724D0067505E = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0940;
 					};
 					E3CE66CC20BFC9A4002A1E07 = {
 						CreatedOnToolsVersion = 9.3;
@@ -1575,9 +1578,36 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Apex/Pods-Apex-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFJSONRPCClient/AFJSONRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFJSONRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1963,6 +1993,7 @@
 			baseConfigurationReference = 8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				ENABLE_BITCODE = NO;
@@ -1987,6 +2018,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Apex/Apex-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7s x86_64 i386";
 			};
@@ -1997,6 +2031,7 @@
 			baseConfigurationReference = 2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				ENABLE_BITCODE = NO;
@@ -2021,6 +2056,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Apex/Apex-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7s x86_64 i386";
 			};

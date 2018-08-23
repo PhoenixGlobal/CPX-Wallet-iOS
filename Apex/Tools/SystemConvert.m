@@ -205,6 +205,14 @@ static NSMutableDictionary *_bitQDic;
  *  十进制 -> 十六进制
  */
 + (NSString *)decimalToHex:(NSUInteger)tmpid{
+    
+//    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:tmpid];
+//    NSDecimalNumber *zero = [NSDecimalNumber decimalNumberWithString:@"0"];
+//    NSDecimalNumber *sixteen = [NSDecimalNumber decimalNumberWithString:@"16"];
+//    while ([decimalNumber compare:zero] != NSOrderedSame) {
+//
+//    }
+
     NSMutableString *str = [NSMutableString stringWithString:@""];
     while (tmpid) {
         [str insertString:[[self tenHexDic] objectForKey:[NSString stringWithFormat:@"%ld", tmpid % 16]] atIndex:0];
@@ -212,6 +220,36 @@ static NSMutableDictionary *_bitQDic;
     }
     return str;
 }
+
+
+/**
+ 将16进制的字符串转换成NSData
+ */
++ (NSData *)convertHexStrToData:(NSString *)str {
+    NSString *balance = [NSString stringWithFormat:@"%@", str];
+    if (!balance || [balance length] == 0) {
+        return nil;
+    }
+    NSMutableData *hexData = [[NSMutableData alloc] initWithCapacity:8];
+    NSRange range;
+    if ([balance length] %2 == 0) {
+        range = NSMakeRange(0,2);
+    } else {
+        range = NSMakeRange(0,1);
+    }
+    for (NSInteger i = range.location; i < [balance length]; i += 2) {
+        unsigned int anInt;
+        NSString *hexCharStr = [balance substringWithRange:range];
+        NSScanner *scanner = [[NSScanner alloc] initWithString:hexCharStr];
+        [scanner scanHexInt:&anInt];
+        NSData *entity = [[NSData alloc] initWithBytes:&anInt length:1];
+        [hexData appendData:entity];
+        range.location += range.length;
+        range.length = 2;
+    }
+    return [hexData copy];
+}
+
 /**
  *  十六进制 -> 二进制
  */
