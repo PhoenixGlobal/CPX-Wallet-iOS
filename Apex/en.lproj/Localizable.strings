@@ -111,6 +111,10 @@
 "fast" = "Fast";
 "gainNonceFail" = "Request Nonce Failed";
 
+//encourage
+"encourage" = "Encourage";
+
+
 // tips
 "Create Wallet Failed" = "Create Wallet Failed";
 "Create Keystore Failed" = "Create Keystore Failed";

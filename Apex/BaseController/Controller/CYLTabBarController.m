@@ -12,6 +12,7 @@
 #import "ApexDiscoverController.h"
 #import "ApexAssetMainController.h"
 #import "ApexMinePageController.h"
+#import "ApexEncourageController.h"
 
 @interface CYLTabBarController ()
 @property (nonatomic, strong) NSMutableArray *tabBarItemsArr;
@@ -63,6 +64,8 @@
     ApexMinePageController *vc2 = [[ApexMinePageController alloc] init];
     [self setOneViewController:vc2 image:[UIImage imageNamed:@"Shape-1"] selImage:[UIImage imageNamed:@"Shape"] title:SOLocalizedStringFromTable(@"Mine", nil)];
     
+    ApexEncourageController *vc3 = [[ApexEncourageController alloc] init];
+    [self setOneViewController:vc3 image:[UIImage imageNamed:@"Shape-1"] selImage:[UIImage imageNamed:@"Shape"] title:SOLocalizedStringFromTable(@"encourage", nil)];
 }
 
 

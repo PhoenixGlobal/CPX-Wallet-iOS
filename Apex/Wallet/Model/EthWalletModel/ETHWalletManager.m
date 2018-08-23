@@ -235,6 +235,11 @@ singleM(Manager);
                       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     
+    NSDecimalNumber *amountNumber = [NSDecimalNumber decimalNumberWithMantissa:amount.doubleValue exponent:assetModel.precision.integerValue isNegative:NO];
+    NSString *transferStr = [NSString stringWithFormat:@"0x%@",[SystemConvert decimalToHex:333]];
+    
+    
+    
     long long transfer = amount.doubleValue * pow(10, assetModel.precision.integerValue);
     NSString *transferStr = [NSString stringWithFormat:@"0x%@",[SystemConvert decimalToHex:transfer]];
     NSString *gasStr = [NSString DecimalFuncWithOperatorType:2 first:gas secend:@"1000000000000000000" value:10];

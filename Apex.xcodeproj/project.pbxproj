@@ -180,6 +180,7 @@
 		E73934B72109B25E007953FB /* NSBundle+MJLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934B62109B25E007953FB /* NSBundle+MJLocalization.m */; };
 		E73934B92109BBD8007953FB /* commonQuest_en.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934B82109BBD8007953FB /* commonQuest_en.json */; };
 		E73934BB2109BBE9007953FB /* specialQuest_en.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934BA2109BBE9007953FB /* specialQuest_en.json */; };
+		E739358B212E5232007F61AC /* ApexEncourageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E739358A212E5232007F61AC /* ApexEncourageController.m */; };
 		E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCA20C112B700E2C597 /* NullSafe.m */; };
 		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
 		E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7242101C0FF00007F29 /* ApexLoading.m */; };
@@ -537,6 +538,8 @@
 		E73934B62109B25E007953FB /* NSBundle+MJLocalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+MJLocalization.m"; sourceTree = "<group>"; };
 		E73934B82109BBD8007953FB /* commonQuest_en.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = commonQuest_en.json; sourceTree = "<group>"; };
 		E73934BA2109BBE9007953FB /* specialQuest_en.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = specialQuest_en.json; sourceTree = "<group>"; };
+		E7393589212E5232007F61AC /* ApexEncourageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEncourageController.h; sourceTree = "<group>"; };
+		E739358A212E5232007F61AC /* ApexEncourageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageController.m; sourceTree = "<group>"; };
 		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
 		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
@@ -732,6 +735,7 @@
 				E33A8B7B20AE75650067505E /* BaseController */,
 				E33A8B6520AE73F00067505E /* Discover */,
 				E33A8B6920AE73F00067505E /* Asset */,
+				E7393585212E515B007F61AC /* Encourage */,
 				E33A8B6120AE73F00067505E /* Mine */,
 				E33A8BAE20AE795F0067505E /* Wallet */,
 				E33A8B8A20AE756E0067505E /* Catagotries */,
@@ -1267,6 +1271,39 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		E7393585212E515B007F61AC /* Encourage */ = {
+			isa = PBXGroup;
+			children = (
+				E7393586212E5212007F61AC /* Model */,
+				E7393588212E5212007F61AC /* View */,
+				E7393587212E5212007F61AC /* ViewController */,
+			);
+			path = Encourage;
+			sourceTree = "<group>";
+		};
+		E7393586212E5212007F61AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E7393587212E5212007F61AC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E7393589212E5232007F61AC /* ApexEncourageController.h */,
+				E739358A212E5232007F61AC /* ApexEncourageController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E7393588212E5212007F61AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E7EDD7222101C0C100007F29 /* CommonAnimation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1689,6 +1726,7 @@
 				E3CE66B520BEA812002A1E07 /* DTError.m in Sources */,
 				E3373B5920F8711600590407 /* ApexLanguageSettingController.m in Sources */,
 				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,
+				E739358B212E5232007F61AC /* ApexEncourageController.m in Sources */,
 				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
 				E7EDD72F21057B8000007F29 /* ApexProfileBaseController.m in Sources */,
 				E3689AFE20DB92A300B4B001 /* ApexTransferModel.m in Sources */,
