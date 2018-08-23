@@ -36,6 +36,8 @@
 + (NSString *)qToHex:(NSString *)q;
 
 
++ (NSData *)convertHexStrToData:(NSString *)str;
+
 /**
  *  十进制 -> 二进制
  */
