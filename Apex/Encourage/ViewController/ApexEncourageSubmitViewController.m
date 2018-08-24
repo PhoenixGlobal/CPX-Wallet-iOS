@@ -33,12 +33,19 @@
     [self.navigationController lt_setBackgroundColor:[ApexUIHelper mainThemeColor]];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewWillLayoutSubviews
 {
-    [super viewWillDisappear:animated];
-
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    [super viewWillLayoutSubviews];
+    
+    [self.navigationController lt_setBackgroundColor:[ApexUIHelper mainThemeColor]];
 }
+
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//
+//    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+//}
 
 - (void)initUI
 {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		58E9896E212FCDDB00D2244D /* ApexRewardListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E9896D212FCDDB00D2244D /* ApexRewardListTableViewCell.m */; };
 		58E98971212FF80300D2244D /* ApexEncourageSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E98970212FF80300D2244D /* ApexEncourageSubmitViewController.m */; };
+		58E9897421300F8E00D2244D /* ApexEncourageSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E9897321300F8E00D2244D /* ApexEncourageSubmitCell.m */; };
 		85E67580B2D0B467389B681E /* libPods-Apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */; };
 		E324311620DCC14700284B91 /* ApexTransferHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */; };
 		E324311920E0F5A200284B91 /* ApexAssetModelManage.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311820E0F5A200284B91 /* ApexAssetModelManage.m */; };
@@ -220,6 +221,8 @@
 		58E9896D212FCDDB00D2244D /* ApexRewardListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApexRewardListTableViewCell.m; path = Apex/Encourage/ApexRewardListTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		58E9896F212FF80300D2244D /* ApexEncourageSubmitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEncourageSubmitViewController.h; sourceTree = "<group>"; };
 		58E98970212FF80300D2244D /* ApexEncourageSubmitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageSubmitViewController.m; sourceTree = "<group>"; };
+		58E9897221300F8E00D2244D /* ApexEncourageSubmitCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ApexEncourageSubmitCell.h; path = Apex/Encourage/ViewController/ApexEncourageSubmitCell.h; sourceTree = SOURCE_ROOT; };
+		58E9897321300F8E00D2244D /* ApexEncourageSubmitCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApexEncourageSubmitCell.m; path = Apex/Encourage/ViewController/ApexEncourageSubmitCell.m; sourceTree = SOURCE_ROOT; };
 		8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.debug.xcconfig"; sourceTree = "<group>"; };
 		A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E324311420DCC14700284B91 /* ApexTransferHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferHistoryManager.h; sourceTree = "<group>"; };
@@ -1312,6 +1315,8 @@
 			children = (
 				58E9896C212FCDDB00D2244D /* ApexRewardListTableViewCell.h */,
 				58E9896D212FCDDB00D2244D /* ApexRewardListTableViewCell.m */,
+				58E9897221300F8E00D2244D /* ApexEncourageSubmitCell.h */,
+				58E9897321300F8E00D2244D /* ApexEncourageSubmitCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1671,6 +1676,7 @@
 				E39E02EC20C7D1F3005DD251 /* ApexImportByKeystoreView.m in Sources */,
 				E33A8B9920AE756E0067505E /* UIResponder+Router.m in Sources */,
 				E39E02E620C7AE54005DD251 /* ApexScanAction.m in Sources */,
+				58E9897421300F8E00D2244D /* ApexEncourageSubmitCell.m in Sources */,
 				E3263EF120B6A2D9001D3C19 /* ApexPassWordConfirmAlertView.m in Sources */,
 				E7EDD7472105CF6200007F29 /* ApexProfileTableViewDatasource.m in Sources */,
 				E7EDD72C21057A0200007F29 /* ApexSpecialProfileController.m in Sources */,
