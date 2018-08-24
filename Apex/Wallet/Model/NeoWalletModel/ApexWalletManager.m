@@ -130,9 +130,11 @@ singleM(Manager);
 }
 
 - (id)getWalletsArr{
-    return [[[TKFileManager loadDataWithFileName:walletsKey] sortedArrayUsingComparator:^NSComparisonResult(ApexWalletModel *obj1, ApexWalletModel *obj2) {
+    NSMutableArray *arr = [[[TKFileManager loadDataWithFileName:walletsKey] sortedArrayUsingComparator:^NSComparisonResult(ApexWalletModel *obj1, ApexWalletModel *obj2) {
         return obj1.createTimeStamp.integerValue > obj2.createTimeStamp.integerValue;
     }] mutableCopy];
+    if(!arr) arr = [NSMutableArray array];
+    return arr;
 }
 
 - (void)deleteWalletForAddress:(NSString *)address{
@@ -223,6 +225,7 @@ singleM(Manager);
     
     return model;
 }
+
 
 #pragma mark - ------request-----
 + (void)getAccountStateWithAddress:(NSString *)address Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
@@ -358,6 +361,8 @@ singleM(Manager);
         case ApexTransferStatus_Failed:{
             
         }
+            break;
+        default:
             break;
     }
 }

@@ -28,7 +28,7 @@
 //跟新钱包的资产模型数组
 - (void)updateWallet:(id)wallet WithAssetsArr:(NSMutableArray<BalanceObject*>*)assetArr;
 //钱包当前交易所处状态
-- (ApexTransferStatus)transferStatusForAddress:(NSString*)address;
++ (ApexTransferStatus)transferStatusForAddress:(NSString*)address;
 //重拍资产列表数组
 - (void)reSortAssetArr:(NSMutableArray*)assetArr;
 //banlance模型转资产模型方法

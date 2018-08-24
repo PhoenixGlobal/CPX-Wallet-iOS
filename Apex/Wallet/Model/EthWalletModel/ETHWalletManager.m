@@ -64,9 +64,12 @@ singleM(Manager);
 }
 
 - (NSMutableArray*)getWalletsArr{
-    return [[[TKFileManager loadDataWithFileName:ethWalletsKey] sortedArrayUsingComparator:^NSComparisonResult(ETHWalletModel *obj1, ETHWalletModel *obj2) {
+    NSMutableArray *arr = nil;
+    arr = [[[TKFileManager loadDataWithFileName:ethWalletsKey] sortedArrayUsingComparator:^NSComparisonResult(ETHWalletModel *obj1, ETHWalletModel *obj2) {
         return obj1.createTimeStamp.integerValue > obj2.createTimeStamp.integerValue;
     }] mutableCopy];
+    if(!arr) arr = [NSMutableArray array];
+    return arr;
 }
 
 - (void)changeWalletName:(NSString *)name forAddress:(NSString *)address {
@@ -122,7 +125,7 @@ singleM(Manager);
 }
 
 
-- (ApexTransferStatus)transferStatusForAddress:(NSString *)address {
++ (ApexTransferStatus)transferStatusForAddress:(NSString *)address {
     return 0;
 }
 
@@ -235,9 +238,9 @@ singleM(Manager);
                       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
 
-    
-    long long transfer = amount.doubleValue * pow(10, assetModel.precision.integerValue);
-    NSString *transferStr = [NSString stringWithFormat:@"0x%@",[SystemConvert decimalToHex:transfer]];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
+    NSDecimalNumber *transferDecimal = [amountDecimal decimalNumberByMultiplyingByPowerOf10:assetModel.precision.integerValue];
+    NSString *transferStr = [NSString stringWithFormat:@"0x%@",[SystemConvert decimalStringToHex:transferDecimal.stringValue]];
     NSString *gasStr = [NSString DecimalFuncWithOperatorType:2 first:gas secend:@"1000000000000000000" value:10];
     gasStr = [NSString DecimalFuncWithOperatorType:3 first:gasStr secend:@"90000" value:8];
     gasStr = [NSString stringWithFormat:@"0x%@",[SystemConvert decimalToHex:gasStr.integerValue]];

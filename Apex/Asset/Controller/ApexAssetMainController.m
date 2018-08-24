@@ -39,7 +39,14 @@
     [self initUI];
     [self handleEvent];
     
-NSLog(@"%@",[SystemConvert decimalStringToHex:@"10000000000000000000000"]);
+    ApexAssetModel *model = [ApexAssetModel new];
+    model.precision = @"18";
+    [ETHWalletManager sendERC20TxWithWallet:nil contractAddress:nil to:nil nonce:nil amount:@"10000" gas:@"0" assetModel:model success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
