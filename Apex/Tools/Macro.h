@@ -22,6 +22,7 @@
 #define assetId_Eth @"0x0000000000000000000000000000000000000000"
 
 #define assetID_Test_Erc20 @"0xc7773e07adb2642a1eb03c5e340430b6cedc2aa9"
+#define assetID_Test_Erc20_2 @"0xc7773e07adb2642a1eb03c5e340430b6cedc2222"
 
 #define UserDefaultsIdentifier @"com.chinapex.apex"
 #define isFirstOpenApp @"isFirstOpenApp"
@@ -46,8 +47,8 @@
 #define baseUrl_cli_main @"https://tracker.chinapex.com.cn/neo-cli/"
 
 //eth
-//#define ETH_baseUrl_tool_test @"http://42.159.95.191:8545"
-#define ETH_baseUrl_cli_test @"http://139.219.9.137:8545"
+#define ETH_baseUrl_cli_test @"http://42.159.95.191:8545"
+//#define ETH_baseUrl_cli_test @"http://139.219.9.137:8545"
 
 #define neo_assetid @"0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"
 #define neoGas_Assetid @"0x602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"

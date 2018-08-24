@@ -9,7 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface ApexSendMoneyViewModel : NSObject
-@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *address; /* from address */
+@property (nonatomic, strong) NSString *toAddress; /**<  */
 
+//获取neo utxo
 - (void)getUtxoSuccess:(void (^)(CYLResponse *response))successBlock fail:(void (^)(NSError *error))failBlock;
+
+//交易eth
+//- (void)ethTransactionWithWallet:(EthmobileWallet*)wallet;
 @end

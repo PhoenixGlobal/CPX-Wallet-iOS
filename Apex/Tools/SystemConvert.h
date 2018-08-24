@@ -50,7 +50,10 @@
  *  十进制 -> 十六进制
  */
 + (NSString *)decimalToHex:(NSUInteger)tmpid;
-
+/**
+ *  十进制 -> 十六进制 不会溢出
+ */
++ (NSString *)decimalStringToHex:(NSString*)tmpid;
 
 /**
  *  十六进制 -> 二进制
@@ -65,5 +68,5 @@
  */
 + (NSString *)hexToDecimal:(NSString *)hex;
 
-+ (NSString *)decimalStringToHex:(NSString*)tmpid;
+
 @end

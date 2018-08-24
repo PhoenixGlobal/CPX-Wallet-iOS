@@ -154,11 +154,11 @@
         for (BalanceObject *obj in self.assetArr) {
             //非eth
             if (![obj.asset isEqualToString:assetId_Eth]) {
-                [ETHWalletManager requestERC20BalanceOfContract:obj.asset Address:self.walletModel.address success:^(AFHTTPRequestOperation *operation, NSNumber *responseObject) {
-                    BalanceObject *balance = [BalanceObject new];
-                    balance.asset = obj.asset;
-                    balance.value = responseObject.stringValue;
-                    [dict setObject:balance forKey:balance.asset];
+                ApexAssetModel *assetModel = [obj getRelativeETHAssetModel];
+                
+                [ETHWalletManager requestERC20BalanceOfContract:obj.asset Address:self.walletModel.address decimal:assetModel.precision success:^(AFHTTPRequestOperation *operation, NSString *responseObject) {
+                    obj.value = responseObject;
+                    [dict setObject:obj forKey:obj.asset];
                     if (dict.allKeys.count == self.assetArr.count - 1) {
                         [subscriber sendNext:dict];
                     }
@@ -204,7 +204,7 @@
     [dict addEntriesFromDictionary:eth];
     [dict addEntriesFromDictionary:erc20];
     
-    for (BalanceObject *obj in [self.assetArr copy]) {
+    for (BalanceObject *obj in self.assetArr) {
         obj.value = ((BalanceObject*)dict[obj.asset]).value;
     }
     

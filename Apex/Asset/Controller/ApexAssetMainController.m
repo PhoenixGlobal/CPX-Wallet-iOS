@@ -38,15 +38,6 @@
     [super viewDidLoad];
     [self initUI];
     [self handleEvent];
-    
-    ApexAssetModel *model = [ApexAssetModel new];
-    model.precision = @"18";
-    [ETHWalletManager sendERC20TxWithWallet:nil contractAddress:nil to:nil nonce:nil amount:@"10000" gas:@"0" assetModel:model success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -112,6 +103,7 @@
 - (void)getWalletLists{
     [self.searchTooBar clearEntrance];
     NSNumber *walletType = [TKFileManager ValueWithKey:KglobleWalletType];
+   
     if (walletType.integerValue == ApexWalletType_Neo) {
         _walletManager = [ApexWalletManager shareManager];
         self.title = @"NEO";

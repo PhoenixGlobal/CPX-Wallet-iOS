@@ -58,7 +58,14 @@ singleM(Manager);
     BalanceObject *nmb = [[BalanceObject alloc] init];
     nmb.asset = assetID_Test_Erc20;
     nmb.value = @"0";
+    nmb.gas = @"90000";
     [arr addObject:nmb];
+    
+    BalanceObject *nmb1 = [[BalanceObject alloc] init];
+    nmb1.asset = assetID_Test_Erc20_2;
+    nmb1.value = @"0";
+    nmb1.gas = @"90000";
+    [arr addObject:nmb1];
     
     return arr;
 }
@@ -394,7 +401,7 @@ singleM(Manager);
     }];
 }
 
-+ (void)requestERC20BalanceOfContract:(NSString*)contract Address:(NSString*)address
++ (void)requestERC20BalanceOfContract:(NSString*)contract Address:(NSString*)address decimal:(NSString*)decimal
                               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     //{"jsonrpc":"2.0","method":"eth_call","params"[{"to":"0x123ab195dd38b1b40510d467a6a359b201af056f","data":"0x70a082310000000000000000000000008afCE0B7CA212fcD4FD9EA54749c6c48e715c60f"},"latest"],"id":1}
@@ -406,15 +413,11 @@ singleM(Manager);
     }
     NSData *d = [data dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:d options:NSJSONReadingAllowFragments error:nil];
-    NSLog(@"%@",data);
     [[ApexETHClient shareRPCClient] invokeMethod:@"eth_call" withParameters:@[dict,@"latest"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
-            
-            NSScanner *scanner = [NSScanner scannerWithString:responseObject];
-            unsigned long long i = 0;
-            [scanner scanHexLongLong:&i];
-            NSLog(@"%@",[SystemConvert hexToDecimal:responseObject]);
-            success(operation,@(i));
+            NSDecimalNumber *value = [NSDecimalNumber decimalNumberWithString:[SystemConvert hexToDecimal:responseObject]];
+            value = [value decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithMantissa:1 exponent:decimal.integerValue isNegative:NO]];
+            success(operation,value.stringValue);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {

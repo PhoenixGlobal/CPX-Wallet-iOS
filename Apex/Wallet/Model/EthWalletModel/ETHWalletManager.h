@@ -51,7 +51,7 @@ singleH(Manager);
                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 //查询erc20资产
-+ (void)requestERC20BalanceOfContract:(NSString*)contract Address:(NSString*)address
++ (void)requestERC20BalanceOfContract:(NSString*)contract Address:(NSString*)address decimal:(NSString*)decimal
                               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

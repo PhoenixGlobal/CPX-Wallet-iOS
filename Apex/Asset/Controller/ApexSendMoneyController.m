@@ -80,7 +80,7 @@
     [ApexUIHelper addLineInView:self.sendNumTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
     self.sendBtn.layer.cornerRadius = 6;
-    self.assetModel = [self.balanceModel getRelativeAssetModel];
+    self.assetModel = [self.balanceModel getRelativeNeoAssetModel];
     self.unitL.text = self.assetModel.symbol;
     
     self.slowL.text = SOLocalizedStringFromTable(@"slow", nil);
@@ -134,6 +134,7 @@
     }
 }
 
+//eth转账
 - (void)broadEthTransactionWithNonce:(NSNumber*)nonce wallet:(EthmobileWallet*)wallet{
     [self showHUD];
     [ETHWalletManager sendTxWithWallet:wallet to:self.toAddressTF.text nonce:nonce.stringValue amount:self.sendNumTF.text gas:@(self.gasSlider.value).stringValue success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -164,6 +165,9 @@
         [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
     }];
 }
+
+//erc20 转账
+
 
 #pragma mark - neo transaction
 - (void)neoTransactionWithWallet:(NeomobileWallet*)wallet{

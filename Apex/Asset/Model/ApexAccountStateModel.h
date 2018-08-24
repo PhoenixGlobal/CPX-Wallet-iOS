@@ -41,6 +41,7 @@
 @property (nonatomic, strong) NSString *gas; /**< eth*/
 
 //查找相关的assetmodel
-- (ApexAssetModel*)getRelativeAssetModel;
+- (ApexAssetModel*)getRelativeNeoAssetModel;
+- (ApexAssetModel*)getRelativeETHAssetModel;
 - (BOOL)isHashEqual:(id)objct;
 @end
