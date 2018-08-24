@@ -7,7 +7,6 @@
 
 #import "SystemConvert.h"
 
-
 static NSMutableDictionary *_bitHexDic;
 static NSMutableDictionary *_tenHexDic;
 static NSMutableDictionary *_bitQDic;
@@ -17,7 +16,7 @@ static NSMutableDictionary *_bitQDic;
 + (NSMutableDictionary *)bitHexDic{
     if(_bitHexDic == nil){
         NSMutableDictionary *hex = [[NSMutableDictionary alloc] initWithCapacity:16];
-        
+    
         [hex setObject:@"0000" forKey:@"0"];
         
         [hex setObject:@"0001" forKey:@"1"];
@@ -205,14 +204,6 @@ static NSMutableDictionary *_bitQDic;
  *  十进制 -> 十六进制
  */
 + (NSString *)decimalToHex:(NSUInteger)tmpid{
-    
-//    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:tmpid];
-//    NSDecimalNumber *zero = [NSDecimalNumber decimalNumberWithString:@"0"];
-//    NSDecimalNumber *sixteen = [NSDecimalNumber decimalNumberWithString:@"16"];
-//    while ([decimalNumber compare:zero] != NSOrderedSame) {
-//
-//    }
-
     NSMutableString *str = [NSMutableString stringWithString:@""];
     while (tmpid) {
         [str insertString:[[self tenHexDic] objectForKey:[NSString stringWithFormat:@"%ld", tmpid % 16]] atIndex:0];
@@ -221,6 +212,31 @@ static NSMutableDictionary *_bitQDic;
     return str;
 }
 
+
++ (NSString *)decimalStringToHex:(NSString*)tmpid{
+    
+    NSMutableString *str = [NSMutableString stringWithString:@""];
+    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:tmpid];
+    NSDecimalNumber *sixteen = [NSDecimalNumber decimalNumberWithString:@"16"];
+    //待研究
+    NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler
+                                       decimalNumberHandlerWithRoundingMode:NSRoundDown
+                                       scale:0
+                                       raiseOnExactness:NO
+                                       raiseOnOverflow:NO
+                                       raiseOnUnderflow:NO
+                                       raiseOnDivideByZero:YES];
+    
+    while ([decimalNumber compare:sixteen] == NSOrderedDescending) {
+        NSDecimalNumber *a = [decimalNumber copy];
+        NSDecimalNumber *c = [a decimalNumberByDividingBy:sixteen withBehavior:roundUp];
+        NSDecimalNumber *r = [a decimalNumberBySubtracting:[c decimalNumberByMultiplyingBy:sixteen]];
+        [str insertString:[[self tenHexDic] objectForKey:r.stringValue] atIndex:0];
+        decimalNumber = c;
+    }
+    [str insertString:[[self tenHexDic] objectForKey:decimalNumber.stringValue] atIndex:0];
+    return str.lowercaseString;
+}
 
 /**
  将16进制的字符串转换成NSData

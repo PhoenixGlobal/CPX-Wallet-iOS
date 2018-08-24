@@ -64,4 +64,6 @@
  *  十六进制 -> 十进制
  */
 + (NSString *)hexToDecimal:(NSString *)hex;
+
++ (NSString *)decimalStringToHex:(NSString*)tmpid;
 @end
