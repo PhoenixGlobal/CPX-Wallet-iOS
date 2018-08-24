@@ -32,7 +32,7 @@
 @property (nonatomic, strong) NeomobileWallet *wallet;
 @property (nonatomic, strong) UIButton *backBtn;
 
-@property (nonatomic, strong) ApexAssetModel *assetModel;
+
 @property (nonatomic, strong) id<ApexTransHistoryProtocal> historyManager; /**<  */
 
 @property (weak, nonatomic) IBOutlet UILabel *availableL;
@@ -80,8 +80,7 @@
     [ApexUIHelper addLineInView:self.sendNumTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
     self.sendBtn.layer.cornerRadius = 6;
-    self.assetModel = [self.balanceModel getRelativeNeoAssetModel];
-    self.unitL.text = self.assetModel.symbol;
+    self.unitL.text = [self.balanceModel getRelativeNeoAssetModel].symbol;
     
     self.slowL.text = SOLocalizedStringFromTable(@"slow", nil);
     self.fastL.text = SOLocalizedStringFromTable(@"fast", nil);
@@ -112,6 +111,7 @@
     NSString *maxValue = [NSString DecimalFuncWithOperatorType:2 first:@"2520120000000000" secend:[_balanceModel.asset isEqualToString:assetId_Eth] ? @"90000" : _balanceModel.gas value:8];
     maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"21000"  value:8];
     maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"1000000000000000000" value:8];
+    self.viewModel.gasSliderValue = minValue;
     
     self.gasSlider.minimumValue = minValue.doubleValue;
     self.gasSlider.maximumValue = maxValue.doubleValue;
@@ -119,177 +119,177 @@
 }
 
 #pragma mark - eth transaction
-- (void)ethTransactionWithWallet:(EthmobileWallet*)wallet{
-    
-    if ([_balanceModel.asset isEqualToString:assetId_Eth]) {
-        //eth转账
-        [ETHWalletManager requestTransactionCount:self.fromAddressL.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [self broadEthTransactionWithNonce:responseObject wallet:wallet];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self showMessage:SOLocalizedStringFromTable(@"gainNonceFail", nil)];
-        }];
-    }else{
-        //erc20转账
-        
-    }
-}
-
-//eth转账
-- (void)broadEthTransactionWithNonce:(NSNumber*)nonce wallet:(EthmobileWallet*)wallet{
-    [self showHUD];
-    [ETHWalletManager sendTxWithWallet:wallet to:self.toAddressTF.text nonce:nonce.stringValue amount:self.sendNumTF.text gas:@(self.gasSlider.value).stringValue success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self hideHUD];
-        /**< 创建新的临时交易历史记录 */
-        ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
-        historyModel.txid = [responseObject hasPrefix:@"0x"] ? responseObject : [NSString stringWithFormat:@"0x%@",responseObject];
-        historyModel.from = self.fromAddressL.text;
-        historyModel.to = self.toAddressTF.text;
-        historyModel.value = [NSString stringWithFormat:@"-%@",self.sendNumTF.text];
-        historyModel.status = ApexTransferStatus_Blocking;
-        historyModel.time = @"0";
-        historyModel.assetId = self.balanceModel.asset;
-        ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.fromAddressL.text];
-        
-        if (lastRecord) {
-            historyModel.time = lastRecord.time;
-        }
-        
-        [self.historyManager addTransferHistory:historyModel forWallet:self.fromAddressL.text];
-        [self.historyManager beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
-        NSLog(@"eth txid %@",responseObject);
-        
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self hideHUD];
-        [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
-    }];
-}
+//- (void)ethTransactionWithWallet:(EthmobileWallet*)wallet{
+//
+//    if ([_balanceModel.asset isEqualToString:assetId_Eth]) {
+//        //eth转账
+//        [ETHWalletManager requestTransactionCount:self.fromAddressL.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            [self broadEthTransactionWithNonce:responseObject wallet:wallet];
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            [self showMessage:SOLocalizedStringFromTable(@"gainNonceFail", nil)];
+//        }];
+//    }else{
+//        //erc20转账
+//
+//    }
+//}
+//
+////eth转账
+//- (void)broadEthTransactionWithNonce:(NSNumber*)nonce wallet:(EthmobileWallet*)wallet{
+//    [self showHUD];
+//    [ETHWalletManager sendTxWithWallet:wallet to:self.toAddressTF.text nonce:nonce.stringValue amount:self.sendNumTF.text gas:@(self.gasSlider.value).stringValue success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        [self hideHUD];
+//        /**< 创建新的临时交易历史记录 */
+//        ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
+//        historyModel.txid = [responseObject hasPrefix:@"0x"] ? responseObject : [NSString stringWithFormat:@"0x%@",responseObject];
+//        historyModel.from = self.fromAddressL.text;
+//        historyModel.to = self.toAddressTF.text;
+//        historyModel.value = [NSString stringWithFormat:@"-%@",self.sendNumTF.text];
+//        historyModel.status = ApexTransferStatus_Blocking;
+//        historyModel.time = @"0";
+//        historyModel.assetId = self.balanceModel.asset;
+//        ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.fromAddressL.text];
+//
+//        if (lastRecord) {
+//            historyModel.time = lastRecord.time;
+//        }
+//
+//        [self.historyManager addTransferHistory:historyModel forWallet:self.fromAddressL.text];
+//        [self.historyManager beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
+//        NSLog(@"eth txid %@",responseObject);
+//
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [self hideHUD];
+//        [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
+//    }];
+//}
 
 //erc20 转账
 
 
-#pragma mark - neo transaction
-- (void)neoTransactionWithWallet:(NeomobileWallet*)wallet{
-    [self utxoSearch:wallet];
-}
-
-- (void)utxoSearch:(NeomobileWallet*)wallet{
-    NSString *address = _toAddressTF.text;
-    if (address.length <= 15) {
-        [self showMessage:SOLocalizedStringFromTable(@"SendMoneyAddress", nil)];
-        return;
-    }
-    
-    self.wallet = wallet;
-    if (!self.wallet) {
-        [self showMessage:SOLocalizedStringFromTable(@"OpenWalletFailed", nil)];
-        return;
-    }
-    
-    //创建neo/gas的tx 交易
-    if ([neo_assetid containsString:_balanceModel.asset] || [neoGas_Assetid containsString:_balanceModel.asset]) {
-        @weakify(self);
-        [self.viewModel getUtxoSuccess:^(CYLResponse *response) {
-            @strongify(self);
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
-            NSArray *unspendArr = dict[@"result"];
-            NSData *data = [NSJSONSerialization dataWithJSONObject:unspendArr options:NSJSONWritingPrettyPrinted error:nil];
-            NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            
-            NSError *err = nil;
-            NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:self.sendNumTF.text];
-            NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:num.doubleValue unspent:unspendStr error:&err];
-            
-            if (err) {
-                [self showMessage:SOLocalizedStringFromTable(@"CreateTransFailed", nil)];
-            }else{
-                [self broadCastTransaction:tx];
-            }
-            
-        } fail:^(NSError *error) {
-            [self showMessage:SOLocalizedStringFromTable(@"UtxoFailed", nil)];
-        }];
-    }else{
-
-        NSError *err = nil;
-        NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:self.sendNumTF.text];
-        num = [num decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@(pow(10, self.assetModel.precision.integerValue)).stringValue]];
-        NeomobileTx *nep5TX = [self.wallet createNep5Tx:_balanceModel.asset from:NeomobileDecodeAddress(self.wallet.address, nil) to:NeomobileDecodeAddress(self.toAddressTF.text, nil) amount:num.integerValue unspent:@"[]" error:&err];
-        if (err) {
-            [self showMessage:SOLocalizedStringFromTable(@"CreateTransFailed", nil)];
-        }else{
-            [self broadCastTransaction:nep5TX];
-        }
-    }
-}
-
-- (void)broadCastTransaction:(NeomobileTx*)tx{
-    [self showHUD];
-    [ApexWalletManager broadCastTransactionWithData:tx.data Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self hideHUD];
-        BOOL isSuccess = ((NSNumber*)responseObject).boolValue;
-        if (isSuccess) {
-            [self showMessage:SOLocalizedStringFromTable(@"TransSuccess", nil)];
-            
-            /**< 创建新的临时交易历史记录 */
-            ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
-            historyModel.txid = [tx.id_ hasPrefix:@"0x"] ? tx.id_ : [NSString stringWithFormat:@"0x%@",tx.id_];
-            historyModel.from = self.fromAddressL.text;
-            historyModel.to = self.toAddressTF.text;
-            historyModel.value = [NSString stringWithFormat:@"-%@",self.sendNumTF.text];
-            historyModel.status = ApexTransferStatus_Blocking;
-            historyModel.time = @"0";
-            historyModel.assetId = self.balanceModel.asset;
-            ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.fromAddressL.text];
-            
-            if (lastRecord) {
-                historyModel.time = lastRecord.time;
-            }
-            
-            [self.historyManager addTransferHistory:historyModel forWallet:self.fromAddressL.text];
-            [self.historyManager beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
-            NSLog(@"txid %@",tx.id_);
-            
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }else{
-            [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self hideHUD];
-        [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
-    }];
-}
-
--(NSString *)convertToJsonData:(NSDictionary *)dict{
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString;
-
-    if (!jsonData) {
-        
-        NSLog(@"%@",error);
-        
-    }else{
-        
-        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
-    }
-    
-    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
-    
-    NSRange range = {0,jsonString.length};
-    
-    //去掉字符串中的空格
-    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
-    
-    NSRange range2 = {0,mutStr.length};
-    
-    //去掉字符串中的换行符
-    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
-    
-    return mutStr;
-}
+//#pragma mark - neo transaction
+//- (void)neoTransactionWithWallet:(NeomobileWallet*)wallet{
+//    [self utxoSearch:wallet];
+//}
+//
+//- (void)utxoSearch:(NeomobileWallet*)wallet{
+//    NSString *address = _toAddressTF.text;
+//    if (address.length <= 15) {
+//        [self showMessage:SOLocalizedStringFromTable(@"SendMoneyAddress", nil)];
+//        return;
+//    }
+//    
+//    self.wallet = wallet;
+//    if (!self.wallet) {
+//        [self showMessage:SOLocalizedStringFromTable(@"OpenWalletFailed", nil)];
+//        return;
+//    }
+//    
+//    //创建neo/gas的tx 交易
+//    if ([neo_assetid containsString:_balanceModel.asset] || [neoGas_Assetid containsString:_balanceModel.asset]) {
+//        @weakify(self);
+//        [self.viewModel getUtxoSuccess:^(CYLResponse *response) {
+//            @strongify(self);
+//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+//            NSArray *unspendArr = dict[@"result"];
+//            NSData *data = [NSJSONSerialization dataWithJSONObject:unspendArr options:NSJSONWritingPrettyPrinted error:nil];
+//            NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//            
+//            NSError *err = nil;
+//            NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:self.sendNumTF.text];
+//            NeomobileTx *tx = [self.wallet createAssertTx:self.balanceModel.asset from:self.walletAddress to:self.toAddressTF.text amount:num.doubleValue unspent:unspendStr error:&err];
+//            
+//            if (err) {
+//                [self showMessage:SOLocalizedStringFromTable(@"CreateTransFailed", nil)];
+//            }else{
+//                [self broadCastTransaction:tx];
+//            }
+//            
+//        } fail:^(NSError *error) {
+//            [self showMessage:SOLocalizedStringFromTable(@"UtxoFailed", nil)];
+//        }];
+//    }else{
+//
+//        NSError *err = nil;
+//        NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:self.sendNumTF.text];
+//        num = [num decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@(pow(10, self.assetModel.precision.integerValue)).stringValue]];
+//        NeomobileTx *nep5TX = [self.wallet createNep5Tx:_balanceModel.asset from:NeomobileDecodeAddress(self.wallet.address, nil) to:NeomobileDecodeAddress(self.toAddressTF.text, nil) amount:num.integerValue unspent:@"[]" error:&err];
+//        if (err) {
+//            [self showMessage:SOLocalizedStringFromTable(@"CreateTransFailed", nil)];
+//        }else{
+//            [self broadCastTransaction:nep5TX];
+//        }
+//    }
+//}
+//
+//- (void)broadCastTransaction:(NeomobileTx*)tx{
+//    [self showHUD];
+//    [ApexWalletManager broadCastTransactionWithData:tx.data Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        [self hideHUD];
+//        BOOL isSuccess = ((NSNumber*)responseObject).boolValue;
+//        if (isSuccess) {
+//            [self showMessage:SOLocalizedStringFromTable(@"TransSuccess", nil)];
+//            
+//            /**< 创建新的临时交易历史记录 */
+//            ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
+//            historyModel.txid = [tx.id_ hasPrefix:@"0x"] ? tx.id_ : [NSString stringWithFormat:@"0x%@",tx.id_];
+//            historyModel.from = self.fromAddressL.text;
+//            historyModel.to = self.toAddressTF.text;
+//            historyModel.value = [NSString stringWithFormat:@"-%@",self.sendNumTF.text];
+//            historyModel.status = ApexTransferStatus_Blocking;
+//            historyModel.time = @"0";
+//            historyModel.assetId = self.balanceModel.asset;
+//            ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.fromAddressL.text];
+//            
+//            if (lastRecord) {
+//                historyModel.time = lastRecord.time;
+//            }
+//            
+//            [self.historyManager addTransferHistory:historyModel forWallet:self.fromAddressL.text];
+//            [self.historyManager beginTimerToConfirmTransactionOfAddress:self.fromAddressL.text txModel:historyModel];
+//            NSLog(@"txid %@",tx.id_);
+//            
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        }else{
+//            [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
+//        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [self hideHUD];
+//        [self showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
+//    }];
+//}
+//
+//-(NSString *)convertToJsonData:(NSDictionary *)dict{
+//    NSError *error;
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+//    NSString *jsonString;
+//
+//    if (!jsonData) {
+//        
+//        NSLog(@"%@",error);
+//        
+//    }else{
+//        
+//        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        
+//    }
+//    
+//    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+//    
+//    NSRange range = {0,jsonString.length};
+//    
+//    //去掉字符串中的空格
+//    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+//    
+//    NSRange range2 = {0,mutStr.length};
+//    
+//    //去掉字符串中的换行符
+//    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+//    
+//    return mutStr;
+//}
 
 #pragma mark - ------public------
 
@@ -315,6 +315,7 @@
 
 - (IBAction)sliderValueChanged:(id)sender {
     self.gasPriceL.text = [NSString stringWithFormat:@"%.8lf ether", _gasSlider.value];
+    self.viewModel.gasSliderValue = self.gasPriceL.text;
 }
 
 
@@ -328,10 +329,13 @@
         //输入密码
         [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress walletManager:self.walletManager subTitle:@"" Success:^(id wallet) {
             
+            self.viewModel.toAddress = self.toAddressTF.text;
+            self.viewModel.amount = self.sendNumTF.text;
+            
             if ([self.walletManager isKindOfClass:ETHWalletManager.class]) {
-                [self ethTransactionWithWallet:wallet];
+                [self.viewModel ethTransactionWithWallet:wallet];
             }else{
-                [self neoTransactionWithWallet:wallet];
+                [self.viewModel neoTransactionWithWallet:wallet];
             }
             
         } fail:^{
@@ -350,12 +354,15 @@
         self.historyManager = [ApexTransferHistoryManager shareManager];
         _ethPanelView.hidden = YES;
     }
+    self.viewModel.historyManager = _historyManager;
 }
 
 - (ApexSendMoneyViewModel *)viewModel{
     if (!_viewModel) {
         _viewModel = [[ApexSendMoneyViewModel alloc] init];
         _viewModel.address = self.walletAddress;
+        _viewModel.ownerVC = self;
+        _viewModel.balanceModel = self.balanceModel;
     }
     return _viewModel;
 }

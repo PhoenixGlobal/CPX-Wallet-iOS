@@ -7,14 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ApexTransferHistoryManager.h"
 
 @interface ApexSendMoneyViewModel : NSObject
 @property (nonatomic, strong) NSString *address; /* from address */
+
 @property (nonatomic, strong) NSString *toAddress; /**<  */
+@property (nonatomic, strong) BalanceObject *balanceModel; /**<  */
+@property (nonatomic, strong) NSString *amount; /**< 交易金额 */
+@property (nonatomic, strong) NSString *gasSliderValue; /**< gas条的值 */
+@property (nonatomic, strong) ApexTransferHistoryManager *historyManager; /**<  */
+@property (nonatomic, strong) UIViewController *ownerVC; /**< VC */
 
 //获取neo utxo
 - (void)getUtxoSuccess:(void (^)(CYLResponse *response))successBlock fail:(void (^)(NSError *error))failBlock;
 
 //交易eth
-//- (void)ethTransactionWithWallet:(EthmobileWallet*)wallet;
+- (void)ethTransactionWithWallet:(EthmobileWallet*)wallet;
+
+//交易neo
+- (void)neoTransactionWithWallet:(NeomobileWallet*)wallet;
 @end

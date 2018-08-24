@@ -214,8 +214,9 @@ singleM(Manager);
 + (void)sendTxWithWallet:(EthmobileWallet*)wallet to:(NSString*)to nonce:(NSString*)nonce amount:(NSString*)amount gas:(NSString*)gas
                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
-    long long transfer = amount.doubleValue * pow(10, 18);
-    NSString *amountTrans = [NSString stringWithFormat:@"0x%@", [SystemConvert decimalToHex:transfer]];;
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
+    NSDecimalNumber *transferDecimal = [amountDecimal decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithMantissa:1 exponent:18 isNegative:NO]];
+    NSString *amountTrans = [NSString stringWithFormat:@"0x%@", [SystemConvert decimalStringToHex:transferDecimal.stringValue]];
     NSString *gasStr = [NSString DecimalFuncWithOperatorType:3 first:gas secend:@"90000" value:18];
     gasStr = [NSString DecimalFuncWithOperatorType:2 first:gasStr secend:@"1000000000000000000" value:0];
     NSString * gasPrice = [SystemConvert decimalToHex:gasStr.integerValue];
