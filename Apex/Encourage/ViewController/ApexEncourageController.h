@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ApexScrollerController.h"
 
-@interface ApexEncourageController : UIViewController
+@interface ApexEncourageController : ApexScrollerController
 
 @end

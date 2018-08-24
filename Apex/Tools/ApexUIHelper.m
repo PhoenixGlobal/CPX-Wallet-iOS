@@ -102,4 +102,31 @@
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:V options:0 metrics:metrics views:views]];
     return line;
 }
+
++ (CGFloat)calculateTextHeight:(UIFont *)font givenText:(NSString *)text givenWidth:(CGFloat)width
+{
+    NSDictionary *attribute = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 9999) options:
+                   NSStringDrawingTruncatesLastVisibleLine |
+                   NSStringDrawingUsesLineFragmentOrigin |
+                   NSStringDrawingUsesFontLeading
+                                  attributes:attribute context:nil];
+    CGFloat height = rect.size.height + 1.0f;
+    
+    return height;
+}
+
++ (CGFloat)calculateTextLength:(UIFont *)font givenText:(NSString *)text
+{
+    NSDictionary *attribute = @{NSFontAttributeName:font};
+    CGSize titleSize = [text boundingRectWithSize:CGSizeMake(MAXFLOAT, 0) options:
+                        NSStringDrawingTruncatesLastVisibleLine |
+                        NSStringDrawingUsesLineFragmentOrigin |
+                        NSStringDrawingUsesFontLeading
+                                       attributes:attribute context:nil].size;
+    CGFloat length = titleSize.width + 1.0f;
+    
+    return length;
+}
+
 @end
