@@ -103,8 +103,8 @@
 "fast" = "快";
 "gainNonceFail" = "获取nonce失败";
 
-//encourage
-"encourage" = "激励";
+//Reward
+"Reward" = "激励";
 
 // tips
 "Create Wallet Failed" = "钱包创建失败";

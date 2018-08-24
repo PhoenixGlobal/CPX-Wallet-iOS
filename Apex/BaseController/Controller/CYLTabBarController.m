@@ -65,7 +65,7 @@
     [self setOneViewController:vc2 image:[UIImage imageNamed:@"Shape-1"] selImage:[UIImage imageNamed:@"Shape"] title:SOLocalizedStringFromTable(@"Mine", nil)];
     
     ApexEncourageController *vc3 = [[ApexEncourageController alloc] init];
-    [self setOneViewController:vc3 image:[UIImage imageNamed:@"Shape-1"] selImage:[UIImage imageNamed:@"Shape"] title:SOLocalizedStringFromTable(@"encourage", nil)];
+    [self setOneViewController:vc3 image:[UIImage imageNamed:@"Shape-1"] selImage:[UIImage imageNamed:@"Shape"] title:SOLocalizedStringFromTable(@"Reward", nil)];
 }
 
 
