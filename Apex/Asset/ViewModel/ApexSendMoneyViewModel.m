@@ -226,4 +226,12 @@
     return mutStr;
 }
 
+
+- (void)updateEthValue{
+    [ETHWalletManager requestETHBalanceOfAddress:_address success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.currentEthNumber = responseObject;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        self.currentEthNumber = @"0";
+    }];
+}
 @end

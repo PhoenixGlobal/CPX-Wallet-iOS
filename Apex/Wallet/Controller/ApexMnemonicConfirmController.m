@@ -33,6 +33,7 @@
     [super viewDidLoad];
     [self initUI];
     [self prepareData];
+    NSLog(@"%@",_mnemonic);
 }
 
 - (void)viewWillAppear:(BOOL)animated{

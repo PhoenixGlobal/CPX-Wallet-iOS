@@ -228,7 +228,6 @@ singleM(Manager);
     if (![tx hasPrefix:@"0x"]) {
         tx = [NSString stringWithFormat:@"0x%@",tx];
     }
-    NSLog(@"ETH_TXN: %@",tx);
     
     //{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":[{see above}],"id":1}
     [[ApexETHClient shareRPCClient] invokeMethod:@"eth_sendRawTransaction" withParameters:@[tx] success:^(AFHTTPRequestOperation *operation, id responseObject) {

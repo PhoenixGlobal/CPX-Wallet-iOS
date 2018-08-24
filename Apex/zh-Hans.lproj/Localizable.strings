@@ -102,6 +102,7 @@
 "slow" = "慢";
 "fast" = "快";
 "gainNonceFail" = "获取nonce失败";
+"insufficentGas" = "余额不足以支付gas";
 
 //Reward
 "Reward" = "激励";

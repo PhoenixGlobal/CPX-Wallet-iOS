@@ -110,6 +110,7 @@
 "slow" = "Slow";
 "fast" = "Fast";
 "gainNonceFail" = "Request Nonce Failed";
+"insufficentGas" = "Insufficent gas";
 
 //Reward
 "Reward" = "Reward";

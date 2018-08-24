@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString *gasSliderValue; /**< gas条的值 */
 @property (nonatomic, strong) ApexTransferHistoryManager *historyManager; /**<  */
 @property (nonatomic, strong) UIViewController *ownerVC; /**< VC */
+@property (nonatomic, strong) NSString *currentEthNumber; /**< 当前以太币的余额 */
 
 //获取neo utxo
 - (void)getUtxoSuccess:(void (^)(CYLResponse *response))successBlock fail:(void (^)(NSError *error))failBlock;
@@ -27,4 +28,6 @@
 
 //交易neo
 - (void)neoTransactionWithWallet:(NeomobileWallet*)wallet;
+
+- (void)updateEthValue;
 @end
