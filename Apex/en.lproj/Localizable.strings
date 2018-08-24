@@ -111,8 +111,8 @@
 "fast" = "Fast";
 "gainNonceFail" = "Request Nonce Failed";
 
-//encourage
-"encourage" = "Encourage";
+//Reward
+"Reward" = "Reward";
 
 
 // tips
