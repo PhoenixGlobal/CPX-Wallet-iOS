@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58E9896E212FCDDB00D2244D /* ApexRewardListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E9896D212FCDDB00D2244D /* ApexRewardListTableViewCell.m */; };
+		58E98971212FF80300D2244D /* ApexEncourageSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E98970212FF80300D2244D /* ApexEncourageSubmitViewController.m */; };
 		85E67580B2D0B467389B681E /* libPods-Apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */; };
 		E324311620DCC14700284B91 /* ApexTransferHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */; };
 		E324311920E0F5A200284B91 /* ApexAssetModelManage.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311820E0F5A200284B91 /* ApexAssetModelManage.m */; };
@@ -214,6 +216,10 @@
 
 /* Begin PBXFileReference section */
 		2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.release.xcconfig"; sourceTree = "<group>"; };
+		58E9896C212FCDDB00D2244D /* ApexRewardListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ApexRewardListTableViewCell.h; path = Apex/Encourage/ApexRewardListTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		58E9896D212FCDDB00D2244D /* ApexRewardListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApexRewardListTableViewCell.m; path = Apex/Encourage/ApexRewardListTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		58E9896F212FF80300D2244D /* ApexEncourageSubmitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEncourageSubmitViewController.h; sourceTree = "<group>"; };
+		58E98970212FF80300D2244D /* ApexEncourageSubmitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageSubmitViewController.m; sourceTree = "<group>"; };
 		8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.debug.xcconfig"; sourceTree = "<group>"; };
 		A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E324311420DCC14700284B91 /* ApexTransferHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferHistoryManager.h; sourceTree = "<group>"; };
@@ -1295,6 +1301,8 @@
 			children = (
 				E7393589212E5232007F61AC /* ApexEncourageController.h */,
 				E739358A212E5232007F61AC /* ApexEncourageController.m */,
+				58E9896F212FF80300D2244D /* ApexEncourageSubmitViewController.h */,
+				58E98970212FF80300D2244D /* ApexEncourageSubmitViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1302,6 +1310,8 @@
 		E7393588212E5212007F61AC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				58E9896C212FCDDB00D2244D /* ApexRewardListTableViewCell.h */,
+				58E9896D212FCDDB00D2244D /* ApexRewardListTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1735,6 +1745,7 @@
 				E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */,
 				E39E02EF20C7D206005DD251 /* ApexImportByMnemonicView.m in Sources */,
 				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
+				58E98971212FF80300D2244D /* ApexEncourageSubmitViewController.m in Sources */,
 				E33A8BE920B2C3B50067505E /* ApexSendMoneyController.m in Sources */,
 				E3373B3A20F5F14F00590407 /* UIViewController+SOLocalizations.m in Sources */,
 				E3263EEE20B69BB6001D3C19 /* FCAlertView.m in Sources */,
@@ -1757,6 +1768,7 @@
 				E3373B5920F8711600590407 /* ApexLanguageSettingController.m in Sources */,
 				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,
 				E739358B212E5232007F61AC /* ApexEncourageController.m in Sources */,
+				58E9896E212FCDDB00D2244D /* ApexRewardListTableViewCell.m in Sources */,
 				E33A8B8720AE75650067505E /* CYLTabbar.m in Sources */,
 				E7EDD72F21057B8000007F29 /* ApexProfileBaseController.m in Sources */,
 				E3689AFE20DB92A300B4B001 /* ApexTransferModel.m in Sources */,

@@ -26,4 +26,11 @@
 
 /**< 添加线条 */
 + (UIView *)addLineInView:(UIView *)view color:(UIColor *)color edge:(UIEdgeInsets)edge;
+
+//获取label的高度
++ (CGFloat)calculateTextHeight:(UIFont *)font givenText:(NSString *)text givenWidth:(CGFloat)width;
+
+//获取label的宽度
++ (CGFloat)calculateTextLength:(UIFont *)font givenText:(NSString *)text;
+
 @end
