@@ -104,6 +104,7 @@
     
     [self.takeAllBtn setTitle:SOLocalizedStringFromTable(@"allMoney", nil) forState:UIControlStateNormal];
     
+    //计算gas费用
     NSString *minValue = [NSString DecimalFuncWithOperatorType:2 first:@"25200000000000" secend:[_balanceModel.asset isEqualToString:assetId_Eth] ? @"90000" : _balanceModel.gas value:8];
     minValue = [NSString DecimalFuncWithOperatorType:3 first:minValue secend:@"21000" value:8];
     minValue = [NSString DecimalFuncWithOperatorType:3 first:minValue secend:@"1000000000000000000" value:8];
@@ -115,9 +116,19 @@
     self.gasSlider.minimumValue = minValue.doubleValue;
     self.gasSlider.maximumValue = maxValue.doubleValue;
     self.gasSlider.value = minValue.doubleValue;
-    
     self.viewModel.gasSliderValue = minValue;
     [self.viewModel updateEthValue];
+
+    //区分类型
+    if ([_walletManager isKindOfClass:ETHWalletManager.class]) {
+        self.historyManager = [ETHTransferHistoryManager shareManager];
+        _ethPanelView.hidden = NO;
+        
+    }else{
+        self.historyManager = [ApexTransferHistoryManager shareManager];
+        _ethPanelView.hidden = YES;
+    }
+    self.viewModel.historyManager = _historyManager;
     
 }
 #pragma mark - ------public------
@@ -176,18 +187,6 @@
 }
 
 #pragma mark - ------getter & setter------
-- (void)setWalletManager:(id<ApexWalletManagerProtocal>)walletManager{
-    _walletManager = walletManager;
-    if ([walletManager isKindOfClass:ETHWalletManager.class]) {
-        self.historyManager = [ETHTransferHistoryManager shareManager];
-        _ethPanelView.hidden = NO;
-    }else{
-        self.historyManager = [ApexTransferHistoryManager shareManager];
-        _ethPanelView.hidden = YES;
-    }
-    self.viewModel.historyManager = _historyManager;
-}
-
 - (ApexSendMoneyViewModel *)viewModel{
     if (!_viewModel) {
         _viewModel = [[ApexSendMoneyViewModel alloc] init];

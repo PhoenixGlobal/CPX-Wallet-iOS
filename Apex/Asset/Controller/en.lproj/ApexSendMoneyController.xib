@@ -132,7 +132,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="全部"/>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVV-TF-VPV">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVV-TF-VPV">
                     <rect key="frame" x="0.0" y="379" width="375" height="90"/>
                     <subviews>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="D4I-rG-KGX">

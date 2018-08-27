@@ -352,9 +352,9 @@
     @try {
         NSDecimalNumber *firstNumber = [[NSDecimalNumber alloc] initWithString:first];
         
-//        if ([NSObject isNulllWithObject:secend]) {
-//            secend = @"0";
-//        }
+        if (secend == nil) {
+            secend = @"0";
+        }
         
         if ([secend isKindOfClass:[NSNumber class]]) {
             secend = [NSString stringWithFormat:@"%@", secend];

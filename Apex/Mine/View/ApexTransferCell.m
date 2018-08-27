@@ -113,25 +113,8 @@
 }
 
 - (void)caculatePeriod{
-    CGFloat timeStamp = self.model.time.floatValue;
-//    CGFloat now = [[NSDate date] timeIntervalSince1970];
-//    CGFloat period = now - timeStamp;
-//    if (period <= 60) {
-//        _timeStampL.text = [NSString stringWithFormat:@"%.0f秒前",period];
-//    }
-//
-//    if (period > 60 && period < 3600) {
-//        _timeStampL.text = [NSString stringWithFormat:@"%.0f分钟前",period/60.0];
-//    }
-//
-//    if (period > 3600 && period <= 86400) {
-//        _timeStampL.text = [NSString stringWithFormat:@"%.0f小时前",period/3600.0];
-//    }
-//
-//    if (period > 86400) {
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_model.time.doubleValue];
     _timeStampL.text = [NSString stringWithFormat:@"%ld-%ld-%ld %02ld:%02ld:%02ld",(long)date.year,date.month,date.day, date.hour, date.minute,date.second];
-//    }
     
 }
 
