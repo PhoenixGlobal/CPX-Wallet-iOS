@@ -78,10 +78,11 @@
     }];
     
     [self.importBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.agreeView).offset(scaleHeight667(120));
+        make.top.mas_greaterThanOrEqualTo(self.agreeView).offset(scaleHeight667(30));
         make.left.equalTo(self).offset(35);
         make.right.equalTo(self).offset(-35);
         make.height.mas_equalTo(40);
+        make.bottom.equalTo(self).offset(-30);
     }];
 }
 

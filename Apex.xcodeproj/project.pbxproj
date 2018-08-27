@@ -162,6 +162,8 @@
 		E703930E212162A500BA3CDB /* ApexWalletSelectTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E703930D212162A500BA3CDB /* ApexWalletSelectTypeView.m */; };
 		E70393132121A26500BA3CDB /* ETHWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E70393122121A26500BA3CDB /* ETHWalletModel.m */; };
 		E70393192123C52200BA3CDB /* ETHTransferHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E70393182123C52200BA3CDB /* ETHTransferHistoryManager.m */; };
+		E72CE80A21339EB9008EEDF6 /* ApexCopyLable.m in Sources */ = {isa = PBXBuildFile; fileRef = E72CE80921339EB9008EEDF6 /* ApexCopyLable.m */; };
+		E72CE80D2133C3D1008EEDF6 /* ApexAccountDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E72CE80C2133C3D1008EEDF6 /* ApexAccountDetailViewModel.m */; };
 		E731468E2109FC2D002A6C07 /* ApexEnterKeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */; };
 		E7314690210A02D0002A6C07 /* useprotocol.html in Resources */ = {isa = PBXBuildFile; fileRef = E731468F210A02CF002A6C07 /* useprotocol.html */; };
 		E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7314692210A05BA002A6C07 /* ApexProlicyController.m */; };
@@ -514,6 +516,10 @@
 		E70393172123C52200BA3CDB /* ETHTransferHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHTransferHistoryManager.h; sourceTree = "<group>"; };
 		E70393182123C52200BA3CDB /* ETHTransferHistoryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHTransferHistoryManager.m; sourceTree = "<group>"; };
 		E703931B212AC95200BA3CDB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ApexSendMoneyController.xib"; sourceTree = "<group>"; };
+		E72CE80821339EB9008EEDF6 /* ApexCopyLable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexCopyLable.h; sourceTree = "<group>"; };
+		E72CE80921339EB9008EEDF6 /* ApexCopyLable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexCopyLable.m; sourceTree = "<group>"; };
+		E72CE80B2133C3D1008EEDF6 /* ApexAccountDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAccountDetailViewModel.h; sourceTree = "<group>"; };
+		E72CE80C2133C3D1008EEDF6 /* ApexAccountDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAccountDetailViewModel.m; sourceTree = "<group>"; };
 		E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEnterKeyView.h; sourceTree = "<group>"; };
 		E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEnterKeyView.m; sourceTree = "<group>"; };
 		E731468F210A02CF002A6C07 /* useprotocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol.html; sourceTree = "<group>"; };
@@ -1195,6 +1201,8 @@
 				E739349D21086CC0007953FB /* ApexSimpleDatePicker.m */,
 				E739349F210877E5007953FB /* ApexRowSelectView.h */,
 				E73934A0210877E5007953FB /* ApexRowSelectView.m */,
+				E72CE80821339EB9008EEDF6 /* ApexCopyLable.h */,
+				E72CE80921339EB9008EEDF6 /* ApexCopyLable.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1204,6 +1212,8 @@
 			children = (
 				E3CE669620BE3D13002A1E07 /* ApexSendMoneyViewModel.h */,
 				E3CE669720BE3D13002A1E07 /* ApexSendMoneyViewModel.m */,
+				E72CE80B2133C3D1008EEDF6 /* ApexAccountDetailViewModel.h */,
+				E72CE80C2133C3D1008EEDF6 /* ApexAccountDetailViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1727,6 +1737,7 @@
 				E33A8B9A20AE756E0067505E /* UINavigationController+ApexNavigationBar.m in Sources */,
 				E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */,
 				E70393192123C52200BA3CDB /* ETHTransferHistoryManager.m in Sources */,
+				E72CE80A21339EB9008EEDF6 /* ApexCopyLable.m in Sources */,
 				E39E02E320C7ACDB005DD251 /* UIViewController+Apex.m in Sources */,
 				E3CE66B920BEA812002A1E07 /* DTConstants.m in Sources */,
 				E3CE66D920C4E29E002A1E07 /* ApexAssetMainController.m in Sources */,
@@ -1779,6 +1790,7 @@
 				E7EDD72F21057B8000007F29 /* ApexProfileBaseController.m in Sources */,
 				E3689AFE20DB92A300B4B001 /* ApexTransferModel.m in Sources */,
 				E338964B20B4250E00DD51FE /* ApexNoDetailDataView.m in Sources */,
+				E72CE80D2133C3D1008EEDF6 /* ApexAccountDetailViewModel.m in Sources */,
 				E39E030620C8FB85005DD251 /* ApexExportKeystoreQRView.m in Sources */,
 				E3CE66BD20BF99AF002A1E07 /* ApexSwithWalletView.m in Sources */,
 				E73934AC21099F50007953FB /* ApexChangeBindWalletController.m in Sources */,

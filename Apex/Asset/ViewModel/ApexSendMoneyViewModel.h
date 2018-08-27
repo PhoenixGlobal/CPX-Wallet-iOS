@@ -11,7 +11,6 @@
 
 @interface ApexSendMoneyViewModel : NSObject
 @property (nonatomic, strong) NSString *address; /* from address */
-
 @property (nonatomic, strong) NSString *toAddress; /**<  */
 @property (nonatomic, strong) BalanceObject *balanceModel; /**<  */
 @property (nonatomic, strong) NSString *amount; /**< 交易金额 */
@@ -29,5 +28,6 @@
 //交易neo
 - (void)neoTransactionWithWallet:(NeomobileWallet*)wallet;
 
+//跟新账户eth余额
 - (void)updateEthValue;
 @end

@@ -15,11 +15,13 @@
 #import "ApexDrawTransAnimator.h"
 #import "ApexAddAssetsController.h"
 #import "ApexTransferHistoryManager.h"
+#import "ApexCopyLable.h"
+#import "ApexAccountDetailViewModel.h"
 
 #define RouteNameEvent_ShowMorePanel @"RouteNameEvent_ShowMorePanel"
 
 @interface ApexAccountDetailController ()<UINavigationControllerDelegate>
-@property (nonatomic, strong) UILabel *addressL;
+@property (nonatomic, strong) ApexCopyLable *addressL;
 @property (nonatomic, strong) ApexAccountStateModel *accountModel;
 //@property (nonatomic, strong) CYLEmptyView *emptyV;
 @property (nonatomic, strong) NSMutableArray *assetArr;
@@ -29,6 +31,7 @@
 @property (nonatomic, strong) UIImageView *backIV;
 @property (nonatomic, assign) BOOL isNavClear; /**<  */
 @property (nonatomic, assign) ApexWalletType type; /**<  */
+@property (nonatomic, strong) ApexAccountDetailViewModel *viewModel; /**<  */
 @end
 
 @implementation ApexAccountDetailController
@@ -419,21 +422,6 @@
     addVC.walletAssetArr = self.assetArr;
     addVC.type = self.type;
     [self.navigationController pushViewController:addVC animated:YES];
-    
-//    ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
-//    vc.curWallet = self.walletModel;
-//    vc.walletsArr = [ApexWalletManager getWalletsArr];
-//    vc.walletsArr = [vc.walletsArr sortedArrayUsingComparator:^NSComparisonResult(ApexWalletModel *wallet1, ApexWalletModel *wallet2) {
-//        return wallet1.createTimeStamp.integerValue > wallet2.createTimeStamp.integerValue;
-//    }];
-//    vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-//    vc.didChooseWalletSub = [RACSubject subject];
-//    [vc.didChooseWalletSub subscribeNext:^(ApexWalletModel *x) {
-//        self.walletModel = x;
-//        [self getLoacalAsset];
-//        [self requestAsset];
-//    }];
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - ------getter & setter------
@@ -442,29 +430,22 @@
     
     if ([walletModel isKindOfClass:ETHWalletModel.class]) {
         _type = ApexWalletType_Eth;
-        
-        //erc20 转账测试
-//        NSString *ks = [PDKeyChain load:walletModel.address];
-//        EthmobileWallet *wallet = EthmobileFromKeyStore(ks, @"123456", nil);
-//
-//        ApexAssetModel *model = [ApexAssetModel new];
-//        model.precision = @"18";
-//
-//        [ETHWalletManager sendERC20TxWithWallet:wallet contractAddress:@"0x83a26efb18082cefc47db5c0a75c464b4d12f93c" to:@"0xe43e88407b126ba20745dda453b3cde25317796f" nonce:@"5" amount:@"200000000000" gas:@"0.00018" assetModel:model success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//
-//        }];
     }else{
         _type = ApexWalletType_Neo;
         [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
     }
-
 }
 
-- (UILabel *)addressL{
+- (ApexAccountDetailViewModel *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [[ApexAccountDetailViewModel alloc] init];
+    }
+    return _viewModel;
+}
+
+- (ApexCopyLable *)addressL{
     if (!_addressL) {
-        _addressL = [[UILabel alloc] init];
+        _addressL = [[ApexCopyLable alloc] init];
         _addressL.frame = CGRectMake(222,134,309,37);
         _addressL.textAlignment = NSTextAlignmentCenter;
         _addressL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];

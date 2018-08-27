@@ -84,7 +84,10 @@
         historyModel.value = [NSString stringWithFormat:@"-%@",_amount];
         historyModel.status = ApexTransferStatus_Blocking;
         historyModel.time = @"0";
+        historyModel.symbol = model.symbol;
+        historyModel.decimal = model.precision;
         historyModel.assetId = self.balanceModel.asset;
+        historyModel.type = @"ETH";
         ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];
         
         if (lastRecord) {
@@ -166,7 +169,7 @@
         BOOL isSuccess = ((NSNumber*)responseObject).boolValue;
         if (isSuccess) {
             [_ownerVC showMessage:SOLocalizedStringFromTable(@"TransSuccess", nil)];
-            
+            ApexAssetModel *model = [_balanceModel getRelativeNeoAssetModel];
             /**< 创建新的临时交易历史记录 */
             ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
             historyModel.txid = [tx.id_ hasPrefix:@"0x"] ? tx.id_ : [NSString stringWithFormat:@"0x%@",tx.id_];
@@ -176,6 +179,9 @@
             historyModel.status = ApexTransferStatus_Blocking;
             historyModel.time = @"0";
             historyModel.assetId = self.balanceModel.asset;
+            historyModel.type = @"NEO";
+            historyModel.symbol = model.symbol;
+            historyModel.decimal = model.precision;
             ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];
             
             if (lastRecord) {
@@ -195,37 +201,6 @@
         [_ownerVC showMessage:SOLocalizedStringFromTable(@"TransFailed", nil)];
     }];
 }
-
--(NSString *)convertToJsonData:(NSDictionary *)dict{
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString;
-    
-    if (!jsonData) {
-        
-        NSLog(@"%@",error);
-        
-    }else{
-        
-        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
-    }
-    
-    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
-    
-    NSRange range = {0,jsonString.length};
-    
-    //去掉字符串中的空格
-    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
-    
-    NSRange range2 = {0,mutStr.length};
-    
-    //去掉字符串中的换行符
-    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
-    
-    return mutStr;
-}
-
 
 - (void)updateEthValue{
     [ETHWalletManager requestETHBalanceOfAddress:_address success:^(AFHTTPRequestOperation *operation, id responseObject) {

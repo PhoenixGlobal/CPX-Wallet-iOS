@@ -290,7 +290,6 @@ singleM(Manager);
     } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
         failure(operation,err);
     }];
-    
 }
 
 + (void)getAssetDicimalWithAssetId:(NSString*)assetid Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
@@ -422,8 +421,6 @@ singleM(Manager);
     
     return balance;
 }
-
-
 #pragma mark - ------getter------
 - (NSMutableDictionary<NSString *,ApexTransferModel *> *)transferStatusDict{
     if (!_transferStatusDict) {

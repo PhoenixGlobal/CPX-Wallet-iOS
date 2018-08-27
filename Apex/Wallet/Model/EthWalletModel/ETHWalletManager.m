@@ -10,6 +10,7 @@
 #import "ApexETHClient.h"
 #import "ApexETHTransactionModel.h"
 #import "ETHWalletModel.h"
+#import "ETHTransferHistoryManager.h"
 
 #define ethWalletsKey @"ethWalletsKey"
 
@@ -39,7 +40,7 @@ singleM(Manager);
     wallet.assetArr = [self setDefultAsset];
     wallet.createTimeStamp = timeStampIfHave == nil ? @([[NSDate date] timeIntervalSince1970]) : timeStampIfHave;
     wallet.canTransfer = @(YES);
-//    [[ApexTransferHistoryManager shareManager] createTableForWallet:model.address];
+    [[ETHTransferHistoryManager shareManager] createTableForWallet:wallet.address];
     [ethArr addObject:wallet];
     [TKFileManager saveData:ethArr withFileName:ethWalletsKey];
     [TKFileManager saveValue:@(YES) forKey:KisFirstCreateWalletDone];
