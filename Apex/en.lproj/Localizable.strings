@@ -121,6 +121,9 @@
 "CPX Address(achieves T1/Genesis level)" = "CPX Address(achieves T1/Genesis level)";
 "ETH Address" = "ETH Address";
 "_Confirm" = "Confirm";
+"The final interpretation of this activity belongs to\nAPEX TECHNOLOGIES" = "The final interpretation of this activity belongs to\nAPEX TECHNOLOGIES";
+"Plese be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100." = "Plese be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100.";
+"Please enter the correct wallet address" = "Please enter the correct wallet address";
 
 
 // tips
