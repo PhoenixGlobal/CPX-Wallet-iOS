@@ -31,7 +31,6 @@
         
         _rewardImageView = [[UIImageView alloc] init];
         _rewardImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _rewardImageView.clipsToBounds = YES;
         [self.contentView addSubview:_rewardImageView];
         [_rewardImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.equalTo(self.contentView);
@@ -39,12 +38,14 @@
         }];
         _rewardImageView.hidden = YES;
         
-        UIImageView *newImagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
+        UIImageView *newImagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"new"]];
+        newImagView.tag = 2000;
         [self.contentView addSubview:newImagView];
         [newImagView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.equalTo(self.contentView);
             make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
         }];
+        newImagView.hidden = YES;
         
         _statusLabel = [[UILabel alloc] init];
         _statusLabel.layer.cornerRadius = 10.0f;
@@ -77,9 +78,12 @@
 
 - (void)updaetRewardWithDictionary:(NSDictionary *)rewardDictionary
 {
+    UIImageView *newImagView = (UIImageView *)[self.contentView viewWithTag:2000];
+    
     NSString *showImage = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"image"]];
     NSString *labeiString = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"label"]];
     NSString *currentStatus = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"status"]];
+    NSString *isNew = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"new"]];
     
     if ([showImage isEqualToString:@"1"]) {
         _rewardImageView.hidden = NO;
@@ -87,6 +91,8 @@
     else {
         _rewardImageView.hidden = YES;
     }
+    
+    newImagView.hidden = ![isNew isEqualToString:@"1"];
     
     CGFloat labelHeght = [ApexUIHelper calculateTextHeight:[UIFont systemFontOfSize:18] givenText:labeiString givenWidth:SCREEN_WIDTH - 30.0f - 20.0f];
     
