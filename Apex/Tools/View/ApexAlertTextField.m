@@ -73,4 +73,9 @@
     return _alertLable;
 }
 
+- (void)setIsHiddenBottomLine:(BOOL)isHiddenBottomLine
+{
+    self.bottomLine.hidden = isHiddenBottomLine;
+}
+
 @end

@@ -13,5 +13,6 @@ typedef BOOL(^isShowAlertBlock)(NSString *text);
 @interface ApexAlertTextField : JVFloatLabeledTextField
 @property (nonatomic, strong) NSString *alertString;
 @property (nonatomic, copy) isShowAlertBlock alertShowConditionBlock;
+@property (nonatomic, assign) BOOL isHiddenBottomLine;
 @property (nonatomic, assign) BOOL isAlertShowing;
 @end

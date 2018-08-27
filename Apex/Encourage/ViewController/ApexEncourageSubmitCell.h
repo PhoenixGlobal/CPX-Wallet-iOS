@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ApexAlertTextField.h"
 
 @interface ApexEncourageSubmitCell : UITableViewCell
+
+@property (nonatomic, strong) ApexAlertTextField *inputTextField;
+@property (nonatomic, strong) RACSignal *combineSignal;
 
 @end

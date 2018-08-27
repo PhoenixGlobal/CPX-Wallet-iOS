@@ -139,9 +139,9 @@
     if (!_datasArray) {
         _datasArray = [NSMutableArray new];
         [_datasArray addObjectsFromArray:@[
-                                           @{@"image":@"1",@"label":@"激励活动火热进行中",@"status":@"0"},
-                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"1"},
-                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"2"}
+                                           @{@"image":@"1",@"label":@"激励活动火热进行中",@"status":@"0", @"new":@"1"},
+                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"1", @"new":@"1"},
+                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"2", @"new":@"0"}
                                            ]];
     }
     
@@ -192,7 +192,7 @@
 - (UIImageView *)apexImageView
 {
     if (!_apexImageView) {
-        _apexImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
+        _apexImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"apexTitle"]];
     }
     
     return _apexImageView;
