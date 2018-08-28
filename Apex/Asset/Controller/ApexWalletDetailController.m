@@ -162,7 +162,12 @@
     }else if([eventName isEqualToString:RouteNameEvent_ScanAction]){
         [ApexScanAction shareScanHelper].curWallet = self.wallModel;
         [ApexScanAction shareScanHelper].balanceMode = self.balanceModel;
-        [ApexScanAction scanActionOnViewController:self];
+        [ApexScanAction shareScanHelper].type = self.type;
+        if ([_walletManager getWalletTransferStatusForAddress:self.wallModel.address]) {
+            [ApexScanAction scanActionOnViewController:self];
+        }else{
+            [self showMessage:SOLocalizedStringFromTable(@"ProcessingTrans", nil)];
+        }
     }
 }
 

@@ -55,6 +55,7 @@ singleM(ScanHelper);
     svc.walletName = self.curWallet.name;
     svc.toAddressIfHave = toaddress;
     svc.balanceModel = self.balanceMode;
+    svc.walletManager = _type == ApexWalletType_Eth ? [ETHWalletManager shareManager] : [ApexWalletManager shareManager];
     NSEnumerator *enumerator = self.navVC.childViewControllers.reverseObjectEnumerator;
     UIViewController *vc = nil;
     while (vc = [enumerator nextObject]) {

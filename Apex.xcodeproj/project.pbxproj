@@ -165,6 +165,7 @@
 		E70393192123C52200BA3CDB /* ETHTransferHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E70393182123C52200BA3CDB /* ETHTransferHistoryManager.m */; };
 		E72CE80A21339EB9008EEDF6 /* ApexCopyLable.m in Sources */ = {isa = PBXBuildFile; fileRef = E72CE80921339EB9008EEDF6 /* ApexCopyLable.m */; };
 		E72CE80D2133C3D1008EEDF6 /* ApexAccountDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E72CE80C2133C3D1008EEDF6 /* ApexAccountDetailViewModel.m */; };
+		E72CE8102134FC6D008EEDF6 /* ApexNeoTxStatusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E72CE80F2134FC6D008EEDF6 /* ApexNeoTxStatusManager.m */; };
 		E731468E2109FC2D002A6C07 /* ApexEnterKeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */; };
 		E7314690210A02D0002A6C07 /* useprotocol.html in Resources */ = {isa = PBXBuildFile; fileRef = E731468F210A02CF002A6C07 /* useprotocol.html */; };
 		E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7314692210A05BA002A6C07 /* ApexProlicyController.m */; };
@@ -523,6 +524,8 @@
 		E72CE80921339EB9008EEDF6 /* ApexCopyLable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexCopyLable.m; sourceTree = "<group>"; };
 		E72CE80B2133C3D1008EEDF6 /* ApexAccountDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAccountDetailViewModel.h; sourceTree = "<group>"; };
 		E72CE80C2133C3D1008EEDF6 /* ApexAccountDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAccountDetailViewModel.m; sourceTree = "<group>"; };
+		E72CE80E2134FC6D008EEDF6 /* ApexNeoTxStatusManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNeoTxStatusManager.h; sourceTree = "<group>"; };
+		E72CE80F2134FC6D008EEDF6 /* ApexNeoTxStatusManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNeoTxStatusManager.m; sourceTree = "<group>"; };
 		E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEnterKeyView.h; sourceTree = "<group>"; };
 		E731468D2109FC2D002A6C07 /* ApexEnterKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEnterKeyView.m; sourceTree = "<group>"; };
 		E731468F210A02CF002A6C07 /* useprotocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = useprotocol.html; sourceTree = "<group>"; };
@@ -1280,6 +1283,8 @@
 			children = (
 				E33A8BC920B292B90067505E /* ApexWalletManager.h */,
 				E33A8BCA20B292B90067505E /* ApexWalletManager.m */,
+				E72CE80E2134FC6D008EEDF6 /* ApexNeoTxStatusManager.h */,
+				E72CE80F2134FC6D008EEDF6 /* ApexNeoTxStatusManager.m */,
 				E324311420DCC14700284B91 /* ApexTransferHistoryManager.h */,
 				E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */,
 				E3263F0020B7BC84001D3C19 /* ApexWalletModel.h */,
@@ -1804,6 +1809,7 @@
 				E73934A721095BFB007953FB /* ApexProfileQuestTextingController.m in Sources */,
 				E3373B3B20F5F14F00590407 /* UILabel+SOLocalization.m in Sources */,
 				E3373B4920F72CF400590407 /* ApexMinePageController.m in Sources */,
+				E72CE8102134FC6D008EEDF6 /* ApexNeoTxStatusManager.m in Sources */,
 				E7EDD75A2106CAD000007F29 /* ApexTagCollectionViewCell.m in Sources */,
 				E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */,
 				E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */,

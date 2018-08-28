@@ -37,6 +37,7 @@ singleH(Manager);
 /** 广播交易 */
 + (void)broadCastTransactionWithData:(NSString*)data Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-
+/** 获取当前最大区块数*/
++ (void)getCurrentBlockNumberSuccess:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 @end
