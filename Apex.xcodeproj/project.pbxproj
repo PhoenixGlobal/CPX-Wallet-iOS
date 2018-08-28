@@ -10,6 +10,7 @@
 		58DFBEA1213527B300E8D88A /* ApexEncourageActivitysModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBE9A213527B300E8D88A /* ApexEncourageActivitysModel.m */; };
 		58DFBEA2213527B300E8D88A /* ApexRewardListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBE9D213527B300E8D88A /* ApexRewardListTableViewCell.m */; };
 		58DFBEA3213527B300E8D88A /* ApexEncourageSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBEA0213527B300E8D88A /* ApexEncourageSubmitCell.m */; };
+		58DFBEA921354F2E00E8D88A /* ApexEncourageSubmitFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBEA821354F2E00E8D88A /* ApexEncourageSubmitFooterView.m */; };
 		58E98971212FF80300D2244D /* ApexEncourageSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E98970212FF80300D2244D /* ApexEncourageSubmitViewController.m */; };
 		85E67580B2D0B467389B681E /* libPods-Apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */; };
 		E324311620DCC14700284B91 /* ApexTransferHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E324311520DCC14700284B91 /* ApexTransferHistoryManager.m */; };
@@ -227,6 +228,8 @@
 		58DFBE9E213527B300E8D88A /* ApexEncourageSubmitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexEncourageSubmitCell.h; sourceTree = "<group>"; };
 		58DFBE9F213527B300E8D88A /* ApexRewardListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexRewardListTableViewCell.h; sourceTree = "<group>"; };
 		58DFBEA0213527B300E8D88A /* ApexEncourageSubmitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageSubmitCell.m; sourceTree = "<group>"; };
+		58DFBEA721354F2E00E8D88A /* ApexEncourageSubmitFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEncourageSubmitFooterView.h; sourceTree = "<group>"; };
+		58DFBEA821354F2E00E8D88A /* ApexEncourageSubmitFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageSubmitFooterView.m; sourceTree = "<group>"; };
 		58E9896F212FF80300D2244D /* ApexEncourageSubmitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEncourageSubmitViewController.h; sourceTree = "<group>"; };
 		58E98970212FF80300D2244D /* ApexEncourageSubmitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageSubmitViewController.m; sourceTree = "<group>"; };
 		8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.debug.xcconfig"; sourceTree = "<group>"; };
@@ -638,6 +641,8 @@
 				58DFBE9E213527B300E8D88A /* ApexEncourageSubmitCell.h */,
 				58DFBE9F213527B300E8D88A /* ApexRewardListTableViewCell.h */,
 				58DFBEA0213527B300E8D88A /* ApexEncourageSubmitCell.m */,
+				58DFBEA721354F2E00E8D88A /* ApexEncourageSubmitFooterView.h */,
+				58DFBEA821354F2E00E8D88A /* ApexEncourageSubmitFooterView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1727,6 +1732,7 @@
 				E33A8BC520B28F800067505E /* PDKeyChain.m in Sources */,
 				E38A64BF20ECB88600150F3B /* ApexAddAssetCell.m in Sources */,
 				E70392FF211D539700BA3CDB /* ETHWalletManager.m in Sources */,
+				58DFBEA921354F2E00E8D88A /* ApexEncourageSubmitFooterView.m in Sources */,
 				E33A8B5B20AE724F0067505E /* main.m in Sources */,
 				E3CE66B420BEA812002A1E07 /* DTTimePeriodChain.m in Sources */,
 				E73934A4210958B7007953FB /* ApexNormalQuestCell.m in Sources */,
