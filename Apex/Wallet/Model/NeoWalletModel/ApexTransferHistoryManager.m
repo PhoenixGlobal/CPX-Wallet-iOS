@@ -236,6 +236,16 @@ static ApexTransferHistoryManager *_instance;
     return model;
 }
 
+- (NSArray*)getTransferHistoriesFromEndWithLimit:(NSString *)limite address:(NSString *)address{
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray array];
+    FMResultSet *set = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT %@",address,limite]];
+    while ([set next]) {
+        [arr addObject:[self buildModelWithResult:set]];
+    }
+    [_db close];
+    return arr;
+}
 
 - (ApexTransferModel*)buildModelWithResult:(FMResultSet*)res{
     ApexTransferModel *model = [[ApexTransferModel alloc] init];
@@ -295,6 +305,7 @@ static ApexTransferHistoryManager *_instance;
                     [[ApexWalletManager shareManager] setStatus:NO forWallet:address];
                 }
             }
+#warning 交易未上链 但是本地已经生成交易模型时 如何标记其为交易失败 且跟新钱包的状态
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             

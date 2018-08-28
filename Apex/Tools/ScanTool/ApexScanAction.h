@@ -11,6 +11,7 @@
 @interface ApexScanAction : NSObject
 @property (nonatomic, strong) ApexWalletModel *curWallet;
 @property (nonatomic, strong) BalanceObject *balanceMode;
+@property (nonatomic, assign) ApexWalletType type; /**<  */
 singleH(ScanHelper);
 + (void)scanActionOnViewController:(UIViewController*)vc;
 @end

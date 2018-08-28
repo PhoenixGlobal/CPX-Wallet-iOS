@@ -24,6 +24,8 @@
 - (NSMutableArray*)getHistoriesOffset:(NSInteger)offset walletAddress:(NSString*)address;
 //获取id最后一条记录
 - (id)getLastTransferHistoryOfAddress:(NSString*)address;
+- (NSArray*)getTransferHistoriesFromEndWithLimit:(NSString*)limite address:(NSString*)address;
+
 //应用启动自检测
 - (void)applicationIntializeSelfCheckWithAddress:(NSString*)address;
 

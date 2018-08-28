@@ -260,6 +260,17 @@ static ETHTransferHistoryManager *_instance;
     return model;
 }
 
+- (NSArray*)getTransferHistoriesFromEndWithLimit:(NSString *)limite address:(NSString *)address{
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray array];
+    FMResultSet *set = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT %@",address,limite]];
+    while ([set next]) {
+        [arr addObject:[self buildModelWithResult:set]];
+    }
+    [_db close];
+    return arr;
+}
+
 - (ApexTransferModel*)buildModelWithResult:(FMResultSet*)res{
     ApexTransferModel *model = [[ApexTransferModel alloc] init];
     model.txid = [res stringForColumn:@"txid"];
