@@ -69,12 +69,16 @@
 #pragma mark - ------eventResponse------
 - (void)handleEvent{
     [[self.submitBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [self submitClock:nil];
+        [self submitClock];
     }];
 }
 
-- (void)submitClock:(id)sender
+- (void)submitClock
 {
+    
+//    [self showAlertViewControllerWithString:[NSString stringWithFormat:@"%@%@（>=%@）", SOLocalizedStringFromTable(@"Please be sure the amount of CPX in the local wallets more than", nil), @"100", @"100"]];
+//    [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"This address has already participated\nplease do not submit again", nil)];
+    
     ApexEncourageSubmitCell *cpxCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     ApexEncourageSubmitCell *ethCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     NSLog(@"%@-%@", cpxCell.inputTextField.text, ethCell.inputTextField.text);
@@ -140,6 +144,16 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
+}
+
+- (void)showAlertViewControllerWithString:(NSString *)alertString
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:alertString preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:SOLocalizedStringFromTable(@"Confirm", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 

@@ -10,12 +10,22 @@
 #import "ApexRewardListTableViewCell.h"
 #import "ApexEncourageSubmitViewController.h"
 
+#define layersSubtle 30.0
+
 @interface ApexEncourageController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIView *baseView;
+
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *datasArray;
+
 @property (nonatomic, strong) UILabel *encourageLabel;
 @property (nonatomic, strong) UIImageView *apexImageView;
+
+@property (nonatomic, assign) CGFloat firstLayerDelta;
+@property (nonatomic, assign) CGFloat translateOffset;
+@property (nonatomic, assign) CGFloat translateLength;
 
 @end
 
@@ -28,62 +38,124 @@
     [self initUI];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self setNav];
-//    [self.tableView reloadData];
+    [self.navigationController findHairlineImageViewUnder:self.navigationController.navigationBar].hidden = YES;
+    
+    [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+    [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.tableView removeObserver:self forKeyPath:@"contentOffset" context:nil];
+    [self.tableView removeObserver:self forKeyPath:@"contentSize" context:nil];
+}
 
 - (void)initUI
 {
+    self.title = SOLocalizedStringFromTable(@"", nil);
     self.view.backgroundColor = [ApexUIHelper grayColor240];
-    [self.view insertSubview:self.backgroundImageView atIndex:0];
-    self.title = SOLocalizedStringFromTable(@"Reward", nil);
-//    self.title = SOLocalizedStringFromTable(@"", nil);
-//    [self.view addSubview:self.backgroundImageView];
-//    [self.view addSubview:self.tableView];
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    self.firstLayerDelta = scaleHeight667(200) - NavBarHeight;
     
-//    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.right.equalTo(self.view);
-//        make.height.mas_equalTo(scaleHeight667(150));
-//    }];
+    [self.view addSubview:self.backgroundImageView];
+    [self.backgroundImageView addSubview:self.apexImageView];
+    [self.backgroundImageView addSubview:self.encourageLabel];
     
-//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.backgroundImageView.mas_bottom);
-//        make.left.equalTo(self.view).with.offset(15.0f);
-//        make.right.equalTo(self.view).with.offset(-15.0f);
-//        make.bottom.equalTo(self.view);
-//    }];
+    [self.view addSubview:self.baseView];
+    [self.view addSubview:self.tableView];
+    
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.view);
+        make.height.mas_equalTo(scaleHeight667(200));
+    }];
+    
+    [self.apexImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.backgroundImageView);
+        make.top.equalTo(self.backgroundImageView).with.offset(NavBarHeight - 20.0f);
+        make.size.mas_equalTo(CGSizeMake(100.0f, 23.0f));
+    }];
+    
+    [self.encourageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backgroundImageView).with.offset(15.0f);
+        make.bottom.equalTo(self.backgroundImageView.mas_bottom).with.offset(-40.0f);
+        make.right.equalTo(self.backgroundImageView);
+        make.height.mas_equalTo(20.0f);
+    }];
+    
+    [self.baseView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(scaleHeight667(200));
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).with.offset(NavBarHeight);
+        make.left.equalTo(self.view).with.offset(15.0f);
+        make.right.equalTo(self.view).with.offset(-15.0f);
+        make.bottom.equalTo(self.view).with.offset(-[ApexUIHelper tabBarHeight]);
+    }];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(_firstLayerDelta - layersSubtle, 0, 0, 0);
+    self.tableView.contentOffset = CGPointMake(0, -(_firstLayerDelta - layersSubtle));
     
     [self.tableView registerClass:[ApexRewardListTableViewCell class] forCellReuseIdentifier:@"cell"];
     
-//    [self.view addSubview:self.apexImageView];
-    [self.accessoryBaseView addSubview:self.encourageLabel];
-
-//    [self.apexImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//    }];
-
-    [self.encourageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.equalTo(self.accessoryBaseView);
-        make.size.mas_equalTo(CGSizeMake(100.0f, 20.0f));
-    }];
+    self.translateOffset = -99999;
 }
 
-
-- (void)setNav
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
-    [self.navigationController findHairlineImageViewUnder:self.navigationController.navigationBar].hidden = YES;
+    if ([keyPath isEqualToString:@"contentOffset"]) {
+        NSValue *x = change[NSKeyValueChangeNewKey];
+        
+        CGFloat offSetY = x.CGPointValue.y;
+        if (self.translateOffset == -99999) {
+            self.translateOffset = offSetY;
+        }
+        
+        CGFloat percent = ((offSetY + fabs(self.translateOffset))/self.translateLength);
+        
+        if (percent < 0) {
+            self.title = SOLocalizedStringFromTable(@"", nil);
+            
+            self.encourageLabel.alpha = 1;
+            self.apexImageView.alpha = 1;
+            
+            self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*0.8);
+        }
+        else if (percent >= 0 && percent <= 0.8) {
+            self.title = SOLocalizedStringFromTable(@"", nil);
+            
+            self.encourageLabel.alpha = 1 - percent;
+            self.apexImageView.alpha = 1 - percent;
+            
+            self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*1.25);
+        }
+        else {
+            self.title = SOLocalizedStringFromTable(@"Reward", nil);
+            
+            self.encourageLabel.alpha = 0;
+            self.apexImageView.alpha = 0;
+            
+            self.baseView.transform = CGAffineTransformMakeTranslation(0, -_firstLayerDelta);
+        }
+    }
+    else if ([keyPath isEqualToString:@"contentSize"]){
+        NSValue *x = change[NSKeyValueChangeNewKey];
+        [self.baseView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.view);
+            make.top.equalTo(self.view).offset(scaleHeight667(200));
+            make.height.mas_equalTo(x.CGSizeValue.height <= kScreenH ? kScreenH*2 : x.CGSizeValue.height);
+        }];
+    }
 }
-
 
 #pragma mark ------ UITableViewDelegate, UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -132,8 +204,12 @@
     [self.navigationController pushViewController:submitViewController animated:YES];
 }
 
-
 #pragma mark ------Setter
+- (void)setFirstLayerDelta:(CGFloat)firstLayerDelta{
+    _firstLayerDelta = firstLayerDelta;
+    _translateLength = _firstLayerDelta - layersSubtle;
+}
+
 - (NSMutableArray *)datasArray
 {
     if (!_datasArray) {
@@ -141,6 +217,8 @@
         [_datasArray addObjectsFromArray:@[
                                            @{@"image":@"1",@"label":@"激励活动火热进行中",@"status":@"0", @"new":@"1"},
                                            @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"1", @"new":@"1"},
+                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"1", @"new":@"1"},
+                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"2", @"new":@"0"},
                                            @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"2", @"new":@"0"}
                                            ]];
     }
@@ -148,6 +226,13 @@
     return _datasArray;
 }
 
+- (UIView *)baseView{
+    if (!_baseView) {
+        _baseView = [[UIView alloc] init];
+        _baseView.backgroundColor = [ApexUIHelper grayColor240];
+    }
+    return _baseView;
+}
 
 - (UIImageView *)backgroundImageView
 {
@@ -159,23 +244,22 @@
     return _backgroundImageView;
 }
 
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.backgroundColor = [UIColor clearColor];
+    }
 
-//- (UITableView *)tableView
-//{
-//    if (!_tableView) {
-//        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-//        _tableView.delegate = self;
-//        _tableView.dataSource = self;
-//        _tableView.showsVerticalScrollIndicator = NO;
-//        _tableView.showsHorizontalScrollIndicator = NO;
-//        _tableView.estimatedRowHeight = 0;
-//        _tableView.estimatedSectionHeaderHeight = 0;
-//        _tableView.estimatedSectionFooterHeight = 0;
-//        _tableView.backgroundColor = [ApexUIHelper grayColor240];
-//    }
-//
-//    return _tableView;
-//}
+    return _tableView;
+}
 
 - (UILabel *)encourageLabel
 {
