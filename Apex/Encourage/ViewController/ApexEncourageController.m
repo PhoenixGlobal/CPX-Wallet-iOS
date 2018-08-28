@@ -9,6 +9,7 @@
 #import "ApexEncourageController.h"
 #import "ApexRewardListTableViewCell.h"
 #import "ApexEncourageSubmitViewController.h"
+#import "ApexEncourageActivitysModel.h"
 
 #define layersSubtle 30.0
 
@@ -65,27 +66,26 @@
     self.firstLayerDelta = scaleHeight667(200) - NavBarHeight;
     
     [self.view addSubview:self.backgroundImageView];
-    [self.backgroundImageView addSubview:self.apexImageView];
-    [self.backgroundImageView addSubview:self.encourageLabel];
+    [self.view addSubview:self.apexImageView];
+    [self.view addSubview:self.encourageLabel];
     
     [self.view addSubview:self.baseView];
     [self.view addSubview:self.tableView];
     
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(scaleHeight667(200));
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
     
     [self.apexImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.backgroundImageView);
-        make.top.equalTo(self.backgroundImageView).with.offset(NavBarHeight - 20.0f);
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view).with.offset(NavBarHeight - 20.0f);
         make.size.mas_equalTo(CGSizeMake(100.0f, 23.0f));
     }];
     
     [self.encourageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.backgroundImageView).with.offset(15.0f);
-        make.bottom.equalTo(self.backgroundImageView.mas_bottom).with.offset(-40.0f);
-        make.right.equalTo(self.backgroundImageView);
+        make.left.equalTo(self.view).with.offset(15.0f);
+        make.top.equalTo(self.view).with.offset(scaleHeight667(200)-60.0f);
+        make.right.equalTo(self.view);
         make.height.mas_equalTo(20.0f);
     }];
     
@@ -127,6 +127,7 @@
             
             self.encourageLabel.alpha = 1;
             self.apexImageView.alpha = 1;
+            self.baseView.backgroundColor = [UIColor clearColor];
             
             self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*0.8);
         }
@@ -135,6 +136,7 @@
             
             self.encourageLabel.alpha = 1 - percent;
             self.apexImageView.alpha = 1 - percent;
+            self.baseView.backgroundColor = [ApexUIHelper grayColor240];
             
             self.baseView.transform = CGAffineTransformMakeTranslation(0, -self.firstLayerDelta*percent*1.25);
         }
@@ -143,6 +145,7 @@
             
             self.encourageLabel.alpha = 0;
             self.apexImageView.alpha = 0;
+            self.baseView.backgroundColor = [ApexUIHelper grayColor240];
             
             self.baseView.transform = CGAffineTransformMakeTranslation(0, -_firstLayerDelta);
         }
@@ -199,9 +202,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ApexEncourageSubmitViewController *submitViewController = [[ApexEncourageSubmitViewController alloc] init];
-    submitViewController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:submitViewController animated:YES];
+    NSDictionary *encourageDictionary = [_datasArray objectAtIndex:indexPath.section];
+    NSString *isProgress = [NSString stringWithFormat:@"%@", [encourageDictionary objectForKey:@"status"]];
+    if ([isProgress isEqualToString:@"1"]) {
+        ApexEncourageSubmitViewController *submitViewController = [[ApexEncourageSubmitViewController alloc] init];
+        submitViewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:submitViewController animated:YES];
+    }
 }
 
 #pragma mark ------Setter
@@ -229,7 +236,7 @@
 - (UIView *)baseView{
     if (!_baseView) {
         _baseView = [[UIView alloc] init];
-        _baseView.backgroundColor = [ApexUIHelper grayColor240];
+        _baseView.backgroundColor = [UIColor clearColor];
     }
     return _baseView;
 }
@@ -238,7 +245,7 @@
 {
     if (!_backgroundImageView) {
         _backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        _backgroundImageView.image = [UIImage imageNamed:@"barImage"];
+        _backgroundImageView.image = [UIImage imageNamed:@"encourage-background"];
     }
     
     return _backgroundImageView;

@@ -99,9 +99,9 @@
     NSString *statusString = @"";
     CGFloat statusWidth = 0;
     if ([currentStatus isEqualToString:@"0"]) {
-        statusString = @"About to beginning";
-        _statusLabel.backgroundColor = [UIColor colorWithHexString:@"4C8EFA"];
-        _statusLabel.textColor = [UIColor whiteColor];
+        statusString = @"About to begin";
+        _statusLabel.backgroundColor = [UIColor colorWithHexString:@"D8D8D8"];
+        _statusLabel.textColor = [UIColor colorWithHexString:@"666666"];
     }
     else if ([currentStatus isEqualToString:@"1"]) {
         statusString = @"In progress";

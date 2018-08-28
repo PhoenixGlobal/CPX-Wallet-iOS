@@ -26,10 +26,8 @@
         _inputTextField.secureTextEntry = NO;
         _inputTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         
-//        [_inputTextField setPlaceholder:SOLocalizedStringFromTable(@"Password", nil) floatingTitle:SOLocalizedStringFromTable(@"Password", nil)];
-         @weakify(self);
-         _inputTextField.alertString = SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil);
-         _inputTextField.alertShowConditionBlock = ^BOOL(NSString *text) {
+        _inputTextField.alertString = SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil);
+        _inputTextField.alertShowConditionBlock = ^BOOL(NSString *text) {
              
              if (text.length > 0) {
                  return false;

@@ -8,6 +8,7 @@
 
 #import "ApexEncourageSubmitViewController.h"
 #import "ApexEncourageSubmitCell.h"
+#import "ApexEncourageSubmitFooterView.h"
 
 @interface ApexEncourageSubmitViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -15,6 +16,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UILabel *rightsReserveLabel;
 @property (nonatomic, strong) UIButton *submitBtn;
+@property (nonatomic, strong) RACSignal *combineSignal;
 
 @end
 
@@ -26,6 +28,13 @@
     
     [self initUI];
     [self handleEvent];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self judgeCpxWallet];
 }
 
 - (void)initUI
@@ -64,6 +73,9 @@
     }];
     
     [self.tableView registerClass:[ApexEncourageSubmitCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[ApexEncourageSubmitFooterView class] forHeaderFooterViewReuseIdentifier:@"footer"];
+    
+    [self setSubmitButtonStatus:NO];
 }
 
 #pragma mark - ------eventResponse------
@@ -75,13 +87,9 @@
 
 - (void)submitClock
 {
-    
 //    [self showAlertViewControllerWithString:[NSString stringWithFormat:@"%@%@（>=%@）", SOLocalizedStringFromTable(@"Please be sure the amount of CPX in the local wallets more than", nil), @"100", @"100"]];
 //    [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"This address has already participated\nplease do not submit again", nil)];
     
-    ApexEncourageSubmitCell *cpxCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    ApexEncourageSubmitCell *ethCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    NSLog(@"%@-%@", cpxCell.inputTextField.text, ethCell.inputTextField.text);
 }
 
 #pragma mark ------ UITableViewDelegate,UITableViewDataSource
@@ -103,36 +111,18 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *footerView = [[UIView alloc] init];
-    footerView.backgroundColor = [UIColor clearColor];
-    
     if (section == 1) {
-        UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Page 1-3"]];
-        [footerView addSubview:iconImageView];
-        [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(footerView).with.offset(30.0f);
-            make.top.equalTo(footerView).with.offset(27.0f);
-            make.size.mas_equalTo(CGSizeMake(13.0f, 13.0f));
-        }];
-        
-        UILabel *activityDescribeLabel = [[UILabel alloc] init];
-        activityDescribeLabel.font = [UIFont systemFontOfSize:13];
-        activityDescribeLabel.numberOfLines = 0;
-        activityDescribeLabel.text = SOLocalizedStringFromTable(@"Plese be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100.", nil);
-        activityDescribeLabel.textColor = [UIColor colorWithHexString:@"#666666"];
-        [footerView addSubview:activityDescribeLabel];
-        [activityDescribeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(25.0f, 50.0f, 15.0f, 40.0f));
-        }];
+        ApexEncourageSubmitFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"footer"];
+        return footerView;
     }
     
-    return footerView;
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section == 1) {
-        return [ApexUIHelper calculateTextHeight:[UIFont systemFontOfSize:13] givenText:SOLocalizedStringFromTable(@"Plese be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100.", nil) givenWidth:SCREEN_WIDTH - 90.0f] + 40.0f;
+        return [ApexUIHelper calculateTextHeight:[UIFont systemFontOfSize:13] givenText:SOLocalizedStringFromTable(@"Please be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100.", nil) givenWidth:SCREEN_WIDTH - 90.0f] + 40.0f;
     }
     
     return 15.0f;
@@ -143,7 +133,55 @@
     ApexEncourageSubmitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    if (indexPath.section == 0) {
+        [cell.inputTextField addTarget:self action:@selector(inputCpxDidChange:) forControlEvents:UIControlEventEditingChanged];
+    }
+    else if (indexPath.section == 1) {
+        [cell.inputTextField addTarget:self action:@selector(inputEthDidChange:) forControlEvents:UIControlEventEditingChanged];
+    }
+    
     return cell;
+}
+
+- (NSString *)getInputCpxString
+{
+    ApexEncourageSubmitCell *cpxCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    return cpxCell.inputTextField.text;
+}
+
+- (NSString *)getInputEthString
+{
+    ApexEncourageSubmitCell *ethCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    return ethCell.inputTextField.text;
+}
+
+#pragma mark ------ UITextField
+- (void)inputCpxDidChange:(ApexAlertTextField *)sender
+{
+    NSString *cpxAddress = sender.text;
+    NSString *ethAddress = [self getInputEthString];
+    
+    [self setSubmitButtonStatus:(cpxAddress.length > 0 && ethAddress.length > 0)];
+}
+
+- (void)inputEthDidChange:(ApexAlertTextField *)sender
+{
+    NSString *cpxAddress = [self getInputCpxString];
+    NSString *ethAddress = sender.text;
+    
+    [self setSubmitButtonStatus:(cpxAddress.length > 0 && ethAddress.length > 0)];
+}
+
+- (void)setSubmitButtonStatus:(BOOL)enable
+{
+    if (enable) {
+        self.submitBtn.backgroundColor = [ApexUIHelper mainThemeColor];
+        self.submitBtn.enabled = YES;
+    }
+    else {
+        self.submitBtn.backgroundColor = [ApexUIHelper grayColor];
+        self.submitBtn.enabled = NO;
+    }
 }
 
 - (void)showAlertViewControllerWithString:(NSString *)alertString
@@ -156,8 +194,19 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void)judgeCpxWallet
+{
+    NSArray *walletArray = [[ApexWalletManager shareManager] getWalletsArr];
+    for (NSInteger i = 0; i < walletArray.count; i++) {
+        ApexWalletModel *model = [walletArray objectAtIndex:i];
+        [ApexWalletManager getNep5AssetAccountStateWithAddress:model.address andAssetId:assetId_CPX Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
+    }
+}
 
-#pragma mark ------ setter
 - (UIImageView *)navBackGroundView
 {
     if (!_navBackGroundView) {
@@ -168,13 +217,15 @@
     return _navBackGroundView;
 }
 
-- (UITableView *)tableView{
+- (UITableView *)tableView
+{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [ApexUIHelper grayColor240];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.scrollEnabled = NO;
+        _tableView.rowHeight = 44.0f;
         _tableView.estimatedRowHeight = 50.0f;
         _tableView.estimatedSectionHeaderHeight = 50.0f;
         _tableView.estimatedSectionFooterHeight = 10.0f;
@@ -201,7 +252,6 @@
 {
     if (!_submitBtn) {
         _submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _submitBtn.backgroundColor = [ApexUIHelper mainThemeColor];
         _submitBtn.layer.cornerRadius = 6;
         _submitBtn.clipsToBounds = YES;
         [_submitBtn setTitle:SOLocalizedStringFromTable(@"_Confirm", nil) forState:UIControlStateNormal];
@@ -215,15 +265,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
