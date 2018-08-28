@@ -124,6 +124,8 @@
 "The final interpretation of this activity belongs to\nAPEX TECHNOLOGIES" = "The final interpretation of this activity belongs to\nAPEX TECHNOLOGIES";
 "Plese be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100." = "Plese be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100.";
 "Please enter the correct wallet address" = "Please enter the correct wallet address";
+"Please be sure the amount of CPX in the local wallets more than" = "Please be sure the amount of CPX in the local wallets more than";
+"This address has already participated\nplease do not submit again" = "This address has already participated\nplease do not submit again";
 
 
 // tips

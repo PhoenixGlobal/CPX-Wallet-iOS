@@ -116,6 +116,8 @@
 "The final interpretation of this activity belongs to\nAPEX TECHNOLOGIES" = "本活动最终解释权归APEX TECHNOLOGIES所有";
 "Plese be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100." = "参与活动需在本地创建NEO钱包，并且钱包中的CPX总余额大于等于100(≥100)方可参加。";
 "Please enter the correct wallet address" = "请输入正确的钱包地址";
+"Please be sure the amount of CPX in the local wallets more than" = "请确保本地创建的钱包中CPX总和大于等于";
+"This address has already participated\nplease do not submit again" = "此地址已参与\n请勿重复提交";
 
 // tips
 "Create Wallet Failed" = "钱包创建失败";
