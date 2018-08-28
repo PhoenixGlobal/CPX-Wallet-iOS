@@ -18,7 +18,7 @@
     
     [self addSubview:self.accessoryView];
     [self.accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(0);
+        make.right.equalTo(self).offset(15);
         make.centerY.equalTo(self.mas_centerY);
         make.height.width.mas_equalTo(10);
     }];

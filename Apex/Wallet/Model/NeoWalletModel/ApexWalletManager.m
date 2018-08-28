@@ -279,7 +279,7 @@ singleM(Manager);
             balanceOBJ.asset = assetId;
             if (value.length != 0) {
                 NSString *balance = [NSString stringWithFormat:@"%.8lf", [self getBalanceWithByte:(Byte *)data.bytes length:data.length] / pow(10, dicimal.doubleValue)];
-                NSLog(@"balance: %@",balance);
+//                NSLog(@"balance: %@",balance);
                 balanceOBJ.value = balance;
             }else{
                 balanceOBJ.value = @"0";
@@ -290,6 +290,50 @@ singleM(Manager);
     } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
         failure(operation,err);
     }];
+}
+
++ (void)getTotalAmountOfNep5Asset:(NSString*)assetID onAddresses:(NSArray<NSString*>*)addressArr Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    
+    NSMutableArray *requests = [NSMutableArray array];
+    
+    for (NSString *address in addressArr) {
+        RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            [self getNep5AssetAccountStateWithAddress:address andAssetId:assetID Success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [subscriber sendNext:responseObject];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [subscriber sendError:error];
+            }];
+            return nil;
+        }];
+        [requests addObject:signal];
+    }
+    RACSignal *allSig = [RACSignal combineLatest:requests];
+    
+    RACSignal *sucSig = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+       
+        [subscriber sendNext:success];
+        return nil;
+    }];
+    
+    
+    [[self rac_liftSelector:@selector(allAsset:Success:) withSignals:allSig,sucSig, nil] subscribeError:^(NSError * _Nullable error) {
+        if (failure) {
+            failure(nil,error);
+        }
+    }];
+}
+
++ (void)allAsset:(RACTuple*)tuple Success:(void (^)(AFHTTPRequestOperation *op, id))success{
+    
+    NSArray<BalanceObject*> *allBalance = tuple.allObjects;
+    double total = 0;
+    for (BalanceObject *obj in allBalance) {
+        total += obj.value.doubleValue;
+    }
+    
+    if (success) {
+        success(nil,@(total));
+    }
 }
 
 + (void)getAssetDicimalWithAssetId:(NSString*)assetid Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{

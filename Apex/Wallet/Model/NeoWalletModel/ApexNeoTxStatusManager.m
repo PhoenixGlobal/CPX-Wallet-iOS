@@ -18,6 +18,7 @@
     [TKFileManager saveData:txTrackerDic withFileName:KLocalTXTrackerKey];
 }
 
+//初始这笔交易发生时 当前得块数
 + (void)writeTxWithTXID:(NSString *)txid{
     NSMutableDictionary *txTrackerDic = [TKFileManager loadDataWithFileName:KLocalTXTrackerKey];
     
@@ -32,6 +33,7 @@
     
 }
 
+//跟踪这笔交易是否上链
 + (void)tracingTXStatus:(NSString *)txid noResponseBlock:(void (^)(BOOL isResponding))block{
     
     NSMutableDictionary *txTrackerDic = [TKFileManager loadDataWithFileName:KLocalTXTrackerKey];

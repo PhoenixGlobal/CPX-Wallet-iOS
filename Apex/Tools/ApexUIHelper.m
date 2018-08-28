@@ -43,7 +43,7 @@
 }
 
 + (UIColor *)navColor{
-    return [UIColor colorWithRed255:40 green255:66 blue255:193 alpha:1];
+    return [UIColor colorWithRed255:30 green255:45 blue255:99 alpha:1];
 }
 
 + (UIColor *)navColorWithAlpha:(CGFloat)alpha{

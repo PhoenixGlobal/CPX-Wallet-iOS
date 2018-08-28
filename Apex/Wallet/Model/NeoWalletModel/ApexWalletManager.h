@@ -22,6 +22,9 @@ singleH(Manager);
 /**获取nep5资产余额 返回BalanceObject实例*/
 + (void)getNep5AssetAccountStateWithAddress:(NSString*)address andAssetId:(NSString*)assetId  Success:(void (^)(AFHTTPRequestOperation  *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+/**获取给定地址集合的给定资产的余额和*/
++ (void)getTotalAmountOfNep5Asset:(NSString*)assetID onAddresses:(NSArray<NSString*>*)addressArr Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+
 /**获取资产symbol*/
 + (void)getAssetSymbol:(NSString*)assetId Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
 
