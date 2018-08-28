@@ -84,7 +84,9 @@
     
     [self.accessoryBaseView addSubview:self.addressL];
     [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.addressL.superview);
+//        make.edges.equalTo(self.addressL.superview);
+        make.centerX.equalTo(self.addressL.superview);
+        make.centerY.equalTo(self.addressL.superview);
     }];
     
     MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
@@ -173,40 +175,20 @@
         return nil;
     }];
     
-    if (self.assetArr.count > 1) {
-        [[self rac_liftSelector:@selector(updateEth:erc20:) withSignals:request1,request2, nil] subscribeError:^(NSError * _Nullable error) {
-            [self.tableView.mj_header endRefreshing];
-            [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
-        }];
-    }else{
-        [[self rac_liftSelector:@selector(updateEth:) withSignals:request1, nil] subscribeError:^(NSError * _Nullable error) {
-            [self.tableView.mj_header endRefreshing];
-            [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
-        }];
-    }
+    RACSignal *combineSig = [RACSignal combineLatest:@[request1,request2] reduce:^id(NSDictionary *eth, NSDictionary *erc20){
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict addEntriesFromDictionary:eth];
+        [dict addEntriesFromDictionary:erc20];
+        return dict;
+    }];
+    
+    [[self rac_liftSelector:@selector(updateEthAndErc20:) withSignals:combineSig, nil] subscribeError:^(NSError * _Nullable error) {
+        [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
+    }];
 }
 
-
-- (void)updateEth:(NSDictionary*)eth{
+- (void)updateEthAndErc20:(NSDictionary*)dict{
     [self.tableView.mj_header endRefreshing];
-    
-    for (BalanceObject *obj in [self.assetArr copy]) {
-        if ([eth.allKeys containsObject:obj.asset]) {
-            obj.value = ((BalanceObject*)eth[obj.asset]).value;
-        }
-    }
-    
-    [[ETHWalletManager shareManager] updateWallet:self.walletModel WithAssetsArr:self.assetArr];
-    [self.tableView reloadData];
-}
-
-- (void)updateEth:(NSDictionary*)eth erc20:(NSDictionary*)erc20{
-    [self.tableView.mj_header endRefreshing];
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict addEntriesFromDictionary:eth];
-    [dict addEntriesFromDictionary:erc20];
-    
     for (BalanceObject *obj in self.assetArr) {
         obj.value = ((BalanceObject*)dict[obj.asset]).value;
     }
@@ -268,7 +250,7 @@
         
         return nil;
     }];
-
+    
     [[self rac_liftSelector:@selector(updateWithR1:R2:) withSignals:request1,request2, nil] subscribeError:^(NSError * _Nullable error) {
         [self.tableView.mj_header endRefreshing];
         [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
@@ -455,21 +437,6 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
         [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
             [self addressCopy];
-            
-//            UIAlertController *alertVC = [[UIAlertController alloc] init];
-//            UIAlertAction *action = [UIAlertAction actionWithTitle:@"复制" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                [self addressCopy];
-//            }];
-//
-//            UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//                [alertVC dismissViewControllerAnimated:YES completion:nil];
-//            }];
-//
-//            [alertVC addAction:action];
-//            [alertVC addAction:cancle];
-//
-//            [self.navigationController presentViewController:alertVC animated:YES completion:nil];
-            
         }];
         [_addressL addGestureRecognizer:tap];
     }
