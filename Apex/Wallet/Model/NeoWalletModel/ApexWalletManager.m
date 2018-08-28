@@ -330,6 +330,10 @@ singleM(Manager);
     return 0;
 }
 
++ (void)getCurrentBlockNumberSuccess:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    [[ApexNeoClient shareRPCClient] invokeMethod:@"getblockcount" withParameters:@[] success:success failure:failure];
+}
+
 #pragma mark - ------tools------
 + (void)setTransferStatus:(ApexTransferStatus)status forAddress:(NSString*)address{
     ApexWalletManager *Manager = [ApexWalletManager shareManager];

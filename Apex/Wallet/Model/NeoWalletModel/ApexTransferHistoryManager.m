@@ -9,6 +9,7 @@
 #import "ApexTransferHistoryManager.h"
 #import <FMDB.h>
 #import "ApexTransferModel.h"
+#import "ApexNeoTxStatusManager.h"
 
 #define timerInterval 10.0
 #define confirmHeight 3
@@ -271,6 +272,8 @@ static ApexTransferHistoryManager *_instance;
     if (model.status == ApexTransferStatus_Blocking) {
         [[ApexWalletManager shareManager] setStatus:NO forWallet:address];
     }
+    //开启交易上链前的状态追踪
+    [ApexNeoTxStatusManager writeTxWithTXID:model.txid];
     
    __block BOOL cancleTimer = false;
     NSTimer *aTimer = [NSTimer timerWithTimeInterval:timerInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
@@ -283,7 +286,7 @@ static ApexTransferHistoryManager *_instance;
             
             NSDictionary *dict = (NSDictionary*)responseObject;
             if ([dict.allKeys containsObject:@"confirmations"]) {
-                //交易确认中
+                //交易确认中 已经上链
                 [self updateTransferStatus:ApexTransferStatus_Progressing forTXID:model.txid ofWallet:address];
                 NSInteger confirmations = ((NSString*)dict[@"confirmations"]).integerValue;
                 
@@ -304,8 +307,22 @@ static ApexTransferHistoryManager *_instance;
                     //设置钱包状态不可交易
                     [[ApexWalletManager shareManager] setStatus:NO forWallet:address];
                 }
+            }else{
+                //交易还未上链 没有confirmation字段
+                //超过6个块没响应 则判断交易失败
+                [ApexNeoTxStatusManager tracingTXStatus:model.txid noResponseBlock:^(BOOL isResponding) {
+                    if (!isResponding) {
+                        //交易失败
+                        [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
+                        [self.db open];
+                        [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",address],@(ApexTransferStatus_Failed),model.txid];
+                        [self.db close];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
+                        cancleTimer = true;
+                        [timer invalidate];
+                    }
+                }];
             }
-#warning 交易未上链 但是本地已经生成交易模型时 如何标记其为交易失败 且跟新钱包的状态
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             

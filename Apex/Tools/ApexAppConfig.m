@@ -13,6 +13,7 @@
 #import "ApexAssetModelManage.h"
 #import "ApexTransferHistoryManager.h"
 #import "SOLocalization.h"
+#import "ApexNeoTxStatusManager.h"
 
 @implementation ApexAppConfig
 + (void) configAll{
@@ -32,7 +33,7 @@
 
 
 + (void)transHistorySelfCheck{
-    
+    [ApexNeoTxStatusManager initTrackerDict];
     //neo钱包自测
     for (ApexWalletModel *wallet in [[ApexWalletManager shareManager] getWalletsArr]) {
         

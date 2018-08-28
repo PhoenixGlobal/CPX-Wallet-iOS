@@ -16,7 +16,7 @@
 //改变钱包的名字
 - (void)changeWalletName:(NSString*)name forAddress:(NSString*)address;
 //获得全部钱包模型数组
-- (id)getWalletsArr; /**< string : address/name */
+- (id)getWalletsArr; /**< apexwalletmodel */
 //删除钱包
 - (void)deleteWalletForAddress:(NSString*)address;
 //设置钱包是否备份过
