@@ -201,7 +201,7 @@
     //钱包类型选择
     self.typeSelectView.didChooseTypeSub = [RACSubject subject];
     [self.typeSelectView.didChooseTypeSub subscribeNext:^(id  _Nullable x) {
-        [ApexRowSelectView showSingleRowSelectViewWithContentArr:@[@"NEO",@"ETH"] CompleteHandler:^(id obj) {
+        [ApexRowSelectView showSingleRowSelectViewWithContentArr:@[@"NEO"] CompleteHandler:^(id obj) {
             self.typeSelectView.typeTF.text = obj;
             if ([self.typeSelectView.typeTF.text isEqualToString:@"NEO"]) {
                 self.typeSelectView.type = ApexWalletType_Neo;

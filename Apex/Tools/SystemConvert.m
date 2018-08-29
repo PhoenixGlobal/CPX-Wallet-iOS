@@ -298,6 +298,9 @@ static NSMutableDictionary *_bitQDic;
  *  十六进制 -> 十进制
  */
 + (NSString *)hexToDecimal:(NSString *)hex{
+    if (!hex || hex.length == 0) {
+        return @"0";
+    }
     return [self binaryToDecimal:[self hexToBinary:hex]];
 }
 @end

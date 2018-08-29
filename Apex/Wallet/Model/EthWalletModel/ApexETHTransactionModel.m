@@ -44,12 +44,6 @@
  status: '0x1'
  */
 @implementation ApexETHReceiptModel
-- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
-//    NSString *blockNumHex = dic[@"blockNumber"];
-//    NSString *gasComsumedHex = dic[@"cumulativeGasUsed"];
-    
-    return YES;
-}
 
 
 @end
