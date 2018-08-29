@@ -105,7 +105,7 @@
         make.bottom.equalTo(self.view).with.offset(-[ApexUIHelper tabBarHeight]);
     }];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(_firstLayerDelta - layersSubtle, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(_firstLayerDelta - layersSubtle, 0, (IS_IPHONE_X ? 34.0f : 0), 0);
     self.tableView.contentOffset = CGPointMake(0, -(_firstLayerDelta - layersSubtle));
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;

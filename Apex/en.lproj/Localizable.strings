@@ -129,6 +129,7 @@
 "Submitted successfully" = "Submitted successfully";
 "Please enter the correct wallet address" = "Please enter the correct wallet address";
 "Server error, storage failed" = "Server error, storage failed";
+"Server request failed" = "Server request failed";
 
 
 // tips

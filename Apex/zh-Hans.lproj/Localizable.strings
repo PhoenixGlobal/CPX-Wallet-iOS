@@ -121,6 +121,7 @@
 "Submitted successfully" = "已提交成功";
 "Please enter the correct wallet address" = "您输入的ETH/CPX的格式错误，请重新输入";
 "Server error, storage failed" = "服务器存储失败";
+"Server request failed" = "服务器请求失败";
 
 // tips
 "Create Wallet Failed" = "钱包创建失败";

@@ -117,7 +117,7 @@
         }
         
     } fail:^(NSError *error) {
-        
+        [self showMessage:SOLocalizedStringFromTable(@"Server request failed", nil)];
     }];
 }
 
