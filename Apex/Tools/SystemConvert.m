@@ -227,7 +227,7 @@ static NSMutableDictionary *_bitQDic;
                                        raiseOnUnderflow:NO
                                        raiseOnDivideByZero:YES];
     
-    while ([decimalNumber compare:sixteen] == NSOrderedDescending) {
+    while ([decimalNumber compare:sixteen] == NSOrderedDescending || [decimalNumber compare:sixteen] == NSOrderedSame) {
         NSDecimalNumber *a = [decimalNumber copy];
         NSDecimalNumber *c = [a decimalNumberByDividingBy:sixteen withBehavior:roundUp];
         NSDecimalNumber *r = [a decimalNumberBySubtracting:[c decimalNumberByMultiplyingBy:sixteen]];

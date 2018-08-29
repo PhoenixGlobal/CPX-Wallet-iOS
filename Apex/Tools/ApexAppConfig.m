@@ -14,6 +14,7 @@
 #import "ApexTransferHistoryManager.h"
 #import "SOLocalization.h"
 #import "ApexNeoTxStatusManager.h"
+#import "ETHTransferHistoryManager.h"
 
 @implementation ApexAppConfig
 + (void) configAll{
@@ -38,6 +39,12 @@
     for (ApexWalletModel *wallet in [[ApexWalletManager shareManager] getWalletsArr]) {
         
         [[ApexTransferHistoryManager shareManager] applicationIntializeSelfCheckWithAddress:wallet.address];
+    }
+    
+    //eth钱包自测
+    for (ApexWalletModel *wallet in [[ETHWalletManager shareManager] getWalletsArr]) {
+        
+        [[ETHTransferHistoryManager shareManager] applicationIntializeSelfCheckWithAddress:wallet.address];
     }
     
 }

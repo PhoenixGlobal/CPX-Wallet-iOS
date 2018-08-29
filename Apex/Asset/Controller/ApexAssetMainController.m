@@ -235,8 +235,8 @@
 - (void)pushAction{
     ApexMorePanelController *vc = [[ApexMorePanelController alloc] init];
     vc.funcConfigArr = @[@(PanelFuncConfig_Create), @(PanelFuncConfig_Import)];
-//    vc.typeArr = @[@(ApexWalletType_Neo), @(ApexWalletType_Eth)];
-    vc.typeArr = @[@(ApexWalletType_Neo)];
+    vc.typeArr = @[@(ApexWalletType_Neo), @(ApexWalletType_Eth)];
+//    vc.typeArr = @[@(ApexWalletType_Neo)];
     vc.didChangeTypeSub = [RACSubject subject];
     [vc.didChangeTypeSub subscribeNext:^(NSNumber *type) {
         [TKFileManager saveValue:type forKey:KglobleWalletType];
