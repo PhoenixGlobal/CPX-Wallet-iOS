@@ -153,7 +153,11 @@ static ETHTransferHistoryManager *_instance;
         
         //与neo此处的处理不同, 交易上链后才有返回,否则返回nil
         [ETHWalletManager requestTransactionReceiptByHash:model.txid success:^(AFHTTPRequestOperation *operation, ApexETHReceiptModel *responseObject) {
-            NSLog(@"eth trans: %@", responseObject);
+            if (responseObject.status && responseObject.status.integerValue == 1) {
+                //交易上链成功
+            }else if(responseObject.status && responseObject.status.integerValue == 0){
+                //交易失败
+            }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
         }];

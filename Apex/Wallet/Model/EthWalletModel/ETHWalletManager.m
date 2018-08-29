@@ -374,6 +374,10 @@ singleM(Manager);
     [[ApexETHClient shareRPCClient] invokeMethod:@"eth_getTransactionReceipt" withParameters:@[hash] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
             ApexETHReceiptModel *model = [ApexETHReceiptModel yy_modelWithDictionary:responseObject];
+            model.blockNumber = [SystemConvert hexToDecimal:model.blockNumber];
+            model.cumulativeGasUsed = [SystemConvert hexToDecimal:model.cumulativeGasUsed];
+            model.gasUsed = [SystemConvert hexToDecimal:model.gasUsed];
+            model.status = [SystemConvert hexToDecimal:model.status];
             success(operation,model);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

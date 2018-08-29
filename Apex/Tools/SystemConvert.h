@@ -64,7 +64,7 @@
  */
 + (NSString *)hexToQ:(NSString *)hex;
 /**
- *  十六进制 -> 十进制
+ *  十六进制 -> 十进制 不会溢出
  */
 + (NSString *)hexToDecimal:(NSString *)hex;
 
