@@ -9,6 +9,7 @@
 #import "ETHTransferHistoryManager.h"
 #import <FMDB.h>
 #import "ApexTransferModel.h"
+#import "ApexETHTransactionModel.h"
 
 #define timerInterval 10.0
 #define confirmHeight 3
@@ -60,6 +61,8 @@ static ETHTransferHistoryManager *_instance;
 - (void)createTableForWallet:(NSString *)walletAddress {
     [_db open];
     // 初始化数据表
+    walletAddress = [self encodeAddress:walletAddress];
+    
     NSString *addressSql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,'txid' VARCHAR(255),'assetId' VARCHAR(255),'decimal' VARCHAR(255),'from' VARCHAR(255),'to' VARCHAR(255),'gas_consumed' VARCHAR(255),'imageURL' VARCHAR(255),'symbol' VARCHAR(255),'time' VARCHAR(255),'type' VARCHAR(255),'value' VARCHAR(255),'vmstate' VARCHAR(255),'state' INTEGER);",walletAddress];
     BOOL success = [_db executeUpdate:addressSql];
     if (success) {
@@ -77,6 +80,8 @@ static ETHTransferHistoryManager *_instance;
 
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString *)walletAddress {
     [_db open];
+    
+    walletAddress = [self encodeAddress:walletAddress];
     
     NSNumber *maxID = @(0);
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ",walletAddress]];
@@ -146,9 +151,9 @@ static ETHTransferHistoryManager *_instance;
             return;
         }
         
-        //与neo此处的处理不同, 交易上链后有返回,否则返回nil
-        [ETHWalletManager requestTransactionReceiptByHash:model.txid success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
+        //与neo此处的处理不同, 交易上链后才有返回,否则返回nil
+        [ETHWalletManager requestTransactionReceiptByHash:model.txid success:^(AFHTTPRequestOperation *operation, ApexETHReceiptModel *responseObject) {
+            NSLog(@"eth trans: %@", responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
         }];
@@ -191,6 +196,7 @@ static ETHTransferHistoryManager *_instance;
 
 - (NSMutableArray *)getAllTransferHistoryForAddress:(NSString *)address {
     [_db open];
+    address = [self encodeAddress:address];
     NSMutableArray *dataArray = [[NSMutableArray alloc] init];
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC",address]];
     while ([res next]) {
@@ -203,6 +209,7 @@ static ETHTransferHistoryManager *_instance;
 
 - (NSMutableArray *)getHistoriesOffset:(NSInteger)offset walletAddress:(NSString *)address {
     [_db open];
+    address = [self encodeAddress:address];
     NSMutableArray *temp = [NSMutableArray array];
     int totalCount = 0;
     int row = 15;
@@ -231,6 +238,7 @@ static ETHTransferHistoryManager *_instance;
 
 - (NSMutableArray *)getHistoryiesWithPrefixOfTxid:(NSString *)prefix address:(NSString *)address {
     [_db open];
+    address = [self encodeAddress:address];
     NSMutableArray *array = [NSMutableArray array];
     
     if (![prefix hasPrefix:@"0x"]) {
@@ -250,6 +258,7 @@ static ETHTransferHistoryManager *_instance;
 
 - (id)getLastTransferHistoryOfAddress:(NSString *)address {
     [_db open];
+    address = [self encodeAddress:address];
     ApexTransferModel *model = nil;
     FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT 1",address]];
     while ([res next]) {
@@ -262,6 +271,7 @@ static ETHTransferHistoryManager *_instance;
 
 - (NSArray*)getTransferHistoriesFromEndWithLimit:(NSString *)limite address:(NSString *)address{
     [_db open];
+    address = [self encodeAddress:address];
     NSMutableArray *arr = [NSMutableArray array];
     FMResultSet *set = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT %@",address,limite]];
     while ([set next]) {
@@ -287,6 +297,14 @@ static ETHTransferHistoryManager *_instance;
     model.vmstate = [res stringForColumn:@"vmstate"];
     model.status = [res intForColumn:@"state"] ;
     return model;
+}
+
+- (NSString*)encodeAddress:(NSString*)address{
+    if ([address hasPrefix:@"0x"]) {
+        return NeomobileEncodeAddress(address, nil);
+    }else{
+        return address;
+    }
 }
 
 //request

@@ -107,6 +107,9 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(_firstLayerDelta - layersSubtle, 0, 0, 0);
     self.tableView.contentOffset = CGPointMake(0, -(_firstLayerDelta - layersSubtle));
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     
     [self.tableView registerClass:[ApexRewardListTableViewCell class] forCellReuseIdentifier:@"cell"];
     
