@@ -110,7 +110,7 @@
             [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"This address has already participated\nplease do not submit again", nil) isPop:NO];
         }
         else if ([status isEqualToString:@"5003"]) {
-            [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil) isPop:NO];
+            [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"_Please enter the correct wallet address", nil) isPop:NO];
         }
         else if ([status isEqualToString:@"5001"]) {
             [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"Server error, storage failed", nil) isPop:NO];

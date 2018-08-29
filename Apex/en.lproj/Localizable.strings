@@ -127,7 +127,7 @@
 "Please be sure the amount of CPX in the local wallets more than" = "Please be sure the amount of CPX in the local wallets more than";
 "This address has already participated\nplease do not submit again" = "This address has already participated\nplease do not submit again";
 "Submitted successfully" = "Submitted successfully";
-"Please enter the correct wallet address" = "Please enter the correct wallet address";
+"_Please enter the correct wallet address" = "Please enter the correct wallet address";
 "Server error, storage failed" = "Server error, storage failed";
 "Server request failed" = "Server request failed";
 
