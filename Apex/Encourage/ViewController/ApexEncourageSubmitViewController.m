@@ -100,9 +100,20 @@
         
         NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *statusDictionary = resultDictionary[@"data"];
+        NSString *status = [NSString stringWithFormat:@"%@", [statusDictionary objectForKey:@"CPX"]];
         
-        if (statusDictionary) {
+        if ([status isEqualToString:@"5200"]) {
+            [self.navigationController popViewControllerAnimated:YES];
+            [self showMessageOnWindow:SOLocalizedStringFromTable(@"Submitted successfully", nil)];
+        }
+        else if ([status isEqualToString:@"5000"]) {
             [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"This address has already participated\nplease do not submit again", nil) isPop:NO];
+        }
+        else if ([status isEqualToString:@"5003"]) {
+            [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil) isPop:NO];
+        }
+        else if ([status isEqualToString:@"5001"]) {
+            [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"Server error, storage failed", nil) isPop:NO];
         }
         
     } fail:^(NSError *error) {
