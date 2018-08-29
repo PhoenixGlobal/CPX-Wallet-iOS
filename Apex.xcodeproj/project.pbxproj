@@ -628,8 +628,8 @@
 		58DFBE99213527B300E8D88A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				58DFBE9A213527B300E8D88A /* ApexEncourageActivitysModel.m */,
 				58DFBE9B213527B300E8D88A /* ApexEncourageActivitysModel.h */,
+				58DFBE9A213527B300E8D88A /* ApexEncourageActivitysModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

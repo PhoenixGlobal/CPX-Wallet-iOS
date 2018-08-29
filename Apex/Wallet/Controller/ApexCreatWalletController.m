@@ -269,7 +269,7 @@
     @weakify(self);
     [self.typeSelectV.didChooseTypeSub subscribeNext:^(id  _Nullable x) {
         @strongify(self);
-        [ApexRowSelectView showSingleRowSelectViewWithContentArr:@[@"NEO",@"ETH"] CompleteHandler:^(id obj) {
+        [ApexRowSelectView showSingleRowSelectViewWithContentArr:@[@"NEO"] CompleteHandler:^(id obj) {
             self.typeSelectV.typeTF.text = obj;
             if ([self.typeSelectV.typeTF.text isEqualToString:@"NEO"]) {
                 self.typeSelectV.type = ApexWalletType_Neo;
