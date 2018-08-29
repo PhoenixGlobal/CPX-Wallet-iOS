@@ -10,4 +10,6 @@
 
 @interface ApexEncourageSubmitFooterView : UITableViewHeaderFooterView
 
+@property (nonatomic, strong) NSString *limitAccount;
+
 @end

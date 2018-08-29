@@ -122,9 +122,8 @@
 "ETH Address" = "ETH Address";
 "_Confirm" = "Confirm";
 "The final interpretation of this activity belongs to\nAPEX TECHNOLOGIES" = "The final interpretation of this activity belongs to\nAPEX TECHNOLOGIES";
-"Please be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100." = "Please be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100.";
 "Please enter the correct wallet address" = "Please enter the correct wallet address";
-"Please be sure the amount of CPX in the local wallets more than" = "Please be sure the amount of CPX in the local wallets more than";
+"Please be sure the amount of CPX in the local wallets more than" = "Please be sure the amount of CPX in the local wallets more than ";
 "This address has already participated\nplease do not submit again" = "This address has already participated\nplease do not submit again";
 "Submitted successfully" = "Submitted successfully";
 "_Please enter the correct wallet address" = "Please enter the correct wallet address";
