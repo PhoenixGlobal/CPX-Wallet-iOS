@@ -292,7 +292,7 @@ singleM(Manager);
     }];
 }
 
-+ (void)getTotalAmountOfNep5Asset:(NSString*)assetID onAddresses:(NSArray<NSString*>*)addressArr Success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
++ (void)getTotalAmountOfNep5Asset:(NSString*)assetID onAddresses:(NSArray<NSString*>*)addressArr Success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     
     NSMutableArray *requests = [NSMutableArray array];
     

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ApexEncourageActivitysModel.h"
 
 @interface ApexRewardListTableViewCell : UITableViewCell
 
-- (void)updaetRewardWithDictionary:(NSDictionary *)rewardDictionary;
+- (void)updaetRewardWithDictionary:(ApexEncourageActivitysModel *)model;
 
-+ (CGFloat)getContentHeightWithDictionary:(NSDictionary *)rewardDictionary;
++ (CGFloat)getContentHeightWithDictionary:(ApexEncourageActivitysModel *)model;
 
 @end

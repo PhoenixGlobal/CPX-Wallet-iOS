@@ -14,7 +14,6 @@
 {
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
         
         UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Page 1-3"]];
         [self.contentView addSubview:iconImageView];

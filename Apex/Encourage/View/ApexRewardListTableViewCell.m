@@ -7,6 +7,7 @@
 //
 
 #import "ApexRewardListTableViewCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface ApexRewardListTableViewCell ()
 
@@ -31,10 +32,11 @@
         
         _rewardImageView = [[UIImageView alloc] init];
         _rewardImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _rewardImageView.clipsToBounds = YES;
         [self.contentView addSubview:_rewardImageView];
         [_rewardImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.equalTo(self.contentView);
-            make.height.mas_equalTo(120);
+            make.height.mas_equalTo(((SCREEN_WIDTH - 30.0f) * 2 / 5));
         }];
         _rewardImageView.hidden = YES;
         
@@ -76,20 +78,30 @@
     return self;
 }
 
-- (void)updaetRewardWithDictionary:(NSDictionary *)rewardDictionary
+- (void)updaetRewardWithDictionary:(ApexEncourageActivitysModel *)model
 {
     UIImageView *newImagView = (UIImageView *)[self.contentView viewWithTag:2000];
     
-    NSString *showImage = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"image"]];
-    NSString *labeiString = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"label"]];
-    NSString *currentStatus = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"status"]];
-    NSString *isNew = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"new"]];
+    NSString *showImage = model.imagesurl;
+    NSString *labeiString = @"";
+    NSString *currentStatus = [NSString stringWithFormat:@"%@", model.status];
+    NSString *isNew = [NSString stringWithFormat:@"%@", model.flag];
     
-    if ([showImage isEqualToString:@"1"]) {
+    if (![showImage isEqualToString:@""]) {
         _rewardImageView.hidden = NO;
+        [_rewardImageView sd_setImageWithURL:[NSURL URLWithString:showImage]];
     }
     else {
         _rewardImageView.hidden = YES;
+    }
+    
+    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+        labeiString = model.title_en;
+        newImagView.image = [UIImage imageNamed:@"new_en"];
+    }
+    else {
+        labeiString = model.title_cn;
+        newImagView.image = [UIImage imageNamed:@"new"];
     }
     
     newImagView.hidden = ![isNew isEqualToString:@"1"];
@@ -98,7 +110,7 @@
     
     NSString *statusString = @"";
     CGFloat statusWidth = 0;
-    if ([currentStatus isEqualToString:@"0"]) {
+    if ([currentStatus isEqualToString:@"-1"]) {
         statusString = @"About to begin";
         _statusLabel.backgroundColor = [UIColor colorWithHexString:@"D8D8D8"];
         _statusLabel.textColor = [UIColor colorWithHexString:@"666666"];
@@ -128,14 +140,20 @@
     _statusLabel.text = SOLocalizedStringFromTable(statusString, nil);
 }
 
-+ (CGFloat)getContentHeightWithDictionary:(NSDictionary *)rewardDictionary
++ (CGFloat)getContentHeightWithDictionary:(ApexEncourageActivitysModel *)model
 {
     CGFloat totalHeight = 50.0f;
     
-    NSString *showImage = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"image"]];
-    NSString *labeiString = [NSString stringWithFormat:@"%@", [rewardDictionary objectForKey:@"label"]];
-    if ([showImage isEqualToString:@"1"]) {
-        totalHeight += 120.0f;
+    NSString *showImage = model.imagesurl;
+    NSString *labeiString = @"";
+    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+        labeiString = model.title_en;
+    }
+    else {
+        labeiString = model.title_cn;
+    }
+    if (![showImage isEqualToString:@""]) {
+        totalHeight += ((SCREEN_WIDTH - 30.0f) * 2 / 5);
     }
     
     return totalHeight + [ApexUIHelper calculateTextHeight:[UIFont systemFontOfSize:18] givenText:labeiString givenWidth:SCREEN_WIDTH - 30.0f - 20.0f];
