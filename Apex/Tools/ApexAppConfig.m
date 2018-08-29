@@ -78,6 +78,9 @@
     NSString *baseUrl = [ApexNetWorkCommonConfig getToolBaseUrl];
     NSLog(@"tool baseurl: %@",baseUrl);
     [[CYLNetWorkManager shareInstance] setBaseUrl:[NSURL URLWithString:baseUrl]];
+    AFHTTPSessionManager *manager = [CYLNetWorkManager shareInstance].getManager;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 }
 
 + (void)configKeyBoard{
