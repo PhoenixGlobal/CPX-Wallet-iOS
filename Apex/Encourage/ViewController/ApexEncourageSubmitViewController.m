@@ -34,12 +34,18 @@
 {
     [super viewWillAppear:animated];
     
-    [self judgeCpxWallet];
+    [self getTotalAmountOfNep5];
 }
 
 - (void)initUI
 {
-    self.title = @"APEX 第二波KRATOS One节点奖励";
+    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+        self.title = _activityModel.title_en;
+    }
+    else {
+        self.title = _activityModel.title_cn;
+    }
+    
     self.view.backgroundColor = [ApexUIHelper grayColor240];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     
@@ -87,9 +93,21 @@
 
 - (void)submitClock
 {
-//    [self showAlertViewControllerWithString:[NSString stringWithFormat:@"%@%@（>=%@）", SOLocalizedStringFromTable(@"Please be sure the amount of CPX in the local wallets more than", nil), @"100", @"100"]];
-//    [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"This address has already participated\nplease do not submit again", nil)];
+    NSString *cpxAddress = [self getInputCpxString];
+    NSString *ethAddress = [self getInputEthString];
     
+    [CYLNetWorkManager POST:@"j2/activitys/save/" parameter:@{@"CPX":cpxAddress, @"ETH":ethAddress, @"id":_activityModel.activityId} success:^(CYLResponse *response) {
+        
+        NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *statusDictionary = resultDictionary[@"data"];
+        
+        if (statusDictionary) {
+            [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"This address has already participated\nplease do not submit again", nil) isPop:NO];
+        }
+        
+    } fail:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark ------ UITableViewDelegate,UITableViewDataSource
@@ -184,26 +202,41 @@
     }
 }
 
-- (void)showAlertViewControllerWithString:(NSString *)alertString
+- (void)showAlertViewControllerWithString:(NSString *)alertString isPop:(BOOL)pop
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:alertString preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:SOLocalizedStringFromTable(@"Confirm", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        if (pop) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }]];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)judgeCpxWallet
+- (void)getTotalAmountOfNep5
 {
+    NSMutableArray *addressArray = [NSMutableArray new];
     NSArray *walletArray = [[ApexWalletManager shareManager] getWalletsArr];
     for (NSInteger i = 0; i < walletArray.count; i++) {
         ApexWalletModel *model = [walletArray objectAtIndex:i];
-        [ApexWalletManager getNep5AssetAccountStateWithAddress:model.address andAssetId:assetId_CPX Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-        }];
+        [addressArray addObject:model.address];
+    }
+    
+    [ApexWalletManager getTotalAmountOfNep5Asset:assetId_CPX onAddresses:addressArray Success:^(AFHTTPRequestOperation *operation, NSNumber *responseObject) {
+        
+        [self judgeCanInputWithLimit:responseObject];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
+- (void)judgeCanInputWithLimit:(NSNumber *)userAccount
+{
+    double limitAccount = [_activityModel.gas_limit doubleValue];
+    if ([userAccount doubleValue] < limitAccount) {
+        [self showAlertViewControllerWithString:[NSString stringWithFormat:@"%@%@（>=%@）", SOLocalizedStringFromTable(@"Please be sure the amount of CPX in the local wallets more than", nil), _activityModel.gas_limit, _activityModel.gas_limit] isPop:YES];
     }
 }
 

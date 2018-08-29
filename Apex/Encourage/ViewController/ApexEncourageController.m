@@ -47,6 +47,8 @@
     
     [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    
+    [self getActivityList];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -63,6 +65,7 @@
     self.view.backgroundColor = [ApexUIHelper grayColor240];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     
+    _datasArray = [NSMutableArray new];
     self.firstLayerDelta = scaleHeight667(200) - NavBarHeight;
     
     [self.view addSubview:self.backgroundImageView];
@@ -160,6 +163,25 @@
     }
 }
 
+- (void)getActivityList
+{
+    [self.datasArray removeAllObjects];
+    [CYLNetWorkManager GET:@"j2/activitys/list/" parameter:nil success:^(CYLResponse *response) {
+        
+        NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+        NSArray *activityArray = resultDictionary[@"data"];
+        for (NSDictionary *dict in activityArray) {
+            ApexEncourageActivitysModel *model = [ApexEncourageActivitysModel yy_modelWithDictionary:dict];
+            [self.datasArray addObject:model];
+        }
+        
+        [_tableView reloadData];
+        
+    } fail:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark ------ UITableViewDelegate, UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -174,7 +196,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.datasArray.count > indexPath.section) {
-        return [ApexRewardListTableViewCell getContentHeightWithDictionary:self.datasArray[indexPath.section]];
+        ApexEncourageActivitysModel *model = (ApexEncourageActivitysModel *)[self.datasArray objectAtIndex:indexPath.section];
+        return [ApexRewardListTableViewCell getContentHeightWithDictionary:model];
     }
     return 0;
 }
@@ -195,19 +218,23 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (self.datasArray.count > indexPath.section) {
-        [cell updaetRewardWithDictionary:self.datasArray[indexPath.section]];
+        ApexEncourageActivitysModel *model = (ApexEncourageActivitysModel *)[_datasArray objectAtIndex:indexPath.section];
+        [cell updaetRewardWithDictionary:model];
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *encourageDictionary = [_datasArray objectAtIndex:indexPath.section];
-    NSString *isProgress = [NSString stringWithFormat:@"%@", [encourageDictionary objectForKey:@"status"]];
-    if ([isProgress isEqualToString:@"1"]) {
-        ApexEncourageSubmitViewController *submitViewController = [[ApexEncourageSubmitViewController alloc] init];
-        submitViewController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:submitViewController animated:YES];
+    if (self.datasArray.count > indexPath.section) {
+        ApexEncourageActivitysModel *model = (ApexEncourageActivitysModel *)[self.datasArray objectAtIndex:indexPath.section];
+        NSString *isProgress = [NSString stringWithFormat:@"%@", model.status];
+        if ([isProgress isEqualToString:@"1"]) {
+            ApexEncourageSubmitViewController *submitViewController = [[ApexEncourageSubmitViewController alloc] init];
+            submitViewController.activityModel = model;
+            submitViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:submitViewController animated:YES];
+        }
     }
 }
 
@@ -215,22 +242,6 @@
 - (void)setFirstLayerDelta:(CGFloat)firstLayerDelta{
     _firstLayerDelta = firstLayerDelta;
     _translateLength = _firstLayerDelta - layersSubtle;
-}
-
-- (NSMutableArray *)datasArray
-{
-    if (!_datasArray) {
-        _datasArray = [NSMutableArray new];
-        [_datasArray addObjectsFromArray:@[
-                                           @{@"image":@"1",@"label":@"激励活动火热进行中",@"status":@"0", @"new":@"1"},
-                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"1", @"new":@"1"},
-                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"1", @"new":@"1"},
-                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"2", @"new":@"0"},
-                                           @{@"image":@"0",@"label":@"The Second Wave of Our KRATOS One Special Node Program",@"status":@"2", @"new":@"0"}
-                                           ]];
-    }
-    
-    return _datasArray;
 }
 
 - (UIView *)baseView{

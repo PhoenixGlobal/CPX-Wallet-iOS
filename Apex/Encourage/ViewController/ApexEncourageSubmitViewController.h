@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ApexEncourageActivitysModel.h"
 
 @interface ApexEncourageSubmitViewController : UIViewController
+
+@property (nonatomic, strong) ApexEncourageActivitysModel *activityModel;
 
 @end
