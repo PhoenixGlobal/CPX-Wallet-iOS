@@ -181,7 +181,7 @@
         [_tableView reloadData];
         
     } fail:^(NSError *error) {
-        
+        [_tableView reloadData];
     }];
 }
 

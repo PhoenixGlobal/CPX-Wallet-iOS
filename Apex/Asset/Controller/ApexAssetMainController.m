@@ -102,15 +102,15 @@
 
 - (void)getWalletLists{
     [self.searchTooBar clearEntrance];
-    NSNumber *walletType = [TKFileManager ValueWithKey:KglobleWalletType];
-   
-    if (walletType.integerValue == ApexWalletType_Neo) {
+//    NSNumber *walletType = [TKFileManager ValueWithKey:KglobleWalletType];
+//   
+//    if (walletType.integerValue == ApexWalletType_Neo) {
         _walletManager = [ApexWalletManager shareManager];
         self.title = @"NEO";
-    }else{
-        _walletManager = [ETHWalletManager shareManager];
-        self.title = @"ETH";
-    }
+//    }else{
+//        _walletManager = [ETHWalletManager shareManager];
+//        self.title = @"ETH";
+//    }
     
     _contentArr = [_walletManager getWalletsArr];
     

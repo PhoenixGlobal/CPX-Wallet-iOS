@@ -308,7 +308,7 @@ static ApexTransferHistoryManager *_instance;
                     [[ApexWalletManager shareManager] setStatus:NO forWallet:address];
                 }
             }else{
-                //交易还未上链 没有confirmation字段
+                //交易还未上链 没有confirmation字段 但是可能之后会上链
                 //超过6个块没响应 则判断交易失败
                 [ApexNeoTxStatusManager tracingTXStatus:model.txid noResponseBlock:^(BOOL isResponding) {
                     if (!isResponding) {

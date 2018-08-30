@@ -37,6 +37,7 @@
     [self getTotalAmountOfNep5];
 }
 
+
 - (void)initUI
 {
     if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
