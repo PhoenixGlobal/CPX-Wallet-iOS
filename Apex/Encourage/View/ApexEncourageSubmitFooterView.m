@@ -24,9 +24,9 @@
         }];
         
         UILabel *activityDescribeLabel = [[UILabel alloc] init];
+        activityDescribeLabel.tag = 10000;
         activityDescribeLabel.font = [UIFont systemFontOfSize:13];
         activityDescribeLabel.numberOfLines = 0;
-        activityDescribeLabel.text = SOLocalizedStringFromTable(@"Please be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100.", nil);
         activityDescribeLabel.textColor = [UIColor colorWithHexString:@"#666666"];
         [self.contentView addSubview:activityDescribeLabel];
         [activityDescribeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -35,6 +35,18 @@
     }
     
     return self;
+}
+
+- (void)setLimitAccount:(NSString *)limitAccount
+{
+    UILabel *activityDescribeLabel = (UILabel *)[self.contentView viewWithTag:10000];
+    
+    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+        activityDescribeLabel.text = [NSString stringWithFormat:@"%@%@", @"Please be sure you have local NEO wallet, and the total amount of CPX should be equal or more than ", limitAccount];
+    }
+    else {
+        activityDescribeLabel.text = [NSString stringWithFormat:@"参与活动需在本地创建NEO钱包，并且钱包中的CPX总余额大于等于%@(≥%@)方可参加。", limitAccount, limitAccount];
+    }
 }
 
 @end

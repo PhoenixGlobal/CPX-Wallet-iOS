@@ -111,7 +111,7 @@
             [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"This address has already participated\nplease do not submit again", nil) isPop:NO];
         }
         else if ([status isEqualToString:@"5003"]) {
-            [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil) isPop:NO];
+            [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"_Please enter the correct wallet address", nil) isPop:NO];
         }
         else if ([status isEqualToString:@"5001"]) {
             [self showAlertViewControllerWithString:SOLocalizedStringFromTable(@"Server error, storage failed", nil) isPop:NO];
@@ -143,6 +143,7 @@
 {
     if (section == 1) {
         ApexEncourageSubmitFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"footer"];
+        footerView.limitAccount = _activityModel.gas_limit;
         return footerView;
     }
     
@@ -152,7 +153,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section == 1) {
-        return [ApexUIHelper calculateTextHeight:[UIFont systemFontOfSize:13] givenText:SOLocalizedStringFromTable(@"Please be sure you have local NEO wallet, and the total amount of CPX should be equal or more than 100.", nil) givenWidth:SCREEN_WIDTH - 90.0f] + 40.0f;
+        NSString *limitAccount = @"";
+        if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+            limitAccount = [NSString stringWithFormat:@"%@%@", @"Please be sure you have local NEO wallet, and the total amount of CPX should be equal or more than ", _activityModel.gas_limit];
+        }
+        else {
+            limitAccount = [NSString stringWithFormat:@"参与活动需在本地创建NEO钱包，并且钱包中的CPX总余额大于等于%@(≥%@)方可参加。", _activityModel.gas_limit, _activityModel.gas_limit];
+        }
+        return [ApexUIHelper calculateTextHeight:[UIFont systemFontOfSize:13] givenText:limitAccount givenWidth:SCREEN_WIDTH - 90.0f] + 40.0f;
     }
     
     return 15.0f;
@@ -248,7 +256,7 @@
 {
     double limitAccount = [_activityModel.gas_limit doubleValue];
     if ([userAccount doubleValue] < limitAccount) {
-        [self showAlertViewControllerWithString:[NSString stringWithFormat:@"%@%@（>=%@）", SOLocalizedStringFromTable(@"Please be sure the amount of CPX in the local wallets more than", nil), _activityModel.gas_limit, _activityModel.gas_limit] isPop:YES];
+        [self showAlertViewControllerWithString:[NSString stringWithFormat:@"%@%@（≥%@）", SOLocalizedStringFromTable(@"Please be sure the amount of CPX in the local wallets more than", nil), _activityModel.gas_limit, _activityModel.gas_limit] isPop:YES];
     }
 }
 
