@@ -28,6 +28,7 @@
 @property (nonatomic, assign) CGFloat translateOffset;
 @property (nonatomic, assign) CGFloat translateLength;
 
+@property (nonatomic, assign) double currentCpx; /**<  */
 @end
 
 @implementation ApexEncourageController
@@ -49,6 +50,8 @@
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
     [self getActivityList];
+    
+    [self getTotalAmountOfNep5];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -114,6 +117,7 @@
     [self.tableView registerClass:[ApexRewardListTableViewCell class] forCellReuseIdentifier:@"cell"];
     
     self.translateOffset = -99999;
+    self.currentCpx = 0;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -164,6 +168,25 @@
             make.height.mas_equalTo(x.CGSizeValue.height <= kScreenH ? kScreenH*2 : x.CGSizeValue.height);
         }];
     }
+}
+
+
+- (void)getTotalAmountOfNep5
+{
+    NSMutableArray *addressArray = [NSMutableArray new];
+    NSArray *walletArray = [[ApexWalletManager shareManager] getWalletsArr];
+    for (NSInteger i = 0; i < walletArray.count; i++) {
+        ApexWalletModel *model = [walletArray objectAtIndex:i];
+        [addressArray addObject:model.address];
+    }
+    
+    [ApexWalletManager getTotalAmountOfNep5Asset:assetId_CPX onAddresses:addressArray Success:^(AFHTTPRequestOperation *operation, NSNumber *responseObject) {
+        
+        _currentCpx = responseObject.doubleValue;
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 - (void)getActivityList
@@ -235,6 +258,7 @@
         if ([isProgress isEqualToString:@"1"]) {
             ApexEncourageSubmitViewController *submitViewController = [[ApexEncourageSubmitViewController alloc] init];
             submitViewController.activityModel = model;
+            submitViewController.currentCpx = self.currentCpx;
             submitViewController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:submitViewController animated:YES];
         }

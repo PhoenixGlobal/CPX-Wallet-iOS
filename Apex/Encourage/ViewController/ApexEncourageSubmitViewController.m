@@ -33,8 +33,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self getTotalAmountOfNep5];
+    [self judgeCanInputWithLimit:@(self.currentCpx)];
 }
 
 
@@ -232,24 +231,6 @@
     }]];
     
     [self presentViewController:alertController animated:YES completion:nil];
-}
-
-- (void)getTotalAmountOfNep5
-{
-    NSMutableArray *addressArray = [NSMutableArray new];
-    NSArray *walletArray = [[ApexWalletManager shareManager] getWalletsArr];
-    for (NSInteger i = 0; i < walletArray.count; i++) {
-        ApexWalletModel *model = [walletArray objectAtIndex:i];
-        [addressArray addObject:model.address];
-    }
-    
-    [ApexWalletManager getTotalAmountOfNep5Asset:assetId_CPX onAddresses:addressArray Success:^(AFHTTPRequestOperation *operation, NSNumber *responseObject) {
-        
-        [self judgeCanInputWithLimit:responseObject];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
 }
 
 - (void)judgeCanInputWithLimit:(NSNumber *)userAccount

@@ -13,4 +13,5 @@
 
 @property (nonatomic, strong) ApexEncourageActivitysModel *activityModel;
 
+@property (nonatomic, assign) double currentCpx; /**<  */
 @end
