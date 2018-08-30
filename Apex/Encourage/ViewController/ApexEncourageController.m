@@ -49,9 +49,9 @@
     [self.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
+    [self getTotalAmountOfNep5];
     [self getActivityList];
     
-    [self getTotalAmountOfNep5];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -113,6 +113,10 @@
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
+    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        [self getTotalAmountOfNep5];
+        [self getActivityList];
+    }];
     
     [self.tableView registerClass:[ApexRewardListTableViewCell class] forCellReuseIdentifier:@"cell"];
     
@@ -181,11 +185,11 @@
     }
     
     [ApexWalletManager getTotalAmountOfNep5Asset:assetId_CPX onAddresses:addressArray Success:^(AFHTTPRequestOperation *operation, NSNumber *responseObject) {
-        
+        [_tableView.mj_header endRefreshing];
         _currentCpx = responseObject.doubleValue;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [_tableView.mj_header endRefreshing];
     }];
 }
 
@@ -193,7 +197,7 @@
 {
     [self.datasArray removeAllObjects];
     [CYLNetWorkManager GET:@"j2/activitys/list/" parameter:nil success:^(CYLResponse *response) {
-        
+        [_tableView.mj_header endRefreshing];
         NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
         NSArray *activityArray = resultDictionary[@"data"];
         for (NSDictionary *dict in activityArray) {
@@ -204,6 +208,7 @@
         [_tableView reloadData];
         
     } fail:^(NSError *error) {
+        [_tableView.mj_header endRefreshing];
         [_tableView reloadData];
     }];
 }

@@ -50,8 +50,10 @@
 - (void)initUI{
     self.navigationItem.titleView = self.titleLable;
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_model.time.doubleValue];
-    _timeStamp.text = [NSString stringWithFormat:@"%ld-%ld-%ld %02ld:%02ld:%02ld",(long)date.year,date.month,date.day, date.hour, date.minute,date.second];
+    if (_model.status == ApexTransferStatus_Confirmed) {
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:_model.time.doubleValue];
+        _timeStamp.text = [NSString stringWithFormat:@"%ld-%ld-%ld %02ld:%02ld:%02ld",(long)date.year,date.month,date.day, date.hour, date.minute,date.second];
+    }
     
     _fromAddressL.text = self.model.from;
     _toAddressL.text = self.model.to;

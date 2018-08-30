@@ -185,7 +185,9 @@
             ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];
             
             if (lastRecord) {
-                historyModel.time = lastRecord.time;
+                double lastTime = lastRecord.time.doubleValue;
+                lastTime += 3;
+                historyModel.time = @(lastTime).stringValue;
             }
             
             [self.historyManager addTransferHistory:historyModel forWallet:self.address];
