@@ -186,7 +186,7 @@
             
             if (lastRecord) {
                 double lastTime = lastRecord.time.doubleValue;
-                lastTime += 3;
+                lastTime += 1;
                 historyModel.time = @(lastTime).stringValue;
             }
             
