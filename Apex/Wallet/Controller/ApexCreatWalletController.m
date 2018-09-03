@@ -87,27 +87,46 @@
     }];
     
     [self.typeSelectV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.tipsView.mas_bottom).offset(35);
+        if (IS_IPHONE_5) {
+            make.top.equalTo(self.tipsView.mas_bottom).offset(15);
+        }else{
+             make.top.equalTo(self.tipsView.mas_bottom).offset(35);
+        }
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(scaleWidth375(231));
         make.height.mas_equalTo(44);
     }];
     
     [self.walletNameL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.typeSelectV.mas_bottom).offset(20);
+        if (IS_IPHONE_5) {
+            make.top.equalTo(self.typeSelectV.mas_bottom).offset(10);
+        }else{
+            make.top.equalTo(self.typeSelectV.mas_bottom).offset(20);
+        }
+        
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(scaleWidth375(231));
         make.height.mas_equalTo(44);
     }];
     
     [self.passWordL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.walletNameL.mas_bottom).offset(20);
+        if (IS_IPHONE_5) {
+            make.top.equalTo(self.walletNameL.mas_bottom).offset(10);
+        }else{
+            make.top.equalTo(self.walletNameL.mas_bottom).offset(20);
+        }
+        
         make.left.right.equalTo(self.walletNameL);
         make.height.equalTo(self.walletNameL);
     }];
     
     [self.repeatPassWordL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.passWordL.mas_bottom).offset(20);
+        if (IS_IPHONE_5) {
+            make.top.equalTo(self.passWordL.mas_bottom).offset(10);
+        }else{
+            make.top.equalTo(self.passWordL.mas_bottom).offset(20);
+        }
+        
         make.left.right.equalTo(self.walletNameL);
         make.height.equalTo(self.walletNameL);
     }];
@@ -115,7 +134,11 @@
     
     [self.privacyAgreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.walletNameL);
-        make.top.equalTo(self.repeatPassWordL.mas_bottom).offset(30);
+        if (IS_IPHONE_5) {
+            make.top.equalTo(self.repeatPassWordL.mas_bottom).offset(15);
+        }else{
+            make.top.equalTo(self.repeatPassWordL.mas_bottom).offset(30);
+        }
         make.width.height.mas_equalTo(20);
     }];
     
@@ -125,7 +148,11 @@
     }];
     
     [self.creatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.privacyAgreeLable.mas_bottom).offset(40);
+        if (IS_IPHONE_5) {
+            make.top.equalTo(self.privacyAgreeLable.mas_bottom).offset(20);
+        }else{
+            make.top.equalTo(self.privacyAgreeLable.mas_bottom).offset(40);
+        }
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(scaleWidth375(165));
         make.height.mas_equalTo(40);
@@ -135,7 +162,7 @@
         make.top.equalTo(self.creatBtn.mas_bottom).offset(15);
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(scaleWidth375(150));
-        make.height.mas_equalTo(scaleHeight667(30));
+        make.height.mas_equalTo(30);
     }];
     
     [self.tipsL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -269,7 +296,7 @@
     @weakify(self);
     [self.typeSelectV.didChooseTypeSub subscribeNext:^(id  _Nullable x) {
         @strongify(self);
-        [ApexRowSelectView showSingleRowSelectViewWithContentArr:@[@"NEO"] CompleteHandler:^(id obj) {
+        [ApexRowSelectView showSingleRowSelectViewWithContentArr:@[@"NEO",@"ETH"] CompleteHandler:^(id obj) {
             self.typeSelectV.typeTF.text = obj;
             if ([self.typeSelectV.typeTF.text isEqualToString:@"NEO"]) {
                 self.typeSelectV.type = ApexWalletType_Neo;

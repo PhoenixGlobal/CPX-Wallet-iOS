@@ -7,9 +7,9 @@
 //
 
 #import "ApexTransferHistoryManager.h"
-#import <FMDB.h>
 #import "ApexTransferModel.h"
 #import "ApexNeoTxStatusManager.h"
+#import "ApexTransHistoryDataBaseHelper.h"
 
 #define timerInterval 10.0
 #define confirmHeight 3
@@ -50,88 +50,27 @@ static ApexTransferHistoryManager *_instance;
 
 #pragma mark - ------private-----
 - (void)initDataBase{
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    // 文件路径
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"transHistory.sqlite"];
-    NSLog(@"database path: %@",filePath);
-    // 实例化FMDataBase对象
-    _db = [FMDatabase databaseWithPath:filePath];
+    _db = [[ApexTransHistoryDataBaseHelper shareDataBase] dataBaseWithManager:self];
 }
 
 #pragma mark - ------public-----
 - (void)createTableForWallet:(NSString*)walletAddress{
-    [_db open];
-    // 初始化数据表
-    NSString *addressSql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,'txid' VARCHAR(255),'assetId' VARCHAR(255),'decimal' VARCHAR(255),'from' VARCHAR(255),'to' VARCHAR(255),'gas_consumed' VARCHAR(255),'imageURL' VARCHAR(255),'symbol' VARCHAR(255),'time' VARCHAR(255),'type' VARCHAR(255),'value' VARCHAR(255),'vmstate' VARCHAR(255),'state' INTEGER);",walletAddress];
-    BOOL success = [_db executeUpdate:addressSql];
-    if (success) {
-        NSLog(@"表创建成功");
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            [[ApexTransferHistoryManager shareManager] requestTxHistoryForAddress:walletAddress Success:^(CYLResponse *res) {
-            } failure:^(NSError *err) {
-            }];
-        });
-    }else{
-        NSLog(@"表创建失败");
-    }
-    [_db close];
+    [[ApexTransHistoryDataBaseHelper shareDataBase] createTableForWallet:walletAddress manager:self successCreated:^{
+        [self requestTxHistoryForAddress:walletAddress Success:^(CYLResponse *res) {
+        } failure:^(NSError *err) {
+        }];
+    }];
 }
 
 - (void)secreteUpdateUserTransactionHistoryAddress:(NSString*)address{
     [self requestTxHistoryForAddress:address Success:^(CYLResponse *res) {
-        
     } failure:^(NSError *err) {
-        
     }];
 }
 
 #pragma mark - ------增-----
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString*)walletAddress{
-    [_db open];
-    
-    NSNumber *maxID = @(0);
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ",walletAddress]];
-    BOOL isLocalDataProcessing = false;
-    BOOL isDelete = false;
-    //获取数据库中最大的ID
-    while ([res next]) {
-        //本地数据的交易号以及状态
-        NSString *txidInDB = [res stringForColumn:@"txid"];
-        NSInteger status = [res intForColumn:@"state"];
-        maxID = @([[res stringForColumn:@"id"] integerValue]);
-        
-        //网络请求数据与本地有冲突时 以网络为准 删除本地此条数据 重新写入
-        //本地数据的状态为已确认的状态时才替换
-        if ([txidInDB isEqualToString:model.txid] && (status == ApexTransferStatus_Confirmed || status == ApexTransferStatus_Failed)) {
-            NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id = %@",walletAddress,maxID.stringValue];
-            if (![_db executeUpdate:sql]){
-                NSLog(@"删除冗余数据失败");
-            }else{
-                NSLog(@"%@", [NSString stringWithFormat:@"删除冗余数据:%@",txidInDB]);
-                isDelete = YES;
-            }
-        }
-        
-        if (status == ApexTransferStatus_Progressing) {
-            isLocalDataProcessing = true;
-        }
-        
-        if (isDelete) {
-            maxID = @([maxID integerValue]);
-            break;
-        }else{
-            maxID = @([maxID integerValue] + 1);
-        }
-    }
-    
-    if (!isLocalDataProcessing) {
-        NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",walletAddress];
-        [_db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status)];
-        [self updateRequestTime:@(model.time.integerValue) address:walletAddress];
-    }
-    
-    [res close];
-    [_db close];
+    [[ApexTransHistoryDataBaseHelper shareDataBase] addTransferHistory:model forWallet:walletAddress manager:self];
 }
 
 #pragma mark - ------删-----
@@ -293,7 +232,7 @@ static ApexTransferHistoryManager *_instance;
                 NSLog(@"%@", [NSString stringWithFormat:@"交易上链,confirmations:%ld",confirmations]);
                 
                 if (confirmations >= confirmHeight) {
-                    
+                    //确认中
                     //交易成功
                     [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
                     [self.db open];

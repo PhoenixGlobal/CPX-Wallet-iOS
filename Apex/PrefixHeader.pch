@@ -32,6 +32,7 @@
 #import "PublicEnum.h"
 #import "NSBundle+MJLocalization.h"
 #import "NSString+Tool.h"
+#import "NSString+Encypte.h"
 
 /**< other */
 #import "ApexUIHelper.h"

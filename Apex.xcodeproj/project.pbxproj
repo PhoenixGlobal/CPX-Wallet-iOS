@@ -189,6 +189,8 @@
 		E73934B92109BBD8007953FB /* commonQuest_en.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934B82109BBD8007953FB /* commonQuest_en.json */; };
 		E73934BB2109BBE9007953FB /* specialQuest_en.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934BA2109BBE9007953FB /* specialQuest_en.json */; };
 		E739358B212E5232007F61AC /* ApexEncourageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E739358A212E5232007F61AC /* ApexEncourageController.m */; };
+		E7C68C0B2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C68C0A2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m */; };
+		E7C68C0E2138DCD10009B2A2 /* NSString+Encypte.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C68C0D2138DCD10009B2A2 /* NSString+Encypte.m */; };
 		E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCA20C112B700E2C597 /* NullSafe.m */; };
 		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
 		E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7242101C0FF00007F29 /* ApexLoading.m */; };
@@ -565,6 +567,10 @@
 		E7393589212E5232007F61AC /* ApexEncourageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEncourageController.h; sourceTree = "<group>"; };
 		E739358A212E5232007F61AC /* ApexEncourageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageController.m; sourceTree = "<group>"; };
 		E739358C212E9CED007F61AC /* Apex-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Apex-Bridging-Header.h"; sourceTree = "<group>"; };
+		E7C68C092138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransHistoryDataBaseHelper.h; sourceTree = "<group>"; };
+		E7C68C0A2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransHistoryDataBaseHelper.m; sourceTree = "<group>"; };
+		E7C68C0C2138DCD10009B2A2 /* NSString+Encypte.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Encypte.h"; sourceTree = "<group>"; };
+		E7C68C0D2138DCD10009B2A2 /* NSString+Encypte.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encypte.m"; sourceTree = "<group>"; };
 		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
 		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
@@ -1074,6 +1080,8 @@
 		E33A8B8A20AE756E0067505E /* Catagotries */ = {
 			isa = PBXGroup;
 			children = (
+				E7C68C0C2138DCD10009B2A2 /* NSString+Encypte.h */,
+				E7C68C0D2138DCD10009B2A2 /* NSString+Encypte.m */,
 				E7039301211D53A200BA3CDB /* NSString+Tool.h */,
 				E7039300211D53A200BA3CDB /* NSString+Tool.m */,
 				E3263EFE20B6BDB1001D3C19 /* UILabel+Spacing.h */,
@@ -1169,6 +1177,8 @@
 			children = (
 				E70393152123BD9A00BA3CDB /* ApexWalletManagerProtocal.h */,
 				E70393162123C3C000BA3CDB /* ApexTransHistoryProtocal.h */,
+				E7C68C092138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.h */,
+				E7C68C0A2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m */,
 				E70392D9211D451A00BA3CDB /* EthWalletModel */,
 				E70392C1211D443500BA3CDB /* NeoWalletModel */,
 			);
@@ -1707,6 +1717,7 @@
 				E7EDD72C21057A0200007F29 /* ApexSpecialProfileController.m in Sources */,
 				E73934B42109B07D007953FB /* ApexNoWalletView.m in Sources */,
 				E39E02F820C7E0AA005DD251 /* ApexPrivacyAggreView.m in Sources */,
+				E7C68C0B2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m in Sources */,
 				E39E030D20CA72A7005DD251 /* ApexDrawTransPercentDriven.m in Sources */,
 				E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */,
 				E33A8BB920AE795F0067505E /* ApexImportWalletController.m in Sources */,
@@ -1776,6 +1787,7 @@
 				E3373B3D20F5F14F00590407 /* UINavigationItem+SOLocalization.m in Sources */,
 				E3CE669820BE3D13002A1E07 /* ApexSendMoneyViewModel.m in Sources */,
 				E3CE667520BBC8D0002A1E07 /* ApexBlockChainManager.m in Sources */,
+				E7C68C0E2138DCD10009B2A2 /* NSString+Encypte.m in Sources */,
 				E39E02EF20C7D206005DD251 /* ApexImportByMnemonicView.m in Sources */,
 				58DFBEA3213527B300E8D88A /* ApexEncourageSubmitCell.m in Sources */,
 				E33A8B9B20AE756E0067505E /* UIViewController+NetLoadIndicator.m in Sources */,
