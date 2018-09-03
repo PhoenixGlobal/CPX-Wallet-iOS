@@ -10,6 +10,7 @@
 #import "ApexRewardListTableViewCell.h"
 #import "ApexEncourageSubmitViewController.h"
 #import "ApexEncourageActivitysModel.h"
+#import "CYLEmptyView.h"
 
 #define layersSubtle 30.0
 
@@ -29,6 +30,8 @@
 @property (nonatomic, assign) CGFloat translateLength;
 
 @property (nonatomic, assign) double currentCpx; /**<  */
+@property (nonatomic, strong) CYLEmptyView *emptyView;
+
 @end
 
 @implementation ApexEncourageController
@@ -205,9 +208,18 @@
             [self.datasArray addObject:model];
         }
         
+        if (self.datasArray.count > 0) {
+            [self clearEmptyView];
+        }
+        else {
+            [self showEmptyView];
+        }
+        
         [_tableView reloadData];
         
     } fail:^(NSError *error) {
+        [self showEmptyView];
+        
         [_tableView.mj_header endRefreshing];
         [_tableView reloadData];
     }];
@@ -330,6 +342,20 @@
     }
     
     return _apexImageView;
+}
+
+#pragma mark ------ empty
+- (void)showEmptyView
+{
+    if (!self.emptyView) {
+        self.emptyView = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:SOLocalizedStringFromTable(@"Data Empty", nil) refreshBlock:nil];
+    }
+}
+
+- (void)clearEmptyView
+{
+    [self.emptyView removeFromSuperview];
+    self.emptyView = nil;
 }
 
 @end
