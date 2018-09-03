@@ -75,19 +75,12 @@ static ApexTransferHistoryManager *_instance;
 
 #pragma mark - ------删-----
 - (void)deleteHistoryWithTxid:(NSString*)txid ofAddress:(NSString*)address{
-    [_db open];
-    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE txid = %@",address,txid];
-    [_db executeUpdate:sql];
-    [_db close];
+    [[ApexTransHistoryDataBaseHelper shareDataBase] deleteHistoryWithTxid:txid ofAddress:address manager:self];
 }
 
 #pragma mark - ------改-----
 - (void)updateTransferStatus:(ApexTransferStatus)status forTXID:(NSString*)txid ofWallet:(NSString*)walletAddress{
-    [_db open];
-    //广播交易状态改变
-    [_db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",walletAddress],@(status),txid];
-    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferStatusHasChanged object:@""];
-    [_db close];
+    [[ApexTransHistoryDataBaseHelper shareDataBase] updateTransferStatus:status forTXID:txid ofWallet:walletAddress manager:self];
 }
 
 //应用开启时的自检测 是否有处理中的交易 并更新状态
@@ -106,104 +99,27 @@ static ApexTransferHistoryManager *_instance;
 //查找txid前缀
 - (NSMutableArray*)getHistoryiesWithPrefixOfTxid:(NSString*)prefix address:(NSString*)address{
     
-    [_db open];
-    NSMutableArray *array = [NSMutableArray array];
-    
-    if (![prefix hasPrefix:@"0x"]) {
-        prefix = [NSString stringWithFormat:@"0x%@",prefix];
-    }
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE txid LIKE '%@%%'",address,prefix]];
-    
-    while ([res next]) {
-        ApexTransferModel *model = [self buildModelWithResult:res];
-        [array addObject:model];
-    }
-    
-    [_db close];
-    
-    return array;
+   return [[ApexTransHistoryDataBaseHelper shareDataBase] getHistoryiesWithPrefixOfTxid:prefix address:address manager:self];
 }
 
 - (NSMutableArray*)getHistoriesOffset:(NSInteger)offset walletAddress:(NSString*)address{
-    [_db open];
-    NSMutableArray *temp = [NSMutableArray array];
-    int totalCount = 0;
-    int row = 15;
-    
-    FMResultSet *s = [_db executeQuery:[NSString stringWithFormat:@"SELECT COUNT(*) FROM %@",address]];
-    if ([s next]) {
-        totalCount = [s intForColumnIndex:0];
-    }
-
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE id BETWEEN '%ld' AND '%ld'",address,(long)(totalCount-(row * (offset + 1))),(long)(totalCount - (row * offset))]];
-    while ([res next]) {
-        ApexTransferModel *model = [self buildModelWithResult:res];
-        [temp addObject:model];
-    }
-    
-    [temp sortUsingComparator:^NSComparisonResult(ApexTransferModel *obj1, ApexTransferModel *obj2) {
-        return obj1.time.integerValue > obj2.time.integerValue;
-    }];
-    temp = [[[temp reverseObjectEnumerator] allObjects] mutableCopy];
-    
-    [_db close];
-    return temp;
+    return [[ApexTransHistoryDataBaseHelper shareDataBase] getHistoriesOffset:offset walletAddress:address manager:self];
 }
 
 //获得所有的模型
 - (NSMutableArray*)getAllTransferHistoryForAddress:(NSString*)address{
-    [_db open];
-    NSMutableArray *dataArray = [[NSMutableArray alloc] init];
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC",address]];
-    while ([res next]) {
-        ApexTransferModel *model = [self buildModelWithResult:res];
-        [dataArray addObject:model];
-    }
-    [_db close];
-    return dataArray;
+    return [[ApexTransHistoryDataBaseHelper shareDataBase] getAllTransferHistoryForAddress:address manager:self];
 }
 
 //获取最新一条数据
 - (ApexTransferModel*)getLastTransferHistoryOfAddress:(NSString*)address{
-    [_db open];
-    ApexTransferModel *model = nil;
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT 1",address]];
-    while ([res next]) {
-        model = [self buildModelWithResult:res];
-    }
-    
-    [_db close];
-    return model;
+    return  [[ApexTransHistoryDataBaseHelper shareDataBase] getLastTransferHistoryOfAddress:address manager:self];
 }
 
 - (NSArray*)getTransferHistoriesFromEndWithLimit:(NSString *)limite address:(NSString *)address{
-    [_db open];
-    NSMutableArray *arr = [NSMutableArray array];
-    FMResultSet *set = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT %@",address,limite]];
-    while ([set next]) {
-        [arr addObject:[self buildModelWithResult:set]];
-    }
-    [_db close];
-    return arr;
+    return [[ApexTransHistoryDataBaseHelper shareDataBase] getTransferHistoriesFromEndWithLimit:limite address:address manager:self];
 }
 
-- (ApexTransferModel*)buildModelWithResult:(FMResultSet*)res{
-    ApexTransferModel *model = [[ApexTransferModel alloc] init];
-    model.txid = [res stringForColumn:@"txid"];
-    model.assetId = [res stringForColumn:@"assetId"];
-    model.decimal = [res stringForColumn:@"decimal"];
-    model.from = [res stringForColumn:@"from"];
-    model.to = [res stringForColumn:@"to"];
-    model.gas_consumed = [res stringForColumn:@"gas_consumed"];
-    model.imageURL = [res stringForColumn:@"imageURL"];
-    model.symbol = [res stringForColumn:@"symbol"];
-    model.time = [res stringForColumn:@"time"];
-    model.type = [res stringForColumn:@"type"];
-    model.value = [res stringForColumn:@"value"];
-    model.vmstate = [res stringForColumn:@"vmstate"];
-    model.status = [res intForColumn:@"state"] ;
-    return model;
-}
 
 //开启轮询 获取交易记录的最新状态
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString*)address txModel:(ApexTransferModel*)model{
@@ -235,9 +151,7 @@ static ApexTransferHistoryManager *_instance;
                     //确认中
                     //交易成功
                     [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
-                    [self.db open];
-                    [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",address],@(ApexTransferStatus_Confirmed),model.txid];
-                    [self.db close];
+                    [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferSuccess:model.txid address:address manager:self];
                     [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
                     cancleTimer = true;
                     [timer invalidate];
@@ -253,9 +167,7 @@ static ApexTransferHistoryManager *_instance;
                     if (!isResponding) {
                         //交易失败
                         [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
-                        [self.db open];
-                        [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",address],@(ApexTransferStatus_Failed),model.txid];
-                        [self.db close];
+                        [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferFail:model.txid address:address manager:self];
                         [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
                         cancleTimer = true;
                         [timer invalidate];
@@ -280,12 +192,14 @@ static ApexTransferHistoryManager *_instance;
 
 //从服务器中获取交易历史记录
 - (void)requestTxHistoryForAddress:(NSString*)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
+    
+    NSString *encodeAddress = [[ApexTransHistoryDataBaseHelper shareDataBase] tableNameMappingFromAddress:address manager:self];
     //获取上次更新时间
-    __block NSNumber *bTime = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(address)];
+    __block NSNumber *bTime = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
     
     if (!bTime) {
         bTime = @0;
-        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(address)];
+        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
     }
 
     //此方法内部 调用了-addTransferHistory: forWallet:
@@ -294,6 +208,8 @@ static ApexTransferHistoryManager *_instance;
         if (((NSArray*)response.returnObj).count == 500) {
             //请求下一组数据
             [self requestTxHistoryForAddress:address Success:success failure:failure];
+        }else{
+            
         }
         
         if (success) {
@@ -333,10 +249,6 @@ static ApexTransferHistoryManager *_instance;
     } fail:^(NSError *error) {
         NSLog(@"%@",error);
     }];
-}
-
-- (void)updateRequestTime:(NSNumber*)timestamp address:(NSString*)address{
-    [TKFileManager saveValue:timestamp forKey:LASTUPDATETXHISTORY_KEY(address)];
 }
 
 @end

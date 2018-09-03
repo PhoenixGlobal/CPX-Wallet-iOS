@@ -48,6 +48,7 @@ singleM(DataBase);
     [_db close];
 }
 
+#pragma mark - 增
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString *)walletAddress manager:(id<ApexTransHistoryProtocal>)manager {
     [_db open];
     
@@ -91,24 +92,174 @@ singleM(DataBase);
     if (!isLocalDataProcessing) {
         NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",walletAddress];
         [_db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status)];
-        [self updateRequestTime:@(model.time.integerValue) address:walletAddress];
+        [self updateRequestTime:@(model.time.integerValue) address:walletAddress manager:manager];
     }
     
     [res close];
     [_db close];
 }
 
-- (void)updateRequestTime:(NSNumber*)timestamp address:(NSString*)address{
-    [TKFileManager saveValue:timestamp forKey:LASTUPDATETXHISTORY_KEY(address)];
+
+#pragma mark - 删
+- (void)deleteHistoryWithTxid:(NSString*)txid ofAddress:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager{
+    [_db open];
+    address = [self encodeAddress:address manager:manager];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE txid = %@",address,txid];
+    [_db executeUpdate:sql];
+    [_db close];
+}
+
+#pragma mark - 改
+- (void)updateTransferStatus:(ApexTransferStatus)status forTXID:(NSString*)txid ofWallet:(NSString*)walletAddress manager:(id<ApexTransHistoryProtocal>)manager{
+    [_db open];
+    walletAddress = [self encodeAddress:walletAddress manager:manager];
+    //广播交易状态改变
+    [_db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",walletAddress],@(status),txid];
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferStatusHasChanged object:@""];
+    [_db close];
+}
+
+- (void)setTransferSuccess:(NSString*)txid address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager{
+    [self.db open];
+    [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",[self encodeAddress:address manager:manager]],@(ApexTransferStatus_Confirmed),txid];
+    [self.db close];
+}
+
+
+- (void)setTransferFail:(NSString*)txid address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager;{
+    [self.db open];
+    [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",[self encodeAddress:address manager:manager]],@(ApexTransferStatus_Failed),txid];
+    [self.db close];
+}
+
+#pragma mark - 查
+- (NSMutableArray *)getAllTransferHistoryForAddress:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager{
+    [_db open];
+    address = [self encodeAddress:address manager:manager];
+    NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC",address]];
+    while ([res next]) {
+        ApexTransferModel *model = [self buildModelWithResult:res];
+        [dataArray addObject:model];
+    }
+    [_db close];
+    return dataArray;
+}
+
+- (NSMutableArray *)getHistoryiesWithPrefixOfTxid:(NSString *)prefix address:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager{
+    [_db open];
+    NSMutableArray *array = [NSMutableArray array];
+    address = [self encodeAddress:address manager:manager];
+    if (![prefix hasPrefix:@"0x"]) {
+        prefix = [NSString stringWithFormat:@"0x%@",prefix];
+    }
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE txid LIKE '%@%%'",address,prefix]];
+    
+    while ([res next]) {
+        ApexTransferModel *model = [self buildModelWithResult:res];
+        [array addObject:model];
+    }
+    
+    [_db close];
+    
+    return array;
+}
+
+- (NSMutableArray *)getHistoriesOffset:(NSInteger)offset walletAddress:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager{
+    [_db open];
+    address = [self encodeAddress:address manager:manager];
+    NSMutableArray *temp = [NSMutableArray array];
+    int totalCount = 0;
+    int row = 15;
+    
+    FMResultSet *s = [_db executeQuery:[NSString stringWithFormat:@"SELECT COUNT(*) FROM %@",address]];
+    if ([s next]) {
+        totalCount = [s intForColumnIndex:0];
+    }
+    
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE id BETWEEN '%ld' AND '%ld'",address,(long)(totalCount-(row * (offset + 1))),(long)(totalCount - (row * offset))]];
+    while ([res next]) {
+        ApexTransferModel *model = [self buildModelWithResult:res];
+        [temp addObject:model];
+    }
+    
+    [temp sortUsingComparator:^NSComparisonResult(ApexTransferModel *obj1, ApexTransferModel *obj2) {
+        return obj1.time.integerValue > obj2.time.integerValue;
+    }];
+    temp = [[[temp reverseObjectEnumerator] allObjects] mutableCopy];
+    
+    [_db close];
+    return temp;
+}
+
+- (id)getLastTransferHistoryOfAddress:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager{
+    [_db open];
+    address = [self encodeAddress:address manager:manager];
+    ApexTransferModel *model = nil;
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT 1",address]];
+    while ([res next]) {
+        model = [self buildModelWithResult:res];
+    }
+    
+    [_db close];
+    return model;
+}
+
+
+- (NSArray *)getTransferHistoriesFromEndWithLimit:(NSString *)limite address:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager{
+    [_db open];
+    address = [self encodeAddress:address manager:manager];
+    NSMutableArray *arr = [NSMutableArray array];
+    FMResultSet *set = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT %@",address,limite]];
+    while ([set next]) {
+        [arr addObject:[self buildModelWithResult:set]];
+    }
+    [_db close];
+    return arr;
 }
 
 #pragma mark - tools
+- (void)updateRequestTime:(NSNumber*)timestamp address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager{
+    NSNumber *lastTime = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(address)];
+    if (timestamp.integerValue > lastTime.integerValue) {
+        [TKFileManager saveValue:timestamp forKey:LASTUPDATETXHISTORY_KEY(address)];
+    }
+}
+
+- (NSString*)tableNameMappingFromAddress:(NSString*)addr manager:(id<ApexTransHistoryProtocal>)manager{
+    return [self encodeAddress:addr manager:manager];
+}
+
 - (NSString*)encodeAddress:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager{
+    
+    if ([address hasPrefix:@"ETH"] || [address hasPrefix:@"NEO"]) {
+        NSLog(@"地址已被加密过 无需再次加密");
+        return  address;
+    }
+    
     if ([manager isKindOfClass:NSClassFromString(@"ETHTransferHistoryManager")]) {
-        return [NSString MD5String:address salt:@"ETH"];
+        return [NSString stringWithFormat:@"ETH_%@",[NSString MD5String:address salt:@"ETH"]];
     }else if([manager isKindOfClass:NSClassFromString(@"ApexTransferHistoryManager")]){
-        return [NSString MD5String:address salt:@"NEO"];
+        return [NSString stringWithFormat:@"NEO_%@",[NSString MD5String:address salt:@"NEO"]];
     }
     return @"";
+}
+
+- (ApexTransferModel*)buildModelWithResult:(FMResultSet*)res{
+    ApexTransferModel *model = [[ApexTransferModel alloc] init];
+    model.txid = [res stringForColumn:@"txid"];
+    model.assetId = [res stringForColumn:@"assetId"];
+    model.decimal = [res stringForColumn:@"decimal"];
+    model.from = [res stringForColumn:@"from"];
+    model.to = [res stringForColumn:@"to"];
+    model.gas_consumed = [res stringForColumn:@"gas_consumed"];
+    model.imageURL = [res stringForColumn:@"imageURL"];
+    model.symbol = [res stringForColumn:@"symbol"];
+    model.time = [res stringForColumn:@"time"];
+    model.type = [res stringForColumn:@"type"];
+    model.value = [res stringForColumn:@"value"];
+    model.vmstate = [res stringForColumn:@"vmstate"];
+    model.status = [res intForColumn:@"state"] ;
+    return model;
 }
 @end

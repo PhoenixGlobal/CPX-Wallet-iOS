@@ -33,5 +33,55 @@ singleH(DataBase);
  */
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString *)walletAddress manager:(id<ApexTransHistoryProtocal>)manager;
 
-- (void)beginTimerToConfirmTransactionOfAddress:(NSString *)address txModel:(ApexTransferModel *)model manager:(id<ApexTransHistoryProtocal>)manager ;
+
+/**
+ 获取所有的交易记录
+ */
+- (NSMutableArray *)getAllTransferHistoryForAddress:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager;
+
+
+/**
+ 根据txid前缀查找交易记录
+ */
+- (NSMutableArray*)getHistoryiesWithPrefixOfTxid:(NSString*)prefix address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager;
+
+
+/**
+ 获取交易记录
+ */
+- (NSMutableArray *)getHistoriesOffset:(NSInteger)offset walletAddress:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager;
+
+
+/**
+ 获取最后一条交易记录
+ */
+- (id)getLastTransferHistoryOfAddress:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager;
+
+
+/**
+倒序获取给定的交易记录
+ */
+- (NSArray*)getTransferHistoriesFromEndWithLimit:(NSString *)limite address:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager;
+
+/**
+ 删除
+ */
+- (void)deleteHistoryWithTxid:(NSString*)txid ofAddress:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager;
+
+/**
+ 更新交易状态
+ */
+- (void)updateTransferStatus:(ApexTransferStatus)status forTXID:(NSString*)txid ofWallet:(NSString*)walletAddress manager:(id<ApexTransHistoryProtocal>)manager;
+
+/**
+ 设置交易成功,失败
+ */
+- (void)setTransferSuccess:(NSString*)txid address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager;
+
+- (void)setTransferFail:(NSString*)txid address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager;
+
+/**
+获取地址对应的表名
+ */
+- (NSString*)tableNameMappingFromAddress:(NSString*)addr manager:(id<ApexTransHistoryProtocal>)manager;
 @end
