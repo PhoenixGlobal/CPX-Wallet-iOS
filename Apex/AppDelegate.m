@@ -24,6 +24,7 @@
     
     [self localization];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     CYLTabBarController *tabbarVC = [[CYLTabBarController alloc] init];
     
     NSMutableArray *arr = [[ApexWalletManager shareManager] getWalletsArr];

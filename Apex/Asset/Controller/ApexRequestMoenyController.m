@@ -35,6 +35,20 @@
     [self setNav];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
+
 #pragma mark - ------private------
 - (void)setNav{
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
@@ -42,7 +56,6 @@
     self.navigationItem.titleView = self.titleLable;
     
     [self.navigationController lt_setBackgroundColor:[UIColor whiteColor]];
-//    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 }
 
 - (void)setUI{
