@@ -46,9 +46,15 @@ singleH(Manager);
                          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+
+//获取以太币资产
 + (void)requestETHBalanceOfAddress:(NSString *)address
                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+//获取当前块数
++ (void)requestCurrentBlockNumberSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 //查询erc20资产
 + (void)requestERC20BalanceOfContract:(NSString*)contract Address:(NSString*)address decimal:(NSString*)decimal

@@ -191,6 +191,7 @@
 		E739358B212E5232007F61AC /* ApexEncourageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E739358A212E5232007F61AC /* ApexEncourageController.m */; };
 		E7C68C0B2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C68C0A2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m */; };
 		E7C68C0E2138DCD10009B2A2 /* NSString+Encypte.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C68C0D2138DCD10009B2A2 /* NSString+Encypte.m */; };
+		E7C68C14213FB5050009B2A2 /* ETHTxStatusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C68C13213FB5050009B2A2 /* ETHTxStatusManager.m */; };
 		E7EA1BCB20C112B700E2C597 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCA20C112B700E2C597 /* NullSafe.m */; };
 		E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */; };
 		E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EDD7242101C0FF00007F29 /* ApexLoading.m */; };
@@ -571,6 +572,8 @@
 		E7C68C0A2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransHistoryDataBaseHelper.m; sourceTree = "<group>"; };
 		E7C68C0C2138DCD10009B2A2 /* NSString+Encypte.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Encypte.h"; sourceTree = "<group>"; };
 		E7C68C0D2138DCD10009B2A2 /* NSString+Encypte.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encypte.m"; sourceTree = "<group>"; };
+		E7C68C12213FB5050009B2A2 /* ETHTxStatusManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHTxStatusManager.h; sourceTree = "<group>"; };
+		E7C68C13213FB5050009B2A2 /* ETHTxStatusManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHTxStatusManager.m; sourceTree = "<group>"; };
 		E7EA1BCA20C112B700E2C597 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		E7EA1BCC20C1211600E2C597 /* ApexScrollerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexScrollerController.h; sourceTree = "<group>"; };
 		E7EA1BCD20C1211600E2C597 /* ApexScrollerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexScrollerController.m; sourceTree = "<group>"; };
@@ -1317,6 +1320,8 @@
 				E70392FE211D539700BA3CDB /* ETHWalletManager.m */,
 				E70393172123C52200BA3CDB /* ETHTransferHistoryManager.h */,
 				E70393182123C52200BA3CDB /* ETHTransferHistoryManager.m */,
+				E7C68C12213FB5050009B2A2 /* ETHTxStatusManager.h */,
+				E7C68C13213FB5050009B2A2 /* ETHTxStatusManager.m */,
 				E70393112121A26500BA3CDB /* ETHWalletModel.h */,
 				E70393122121A26500BA3CDB /* ETHWalletModel.m */,
 				E7039309211D6BF300BA3CDB /* ApexETHTransactionModel.h */,
@@ -1810,6 +1815,7 @@
 				E703930B211D6BF300BA3CDB /* ApexETHTransactionModel.m in Sources */,
 				E70393132121A26500BA3CDB /* ETHWalletModel.m in Sources */,
 				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,
+				E7C68C14213FB5050009B2A2 /* ETHTxStatusManager.m in Sources */,
 				E3CE668D20BD38BC002A1E07 /* ApexTransferDetailHeader.m in Sources */,
 				E3CE66B520BEA812002A1E07 /* DTError.m in Sources */,
 				E3373B5920F8711600590407 /* ApexLanguageSettingController.m in Sources */,

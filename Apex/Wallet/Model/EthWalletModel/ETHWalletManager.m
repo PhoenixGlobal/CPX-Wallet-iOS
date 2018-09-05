@@ -309,6 +309,16 @@ singleM(Manager);
 }
 
 
++ (void)requestCurrentBlockNumberSuccess:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    // {"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":83}
+    [[ApexETHClient shareRPCClient] invokeMethod:@"eth_blockNumber" withParameters:@[] success:^(AFHTTPRequestOperation *operation, NSString *responseObject) {
+        NSString *number = [SystemConvert hexToDecimal:responseObject];
+        if (success) {
+            success(operation,number);
+        }
+    } failure:failure];
+}
+
 //+ (void)ethCallMethodString:(NSString*)methodHexId to:(NSString*)to extraArg:(NSString*)extro DataArgs:(NSString*)arg1, ... NS_REQUIRES_NIL_TERMINATION {
 //    
 //    NSMutableArray *argArr = [NSMutableArray array];

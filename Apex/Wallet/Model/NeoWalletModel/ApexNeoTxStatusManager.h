@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#define KLocalTXTrackerKey @"KLocalTXTrackerKey" //本地交易状态跟踪key
-
+//管理neo交易的状态追踪(上链前/后)
 @interface ApexNeoTxStatusManager : NSObject
 + (void)initTrackerDict;
 

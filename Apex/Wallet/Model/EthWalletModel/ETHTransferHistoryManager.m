@@ -11,6 +11,7 @@
 #import "ApexTransferModel.h"
 #import "ApexETHTransactionModel.h"
 #import "ApexTransHistoryDataBaseHelper.h"
+#import "ETHTxStatusManager.h"
 
 #define timerInterval 10.0
 #define confirmHeight 3
@@ -131,43 +132,26 @@ static ETHTransferHistoryManager *_instance;
         [ETHWalletManager requestTransactionReceiptByHash:model.txid success:^(AFHTTPRequestOperation *operation, ApexETHReceiptModel *responseObject) {
             if (responseObject.status && responseObject.status.integerValue == 1) {
                 //交易上链成功
+                [[ApexTransHistoryDataBaseHelper shareDataBase] updateTransferStatus:ApexTransferStatus_Progressing forTXID:model.txid ofWallet:address manager:self];
+                [ETHTxStatusManager writeTxWithTXID:model.txid currentBlockNumber:responseObject.blockNumber];
+                
+                //开始确认 12个块
+                [ETHTxStatusManager beginConfirmationCountDownWithConfirmationNumber:12 txid:model.txid doneBlock:^{
+                    
+                    [[ETHWalletManager shareManager] setStatus:YES forWallet:address];
+                    [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferSuccess:model.txid address:address manager:self];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
+                    cancleTimer = YES;
+                    [timer invalidate];
+                }];
+                
             }else if(responseObject.status && responseObject.status.integerValue == 0){
                 //交易失败
+                [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferFail:model.txid address:address manager:self];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
         }];
-        
-        //        [[ApexTransferHistoryManager shareManager] requestBlockHeightWithTxid:model.txid success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //
-        //            NSDictionary *dict = (NSDictionary*)responseObject;
-        //            if ([dict.allKeys containsObject:@"confirmations"]) {
-        //                //交易确认中
-        //                [self updateTransferStatus:ApexTransferStatus_Progressing forTXID:model.txid ofWallet:address];
-        //                NSInteger confirmations = ((NSString*)dict[@"confirmations"]).integerValue;
-        //
-        //                NSLog(@"%@", [NSString stringWithFormat:@"交易上链,confirmations:%ld",confirmations]);
-        //
-        //                if (confirmations >= confirmHeight) {
-        //
-        //                    //交易成功
-        //                    [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
-        //                    [self.db open];
-        //                    [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",address],@(ApexTransferStatus_Confirmed),model.txid];
-        //                    [self.db close];
-        //                    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
-        //                    cancleTimer = true;
-        //                    [timer invalidate];
-        //                }else{
-        //                    //确认中
-        //                    //设置钱包状态不可交易
-        //                    [[ApexWalletManager shareManager] setStatus:NO forWallet:address];
-        //                }
-        //            }
-        //
-        //        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //
-        //        }];
     }];
     
     [[ApexThread shareInstance].threadRunLoop addTimer:aTimer forMode:NSRunLoopCommonModes];

@@ -39,6 +39,7 @@
 #define KBindingAddressToSpecialProfile [NSString stringWithFormat:@"address_specialProfile"]
 #define KisFirstCreateWalletDone  @"KisFirstCreateWalletDone"
 #define KglobleWalletType @"KglobleWalletType" //全局的钱包类型key
+#define KLocalTXTrackerKey @"KLocalTXTrackerKey" //本地交易状态跟踪key
 
 //neo
 #define baseUrl_tool_test @"http://dev.chinapex.com.cn:10086/tool/"

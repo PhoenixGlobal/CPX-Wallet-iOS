@@ -165,12 +165,12 @@
     
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
     
-    for (ApexWalletModel *model in [_walletManager getWalletsArr]) {
-        if ([model.address isEqualToString:address]) {
-            [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];
-            return;
-        }
-    }
+//    for (ApexWalletModel *model in [_walletManager getWalletsArr]) {
+//        if ([model.address isEqualToString:address]) {
+//            [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];
+//            return;
+//        }
+//    }
     
     //删除已有的 再添加新的
     [_walletManager deleteWalletForAddress:address];
@@ -180,6 +180,7 @@
     if (self.didFinishImportSub) {
         [self.didFinishImportSub sendNext:@""];
     }else{
+        [TKFileManager saveValue:@(ApexWalletType_Neo) forKey:KglobleWalletType];
         [[self topViewController].navigationController popViewControllerAnimated:YES];
     }
 }
@@ -203,17 +204,18 @@
     NSString *address = wallet.address;
     
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
-    ETHWalletModel *model = [_walletManager saveWallet:address name:@"Wallet"];
+    [_walletManager saveWallet:address name:@"Wallet"];
     
-    if (!model) {
-        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];
-        return;
-    }
+//    if (!model) {
+//        [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Wallet Exist", nil)];
+//        return;
+//    }
     
     [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Success", nil)];
     if (self.didFinishImportSub) {
         [self.didFinishImportSub sendNext:@""];
     }else{
+        [TKFileManager saveValue:@(ApexWalletType_Eth) forKey:KglobleWalletType];
         [[self topViewController].navigationController popViewControllerAnimated:YES];
     }
 }

@@ -125,8 +125,13 @@ singleM(DataBase);
     [self.db close];
 }
 
+- (void)setTransferDuringConfirmation:(NSString*)txid address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager{
+    [self.db open];
+    [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",[self encodeAddress:address manager:manager]],@(ApexTransferStatus_Progressing),txid];
+    [self.db close];
+}
 
-- (void)setTransferFail:(NSString*)txid address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager;{
+- (void)setTransferFail:(NSString*)txid address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager{
     [self.db open];
     [self.db executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET state = ?  WHERE txid = ? ",[self encodeAddress:address manager:manager]],@(ApexTransferStatus_Failed),txid];
     [self.db close];

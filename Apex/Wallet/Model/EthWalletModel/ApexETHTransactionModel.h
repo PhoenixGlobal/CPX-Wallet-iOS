@@ -27,7 +27,7 @@
 @interface ApexETHReceiptModel: NSObject /* 交易收据 交易上链后才会有返回*/
 @property (nonatomic, strong) NSString *transactionHash; /**<  */
 @property (nonatomic, strong) NSString *transactionIndex; /**<  */
-@property (nonatomic, strong) NSString *blockNumber; /**< hex */
+@property (nonatomic, strong) NSString *blockNumber; /**< decimal */
 @property (nonatomic, strong) NSString *blockHash; /**<  */
 @property (nonatomic, strong) NSString *cumulativeGasUsed; /**< The total amount of gas used when this transaction was executed in the block. */
 @property (nonatomic, strong) NSString *gasUsed; /**< The amount of gas used by this specific transaction alone */

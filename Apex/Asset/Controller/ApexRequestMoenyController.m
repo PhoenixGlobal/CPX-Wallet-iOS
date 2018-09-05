@@ -151,4 +151,8 @@
     }
     return _backBtn;
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
 @end

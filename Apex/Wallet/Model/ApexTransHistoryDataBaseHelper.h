@@ -80,6 +80,7 @@ singleH(DataBase);
 
 - (void)setTransferFail:(NSString*)txid address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager;
 
+- (void)setTransferDuringConfirmation:(NSString*)txid address:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager;
 /**
 获取地址对应的表名
  */

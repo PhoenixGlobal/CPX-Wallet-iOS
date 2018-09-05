@@ -74,7 +74,7 @@
                     <rect key="frame" x="15" y="300.5" width="345" height="150"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="150" id="Le3-Nr-3hc"/>
+                        <constraint firstAttribute="height" priority="750" constant="150" id="Le3-Nr-3hc"/>
                     </constraints>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -113,6 +113,7 @@
                 <constraint firstItem="Fcr-8b-8WL" firstAttribute="leading" secondItem="mkW-da-bDY" secondAttribute="leading" id="rXh-IG-UPv"/>
                 <constraint firstItem="mkW-da-bDY" firstAttribute="top" secondItem="jOA-VA-35F" secondAttribute="bottom" constant="20" id="wWz-aB-CL4"/>
                 <constraint firstItem="jOA-VA-35F" firstAttribute="leading" secondItem="VMU-P6-dBX" secondAttribute="leading" id="yXf-6O-WNG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GeD-5D-bhg" secondAttribute="bottom" constant="15" id="yv0-Bo-sym"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jOA-VA-35F" secondAttribute="trailing" constant="15" id="z8o-WV-ggP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
