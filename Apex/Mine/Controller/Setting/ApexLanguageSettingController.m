@@ -38,10 +38,16 @@
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
