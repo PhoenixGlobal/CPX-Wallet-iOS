@@ -46,12 +46,15 @@
                        "</html>",self.html];
     [self.webView loadHTMLString:htmls baseURL:[NSURL fileURLWithPath: [[NSBundle mainBundle]  bundlePath]]];
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self.navigationController lt_setBackgroundColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }

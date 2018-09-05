@@ -31,6 +31,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     if (self.type == ApexWalletType_Neo) {
         [self prepareNeoData];
     }else{
@@ -45,6 +46,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 
