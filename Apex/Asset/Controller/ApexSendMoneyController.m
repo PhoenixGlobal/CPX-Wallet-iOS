@@ -167,6 +167,8 @@
         [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
     }else if(self.viewModel.currentEthNumber.floatValue < self.gasSlider.value){
         [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
+    }else if (NeomobileDecodeAddress(_toAddressTF.text, nil) == nil){
+        [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
     }else{
         //输入密码
         [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress walletManager:self.walletManager subTitle:@"" Success:^(id wallet) {

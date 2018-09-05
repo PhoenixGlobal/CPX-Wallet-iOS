@@ -73,8 +73,6 @@ static ETHTransferHistoryManager *_instance;
     }
 }
 
-
-
 #pragma mark - ------增-----
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString *)walletAddress {
     [[ApexTransHistoryDataBaseHelper shareDataBase] addTransferHistory:model forWallet:walletAddress manager:self];
@@ -114,13 +112,7 @@ static ETHTransferHistoryManager *_instance;
 
 
 #pragma mark - tool
-- (NSString*)encodeAddress:(NSString*)address{
-    if ([address hasPrefix:@"0x"]) {
-        return [NSString MD5String:address salt:@"ETH"];
-    }else{
-        return address;
-    }
-}
+
 
 #pragma mark - request
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString *)address txModel:(ApexTransferModel *)model {

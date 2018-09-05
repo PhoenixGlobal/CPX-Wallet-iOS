@@ -177,7 +177,6 @@
     }
 }
 
-
 - (void)getTotalAmountOfNep5
 {
     NSMutableArray *addressArray = [NSMutableArray new];
