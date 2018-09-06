@@ -35,7 +35,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkW-da-bDY">
-                    <rect key="frame" x="15" y="115" width="104.5" height="18.5"/>
+                    <rect key="frame" x="15" y="110" width="104.5" height="18.5"/>
                     <attributedString key="attributedText">
                         <fragment content="请勿使用网络传输">
                             <attributes>
@@ -47,13 +47,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请勿通过网络工具传输Keystore文件，一旦被黑客获取将造成不可挽回的资产损失。建议离线设备通过二维码方式传输。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZw-7m-c91">
-                    <rect key="frame" x="15" y="143.5" width="345" height="47"/>
+                    <rect key="frame" x="15" y="138.5" width="345" height="47"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcr-8b-8WL">
-                    <rect key="frame" x="15" y="210.5" width="91.5" height="18.5"/>
+                    <rect key="frame" x="15" y="200.5" width="91.5" height="18.5"/>
                     <attributedString key="attributedText">
                         <fragment content="密码保险箱保存">
                             <attributes>
@@ -65,13 +65,16 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如需在线保存，则建议使用安全等级更高的1Password等密码保管软件保存Keystore。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUv-UT-8CI">
-                    <rect key="frame" x="15" y="239" width="345" height="31.5"/>
+                    <rect key="frame" x="15" y="229" width="345" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="tRm-4c-EwG"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jRF-In-g5b">
-                    <rect key="frame" x="15" y="300.5" width="345" height="150"/>
+                    <rect key="frame" x="15" y="284" width="345" height="150"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="750" constant="150" id="Le3-Nr-3hc"/>
@@ -81,8 +84,8 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeD-5D-bhg">
-                    <rect key="frame" x="34.5" y="480.5" width="305" height="40"/>
-                    <color key="backgroundColor" red="0.29803921570000003" green="0.5568627451" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="34.5" y="459" width="305" height="40"/>
+                    <color key="backgroundColor" red="0.070588235289999995" green="0.32549019610000002" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="305" id="DHd-N8-A50"/>
                         <constraint firstAttribute="height" constant="40" id="oeR-4n-BeH"/>
@@ -99,21 +102,22 @@
                 <constraint firstItem="GeD-5D-bhg" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Anc-4g-Wph"/>
                 <constraint firstItem="VMU-P6-dBX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="BJT-2H-yZ1"/>
                 <constraint firstItem="QUv-UT-8CI" firstAttribute="top" secondItem="Fcr-8b-8WL" secondAttribute="bottom" constant="10" id="Rf0-UQ-azM"/>
-                <constraint firstItem="Fcr-8b-8WL" firstAttribute="top" secondItem="DZw-7m-c91" secondAttribute="bottom" constant="20" id="Rs3-Qn-8WT"/>
+                <constraint firstItem="Fcr-8b-8WL" firstAttribute="top" secondItem="DZw-7m-c91" secondAttribute="bottom" constant="15" id="Rs3-Qn-8WT"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DZw-7m-c91" secondAttribute="trailing" constant="15" id="XTR-nJ-Ide"/>
                 <constraint firstItem="QUv-UT-8CI" firstAttribute="leading" secondItem="Fcr-8b-8WL" secondAttribute="leading" id="bh0-gd-GwD"/>
                 <constraint firstItem="mkW-da-bDY" firstAttribute="leading" secondItem="VMU-P6-dBX" secondAttribute="leading" id="bmh-HC-AKv"/>
                 <constraint firstItem="VMU-P6-dBX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="c3j-4f-bXE"/>
+                <constraint firstItem="jRF-In-g5b" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QUv-UT-8CI" secondAttribute="bottom" constant="10" id="cKz-gz-oX9"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QUv-UT-8CI" secondAttribute="trailing" constant="15" id="dBk-hU-oSW"/>
-                <constraint firstItem="GeD-5D-bhg" firstAttribute="top" secondItem="jRF-In-g5b" secondAttribute="bottom" constant="30" id="eve-Z0-sGh"/>
+                <constraint firstItem="GeD-5D-bhg" firstAttribute="top" secondItem="jRF-In-g5b" secondAttribute="bottom" constant="25" id="eve-Z0-sGh"/>
                 <constraint firstItem="DZw-7m-c91" firstAttribute="leading" secondItem="mkW-da-bDY" secondAttribute="leading" id="h0U-rG-rZr"/>
                 <constraint firstItem="jOA-VA-35F" firstAttribute="top" secondItem="VMU-P6-dBX" secondAttribute="bottom" constant="10" id="hBz-8g-Y9P"/>
-                <constraint firstItem="jRF-In-g5b" firstAttribute="top" secondItem="QUv-UT-8CI" secondAttribute="bottom" constant="30" id="hfF-P8-59Y"/>
+                <constraint firstItem="jRF-In-g5b" firstAttribute="top" secondItem="QUv-UT-8CI" secondAttribute="bottom" priority="750" constant="20" id="hfF-P8-59Y"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jRF-In-g5b" secondAttribute="trailing" constant="15" id="oxJ-YS-ARD"/>
                 <constraint firstItem="Fcr-8b-8WL" firstAttribute="leading" secondItem="mkW-da-bDY" secondAttribute="leading" id="rXh-IG-UPv"/>
-                <constraint firstItem="mkW-da-bDY" firstAttribute="top" secondItem="jOA-VA-35F" secondAttribute="bottom" constant="20" id="wWz-aB-CL4"/>
+                <constraint firstItem="mkW-da-bDY" firstAttribute="top" secondItem="jOA-VA-35F" secondAttribute="bottom" constant="15" id="wWz-aB-CL4"/>
                 <constraint firstItem="jOA-VA-35F" firstAttribute="leading" secondItem="VMU-P6-dBX" secondAttribute="leading" id="yXf-6O-WNG"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GeD-5D-bhg" secondAttribute="bottom" constant="15" id="yv0-Bo-sym"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GeD-5D-bhg" secondAttribute="bottom" constant="10" id="yv0-Bo-sym"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jOA-VA-35F" secondAttribute="trailing" constant="15" id="z8o-WV-ggP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
