@@ -34,5 +34,6 @@
 //用户在打开钱包时进行历史记录的更新
 - (void)secreteUpdateUserTransactionHistoryAddress:(NSString*)address;
 
+//请求钱包交易历史
 - (void)requestTxHistoryForAddress:(NSString*)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure;
 @end

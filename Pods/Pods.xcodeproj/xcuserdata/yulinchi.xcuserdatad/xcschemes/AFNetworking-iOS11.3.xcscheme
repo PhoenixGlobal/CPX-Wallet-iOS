@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "574E6452AA64B5E664F33A62CBCCD5C6"
-               BlueprintName = "SDWebImage"
+               BlueprintIdentifier = "A899726F02C91D55E1596E15249BB226"
+               BlueprintName = "AFNetworking-iOS11.3"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libSDWebImage.a">
+               BuildableName = "libAFNetworking-iOS11.3.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

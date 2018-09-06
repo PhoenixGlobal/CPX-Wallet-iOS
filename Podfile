@@ -20,3 +20,14 @@ target 'Apex' do
   #pod 'FMDB/SQLCipher'
   # Pods for Apex
 end
+
+
+target 'ApexTests' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+  pod 'AFJSONRPCClient', '~> 2.1'
+  pod 'AFNetworking', '~> 2.4'
+  pod 'FMDB'
+  #pod 'FMDB/SQLCipher'
+  # Pods for Apex
+end

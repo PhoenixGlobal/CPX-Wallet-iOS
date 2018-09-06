@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		209793D5EAE1A26E49247C19 /* libPods-ApexTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F908D36AAECD0B3350B0D54 /* libPods-ApexTests.a */; };
 		58DFBEA1213527B300E8D88A /* ApexEncourageActivitysModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBE9A213527B300E8D88A /* ApexEncourageActivitysModel.m */; };
 		58DFBEA2213527B300E8D88A /* ApexRewardListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBE9D213527B300E8D88A /* ApexRewardListTableViewCell.m */; };
 		58DFBEA3213527B300E8D88A /* ApexEncourageSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBEA0213527B300E8D88A /* ApexEncourageSubmitCell.m */; };
@@ -225,6 +226,7 @@
 
 /* Begin PBXFileReference section */
 		2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.release.xcconfig"; sourceTree = "<group>"; };
+		424BA456A3A13F1EFA3C76CA /* Pods-ApexTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApexTests/Pods-ApexTests.debug.xcconfig"; sourceTree = "<group>"; };
 		58DFBE9A213527B300E8D88A /* ApexEncourageActivitysModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageActivitysModel.m; sourceTree = "<group>"; };
 		58DFBE9B213527B300E8D88A /* ApexEncourageActivitysModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexEncourageActivitysModel.h; sourceTree = "<group>"; };
 		58DFBE9D213527B300E8D88A /* ApexRewardListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexRewardListTableViewCell.m; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		58DFBEA821354F2E00E8D88A /* ApexEncourageSubmitFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageSubmitFooterView.m; sourceTree = "<group>"; };
 		58E9896F212FF80300D2244D /* ApexEncourageSubmitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEncourageSubmitViewController.h; sourceTree = "<group>"; };
 		58E98970212FF80300D2244D /* ApexEncourageSubmitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageSubmitViewController.m; sourceTree = "<group>"; };
+		5F908D36AAECD0B3350B0D54 /* libPods-ApexTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ApexTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.debug.xcconfig"; sourceTree = "<group>"; };
 		A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E324311420DCC14700284B91 /* ApexTransferHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferHistoryManager.h; sourceTree = "<group>"; };
@@ -507,6 +510,7 @@
 		E3CE66D120BFC9A4002A1E07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3CE66D720C4E29E002A1E07 /* ApexAssetMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetMainController.h; sourceTree = "<group>"; };
 		E3CE66D820C4E29E002A1E07 /* ApexAssetMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetMainController.m; sourceTree = "<group>"; };
+		E584BE76A4182337E7FF1E7C /* Pods-ApexTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApexTests/Pods-ApexTests.release.xcconfig"; sourceTree = "<group>"; };
 		E70392FD211D539600BA3CDB /* ETHWalletManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETHWalletManager.h; sourceTree = "<group>"; };
 		E70392FE211D539700BA3CDB /* ETHWalletManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETHWalletManager.m; sourceTree = "<group>"; };
 		E7039300211D53A200BA3CDB /* NSString+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tool.m"; sourceTree = "<group>"; };
@@ -620,6 +624,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				209793D5EAE1A26E49247C19 /* libPods-ApexTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +635,7 @@
 			isa = PBXGroup;
 			children = (
 				A94A6EE69BC3AB4EF7FD8502 /* libPods-Apex.a */,
+				5F908D36AAECD0B3350B0D54 /* libPods-ApexTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -661,6 +667,8 @@
 			children = (
 				8934F24832DF63B135520105 /* Pods-Apex.debug.xcconfig */,
 				2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */,
+				424BA456A3A13F1EFA3C76CA /* Pods-ApexTests.debug.xcconfig */,
+				E584BE76A4182337E7FF1E7C /* Pods-ApexTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1468,9 +1476,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3CE66D420BFC9A4002A1E07 /* Build configuration list for PBXNativeTarget "ApexTests" */;
 			buildPhases = (
+				F3B8A6B7DD483A883EBCE8C4 /* [CP] Check Pods Manifest.lock */,
 				E3CE66C920BFC9A4002A1E07 /* Sources */,
 				E3CE66CA20BFC9A4002A1E07 /* Frameworks */,
 				E3CE66CB20BFC9A4002A1E07 /* Resources */,
+				DE00918FCD1CD27840507DF2 /* [CP] Embed Pods Frameworks */,
+				D1F1F73AC2680FB3048B1474 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1667,6 +1678,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Apex/Pods-Apex-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1F1F73AC2680FB3048B1474 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ApexTests/Pods-ApexTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE00918FCD1CD27840507DF2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ApexTests/Pods-ApexTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3B8A6B7DD483A883EBCE8C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ApexTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1912,11 +1971,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				INFOPLIST_FILE = ApexUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chinapex.-WalletManager.ApexUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1930,11 +1985,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				INFOPLIST_FILE = ApexUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.chinapex.-WalletManager.ApexUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2078,10 +2129,7 @@
 				);
 				INFOPLIST_FILE = Apex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2117,10 +2165,7 @@
 				);
 				INFOPLIST_FILE = Apex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.Apex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2133,16 +2178,13 @@
 		};
 		E3CE66D520BFC9A4002A1E07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 424BA456A3A13F1EFA3C76CA /* Pods-ApexTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				INFOPLIST_FILE = ApexTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.ApexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2152,16 +2194,13 @@
 		};
 		E3CE66D620BFC9A4002A1E07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E584BE76A4182337E7FF1E7C /* Pods-ApexTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
 				INFOPLIST_FILE = ApexTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chinapex.ApexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

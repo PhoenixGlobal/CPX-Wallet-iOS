@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "574E6452AA64B5E664F33A62CBCCD5C6"
-               BlueprintName = "SDWebImage"
+               BlueprintIdentifier = "4D26AF0AADAE04ACC94123E2EF9F38AB"
+               BlueprintName = "FMDB-iOS11.3"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libSDWebImage.a">
+               BuildableName = "libFMDB-iOS11.3.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

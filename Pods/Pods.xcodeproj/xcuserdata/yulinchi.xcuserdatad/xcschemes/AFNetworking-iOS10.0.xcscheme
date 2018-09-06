@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B694CE1CB2671313956EDA4BDF50AE1B"
-               BlueprintName = "AFJSONRPCClient"
+               BlueprintIdentifier = "A0CDAE6DAECA113CA35B7D5895FC38C1"
+               BlueprintName = "AFNetworking-iOS10.0"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libAFJSONRPCClient.a">
+               BuildableName = "libAFNetworking-iOS10.0.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
