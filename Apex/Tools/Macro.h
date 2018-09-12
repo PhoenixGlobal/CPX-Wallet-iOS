@@ -22,7 +22,6 @@
 #define assetId_Eth @"0x0000000000000000000000000000000000000000"
 
 #define assetID_Test_Erc20 @"0xc7773e07adb2642a1eb03c5e340430b6cedc2aa9"
-#define assetID_Test_Erc20_2 @"0xc7773e07adb2642a1eb03c5e340430b6cedc2222"
 
 #define UserDefaultsIdentifier @"com.chinapex.apex"
 #define isFirstOpenApp @"isFirstOpenApp"
@@ -48,7 +47,7 @@
 #define baseUrl_cli_main @"https://tracker.chinapex.com.cn/neo-cli/"
 
 //eth
-#define ETH_baseUrl_cli_test @"http://42.159.95.191:8545"
+#define ETH_baseUrl_cli_test @"http://tmp.chinapex.com.cn/wallets/eth-api/"
 //#define ETH_baseUrl_cli_test @"http://139.219.9.137:8545"
 
 #define neo_assetid @"0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"

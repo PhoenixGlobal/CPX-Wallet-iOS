@@ -63,17 +63,19 @@
     return arr;
 }
 
+
+//https://tracker.chinapex.com.cn/tool/test/eth-assets 
 + (void)requestAssetlistSuccess:(successfulBlock)success fail:(failureBlock)failBlock{
-    [CYLNetWorkManager GET:@"assets" CachePolicy:CYLNetWorkCachePolicy_DoNotCache activePeriod:0 parameter:@{} success:^(CYLResponse *response) {
-//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
-//        NSArray *result = dict[@"result"];
+    [CYLNetWorkManager GET:@"test/eth-assets" CachePolicy:CYLNetWorkCachePolicy_DoNotCache activePeriod:0 parameter:@{} success:^(CYLResponse *response) {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+        NSArray *result = dict[@"data"];
         NSMutableArray *temp = [NSMutableArray array];
-//        for (NSDictionary *dic in result) {
-//            ApexAssetModel *model = [ApexAssetModel yy_modelWithDictionary:dic];
-//            if ([model.type isEqualToString:@"NEP5"] || [model.hex_hash isEqualToString:assetId_Neo] || [model.hex_hash isEqualToString:assetId_NeoGas]) {
-//                [temp addObject:model];
-//            }
-//        }
+        for (NSDictionary *dic in result) {
+            ApexAssetModel *model = [ApexAssetModel yy_modelWithDictionary:dic];
+            if (![model.symbol isEqualToString:@"ETH"]) {
+                [temp addObject:model];
+            }
+        }
 #warning fake data
         ApexAssetModel *model1 = [ApexAssetModel new];
         model1.hex_hash = assetID_Test_Erc20;
@@ -81,13 +83,6 @@
         model1.name = @"test1";
         model1.symbol  = @"test1";
         [temp addObject:model1];
-        
-        ApexAssetModel *model2 = [ApexAssetModel new];
-        model2.hex_hash = assetID_Test_Erc20_2;
-        model2.precision = @"18";
-        model2.name = @"test2";
-        model2.symbol  = @"test2";
-        [temp addObject:model2];
 
         [TKFileManager saveData:temp withFileName:KETHAssetModelListKey];
         response.returnObj = temp;

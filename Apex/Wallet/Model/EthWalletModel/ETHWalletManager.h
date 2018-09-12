@@ -61,6 +61,8 @@ singleH(Manager);
                               success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+//获取当前的gas价格
++ (void)getCurrentGasPrice:(void (^)(NSString *gasPriceInWei))successBlock fail:(void (^)(NSError *error))failBlock;
 //估算交易需要gas
 //+ (void)requestERC20TransferGasNeeded:(NSString*)contract to:(NSString*)to value:(NSString*)valueNoDecimal
 //                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success

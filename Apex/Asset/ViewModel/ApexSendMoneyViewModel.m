@@ -211,4 +211,10 @@
         self.currentEthNumber = @"0";
     }];
 }
+
+
+- (void)getCurrentGasPrice:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock{
+    //{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":73}
+    [ETHWalletManager getCurrentGasPrice:successBlock fail:failBlock];
+}
 @end

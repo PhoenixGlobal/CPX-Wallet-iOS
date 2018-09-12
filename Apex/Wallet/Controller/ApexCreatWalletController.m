@@ -48,9 +48,9 @@
     [self handleEvent];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-//    [_walletNameL becomeFirstResponder];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
 }
 
 

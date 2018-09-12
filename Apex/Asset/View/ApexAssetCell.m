@@ -88,7 +88,12 @@
         _mappignBtn.hidden = YES;
         _assetNameL.text = assetModel.symbol;
         _assetNameLTwo.text = @"";
-        _assetIcon.image = ETHPlaceHolder;
+        
+        [_assetIcon sd_setImageWithURL:[NSURL URLWithString:assetModel.image_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (!image) {
+                _assetIcon.image = ETHPlaceHolder;
+            }
+        }];
     }
 }
 @end

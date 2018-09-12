@@ -111,6 +111,8 @@
 "fast" = "Fast";
 "gainNonceFail" = "Request Nonce Failed";
 "insufficentGas" = "Insufficent gas";
+"currentGasPrice" = "Current GasPrice:";
+"Totla" = "Gas Fee:";
 
 //Reward
 "Reward" = "Reward";

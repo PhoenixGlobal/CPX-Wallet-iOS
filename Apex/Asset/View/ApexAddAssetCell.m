@@ -7,6 +7,7 @@
 //
 
 #import "ApexAddAssetCell.h"
+#import <UIImageView+WebCache.h>
 @interface ApexAddAssetCell()
 @property (weak, nonatomic) IBOutlet UIImageView *IconIV;
 @property (weak, nonatomic) IBOutlet UILabel *symbolL;
@@ -44,11 +45,22 @@
         _typeL.text = [NSString stringWithFormat:@"%@",model.name];
     }
     
-    UIImage *image = [UIImage imageNamed:model.hex_hash inBundle:[ApexAssetModelManage resourceBundle] compatibleWithTraitCollection:nil];
-    if (!image) {
-        image = NEOPlaceHolder;
+    NSURL *url = [NSURL URLWithString:model.image_url];
+    if (url) {
+        if ([model.type isEqualToString:@"ERC20"]) {
+            [_IconIV sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (!image) {
+                    _IconIV.image = ETHPlaceHolder;
+                }
+            }];
+        }else {
+            UIImage *image = [UIImage imageNamed:model.hex_hash inBundle:[ApexAssetModelManage resourceBundle] compatibleWithTraitCollection:nil];
+            if (!image) {
+                image = NEOPlaceHolder;
+            }
+            _IconIV.image = image;
+        }
     }
-    _IconIV.image = image;
 }
 
 @end

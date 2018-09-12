@@ -103,6 +103,8 @@
 "fast" = "快";
 "gainNonceFail" = "获取nonce失败";
 "insufficentGas" = "余额不足以支付gas";
+"currentGasPrice" = "当前gas单价:";
+"Totla" = "总计gas价格:";
 
 //Reward
 "Reward" = "激励";

@@ -1500,6 +1500,9 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Apex;
+				KnownAssetTags = (
+					New,
+				);
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Gary;
 				TargetAttributes = {
@@ -2197,6 +2200,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Apex",
+				);
 				INFOPLIST_FILE = ApexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2217,6 +2224,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WU6NZ66PC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Apex",
+				);
 				INFOPLIST_FILE = ApexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -54,20 +54,6 @@ singleM(Manager);
     Eth.asset = assetId_Eth;
     Eth.value = @"0";
     [arr addObject:Eth];
-    
-    //test erc20
-    BalanceObject *nmb = [[BalanceObject alloc] init];
-    nmb.asset = assetID_Test_Erc20;
-    nmb.value = @"0";
-    nmb.gas = @"90000";
-    [arr addObject:nmb];
-    
-    BalanceObject *nmb1 = [[BalanceObject alloc] init];
-    nmb1.asset = assetID_Test_Erc20_2;
-    nmb1.value = @"0";
-    nmb1.gas = @"90000";
-    [arr addObject:nmb1];
-    
     return arr;
 }
 
@@ -203,7 +189,7 @@ singleM(Manager);
         model.name = @"ETH";
     }else{
         for (ApexAssetModel *assModel in [ETHAssetModelManage getLocalAssetModelsArr]) {
-            if ([model.hex_hash isEqualToString:balanceObj.asset]) {
+            if ([balanceObj.asset isEqualToString:assModel.hex_hash]) {
                 model = assModel;
             }
         }
@@ -215,12 +201,14 @@ singleM(Manager);
 + (void)sendTxWithWallet:(EthmobileWallet*)wallet to:(NSString*)to nonce:(NSString*)nonce amount:(NSString*)amount gas:(NSString*)gas
                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    //金额转换
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
     NSDecimalNumber *transferDecimal = [amountDecimal decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithMantissa:1 exponent:18 isNegative:NO]];
     NSString *amountTrans = [NSString stringWithFormat:@"0x%@", [SystemConvert decimalStringToHex:transferDecimal.stringValue]];
-    NSString *gasStr = [NSString DecimalFuncWithOperatorType:3 first:gas secend:@"90000" value:18];
-    gasStr = [NSString DecimalFuncWithOperatorType:2 first:gasStr secend:@"1000000000000000000" value:0];
-    NSString * gasPrice = [SystemConvert decimalToHex:gasStr.integerValue];
+    //gas计算
+//    NSString *gasStr = [NSString DecimalFuncWithOperatorType:3 first:gas secend:@"90000" value:18];
+    gas = [NSString DecimalFuncWithOperatorType:2 first:gas secend:@"1000000000" value:0];
+    NSString * gasPrice = [SystemConvert decimalToHex:gas.integerValue];
     gasPrice = [NSString stringWithFormat:@"0x%@", [gasPrice lowercaseString]];
     
     NSString *gasLimits = @"0x15f90";
@@ -249,8 +237,9 @@ singleM(Manager);
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
     NSDecimalNumber *transferDecimal = [amountDecimal decimalNumberByMultiplyingByPowerOf10:assetModel.precision.integerValue];
     NSString *transferStr = [NSString stringWithFormat:@"0x%@",[SystemConvert decimalStringToHex:transferDecimal.stringValue]];
-    NSString *gasStr = [NSString DecimalFuncWithOperatorType:2 first:gas secend:@"1000000000000000000" value:10];
-    gasStr = [NSString DecimalFuncWithOperatorType:3 first:gasStr secend:@"90000" value:8];
+    
+    NSString *gasStr = [NSString DecimalFuncWithOperatorType:2 first:gas secend:@"1000000000" value:10];
+//    gasStr = [NSString DecimalFuncWithOperatorType:3 first:gasStr secend:@"90000" value:8];
     gasStr = [NSString stringWithFormat:@"0x%@",[SystemConvert decimalToHex:gasStr.integerValue]];
     NSString *gasLimits = @"0x15f90";
     NSError *err = nil;
@@ -305,7 +294,6 @@ singleM(Manager);
             failure(operation,error);
         }
     }];
-    
 }
 
 
@@ -440,5 +428,20 @@ singleM(Manager);
         }
     }];
     
+}
+
++ (void)getCurrentGasPrice:(void (^)(NSString *))successBlock fail:(void (^)(NSError *))failBlock{
+    //{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":73}
+    [[ApexETHClient shareRPCClient] invokeMethod:@"eth_gasPrice" withParameters:@[] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (successBlock) {
+            NSString *decimalValue = [SystemConvert hexToDecimal:responseObject];
+            decimalValue = [NSString DecimalFuncWithOperatorType:3 first:decimalValue secend:@"1000000000" value:0];
+            successBlock(decimalValue);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failBlock) {
+            failBlock(error);
+        }
+    }];
 }
 @end

@@ -44,6 +44,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *gasPriceL;
 @property (weak, nonatomic) IBOutlet UILabel *slowL;
 @property (weak, nonatomic) IBOutlet UILabel *fastL;
+@property (weak, nonatomic) IBOutlet UILabel *currentGasPriceL;
+@property (weak, nonatomic) IBOutlet UILabel *currentGasPriceTitle;
+@property (weak, nonatomic) IBOutlet UILabel *totalETHL;
+@property (weak, nonatomic) IBOutlet UILabel *TotalEthTitle;
 
 
 @end
@@ -55,6 +59,8 @@
     [super viewDidLoad];
     
     [self setUI];
+    
+    [self request];
     
     [self handleEvent];
     
@@ -96,6 +102,8 @@
     self.sendBtn.layer.cornerRadius = 6;
     self.unitL.text = [self.balanceModel getRelativeNeoAssetModel].symbol;
     
+    self.currentGasPriceTitle.text = SOLocalizedStringFromTable(@"currentGasPrice", nil);
+    self.TotalEthTitle.text = SOLocalizedStringFromTable(@"Total", nil);
     self.slowL.text = SOLocalizedStringFromTable(@"slow", nil);
     self.fastL.text = SOLocalizedStringFromTable(@"fast", nil);
     self.toAddressTF.placeholder = SOLocalizedStringFromTable(@"SendMoneyAddress", nil);
@@ -118,19 +126,19 @@
     
     [self.takeAllBtn setTitle:SOLocalizedStringFromTable(@"allMoney", nil) forState:UIControlStateNormal];
     
-    //计算gas费用
-    NSString *minValue = [NSString DecimalFuncWithOperatorType:2 first:@"25200000000000" secend:[_balanceModel.asset isEqualToString:assetId_Eth] ? @"90000" : _balanceModel.gas value:8];
-    minValue = [NSString DecimalFuncWithOperatorType:3 first:minValue secend:@"21000" value:8];
-    minValue = [NSString DecimalFuncWithOperatorType:3 first:minValue secend:@"1000000000000000000" value:8];
+//    //计算gas费用
+//    NSString *minValue = [NSString DecimalFuncWithOperatorType:2 first:@"25200000000000" secend:[_balanceModel.asset isEqualToString:assetId_Eth] ? @"90000" : _balanceModel.gas value:8];
+//    minValue = [NSString DecimalFuncWithOperatorType:3 first:minValue secend:@"21000" value:8];
+//    minValue = [NSString DecimalFuncWithOperatorType:3 first:minValue secend:@"1000000000000000000" value:8];
+//
+//    NSString *maxValue = [NSString DecimalFuncWithOperatorType:2 first:@"2520120000000000" secend:[_balanceModel.asset isEqualToString:assetId_Eth] ? @"90000" : _balanceModel.gas value:8];
+//    maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"21000"  value:8];
+//    maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"1000000000000000000" value:8];
     
-    NSString *maxValue = [NSString DecimalFuncWithOperatorType:2 first:@"2520120000000000" secend:[_balanceModel.asset isEqualToString:assetId_Eth] ? @"90000" : _balanceModel.gas value:8];
-    maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"21000"  value:8];
-    maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"1000000000000000000" value:8];
+    self.gasSlider.minimumValue = 0.1;
+    self.gasSlider.maximumValue = 32;
+    self.gasSlider.value = 0;
     
-    self.gasSlider.minimumValue = minValue.doubleValue;
-    self.gasSlider.maximumValue = maxValue.doubleValue;
-    self.gasSlider.value = minValue.doubleValue;
-    self.viewModel.gasSliderValue = minValue;
     [self.viewModel updateEthValue];
 
     //区分类型
@@ -144,6 +152,17 @@
     }
     self.viewModel.historyManager = _historyManager;
     
+}
+
+- (void)request{
+    [self.viewModel getCurrentGasPrice:^(NSString *gasPriceInGWei) {
+        self.currentGasPriceL.text = [NSString stringWithFormat:@"%.2f", gasPriceInGWei.floatValue];
+        self.gasSlider.value = [NSString stringWithFormat:@"%.2f",gasPriceInGWei.floatValue].floatValue;
+        self.viewModel.gasSliderValue = @(self.gasSlider.value).stringValue;
+        [self sliderValueChanged:self.gasSlider];
+    } fail:^(NSError *error) {
+        
+    }];
 }
 #pragma mark - ------public------
 
@@ -168,8 +187,11 @@
 }
 
 - (IBAction)sliderValueChanged:(id)sender {
-    self.gasPriceL.text = [NSString stringWithFormat:@"%.8lf ether", _gasSlider.value];
-    self.viewModel.gasSliderValue = self.gasPriceL.text;
+    self.gasPriceL.text = [NSString stringWithFormat:@"%.2lf Gwei", _gasSlider.value];
+    NSString *total = [NSString DecimalFuncWithOperatorType:2 first:@(_gasSlider.value).stringValue secend:@"90000" value:0];
+    total = [NSString DecimalFuncWithOperatorType:3 first:total secend:@"1000000000" value:0];
+    self.totalETHL.text = [NSString stringWithFormat:@"%.11f",total.floatValue];
+    self.viewModel.gasSliderValue = @(self.gasSlider.value).stringValue;
 }
 
 
@@ -188,7 +210,7 @@
         [self showMessage:SOLocalizedStringFromTable(@"BalanceNotEnough", nil)];
     }else if ([_toAddressTF.text isEqualToString:_walletAddress]){
         [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
-    }else if(self.viewModel.currentEthNumber.floatValue < self.gasSlider.value){
+    }else if(self.viewModel.currentEthNumber.floatValue < self.totalETHL.text.floatValue){
         [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
     }else{
         //输入密码

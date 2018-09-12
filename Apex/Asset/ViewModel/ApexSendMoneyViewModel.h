@@ -30,4 +30,7 @@
 
 //跟新账户eth余额
 - (void)updateEthValue;
+
+//获取当前gas价格
+- (void)getCurrentGasPrice:(void (^)(NSString *gasPriceInGWei))successBlock fail:(void (^)(NSError *error))failBlock;
 @end

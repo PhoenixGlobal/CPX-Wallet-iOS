@@ -60,6 +60,7 @@
     [self.view addSubview:self.searchToolBar];
     [self.view addSubview:self.tableView];
     
+    
     [self.searchToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(NavBarHeight);
         make.left.equalTo(self.view).offset(15);
@@ -182,11 +183,21 @@
             }
         }else{
             NSMutableArray *temp = [NSMutableArray array];
-            for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
-                if ([model.symbol.lowercaseString hasPrefix:key.lowercaseString] && ![model.hex_hash isEqualToString:assetId_CPX] && ![model.hex_hash isEqualToString:assetId_Neo] && ![model.hex_hash isEqualToString:assetId_NeoGas]) {
-                    [temp addObject:model];
+            
+            if (self.type == ApexWalletType_Neo) {
+                for (ApexAssetModel *model in [ApexAssetModelManage getLocalAssetModelsArr]) {
+                    if ([model.symbol.lowercaseString hasPrefix:key.lowercaseString] && ![model.hex_hash isEqualToString:assetId_CPX] && ![model.hex_hash isEqualToString:assetId_Neo] && ![model.hex_hash isEqualToString:assetId_NeoGas]) {
+                        [temp addObject:model];
+                    }
+                }
+            }else{
+                for (ApexAssetModel *model in [ETHAssetModelManage getLocalAssetModelsArr]) {
+                    if ([model.symbol.lowercaseString hasPrefix:key.lowercaseString]) {
+                        [temp addObject:model];
+                    }
                 }
             }
+            
             self.contentArr = temp;
         }
         
