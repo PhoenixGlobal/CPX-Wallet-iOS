@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "快"; ObjectID = "5o1-Re-llt"; */
+"5o1-Re-llt.text" = "快";
+
+/* Class = "UILabel"; text = "Neo"; ObjectID = "7P1-rl-7hL"; */
+"7P1-rl-7hL.text" = "Neo";
+
+/* Class = "UILabel"; text = "慢"; ObjectID = "CjJ-DJ-cpb"; */
+"CjJ-DJ-cpb.text" = "慢";
+
+/* Class = "UIButton"; normalTitle = "发送"; ObjectID = "DBd-ND-UUb"; */
+"DBd-ND-UUb.normalTitle" = "发送";
+
+/* Class = "UILabel"; text = "To:"; ObjectID = "GGE-Fh-pDF"; */
+"GGE-Fh-pDF.text" = "To:";
+
+/* Class = "UIButton"; normalTitle = "全部"; ObjectID = "OaU-5H-ZwN"; */
+"OaU-5H-ZwN.normalTitle" = "全部";
+
+/* Class = "UILabel"; text = "交易金额（可用数量：0)"; ObjectID = "QyE-4w-qqN"; */
+"QyE-4w-qqN.text" = "交易金额（可用数量：0)";
+
+/* Class = "UILabel"; text = "0.00010800 ether"; ObjectID = "T11-kS-GRH"; */
+"T11-kS-GRH.text" = "0.00010800 ether";
+
+/* Class = "UITextField"; placeholder = "请输入转账地址"; ObjectID = "W34-dx-B05"; */
+"W34-dx-B05.placeholder" = "请输入转账地址";
+
+/* Class = "UITextField"; placeholder = "交易金额"; ObjectID = "etF-Lv-HfZ"; */
+"etF-Lv-HfZ.placeholder" = "交易金额";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kC6-Ra-Pzg"; */
+"kC6-Ra-Pzg.text" = "Label";
+
+/* Class = "UILabel"; text = "From:"; ObjectID = "wkU-ep-3OE"; */
+"wkU-ep-3OE.text" = "From:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zfT-F7-IJd"; */
+"zfT-F7-IJd.text" = "Label";

@@ -110,6 +110,8 @@
         arr = [ApexAssetModelManage getLocalAssetModelsArr];
     }else{
         arr = [ETHAssetModelManage getLocalAssetModelsArr];
+        NSString *assetName = @"ETH";
+        self.unitL.text = assetName;
     }
     for (ApexAssetModel *model in arr) {
         if ([model.hex_hash containsString:self.balanceModel.asset]) {

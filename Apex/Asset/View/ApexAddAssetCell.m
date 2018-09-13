@@ -47,7 +47,7 @@
     
     NSURL *url = [NSURL URLWithString:model.image_url];
     if (url) {
-        if ([model.type isEqualToString:@"ERC20"]) {
+        if ([model.type isEqualToString:@"Erc20"]) {
             [_IconIV sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 if (!image) {
                     _IconIV.image = ETHPlaceHolder;

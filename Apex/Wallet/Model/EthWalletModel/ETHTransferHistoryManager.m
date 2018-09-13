@@ -12,6 +12,8 @@
 #import "ApexETHTransactionModel.h"
 #import "ApexTransHistoryDataBaseHelper.h"
 #import "ETHTxStatusManager.h"
+#import <AFNetworking.h>
+#import "ETHTransferModel.h"
 
 #define timerInterval 10.0
 #define confirmHeight 3
@@ -158,9 +160,9 @@ static ETHTransferHistoryManager *_instance;
     [aTimer fire];
 }
 
-
+//暂用:http://api.etherscan.io/api?module=account&action=txlist&address=0x779851eC5FcACe69d2aE3ce744827E7bE847af06&startblock=0&endblock=99999999&sort=asc&apikey=YourApiKeyToken
 - (void)requestTxHistoryForAddress:(NSString *)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure {
-    
+
 }
 
 - (void)secreteUpdateUserTransactionHistoryAddress:(NSString *)address {

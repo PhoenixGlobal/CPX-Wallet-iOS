@@ -190,6 +190,7 @@
 		E73934B92109BBD8007953FB /* commonQuest_en.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934B82109BBD8007953FB /* commonQuest_en.json */; };
 		E73934BB2109BBE9007953FB /* specialQuest_en.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934BA2109BBE9007953FB /* specialQuest_en.json */; };
 		E739358B212E5232007F61AC /* ApexEncourageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E739358A212E5232007F61AC /* ApexEncourageController.m */; };
+		E7C35515214A2DE100D5DFCE /* ETHTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C35514214A2DE100D5DFCE /* ETHTransferModel.m */; };
 		E7C68C0B2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C68C0A2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m */; };
 		E7C68C0E2138DCD10009B2A2 /* NSString+Encypte.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C68C0D2138DCD10009B2A2 /* NSString+Encypte.m */; };
 		E7C68C14213FB5050009B2A2 /* ETHTxStatusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C68C13213FB5050009B2A2 /* ETHTxStatusManager.m */; };
@@ -529,7 +530,6 @@
 		E70393162123C3C000BA3CDB /* ApexTransHistoryProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransHistoryProtocal.h; sourceTree = "<group>"; };
 		E70393172123C52200BA3CDB /* ETHTransferHistoryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHTransferHistoryManager.h; sourceTree = "<group>"; };
 		E70393182123C52200BA3CDB /* ETHTransferHistoryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHTransferHistoryManager.m; sourceTree = "<group>"; };
-		E703931B212AC95200BA3CDB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ApexSendMoneyController.xib"; sourceTree = "<group>"; };
 		E72CE80821339EB9008EEDF6 /* ApexCopyLable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexCopyLable.h; sourceTree = "<group>"; };
 		E72CE80921339EB9008EEDF6 /* ApexCopyLable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexCopyLable.m; sourceTree = "<group>"; };
 		E72CE80B2133C3D1008EEDF6 /* ApexAccountDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAccountDetailViewModel.h; sourceTree = "<group>"; };
@@ -572,6 +572,9 @@
 		E7393589212E5232007F61AC /* ApexEncourageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexEncourageController.h; sourceTree = "<group>"; };
 		E739358A212E5232007F61AC /* ApexEncourageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageController.m; sourceTree = "<group>"; };
 		E739358C212E9CED007F61AC /* Apex-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Apex-Bridging-Header.h"; sourceTree = "<group>"; };
+		E7C35513214A2DE100D5DFCE /* ETHTransferModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHTransferModel.h; sourceTree = "<group>"; };
+		E7C35514214A2DE100D5DFCE /* ETHTransferModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHTransferModel.m; sourceTree = "<group>"; };
+		E7C35517214A830300D5DFCE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ApexSendMoneyController.strings"; sourceTree = "<group>"; };
 		E7C68C092138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransHistoryDataBaseHelper.h; sourceTree = "<group>"; };
 		E7C68C0A2138DB0A0009B2A2 /* ApexTransHistoryDataBaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransHistoryDataBaseHelper.m; sourceTree = "<group>"; };
 		E7C68C0C2138DCD10009B2A2 /* NSString+Encypte.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Encypte.h"; sourceTree = "<group>"; };
@@ -1334,6 +1337,8 @@
 				E70393122121A26500BA3CDB /* ETHWalletModel.m */,
 				E7039309211D6BF300BA3CDB /* ApexETHTransactionModel.h */,
 				E703930A211D6BF300BA3CDB /* ApexETHTransactionModel.m */,
+				E7C35513214A2DE100D5DFCE /* ETHTransferModel.h */,
+				E7C35514214A2DE100D5DFCE /* ETHTransferModel.m */,
 			);
 			path = EthWalletModel;
 			sourceTree = "<group>";
@@ -1830,6 +1835,7 @@
 				E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */,
 				E33A8B9A20AE756E0067505E /* UINavigationController+ApexNavigationBar.m in Sources */,
 				E7EDD7252101C0FF00007F29 /* ApexLoading.m in Sources */,
+				E7C35515214A2DE100D5DFCE /* ETHTransferModel.m in Sources */,
 				E70393192123C52200BA3CDB /* ETHTransferHistoryManager.m in Sources */,
 				E72CE80A21339EB9008EEDF6 /* ApexCopyLable.m in Sources */,
 				E39E02E320C7ACDB005DD251 /* UIViewController+Apex.m in Sources */,
@@ -1941,7 +1947,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E3373B5220F8414200590407 /* en */,
-				E703931B212AC95200BA3CDB /* zh-Hans */,
+				E7C35517214A830300D5DFCE /* zh-Hans */,
 			);
 			name = ApexSendMoneyController.xib;
 			sourceTree = "<group>";
