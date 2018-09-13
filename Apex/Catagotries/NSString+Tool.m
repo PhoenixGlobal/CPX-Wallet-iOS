@@ -19,7 +19,6 @@
  @return 处理后的str
  */
 - (NSString *)URLEncodedString {
-    NSCharacterSet *encodeUrlSet = [NSCharacterSet URLQueryAllowedCharacterSet];
     return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 }
 
@@ -70,7 +69,7 @@
  ss:     秒，2位，带前置0
  S:         毫秒
  Z：        GMT（时区）
- 
+ */
 
 
 

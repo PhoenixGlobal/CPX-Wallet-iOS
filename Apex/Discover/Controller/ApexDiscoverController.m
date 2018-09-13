@@ -51,7 +51,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [ETHWalletManager sendTxWithWallet:_wallet to:@"0xbe1973821307e4f6b20b03696d036e4c3c2cdd65" nonce:@"4" amount:@"0.5" gas:@"0.02" success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
            
             [ETHWalletManager requestTransactionReceiptByHash:responseObject success:^(AFHTTPRequestOperation *operation, ApexETHReceiptModel *responseObject) {
                 NSLog(@"%@",responseObject.status);

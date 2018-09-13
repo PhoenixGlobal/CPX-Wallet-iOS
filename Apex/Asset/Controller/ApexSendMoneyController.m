@@ -212,12 +212,18 @@
         [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
     }else if(self.viewModel.currentEthNumber.floatValue < self.totalETHL.text.floatValue){
         [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
-    }else{
+    }else if ([_toAddressTF.text isEqualToString:@""]) {
+        [self showMessage:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil)];
+    }
+//    else if ([_sendNumTF.text isEqualToString:@""]) {
+//        [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
+//    }
+    else{
         //输入密码
         [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress walletManager:self.walletManager subTitle:@"" Success:^(id wallet) {
             
             self.viewModel.toAddress = self.toAddressTF.text;
-            self.viewModel.amount = self.sendNumTF.text;
+            self.viewModel.amount = [self.sendNumTF.text isEqualToString:@""] ? @"0" : self.sendNumTF.text;
             
             if ([self.walletManager isKindOfClass:ETHWalletManager.class]) {
                 [self.viewModel ethTransactionWithWallet:wallet];
