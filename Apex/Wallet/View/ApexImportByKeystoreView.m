@@ -282,7 +282,6 @@
                               floatingTitle:SOLocalizedStringFromTable(@"Password", nil)];
         _passTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         
-        @weakify(self);
         _passTF.alertString = SOLocalizedStringFromTable(@"Password Too Short", nil);
         _passTF.alertShowConditionBlock = ^BOOL(NSString *text) {
             
