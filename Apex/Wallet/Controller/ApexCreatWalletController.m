@@ -43,7 +43,9 @@
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
+    [self setnav];
     [self initUI];
     [self handleEvent];
 }
@@ -53,13 +55,8 @@
 
 }
 
-
 #pragma mark - private
 - (void)initUI{
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
-    self.navigationItem.titleView = self.titleL;
     
     [self.view addSubview:self.typeSelectV];
     [self.view addSubview:self.walletNameL];
@@ -184,6 +181,18 @@
     }];
 
     RAC(self.creatBtn, enabled) = self.combineSignal;
+}
+
+- (void)setnav
+{
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-4"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    self.navigationItem.titleView = self.titleL;
+}
+
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //创建Neo钱包

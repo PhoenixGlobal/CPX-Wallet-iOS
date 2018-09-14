@@ -18,6 +18,7 @@
 @property (nonatomic, strong) ApexImportByKeystoreView *keyStoreView;
 @property (nonatomic, strong) ApexImportByMnemonicView *mnemonicView;
 @property (nonatomic, strong) UIImageView *backIV;
+@property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) ApexPageView *pageView; /**<  */
 @end
 
@@ -26,14 +27,14 @@
 #pragma mark - ------life cycle------
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self setnav];
     [self initUI];
 }
 
 #pragma mark - ------private------
 - (void)initUI{
-    self.title = SOLocalizedStringFromTable(@"Import Wallet", nil);
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
     
     self.mnemonicView.didFinishImportSub = self.didFinishImportSub;
     self.keyStoreView.didFinishImportSub = self.didFinishImportSub;
@@ -68,6 +69,18 @@
 //    [self.keyStoreView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.edges.equalTo(self.mnemonicView);
 //    }];
+}
+
+- (void)setnav
+{
+    [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-4"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    self.navigationItem.titleView = self.titleL;
+}
+
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - ------public------
@@ -119,6 +132,17 @@
         _backIV.image = [UIImage imageNamed:@"Background"];
     }
     return _backIV;
+}
+
+- (UILabel *)titleL{
+    if (!_titleL) {
+        _titleL = [[UILabel alloc] init];
+        _titleL.frame = CGRectMake(152, 30, 72.5, 25);
+        _titleL.text = SOLocalizedStringFromTable(@"Import Wallet", nil);
+        _titleL.font = [UIFont fontWithName:@"PingFangSC-Regular" size:18];
+        _titleL.textColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1];
+    }
+    return _titleL;
 }
 
 - (ApexImportSwithHeaderBar *)switchHeader{
