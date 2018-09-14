@@ -248,16 +248,32 @@
         ApexPrepareBackUpController *vc = [[ApexPrepareBackUpController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         
+        
+        
         if (self.typeSelectV.type == ApexWalletType_Neo) {
             [TKFileManager saveValue:@(ApexWalletType_Neo) forKey:KglobleWalletType];
              [self creatNeoWallet];
             NeomobileWallet *wallet = (NeomobileWallet*)_createdWallet;
-            vc.address = wallet.address;
+            
+            NSArray *walletArray = [[ApexWalletManager shareManager] getWalletsArr];
+            for (ApexWalletModel *model in walletArray) {
+                if ([model.address isEqualToString:wallet.address]) {
+                    vc.model = model;
+                    break;
+                }
+            }
         }else{
             [TKFileManager saveValue:@(ApexWalletType_Eth) forKey:KglobleWalletType];
             [self createEthWallet];
             EthmobileWallet *wallet = (EthmobileWallet*)_createdWallet;
-            vc.address = wallet.address;
+            
+            NSArray *walletArray = [[ETHWalletManager shareManager] getWalletsArr];
+            for (ETHWalletModel *model in walletArray) {
+                if ([model.address isEqualToString:wallet.address]) {
+                    vc.model = model;
+                    break;
+                }
+            }
         }
         
         if (_createdWallet == nil) {

@@ -64,7 +64,7 @@
     [[self.nextBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         ApexMnemonicConfirmController *vc = [[ApexMnemonicConfirmController alloc] init];
         vc.mnemonic = self.mnemonic;
-        vc.address = self.address;
+        vc.model = self.model;
         vc.BackupCompleteBlock = self.BackupCompleteBlock;
         [self.navigationController pushViewController:vc animated:YES];
     }];

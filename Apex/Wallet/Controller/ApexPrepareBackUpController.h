@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ApexPrepareBackUpController : UIViewController
-@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) ApexWalletModel *model;
 @property (nonatomic, copy) dispatch_block_t BackupCompleteBlock;
 @property (nonatomic, assign) BOOL isFromCreat; /**<  */
 @end
