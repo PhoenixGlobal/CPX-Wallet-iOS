@@ -7,6 +7,7 @@
 //
 
 #import "ApexTransferCell.h"
+#import <UIImageView+WebCache.h>
 
 @implementation ApexTransferCell
 
@@ -66,12 +67,18 @@
     _txidL.text = model.txid;
     _amountL.text = model.value;
     
+    
     !(model.assetId) ? (model.assetId = neo_assetid) : nil;
     
     if ([assetId_CPX containsString:model.assetId]) {
         self.iconImage.image = CPX_Logo;
     }else{
-        self.iconImage.image = NEOPlaceHolder;
+        
+        if ([model.type isEqualToString:@"ETH"] || [model.type isEqualToString:@"Erc20"]) {
+            [self.iconImage sd_setImageWithURL:[NSURL URLWithString:model.imageURL] placeholderImage:ETHPlaceHolder];
+        }else{
+            self.iconImage.image = NEOPlaceHolder;
+        }
     }
     
 //    if ([_model.vmstate containsString:@"FAULT"]) {
@@ -108,7 +115,8 @@
         default:
             break;
     }
-    
+#warning hide
+    _timeStampL.hidden = YES;
     [self caculatePeriod];
 }
 

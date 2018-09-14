@@ -80,8 +80,8 @@
         ApexAssetModel *model1 = [ApexAssetModel new];
         model1.hex_hash = assetID_Test_Erc20;
         model1.precision = @"18";
-        model1.name = @"test1";
-        model1.symbol  = @"test1";
+        model1.name = @"NMB";
+        model1.symbol  = @"NMB";
         [temp addObject:model1];
 
         [TKFileManager saveData:temp withFileName:KETHAssetModelListKey];

@@ -133,6 +133,7 @@
     self.title = self.walletModel.name;
     self.addressL.text = self.walletModel.address;
     self.assetArr = self.walletModel.assetArr;
+    [self.tableView reloadData];
     [self creataAssetMap];
 }
 
@@ -156,6 +157,7 @@
     RACSignal *request2 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
        
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        if (self.assetArr.count <= 1) [subscriber sendNext:dict];
         for (BalanceObject *obj in self.assetArr) {
             //非eth
             if (![obj.asset isEqualToString:assetId_Eth]) {

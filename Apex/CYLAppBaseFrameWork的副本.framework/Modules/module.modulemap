@@ -1,0 +1,6 @@
+framework module CYLAppBaseFrameWork {
+  umbrella header "CYLAppBaseFrameWork.h"
+
+  export *
+  module * { export * }
+}
