@@ -177,10 +177,12 @@
     [_walletManager saveWallet:address name:nil];
     
     [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Success", nil)];
+    
+    [TKFileManager saveValue:@(ApexWalletType_Neo) forKey:KglobleWalletType];
+    
     if (self.didFinishImportSub) {
         [self.didFinishImportSub sendNext:@""];
     }else{
-        [TKFileManager saveValue:@(ApexWalletType_Neo) forKey:KglobleWalletType];
         [[self topViewController].navigationController popViewControllerAnimated:YES];
     }
 }
@@ -212,14 +214,16 @@
 //    }
     
     [[self topViewController] showMessage:SOLocalizedStringFromTable(@"Import Wallet Success", nil)];
+    
+    [TKFileManager saveValue:@(ApexWalletType_Eth) forKey:KglobleWalletType];
+    
     if (self.didFinishImportSub) {
         [self.didFinishImportSub sendNext:@""];
     }else{
-        [TKFileManager saveValue:@(ApexWalletType_Eth) forKey:KglobleWalletType];
+        
         [[self topViewController].navigationController popViewControllerAnimated:YES];
     }
 }
-
 
 #pragma mark - ------getter-----
 - (RACSignal *)combineSignal{
