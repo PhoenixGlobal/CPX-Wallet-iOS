@@ -88,10 +88,10 @@
 #pragma mark - ------eventResponse------
 - (void)handleEvent{
     [[self.toBackUpBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [ApexPassWordConfirmAlertView showDeleteConfirmAlertAddress:self.address subTitle:@"" Success:^(NeomobileWallet *wallet) {
+        [ApexPassWordConfirmAlertView showDeleteConfirmAlertAddress:self.model.address subTitle:@"" Success:^(NeomobileWallet *wallet) {
             NSError *err = nil;
             ApexBackUpController *vc = [[ApexBackUpController alloc] init];
-            vc.address = self.address;
+            vc.model = self.model;
             vc.mnemonic = [wallet mnemonic:mnemonicEnglish error:&err];
             vc.BackupCompleteBlock = self.BackupCompleteBlock;
             if (err) {

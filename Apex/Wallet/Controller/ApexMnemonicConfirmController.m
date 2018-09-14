@@ -122,7 +122,14 @@
     NSString *mnemonic = [self.choosenArr componentsJoinedByString:@" "];
     if ([mnemonic isEqualToString:self.mnemonic]) {
         [self showMessage:SOLocalizedStringFromTable(@"Back Up Success", nil)];
-        [[ApexWalletManager shareManager] setBackupFinished:self.address];
+        
+        if ([self.model isKindOfClass:[ETHWalletModel class]]) {
+            [[ETHWalletManager shareManager] setBackupFinished:self.model.address];
+        }
+        else if ([self.model isKindOfClass:[ApexWalletModel class]]) {
+            [[ApexWalletManager shareManager] setBackupFinished:self.model.address];
+        }
+        
         if (self.BackupCompleteBlock) {
             self.BackupCompleteBlock();
         }

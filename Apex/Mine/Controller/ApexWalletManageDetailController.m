@@ -109,7 +109,7 @@
     
     [[self.mnemonicBackUpBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         ApexPrepareBackUpController *vc = [[ApexPrepareBackUpController alloc] init];
-        vc.address = self.model.address;
+        vc.model = self.model;
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
