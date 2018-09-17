@@ -20,7 +20,7 @@
     customField.layer.borderColor = [ApexUIHelper grayColor240].CGColor;
     [customField becomeFirstResponder];
     __block NSString *password = nil;
-    [alert addTextFieldWithCustomTextField:customField andPlaceholder:@"Password" andTextReturnBlock:^(NSString *text) {
+    [alert addTextFieldWithCustomTextField:customField andPlaceholder:SOLocalizedStringFromTable(@"Password", nil) andTextReturnBlock:^(NSString *text) {
         password = text;
     }];
     NSString *tip = @"";
