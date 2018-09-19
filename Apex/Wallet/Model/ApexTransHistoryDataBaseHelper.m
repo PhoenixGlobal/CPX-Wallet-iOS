@@ -8,6 +8,8 @@
 
 #import "ApexTransHistoryDataBaseHelper.h"
 #import "ApexTransferModel.h"
+#import <FMDatabaseAdditions.h>
+
 @class ApexTransferHistoryManager;
 @class ETHTransferHistoryManager;
 
@@ -37,8 +39,13 @@ singleM(DataBase);
     
     NSString *addressSql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,'txid' VARCHAR(255),'assetId' VARCHAR(255),'decimal' VARCHAR(255),'from' VARCHAR(255),'to' VARCHAR(255),'gas_consumed' VARCHAR(255),'imageURL' VARCHAR(255),'symbol' VARCHAR(255),'time' VARCHAR(255),'type' VARCHAR(255),'value' VARCHAR(255),'vmstate' VARCHAR(255),'state' INTEGER);",walletAddress];
     BOOL success = [_db executeUpdate:addressSql];
+    
     if (success) {
         NSLog(@"表创建成功");
+        
+        //添加新字段
+        [self insertNewColumn:_db tableName:walletAddress];
+        
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             if (dbSuccess) {
                 dbSuccess();
@@ -48,6 +55,23 @@ singleM(DataBase);
     [_db close];
 }
 
+- (void)insertNewColumn:(FMDatabase*)db tableName:(NSString*)tableName{
+    if (![db columnExists:@"gasPrice" inTableWithName:tableName]) {
+        NSString *alertStr = [NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ VARCHAR(255)",tableName,@"gasPrice"];
+        [db executeUpdate:alertStr];
+    }
+    
+    if (![db columnExists:@"transferAtHeight" inTableWithName:tableName]) {
+        NSString *alertStr = [NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ VARCHAR(255)",tableName,@"transferAtHeight"];
+        [db executeUpdate:alertStr];
+    }
+    
+    if (![db columnExists:@"gasFee" columnName:tableName]) {
+        NSString *alertStr = [NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ VARCHAR(255)",tableName,@"gasFee"];
+        [db executeUpdate:alertStr];
+    }
+}
+
 #pragma mark - 增
 - (void)addTransferHistory:(ApexTransferModel*)model forWallet:(NSString *)walletAddress manager:(id<ApexTransHistoryProtocal>)manager {
     [_db open];
@@ -55,7 +79,7 @@ singleM(DataBase);
     walletAddress = [self encodeAddress:walletAddress manager:manager];
     
     NSNumber *maxID = @(0);
-    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ",walletAddress]];
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@",walletAddress]];
     BOOL isLocalDataProcessing = false;
     BOOL isDelete = false;
     //获取数据库中最大的ID
@@ -89,16 +113,24 @@ singleM(DataBase);
         }
     }
     
-    if (!isLocalDataProcessing) {
-        NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",walletAddress];
-        [_db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status)];
-        [self updateRequestTime:@(model.time.integerValue) address:walletAddress manager:manager];
+    //非eth交易仅允许同一时间进行一笔交易, eth交易可以多笔交易
+    if ([manager isKindOfClass:NSClassFromString(@"ETHTransferHistoryManager")]) {
+        [self insertModel:model inTable:walletAddress maxID:maxID manager:manager db:_db];
+    }else{
+        if (!isLocalDataProcessing) {
+            [self insertModel:model inTable:walletAddress maxID:maxID manager:manager db:_db];
+        }
     }
     
     [res close];
     [_db close];
 }
 
+- (void)insertModel:(ApexTransferModel*)model inTable:(NSString*)tableName maxID:(NSNumber*)maxID manager:(id<ApexTransHistoryProtocal>)manager db:(FMDatabase*)db{
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",tableName];
+    [db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status),model.gasFee,model.gasPrice,model.transferAtHeight];
+    [self updateRequestTime:@(model.time.integerValue) address:tableName manager:manager];
+}
 
 #pragma mark - 删
 - (void)deleteHistoryWithTxid:(NSString*)txid ofAddress:(NSString*)address manager:(id<ApexTransHistoryProtocal>)manager{

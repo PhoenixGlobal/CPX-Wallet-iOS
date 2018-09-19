@@ -27,9 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ApexTransferModel : NSObject
 @property (nonatomic, assign) ApexTransferStatus status; /**< 此笔交易的状态 */
-@property (nonatomic, assign) NSInteger transferAtHeight; /**< 此笔交易所在的区块高度 */
 
-@property (nonatomic, strong) NSString *gas_consumed;
+@property (nonatomic, strong) NSString *gas_consumed; //花费的gas数
 @property (nonatomic, strong) NSString *vmstate; /**< 交易成功还是失败  失败的含有FAULT字段 */
 @property (nonatomic, strong) NSString *value;
 @property (nonatomic, strong) NSString *type;
@@ -41,6 +40,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *to;
 @property (nonatomic, strong) NSString *time;
 @property (nonatomic, strong) NSString *assetId;
+
+//新加字段
+@property (nonatomic, assign) NSString *transferAtHeight; /**< 此笔交易所在的区块高度 */
+@property (nonatomic, strong) NSString *gasPrice; /**< gas单价*/
+@property (nonatomic, strong) NSString *gasFee; /**< 矿工fee */
 @end
 
 NS_ASSUME_NONNULL_END

@@ -47,7 +47,7 @@
 #define baseUrl_cli_main @"https://tracker.chinapex.com.cn/neo-cli/"
 
 //eth
-#define ETH_baseUrl_cli_test @"http://tmp.chinapex.com.cn/wallets/eth-api/"
+#define ETH_baseUrl_cli_test @"https://tracker.chinapex.com.cn/eth-cli/"
 //#define ETH_baseUrl_cli_test @"http://139.219.9.137:8545"
 #define ETHApiKey @"CTTVCEUHGU1UMY14IMWH5G9IREY7AAMT1V"
 

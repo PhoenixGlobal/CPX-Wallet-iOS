@@ -120,7 +120,7 @@ static ETHTransferHistoryManager *_instance;
 #pragma mark - request
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString *)address txModel:(ApexTransferModel *)model {
     if (model.status == ApexTransferStatus_Blocking) {
-        [[ApexWalletManager shareManager] setStatus:NO forWallet:address];
+        [[ETHWalletManager shareManager] setStatus:NO forWallet:address];
     }
     
     __block BOOL cancleTimer = false;
@@ -160,9 +160,39 @@ static ETHTransferHistoryManager *_instance;
     [aTimer fire];
 }
 
-//暂用:http://api.etherscan.io/api?module=account&action=txlist&address=0x779851eC5FcACe69d2aE3ce744827E7bE847af06&startblock=0&endblock=99999999&sort=asc&apikey=YourApiKeyToken
-- (void)requestTxHistoryForAddress:(NSString *)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure {
 
+- (void)requestTxHistoryForAddress:(NSString *)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure {
+    NSString *encodeAddress = [[ApexTransHistoryDataBaseHelper shareDataBase] tableNameMappingFromAddress:address manager:self];
+    //获取上次更新时间
+    __block NSNumber *bTime = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
+    
+    if (!bTime) {
+        bTime = @0;
+        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
+    }
+    
+    //此方法内部 调用了-addTransferHistory: forWallet:
+    [self getTransactionHistoryWithAddress:address BeginTime:bTime.integerValue Success:^(CYLResponse *response) {
+        
+        if (((NSArray*)response.returnObj).count == 500) {
+            //请求下一组数据
+            [self requestTxHistoryForAddress:address Success:success failure:failure];
+        }else{
+            
+        }
+        
+        if (success) {
+            success(response);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+
+- (void)getTransactionHistoryWithAddress:(NSString *)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
 }
 
 - (void)secreteUpdateUserTransactionHistoryAddress:(NSString *)address {

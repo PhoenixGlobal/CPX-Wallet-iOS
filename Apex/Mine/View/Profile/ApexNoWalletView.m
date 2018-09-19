@@ -33,7 +33,7 @@
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(70);
         make.centerX.equalTo(self.mas_centerX);
-        make.height.width.mas_equalTo(scaleWidth375(330));
+        make.height.width.mas_equalTo(scaleWidth375(270));
 //        make.height.mas_equalTo(scaleHeight667(280));
     }];
     

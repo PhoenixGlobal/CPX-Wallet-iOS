@@ -81,10 +81,6 @@
         }
     }
     
-//    if ([_model.vmstate containsString:@"FAULT"]) {
-//        _model.status = ApexTransferStatus_Failed;
-//    }else if ([_model.vmstate containsString:@""]){
-//    }
     _timeStampL.hidden = YES;
     
     switch (model.status) {
@@ -115,8 +111,7 @@
         default:
             break;
     }
-#warning hide
-    _timeStampL.hidden = YES;
+
     [self caculatePeriod];
 }
 

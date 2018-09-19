@@ -197,10 +197,14 @@
 
 - (IBAction)sendAction:(id)sender {
     
-    //地址有效性判断
+    
     if ([self.walletManager isKindOfClass:ETHWalletManager.class]) {
-        
+        //判断gas
+        if(self.viewModel.currentEthNumber.floatValue < self.totalETHL.text.floatValue){
+            [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
+        }
     }else{
+        //地址有效性判断
         if (NeomobileDecodeAddress(_toAddressTF.text, nil) == nil){
             [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
         }
@@ -210,15 +214,9 @@
         [self showMessage:SOLocalizedStringFromTable(@"BalanceNotEnough", nil)];
     }else if ([_toAddressTF.text isEqualToString:_walletAddress]){
         [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
-    }else if(self.viewModel.currentEthNumber.floatValue < self.totalETHL.text.floatValue){
-        [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
     }else if ([_toAddressTF.text isEqualToString:@""]) {
         [self showMessage:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil)];
-    }
-//    else if ([_sendNumTF.text isEqualToString:@""]) {
-//        [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
-//    }
-    else{
+    }else{
         //输入密码
         [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress walletManager:self.walletManager subTitle:@"" Success:^(id wallet) {
             

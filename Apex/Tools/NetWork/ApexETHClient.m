@@ -41,6 +41,8 @@ singleM(RPCClient);
         NSString *baseUrl = [ApexNetWorkCommonConfig getETHBaseUrl];
         NSLog(@"eth cli baseurl: %@",baseUrl);
         _client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:baseUrl]];
+        _client.requestSerializer = [AFJSONRequestSerializer serializer];
+        [_client.requestSerializer setValue:@"Basic d2FsbEBDUFg6Q0BwIyowMQ==" forHTTPHeaderField:@"Authorization"];
         AFSecurityPolicy *sp = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         sp.allowInvalidCertificates = YES;
         sp.validatesDomainName = NO;

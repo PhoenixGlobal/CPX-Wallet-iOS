@@ -51,6 +51,7 @@
         historyModel.status = ApexTransferStatus_Blocking;
         historyModel.time = @"0";
         historyModel.assetId = self.balanceModel.asset;
+        historyModel.type = @"ETH";
         ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];
         
         if (lastRecord) {
@@ -87,7 +88,7 @@
         historyModel.symbol = model.symbol;
         historyModel.decimal = model.precision;
         historyModel.assetId = self.balanceModel.asset;
-        historyModel.type = @"ETH";
+        historyModel.type = @"Erc20";
         ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];
         
         if (lastRecord) {
