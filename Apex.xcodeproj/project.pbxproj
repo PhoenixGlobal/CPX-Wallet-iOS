@@ -182,7 +182,6 @@
 		E73934A921099617007953FB /* specialQuest_zh.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934A821099616007953FB /* specialQuest_zh.json */; };
 		E73934AC21099F50007953FB /* ApexChangeBindWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934AB21099F50007953FB /* ApexChangeBindWalletController.m */; };
 		E73934B02109A2CC007953FB /* ApexChangeWalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934AE2109A2CC007953FB /* ApexChangeWalletCell.m */; };
-		E73934B12109A2CC007953FB /* ApexChangeWalletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */; };
 		E73934B42109B07D007953FB /* ApexNoWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934B32109B07D007953FB /* ApexNoWalletView.m */; };
 		E73934B72109B25E007953FB /* NSBundle+MJLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934B62109B25E007953FB /* NSBundle+MJLocalization.m */; };
 		E73934B92109BBD8007953FB /* commonQuest_en.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934B82109BBD8007953FB /* commonQuest_en.json */; };
@@ -558,7 +557,6 @@
 		E73934AB21099F50007953FB /* ApexChangeBindWalletController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexChangeBindWalletController.m; sourceTree = "<group>"; };
 		E73934AD2109A2CC007953FB /* ApexChangeWalletCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexChangeWalletCell.h; sourceTree = "<group>"; };
 		E73934AE2109A2CC007953FB /* ApexChangeWalletCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexChangeWalletCell.m; sourceTree = "<group>"; };
-		E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexChangeWalletCell.xib; sourceTree = "<group>"; };
 		E73934B22109B07D007953FB /* ApexNoWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoWalletView.h; sourceTree = "<group>"; };
 		E73934B32109B07D007953FB /* ApexNoWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoWalletView.m; sourceTree = "<group>"; };
 		E73934B52109B25E007953FB /* NSBundle+MJLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MJLocalization.h"; sourceTree = "<group>"; };
@@ -1423,7 +1421,6 @@
 				E7EDD7592106CAD000007F29 /* ApexTagCollectionViewCell.m */,
 				E73934AD2109A2CC007953FB /* ApexChangeWalletCell.h */,
 				E73934AE2109A2CC007953FB /* ApexChangeWalletCell.m */,
-				E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */,
 				E73934B22109B07D007953FB /* ApexNoWalletView.h */,
 				E73934B32109B07D007953FB /* ApexNoWalletView.m */,
 				E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */,
@@ -1572,7 +1569,6 @@
 				E3263EE920B69BB6001D3C19 /* heart.png in Resources */,
 				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
 				E731469F210A4633002A6C07 /* launchImage@3x.png in Resources */,
-				E73934B12109A2CC007953FB /* ApexChangeWalletCell.xib in Resources */,
 				E3263ED920B68CFB001D3C19 /* ApexBackUpController.xib in Resources */,
 				E3263ED120B666CA001D3C19 /* ApexWalletManageDetailController.xib in Resources */,
 				E32920C720D8CC170012C36D /* ApexTXDetailController.xib in Resources */,

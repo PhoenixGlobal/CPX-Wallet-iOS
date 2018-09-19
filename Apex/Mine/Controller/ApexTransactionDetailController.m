@@ -257,6 +257,7 @@
         _addressL = [[UILabel alloc] init];
         _addressL.font = [UIFont systemFontOfSize:13];
         _addressL.textColor = [UIColor whiteColor];
+        _addressL.lineBreakMode = NSLineBreakByTruncatingMiddle;
         _addressL.textAlignment = NSTextAlignmentCenter;
     }
     
