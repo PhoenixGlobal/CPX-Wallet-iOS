@@ -247,7 +247,7 @@ static ApexTransferHistoryManager *_instance;
         success(response);
         
     } fail:^(NSError *error) {
-        NSLog(@"%@",error);
+        failure(error);
     }];
 }
 

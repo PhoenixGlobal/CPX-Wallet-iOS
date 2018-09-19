@@ -18,7 +18,7 @@
 #import "ApexChangeBindWalletController.h"
 #import "ETHTransferHistoryManager.h"
 
-@interface ApexTransactionDetailController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ApexTransactionDetailController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
 @property (weak, nonatomic) IBOutlet UIView *searchBaseV;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -27,7 +27,7 @@
 @property (nonatomic, strong) UIButton *swithBtn;
 @property (nonatomic, strong) ApexSearchWalletToolBar *searchToolBar;
 @property (nonatomic, strong) NSMutableArray *contentArr;
-@property (nonatomic, strong) CYLEmptyView *ev;
+@property (nonatomic, strong) CYLEmptyView *emptyView;
 @property (nonatomic, strong) ApexSwithWalletView *switchView;
 @property (nonatomic, assign) NSInteger offset;
 @property (nonatomic, strong) id<ApexTransHistoryProtocal> historyManager; /**<  */
@@ -113,9 +113,9 @@
     [self.tableView.mj_footer setState:MJRefreshStateIdle];
     self.contentArr = [_historyManager getHistoriesOffset:self.offset walletAddress:self.model.address];
     if (self.contentArr.count == 0) {
-        self.ev = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:SOLocalizedStringFromTable(@"Data Empty", nil) refreshBlock:nil];
+        self.emptyView = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:SOLocalizedStringFromTable(@"Data Empty", nil) refreshBlock:nil];
     }else{
-        [self.ev removeFromSuperview];
+        [self.emptyView removeFromSuperview];
     }
     
     [self.tableView reloadData];
