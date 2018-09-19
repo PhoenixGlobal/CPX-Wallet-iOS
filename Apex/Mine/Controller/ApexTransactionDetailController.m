@@ -19,16 +19,14 @@
 #import "ETHTransferHistoryManager.h"
 
 @interface ApexTransactionDetailController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UILabel *addressL;
-@property (weak, nonatomic) IBOutlet UIView *searchBaseV;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseViewH;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UILabel *addressL;
+@property (nonatomic, strong) ApexSearchWalletToolBar *searchToolBar;
+@property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) UIButton *swithBtn;
-@property (nonatomic, strong) ApexSearchWalletToolBar *searchToolBar;
 @property (nonatomic, strong) NSMutableArray *contentArr;
 @property (nonatomic, strong) CYLEmptyView *emptyView;
-@property (nonatomic, strong) ApexSwithWalletView *switchView;
 @property (nonatomic, assign) NSInteger offset;
 @property (nonatomic, strong) id<ApexTransHistoryProtocal> historyManager; /**<  */
 @end
@@ -36,24 +34,29 @@
 @implementation ApexTransactionDetailController
 
 #pragma mark - ------life cycle------
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self initUI];
     [self handleEvent];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:Notification_TranferStatusHasChanged object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:Notification_TranferHasConfirmed object:nil];
 }
 
-- (void)viewWillLayoutSubviews{
+- (void)viewWillLayoutSubviews
+{
     [super viewWillLayoutSubviews];
     [self.navigationController lt_setBackgroundColor:[UIColor clearColor]];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self prepareData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferStatusHasChanged) name:Notification_TranferStatusHasChanged object:nil];
@@ -62,13 +65,32 @@
 
 #pragma mark - ------private------
 - (void)initUI{
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.swithBtn];
-    [self.searchBaseV addSubview:self.searchToolBar];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.swithBtn];
+    
+    [self.view addSubview:self.backgroundImageView];
+    [self.view addSubview:self.addressL];
+    [self.view addSubview:self.searchToolBar];
+    [self.view addSubview:self.tableView];
+    
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.equalTo(self.view);
+        make.height.mas_equalTo([ApexUIHelper naviBarHeight] + 70.0f);
+    }];
+    
+    [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).with.offset(15.0f);
+        make.right.equalTo(self.view).with.offset(-15.0f);
+        make.top.equalTo(self.view).with.offset([ApexUIHelper naviBarHeight]);
+        make.height.mas_equalTo(20.0f);
+    }];
+    
+    [self.searchToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.addressL.mas_bottom).with.offset(10.0f);
+        make.height.mas_equalTo(30.0f);
+    }];
+    
     [self.tableView registerClass:[ApexTransferCell class] forCellReuseIdentifier:@"cell"];
     
     self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
@@ -80,13 +102,12 @@
         [self requestNextPage];
     }];
     
-    self.baseViewH.constant = NavBarHeight+ 60;
-    
     //获取本地信息
     [self requestSuccessLoadDataFromFMDB];
 }
 
-- (void)prepareData{
+- (void)prepareData
+{
     self.title = self.model.name;
     self.addressL.text = self.model.address;
     [self requestTXHistory];
@@ -95,7 +116,7 @@
 - (void)requestTXHistory{
     //请求最新历史记录写入数据库
     [_historyManager requestTxHistoryForAddress:self.model.address Success:^(CYLResponse *response) {
-
+        
         [self.tableView.mj_header endRefreshing];
         [self requestSuccessLoadDataFromFMDB];
     } failure:^(NSError *err) {
@@ -104,7 +125,8 @@
     }];
 }
 
-- (void)transferStatusHasChanged{
+- (void)transferStatusHasChanged
+{
     [self requestSuccessLoadDataFromFMDB];
 }
 
@@ -112,10 +134,11 @@
     self.offset = 0;
     [self.tableView.mj_footer setState:MJRefreshStateIdle];
     self.contentArr = [_historyManager getHistoriesOffset:self.offset walletAddress:self.model.address];
+    
     if (self.contentArr.count == 0) {
-        self.emptyView = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:SOLocalizedStringFromTable(@"Data Empty", nil) refreshBlock:nil];
+        [self showEmptyView];
     }else{
-        [self.emptyView removeFromSuperview];
+        [self clearEmptyView];
     }
     
     [self.tableView reloadData];
@@ -159,12 +182,18 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.01f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01f;
 }
 
 #pragma mark - ------eventResponse------
@@ -214,6 +243,43 @@
     }
 }
 
+- (UIImageView *)backgroundImageView
+{
+    if (!_backgroundImageView) {
+        _backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"barImage"]];
+    }
+    return _backgroundImageView;
+}
+
+- (UILabel *)addressL
+{
+    if (!_addressL) {
+        _addressL = [[UILabel alloc] init];
+        _addressL.font = [UIFont systemFontOfSize:13];
+        _addressL.textColor = [UIColor whiteColor];
+        _addressL.textAlignment = NSTextAlignmentCenter;
+    }
+    
+    return _addressL;
+}
+
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, [ApexUIHelper naviBarHeight] + 70.0f, kScreenW, kScreenH - [ApexUIHelper naviBarHeight] - 70.0f) style:UITableViewStyleGrouped];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.estimatedRowHeight = 55.0f;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+    }
+    
+    return _tableView;
+}
+
 - (UIButton *)swithBtn{
     if (!_swithBtn) {
         _swithBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
@@ -225,7 +291,7 @@
 
 - (ApexSearchWalletToolBar *)searchToolBar{
     if (!_searchToolBar) {
-        _searchToolBar = [[ApexSearchWalletToolBar alloc] initWithFrame:self.searchBaseV.bounds];
+        _searchToolBar = [[ApexSearchWalletToolBar alloc] init];
         _searchToolBar.placeHolder = SOLocalizedStringFromTable(@"Search Txid", nil);
         [_searchToolBar setCancleBtnImage:[UIImage imageNamed:@"Group 5-1"]];
     }
@@ -239,11 +305,18 @@
     return _contentArr;
 }
 
-- (ApexSwithWalletView *)switchView{
-    if (!_switchView) {
-        _switchView = [[ApexSwithWalletView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _switchView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+#pragma mark ------ empty
+- (void)showEmptyView
+{
+    if (!self.emptyView) {
+        self.emptyView = [CYLEmptyView showEmptyViewOnView:self.tableView emptyType:CYLEmptyViewType_EmptyData message:SOLocalizedStringFromTable(@"Data Empty", nil) refreshBlock:nil];
     }
-    return _switchView;
 }
+
+- (void)clearEmptyView
+{
+    [self.emptyView removeFromSuperview];
+    self.emptyView = nil;
+}
+
 @end
