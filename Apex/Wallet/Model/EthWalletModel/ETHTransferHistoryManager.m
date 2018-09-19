@@ -164,26 +164,20 @@ static ETHTransferHistoryManager *_instance;
 - (void)requestTxHistoryForAddress:(NSString *)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure {
     NSString *encodeAddress = [[ApexTransHistoryDataBaseHelper shareDataBase] tableNameMappingFromAddress:address manager:self];
     //获取上次更新时间
-    __block NSNumber *bTime = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
+    __block NSNumber *bBlock = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
     
-    if (!bTime) {
-        bTime = @0;
-        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
+    if (!bBlock) {
+        bBlock = @0;
+        [TKFileManager saveValue:bBlock forKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
     }
     
     //此方法内部 调用了-addTransferHistory: forWallet:
-    [self getTransactionHistoryWithAddress:address BeginTime:bTime.integerValue Success:^(CYLResponse *response) {
-        
-        if (((NSArray*)response.returnObj).count == 500) {
-            //请求下一组数据
-            [self requestTxHistoryForAddress:address Success:success failure:failure];
-        }else{
-            
-        }
+    [self getTransactionHistoryWithAddress:address BeginBlock:bBlock.integerValue Success:^(CYLResponse *response) {
         
         if (success) {
             success(response);
         }
+        
     } failure:^(NSError *error) {
         if (failure) {
             failure(error);
@@ -192,7 +186,38 @@ static ETHTransferHistoryManager *_instance;
 }
 
 
-- (void)getTransactionHistoryWithAddress:(NSString *)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
+- (void)getTransactionHistoryWithAddress:(NSString *)addr BeginBlock:(NSTimeInterval)beginBlock Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
+    
+    beginBlock += 1;
+    
+    [CYLNetWorkManager GET:@"test/eth-transaction" parameter:@{@"address":addr,@"startblock":@(beginBlock).stringValue,@"endblock":@"99999999"} success:^(CYLResponse *response) {
+        
+        NSMutableArray *tempArr = [NSMutableArray array];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+        NSArray *txArr = dict[@"data"];
+        for (NSDictionary *dict in txArr) {
+            ETHTransferModel *model = [ETHTransferModel yy_modelWithDictionary:dict];
+            
+            model.status = ApexTransferStatus_Confirmed;
+            
+            if ([model.vmstate isEqualToString:@"1"]){
+                model.status = ApexTransferStatus_Failed;
+            }
+            
+            [self addTransferHistory:model forWallet:addr];
+            
+            [tempArr addObject:model];
+        }
+        response.returnObj = tempArr;
+        
+        if (success) {
+            success(response);
+        }
+        
+    } fail:^(NSError *error) {
+        
+    }];
+    
 }
 
 - (void)secreteUpdateUserTransactionHistoryAddress:(NSString *)address {

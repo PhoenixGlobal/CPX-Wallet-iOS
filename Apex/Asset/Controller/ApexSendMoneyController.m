@@ -202,11 +202,14 @@
         //判断gas
         if(self.viewModel.currentEthNumber.floatValue < self.totalETHL.text.floatValue){
             [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
+            return;
         }
     }else{
         //地址有效性判断
-        if (NeomobileDecodeAddress(_toAddressTF.text, nil) == nil){
+        NSString *decode = NeomobileDecodeAddress(_toAddressTF.text, nil);
+        if (decode == nil){
             [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
+            return;
         }
     }
     

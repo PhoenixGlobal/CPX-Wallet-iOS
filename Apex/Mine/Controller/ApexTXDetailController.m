@@ -17,11 +17,21 @@
 @property (weak, nonatomic) IBOutlet UILabel *txic;
 @property (weak, nonatomic) IBOutlet UILabel *valueL;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleL;
+@property (weak, nonatomic) IBOutlet UILabel *gas;
+@property (weak, nonatomic) IBOutlet UILabel *gasPriceL;
+@property (weak, nonatomic) IBOutlet UILabel *gasFee;
+
+
+
 //@property (weak, nonatomic) IBOutlet UILabel *blockHeight;
 @property (weak, nonatomic) IBOutlet UILabel *tipL0;
 @property (weak, nonatomic) IBOutlet UILabel *tipL1;
 @property (weak, nonatomic) IBOutlet UILabel *tipL2;
 @property (weak, nonatomic) IBOutlet UILabel *tipL3;
+@property (weak, nonatomic) IBOutlet UILabel *tipL4;
+@property (weak, nonatomic) IBOutlet UILabel *tipL5;
+@property (weak, nonatomic) IBOutlet UILabel *tipL6;
+
 
 @property (nonatomic, strong) UIImageView *backIV;
 @property (nonatomic, strong) UILabel *titleLable;
@@ -83,6 +93,10 @@
             _subTitleL.text = SOLocalizedStringFromTable(@"Amount", nil);
     }
     
+    _gas.text = _model.gas_consumed != nil ? _model.gas_consumed : @"0";
+    _gasPriceL.text = _model.gas_price != nil ? [NSString DecimalFuncWithOperatorType:3 first:_model.gas_price secend:@"1000000000" value:0] : @"0";
+    _gasFee.text = _model.gas_fee != nil ? _model.gas_fee : @"0"; 
+    
     @weakify(self);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
     [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
@@ -98,6 +112,9 @@
     _tipL1.text = SOLocalizedStringFromTable(@"To", nil);
     _tipL2.text = SOLocalizedStringFromTable(@"Time", nil);
     _tipL3.text = SOLocalizedStringFromTable(@"Txid", nil);
+    _tipL4.text = SOLocalizedStringFromTable(@"gas", nil);
+    _tipL5.text = SOLocalizedStringFromTable(@"gasPrice", nil);
+    _tipL6.text = SOLocalizedStringFromTable(@"gasFee", nil);
 }
 
 #pragma mark - ------getter-----

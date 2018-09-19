@@ -102,9 +102,13 @@
 "slow" = "慢";
 "fast" = "快";
 "gainNonceFail" = "获取nonce失败";
-"insufficentGas" = "余额不足以支付gas";
+"insufficentGas" = "ETH余额不足以支付gas";
 "currentGasPrice" = "当前gas单价:";
 "Totla" = "总计gas价格:";
+
+"gas" = "Gas数量";
+"gasPrice" = "Gas单价(GWei)";
+"gasFee" = "Gas总花费(ETH)";
 
 //Reward
 "Reward" = "激励";

@@ -42,9 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *assetId;
 
 //新加字段
-@property (nonatomic, assign) NSString *transferAtHeight; /**< 此笔交易所在的区块高度 */
-@property (nonatomic, strong) NSString *gasPrice; /**< gas单价*/
-@property (nonatomic, strong) NSString *gasFee; /**< 矿工fee */
+@property (nonatomic, assign) NSString *block_number; /**< 此笔交易所在的区块高度 */
+@property (nonatomic, strong) NSString *gas_price; /**< gas单价*/
+@property (nonatomic, strong) NSString *gas_fee; /**< 矿工fee */
 @end
 
 NS_ASSUME_NONNULL_END

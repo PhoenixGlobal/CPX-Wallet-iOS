@@ -128,8 +128,14 @@ singleM(DataBase);
 
 - (void)insertModel:(ApexTransferModel*)model inTable:(NSString*)tableName maxID:(NSNumber*)maxID manager:(id<ApexTransHistoryProtocal>)manager db:(FMDatabase*)db{
     NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",tableName];
-    [db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status),model.gasFee,model.gasPrice,model.transferAtHeight];
-    [self updateRequestTime:@(model.time.integerValue) address:tableName manager:manager];
+    [db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status),model.gas_price,model.block_number,model.gas_fee];
+    
+    NSNumber *requestIdentifier = @(model.time.integerValue);
+    if ([model.type isEqualToString:@"Eth"] || [model.type isEqualToString:@"Erc20"]) {
+        requestIdentifier = @(model.block_number.integerValue);
+    }
+    
+    [self updateRequestTime:requestIdentifier address:tableName manager:manager];
 }
 
 #pragma mark - 删
@@ -297,6 +303,9 @@ singleM(DataBase);
     model.value = [res stringForColumn:@"value"];
     model.vmstate = [res stringForColumn:@"vmstate"];
     model.status = [res intForColumn:@"state"] ;
+    model.gas_price = [res stringForColumn:@"gasPrice"];
+    model.gas_fee = [res stringForColumn:@"gasFee"];
+    model.block_number = [res stringForColumn:@"transferAtHeight"];
     return model;
 }
 @end

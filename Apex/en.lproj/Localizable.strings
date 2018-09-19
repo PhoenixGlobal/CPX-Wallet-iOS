@@ -114,6 +114,10 @@
 "currentGasPrice" = "Current GasPrice:";
 "Totla" = "Gas Fee:";
 
+"gas" = "Gas";
+"gasPrice" = "Gas Price(GWei)";
+"gasFee" = "Gas Fee(ETH)";
+
 //Reward
 "Reward" = "Reward";
 "About to begin" = "About to begin";

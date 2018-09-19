@@ -74,7 +74,15 @@
         self.iconImage.image = CPX_Logo;
     }else{
         
-        if ([model.type isEqualToString:@"ETH"] || [model.type isEqualToString:@"Erc20"]) {
+        if ([model.type isEqualToString:@"Eth"] || [model.type isEqualToString:@"Erc20"]) {
+            
+            for (ApexAssetModel *assetModel in [ETHAssetModelManage getLocalAssetModelsArr]) {
+                if ([assetModel.hex_hash isEqualToString:model.assetId]) {
+                    model.imageURL = assetModel.image_url;
+                    break;
+                }
+            }
+            
             [self.iconImage sd_setImageWithURL:[NSURL URLWithString:model.imageURL] placeholderImage:ETHPlaceHolder];
         }else{
             self.iconImage.image = NEOPlaceHolder;
