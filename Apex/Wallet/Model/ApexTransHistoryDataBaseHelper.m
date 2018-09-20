@@ -113,13 +113,8 @@ singleM(DataBase);
         }
     }
     
-    //非eth交易仅允许同一时间进行一笔交易, eth交易可以多笔交易
-    if ([manager isKindOfClass:NSClassFromString(@"ETHTransferHistoryManager")]) {
+    if (!isLocalDataProcessing) {
         [self insertModel:model inTable:walletAddress maxID:maxID manager:manager db:_db];
-    }else{
-        if (!isLocalDataProcessing) {
-            [self insertModel:model inTable:walletAddress maxID:maxID manager:manager db:_db];
-        }
     }
     
     [res close];

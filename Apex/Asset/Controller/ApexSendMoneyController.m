@@ -208,8 +208,14 @@
             [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
             return;
         }
+        //eth地址有效性判断
+        if (![NSString isAdress:_toAddressTF.text]) {
+            [self showMessage:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil)];
+            return;
+        }
+        
     }else{
-        //地址有效性判断
+        //neo地址有效性判断
         NSString *decode = NeomobileDecodeAddress(_toAddressTF.text, nil);
         if (decode == nil){
             [self showMessage:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil)];

@@ -71,10 +71,10 @@
 }
 
 
-- (void)broadErc20TransactionWithNonce:(NSNumber*)nonce wallet:(EthmobileWallet*)wallet{
+- (void)broadErc20TransactionWithNonce:(NSString*)nonce wallet:(EthmobileWallet*)wallet{
     [_ownerVC showHUD];
     ApexAssetModel *model = [self.balanceModel getRelativeETHAssetModel];
-    [ETHWalletManager sendERC20TxWithWallet:wallet contractAddress:model.hex_hash to:_toAddress nonce:nonce.stringValue amount:_amount gas:_gasSliderValue assetModel:model success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ETHWalletManager sendERC20TxWithWallet:wallet contractAddress:model.hex_hash to:_toAddress nonce:nonce amount:_amount gas:_gasSliderValue assetModel:model success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [_ownerVC hideHUD];
         /**< 创建新的临时交易历史记录 */
