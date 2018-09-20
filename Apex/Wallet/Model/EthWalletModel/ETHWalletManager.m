@@ -337,10 +337,10 @@ singleM(Manager);
     //{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0xc94770007dda54cF92009BFF0dE90c06F603a09f","latest"],"id":1}
     [[ApexETHClient shareRPCClient] invokeMethod:@"eth_getTransactionCount" withParameters:@[address,@"latest"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
-            NSScanner *scanner = [[NSScanner alloc] initWithString:responseObject];
-            unsigned long long i = 0;
-            [scanner scanHexLongLong:&i];
-            success(operation,@(i));
+//            NSScanner *scanner = [[NSScanner alloc] initWithString:responseObject];
+//            unsigned long long i = 0;
+//            [scanner scanHexLongLong:&i];
+            success(operation,responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {

@@ -131,7 +131,7 @@ singleM(DataBase);
     [db executeUpdate:sql,maxID,model.txid,model.assetId,model.decimal,model.from,model.to,model.gas_consumed,model.imageURL,model.symbol,model.time,model.type,model.value,model.vmstate,@(model.status),model.gas_price,model.block_number,model.gas_fee];
     
     NSNumber *requestIdentifier = @(model.time.integerValue);
-    if ([model.type isEqualToString:@"Eth"] || [model.type isEqualToString:@"Erc20"]) {
+    if ([model.type isEqualToString:EthType] || [model.type isEqualToString:Erc20Type]) {
         requestIdentifier = @(model.block_number.integerValue);
     }
     
