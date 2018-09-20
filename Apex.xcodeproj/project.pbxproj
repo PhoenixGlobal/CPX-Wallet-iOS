@@ -106,7 +106,6 @@
 		E38A64BA20ECB0EA00150F3B /* ApexAddAssetsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A64B920ECB0EA00150F3B /* ApexAddAssetsController.m */; };
 		E38A64BE20ECB88600150F3B /* ApexAddAssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38A64BB20ECB88600150F3B /* ApexAddAssetCell.xib */; };
 		E38A64BF20ECB88600150F3B /* ApexAddAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A64BD20ECB88600150F3B /* ApexAddAssetCell.m */; };
-		E39E02C420C4EDF6005DD251 /* ApexAssetMainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E02C120C4EDF6005DD251 /* ApexAssetMainViewCell.xib */; };
 		E39E02C520C4EDF6005DD251 /* ApexAssetMainViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02C320C4EDF6005DD251 /* ApexAssetMainViewCell.m */; };
 		E39E02C820C50517005DD251 /* ApexAccountDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E02C720C50517005DD251 /* ApexAccountDetailController.m */; };
 		E39E02CC20C5088C005DD251 /* ApexAssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E02C920C5088C005DD251 /* ApexAssetCell.xib */; };
@@ -410,7 +409,6 @@
 		E38A64BB20ECB88600150F3B /* ApexAddAssetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexAddAssetCell.xib; sourceTree = "<group>"; };
 		E38A64BC20ECB88600150F3B /* ApexAddAssetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAddAssetCell.h; sourceTree = "<group>"; };
 		E38A64BD20ECB88600150F3B /* ApexAddAssetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAddAssetCell.m; sourceTree = "<group>"; };
-		E39E02C120C4EDF6005DD251 /* ApexAssetMainViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexAssetMainViewCell.xib; sourceTree = "<group>"; };
 		E39E02C220C4EDF6005DD251 /* ApexAssetMainViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAssetMainViewCell.h; sourceTree = "<group>"; };
 		E39E02C320C4EDF6005DD251 /* ApexAssetMainViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAssetMainViewCell.m; sourceTree = "<group>"; };
 		E39E02C620C50517005DD251 /* ApexAccountDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAccountDetailController.h; sourceTree = "<group>"; };
@@ -943,7 +941,6 @@
 			children = (
 				E39E02C220C4EDF6005DD251 /* ApexAssetMainViewCell.h */,
 				E39E02C320C4EDF6005DD251 /* ApexAssetMainViewCell.m */,
-				E39E02C120C4EDF6005DD251 /* ApexAssetMainViewCell.xib */,
 				E39E02CA20C5088C005DD251 /* ApexAssetCell.h */,
 				E39E02CB20C5088C005DD251 /* ApexAssetCell.m */,
 				E39E02C920C5088C005DD251 /* ApexAssetCell.xib */,
@@ -1575,7 +1572,6 @@
 				E73934A921099617007953FB /* specialQuest_zh.json in Resources */,
 				E3263EEA20B69BB6001D3C19 /* close-round.png in Resources */,
 				E3CD112B20F30D4A009C1439 /* AssetResources.bundle in Resources */,
-				E39E02C420C4EDF6005DD251 /* ApexAssetMainViewCell.xib in Resources */,
 				E7C3551C214BA53200D5DFCE /* LaunchScreen.storyboard in Resources */,
 				E73934B92109BBD8007953FB /* commonQuest_en.json in Resources */,
 				E7EDD7352105C30D00007F29 /* ApexExportKeystoryFileView.xib in Resources */,

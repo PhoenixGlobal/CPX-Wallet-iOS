@@ -13,6 +13,4 @@
 @property (weak, nonatomic) NSString *walletNameStr;
 @property (weak, nonatomic) NSString *addressStr;
 @property (nonatomic, strong) RACSubject *didFinishRequestBalanceSub;
-@property (nonatomic, assign) BOOL isShowSlide;
-//- (ApexAccountStateModel*)getAccountInfo;
 @end

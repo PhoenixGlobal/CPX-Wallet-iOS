@@ -9,36 +9,67 @@
 #import "ApexAssetMainViewCell.h"
 
 @interface ApexAssetMainViewCell()
-@property (weak, nonatomic) IBOutlet UILabel *walletName;
-@property (weak, nonatomic) IBOutlet UILabel *address;
-@property (nonatomic, assign) CGPoint startP;
-@property (nonatomic, assign) CGPoint startTouchP;
+@property (nonatomic, strong) UILabel *walletName;
+@property (nonatomic, strong) UILabel *address;
 
 @property (nonatomic, strong) ApexAccountStateModel *accountModel;
-@property (nonatomic, assign) CGAffineTransform originTransForm;
-@property (nonatomic, assign) CGFloat opDelta; /**< 位移值 */
-@property (nonatomic, assign) CGPoint initialVelocity;
 @end
 
 @implementation ApexAssetMainViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = [UIColor whiteColor];
+        self.layer.cornerRadius = 5;
+        self.layer.masksToBounds = YES;
+        self.layer.borderColor = [UIColor colorWithHexString:@"dddddd"].CGColor;
+        self.layer.borderWidth = 1.0/kScale;
+        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrows-1_minimal-left"]];
+        
+        [self.contentView addSubview:self.walletName];
+        [self.contentView addSubview:self.address];
+        
+        [self.walletName mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).with.offset(15.0f);
+            make.top.equalTo(self.contentView).with.offset(20.0f);
+            make.right.equalTo(self.contentView);
+            make.height.mas_equalTo(23.0f);
+        }];
+        
+        [self.address mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.walletName);
+            make.bottom.equalTo(self.contentView).with.offset(-20.0f);
+            make.height.mas_equalTo(16.0f);
+        }];
+    }
     
-    [self setUI];
+    return self;
 }
 
-- (void)setUI{
-    self.startP = CGPointMake(kScreenW, 0);
-    self.backgroundColor = [UIColor whiteColor];
-    self.layer.cornerRadius = 5;
-    self.layer.masksToBounds = YES;
-    self.layer.borderColor = [UIColor colorWithHexString:@"dddddd"].CGColor;
-    self.layer.borderWidth = 1.0/kScale;
-//    self.layer.shadowColor = [UIColor grayColor].CGColor;
-//    self.layer.shadowOffset = CGSizeMake(0, 1);
-//    self.layer.shadowOpacity = 0.8;
-//    self.layer.shadowRadius = 3;
+- (UILabel *)walletName
+{
+    if (!_walletName) {
+        _walletName = [[UILabel alloc] init];
+        _walletName.font = [UIFont systemFontOfSize:19];
+        _walletName.textColor = [UIColor blackColor];
+    }
+    
+    return _walletName;
+}
+
+- (UILabel *)address
+{
+    if (!_address) {
+        _address = [[UILabel alloc] init];
+        _address.font = [UIFont systemFontOfSize:13];
+        _address.textColor = [UIColor blackColor];
+        _address.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    }
+    
+    return _address;
 }
 
 - (void)setWalletNameStr:(NSString *)walletNameStr{
@@ -50,26 +81,5 @@
     _addressStr = addressStr;
     self.address.text = addressStr;
 }
-
-//- (void)requestBalance{
-//    @weakify(self);
-//    [ApexWalletManager getAccountStateWithAddress:self.addressStr Success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        @strongify(self);
-//        self.accountModel = [ApexAccountStateModel yy_modelWithDictionary:responseObject];
-//        //延时加载 避免一闪而过影响体验
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            self.accountModel.balances.count == 0 ? (self.balance.text = @"0") : (self.balance.text = self.accountModel.balances.firstObject.value);
-//        });
-//        if (self.didFinishRequestBalanceSub) {
-//            [self.didFinishRequestBalanceSub sendNext:self.accountModel];
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        self.balance.text = @"N/A";
-//    }];
-//}
-
-//- (ApexAccountStateModel *)getAccountInfo{
-//    return _accountModel;
-//}
 
 @end

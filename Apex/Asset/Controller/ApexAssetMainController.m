@@ -59,7 +59,8 @@
     [self.view insertSubview:self.backIV atIndex:0];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"ApexAssetMainViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    
+    [self.tableView registerClass:[ApexAssetMainViewCell class] forCellReuseIdentifier:@"cell"];
     
     [self.accessoryBaseView addSubview:self.searchTooBar];
     [self.searchTooBar mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -166,6 +167,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
