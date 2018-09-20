@@ -186,6 +186,7 @@
     }];
     
     [[self rac_liftSelector:@selector(updateEthAndErc20:) withSignals:combineSig, nil] subscribeError:^(NSError * _Nullable error) {
+        [self.tableView.mj_header endRefreshing];
         [self showMessage:SOLocalizedStringFromTable(@"Request Failed, Please Check Your Network Status", nil)];
     }];
 }
