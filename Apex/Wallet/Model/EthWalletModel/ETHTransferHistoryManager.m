@@ -120,7 +120,7 @@ static ETHTransferHistoryManager *_instance;
 #pragma mark - request
 - (void)beginTimerToConfirmTransactionOfAddress:(NSString *)address txModel:(ApexTransferModel *)model {
     if (model.status == ApexTransferStatus_Blocking) {
-        [[ETHWalletManager shareManager] setStatus:NO forWallet:address];
+        [[ETHWalletManager shareManager] setStatus:YES forWallet:address];
     }
     
     __block BOOL cancleTimer = false;
@@ -197,17 +197,23 @@ static ETHTransferHistoryManager *_instance;
         NSArray *txArr = dict[@"data"];
         for (NSDictionary *dict in txArr) {
             ETHTransferModel *model = [ETHTransferModel yy_modelWithDictionary:dict];
-            
             model.status = ApexTransferStatus_Confirmed;
             
             if ([model.vmstate isEqualToString:@"1"]){
                 model.status = ApexTransferStatus_Failed;
             }
             
-            [self addTransferHistory:model forWallet:addr];
-            
             [tempArr addObject:model];
         }
+        
+        [tempArr sortUsingComparator:^NSComparisonResult(ETHTransferModel *obj1, ETHTransferModel *obj2) {
+            return obj1.time.integerValue > obj2.time.integerValue;
+        }];
+        
+        for (ETHTransferModel *txModel in tempArr) {
+            [self addTransferHistory:txModel forWallet:addr];
+        }
+        
         response.returnObj = tempArr;
         
         if (success) {
@@ -221,7 +227,9 @@ static ETHTransferHistoryManager *_instance;
 }
 
 - (void)secreteUpdateUserTransactionHistoryAddress:(NSString *)address {
-    
+    [self requestTxHistoryForAddress:address Success:^(CYLResponse *res) {
+    } failure:^(NSError *err) {
+    }];
 }
 
 @end

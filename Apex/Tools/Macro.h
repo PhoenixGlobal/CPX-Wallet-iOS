@@ -47,8 +47,8 @@
 #define baseUrl_cli_main @"https://tracker.chinapex.com.cn/neo-cli/"
 
 //eth
-#define ETH_baseUrl_cli_test @"https://tracker.chinapex.com.cn/eth-cli/"
-//#define ETH_baseUrl_cli_test @"http://139.219.9.137:8545"
+//#define ETH_baseUrl_cli_test @"https://tracker.chinapex.com.cn/eth-cli/"
+#define ETH_baseUrl_cli_test @"http://42.159.95.191:8545"
 #define ETHApiKey @"CTTVCEUHGU1UMY14IMWH5G9IREY7AAMT1V"
 
 #define neo_assetid @"0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"
@@ -56,6 +56,10 @@
 
 #define mnemonicEnglish @"en_US"
 #define mnemonicChianese @"zh_CN"
+
+#define EthType @"Eth"
+#define Erc20Type @"Erc20"
+#define NeoType @"NEO"
 
 #define NEOPlaceHolder [UIImage imageNamed:@"未标题-1"]
 #define ETHPlaceHolder [UIImage imageNamed:@"未标题-1 copy 3"]

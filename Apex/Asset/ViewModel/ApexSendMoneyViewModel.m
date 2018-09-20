@@ -38,9 +38,9 @@
     }
 }
 
-- (void)broadEthTransactionWithNonce:(NSNumber*)nonce wallet:(EthmobileWallet*)wallet{
+- (void)broadEthTransactionWithNonce:(NSString*)nonce wallet:(EthmobileWallet*)wallet{
     [_ownerVC showHUD];
-    [ETHWalletManager sendTxWithWallet:wallet to:self.toAddress nonce:nonce.stringValue amount:self.amount gas:_gasSliderValue success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ETHWalletManager sendTxWithWallet:wallet to:self.toAddress nonce:nonce amount:self.amount gas:_gasSliderValue success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [_ownerVC hideHUD];
         /**< 创建新的临时交易历史记录 */
         ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
@@ -51,7 +51,7 @@
         historyModel.status = ApexTransferStatus_Blocking;
         historyModel.time = @"0";
         historyModel.assetId = self.balanceModel.asset;
-        historyModel.type = @"ETH";
+        historyModel.type = EthType;
         ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];
         
         if (lastRecord) {
@@ -88,7 +88,7 @@
         historyModel.symbol = model.symbol;
         historyModel.decimal = model.precision;
         historyModel.assetId = self.balanceModel.asset;
-        historyModel.type = @"Erc20";
+        historyModel.type = Erc20Type;
         ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];
         
         if (lastRecord) {
@@ -180,7 +180,7 @@
             historyModel.status = ApexTransferStatus_Blocking;
             historyModel.time = @"0";
             historyModel.assetId = self.balanceModel.asset;
-            historyModel.type = @"NEO";
+            historyModel.type = NeoType;
             historyModel.symbol = model.symbol;
             historyModel.decimal = model.precision;
             ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];

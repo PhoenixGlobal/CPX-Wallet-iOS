@@ -135,7 +135,7 @@
 //    maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"21000"  value:8];
 //    maxValue = [NSString DecimalFuncWithOperatorType:3 first:maxValue secend:@"1000000000000000000" value:8];
     
-    self.gasSlider.minimumValue = 0.1;
+    self.gasSlider.minimumValue = 1;
     self.gasSlider.maximumValue = 32;
     self.gasSlider.value = 0;
     
@@ -155,9 +155,13 @@
 }
 
 - (void)request{
+    @weakify(self);
     [self.viewModel getCurrentGasPrice:^(NSString *gasPriceInGWei) {
+        @strongify(self);
         self.currentGasPriceL.text = [NSString stringWithFormat:@"%.2f", gasPriceInGWei.floatValue];
-        self.gasSlider.value = [NSString stringWithFormat:@"%.2f",gasPriceInGWei.floatValue].floatValue;
+        self.gasSlider.minimumValue = [NSString stringWithFormat:@"%.2f",gasPriceInGWei.floatValue].floatValue;
+        self.gasSlider.maximumValue = self.gasSlider.minimumValue + 32;
+        self.gasSlider.value = self.gasSlider.minimumValue * 3;
         self.viewModel.gasSliderValue = @(self.gasSlider.value).stringValue;
         [self sliderValueChanged:self.gasSlider];
     } fail:^(NSError *error) {

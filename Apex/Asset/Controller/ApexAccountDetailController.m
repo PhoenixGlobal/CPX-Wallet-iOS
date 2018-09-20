@@ -14,6 +14,7 @@
 #import "ApexMorePanelController.h"
 #import "ApexDrawTransAnimator.h"
 #import "ApexAddAssetsController.h"
+#import "ETHTransferHistoryManager.h"
 #import "ApexTransferHistoryManager.h"
 #import "ApexCopyLable.h"
 #import "ApexAccountDetailViewModel.h"
@@ -414,6 +415,7 @@
     
     if ([walletModel isKindOfClass:ETHWalletModel.class]) {
         _type = ApexWalletType_Eth;
+        [[ETHTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];
     }else{
         _type = ApexWalletType_Neo;
         [[ApexTransferHistoryManager shareManager] secreteUpdateUserTransactionHistoryAddress:walletModel.address];

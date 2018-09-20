@@ -74,8 +74,8 @@
         self.iconImage.image = CPX_Logo;
     }else{
         
-        if ([model.type isEqualToString:@"Eth"] || [model.type isEqualToString:@"Erc20"]) {
-            
+        if ([model.type isEqualToString:EthType] || [model.type isEqualToString:Erc20Type]) {
+            ![model.imageURL.lowercaseString containsString:@"http"] ? model.imageURL = @"" : nil;
             for (ApexAssetModel *assetModel in [ETHAssetModelManage getLocalAssetModelsArr]) {
                 if ([assetModel.hex_hash isEqualToString:model.assetId]) {
                     model.imageURL = assetModel.image_url;
