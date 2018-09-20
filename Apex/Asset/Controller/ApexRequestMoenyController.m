@@ -144,6 +144,7 @@
 - (void)backAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark - ------getter & setter------
 - (UILabel *)titleLable{
     if (!_titleLable) {
@@ -165,7 +166,4 @@
     return _backBtn;
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
-}
 @end
