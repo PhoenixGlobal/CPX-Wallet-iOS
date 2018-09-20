@@ -212,7 +212,7 @@
         //地址有效性判断
         NSString *decode = NeomobileDecodeAddress(_toAddressTF.text, nil);
         if (decode == nil){
-            [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
+            [self showMessage:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil)];
             return;
         }
     }

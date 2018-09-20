@@ -8,27 +8,108 @@
 
 #import "ApexWallerItemCell.h"
 @interface ApexWallerItemCell()
-@property (weak, nonatomic) IBOutlet UILabel *walletNameL;
-@property (weak, nonatomic) IBOutlet UILabel *walletAddL;
-@property (weak, nonatomic) IBOutlet UILabel *valueL;
-@property (weak, nonatomic) IBOutlet UIImageView *iconIMageV;
+
+@property (nonatomic, strong) UIImageView *iconIMageV;
+@property (nonatomic, strong) UILabel *walletNameL;
+@property (nonatomic, strong) UILabel *walletAddL;
 
 @property (nonatomic, strong) ApexAccountStateModel *accountModel;
+
 @end
 
 @implementation ApexWallerItemCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    self.layer.cornerRadius = 6;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        self.layer.cornerRadius = 6;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrows-1_minimal-left"]];
+        
+        [self.contentView addSubview:self.iconIMageV];
+        [self.contentView addSubview:self.walletNameL];
+        [self.contentView addSubview:self.walletAddL];
+        [self.contentView addSubview:self.backupTipBtn];
+        
+        [self.iconIMageV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).with.offset(15.0f);
+            make.centerY.equalTo(self.contentView);
+            make.size.mas_equalTo(CGSizeMake(40.0f, 40.0f));
+        }];
+        
+        [self.walletNameL mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).with.offset(70.0f);
+            make.top.equalTo(self.contentView).with.offset(20.0f);
+            make.right.equalTo(self.contentView);
+            make.height.mas_equalTo(23.0f);
+        }];
+        
+        [self.walletAddL mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.walletNameL);
+            make.top.equalTo(self.walletNameL.mas_bottom).with.offset(10.0f);
+            make.height.mas_equalTo(16.0f);
+        }];
+        
+        CGFloat backupWidth = [ApexUIHelper calculateTextLength:[UIFont systemFontOfSize:10] givenText:SOLocalizedStringFromTable(@"Back up", nil)];
+        
+        [self.backupTipBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.contentView).with.offset(-10.0f);
+            make.centerY.equalTo(self.walletNameL);
+            make.size.mas_equalTo(CGSizeMake(backupWidth, 18.0f));
+        }];
+    }
     
-    [self.backupTipBtn setTitleColor:[UIColor colorWithHexString:@"B3D38D"] forState:UIControlStateNormal];
-    self.backupTipBtn.layer.borderColor = [UIColor colorWithHexString:@"B3D38D"].CGColor;
-    self.backupTipBtn.layer.borderWidth = 1.0/kScale;
-    self.backupTipBtn.layer.cornerRadius = 9;
-    [self.backupTipBtn setTitle:SOLocalizedStringFromTable(@"Back up", nil) forState:UIControlStateNormal];
-    [self.backupTipBtn.titleLabel setAdjustsFontSizeToFitWidth:YES];
+    return self;
+}
+
+- (UIImageView *)iconIMageV
+{
+    if (!_iconIMageV) {
+        _iconIMageV = [[UIImageView alloc] init];
+        _iconIMageV.contentMode = UIViewContentModeScaleAspectFill;
+        _iconIMageV.clipsToBounds = YES;
+    }
+    
+    return _iconIMageV;
+}
+
+- (UILabel *)walletNameL
+{
+    if (!_walletNameL) {
+        _walletNameL = [[UILabel alloc] init];
+        _walletNameL.font = [UIFont systemFontOfSize:19];
+        _walletNameL.textColor = [UIColor blackColor];
+    }
+    
+    return _walletNameL;
+}
+
+- (UILabel *)walletAddL
+{
+    if (!_walletAddL) {
+        _walletAddL = [[UILabel alloc] init];
+        _walletAddL.font = [UIFont systemFontOfSize:13];
+        _walletAddL.textColor = [UIColor blackColor];
+        _walletAddL.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    }
+    
+    return _walletAddL;
+}
+
+- (UIButton *)backupTipBtn
+{
+    if (!_backupTipBtn) {
+        _backupTipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backupTipBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+        [_backupTipBtn setTitleColor:[UIColor colorWithHexString:@"B3D38D"] forState:UIControlStateNormal];
+        _backupTipBtn.layer.borderColor = [UIColor colorWithHexString:@"B3D38D"].CGColor;
+        _backupTipBtn.layer.borderWidth = 1.0/kScale;
+        _backupTipBtn.layer.cornerRadius = 9;
+        [_backupTipBtn setTitle:SOLocalizedStringFromTable(@"Back up", nil) forState:UIControlStateNormal];
+    }
+    
+    return _backupTipBtn;
 }
 
 - (void)setModel:(ApexWalletModel *)model
@@ -43,11 +124,11 @@
     
     self.walletNameL.text = model.name;
     self.walletAddL.text = model.address;
-    self.valueL.text = @"N/A";
     self.backupTipBtn.hidden = model.isBackUp;
 }
 
 - (ApexAccountStateModel *)getAccountInfo{
     return _accountModel;
 }
+
 @end

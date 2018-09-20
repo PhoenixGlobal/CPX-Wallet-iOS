@@ -40,7 +40,7 @@
         }
     }];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"ApexWallerItemCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[ApexWallerItemCell class] forCellReuseIdentifier:@"cell"];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.tableView reloadData];
@@ -62,6 +62,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -111,7 +116,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.estimatedRowHeight = 100;
+        _tableView.estimatedRowHeight = 0;
         _tableView.rowHeight = UITableViewAutomaticDimension;
         _tableView.contentInset = UIEdgeInsetsMake(15, 0, 0, 0);
         _tableView.showsVerticalScrollIndicator = NO;
