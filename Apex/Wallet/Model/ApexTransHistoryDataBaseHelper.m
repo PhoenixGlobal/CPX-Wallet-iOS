@@ -113,9 +113,9 @@ singleM(DataBase);
         }
     }
     
-        if (!isLocalDataProcessing) {
-            [self insertModel:model inTable:walletAddress maxID:maxID manager:manager db:_db];
-        }
+    if (!isLocalDataProcessing) {
+        [self insertModel:model inTable:walletAddress maxID:maxID manager:manager db:_db];
+    }
     
     [res close];
     [_db close];
