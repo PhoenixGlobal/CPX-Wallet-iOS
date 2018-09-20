@@ -11,7 +11,8 @@
 
 @interface ApexWallerItemCell : UITableViewCell
 @property (nonatomic, strong) ApexWalletModel *model;
-@property (weak, nonatomic) IBOutlet UIButton *backupTipBtn;
+
+@property (nonatomic, strong) UIButton *backupTipBtn;
 @property (nonatomic, strong) RACSubject *didFinishRequestBalanceSub; /**< 请求完毕时 传出sccountmodel */
 - (ApexAccountStateModel*)getAccountInfo;
 @end
