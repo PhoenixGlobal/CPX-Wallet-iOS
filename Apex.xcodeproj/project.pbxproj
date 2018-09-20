@@ -136,7 +136,6 @@
 		E3CE667B20BBF0D6002A1E07 /* ApexTempEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE667A20BBF0D6002A1E07 /* ApexTempEmptyView.m */; };
 		E3CE668120BBF9A5002A1E07 /* MethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */; };
 		E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668420BCEB10002A1E07 /* ApexAlertTextField.m */; };
-		E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3CE668620BD34B7002A1E07 /* ApexTransactionDetailController.xib */; };
 		E3CE668A20BD34B7002A1E07 /* ApexTransactionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668820BD34B7002A1E07 /* ApexTransactionDetailController.m */; };
 		E3CE668D20BD38BC002A1E07 /* ApexTransferDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668C20BD38BC002A1E07 /* ApexTransferDetailHeader.m */; };
 		E3CE669020BD3B56002A1E07 /* ApexTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE668F20BD3B56002A1E07 /* ApexTransferCell.m */; };
@@ -183,7 +182,6 @@
 		E73934A921099617007953FB /* specialQuest_zh.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934A821099616007953FB /* specialQuest_zh.json */; };
 		E73934AC21099F50007953FB /* ApexChangeBindWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934AB21099F50007953FB /* ApexChangeBindWalletController.m */; };
 		E73934B02109A2CC007953FB /* ApexChangeWalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934AE2109A2CC007953FB /* ApexChangeWalletCell.m */; };
-		E73934B12109A2CC007953FB /* ApexChangeWalletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */; };
 		E73934B42109B07D007953FB /* ApexNoWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934B32109B07D007953FB /* ApexNoWalletView.m */; };
 		E73934B72109B25E007953FB /* NSBundle+MJLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = E73934B62109B25E007953FB /* NSBundle+MJLocalization.m */; };
 		E73934B92109BBD8007953FB /* commonQuest_en.json in Resources */ = {isa = PBXBuildFile; fileRef = E73934B82109BBD8007953FB /* commonQuest_en.json */; };
@@ -469,7 +467,6 @@
 		E3CE668020BBF9A5002A1E07 /* MethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzling.m; sourceTree = "<group>"; };
 		E3CE668320BCEB10002A1E07 /* ApexAlertTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexAlertTextField.h; sourceTree = "<group>"; };
 		E3CE668420BCEB10002A1E07 /* ApexAlertTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexAlertTextField.m; sourceTree = "<group>"; };
-		E3CE668620BD34B7002A1E07 /* ApexTransactionDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexTransactionDetailController.xib; sourceTree = "<group>"; };
 		E3CE668720BD34B7002A1E07 /* ApexTransactionDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransactionDetailController.h; sourceTree = "<group>"; };
 		E3CE668820BD34B7002A1E07 /* ApexTransactionDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransactionDetailController.m; sourceTree = "<group>"; };
 		E3CE668B20BD38BC002A1E07 /* ApexTransferDetailHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferDetailHeader.h; sourceTree = "<group>"; };
@@ -560,7 +557,6 @@
 		E73934AB21099F50007953FB /* ApexChangeBindWalletController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexChangeBindWalletController.m; sourceTree = "<group>"; };
 		E73934AD2109A2CC007953FB /* ApexChangeWalletCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexChangeWalletCell.h; sourceTree = "<group>"; };
 		E73934AE2109A2CC007953FB /* ApexChangeWalletCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexChangeWalletCell.m; sourceTree = "<group>"; };
-		E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApexChangeWalletCell.xib; sourceTree = "<group>"; };
 		E73934B22109B07D007953FB /* ApexNoWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexNoWalletView.h; sourceTree = "<group>"; };
 		E73934B32109B07D007953FB /* ApexNoWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexNoWalletView.m; sourceTree = "<group>"; };
 		E73934B52109B25E007953FB /* NSBundle+MJLocalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MJLocalization.h"; sourceTree = "<group>"; };
@@ -884,7 +880,6 @@
 				E3263ECE20B666CA001D3C19 /* ApexWalletManageDetailController.xib */,
 				E3CE668720BD34B7002A1E07 /* ApexTransactionDetailController.h */,
 				E3CE668820BD34B7002A1E07 /* ApexTransactionDetailController.m */,
-				E3CE668620BD34B7002A1E07 /* ApexTransactionDetailController.xib */,
 				E32920C520D8CC170012C36D /* ApexTXDetailController.h */,
 				E32920C620D8CC170012C36D /* ApexTXDetailController.m */,
 				E32920C420D8CC170012C36D /* ApexTXDetailController.xib */,
@@ -1426,7 +1421,6 @@
 				E7EDD7592106CAD000007F29 /* ApexTagCollectionViewCell.m */,
 				E73934AD2109A2CC007953FB /* ApexChangeWalletCell.h */,
 				E73934AE2109A2CC007953FB /* ApexChangeWalletCell.m */,
-				E73934AF2109A2CC007953FB /* ApexChangeWalletCell.xib */,
 				E73934B22109B07D007953FB /* ApexNoWalletView.h */,
 				E73934B32109B07D007953FB /* ApexNoWalletView.m */,
 				E731468C2109FC2D002A6C07 /* ApexEnterKeyView.h */,
@@ -1571,12 +1565,10 @@
 				E731469E210A4633002A6C07 /* launchImage.png in Resources */,
 				E7314690210A02D0002A6C07 /* useprotocol.html in Resources */,
 				E7EDD7502105D9F200007F29 /* commonQuest_zh.json in Resources */,
-				E3CE668920BD34B7002A1E07 /* ApexTransactionDetailController.xib in Resources */,
 				E73934BB2109BBE9007953FB /* specialQuest_en.json in Resources */,
 				E3263EE920B69BB6001D3C19 /* heart.png in Resources */,
 				E33A8BE320B2C3A50067505E /* ApexRequestMoenyController.xib in Resources */,
 				E731469F210A4633002A6C07 /* launchImage@3x.png in Resources */,
-				E73934B12109A2CC007953FB /* ApexChangeWalletCell.xib in Resources */,
 				E3263ED920B68CFB001D3C19 /* ApexBackUpController.xib in Resources */,
 				E3263ED120B666CA001D3C19 /* ApexWalletManageDetailController.xib in Resources */,
 				E32920C720D8CC170012C36D /* ApexTXDetailController.xib in Resources */,

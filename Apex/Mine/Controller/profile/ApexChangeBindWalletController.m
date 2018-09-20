@@ -56,7 +56,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    [self.tableView registerNib:[UINib nibWithNibName:@"ApexChangeWalletCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[ApexChangeWalletCell class] forCellReuseIdentifier:@"cell"];
 }
 
 - (void)setNav{
@@ -108,7 +108,6 @@
     ApexWalletModel *model = self.contentArr[indexPath.row];
     if (self.didSelectCellSub) {
         [self.didSelectCellSub sendNext:model];
-//        [TKFileManager saveValue:model.address forKey:KBindingWalletAddress];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
