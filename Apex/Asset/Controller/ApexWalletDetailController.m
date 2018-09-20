@@ -71,7 +71,7 @@
     
     [self.backIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.mas_equalTo(scaleHeight667(NavBarHeight+160));
+        make.height.mas_equalTo(NavBarHeight + 140.0f);
     }];
     
     [self.sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,7 +88,7 @@
     }];
     
     [self.balanceL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(50+NavBarHeight);
+        make.top.equalTo(self.view).offset(30 + NavBarHeight);
         make.centerX.equalTo(self.view.mas_centerX);
         make.left.greaterThanOrEqualTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-60);
