@@ -41,7 +41,7 @@
         [self.walletNameL mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView).with.offset(70.0f);
             make.top.equalTo(self.contentView).with.offset(20.0f);
-            make.right.equalTo(self.contentView);
+            make.right.equalTo(self.contentView).with.offset(-10.0f);
             make.height.mas_equalTo(23.0f);
         }];
         
