@@ -38,6 +38,8 @@
 - (void)initUI{
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-w"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     if (_isFromCreat) {
         self.title = SOLocalizedStringFromTable(@"Create Wallet", nil);
     }else{
@@ -81,9 +83,10 @@
     }];
 }
 
-#pragma mark - ------public------
-
-#pragma mark - ------delegate & datasource------
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - ------eventResponse------
 - (void)handleEvent{
