@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		209793D5EAE1A26E49247C19 /* libPods-ApexTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F908D36AAECD0B3350B0D54 /* libPods-ApexTests.a */; };
+		58C1F75F215520E7008FD282 /* ApexTransferManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C1F75E215520E7008FD282 /* ApexTransferManagerViewController.m */; };
+		58C1F7682155214F008FD282 /* ApexSendMoneyFromCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C1F7602155214E008FD282 /* ApexSendMoneyFromCell.m */; };
+		58C1F7692155214F008FD282 /* ApexSendMoneyGasCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C1F7622155214E008FD282 /* ApexSendMoneyGasCell.m */; };
+		58C1F76A2155214F008FD282 /* ApexSendMoneyAmountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C1F7632155214E008FD282 /* ApexSendMoneyAmountCell.m */; };
+		58C1F76B2155214F008FD282 /* ApexSendMoneyToCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C1F7652155214F008FD282 /* ApexSendMoneyToCell.m */; };
 		58DFBEA1213527B300E8D88A /* ApexEncourageActivitysModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBE9A213527B300E8D88A /* ApexEncourageActivitysModel.m */; };
 		58DFBEA2213527B300E8D88A /* ApexRewardListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBE9D213527B300E8D88A /* ApexRewardListTableViewCell.m */; };
 		58DFBEA3213527B300E8D88A /* ApexEncourageSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFBEA0213527B300E8D88A /* ApexEncourageSubmitCell.m */; };
@@ -224,6 +229,16 @@
 /* Begin PBXFileReference section */
 		2C9A9010776E4D47E3906386 /* Pods-Apex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apex.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apex/Pods-Apex.release.xcconfig"; sourceTree = "<group>"; };
 		424BA456A3A13F1EFA3C76CA /* Pods-ApexTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApexTests/Pods-ApexTests.debug.xcconfig"; sourceTree = "<group>"; };
+		58C1F75D215520E7008FD282 /* ApexTransferManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApexTransferManagerViewController.h; sourceTree = "<group>"; };
+		58C1F75E215520E7008FD282 /* ApexTransferManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApexTransferManagerViewController.m; sourceTree = "<group>"; };
+		58C1F7602155214E008FD282 /* ApexSendMoneyFromCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexSendMoneyFromCell.m; sourceTree = "<group>"; };
+		58C1F7612155214E008FD282 /* ApexSendMoneyFromCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexSendMoneyFromCell.h; sourceTree = "<group>"; };
+		58C1F7622155214E008FD282 /* ApexSendMoneyGasCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexSendMoneyGasCell.m; sourceTree = "<group>"; };
+		58C1F7632155214E008FD282 /* ApexSendMoneyAmountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexSendMoneyAmountCell.m; sourceTree = "<group>"; };
+		58C1F7642155214F008FD282 /* ApexSendMoneyAmountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexSendMoneyAmountCell.h; sourceTree = "<group>"; };
+		58C1F7652155214F008FD282 /* ApexSendMoneyToCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexSendMoneyToCell.m; sourceTree = "<group>"; };
+		58C1F7662155214F008FD282 /* ApexSendMoneyToCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexSendMoneyToCell.h; sourceTree = "<group>"; };
+		58C1F7672155214F008FD282 /* ApexSendMoneyGasCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexSendMoneyGasCell.h; sourceTree = "<group>"; };
 		58DFBE9A213527B300E8D88A /* ApexEncourageActivitysModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexEncourageActivitysModel.m; sourceTree = "<group>"; };
 		58DFBE9B213527B300E8D88A /* ApexEncourageActivitysModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApexEncourageActivitysModel.h; sourceTree = "<group>"; };
 		58DFBE9D213527B300E8D88A /* ApexRewardListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApexRewardListTableViewCell.m; sourceTree = "<group>"; };
@@ -956,6 +971,14 @@
 				E39E02DC20C68C13005DD251 /* ApexMoreTopCell.m */,
 				E39E02DE20C68C38005DD251 /* ApexMoreFuncCell.h */,
 				E39E02DF20C68C38005DD251 /* ApexMoreFuncCell.m */,
+				58C1F7642155214F008FD282 /* ApexSendMoneyAmountCell.h */,
+				58C1F7632155214E008FD282 /* ApexSendMoneyAmountCell.m */,
+				58C1F7612155214E008FD282 /* ApexSendMoneyFromCell.h */,
+				58C1F7602155214E008FD282 /* ApexSendMoneyFromCell.m */,
+				58C1F7672155214F008FD282 /* ApexSendMoneyGasCell.h */,
+				58C1F7622155214E008FD282 /* ApexSendMoneyGasCell.m */,
+				58C1F7662155214F008FD282 /* ApexSendMoneyToCell.h */,
+				58C1F7652155214F008FD282 /* ApexSendMoneyToCell.m */,
 				E324311A20E21F3E00284B91 /* ApexMappingBtnView.h */,
 				E324311B20E21F3E00284B91 /* ApexMappingBtnView.m */,
 				E38A64BC20ECB88600150F3B /* ApexAddAssetCell.h */,
@@ -978,6 +1001,8 @@
 				E33A8BDB20B2B5950067505E /* ApexWalletDetailController.m */,
 				E39E02CE20C657F8005DD251 /* ApexMorePanelController.h */,
 				E39E02CF20C657F8005DD251 /* ApexMorePanelController.m */,
+				58C1F75D215520E7008FD282 /* ApexTransferManagerViewController.h */,
+				58C1F75E215520E7008FD282 /* ApexTransferManagerViewController.m */,
 				E33A8BE120B2C3A50067505E /* ApexRequestMoenyController.h */,
 				E33A8BE220B2C3A50067505E /* ApexRequestMoenyController.m */,
 				E33A8BE020B2C3A50067505E /* ApexRequestMoenyController.xib */,
@@ -1755,11 +1780,13 @@
 				E7314693210A05BA002A6C07 /* ApexProlicyController.m in Sources */,
 				E3855AD620EC730B00C377BF /* ApexSheetView.m in Sources */,
 				58DFBEA1213527B300E8D88A /* ApexEncourageActivitysModel.m in Sources */,
+				58C1F7692155214F008FD282 /* ApexSendMoneyGasCell.m in Sources */,
 				E324311C20E21F3E00284B91 /* ApexMappingBtnView.m in Sources */,
 				E33A8BE420B2C3A50067505E /* ApexRequestMoenyController.m in Sources */,
 				E39E02E920C7C82E005DD251 /* ApexImportSwithHeaderBar.m in Sources */,
 				E73934A1210877E5007953FB /* ApexRowSelectView.m in Sources */,
 				E3373B3820F5F14F00590407 /* SOSwizzle.m in Sources */,
+				58C1F75F215520E7008FD282 /* ApexTransferManagerViewController.m in Sources */,
 				E7039302211D53A300BA3CDB /* NSString+Tool.m in Sources */,
 				E39E02E020C68C38005DD251 /* ApexMoreFuncCell.m in Sources */,
 				E33A8B9D20AE756E0067505E /* UIViewController+NetLoadingIndicator.m in Sources */,
@@ -1790,6 +1817,7 @@
 				E3CE668520BCEB10002A1E07 /* ApexAlertTextField.m in Sources */,
 				E338965120B511B400DD51FE /* ApexSearchWalletToolBar.m in Sources */,
 				E7039308211D59C600BA3CDB /* ApexETHClient.m in Sources */,
+				58C1F76B2155214F008FD282 /* ApexSendMoneyToCell.m in Sources */,
 				E3373B3920F5F14F00590407 /* UIView+SOLocalization.m in Sources */,
 				E7EDD729210579CF00007F29 /* ApexCommonProfileController.m in Sources */,
 				E39E02FB20C8F4CB005DD251 /* ApexExportKeyStoreController.m in Sources */,
@@ -1868,6 +1896,7 @@
 				E33A8B8820AE75650067505E /* CYLNavBaseController.m in Sources */,
 				E7C68C14213FB5050009B2A2 /* ETHTxStatusManager.m in Sources */,
 				E3CE668D20BD38BC002A1E07 /* ApexTransferDetailHeader.m in Sources */,
+				58C1F76A2155214F008FD282 /* ApexSendMoneyAmountCell.m in Sources */,
 				E3CE66B520BEA812002A1E07 /* DTError.m in Sources */,
 				E3373B5920F8711600590407 /* ApexLanguageSettingController.m in Sources */,
 				E33A8BD320B29D060067505E /* ApexAppConfig.m in Sources */,
@@ -1889,6 +1918,7 @@
 				E3263EFC20B6AF93001D3C19 /* ApexMnemonicCell.m in Sources */,
 				E33A8BBA20AE795F0067505E /* ApexCreatWalletController.m in Sources */,
 				E33A8B8920AE75650067505E /* CYLTabBarController.m in Sources */,
+				58C1F7682155214F008FD282 /* ApexSendMoneyFromCell.m in Sources */,
 				E7EA1BCE20C1211600E2C597 /* ApexScrollerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
