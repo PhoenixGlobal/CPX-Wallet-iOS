@@ -107,7 +107,7 @@
 "Totla" = "总计gas价格:";
 
 "gas" = "Gas数量";
-"gasPrice" = "Gas单价(GWei)";
+"gasPrice" = "推荐Gas Price(GWei)";
 "gasFee" = "Gas总花费(ETH)";
 
 //Reward

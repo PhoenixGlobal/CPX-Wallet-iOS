@@ -160,7 +160,7 @@
 "OpenWalletFailed" = "Open Wallet Failed";
 "CreateTransFailed" = "Create Transaction Failed";
 "UtxoFailed" = "Generate UTXO Failed, Please Check Network Status";
-"TransSuccess" = "Transfer Send Success";
+"TransSuccess" = "Send Successfully";
 "TransFail" = "Transfer Failed";
 "BalanceNotEnough" = "Insufficient Balance";
 "InvalidateAddress" = "Please Input Valid Address";
@@ -168,4 +168,4 @@
 "Copied" = "Copy Success";
 "ProcessingTrans" = "There is still a transaction Being Progress,Please wait a moment";
 "longName" = "Wallet Name Should Be Less Than 8 Characters";
-"InvalidateMoney" = "Please Input Currect Money Amount";
+"InvalidateMoney" = "Please enter the correct transfer amount";
