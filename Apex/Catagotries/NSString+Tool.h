@@ -73,7 +73,7 @@
 // data 转 json字符串
 + (NSString *)convertDataToHexStr:(NSData *)data;
 
-// data 转 16进制字符串
+//// data 转 16进制字符串
 + (NSString *)hexStringFromData:(NSData *)myD;
 
 //转16进账字符串
@@ -109,6 +109,5 @@
 + (NSString *)flattenHTML:(NSString *)html;
 
 - (NSArray *)componentsSeparatedFromString:(NSString *)fromString toString:(NSString *)toString;
-
 @end
 

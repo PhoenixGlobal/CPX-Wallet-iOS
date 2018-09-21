@@ -118,15 +118,22 @@
     _tipL5.text = SOLocalizedStringFromTable(@"gasPrice", nil);
     _tipL6.text = SOLocalizedStringFromTable(@"gasFee", nil);
     
-    _lineTopConstrant.constant = 190;
-    if ([_model.type isEqualToString:NeoType]) {
-        _tipL4.hidden = YES;
-        _tipL5.hidden = YES;
-        _tipL6.hidden = YES;
-        _gas.hidden = YES;
-        _gasPriceL.hidden = YES;
-        _gasFee.hidden = YES;
-        _lineTopConstrant.constant = 15;
+    _lineTopConstrant.constant = 15;
+    _tipL4.hidden = YES;
+    _tipL5.hidden = YES;
+    _tipL6.hidden = YES;
+    _gas.hidden = YES;
+    _gasPriceL.hidden = YES;
+    _gasFee.hidden = YES;
+    
+    if ([_model.type isEqualToString:EthType] || [_model.type isEqualToString:Erc20Type]) {
+        _tipL4.hidden = NO;
+        _tipL5.hidden = NO;
+        _tipL6.hidden = NO;
+        _gas.hidden = NO;
+        _gasPriceL.hidden = NO;
+        _gasFee.hidden = NO;
+        _lineTopConstrant.constant = 190;
     }
 }
 

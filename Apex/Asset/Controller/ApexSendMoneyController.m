@@ -177,6 +177,7 @@
     self.toAddressTF.text = toaddress;
 }
 
+
 #pragma mark - ------eventResponse------
 - (void)handleEvent{
     [[self.scanBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -197,6 +198,20 @@
     self.totalETHL.text = [NSString stringWithFormat:@"%.11f",total.floatValue];
     self.viewModel.gasSliderValue = @(self.gasSlider.value).stringValue;
 }
+
+- (IBAction)amountChanged:(id)sender {
+    NSString *num = _sendNumTF.text;
+    
+    if ([num containsString:@"."]) {
+        NSString *interger = [num componentsSeparatedByString:@"."].firstObject;
+        NSString *decimal = [num componentsSeparatedByString:@"."].lastObject;
+        if (decimal.length >= 8) {
+            decimal = [decimal substringToIndex:8];
+        }
+        _sendNumTF.text = [NSString stringWithFormat:@"%@.%@",interger,decimal];
+    }
+}
+
 
 
 - (IBAction)sendAction:(id)sender {
@@ -223,7 +238,9 @@
         }
     }
     
-    if (_sendNumTF.text.floatValue > _balanceModel.value.floatValue) {
+    if (![NSString isMoneyNumber:_sendNumTF.text]) {
+        [self showMessage:SOLocalizedStringFromTable(@"InvalidateMoney", nil)];
+    }else if (_sendNumTF.text.floatValue > _balanceModel.value.floatValue) {
         [self showMessage:SOLocalizedStringFromTable(@"BalanceNotEnough", nil)];
     }else if ([_toAddressTF.text isEqualToString:_walletAddress]){
         [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];

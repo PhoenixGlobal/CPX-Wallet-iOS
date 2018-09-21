@@ -17,10 +17,11 @@
 #import "ApexTXDetailController.h"
 #import "ApexChangeBindWalletController.h"
 #import "ETHTransferHistoryManager.h"
+#import "ApexCopyLable.h"
 
 @interface ApexTransactionDetailController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIImageView *backgroundImageView;
-@property (nonatomic, strong) UILabel *addressL;
+@property (nonatomic, strong)  ApexCopyLable *addressL;
 @property (nonatomic, strong) ApexSearchWalletToolBar *searchToolBar;
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -79,9 +80,10 @@
     }];
     
     [self.addressL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).with.offset(15.0f);
-        make.right.equalTo(self.view).with.offset(-15.0f);
+//        make.left.lessThanOrEqualTo(self.view).with.offset(15.0f);
+//        make.right.lessThanOrEqualTo(self.view).with.offset(-15.0f);
         make.top.equalTo(self.view).with.offset([ApexUIHelper naviBarHeight]);
+        make.centerX.equalTo(self.view.mas_centerX);
         make.height.mas_equalTo(20.0f);
     }];
     
@@ -251,14 +253,22 @@
     return _backgroundImageView;
 }
 
-- (UILabel *)addressL
+- (ApexCopyLable *)addressL
 {
     if (!_addressL) {
-        _addressL = [[UILabel alloc] init];
+        _addressL = [[ApexCopyLable alloc] init];
         _addressL.font = [UIFont systemFontOfSize:13];
         _addressL.textColor = [UIColor whiteColor];
         _addressL.lineBreakMode = NSLineBreakByTruncatingMiddle;
         _addressL.textAlignment = NSTextAlignmentCenter;
+        _addressL.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+        [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+            UIPasteboard *pastBoard = [UIPasteboard generalPasteboard];
+            pastBoard.string = self.addressL.text;
+            [self showMessage:SOLocalizedStringFromTable(@"CopySuccess", nil)];
+        }];
+        [_addressL addGestureRecognizer:tap];
     }
     
     return _addressL;

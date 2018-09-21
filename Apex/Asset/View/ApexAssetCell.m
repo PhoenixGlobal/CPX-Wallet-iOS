@@ -74,7 +74,9 @@
             if (image) {
                 self.assetIcon.image = image;
             }else{
-                self.assetIcon.image = NEOPlaceHolder;
+                image = [UIImage imageNamed:model.asset];
+                
+                self.assetIcon.image = image ? image : NEOPlaceHolder;
             }
         }
         

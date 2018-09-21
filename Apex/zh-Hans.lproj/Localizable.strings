@@ -159,3 +159,4 @@
 "Copied" = "已复制";
 "ProcessingTrans" = "目前仍有一笔待确认中的交易";
 "longName" = "钱包名过长(最多8个字符)";
+"InvalidateMoney" = "请输入正确的金额";

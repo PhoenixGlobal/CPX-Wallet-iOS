@@ -143,7 +143,7 @@
 //金额
 + (BOOL)isMoneyNumber:(NSString *)number
 {
-    NSString *pattern = @"^[0-9]+(.[0-9]{4})?$";
+    NSString *pattern = @"^[0-9]+([.]{1}[0-9]+){0,1}$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
     BOOL isMatch = [pred evaluateWithObject:number];
     return isMatch;
@@ -162,7 +162,7 @@
 
 + (BOOL)isAdress:(NSString *)adress
 {
-    if (!adress)
+    if (!adress || adress.length < 2)
     {
         return NO;
     }
@@ -469,4 +469,5 @@
     
     return str;
 }
+
 @end

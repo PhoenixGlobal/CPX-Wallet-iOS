@@ -42,6 +42,7 @@
     [_ownerVC showHUD];
     [ETHWalletManager sendTxWithWallet:wallet to:self.toAddress nonce:nonce amount:self.amount gas:_gasSliderValue success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [_ownerVC hideHUD];
+        [_ownerVC showMessageOnWindow:SOLocalizedStringFromTable(@"TransSuccess", nil)];
         /**< 创建新的临时交易历史记录 */
         ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
         historyModel.txid = [responseObject hasPrefix:@"0x"] ? responseObject : [NSString stringWithFormat:@"0x%@",responseObject];
@@ -77,6 +78,7 @@
     [ETHWalletManager sendERC20TxWithWallet:wallet contractAddress:model.hex_hash to:_toAddress nonce:nonce amount:_amount gas:_gasSliderValue assetModel:model success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [_ownerVC hideHUD];
+        [_ownerVC showMessageOnWindow:SOLocalizedStringFromTable(@"TransSuccess", nil)];
         /**< 创建新的临时交易历史记录 */
         ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
         historyModel.txid = [responseObject hasPrefix:@"0x"] ? responseObject : [NSString stringWithFormat:@"0x%@",responseObject];
@@ -169,7 +171,8 @@
         [_ownerVC hideHUD];
         BOOL isSuccess = ((NSNumber*)responseObject).boolValue;
         if (isSuccess) {
-            [_ownerVC showMessage:SOLocalizedStringFromTable(@"TransSuccess", nil)];
+            
+            [_ownerVC showMessageOnWindow:SOLocalizedStringFromTable(@"TransSuccess", nil)];
             ApexAssetModel *model = [_balanceModel getRelativeNeoAssetModel];
             /**< 创建新的临时交易历史记录 */
             ApexTransferModel *historyModel = [[ApexTransferModel alloc] init];
