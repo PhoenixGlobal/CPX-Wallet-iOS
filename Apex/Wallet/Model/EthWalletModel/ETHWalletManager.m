@@ -202,6 +202,7 @@ singleM(Manager);
                  success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     //金额转换
+    
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
     NSDecimalNumber *transferDecimal = [amountDecimal decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithMantissa:1 exponent:18 isNegative:NO]];
     NSString *amountTrans = [NSString stringWithFormat:@"0x%@", [SystemConvert decimalStringToHex:transferDecimal.stringValue]];

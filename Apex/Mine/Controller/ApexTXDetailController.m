@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *gasPriceL;
 @property (weak, nonatomic) IBOutlet UILabel *gasFee;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineTopConstrant;
+
 
 
 //@property (weak, nonatomic) IBOutlet UILabel *blockHeight;
@@ -95,7 +97,7 @@
     
     _gas.text = _model.gas_consumed != nil ? _model.gas_consumed : @"0";
     _gasPriceL.text = _model.gas_price != nil ? [NSString DecimalFuncWithOperatorType:3 first:_model.gas_price secend:@"1000000000" value:0] : @"0";
-    _gasFee.text = _model.gas_fee != nil ? _model.gas_fee : @"0"; 
+    _gasFee.text = _model.gas_fee != nil ? _model.gas_fee : @"0";
     
     @weakify(self);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
@@ -115,6 +117,17 @@
     _tipL4.text = SOLocalizedStringFromTable(@"gas", nil);
     _tipL5.text = SOLocalizedStringFromTable(@"gasPrice", nil);
     _tipL6.text = SOLocalizedStringFromTable(@"gasFee", nil);
+    
+    _lineTopConstrant.constant = 190;
+    if ([_model.type isEqualToString:NeoType]) {
+        _tipL4.hidden = YES;
+        _tipL5.hidden = YES;
+        _tipL6.hidden = YES;
+        _gas.hidden = YES;
+        _gasPriceL.hidden = YES;
+        _gasFee.hidden = YES;
+        _lineTopConstrant.constant = 15;
+    }
 }
 
 #pragma mark - ------getter-----

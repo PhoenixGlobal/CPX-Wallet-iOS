@@ -17,7 +17,7 @@
 
 #define timerInterval 10.0
 #define confirmHeight 3
-#define confirmationCount 3
+#define confirmationCount 12
 
 @interface ETHTransferHistoryManager()
 @property (nonatomic, strong) FMDatabase *db;

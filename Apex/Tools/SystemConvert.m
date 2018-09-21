@@ -214,6 +214,10 @@ static NSMutableDictionary *_bitQDic;
 
 
 + (NSString *)decimalStringToHex:(NSString*)tmpid{
+    //舍弃小数点
+    if ([tmpid containsString:@"."]) {
+        tmpid = [tmpid componentsSeparatedByString:@"."].firstObject;
+    }
     
     NSMutableString *str = [NSMutableString stringWithString:@""];
     NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:tmpid];
