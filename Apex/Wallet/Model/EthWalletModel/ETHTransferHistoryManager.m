@@ -174,7 +174,6 @@ static ETHTransferHistoryManager *_instance;
                 [timer invalidate];
             }];
         }
-        
     }];
     
     [[ApexThread shareInstance].threadRunLoop addTimer:aTimer forMode:NSRunLoopCommonModes];

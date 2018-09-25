@@ -76,13 +76,13 @@
                 [temp addObject:model];
             }
         }
-#warning fake data
-        ApexAssetModel *model1 = [ApexAssetModel new];
-        model1.hex_hash = assetID_Test_Erc20;
-        model1.precision = @"18";
-        model1.name = @"NMB";
-        model1.symbol  = @"NMB";
-        [temp addObject:model1];
+//#warning fake data
+//        ApexAssetModel *model1 = [ApexAssetModel new];
+//        model1.hex_hash = assetID_Test_Erc20;
+//        model1.precision = @"18";
+//        model1.name = @"NMB";
+//        model1.symbol  = @"NMB";
+//        [temp addObject:model1];
 
         [TKFileManager saveData:temp withFileName:KETHAssetModelListKey];
         response.returnObj = temp;
