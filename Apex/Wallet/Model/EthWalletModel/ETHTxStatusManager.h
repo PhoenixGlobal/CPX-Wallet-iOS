@@ -16,4 +16,7 @@
 
 //开始12个块的确认
 + (void)beginConfirmationCountDownWithConfirmationNumber:(NSInteger)confirmNum txid:(NSString*)txid doneBlock:(dispatch_block_t)doneBlock;
+
+//交易receipt未返回前的监控
++ (void)txStatusMonitor:(NSString*)txid address:(NSString*)address nonce:(NSString*)theNonce timeOutBlock:(dispatch_block_t)timeOutBlock;
 @end

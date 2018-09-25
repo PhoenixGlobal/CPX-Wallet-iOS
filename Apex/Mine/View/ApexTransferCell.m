@@ -98,7 +98,7 @@
         }
             break;
         case ApexTransferStatus_Failed:{
-            _successFlag.text = SOLocalizedStringFromTable(@"Fail", nil);
+            _successFlag.text = SOLocalizedStringFromTable(@"Failed", nil);
             _successFlag.textColor = [UIColor redColor];
             _timeStampL.hidden = NO;
         }

@@ -39,6 +39,7 @@
 #define KisFirstCreateWalletDone  @"KisFirstCreateWalletDone"
 #define KglobleWalletType @"KglobleWalletType" //全局的钱包类型key
 #define KLocalTXTrackerKey @"KLocalTXTrackerKey" //本地交易状态跟踪key
+#define KEthNonceTrackerKey @"KEthNonceTrackerKey" //本地存储的tx的nonce
 
 //neo
 #define baseUrl_tool_test @"http://dev.chinapex.com.cn:10086/tool/"

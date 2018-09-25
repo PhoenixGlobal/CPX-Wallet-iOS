@@ -125,14 +125,17 @@ static ETHTransferHistoryManager *_instance;
     }
     
     __block BOOL cancleTimer = false;
+    __block BOOL isTXOnBlock = false; //交易是否已经上链 不论成功与否
     NSTimer *aTimer = [NSTimer timerWithTimeInterval:timerInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
         
         if (cancleTimer) {
             return;
         }
         
-        //与neo此处的处理不同, 交易上链后才有返回,否则返回nil
+        //与neo此处的处理不同, 交易上链后才有返回,否则无返回 即block不被调用
         [ETHWalletManager requestTransactionReceiptByHash:model.txid success:^(AFHTTPRequestOperation *operation, ApexETHReceiptModel *responseObject) {
+            
+            isTXOnBlock = YES;
             if (responseObject.status && responseObject.status.integerValue == 1) {
                 //交易上链成功
                 [[ApexTransHistoryDataBaseHelper shareDataBase] updateTransferStatus:ApexTransferStatus_Progressing forTXID:model.txid ofWallet:address manager:self];
@@ -153,10 +156,25 @@ static ETHTransferHistoryManager *_instance;
                 //交易失败
                 [[ETHWalletManager shareManager] setStatus:YES forWallet:address];
                 [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferFail:model.txid address:address manager:self];
+                cancleTimer = YES;
+                [timer invalidate];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
         }];
+        
+        //交易还未上链时的监控
+        if (!isTXOnBlock) {
+            [ETHTxStatusManager txStatusMonitor:model.txid address:address nonce:model.nonce timeOutBlock:^{
+                //此笔交易还未上链但是请求链上的nonce值已经增加
+                //交易失败
+                [[ETHWalletManager shareManager] setStatus:YES forWallet:address];
+                [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferFail:model.txid address:address manager:self];
+                cancleTimer = YES;
+                [timer invalidate];
+            }];
+        }
+        
     }];
     
     [[ApexThread shareInstance].threadRunLoop addTimer:aTimer forMode:NSRunLoopCommonModes];

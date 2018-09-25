@@ -53,6 +53,7 @@
         historyModel.time = @"0";
         historyModel.assetId = self.balanceModel.asset;
         historyModel.type = EthType;
+        historyModel.nonce = nonce;
         ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];
         
         if (lastRecord) {
@@ -91,6 +92,7 @@
         historyModel.decimal = model.precision;
         historyModel.assetId = self.balanceModel.asset;
         historyModel.type = Erc20Type;
+        historyModel.nonce = nonce;
         ApexTransferModel *lastRecord = [self.historyManager getLastTransferHistoryOfAddress:self.address];
         
         if (lastRecord) {

@@ -138,6 +138,15 @@ singleM(Manager);
 + (void)creatETHWalletSuccess:(void (^)(EthmobileWallet *))success failed:(void (^)(NSError *))fail{
     NSError *error = nil;
     EthmobileWallet *wallet = EthmobileNew(&error);
+    
+    NSString *mnenonic = [wallet mnemonic:mnemonicEnglish error:nil];
+    
+    NSError *importBackErr = nil;
+    EthmobileFromMnemonic(mnenonic, mnemonicEnglish, &importBackErr);
+    if (importBackErr) {
+        fail(importBackErr);
+    }
+    
     if (error) {
         fail(error);
     }else{
