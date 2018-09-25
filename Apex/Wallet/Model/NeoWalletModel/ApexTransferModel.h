@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ApexTransferModel : NSObject
 @property (nonatomic, assign) ApexTransferStatus status; /**< 此笔交易的状态 */
+@property (nonatomic, strong) NSString *nonce; /**< eth特有 暂时未写入数据库 */
 
 @property (nonatomic, strong) NSString *gas_consumed; //花费的gas数
 @property (nonatomic, strong) NSString *vmstate; /**< 交易成功还是失败  失败的含有FAULT字段 */

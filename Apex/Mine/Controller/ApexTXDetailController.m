@@ -59,6 +59,8 @@
     [self initUI];
     
     [self setNav];
+    
+    [self eventHandler];
 }
 
 
@@ -99,17 +101,6 @@
     _gasPriceL.text = _model.gas_price != nil ? [NSString DecimalFuncWithOperatorType:3 first:_model.gas_price secend:@"1000000000" value:0] : @"0";
     _gasFee.text = _model.gas_fee != nil ? _model.gas_fee : @"0";
     
-    @weakify(self);
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
-        @strongify(self);
-        UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
-        pasteBoard.string = self.txic.text;
-        [self showMessage:SOLocalizedStringFromTable(@"Copied", nil)];
-    }];
-    _txic.userInteractionEnabled = YES;
-    [_txic addGestureRecognizer:tap];
-    
     _tipL0.text = SOLocalizedStringFromTable(@"From", nil);
     _tipL1.text = SOLocalizedStringFromTable(@"To", nil);
     _tipL2.text = SOLocalizedStringFromTable(@"Time", nil);
@@ -135,6 +126,20 @@
         _gasFee.hidden = NO;
         _lineTopConstrant.constant = 190;
     }
+}
+
+#pragma mark - eventResponse
+- (void)eventHandler{
+    @weakify(self);
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        @strongify(self);
+        UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
+        pasteBoard.string = self.txic.text;
+        [self showMessage:SOLocalizedStringFromTable(@"Copied", nil)];
+    }];
+    _txic.userInteractionEnabled = YES;
+    [_txic addGestureRecognizer:tap];
 }
 
 #pragma mark - ------getter-----

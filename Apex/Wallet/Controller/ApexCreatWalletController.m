@@ -199,6 +199,8 @@
 - (NeomobileWallet*)creatNeoWallet{
     NSError *err = nil;
     NSError *keystoreErr = nil;
+    NSError *mnenonicErr = nil;
+    NSError *importBackErr = nil;
     
     NeomobileWallet *wallet = NeomobileNew(&err);
     if (err) {
@@ -211,6 +213,19 @@
         return nil;
     }
     
+    
+    NSString *mnenonic = [wallet mnemonic:mnemonicEnglish error:&mnenonicErr];
+    if (mnenonicErr) {
+        [self showMessage:[NSString stringWithFormat:@"%@: %@",SOLocalizedStringFromTable(@"Create Wallet Failed", nil),err]];
+        return nil;
+    }
+    
+    NeomobileFromMnemonic(mnenonic, mnemonicEnglish, &importBackErr);
+    if (importBackErr) {
+        //mnenonic 无效 重新生成
+        return [self creatNeoWallet];
+    }
+    
     NSString *address = wallet.address;
     
     [PDKeyChain save:KEYCHAIN_KEY(address) data:keystore];
@@ -220,6 +235,8 @@
     return wallet;
 }
 
+
+//创建eth钱包
 - (void)createEthWallet{
     [ETHWalletManager creatETHWalletSuccess:^(EthmobileWallet *wallet) {
         
