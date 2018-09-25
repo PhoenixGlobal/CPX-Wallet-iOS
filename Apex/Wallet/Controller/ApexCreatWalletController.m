@@ -223,6 +223,7 @@
     NeomobileFromMnemonic(mnenonic, mnemonicEnglish, &importBackErr);
     if (importBackErr) {
         //mnenonic 无效 重新生成
+        NSLog(@"importBack faile");
         return [self creatNeoWallet];
     }
     
