@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ApexSendMoneyToCell : UITableViewCell
 
-@property (weak, nonatomic) NSString *toAddressString;
+@property (nonatomic, strong) UITextField *walletAddressTF;
 
 @end
 

@@ -33,4 +33,8 @@
 //获取label的宽度
 + (CGFloat)calculateTextLength:(UIFont *)font givenText:(NSString *)text;
 
++ (NSMutableAttributedString *)getCurrentGasPrice:(NSString *)gasGwei;
+
++ (NSMutableAttributedString *)getTotalPrice:(NSString *)totalProce;
+
 @end

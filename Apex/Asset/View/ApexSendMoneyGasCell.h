@@ -10,17 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define RouteNameEvent_GasCellDidValueChange @"RouteNameEvent_GasCellDidValueChange"
+
 @interface ApexSendMoneyGasCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *currentGasSinglePriceL;
 @property (nonatomic, strong) UISlider *gasSlider;
 
-@property (nonatomic, strong) UILabel *slowL;
 @property (nonatomic, strong) UILabel *currentGasPriceL;
-@property (nonatomic, strong) UILabel *fastL;
-
-//@property (nonatomic, strong) UILabel *TotalEthTitle;
 @property (nonatomic, strong) UILabel *totalETHL;
+
+@property (nonatomic, strong) NSString *gasGWei;
 
 @end
 

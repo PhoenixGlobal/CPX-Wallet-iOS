@@ -129,4 +129,40 @@
     return length;
 }
 
++ (NSMutableAttributedString *)getCurrentGasPrice:(NSString *)gasGwei
+{
+    NSMutableAttributedString *attrStr = nil;
+    NSString *string = @"";
+    
+    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+        string = [NSString stringWithFormat:@"Current GasPrice: %@ Gwei", gasGwei];
+        attrStr = [[NSMutableAttributedString alloc] initWithString:string];
+    }else{
+        string = [NSString stringWithFormat:@"当前gas单价: %@ Gwei", gasGwei];
+        attrStr = [[NSMutableAttributedString alloc] initWithString:string];
+    }
+    
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[ApexUIHelper mainThemeColor] range:NSMakeRange([string rangeOfString:@":"].location + 2, gasGwei.length)];
+    
+    return attrStr;
+}
+
++ (NSMutableAttributedString *)getTotalPrice:(NSString *)totalProce
+{
+    NSMutableAttributedString *attrStr = nil;
+    NSString *string = @"";
+    
+    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+        string = [NSString stringWithFormat:@"Total: %@ ETH", totalProce];
+        attrStr = [[NSMutableAttributedString alloc] initWithString:string];
+    }else{
+        string = [NSString stringWithFormat:@"共: %@ ETH", totalProce];
+        attrStr = [[NSMutableAttributedString alloc] initWithString:string];
+    }
+    
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[ApexUIHelper mainThemeColor] range:NSMakeRange([string rangeOfString:@":"].location + 2, totalProce.length)];
+    
+    return attrStr;
+}
+
 @end

@@ -10,11 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define RouteNameEvent_AmountCellDidClickSendMoney @"RouteNameEvent_AmountCellDidClickSendMoney"
+#define RouteNameEvent_AmountCellDidEditSendMoney @"RouteNameEvent_AmountCellDidEditSendMoney"
+
 @interface ApexSendMoneyAmountCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *availableL;
 @property (nonatomic, strong) UITextField *sendNumTF;
-@property (nonatomic, strong) UIButton *sendBtn;
+@property (nonatomic, strong) UIButton *allSendBtn;
 @property (nonatomic, strong) UILabel *unitL;
 
 @end

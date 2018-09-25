@@ -10,7 +10,6 @@
 #import "ApexMoreTopCell.h"
 #import "ApexMoreFuncCell.h"
 #import "ApexCreatWalletController.h"
-#import "ApexSendMoneyController.h"
 #import "ApexScanAction.h"
 #import "ApexImportWalletController.h"
 #import "ApexDrawTransPercentDriven.h"
