@@ -31,11 +31,12 @@
 @property (nonatomic, strong) UIButton *sendBtn;
 
 @property (nonatomic, strong) ApexSendMoneyViewModel *viewModel;
-@property (nonatomic, strong) NSNumber *confirmBlock;
 @property (nonatomic, strong) ApexTXIDModel *txidModel;
 @property (nonatomic, strong) NeomobileWallet *wallet;
 
-@property (nonatomic, strong) id<ApexTransHistoryProtocal> historyManager;
+@property (nonatomic, copy) NSString *gasPriceGWei;
+
+@property (nonatomic, strong) id <ApexTransHistoryProtocal> historyManager;
 
 @end
 
@@ -55,7 +56,6 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
-#pragma mark - ------life cycle------
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -63,11 +63,10 @@
     
     [self setNav];
     [self setUI];
-    
     [self handleEvent];
+    [self requestWalletType];
 }
 
-#pragma mark - ------private------
 - (void)setNav
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
@@ -87,10 +86,70 @@
         scanvc.scanDelegate = self;
         [self.navigationController pushViewController:scanvc animated:YES];
     }];
+    
+    [[self.sendBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [self sendAction];
+    }];
+}
+
+- (void)sendAction
+{
+    ApexSendMoneyToCell *toAddressCell = [self getToAdressCell];
+    ApexSendMoneyAmountCell *amoutCell = [self getSendAmountCell];
+    ApexSendMoneyGasCell *gasCell = [self getEthGasInfoCell];
+    
+    if ([self.walletManager isKindOfClass:ETHWalletManager.class]) {
+        //判断gas
+        if(self.viewModel.currentEthNumber.floatValue < gasCell.totalETHL.text.floatValue){
+            [self showMessage:SOLocalizedStringFromTable(@"insufficentGas", nil)];
+            return;
+        }
+        //eth地址有效性判断
+        if (![NSString isAdress:toAddressCell.walletAddressTF.text]) {
+            [self showMessage:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil)];
+            return;
+        }
+        
+    }else{
+        //neo地址有效性判断
+        NSString *decode = NeomobileDecodeAddress(toAddressCell.walletAddressTF.text, nil);
+        if (decode == nil){
+            [self showMessage:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil)];
+            return;
+        }
+    }
+    
+    if (![NSString isMoneyNumber:amoutCell.sendNumTF.text]) {
+        [self showMessage:SOLocalizedStringFromTable(@"InvalidateMoney", nil)];
+    }else if (amoutCell.sendNumTF.text.floatValue > _balanceModel.value.floatValue) {
+        [self showMessage:SOLocalizedStringFromTable(@"BalanceNotEnough", nil)];
+    }else if ([toAddressCell.walletAddressTF.text isEqualToString:_walletAddress]){
+        [self showMessage:SOLocalizedStringFromTable(@"InvalidateAddress", nil)];
+    }else if ([toAddressCell.walletAddressTF.text isEqualToString:@""]) {
+        [self showMessage:SOLocalizedStringFromTable(@"Please enter the correct wallet address", nil)];
+    }else{
+        //输入密码
+        [ApexPassWordConfirmAlertView showEntryPasswordAlertAddress:_walletAddress walletManager:self.walletManager subTitle:@"" Success:^(id wallet) {
+            
+            self.viewModel.toAddress = toAddressCell.walletAddressTF.text;
+            self.viewModel.amount = [amoutCell.sendNumTF.text isEqualToString:@""] ? @"0" : amoutCell.sendNumTF.text;
+            
+            if ([self.walletManager isKindOfClass:ETHWalletManager.class]) {
+                [self.viewModel ethTransactionWithWallet:wallet];
+            }else{
+                [self.viewModel neoTransactionWithWallet:wallet];
+            }
+            
+        } fail:^{
+            [self showMessage:SOLocalizedStringFromTable(@"Password Error", nil)];
+        }];
+    }
 }
 
 - (void)setUI
 {
+    self.gasPriceGWei = @"0.00";
+    
     [self.view addSubview:self.sendBtn];
     [self.view addSubview:self.tableView];
     
@@ -107,11 +166,46 @@
     }];
 }
 
+- (void)requestWalletType
+{
+    [self.viewModel updateEthValue];
+    
+    //区分类型
+    if ([_walletManager isKindOfClass:ETHWalletManager.class]) {
+        self.historyManager = [ETHTransferHistoryManager shareManager];
+        
+    }else{
+        self.historyManager = [ApexTransferHistoryManager shareManager];
+    }
+    
+    self.viewModel.historyManager = _historyManager;
+    
+    [self request];
+}
+
+- (void)request
+{
+    @weakify(self);
+    [self.viewModel getCurrentGasPrice:^(NSString *gasPriceInGWei) {
+        @strongify(self);
+        
+        self.gasPriceGWei = [NSString stringWithFormat:@"%.2f", gasPriceInGWei.floatValue];
+        self.viewModel.gasSliderValue = [NSString stringWithFormat:@"%.2f", (gasPriceInGWei.floatValue) * 3];
+        [self.tableView reloadData];
+        
+    } fail:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark ------ UITableViewDelegate, UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    if ([_walletManager isKindOfClass:ETHWalletManager.class]) {
+        return 4;
+    }
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -176,6 +270,9 @@
             cell = [[ApexSendMoneyAmountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
+        cell.availableL.attributedText = [self getUserAvailableMoney];
+        cell.unitL.text = [self getUnitString];
+        
         return cell;
     }
     else if (indexPath.section == 3) {
@@ -185,29 +282,125 @@
             cell = [[ApexSendMoneyGasCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
+        cell.gasGWei = self.gasPriceGWei;
+        
         return cell;
     }
     return nil;
 }
 
-#pragma mark - ------delegate & datasource------
-- (void)scanCodeController:(LXDScanCodeController *)scanCodeController codeInfo:(NSString *)codeInfo{
-    
-//    NSString *toaddress = codeInfo;
-//    self.toAddressTF.text = toaddress;
+#pragma mark ------ LXDScanCodeControllerDelegate
+
+- (void)scanCodeController:(LXDScanCodeController *)scanCodeController codeInfo:(NSString *)codeInfo
+{
+    [self changeToAddress:codeInfo];
 }
 
-//#pragma mark - ------getter & setter------
-//- (ApexSendMoneyViewModel *)viewModel{
-//    if (!_viewModel) {
-//        _viewModel = [[ApexSendMoneyViewModel alloc] init];
-//        _viewModel.address = self.walletAddress;
-//        _viewModel.ownerVC = self;
-//        _viewModel.balanceModel = self.balanceModel;
-//        _viewModel.currentEthNumber = @"0";
-//    }
-//    return _viewModel;
-//}
+- (void)changeToAddress:(NSString *)toaddress
+{
+    ApexSendMoneyToCell *cell = [self getToAdressCell];
+    cell.walletAddressTF.text = toaddress;
+}
+
+#pragma mark ------ getter-cell
+
+- (ApexSendMoneyToCell *)getToAdressCell
+{
+    return (ApexSendMoneyToCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+}
+
+- (ApexSendMoneyAmountCell *)getSendAmountCell
+{
+    return (ApexSendMoneyAmountCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+}
+
+- (ApexSendMoneyGasCell *)getEthGasInfoCell
+{
+    return (ApexSendMoneyGasCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
+}
+
+#pragma mark - ------eventResponse------
+- (void)routeEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userinfo{
+    if ([eventName isEqualToString:RouteNameEvent_AmountCellDidClickSendMoney]){
+        [self sendAllMoney];
+    }
+    else if ([eventName isEqualToString:RouteNameEvent_AmountCellDidEditSendMoney]) {
+        [self amountChanged];
+    }
+    else if ([eventName isEqualToString:RouteNameEvent_GasCellDidValueChange]) {
+        [self sliderValueChanged];
+    }
+}
+
+- (void)sendAllMoney
+{
+    ApexSendMoneyAmountCell *cell = [self getSendAmountCell];
+    cell.sendNumTF.text = self.balanceModel.value;
+}
+
+- (void)amountChanged
+{
+    ApexSendMoneyAmountCell *cell = [self getSendAmountCell];
+    NSString *num = cell.sendNumTF.text;
+    
+    if ([num containsString:@"."]) {
+        NSString *interger = [num componentsSeparatedByString:@"."].firstObject;
+        NSString *decimal = [num componentsSeparatedByString:@"."].lastObject;
+        if (decimal.length >= 8) {
+            decimal = [decimal substringToIndex:8];
+        }
+        cell.sendNumTF.text = [NSString stringWithFormat:@"%@.%@", interger, decimal];
+    }
+}
+
+- (NSMutableAttributedString *)getUserAvailableMoney
+{
+    NSMutableAttributedString *attrStr = nil;
+    NSString *string = @"";
+    if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
+        string = [NSString stringWithFormat:@"Amount (Available: %@)",self.balanceModel.value];
+        attrStr = [[NSMutableAttributedString alloc] initWithString:string];
+    }else{
+        string = [NSString stringWithFormat:@"交易金额 (可用数量: %@)",self.balanceModel.value];
+        attrStr = [[NSMutableAttributedString alloc] initWithString:string];
+    }
+    
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange([string rangeOfString:@":"].location+2, self.balanceModel.value.length)];
+    
+    return attrStr;
+}
+
+- (NSString *)getUnitString
+{
+    return [self.balanceModel getRelativeNeoAssetModel].symbol;
+}
+
+- (void)sliderValueChanged
+{
+    ApexSendMoneyGasCell *cell = [self getEthGasInfoCell];
+    
+    cell.currentGasPriceL.text = [NSString stringWithFormat:@"%.2lf Gwei", cell.gasSlider.value];
+    
+    NSString *total = [NSString DecimalFuncWithOperatorType:2 first:@(cell.gasSlider.value).stringValue secend:@"90000" value:0];
+    
+    total = [NSString DecimalFuncWithOperatorType:3 first:total secend:@"1000000000" value:0];
+    
+    cell.totalETHL.attributedText = [ApexUIHelper getTotalPrice:[NSString stringWithFormat:@"%.11f",total.floatValue]];
+    self.viewModel.gasSliderValue = @(cell.gasSlider.value).stringValue;
+}
+
+#pragma mark - ------getter & setter------
+
+- (ApexSendMoneyViewModel *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [[ApexSendMoneyViewModel alloc] init];
+        _viewModel.address = self.walletAddress;
+        _viewModel.ownerVC = self;
+        _viewModel.balanceModel = self.balanceModel;
+        _viewModel.currentEthNumber = @"0";
+    }
+    return _viewModel;
+}
 
 - (UITableView *)tableView
 {

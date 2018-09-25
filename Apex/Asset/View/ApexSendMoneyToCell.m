@@ -11,7 +11,6 @@
 @interface ApexSendMoneyToCell ()
 
 @property (nonatomic, strong) UILabel *toLabel;
-@property (nonatomic, strong) UITextField *walletAddressTF;
 
 @end
 
@@ -62,16 +61,11 @@
         _walletAddressTF = [[UITextField alloc] init];
         _walletAddressTF.font = [UIFont systemFontOfSize:13];
         _walletAddressTF.textColor = [UIColor blackColor];
+        _walletAddressTF.keyboardType = UIKeyboardTypeASCIICapable;
         _walletAddressTF.placeholder = NSLocalizedString(@"SendMoneyAddress", nil);
     }
     
     return _walletAddressTF;
-}
-
-- (void)setToAddressString:(NSString *)toAddressString
-{
-    _toAddressString = toAddressString;
-    self.toLabel.text = toAddressString;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

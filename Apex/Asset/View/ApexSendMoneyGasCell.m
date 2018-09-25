@@ -8,6 +8,15 @@
 
 #import "ApexSendMoneyGasCell.h"
 
+@interface ApexSendMoneyGasCell ()
+
+@property (nonatomic, strong) UILabel *slowL;
+@property (nonatomic, strong) UILabel *fastL;
+
+@property (nonatomic, strong) UILabel *currentGasSinglePriceL;
+
+@end
+
 @implementation ApexSendMoneyGasCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -21,8 +30,6 @@
         [self.contentView addSubview:self.slowL];
         [self.contentView addSubview:self.fastL];
         [self.contentView addSubview:self.currentGasPriceL];
-        
-//        [self.contentView addSubview:self.TotalEthTitle];
         [self.contentView addSubview:self.totalETHL];
         
         [self.currentGasSinglePriceL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -56,13 +63,6 @@
             make.height.mas_equalTo(15.0f);
         }];
         
-//        [self.TotalEthTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.right.equalTo(self.fastL.mas_left).with.offset(-5.0f);
-//            make.left.equalTo(self.slowL.mas_right).with.offset(5.0f);
-//            make.centerY.equalTo(self.slowL);
-//            make.height.mas_equalTo(16.0f);
-//        }];
-        
         [self.totalETHL mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.contentView).with.offset(-10.0f);
             make.left.equalTo(self.contentView).with.offset(15.0f);
@@ -80,7 +80,6 @@
         _currentGasSinglePriceL = [[UILabel alloc] init];
         _currentGasSinglePriceL.font = [UIFont systemFontOfSize:13];
         _currentGasSinglePriceL.textAlignment = NSTextAlignmentRight;
-        _currentGasSinglePriceL.text = @"当前gas单价：1.00 Gwei";
     }
     
     return _currentGasSinglePriceL;
@@ -135,26 +134,41 @@
     return _currentGasPriceL;
 }
 
-//- (UILabel *)TotalEthTitle
-//{
-//    if (!_TotalEthTitle) {
-//        _TotalEthTitle = [[UILabel alloc] init];
-//        _TotalEthTitle.font = [UIFont systemFontOfSize:13];
-//    }
-//
-//    return _TotalEthTitle;
-//}
-
 - (UILabel *)totalETHL
 {
     if (!_totalETHL) {
         _totalETHL = [[UILabel alloc] init];
         _totalETHL.font = [UIFont systemFontOfSize:13];
         _totalETHL.textAlignment = NSTextAlignmentRight;
-        _totalETHL.text = @"0.0000000045 ETH";
     }
     
     return _totalETHL;
+}
+
+- (void)setGasGWei:(NSString *)gasGWei
+{
+    _gasGWei = gasGWei;
+    
+    self.currentGasSinglePriceL.attributedText = [ApexUIHelper getCurrentGasPrice:gasGWei];
+    
+    self.gasSlider.minimumValue = [NSString stringWithFormat:@"%.2f", gasGWei.floatValue].floatValue;
+    self.gasSlider.maximumValue = self.gasSlider.minimumValue + 32;
+    self.gasSlider.value = self.gasSlider.minimumValue * 3;
+    
+    NSString *total = [NSString DecimalFuncWithOperatorType:2 first:@(self.gasSlider.value).stringValue secend:@"90000" value:0];
+    
+    total = [NSString DecimalFuncWithOperatorType:3 first:total secend:@"1000000000" value:0];
+    
+    self.totalETHL.attributedText = [ApexUIHelper getTotalPrice:[NSString stringWithFormat:@"%.11f", total.floatValue]];
+    
+    [self sliderValueChanged];
+}
+
+- (void)sliderValueChanged
+{
+    [[self.gasSlider rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [self routeEventWithName:RouteNameEvent_GasCellDidValueChange userInfo:@{}];
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
