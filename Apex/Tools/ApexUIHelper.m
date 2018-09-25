@@ -142,7 +142,7 @@
         attrStr = [[NSMutableAttributedString alloc] initWithString:string];
     }
     
-    [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange([string rangeOfString:@":"].location + 2, gasGwei.length)];
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[ApexUIHelper mainThemeColor] range:NSMakeRange([string rangeOfString:@":"].location + 2, gasGwei.length)];
     
     return attrStr;
 }
@@ -160,7 +160,7 @@
         attrStr = [[NSMutableAttributedString alloc] initWithString:string];
     }
     
-    [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange([string rangeOfString:@":"].location + 2, totalProce.length)];
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[ApexUIHelper mainThemeColor] range:NSMakeRange([string rangeOfString:@":"].location + 2, totalProce.length)];
     
     return attrStr;
 }
