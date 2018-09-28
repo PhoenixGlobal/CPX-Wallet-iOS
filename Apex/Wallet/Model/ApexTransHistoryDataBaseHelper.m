@@ -243,6 +243,20 @@ singleM(DataBase);
     return model;
 }
 
+- (id)getLastTransferLimite:(NSNumber*)limite HistoryOfAddress:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager{
+    [_db open];
+    NSMutableArray *arr = [NSMutableArray array];
+    address = [self encodeAddress:address manager:manager];
+    ApexTransferModel *model = nil;
+    FMResultSet *res = [_db executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ORDER BY id DESC LIMIT %@",address,limite.stringValue]];
+    while ([res next]) {
+        model = [self buildModelWithResult:res];
+        [arr addObject:model];
+    }
+    
+    [_db close];
+    return arr;
+}
 
 - (NSArray *)getTransferHistoriesFromEndWithLimit:(NSString *)limite address:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager{
     [_db open];

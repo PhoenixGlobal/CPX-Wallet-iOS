@@ -67,13 +67,23 @@ static ETHTransferHistoryManager *_instance;
 }
 
 - (void)applicationIntializeSelfCheckWithAddress:(NSString *)address {
-    ApexTransferModel *last = [self getLastTransferHistoryOfAddress:address];
-    if (last == nil) return;
-    if (last.status == ApexTransferStatus_Blocking || last.status == ApexTransferStatus_Progressing) {
-        //开启循环更新状态
-        [self beginTimerToConfirmTransactionOfAddress:address txModel:last];
-    }else{
-        [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
+//    ApexTransferModel *last = [self getLastTransferHistoryOfAddress:address];
+//    if (last == nil) return;
+//    if (last.status == ApexTransferStatus_Blocking || last.status == ApexTransferStatus_Progressing) {
+//        //开启循环更新状态
+//        [self beginTimerToConfirmTransactionOfAddress:address txModel:last];
+//    }else{
+//        [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
+//    }
+    
+    NSArray *arr = [self getLastLimit:@(3) TransferHistoryOfAddress:address];
+    for (ApexTransferModel *last in arr) {
+        if (last.status == ApexTransferStatus_Blocking || last.status == ApexTransferStatus_Progressing) {
+                //开启循环更新状态
+                [self beginTimerToConfirmTransactionOfAddress:address txModel:last];
+            }else{
+                [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
+            }
     }
 }
 
@@ -110,10 +120,13 @@ static ETHTransferHistoryManager *_instance;
     return [[ApexTransHistoryDataBaseHelper shareDataBase] getLastTransferHistoryOfAddress:address manager:self];
 }
 
+- (NSArray*)getLastLimit:(NSNumber*)limit TransferHistoryOfAddress:(NSString *)address {
+    return [[ApexTransHistoryDataBaseHelper shareDataBase] getLastTransferLimite:limit HistoryOfAddress:address manager:self];
+}
+
 - (NSArray*)getTransferHistoriesFromEndWithLimit:(NSString *)limite address:(NSString *)address{
     return [[ApexTransHistoryDataBaseHelper shareDataBase] getTransferHistoriesFromEndWithLimit:limite address:address manager:self];
 }
-
 
 #pragma mark - tool
 
@@ -136,7 +149,7 @@ static ETHTransferHistoryManager *_instance;
         [ETHWalletManager requestTransactionReceiptByHash:model.txid success:^(AFHTTPRequestOperation *operation, ApexETHReceiptModel *responseObject) {
             
             isTXOnBlock = YES;
-            if (responseObject.status && responseObject.status.integerValue == 1) {
+            if (responseObject.status && responseObject.status.integerValue == 1 && responseObject.blockHash) {
                 //交易上链成功
                 [[ApexTransHistoryDataBaseHelper shareDataBase] updateTransferStatus:ApexTransferStatus_Progressing forTXID:model.txid ofWallet:address manager:self];
                 [ETHTxStatusManager writeTxWithTXID:model.txid currentBlockNumber:responseObject.blockNumber];
@@ -151,29 +164,42 @@ static ETHTransferHistoryManager *_instance;
                     NSLog(@"eth 成功");
                     [timer invalidate];
                 }];
-                
-            }else if(responseObject.status && responseObject.status.integerValue == 0){
+            }
+            
+            if(responseObject.status && responseObject.status.integerValue == 0){
                 //交易失败
                 [[ETHWalletManager shareManager] setStatus:YES forWallet:address];
                 [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferFail:model.txid address:address manager:self];
                 cancleTimer = YES;
                 [timer invalidate];
             }
+            
+            //交易还未上链时的监控
+            if (!responseObject.blockHash) {
+                [ETHTxStatusManager txStatusMonitor:model.txid address:address nonce:model.nonce timeOutBlock:^{
+                    //此笔交易还未上链但是请求链上的nonce值已经增加
+                    //交易失败
+                    [[ETHWalletManager shareManager] setStatus:YES forWallet:address];
+                    [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferFail:model.txid address:address manager:self];
+                    cancleTimer = YES;
+                    [timer invalidate];
+                }];
+            }
+            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
         }];
         
-        //交易还未上链时的监控
-        if (!isTXOnBlock) {
+//        if (!isTXOnBlock) {
             [ETHTxStatusManager txStatusMonitor:model.txid address:address nonce:model.nonce timeOutBlock:^{
-                //此笔交易还未上链但是请求链上的nonce值已经增加
-                //交易失败
+                //交易失败 链上已经查不到此交易
                 [[ETHWalletManager shareManager] setStatus:YES forWallet:address];
                 [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferFail:model.txid address:address manager:self];
                 cancleTimer = YES;
                 [timer invalidate];
             }];
-        }
+//        }
+        
     }];
     
     [[ApexThread shareInstance].threadRunLoop addTimer:aTimer forMode:NSRunLoopCommonModes];

@@ -53,10 +53,10 @@ singleH(DataBase);
 
 
 /**
- 获取最后一条交易记录
+ 获取最后一条\几条交易记录
  */
 - (id)getLastTransferHistoryOfAddress:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager;
-
+- (id)getLastTransferLimite:(NSNumber*)limite HistoryOfAddress:(NSString *)address manager:(id<ApexTransHistoryProtocal>)manager;
 
 /**
 倒序获取给定的交易记录
