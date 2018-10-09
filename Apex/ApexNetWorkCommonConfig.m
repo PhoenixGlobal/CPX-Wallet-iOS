@@ -23,8 +23,8 @@
 
 + (NSString *)getToolBaseUrl{
 #ifdef DEBUG
-//    return baseUrl_tool_test;
-    return baseUrl_tool_main;
+    return baseUrl_tool_test;
+//    return baseUrl_tool_main;
 #endif
     return baseUrl_tool_main;
 }

@@ -16,7 +16,7 @@
 
 @implementation ApexSendMoneyViewModel
 - (void)getUtxoSuccess:(void (^)(CYLResponse *response))successBlock fail:(void (^)(NSError *error))failBlock{
-    [CYLNetWorkManager GET:@"utxos/" parameter:@{@"address":self.address} success:successBlock fail:failBlock];
+    [CYLNetWorkManager GET:@"utxos" parameter:@{@"address":self.address} success:successBlock fail:failBlock];
 }
 
 #pragma mark - eth 转账
@@ -135,7 +135,7 @@
         [self getUtxoSuccess:^(CYLResponse *response) {
             @strongify(self);
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
-            NSArray *unspendArr = dict[@"result"];
+            NSArray *unspendArr = dict[@"data"];
             NSData *data = [NSJSONSerialization dataWithJSONObject:unspendArr options:NSJSONWritingPrettyPrinted error:nil];
             NSString *unspendStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             

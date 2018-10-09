@@ -24,7 +24,7 @@
     
     [CYLNetWorkManager GET:@"assets" CachePolicy:CYLNetWorkCachePolicy_DoNotCache activePeriod:0 parameter:@{} success:^(CYLResponse *response) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
-        NSArray *result = dict[@"result"];
+        NSArray *result = dict[@"data"];
         NSMutableArray *temp = [NSMutableArray array];
         for (NSDictionary *dic in result) {
             ApexAssetModel *model = [ApexAssetModel yy_modelWithDictionary:dic];

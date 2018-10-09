@@ -95,6 +95,9 @@
 
 - (void)prepareNeoData{
     self.contentArr = [ApexAssetModelManage getLocalAssetModelsArr];
+    if (self.contentArr.count == 0) {
+        return;
+    }
     ApexAssetModel *cpxModel = nil;
     ApexAssetModel *neoModel = nil;
     ApexAssetModel *gasModel = nil;

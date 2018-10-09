@@ -227,7 +227,7 @@ static ApexTransferHistoryManager *_instance;
     [CYLNetWorkManager GET:@"transaction-history" parameter:@{@"address":addr, @"beginTime":@(beginTime)} success:^(CYLResponse *response) {
         NSMutableArray *tempArr = [NSMutableArray array];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
-        NSArray *txArr = dict[@"result"];
+        NSArray *txArr = dict[@"data"];
         for (NSDictionary *txDict in txArr) {
             ApexTransferModel *model = [ApexTransferModel yy_modelWithDictionary:txDict];
             if ([model.vmstate containsString:@"FAULT"]) {
