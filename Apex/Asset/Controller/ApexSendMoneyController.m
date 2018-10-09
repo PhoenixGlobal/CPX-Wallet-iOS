@@ -238,7 +238,7 @@
         }
     }
     
-    if (![NSString isMoneyNumber:_sendNumTF.text]) {
+    if (![NSString isMoneyNumber:_sendNumTF.text] || _sendNumTF.text.floatValue == 0) {
         [self showMessage:SOLocalizedStringFromTable(@"InvalidateMoney", nil)];
     }else if (_sendNumTF.text.floatValue > _balanceModel.value.floatValue) {
         [self showMessage:SOLocalizedStringFromTable(@"BalanceNotEnough", nil)];

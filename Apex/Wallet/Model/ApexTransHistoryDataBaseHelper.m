@@ -92,7 +92,7 @@ singleM(DataBase);
         //网络请求数据与本地有冲突时 以网络为准 删除本地此条数据 重新写入
         //本地数据的状态为已确认的状态时才替换
         
-        if ([txidInDB isEqualToString:model.txid] && (status == ApexTransferStatus_Confirmed || status == ApexTransferStatus_Failed)) {
+        if ([txidInDB isEqualToString:model.txid]) {
             NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id = %@",walletAddress,maxID.stringValue];
             if (![_db executeUpdate:sql]){
                 NSLog(@"删除冗余数据失败");
