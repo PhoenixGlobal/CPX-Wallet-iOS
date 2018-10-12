@@ -64,9 +64,9 @@
 }
 
 
-//https://tracker.chinapex.com.cn/tool/test/eth-assets 
+//https://tracker.chinapex.com.cn/tool/eth-assets
 + (void)requestAssetlistSuccess:(successfulBlock)success fail:(failureBlock)failBlock{
-    [CYLNetWorkManager GET:@"test/eth-assets" CachePolicy:CYLNetWorkCachePolicy_DoNotCache activePeriod:0 parameter:@{} success:^(CYLResponse *response) {
+    [CYLNetWorkManager GET:@"eth-assets" CachePolicy:CYLNetWorkCachePolicy_DoNotCache activePeriod:0 parameter:@{} success:^(CYLResponse *response) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
         NSArray *result = dict[@"data"];
         NSMutableArray *temp = [NSMutableArray array];

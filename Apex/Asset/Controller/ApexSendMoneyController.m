@@ -161,7 +161,7 @@
         self.currentGasPriceL.text = [NSString stringWithFormat:@"%.2f", gasPriceInGWei.floatValue];
         self.gasSlider.minimumValue = [NSString stringWithFormat:@"%.2f",gasPriceInGWei.floatValue].floatValue;
         self.gasSlider.maximumValue = self.gasSlider.minimumValue + 32;
-        self.gasSlider.value = self.gasSlider.minimumValue * 3;
+        self.gasSlider.value = self.gasSlider.minimumValue * 2;
         self.viewModel.gasSliderValue = @(self.gasSlider.value).stringValue;
         [self sliderValueChanged:self.gasSlider];
     } fail:^(NSError *error) {

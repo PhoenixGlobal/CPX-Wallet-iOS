@@ -97,8 +97,8 @@
             _subTitleL.text = SOLocalizedStringFromTable(@"Amount", nil);
     }
     
-    _gas.text = _model.gas_consumed != nil ? _model.gas_consumed : @"0";
-    _gasPriceL.text = _model.gas_price != nil ? [NSString DecimalFuncWithOperatorType:3 first:_model.gas_price secend:@"1000000000" value:0] : @"0";
+    _gas.text = _model.gas_consumed.length != 0 ? _model.gas_consumed : @"0";
+    _gasPriceL.text = _model.gas_price.length != 0 ? [NSString DecimalFuncWithOperatorType:3 first:_model.gas_price secend:@"1000000000" value:0] : @"0";
     _gasFee.text = _model.gas_fee != nil ? _model.gas_fee : @"0";
     
     _tipL0.text = SOLocalizedStringFromTable(@"From", nil);

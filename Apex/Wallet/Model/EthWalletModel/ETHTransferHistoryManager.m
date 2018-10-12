@@ -236,7 +236,7 @@ static ETHTransferHistoryManager *_instance;
     
     beginBlock += 1;
     
-    [CYLNetWorkManager GET:@"test/eth-transaction" parameter:@{@"address":addr,@"startblock":@(beginBlock).stringValue,@"endblock":@"99999999"} success:^(CYLResponse *response) {
+    [CYLNetWorkManager GET:@"eth-transaction" parameter:@{@"address":addr,@"startblock":@(beginBlock).stringValue,@"endblock":@"99999999"} success:^(CYLResponse *response) {
         
         NSMutableArray *tempArr = [NSMutableArray array];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
