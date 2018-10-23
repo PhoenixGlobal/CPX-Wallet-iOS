@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIButton *saveBtn;
 @property (nonatomic, strong) NSString *language;
 @property (nonatomic, strong) UILabel *titleL;
+@property (nonatomic, strong) UILabel *versionLable; /**<  */
 @property (nonatomic, strong) ApexLanguageSettingCell *zhCell;
 @property (nonatomic, strong) ApexLanguageSettingCell *enCell;
 @end
@@ -68,6 +69,7 @@
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
     }];
+    
     
     @weakify(self);
     [[self.saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -179,4 +181,5 @@
     }
     return _titleL;
 }
+
 @end

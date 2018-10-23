@@ -80,7 +80,7 @@
 }
 
 - (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - ------public------

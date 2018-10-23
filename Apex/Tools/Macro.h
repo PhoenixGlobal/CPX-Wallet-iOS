@@ -44,7 +44,7 @@
 //neo
 #define baseUrl_tool_test @"http://tmp.chinapex.com.cn/wallets-java-version/tool/"
 #define baseUrl_cli_test @"http://dev.chinapex.com.cn:10086/neo-cli/"
-#define baseUrl_tool_main @"https://tracker.chinapex.com.cn/tool/"
+#define baseUrl_tool_main @"http://tmp.chinapex.com.cn/wallets-java-version/tool/"
 #define baseUrl_cli_main @"https://tracker.chinapex.com.cn/neo-cli/"
 
 //eth

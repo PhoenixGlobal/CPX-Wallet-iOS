@@ -130,9 +130,16 @@
         basevc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:basevc animated:YES];
     }else if (indexPath.section == 1){
+        
+//#ifdef DEBUG
+//        NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//        NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+//        [self showMessageOnWindow:[NSString stringWithFormat:@"%@-%@",appVersion,build]];
+//#endif
         ApexLanguageSettingController *settingVC = [[ApexLanguageSettingController alloc] init];
         settingVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:settingVC animated:YES];
+        
     }else{
         
     }

@@ -151,8 +151,11 @@ static ApexTransferHistoryManager *_instance;
                     //确认中
                     //交易成功
                     [[ApexWalletManager shareManager] setStatus:YES forWallet:address];
-                    [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferSuccess:model.txid address:address manager:self];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
+                    
+                    [self verityIsTransactionTrulySuccess:model];
+                    
+//                    [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferSuccess:model.txid address:address manager:self];
+//                    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
                     cancleTimer = true;
                     [timer invalidate];
                 }else{
@@ -184,10 +187,66 @@ static ApexTransferHistoryManager *_instance;
     [aTimer fire];
 }
 
+- (void)verityIsTransactionTrulySuccess:(ApexTransferModel*)model{
+    
+    [self VerifyTXHistoryFromServersWithAddress:model.from Success:^(CYLResponse *response) {
+        
+        NSArray *txs = response.returnObj;
+        BOOL flag = false;
+        for (ApexTransferModel *serversModel in txs) {
+            if ([serversModel.txid isEqualToString:model.txid]) {
+                flag = true;
+                break;
+            }
+        }
+        
+        if (flag) {
+            [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferSuccess:model.txid address:model.from manager:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
+        }
+        
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
 #pragma mark - ------request------
 //根据txid获取此交易所在区块
 - (void)requestBlockHeightWithTxid:(NSString*)txid success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     [[ApexNeoClient shareRPCClient] invokeMethod:@"getrawtransaction" withParameters:@[txid,@1] success:success failure:failure];
+}
+
+- (void)VerifyTXHistoryFromServersWithAddress:(NSString*)address Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
+    
+    NSString *encodeAddress = [[ApexTransHistoryDataBaseHelper shareDataBase] tableNameMappingFromAddress:address manager:self];
+    //获取上次更新时间
+    __block NSNumber *bTime = [TKFileManager ValueWithKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
+    
+    if (!bTime) {
+        bTime = @0;
+        [TKFileManager saveValue:bTime forKey:LASTUPDATETXHISTORY_KEY(encodeAddress)];
+    }
+    
+    [CYLNetWorkManager GET:@"transaction-history" parameter:@{@"address":address, @"beginTime":bTime} success:^(CYLResponse *response) {
+        NSMutableArray *tempArr = [NSMutableArray array];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
+        NSArray *txArr = dict[@"data"];
+        for (NSDictionary *txDict in txArr) {
+            ApexTransferModel *model = [ApexTransferModel yy_modelWithDictionary:txDict];
+            if ([model.vmstate containsString:@"FAULT"]) {
+                model.status = ApexTransferStatus_Failed;
+            }else{
+                model.status = ApexTransferStatus_Confirmed;
+            }
+            
+            [tempArr addObject:model];
+        }
+        response.returnObj = tempArr;
+        success(response);
+        
+    } fail:^(NSError *error) {
+        failure(error);
+    }];
 }
 
 //从服务器中获取交易历史记录
