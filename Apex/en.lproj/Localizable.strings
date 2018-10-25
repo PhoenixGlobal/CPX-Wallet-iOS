@@ -164,7 +164,7 @@
 "TransFail" = "Transfer Failed";
 "BalanceNotEnough" = "Insufficient Balance";
 "InvalidateAddress" = "Please Input Valid Address";
-"CopySuccess" = "Copy Success, Your Can Share It To Your Firends";
+"CopySuccess" = "Copy Success, Your Can Share It To Your Friends";
 "Copied" = "Copy Success";
 "ProcessingTrans" = "There is still a transaction Being Progress,Please wait a moment";
 "longName" = "Wallet Name Should Be Less Than 8 Characters";
