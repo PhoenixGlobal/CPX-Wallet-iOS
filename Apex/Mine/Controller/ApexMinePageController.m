@@ -132,9 +132,9 @@
     }else if (indexPath.section == 1){
         
 //#ifdef DEBUG
-//        NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-//        NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-//        [self showMessageOnWindow:[NSString stringWithFormat:@"%@-%@",appVersion,build]];
+        NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+        [self showMessageOnWindow:[NSString stringWithFormat:@"%@-%@",appVersion,build]];
 //#endif
         ApexLanguageSettingController *settingVC = [[ApexLanguageSettingController alloc] init];
         settingVC.hidesBottomBarWhenPushed = YES;

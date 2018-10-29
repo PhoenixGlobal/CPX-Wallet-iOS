@@ -203,6 +203,8 @@ static ApexTransferHistoryManager *_instance;
         if (flag) {
             [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferSuccess:model.txid address:model.from manager:self];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notification_TranferHasConfirmed object:@""];
+        }else{
+            [[ApexTransHistoryDataBaseHelper shareDataBase] setTransferFail:model.txid address:model.from manager:self];
         }
         
     } failure:^(NSError *err) {
