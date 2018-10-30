@@ -241,6 +241,7 @@ static ETHTransferHistoryManager *_instance;
         NSMutableArray *tempArr = [NSMutableArray array];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
         NSArray *txArr = dict[@"data"];
+        
         for (NSDictionary *dict in txArr) {
             ETHTransferModel *model = [ETHTransferModel yy_modelWithDictionary:dict];
             model.status = ApexTransferStatus_Confirmed;
