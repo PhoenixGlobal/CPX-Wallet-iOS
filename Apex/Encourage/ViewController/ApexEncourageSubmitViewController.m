@@ -97,7 +97,7 @@
     NSString *ethAddress = [self getInputEthString];
     NSNumber *activityId = [NSNumber numberWithInteger:[_activityModel.activityId integerValue]];
     
-    [CYLNetWorkManager POST:@"activitys/list/" parameter:@{@"CPX":cpxAddress, @"ETH":ethAddress, @"id":activityId} success:^(CYLResponse *response) {
+    [CYLNetWorkManager POST:@"activities/save/" parameter:@{@"CPX":cpxAddress, @"ETH":ethAddress, @"id":activityId} success:^(CYLResponse *response) {
         
         NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *statusDictionary = resultDictionary[@"data"];

@@ -198,7 +198,7 @@
 - (void)getActivityList
 {
     [self.datasArray removeAllObjects];
-    [CYLNetWorkManager GET:@"j2/activitys/list/" parameter:nil success:^(CYLResponse *response) {
+    [CYLNetWorkManager GET:@"activities/list/" parameter:nil success:^(CYLResponse *response) {
         [_tableView.mj_header endRefreshing];
         NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];
         NSArray *activityArray = resultDictionary[@"data"];

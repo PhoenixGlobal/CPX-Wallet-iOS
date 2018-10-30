@@ -90,6 +90,7 @@
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark - ------getter & setter------
 - (ApexManageWalletView *)manageView{
     if (!_manageView) {

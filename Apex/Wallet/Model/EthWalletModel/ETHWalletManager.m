@@ -24,8 +24,10 @@ singleM(Manager);
     }
     //删除已有的
     NSNumber *timeStampIfHave = nil;
+    NSMutableArray *oldAssetArr = nil;
     for (ETHWalletModel *wallet in ethArr) {
         if ([wallet.address isEqualToString:address]) {
+            oldAssetArr = wallet.assetArr;
             timeStampIfHave = wallet.createTimeStamp;
             [ethArr removeObject:wallet];
             break;
@@ -37,7 +39,7 @@ singleM(Manager);
     wallet.address = address;
     name == nil ? (wallet.name = @"Wallet") : (wallet.name = name);
     wallet.isBackUp = false;
-    wallet.assetArr = [self setDefultAsset];
+    wallet.assetArr = oldAssetArr ? oldAssetArr : [self setDefultAsset];
     wallet.createTimeStamp = timeStampIfHave == nil ? @([[NSDate date] timeIntervalSince1970]) : timeStampIfHave;
     wallet.canTransfer = @(YES);
     [[ETHTransferHistoryManager shareManager] createTableForWallet:wallet.address];
