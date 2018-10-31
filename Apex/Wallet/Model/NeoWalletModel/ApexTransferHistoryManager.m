@@ -12,7 +12,7 @@
 #import "ApexTransHistoryDataBaseHelper.h"
 
 #define timerInterval 10.0
-#define confirmHeight 3
+#define confirmHeight 6
 
 @interface ApexTransferHistoryManager()
 @property (nonatomic, strong) FMDatabase *db;

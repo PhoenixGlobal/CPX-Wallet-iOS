@@ -18,7 +18,7 @@
 }
 
 + (NSString*)getETHBaseUrl{
-    return ETH_baseUrl_cli_test;
+    return ETH_baseUrl_cli_Main;
 }
 
 + (NSString *)getToolBaseUrl{

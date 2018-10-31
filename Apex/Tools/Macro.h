@@ -45,13 +45,11 @@
 #define baseUrl_tool_test @"http://tmp.chinapex.com.cn/wallets-java-version/tool/"
 #define baseUrl_cli_test @"http://dev.chinapex.com.cn:10086/neo-cli/"
 
-#define baseUrl_tool_main @"http://tracker.chinapex.com.cn/tool/jar-serv/"
-#define baseUrl_cli_main @"http://tracker.chinapex.com.cn/neo-cli-2-9/"
+#define baseUrl_tool_main @"https://tracker.chinapex.com.cn/tool/jar-serv/"
+#define baseUrl_cli_main @"https://tracker.chinapex.com.cn/neo-cli-2-9/"
 
 //eth
-#define ETH_baseUrl_cli_test @"https://tracker.chinapex.com.cn/eth-parity-cli/" //parity
-//#define ETH_baseUrl_cli_test @"https://tracker.chinapex.com.cn/eth-cli/"
-//#define ETH_baseUrl_cli_test @"http://42.159.95.191:8545"  //eth geth
+#define ETH_baseUrl_cli_Main @"https://tracker.chinapex.com.cn/eth-parity-cli/" //parity
 
 #define ETHApiKey @"CTTVCEUHGU1UMY14IMWH5G9IREY7AAMT1V"
 

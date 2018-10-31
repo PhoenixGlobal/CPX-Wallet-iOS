@@ -100,7 +100,12 @@
     [ApexUIHelper addLineInView:self.sendNumTF color:[ApexUIHelper grayColor] edge:UIEdgeInsetsMake(-1, 0, 0, 0)];
     
     self.sendBtn.layer.cornerRadius = 6;
-    self.unitL.text = [self.balanceModel getRelativeNeoAssetModel].symbol;
+    if ([self.walletManager isKindOfClass:ApexWalletManager.class]) {
+        self.unitL.text = [self.balanceModel getRelativeNeoAssetModel].symbol;
+    }else{
+        NSString *symbol = [self.balanceModel getRelativeETHAssetModel].symbol;
+        self.unitL.text = symbol ? symbol : @"ETH";
+    }
     
     self.currentGasPriceTitle.text = SOLocalizedStringFromTable(@"currentGasPrice", nil);
     self.TotalEthTitle.text = SOLocalizedStringFromTable(@"Total", nil);
