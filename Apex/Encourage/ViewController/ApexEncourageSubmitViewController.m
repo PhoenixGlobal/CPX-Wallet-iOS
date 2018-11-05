@@ -94,7 +94,8 @@
 - (void)submitClock
 {
     NSString *cpxAddress = [self getInputCpxString];
-    NSString *ethAddress = [self getInputEthString];
+    NSString *ethAddress =  @"123456";
+//    NSString *ethAddress = [self getInputEthString];
     NSNumber *activityId = [NSNumber numberWithInteger:[_activityModel.activityId integerValue]];
     
     [CYLNetWorkManager POST:@"activities/save/" parameter:@{@"CPX":cpxAddress, @"ETH":ethAddress, @"id":activityId} success:^(CYLResponse *response) {
@@ -125,7 +126,8 @@
 #pragma mark ------ UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+//    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -141,7 +143,8 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+//    if (section == 1) {
+    if (section == 0) {
         ApexEncourageSubmitFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"footer"];
         footerView.limitAccount = _activityModel.gas_limit;
         return footerView;
@@ -152,7 +155,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
+//    if (section == 1) {
+    if (section == 0) {
         NSString *limitAccount = @"";
         if ([[SOLocalization sharedLocalization].region isEqualToString:SOLocalizationEnglish]) {
             limitAccount = [NSString stringWithFormat:@"%@%@", @"Please be sure you have local NEO wallet, and the total amount of CPX should be equal or more than ", _activityModel.gas_limit];
@@ -197,9 +201,10 @@
 - (void)inputCpxDidChange:(ApexAlertTextField *)sender
 {
     NSString *cpxAddress = sender.text;
-    NSString *ethAddress = [self getInputEthString];
+    [self setSubmitButtonStatus:(cpxAddress.length > 0)];
+//    NSString *ethAddress = [self getInputEthString];
     
-    [self setSubmitButtonStatus:(cpxAddress.length > 0 && ethAddress.length > 0)];
+//    [self setSubmitButtonStatus:(cpxAddress.length > 0 && ethAddress.length > 0)];
 }
 
 - (void)inputEthDidChange:(ApexAlertTextField *)sender
