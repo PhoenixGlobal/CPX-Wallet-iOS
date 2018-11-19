@@ -284,7 +284,7 @@ static ApexTransferHistoryManager *_instance;
 }
 
 - (void)getTransactionHistoryWithAddress:(NSString *)addr BeginTime:(NSTimeInterval)beginTime Success:(void (^)(CYLResponse *))success failure:(void (^)(NSError *))failure{
-    
+    //https://tracker.chinapex.com.cn/tool/jar-serv/transaction-history
     [CYLNetWorkManager GET:@"transaction-history" parameter:@{@"address":addr, @"beginTime":@(beginTime)} success:^(CYLResponse *response) {
         NSMutableArray *tempArr = [NSMutableArray array];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response.returnObj options:NSJSONReadingAllowFragments error:nil];

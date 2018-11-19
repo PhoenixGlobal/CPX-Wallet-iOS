@@ -25,10 +25,12 @@ singleM(Manager);
     //删除已有的
     NSNumber *timeStampIfHave = nil;
     NSMutableArray *oldAssetArr = nil;
+    BOOL oldBackUp = false;
     for (ETHWalletModel *wallet in ethArr) {
-        if ([wallet.address isEqualToString:address]) {
+        if ([wallet.address.lowercaseString isEqualToString:address.lowercaseString]) {
             oldAssetArr = wallet.assetArr;
             timeStampIfHave = wallet.createTimeStamp;
+            oldBackUp = wallet.isBackUp;
             [ethArr removeObject:wallet];
             break;
         }
@@ -38,7 +40,7 @@ singleM(Manager);
     ETHWalletModel *wallet = [[ETHWalletModel alloc] init];
     wallet.address = address;
     name == nil ? (wallet.name = @"Wallet") : (wallet.name = name);
-    wallet.isBackUp = false;
+    wallet.isBackUp = oldBackUp;
     wallet.assetArr = oldAssetArr ? oldAssetArr : [self setDefultAsset];
     wallet.createTimeStamp = timeStampIfHave == nil ? @([[NSDate date] timeIntervalSince1970]) : timeStampIfHave;
     wallet.canTransfer = @(YES);
